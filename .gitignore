@@ -1,0 +1,8 @@
+.sites-runtime/
+node_modules/
+*.tgz
+*.tar.gz
+.env
+.env.local
+data/
+__pycache__/

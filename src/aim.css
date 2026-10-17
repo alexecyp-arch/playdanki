@@ -1,0 +1,11 @@
+.aim-field{position:relative;flex:1;width:100%;min-height:250px}
+.aim-target{position:absolute;width:max-content;min-width:min(13rem,100%);max-width:min(42rem,100%);text-align:center;user-select:none}
+.answer-box{display:grid;place-items:center;min-height:5.5rem;padding:1.1rem 1.5rem;border:2px solid #45618e;border-radius:.65rem;background:#102c59;line-height:1.2}
+.translation{font-size:clamp(1.6rem,3vw,2.7rem);overflow-wrap:anywhere}
+.prompt-heading{position:relative;width:max-content;max-width:100%;margin-inline:auto;padding-bottom:38px}
+.aim-sphere{width:24px;height:24px;padding:0;border:0;border-radius:50%;cursor:crosshair;touch-action:manipulation;background:radial-gradient(circle at 30% 25%,#fff1e9 0 5%,#ffa89c 16%,#ff6255 31%,#ed2635 48%,#bf1028 70%,#69091d 100%);box-shadow:inset -2px -2px 3px #0004,inset 1px 1px 2px #fff8,0 2px 4px #0006}
+.aim-dot{display:block;margin:0 auto 12px}
+.aim-start-dot{position:absolute;z-index:1;margin:0;transform:translate(-50%,-50%)}
+.aim-sphere:focus{outline:none}
+.aim-field[hidden],.aim-target[hidden],.aim-sphere[hidden]{display:none}
+@media(max-width:600px){.aim-target{min-width:min(10rem,100%)}.answer-box{padding:.9rem 1rem;min-height:4.5rem}.translation{font-size:clamp(1.3rem,5.5vw,1.9rem)}}

@@ -1,0 +1,734 @@
+# 1|Small-cap basics
+Share|A unit of ownership in a company|A fixed-interest loan to a company|You own one tiny part of a listed company. What do you own?
+Ticker|A security's trading symbol|The number of shares you hold|A stock appears as ABCD on your trading screen. What is ABCD?
+Small cap|A company with a relatively small market value|Any stock with a low price per share|A company has a relatively small total equity value. What category describes it?
+Market cap|Share price multiplied by shares outstanding|Share price multiplied by daily trading volume|You multiply a stock's price by its outstanding shares. What have you measured?
+Shares outstanding|All issued shares currently held by shareholders|Only shares traded today|You count all issued shares held by investors and insiders. What is this count?
+Float|Shares available for public trading|All shares a company is authorized to issue|A company has 20 million shares, but only 8 million trade publicly. What is the 8 million?
+Low float|Relatively few shares available for public trading|A guarantee of a rising share price|A stock has few publicly tradable shares. What describes this share supply?
+Price|The amount paid for one unit of an asset|The total value of a company's equity|One share changes hands for $4. What does the $4 represent?
+Bid|The price a buyer offers to pay|The price a seller asks to receive|A buyer is willing to pay $3.98 per share. What is that quote?
+Ask|The price a seller offers to sell at|The highest quoted buying price|A seller offers shares for $4.02. What is that quote?
+Bid-ask spread|The difference between the best ask and best bid|The difference between revenue and profit|The best bid is $4 and best ask is $4.05. What is the gap called?
+Volume|The number of units traded during a period|The number of unique people trading|Two million shares change hands today. Which measure is two million?
+Liquidity|The ease of trading without a large price impact|A promise that an asset will increase in value|You can sell a position quickly with little price impact. What property helps?
+Volatility|The degree of variation in prices or returns|The average number of shares outstanding|A stock's price swings sharply throughout the day. Which characteristic is high?
+Catalyst|An event that can change expectations about an asset|An event that guarantees a price increase|A biotech announces important trial results. What role can the announcement play?
+News release|A public announcement from a company or organization|A private message from your broker only|A company publishes an official update about a contract. What is this document?
+Gap up|An opening price above the prior session's closing price|Every price increase within a session|A stock closes at $3 and opens at $4. What is this opening move?
+Gap down|An opening price below the prior session's closing price|Every price decrease within a session|A stock closes at $5 and opens at $4. What is this opening move?
+Premarket|Trading before the regular market session opens|Trading after the regular session closes|You trade before the regular opening bell. What session are you using?
+After-hours|Trading after the regular market session closes|Trading before the regular session opens|You trade after the regular closing bell. What session are you using?
+Long position|Ownership that generally benefits from a price rise|A position that benefits only from a price fall|You buy shares hoping their price increases. What position have you opened?
+Short position|A sale of borrowed securities to buy back later|Ownership of shares for a short time only|You borrow shares, sell them, and plan to repurchase them. What position is this?
+Entry|The transaction that opens a position|The transaction that always closes a position|You buy shares to begin a new trade. What part of the trade is this?
+Exit|The transaction that closes or reduces a position|The first transaction in every trade|You sell all the shares in an existing long trade. What part of the trade is this?
+Position size|The quantity or value of an exposure|The number of trades taken in a day|You decide whether to hold 100 or 1,000 shares. What are you choosing?
+Profit|The positive difference between proceeds and costs|The full amount received from a sale|You sell for more than your total cost. What is the difference?
+Loss|The amount by which costs exceed proceeds|The full original value of a position|You sell for less than your total cost. What is the difference?
+Unrealized gain|An increase in value on a position still held|Cash profit from a position already closed|Your shares rise, but you have not sold. What kind of gain do you have?
+Realized gain|A gain recognized when a position is sold or settled|Any price increase while still holding an asset|You close a profitable stock position. What kind of gain have you booked?
+Break-even|The point where total gains equal total costs|The point where a trade doubles in value|A trade earns exactly enough to cover all its costs. What point has it reached?
+Commission|A fee charged for executing a trade|A stock's dividend payment|Your broker charges a transaction fee. What is this charge called?
+Slippage|The difference between expected and actual execution price|A guaranteed fee set by an exchange|You expect to sell at $4 but receive $3.90. What describes the execution difference?
+Trading halt|A temporary suspension of trading in a security|A guarantee that the next trade has the same price|Trading in a stock is temporarily stopped. What is this interruption?
+Reopening auction|A process matching orders when halted trading resumes|A guarantee that every stop order fills at its trigger|Orders are matched to restart trading after a pause. What process can set the reopening price?
+Dilution|A reduction in an existing holder's ownership percentage|A guaranteed increase in earnings per share|New shares are issued and your percentage ownership falls. What happened?
+Share offering|A sale of company shares to raise or transfer capital|A mandatory cash dividend to every holder|A company sells newly issued stock to raise cash. What transaction is this?
+Reverse split|Combining existing shares into fewer shares|Creating company value simply by changing share count|Ten old shares become one new share. What corporate action is this?
+Stock split|Dividing existing shares into more shares|Automatically increasing the total value of ownership|One old share becomes two new shares. What corporate action is this?
+Pump and dump|Promoting an asset to sell into an inflated price|A regulated way to guarantee investor profits|Promoters hype a stock, sell their holdings, and leave buyers with losses. What scheme is this?
+Watchlist|A list of securities selected for monitoring|An order that automatically buys all listed stocks|You keep a shortlist of stocks to observe. What is this list?
+Scanner|A tool that finds securities matching selected filters|A tool that guarantees profitable entries|You filter stocks by volume and price change. What tool performs this search?
+Relative volume|Volume compared with a relevant typical volume baseline|The stock's price divided by its float|Today's volume is five times the comparable average. Which volume measure captures this?
+Float rotation|Trading volume divided by the publicly tradable share count|The percentage of holders who sold their entire stake|Volume equals three times the float. Which turnover measure is about three?
+Momentum|The tendency or strength of an ongoing price move|A guarantee that a trend will continue|A stock keeps making strong upward price moves. What describes the move's strength?
+Pullback|A temporary move against the prevailing trend|Proof that a company is bankrupt|A rising stock briefly falls before its next move. What is this retreat called?
+Breakout|A price move beyond an observed trading boundary|A promise that the new move will continue|A stock moves above a previously observed resistance level. What is this move?
+Support|A price area where buying has previously slowed declines|A price below which trading cannot occur|Prices repeatedly stop falling near the same area. What is this observed area?
+Resistance|A price area where selling has previously slowed advances|A price above which trading is legally prohibited|Prices repeatedly stop rising near the same area. What is this observed area?
+VWAP|Average traded price weighted by traded volume|The simple average of every quoted price|You weight executed prices by the shares traded at each price. What average is this?
+Risk per trade|The planned amount at risk on one trade|A guaranteed maximum loss in every market condition|You budget a specific loss amount before entering a trade. What budget is this?
+Day trading|Opening and closing a position within the same trading day|Holding a position for several years by definition|You buy shares after the open and sell them before that day's close. What trading style is this?
+Scalping|Taking short-duration trades to capture relatively small price moves|Holding every trade until the company pays an annual dividend|A trader repeatedly seeks small moves over very brief holding periods. What style is this?
+Short interest|Shares sold short and still outstanding at the measurement date|Every share sold during today's session|A report counts shares sold short that have not been covered. What count is this?
+Short float|Short interest divided by the stated publicly tradable float|Trading volume divided by all authorized shares|You compare outstanding short positions with the reported public float. What percentage measure is this?
+Days to cover|Short interest divided by a specified average daily trading volume|A guaranteed number of days before all shorts must close|You divide outstanding short shares by average daily share volume. What estimate is this?
+Short squeeze|A price rise amplified by buying to close short positions|A guarantee that every low-float stock must rise|A rising stock prompts short sellers to buy back, adding upward demand. What process is this?
+Short covering|Buying securities to close an existing short position|Selling borrowed shares to open a new short position|A trader repurchases shares previously sold short. What action is this?
+Locate|Arranging or establishing a basis to believe short-sale shares can be borrowed|A guarantee that a short position can remain open forever|Before shorting, a broker checks or arranges access to borrowable shares. What short-sale step is this?
+Borrow fee|The cost charged for borrowing securities|The cash dividend guaranteed to every borrower|A short seller is charged for use of borrowed shares. What cost is this?
+Hard-to-borrow|Securities with limited or difficult borrowing availability|Securities guaranteed to be available for free|A broker has little stock available for new short sales. What borrowing category may apply?
+Easy-to-borrow|Securities with readily available borrowing under the broker's criteria|Securities with guaranteed risk-free short-sale profits|A broker classifies shares as readily available to borrow. What borrowing category is this?
+Borrow recall|A lender requesting the return of loaned securities|A company automatically issuing a dividend in shares|The lender asks for shares on loan to be returned. What event is this?
+Buy-in|A purchase to obtain securities needed to fulfill delivery or return obligations|A guarantee that every short seller profits|Securities are bought to resolve an unmet delivery or return obligation. What procedure is this?
+Warrant overhang|Potential future share supply associated with outstanding warrants|A guarantee that current holders receive extra cash|Outstanding rights to buy newly issued shares may add future supply. What capital-structure concern is this?
+Cash burn|The rate at which an activity consumes available cash|The company's total stock-market capitalization|An unprofitable biotech uses cash each month to fund operations. What rate is this?
+Cash runway|How long cash could last at an assumed net burn rate|A guarantee that spending and funding will never change|A company compares current cash with its monthly net cash use. What funding estimate is this?
+Binary catalyst|An event with sharply different major outcome possibilities|An event guaranteeing the same market reaction in every case|A trial result could substantially help or harm a biotech's prospects. What catalyst type is this?
+Secondary share sale|Existing shareholders selling their already-issued shares|A company necessarily creating new shares for every sale|Early investors sell their own existing stock and receive the proceeds. What kind of share sale is this?
+Offering discount|An offering price below a stated market reference price|A guarantee that buying the offering produces a profit|New shares are offered below the stock's chosen reference price. What pricing difference is this?
+Liquidity vacuum|A period with very little available trading interest near the price|A market condition guaranteeing tiny price changes|Nearby bids disappear and even modest sell orders move price sharply. What trading condition can describe this?
+# 2|Orders and execution
+Market order|An order seeking immediate execution at available prices|An order guaranteeing a specific execution price|You prioritize execution and accept the available market price. Which order fits?
+Limit order|An order to trade at a specified price or better|An order that must execute immediately|You will buy only at your chosen price or below. Which order fits?
+Buy limit|An order to buy at a limit price or lower|An order to buy only above its stated price|You refuse to pay more than $5 per share. Which buy order expresses that limit?
+Sell limit|An order to sell at a limit price or higher|An order to sell only below its stated price|You refuse to accept less than $8 per share. Which sell order expresses that limit?
+Stop-market order|An order that becomes a market order when triggered|An order guaranteeing the stop price as the fill price|A trigger activates an order to trade at available prices. Which order is this?
+Stop-limit order|An order that becomes a limit order when triggered|An order guaranteeing execution after its trigger|A trigger activates an order with a minimum sale price. Which order is this?
+Stop price|The price condition that activates a stop order|A guaranteed execution price after any gap|A sell stop activates when its trigger condition is met. What is the trigger level called?
+Trailing stop|A stop whose trigger follows favorable price movement|A stop that must move farther away after a loss|A stop level follows a rising price at a chosen distance. What type of stop is this?
+Fill|An execution of all or part of an order|An acknowledgement that an order was received|Your order actually trades 200 shares. What is that execution called?
+Partial fill|Execution of less than the full order quantity|Automatic cancellation of all remaining shares|Your 1,000-share order trades only 300 shares. What kind of execution occurred?
+Order book|A record of displayed resting buy and sell orders|A list of only yesterday's completed trades|You view resting bids and offers at several prices. What are you viewing?
+Level 1 quotes|Top-of-book bid, ask and basic market information|All hidden orders at every venue|Your screen shows the best bid and best ask. What basic quote level is this?
+Level 2 quotes|Displayed depth at multiple price levels or participants|A complete record of every hidden order|Your screen shows several displayed bid and offer levels. What quote depth is this?
+Time and sales|A chronological feed of executed trades|A list of all pending unexecuted orders|You watch each reported trade's time, price and size. What feed is this?
+Order routing|Sending an order to a market or execution venue|Changing the company's shares outstanding|Your broker chooses where to send your order. What process is this?
+Exchange|An organized marketplace for trading securities|A firm that guarantees every stock's value|Buy and sell orders meet on an organized securities marketplace. What is the venue?
+Market maker|A participant that quotes buying and selling prices|An investor who controls a company's market value|A dealer stands ready to buy and sell at quoted prices. What role is it performing?
+ECN|An electronic network that matches trading orders|A government guarantee on trading returns|An electronic system matches buyers and sellers directly. What network is this?
+Best execution|A broker's duty to seek favorable execution terms|A promise of the best imaginable price on every trade|A broker evaluates venues to seek favorable execution for clients. What duty is involved?
+Price improvement|Execution at a better price than the relevant quote|Any increase in a company's stock price|Your buy fills below the quoted ask. What execution benefit may you have received?
+Marketable limit|A limit order priced to trade against available quotes|A limit order that can never execute immediately|Your buy limit is above the current ask. What kind of limit order is this?
+Resting order|An unexecuted order waiting in the market|An order that has already fully traded|Your limit order sits on the book awaiting a match. What is its state?
+Day order|An order that expires at the end of its designated trading day|An order that stays active indefinitely|Your unfilled order expires at the end of the specified day. What duration is this?
+Good-till-canceled|An order kept active until cancellation or broker expiry|An order that must remain active forever|An order remains active beyond today, subject to broker expiry. What duration is this?
+Immediate-or-cancel|Execute available quantity now and cancel the remainder|Keep all unfilled quantity active indefinitely|An order fills what it can immediately and cancels the rest. Which instruction is this?
+Fill-or-kill|Execute the entire order immediately or cancel it|Execute any small portion and leave the rest active|An order must trade its full size immediately or be canceled. Which instruction is this?
+All-or-none|An instruction requiring the full quantity to execute|An instruction requiring immediate execution in every case|Your order may wait, but it cannot execute only part of its quantity. Which instruction is this?
+Cancel-replace|A request to cancel an order and enter revised terms|A guarantee that the original order cannot fill meanwhile|You request a revised price on a live order. What order process is involved?
+Cancel pending|Cancellation requested but not yet confirmed|Proof that an order can no longer execute|You requested cancellation but have not received confirmation. What is the order status?
+Order rejection|A refusal to accept or execute a submitted order|A successful trade at an unfavorable price|Your broker refuses an order because it violates a requirement. What happened?
+Queue priority|An order's position in the matching sequence|A guarantee that large orders always fill first|Several orders wait at one price; matching rules rank them. What is this ranking?
+Price-time priority|Matching orders by price and then arrival time|Matching orders solely by the wealth of the trader|At the same price, an earlier order gets precedence. What matching rule is this?
+Hidden order|An order whose full quantity is not publicly displayed|An order exempt from all trading rules|An order is available to trade but its size is not shown publicly. What type is this?
+Iceberg order|An order displaying only part of its total quantity|An order that must execute all shares at once|Only 100 of a 10,000-share order are displayed at a time. What structure is this?
+Dark pool|A trading venue with limited pretrade order visibility|An unregulated guarantee of anonymous profits|Orders match in a venue without a public displayed order book. What venue type is this?
+Bid size|The displayed quantity sought at a quoted bid|The total number of shares the company has issued|A bid shows 2,000 shares available to buy at that price. What is the 2,000?
+Ask size|The displayed quantity offered at a quoted ask|The number of buyers at the best bid|An offer shows 500 shares for sale at that price. What is the 500?
+Thin book|An order book with little displayed quantity|A book with guaranteed price stability|Few shares are displayed at nearby prices. What describes the visible depth?
+Market depth|The quantity of orders available across price levels|The number of years a company has been listed|You examine how much stock is offered at each nearby price. What are you examining?
+Order imbalance|Unequal buy and sell interest in a matching process|Proof that a company's assets exceed its liabilities|An opening auction has much more buy quantity than sell quantity. What condition is this?
+Opening auction|A matching process used to establish an opening trade|A promise that the opening equals yesterday's close|Orders are combined to determine the regular opening price. What process is this?
+Closing auction|A matching process used to establish a closing trade|An order that can execute only tomorrow|Orders are combined for the official end-of-session trade. What process is this?
+Market-on-close|An order seeking execution at the closing auction price|An order that guarantees a chosen closing price|You seek to trade at the closing auction's price without a limit. Which instruction fits?
+Limit-on-close|An order for the closing auction with a price limit|An order guaranteed to fill at any closing price|You want a closing-auction trade only if it respects your limit. Which instruction fits?
+NBBO|The national best displayed bid and offer|The average price of every trade today|You compare the highest national bid and lowest national offer. What quote benchmark is this?
+Locked market|A quoted market where the best bid equals the best ask|A market where the best bid exceeds the best ask|The best displayed bid and ask are both $10. What quoted condition is this?
+Crossed market|A quoted market where the best bid exceeds the best ask|A market where the bid and ask are equal|A displayed best bid is above the displayed best ask. What quoted condition is this?
+LULD|Price bands designed to limit extreme U.S. stock moves|A universal fixed-percentage rule for all assets|U.S. stock trades are constrained by reference-price bands. Which mechanism is this?
+News-pending halt|A trading suspension while material news is awaited|A halt triggered only by a known percentage move|An exchange pauses a stock while awaiting a material announcement. What type of halt is this?
+Settlement|Completion of a trade's delivery and payment obligations|The moment a limit order is first submitted|The buyer receives securities and the seller receives payment. What completion process is this?
+# 2|Risk and trading discipline
+Risk-reward ratio|The relationship between planned loss and potential gain|The fraction of trades that win|You compare $100 of planned risk with $300 of target profit. What relationship is this?
+Risk capital|Money allocated to exposure that can suffer loss|Money guaranteed by the exchange against loss|You set aside funds you can tolerate losing in a strategy. What capital is this?
+Risk tolerance|Willingness and ability to accept uncertain losses|A prediction of the next stock price|You assess how much investment loss you can bear emotionally and financially. What are you assessing?
+Drawdown|A decline from a previous peak in account value|The number of winning trades in a row|An account falls from its prior highest value. What is this decline called?
+Maximum drawdown|The largest peak-to-trough decline in a measured period|The average loss on a single trade|You identify the deepest account decline from a peak during a year. What measure is this?
+Daily loss limit|A chosen threshold for stopping new risk for the day|A guarantee that existing positions cannot lose more|You stop taking new trades after a preset day's loss. What rule is this?
+Leverage|Exposure larger than the capital supporting it|A guaranteed increase in the probability of profit|You control a $20,000 position with $10,000 of equity. What amplifies the exposure?
+Margin loan|Money borrowed against eligible account collateral|A free dividend paid by a broker|A broker lends funds secured by assets in your account. What borrowing is this?
+Margin call|A demand to restore required account collateral or equity|A notification that every position made a profit|Your account falls below its required margin level. What demand may follow?
+Liquidation|Closing positions or selling assets to meet obligations|Automatically increasing the size of a losing trade|A broker sells positions to address insufficient account equity. What action is this?
+Concentration risk|Exposure to too few assets or shared risk factors|Risk eliminated by owning many correlated tickers|Most of your portfolio depends on one company. What risk is prominent?
+Diversification|Spreading exposure across different assets or risks|A guarantee that losses are impossible|You spread holdings across assets with different drivers. What approach is this?
+Correlation|The strength and direction of joint variation|Proof that one variable causes the other|Two assets often move together. Which statistical relationship describes this?
+Hedge|An exposure intended to offset another exposure's risk|A trade guaranteed to make money independently|You add a position that can offset part of another position's loss. What is it?
+Gap risk|Risk that a price jumps past an intended trading level|Risk removed entirely by a stop-market order|A stock reopens below your stop after a halt. What risk has appeared?
+Liquidity risk|Risk of difficulty trading quickly at a reasonable price|Risk that a dividend is paid earlier than expected|You cannot sell a position without moving its price sharply. What risk is this?
+Execution risk|Risk that an order's outcome differs from the plan|Risk removed by receiving an order acknowledgement|Your trade fills late, partly, or at a worse price. What risk category is involved?
+Counterparty risk|Risk that the other party fails to meet obligations|Risk that market prices always remain unchanged|The party owing you money fails to pay. What risk is this?
+Operational risk|Risk of failures in people, processes or systems|Only the risk of a stock's price declining|A platform outage prevents you from managing a trade. What risk category is this?
+Systematic risk|Market-wide risk that diversification cannot fully remove|Only the risk specific to one company|A broad market shock hits many unrelated stocks. What type of risk is this?
+Idiosyncratic risk|Risk specific to an asset, company or narrow exposure|All risk caused by the general market|One company loses its main customer while the market stays stable. What risk is this?
+Expected value|The probability-weighted average outcome|The most optimistic possible outcome|You weight every possible gain and loss by its probability. What result are you calculating?
+Win rate|Winning trades divided by all measured trades|Total profit divided by total capital|You win 60 of 100 trades. What statistic is 60%?
+Payoff ratio|Average win divided by average loss magnitude|Winning trades divided by losing trades|Your average winner is $200 and average loser is $100. What ratio is 2?
+Profit factor|Gross trading profit divided by gross trading loss magnitude|Average gain divided by the initial stock price|All winning trades earn $3,000 and losers lose $2,000. What ratio is 1.5?
+R-multiple|A result expressed in units of initial planned risk|The number of shares divided by the ticker length|A trade earns three times its initial risk budget. What result unit is 3?
+Trade journal|A record of decisions, executions and outcomes|A list of only trades you wish to remember|You document trade plans, fills, mistakes and results. What record is this?
+Trading plan|Rules defining entries, exits, sizing and process|A guarantee that the next trade will win|You specify how and when you will enter and manage trades. What have you written?
+Invalidation|A condition showing the original trade thesis no longer holds|A condition proving a losing trade must recover|A key assumption behind your trade becomes false. What has occurred to the thesis?
+Backtest|A test of a strategy using historical data|Proof that future performance will match the past|You apply trading rules to past data to evaluate results. What test is this?
+Forward test|Testing a strategy on subsequently arriving data|Changing old data to improve historical results|You apply fixed rules to new market data as it arrives. What test is this?
+Paper trading|Simulated trading without real money execution|A way to prove live fills will be identical|You place simulated trades to practice a strategy. What activity is this?
+Overfitting|Adapting a model too closely to noise in training data|Finding a rule guaranteed to work in every market|A strategy fits old price noise and fails on new data. What problem is this?
+Look-ahead bias|Using information that was unavailable at the decision time|Only forgetting to include commissions|A backtest uses tomorrow's earnings result for today's entry. What bias is this?
+Survivorship bias|Studying only surviving members of an original population|Studying both failed and surviving firms equally|A backtest excludes stocks that went bankrupt. What bias can distort the result?
+Selection bias|A distorted sample caused by the selection process|A complete random sample of all observations|You evaluate only strategies chosen because they already performed well. What bias can arise?
+Trading costs|Commissions, spreads, fees and other trading friction|Only the stock's purchase price|Trading fees and spread costs reduce an apparently profitable strategy. What costs were omitted?
+Revenge trading|Taking impulsive trades to recover a recent loss|Following an unchanged risk plan after a loss|After losing, you take an unplanned oversized trade to win it back. What behavior is this?
+FOMO|Fear of missing out on an opportunity|A statistically proven trading advantage|You chase a move mainly because others are profiting. What emotion is driving the entry?
+Confirmation bias|Favoring evidence that supports an existing belief|Treating contrary and supporting evidence equally|You read bullish news and ignore equally credible bearish news. What bias is this?
+Anchoring|Relying too heavily on an initial reference point|Updating a valuation fully with all new information|You refuse to reconsider a trade because of your original entry price. What bias may be operating?
+Loss aversion|Feeling losses more strongly than equivalent gains|Being indifferent to every financial outcome|A $100 loss hurts more than a $100 gain pleases you. What tendency is this?
+Sunk-cost fallacy|Letting unrecoverable past costs drive a new decision|Evaluating only future costs and benefits|You keep a bad trade mainly because you already lost money on it. What error is this?
+Recency bias|Giving excessive weight to the latest observations|Using a representative long-run sample evenly|Three recent wins make you assume every future trade will win. What bias is this?
+Overconfidence|Excessive confidence in one's forecasts or skill|Recognizing an estimate's true uncertainty|You treat a fragile forecast as virtually certain. What decision problem is this?
+Position scaling|Changing a position's size in planned stages|A guarantee that averaging down removes risk|You enter or exit portions of a position at different times. What process is this?
+Averaging down|Adding to a long position after its price falls|Reducing the share count after every price decline|You buy more shares below your original long entry. What action is this?
+Averaging up|Adding to a long position after its price rises|Selling every share after any price increase|You add shares above your original long entry. What action is this?
+Portfolio heat|The aggregate planned risk across open positions|The temperature of the computer running your broker|You total the planned risk of all your current trades. What portfolio measure is this?
+Risk of ruin|The chance of exhausting capital beyond a critical threshold|The chance that any one trade loses a small amount|You estimate the probability of depleting usable trading capital. What probability is this?
+# 3|Charts and price analysis
+Candlestick|A chart unit showing open, high, low and close|A chart unit showing only company revenue|One chart bar summarizes a period's opening, extreme and closing prices. What is it?
+Open price|The first traded price in a specified period|The highest traded price of that period|The first trade in a five-minute interval occurs at $6. What price is $6?
+Close price|The final traded price in a specified period|The lowest traded price of that period|The final trade in a five-minute interval occurs at $7. What price is $7?
+High price|The highest traded price in a specified period|The average traded price of that period|The greatest price reached in today's trades is $9. What price is $9?
+Low price|The lowest traded price in a specified period|The last trade before the closing auction|The smallest price reached in today's trades is $4. What price is $4?
+Candle body|The chart distance between open and close|The chart distance between total volume and float|The thick part of a candle spans its open and close. What is this part called?
+Candle wick|The line showing an extreme beyond the candle body|A line representing the company's debt balance|A thin line extends above a candle's body to its high. What is this part?
+Timeframe|The time interval represented by a chart unit|The number of shares represented by the float|Each candle represents one minute. What chart setting is one minute?
+Uptrend|A sustained pattern of generally rising prices|A guarantee that every next price will be higher|Prices tend to make higher highs and higher lows. What broad pattern is this?
+Downtrend|A sustained pattern of generally falling prices|A guarantee that every next price will be lower|Prices tend to make lower highs and lower lows. What broad pattern is this?
+Sideways market|A market moving mainly within a range|A market with no executed trades at all|Prices fluctuate in a band without a clear directional trend. What market condition is this?
+Higher high|A price peak above a previous comparable peak|A price trough below the preceding trough|A new swing peak exceeds the previous swing peak. What has formed?
+Higher low|A price trough above a previous comparable trough|A price peak below the preceding peak|A new swing trough holds above the prior swing trough. What has formed?
+Lower high|A price peak below a previous comparable peak|A price trough above the preceding trough|A rally peaks below the prior rally's peak. What has formed?
+Lower low|A price trough below a previous comparable trough|A price peak above the preceding peak|A new swing trough falls below the earlier trough. What has formed?
+Trendline|A line joining selected price points to illustrate a trend|A legal boundary that prices cannot cross|You join selected rising troughs with a line. What chart aid is this?
+Trading range|The price band between observed upper and lower boundaries|A stock's permanent minimum and maximum allowed prices|A stock oscillates between $10 and $12. What describes that band?
+Consolidation|A period of relatively contained price movement|A guarantee that the next move will be upward|After a sharp rise, prices cluster in a narrow band. What phase is this?
+Reversal|A change in the prevailing price direction|Every small movement against a trend|A sustained uptrend gives way to a sustained downtrend. What change is this?
+False breakout|A move beyond a boundary that soon fails back inside|Every breakout confirmed by continuing demand|Price briefly clears resistance, then drops back into the range. What move is this?
+Retest|A return to a previously crossed or important price area|The first price quote on a newly listed stock|After a breakout, price revisits the former resistance area. What action is this?
+Moving average|An average updated across a rolling data window|The total sum of all prices without dividing|You average the last 20 closing prices each day. What indicator is this?
+Simple moving average|An equally weighted average of a rolling set of values|An average weighting only the latest observation|Each of the last ten closes receives the same weight. What average is this?
+Exponential moving average|A rolling average giving more weight to recent values|An average giving identical weight to all historical values|Recent prices receive more weight than older prices in an average. What type is this?
+Moving-average crossover|One moving average crossing another|Proof that the crossed price level is guaranteed support|A short-term average moves above a long-term average. What signal event is this?
+Golden cross|A shorter moving average crossing above a longer one|A shorter moving average crossing below a longer one|A 50-day average crosses above a 200-day average. What traditional label applies?
+Death cross|A shorter moving average crossing below a longer one|A shorter moving average crossing above a longer one|A 50-day average crosses below a 200-day average. What traditional label applies?
+RSI|A bounded momentum measure comparing recent gains and losses|A direct measure of a company's cash balance|An oscillator compares the magnitude of recent upward and downward moves. Which common indicator is this?
+Overbought|A label for unusually strong recent buying by an indicator|Proof that a price must immediately fall|An oscillator flags unusually strong recent upward movement. What condition is it labeling?
+Oversold|A label for unusually strong recent selling by an indicator|Proof that a price must immediately rise|An oscillator flags unusually strong recent downward movement. What condition is it labeling?
+MACD|A momentum indicator based on moving-average differences|A measure of outstanding company liabilities|An indicator tracks the difference between two exponential averages. Which common indicator is this?
+ATR|An average measure of true price ranges|A forecast of the next price direction|You average ranges that incorporate gaps between periods. Which volatility indicator is this?
+True range|The largest of the intraperiod range and prior-close gap measures|The open minus the close regardless of gaps|You include both the current high-low range and gaps from the prior close. What range measure is this?
+Bollinger bands|Bands around an average based on price standard deviation|Fixed legal boundaries around every stock's price|You plot an average with bands based on historical dispersion. What chart tool is this?
+Standard deviation|A measure of dispersion around an average|The arithmetic average itself|You quantify how widely returns vary around their mean. What statistic is this?
+Volume profile|Traded volume grouped by price level|Traded volume grouped only by calendar month|You see how many shares traded at each price. What chart distribution is this?
+Point of control|The price level with the most volume in a volume profile|A price that cannot be crossed by market orders|One price has the largest traded-volume bar in a profile. What is that level called?
+Relative strength|An asset's performance compared with a benchmark|Always the same quantity as the RSI oscillator|A stock outperforms its index over a measured period. What comparison describes this?
+Breadth|How widely market participation is distributed across securities|The spread between the bid and ask of one stock|You count how many stocks rise versus fall in an index. What are you examining?
+Advance-decline line|A cumulative measure of advancing minus declining securities|A measure of one company's earnings per share|You accumulate the daily difference between risers and fallers. What breadth indicator is this?
+New high|A price exceeding the maximum of a specified lookback period|A price guaranteed to keep increasing|Today's price exceeds all prices in the past year. What observation is this?
+New low|A price below the minimum of a specified lookback period|Proof that an asset has no possible buyer|Today's price falls below all prices in the past year. What observation is this?
+High of day|The highest traded price so far in the current session|The highest price in a company's entire history|You mark today's highest traded price. What session level is this?
+Low of day|The lowest traded price so far in the current session|The lowest price in a company's entire history|You mark today's lowest traded price. What session level is this?
+Opening range|The high-low range during a chosen initial session interval|The entire previous year's trading range|You track the high and low of the first five minutes. What range is this?
+Bull flag|A chart pattern of an advance followed by a contained pullback|A pattern that guarantees a profitable upward breakout|A sharp rise is followed by a small sloping consolidation. What common pattern label fits?
+Bear flag|A chart pattern of a decline followed by a contained bounce|A pattern that guarantees a profitable downward breakout|A sharp decline is followed by a small upward consolidation. What common pattern label fits?
+Double top|Two observed peaks near a similar price area|Two consecutive days with positive earnings reports|A chart makes two distinct peaks near the same level. What pattern label fits?
+Double bottom|Two observed troughs near a similar price area|Two consecutive trades guaranteed to make money|A chart makes two distinct troughs near the same level. What pattern label fits?
+Technical analysis|Studying market data such as prices, volume and patterns|Valuing a business solely from financial statements|You analyze price trends and trading volume to study market behavior. What approach is this?
+# 3|Financial statements
+Fundamental analysis|Studying economic and business facts to evaluate an asset|Studying only chart shapes and price patterns|You study sales, costs, assets and industry conditions to value a company. What approach is this?
+Revenue|Income from ordinary sales before deducting related expenses|The cash left after every company expense|A company reports the value of goods and services sold. What income measure is this?
+Expense|A cost recognized in earning income or running a business|Every cash receipt from customers|A company recognizes rent used during a month. What accounting item is this?
+Net income|Income after recognized expenses, interest and taxes|Total sales before all costs|A business subtracts its recognized costs and taxes from income. What bottom-line measure remains?
+Gross profit|Revenue minus the cost of goods or services sold|Revenue minus every operating and financing expense|You subtract direct sales costs from sales revenue. What profit measure results?
+Operating income|Profit from operations before financing costs and income taxes|Cash raised by selling new shares|You subtract operating expenses from gross profit. What income measure remains?
+Income statement|A report of revenues and expenses over a period|A snapshot of assets and liabilities at one date|A report lists sales, costs and profit for the year. What statement is it?
+Balance sheet|A snapshot of assets, liabilities and equity at a date|A report showing only share-price changes|A report shows what a company owns and owes at year-end. What statement is it?
+Cash flow statement|A report of cash movements over a period|A list containing only noncash accounting profits|A report separates cash from operations, investing and financing. What statement is it?
+Asset|A controlled economic resource with expected future benefit|An obligation to pay another party|A company owns machinery expected to help earn income. What balance-sheet category is this?
+Liability|A present obligation requiring a transfer of economic resources|An owner's residual claim after debts|A company owes money for a received shipment. What balance-sheet category is this?
+Shareholders' equity|The residual claim after liabilities are deducted from assets|The company's entire annual revenue|You subtract all liabilities from reported assets. What accounting claim remains?
+Current asset|An asset expected to be realized in the normal cycle or near term|An asset that can never be converted to cash|Cash, receivables and normal-cycle inventory sit in which asset category?
+Current liability|An obligation expected to be settled in the normal cycle or near term|An obligation that never needs payment|Bills due within the normal operating cycle sit in which liability category?
+Working capital|Current assets minus current liabilities|Total revenue minus total equity|You subtract short-term obligations from short-term assets. What measure is this?
+Accounts receivable|Amounts owed by customers for delivered goods or services|Amounts the company owes its suppliers|A customer received goods but has not paid yet. What asset records the amount owed?
+Accounts payable|Amounts owed to suppliers for received goods or services|Amounts customers owe the company|A supplier delivered materials but has not been paid. What liability records the amount owed?
+Inventory|Goods held for sale or used in production|All cash deposited at a commercial bank|A retailer has unsold merchandise on its shelves. What asset is this?
+Cost of goods sold|The recognized cost of goods or services sold|The entire value of unsold inventory|A retailer records the purchase cost of merchandise it sold. What expense is this?
+Depreciation|Allocating a tangible asset's cost over its useful life|Automatically paying cash for the same asset every year|A machine's cost is spread across years of use. What accounting process is this?
+Amortization|Allocating a finite-lived intangible asset's cost over time|Increasing every intangible asset's value each year|A finite-lived software license's cost is spread over its useful life. What process is this?
+Impairment|A write-down when an asset's carrying value is not recoverable|A guaranteed cash payment to shareholders|An asset's recorded value is reduced after its economic value deteriorates. What charge is this?
+Goodwill|The acquired value exceeding identifiable net assets in a business purchase|The amount of cash in a company's checking account|A buyer pays above the acquired business's identifiable net asset value. What acquired asset can arise?
+Intangible asset|An identifiable resource without physical substance|Any machine or building owned by a company|A business owns a valuable patent. What type of asset is it?
+Capital expenditure|Spending to acquire or improve long-lived assets|Any dividend paid to shareholders|A factory buys a new production machine. What category of spending is this?
+Operating cash flow|Cash generated or used by ordinary business operations|Cash obtained solely by issuing new stock|A statement reports cash from the company's normal activities. What cash-flow category is this?
+Investing cash flow|Cash movements from investments and long-lived assets|Cash received only from customer sales|A company pays cash to buy a factory. Which cash-flow category usually records this?
+Financing cash flow|Cash movements involving capital providers|Cash received from ordinary product sales|A company receives cash from issuing bonds. Which cash-flow category records this?
+Free cash flow|Commonly, operating cash flow minus capital expenditure|Net income plus all borrowed cash|You subtract capital spending from operating cash flow. What common cash-flow measure results?
+Accrual accounting|Recognizing economic activity when earned or incurred|Recognizing all activity only when cash changes hands|A sale is recorded when earned even though payment arrives later. What accounting approach is this?
+Cash accounting|Recognizing income and costs when cash is received or paid|Recording all promised revenue before it is earned|A small business records a receipt only when paid. What accounting approach is this?
+Deferred revenue|Cash received before the associated revenue is earned|Revenue from goods already delivered but never billed|A customer prepays for a service to be delivered next year. What liability can arise?
+Prepaid expense|A payment for a benefit to be received in the future|A bill owed for a benefit already consumed|A company pays next year's insurance in advance. What asset can arise?
+Retained earnings|Accumulated earnings kept rather than distributed|The same amount as the current bank balance|Past profits remain in the business after dividends. What equity account reflects this accumulation?
+Gross margin|Gross profit divided by revenue|Revenue divided by the stock price|You express sales less direct costs as a percentage of sales. What margin is this?
+Operating margin|Operating income divided by revenue|Operating cash flow divided by share count|You express operating profit as a percentage of sales. What margin is this?
+Net margin|Net income divided by revenue|Revenue divided by total liabilities|You express bottom-line profit as a percentage of sales. What margin is this?
+EBIT|Earnings before interest and income taxes|Earnings after all interest and taxes|You compare earnings before financing interest and tax expense. What abbreviation describes this?
+EBITDA|Earnings before interest, taxes, depreciation and amortization|The same amount as free cash flow in every business|You add depreciation and amortization back to EBIT. What earnings measure results?
+Basic EPS|Earnings available to common holders per basic weighted-average share|Revenue divided by today's trading volume|You divide common-shareholder earnings by basic weighted-average shares. What per-share measure results?
+Diluted EPS|Earnings per share including dilutive potential common shares|Earnings per share excluding all possible dilution|A profit-per-share calculation includes dilutive options and convertible securities. What measure is this?
+Weighted-average shares|Share count adjusted for the time each quantity was outstanding|The number of shares traded during the year|Shares issued halfway through a year receive half-year weight. What share denominator is this?
+Auditor|An independent examiner of financial reporting|A party that guarantees a company's future stock price|An independent firm examines whether financial statements are fairly presented. What role is this?
+Audit opinion|An auditor's conclusion on the financial statements|A forecast of guaranteed investment returns|An auditor publishes its conclusion about reported accounts. What report element is this?
+Going concern|The assumption that a business can continue operating|A guarantee that a company cannot go bankrupt|Accounts assume the business will remain operating rather than immediately liquidating. What assumption is this?
+Footnotes|Supplementary explanations supporting financial statements|Optional stock-market rumors unrelated to the accounts|You read accounting policies and debt terms beneath the main statements. What disclosures are these?
+Annual report|A company's yearly report on operations and financial condition|A report covering only the last trading minute|A company publishes a yearly review with financial statements. What report is this?
+10-K|A U.S. public company's annual SEC report|A U.S. public company's quarterly SEC report|A U.S. issuer files its detailed annual report with the SEC. What filing is this?
+10-Q|A U.S. public company's quarterly SEC report|A filing used only to register a stock exchange|A U.S. issuer files its first-quarter financial report with the SEC. What filing is this?
+8-K|A U.S. public company's report of specified material events|A report filed only every ten years|A U.S. issuer discloses a specified significant current event to the SEC. What filing can it use?
+# 3|Corporate finance and valuation
+Enterprise value|Equity value plus debt and other claims, less cash as defined|Only the current share price|You value the operating business while accounting for debt and cash. What valuation measure helps?
+Book value|An asset or equity amount recorded in the accounts|A guaranteed price received in a sale|You use the balance sheet's recorded net asset amount. What value basis is this?
+Tangible book value|Book equity less goodwill and other intangible assets|Book equity plus every speculative future benefit|You remove goodwill and other intangibles from book equity. What equity measure remains?
+P/E ratio|Share price divided by earnings per share|Share price divided by revenue per share|You compare a stock's price with its earnings per share. What valuation multiple is this?
+Forward P/E|Price divided by forecast earnings per share|Price divided only by past reported earnings|A valuation multiple uses next year's estimated earnings. What P/E basis is this?
+Trailing P/E|Price divided by recent historical earnings per share|Price divided only by next year's estimated earnings|A valuation multiple uses reported earnings from the recent past. What P/E basis is this?
+Price-to-sales|Equity market value divided by company revenue|Debt divided by the stock's daily volume|You compare a company's equity value with its sales. What valuation ratio is this?
+Price-to-book|Equity market value divided by book equity|Revenue divided by annual expenses|You compare share-market value with accounting equity. What valuation ratio is this?
+EV-to-EBITDA|Enterprise value divided by EBITDA|Stock volume divided by free float|You compare operating-business value with EBITDA. What multiple is this?
+Dividend|A distribution made to shareholders|A required repayment of every stock's purchase price|A company distributes cash to shareholders from available funds. What payment is this?
+Dividend yield|Annual dividend per share divided by share price|Share price divided by annual dividend per share|You express annual cash dividends as a percentage of the stock price. What yield is this?
+Payout ratio|Dividends relative to the associated earnings|Trading volume divided by shares outstanding|You compare common dividends with common-shareholder earnings. What ratio is this?
+Ex-dividend date|The date from which a buyer normally does not receive the upcoming dividend|The date a company must double its dividend|A new buyer normally stops qualifying for the upcoming distribution on which type of date?
+Record date|The date used to identify holders entitled to a distribution|The date a stock achieves an all-time high|A company checks its shareholder register for a distribution. What date is this?
+Share buyback|A company repurchasing its own shares|A company selling new shares to all investors|A business uses cash to repurchase its stock. What corporate action is this?
+Treasury shares|A company's issued shares that it has repurchased and holds|Bonds issued by the national government|A company holds stock it bought back from shareholders. What are these shares called?
+Authorized shares|The maximum share issuance permitted by governing documents|All shares necessarily outstanding today|A charter permits issuance of up to a specified share count. What share category is this?
+Issued shares|Shares a company has actually created and distributed|Every share it could theoretically issue in the future|A company has created stock under its authorization. What shares are these?
+Preferred stock|Equity with specified preferences over common shares|Debt guaranteed to be repaid by the government|A share class has priority over common shares for certain distributions. What class is this?
+Common stock|Equity representing the ordinary residual ownership claim|A debt security with a fixed maturity date|An investor owns the company's ordinary residual shares. What stock type is this?
+Convertible bond|Debt that can be converted into equity under stated terms|A bond that cannot ever change into another security|A lender can exchange its bond for shares under agreed terms. What bond feature is this?
+Warrant|A security giving the right to buy shares on stated terms|An obligation to buy shares at any market price|A company issues a right to buy its shares at an exercise price. What security is this?
+Rights issue|An offering giving existing holders rights to buy shares|An automatic free increase in every holder's wealth|Existing owners get rights to purchase a new share issue. What offering is this?
+Shelf registration|Registration allowing qualifying securities offerings over time|A guarantee that no future offering will occur|A company registers securities that may be sold in later offerings. What registration method is this?
+At-the-market offering|An issuer selling shares into the market at prevailing prices|A forced sale of every shareholder's existing stock|A company gradually sells new shares into ordinary market trading. What offering method is this?
+Secondary offering|An offering after the initial public offering|A guarantee that all offered shares are newly created|Shares are offered publicly after a company's IPO. What broad offering label applies?
+IPO|A company's initial public offering of its securities|Every ordinary stock trade between existing investors|A company first offers its stock to the public. What event is this?
+Direct listing|Listing existing shares for public trading without a traditional underwritten IPO|A stock split that doubles every existing holding|Existing shares begin exchange trading through a direct listing process. What route is this?
+Lockup|A contractual restriction on selling shares for a period|A guarantee that shares cannot fall in price|Early holders agree not to sell specified shares for several months. What restriction is this?
+Insider ownership|Shares held by executives, directors or other insiders|All shares traded in today's session|A company's executives own a portion of its equity. What ownership category is this?
+Institutional ownership|Shares held by organizations such as funds|Shares owned only by a company's employees|Pension funds and asset managers hold a stock. What ownership category is this?
+Merger|A combination of businesses into a joined organization|A transaction that must create value in every case|Two companies combine their businesses. What corporate transaction is this?
+Acquisition|One party purchasing control of a business or assets|Every sale of products to an ordinary customer|One company buys control of another. What transaction is this?
+Spin-off|Separating a business into an independently owned company|Combining every subsidiary into one product line|A parent distributes ownership of a separated subsidiary to its holders. What corporate action is this?
+Synergy|An expected benefit from combining or coordinating businesses|A guarantee that every merger earns a profit|A merger aims to save costs by sharing distribution. What anticipated benefit is this?
+Capital structure|The mix of debt, equity and other financing claims|The mix of stocks on your watchlist|You examine how a company funds itself with debt and equity. What structure is this?
+Cost of capital|The return required by providers of capital|The company's share count divided by revenue|Investors require compensation for committing funds to a business. What financing benchmark is this?
+WACC|The weighted-average required return on a firm's capital sources|The stock's average daily trading volume|You combine debt and equity costs using their weights. What overall financing rate is this?
+Discount rate|The rate used to convert future amounts to present value|A guarantee that future cash flows will arrive|You choose a rate to value future cash flows today. What valuation input is this?
+Present value|The current equivalent of future cash flows after discounting|The undiscounted sum of all future receipts|You discount a payment due in a year into today's money. What amount are you finding?
+DCF|Valuation based on discounted expected future cash flows|Valuation based only on a stock's ticker symbol|You forecast and discount a business's future cash flows. What valuation approach is this?
+Terminal value|Value assigned to cash flows beyond an explicit forecast horizon|The cost of a computer used for trading|A valuation estimates the business's worth after its detailed forecast period. What value is this?
+NPV|Present value of inflows minus present value of outflows|The undiscounted total of all project sales|You subtract discounted project costs from discounted receipts. What investment measure results?
+IRR|The discount rate at which a project's NPV equals zero|A guaranteed annual return on any risky project|You solve for the rate that makes discounted net cash flows zero. What rate is this?
+ROIC|Operating return measured against invested capital|Daily volume divided by company revenue|You compare after-tax operating profit with capital committed to operations. What return measure is this?
+Return on equity|Net income relative to shareholders' equity|Revenue relative to shares traded today|You compare profit available to owners with their accounting equity. What return ratio is this?
+Return on assets|Net income relative to the asset base|Market capitalization relative to the bid-ask spread|You compare bottom-line income with average assets. What return ratio is this?
+Economic moat|A durable competitive advantage protecting profitability|A guarantee that a stock never becomes overpriced|A business has a durable cost or customer advantage. What investment metaphor describes it?
+Intrinsic value|An estimated fundamental worth based on expected benefits|A price that every market participant must agree on|You estimate an asset's worth from its future economic benefits. What value concept is this?
+Margin of safety|A buffer between estimated value and purchase price|A guarantee that an investment cannot lose money|You seek a price below estimated fundamental worth to allow for error. What buffer is this?
+# 4|Assets and portfolios
+Portfolio|A collection of financial holdings or exposures|A single guaranteed investment return|You consider all the assets you hold together. What collection is this?
+Asset allocation|Dividing capital among asset categories|Choosing only the ticker spelling of a stock|You divide funds among shares, bonds and cash. What decision is this?
+Rebalancing|Adjusting holdings back toward chosen allocation weights|Adding only to whichever asset rose most|Market moves shift portfolio weights and you restore the target mix. What process is this?
+Benchmark|A reference used to evaluate performance|A guarantee that a fund must beat the market|You compare a portfolio's return with a relevant index. What reference is the index?
+Index|A defined measure representing a selected group of securities|A portfolio guaranteed to earn positive returns|A published measure tracks a specified stock basket. What is that measure?
+Index fund|A fund designed to track a specified index|A fund required to outperform every index|A fund aims to follow a market benchmark rather than pick winners. What fund type is this?
+ETF|A pooled investment vehicle whose shares trade on an exchange|An individual company's guaranteed bond|A basket-based investment's shares trade throughout the session. What common fund structure is this?
+Mutual fund|A pooled investment fund with shares in its portfolio|A loan made only to one stock exchange|Many investors pool money in a professionally managed securities fund. What fund type is this?
+NAV|A fund's assets minus liabilities, usually expressed per share|A fund's guaranteed next-day trading price|You divide a fund's net assets by its outstanding fund shares. What per-share value is this?
+Expense ratio|A fund's annual operating expenses relative to assets|A fund's annual return guaranteed after fees|A fund quotes recurring annual costs as a percentage of assets. What ratio is this?
+Tracking error|Variation in a portfolio's returns relative to its benchmark|Only the difference in ticker symbols|A fund's returns deviate unevenly from its target index. What variability measure is this?
+Tracking difference|The measured return gap between a fund and its benchmark|The volatility of that return gap only|An index returns 8% and its fund returns 7.8%. What performance gap is this?
+Passive investing|Following a defined benchmark or allocation with limited discretion|A guarantee of no investment risk|An investor follows a broad index strategy without selecting individual winners. What approach is this?
+Active investing|Making discretionary choices to improve outcomes versus a reference|Owning only funds that must mirror an index|A manager chooses securities based on views about their prospects. What approach is this?
+Growth stock|A stock associated with relatively strong expected business growth|A stock guaranteed to increase every trading day|Investors price a business for rapid expected future expansion. What broad stock style is this?
+Value stock|A stock viewed as inexpensive relative to a valuation measure|Any stock with the lowest nominal share price|An investor seeks shares priced cheaply against fundamentals. What broad stock style is this?
+Income investing|Investing with emphasis on recurring distributions|Investing solely for intraday price movements|A portfolio is selected mainly for regular interest and dividends. What approach is this?
+Total return|Price change plus distributions, measured relative to investment|Only the change in the quoted price|You include both a stock's price gain and its dividend. What return are you measuring?
+Capital gain|The excess of sale value over the relevant cost basis|Every cash dividend a company distributes|You sell an asset for more than its purchase cost. What gain category is this?
+Cost basis|The amount used as the original cost reference for a holding|The asset's highest price ever quoted|You track what your shares cost, with applicable adjustments. What reference is this?
+Cash equivalent|A short-term, highly liquid investment with low value-change risk|Any highly volatile small-cap stock|A business holds a highly liquid short-term instrument near cash value. What asset category is this?
+Money market|Markets for short-term borrowing and lending instruments|Markets containing only long-dated corporate shares|Institutions trade short-maturity funding instruments. What market category is this?
+Money market fund|A fund investing primarily in short-term debt instruments|A government guarantee on all deposited investment money|A pooled fund holds short-term high-quality debt. What common fund type is this?
+REIT|An entity holding income-producing real estate under a defined structure|An ETF required to hold only technology stocks|An investment entity owns or finances income-producing property. What structure commonly describes it?
+Commodity|A tradable basic good such as oil, wheat or metal|Every ordinary share of a software company|An investor trades crude oil or wheat exposure. What asset class is this?
+Real estate|Land and property attached to it|Only publicly traded company shares|An investor buys a building and its land. What asset class is this?
+Alternative investment|An investment outside conventional stocks, bonds and cash categories|An investment guaranteed to be safer than stocks|A portfolio adds private assets outside ordinary listed securities. What broad category is this?
+Private equity|Ownership capital invested in nonpublic businesses|Government bonds held by retail investors|A fund purchases ownership stakes in companies outside public markets. What investment category is this?
+Venture capital|Equity financing of young businesses with high growth potential|A guaranteed short-term savings account|A fund finances early-stage companies seeking rapid expansion. What financing category is this?
+Hedge fund|A privately pooled fund using an investment mandate with fewer retail constraints|A fund guaranteed to hedge every possible loss|A private pooled fund uses a flexible investment strategy. What broad fund category is this?
+Accredited investor|An investor meeting applicable eligibility criteria for certain offerings|Any person who bought one public share|An investor qualifies for restricted offerings under specified criteria. What legal category may apply?
+Custodian|An institution safeguarding and administering financial assets|An institution guaranteeing all investment returns|A firm holds securities safely and processes related administration. What role is this?
+Broker|An intermediary that executes or arranges client transactions|The company issuing every stock you trade|An intermediary handles your securities orders. What role is this?
+Dealer|A firm trading securities for its own account as a business|An investor who never uses its own capital|A securities firm buys and sells as principal using its own inventory. What role is this?
+Fiduciary|A party owing duties to act in another party's interests|A party free to ignore all client interests|A person has duties of loyalty and care toward a beneficiary. What role is this?
+Security|A tradable financial claim such as a share or bond|A physical promise that an asset cannot lose value|An investor buys a financial instrument representing ownership or debt. What broad category is it?
+Equity|An ownership claim residual to debt and other senior claims|A fixed contractual repayment owed to every owner|You fund a business in exchange for an ownership stake. What financing claim do you receive?
+Debt|A contractual borrowing obligation|An ordinary residual ownership claim|A business borrows money with agreed repayment terms. What financing category is this?
+Risk premium|Expected compensation for bearing risk above a reference return|A guaranteed extra return on every risky trade|Investors demand extra expected return for uncertainty. What compensation is this?
+Risk-free benchmark|A theoretical or practical low-credit-risk return reference|A guarantee that every related asset has no risk|A model uses a government borrowing rate as a low-credit-risk reference. What role does that rate play?
+Beta|Sensitivity of an asset's returns to benchmark returns|Proof of a stock's absolute safety|You estimate how a stock's returns respond to market returns. What sensitivity measure is this?
+Alpha|Return beyond that explained by a specified risk model|The total return before considering any benchmark|A model attributes some return to risk exposures and leaves a residual. What is that residual commonly called?
+Sharpe ratio|Excess return relative to total return volatility|Total revenue divided by total liabilities|You compare return above a cash benchmark with return standard deviation. What risk-adjusted measure is this?
+Sortino ratio|Excess return relative to downside deviation|Return divided by all shares outstanding|You assess excess return using adverse-return variability in the denominator. What ratio is this?
+Time-weighted return|A return measure designed to remove external cash-flow timing effects|A return measure driven by the exact size of investor deposits|You link subperiod returns to isolate manager performance from deposits. What return approach is this?
+Money-weighted return|A return measure reflecting the timing and size of cash flows|A return measure that always ignores deposits and withdrawals|Your measured return depends on when and how much you invested. What return approach is this?
+Compounding|Earning returns on earlier accumulated returns|Adding the same dollar interest forever without reinvestment|Reinvested gains themselves earn additional gains. What process is this?
+Nominal return|A return measured without adjusting for inflation|A return already adjusted for purchasing-power changes|An investment returns 6% before considering inflation. What type of return is this?
+Real return|A return adjusted for inflation|The same as nominal return whenever prices rise|You measure investment growth in purchasing-power terms. What return is this?
+Dollar-cost averaging|Investing a fixed money amount at regular intervals|Buying an identical share count at every possible price|You invest $100 every month regardless of price. What purchasing approach is this?
+# 4|Bonds and credit
+Bond|A debt security with stated payment terms|An ordinary ownership share with no debt claim|An issuer borrows from investors through a tradable debt instrument. What security is this?
+Principal|The original amount borrowed or the face amount owed|Only the interest charged on borrowing|A lender advances $1,000 before charging interest. What is the $1,000?
+Coupon|A bond's stated interest payment or rate|The bond's current exchange trading price|A bond promises periodic interest under its terms. What is this payment called?
+Face value|The nominal amount stated on a debt instrument|Always the same as its current market price|A bond states a $1,000 amount repayable at maturity. What stated value is this?
+Maturity|The date when a financial obligation is due to end or be repaid|The date its price must reach an all-time high|A bond's final principal repayment becomes due on a specified date. What date is this?
+Yield|A return measure relative to an investment's price|Only the original face amount of a loan|You express a bond investment's return relative to its price. What measure are you estimating?
+Current yield|Annual bond interest divided by current bond price|Annual interest divided by the issuer's total sales|You divide a bond's annual coupon payment by its market price. What yield is this?
+Yield to maturity|The discount rate equating price with promised bond cash flows|A guaranteed realized return even if the issuer defaults|You solve for a bond's return rate using price and promised maturity payments. What yield is this?
+Yield to call|The yield calculated assuming redemption at a specified call date|The yield calculated only from a stock dividend|You value a callable bond as if redeemed on its call date. What yield measure is this?
+Premium bond|A bond trading above its face value|A bond trading below its face value|A $1,000-face bond trades for $1,050. What price category is this?
+Discount bond|A bond trading below its face value|A bond trading above its face value|A $1,000-face bond trades for $950. What price category is this?
+Par bond|A bond trading at its face value|A bond with a market price of zero|A $1,000-face bond trades for $1,000. What price category is this?
+Zero-coupon bond|A bond making no periodic coupon payments|A bond that must pay interest every month|A bond pays no regular interest and is issued below its redemption amount. What bond type is this?
+Treasury bill|A short-term debt instrument issued by a government's treasury|An ordinary share in a commercial bank|A government raises funds with a short-maturity discounted debt instrument. What instrument is this?
+Treasury note|A government debt security commonly paying periodic interest over a medium term|A company's ordinary equity certificate|A treasury issues medium-term coupon debt. What instrument is commonly called a note?
+Corporate bond|A debt security issued by a company|A debt security issued only by a central bank|A manufacturing company raises funds by issuing debt securities. What bond category is this?
+Municipal bond|Debt issued by a state, locality or related public entity|Stock issued by a private technology firm|A local government finances a project with debt securities. What bond category is this?
+Sovereign debt|Debt issued or owed by a national government|Only debt owed by private households|A national government owes borrowed money. What debt category is this?
+Investment grade|A credit-rating category indicating relatively stronger credit quality|A guarantee that default can never occur|A bond receives a rating in the relatively stronger credit category. What broad class is this?
+High yield|A bond category with lower ratings and generally higher credit risk|A guarantee that investors receive high realized returns|A lower-rated bond must offer more yield to attract buyers. What broad bond class is this?
+Credit rating|An opinion assessing a borrower's creditworthiness|A guaranteed forecast of a stock's future price|An agency evaluates an issuer's ability to meet debt obligations. What assessment is this?
+Default|Failure to meet a required contractual obligation|Any daily decline in a bond's market price|An issuer fails to make a required debt payment. What event is this?
+Credit spread|A yield difference associated with credit risk versus a reference|The bid-ask gap of every stock|A corporate bond yields more than a comparable government benchmark. What yield gap is this?
+Duration|A measure related to cash-flow timing and interest-rate sensitivity|The amount of a bond's annual dividend|You assess a bond's exposure to changes in interest rates. What common measure helps?
+Modified duration|Approximate percentage price sensitivity to a small yield change|The exact price response to every possible yield move|You estimate a bond's percentage price move per small change in yield. What duration measure is this?
+Convexity|The curvature in the relationship between bond price and yield|The simple sum of every coupon payment|You refine a duration estimate for a larger yield move using curvature. What measure is this?
+Interest-rate risk|Risk of value changes caused by changing interest rates|Only the risk of an issuer committing fraud|A fixed-rate bond falls in value when required yields rise. What risk is this?
+Reinvestment risk|Risk that cash flows must be reinvested at less favorable rates|Risk that bond principal is physically lost in transit|Bond coupons arrive when available reinvestment rates are lower. What risk is this?
+Callable bond|A bond the issuer may redeem early under stated terms|A bond that only its holder may redeem early|An issuer has the right to repay a bond before maturity. What bond feature is this?
+Putable bond|A bond whose holder may require early redemption under stated terms|A bond that only the issuer may redeem early|An investor can require repayment on a specified earlier date. What bond feature is this?
+Secured debt|Debt supported by a claim on specified collateral|Debt that can never suffer a loss|A loan is backed by designated property. What debt category is this?
+Unsecured debt|Debt without a claim on specific pledged collateral|Debt with a guaranteed first claim on named collateral|A borrower owes debt without specifically pledged assets. What debt category is this?
+Senior debt|Debt with priority over specified junior claims|Debt that always receives the lowest repayment priority|A lender's claim ranks ahead of junior lenders in repayment. What debt category is this?
+Subordinated debt|Debt ranking behind specified senior claims|Debt ranking ahead of every other obligation|A lender must wait behind senior creditors for repayment. What debt category is this?
+Collateral|An asset pledged to support an obligation|A payment guaranteed regardless of the asset's value|Property is pledged to secure a loan. What is that pledged property called?
+Covenant|A contractual promise or restriction in a financing agreement|A prediction that a borrower will never fail|A loan agreement limits the borrower's leverage. What contractual clause is this?
+Debt service|Required payments of interest and principal|Only the market value of a company's shares|A borrower budgets periodic interest and principal payments. What obligation is being serviced?
+Interest coverage|An earnings measure relative to interest expense|Revenue relative to total inventory|You compare earnings available for financing costs with interest expense. What coverage ratio is this?
+Debt-to-equity|Debt divided by shareholders' equity|Cash divided by sales revenue|You compare borrowed financing with accounting ownership capital. What leverage ratio is this?
+Net debt|Debt less defined cash and cash equivalents|Debt plus all cash holdings|You deduct available cash from total debt. What debt measure results?
+Yield curve|A relationship between yields and maturities for comparable debt|A chart showing only a company's daily stock volume|You plot comparable bond yields against their maturities. What curve is this?
+Inverted yield curve|A curve where shorter maturities yield more than longer ones|A curve where longer maturities always yield more|Short-term government yields exceed longer-term yields. What curve shape is this?
+Term premium|Compensation associated with holding longer-term interest-rate risk|A guaranteed gain from holding every bond to maturity|Investors demand compensation for exposure across a longer maturity. What premium is this?
+Floating-rate debt|Debt whose interest rate resets with a reference or formula|Debt whose interest rate is always permanently fixed|A loan's interest rate updates with a benchmark. What rate structure is this?
+Accrued interest|Interest earned since the last relevant payment date|All future interest payable before maturity|A bond accumulates unpaid interest between coupon dates. What amount is this?
+Clean price|A bond quote excluding accrued interest|A bond price including all accrued interest|A bond is quoted before adding interest accrued since its last coupon. What price is this?
+Dirty price|A bond settlement price including accrued interest|A bond quote excluding accrued interest|A buyer pays the quoted bond price plus accrued interest. What total price is this?
+Recovery rate|The proportion of a defaulted claim ultimately recovered|The percentage of stocks that rise in a market rally|Creditors recover 40% of a defaulted claim. What credit-loss measure is 40%?
+Refinancing|Replacing existing financing with new financing|Paying a stock dividend with no borrowing change|A borrower takes a new loan to replace an old one. What process is this?
+Rollover risk|Risk of difficulty renewing or replacing maturing financing|Risk eliminated by every short-term loan|A borrower depends on new lenders to repay maturing debt. What funding risk is this?
+# 4|Options and derivatives
+Derivative|A contract whose value depends on an underlying variable|An asset whose price cannot depend on anything else|A contract's value depends on a stock, rate or commodity. What instrument category is it?
+Underlying|The asset or variable on which a derivative is based|The fee your broker charges for an order|A stock option derives value from a particular stock. What is that stock's role?
+Option|A contract giving its buyer a specified right without an obligation to exercise|A contract requiring its buyer to exercise in every case|A buyer pays for a conditional right to transact later. What contract is this?
+Call option|A right to buy an underlying on stated terms|A right to sell an underlying on stated terms|A contract holder may buy stock at an agreed strike price. What option type is this?
+Put option|A right to sell an underlying on stated terms|A right to buy an underlying on stated terms|A contract holder may sell stock at an agreed strike price. What option type is this?
+Strike price|The specified transaction price in an option contract|The option's current market premium|An option lets its holder trade stock for $50 under its terms. What is the $50?
+Option premium|The price paid to acquire an option|The underlying stock's full market capitalization|A buyer pays $2 per unit for an option contract. What payment is this?
+Expiration|The time when a contract's specified rights cease|The time when every option must be profitable|An option reaches the end of its exercise life. What event is this?
+Exercise|Using an option's contractual right|Selling the option to another trader without using its right|An option holder invokes the right to buy the underlying. What action is this?
+Assignment|A writer being required to fulfill an exercised option's terms|A guarantee that an option writer avoids delivery|An option seller must meet obligations after a holder exercises. What event is this?
+American-style option|An option exercisable before or at expiration under its terms|An option exercisable only at expiration|A contract allows exercise during its life. What exercise style is this?
+European-style option|An option exercisable only at expiration|An option that must be traded only in Europe|A contract permits exercise only at its expiration. What exercise style is this?
+Intrinsic option value|The positive immediate exercise value of an option|The full premium regardless of moneyness|A call's underlying price exceeds its strike; you measure the positive difference. What option value is this?
+Time value|Option premium beyond intrinsic value|The underlying's annual dividend by itself|An option costs more than its immediate exercise value. What is the excess commonly called?
+In the money|An option with positive intrinsic value|An option whose total trade is always profitable|A call's underlying trades above its strike. What moneyness category is this?
+At the money|An option with a strike near the underlying's price|An option guaranteed to expire profitably|A strike is approximately equal to the underlying's price. What moneyness category is this?
+Out of the money|An option with no positive immediate exercise value|An option that can never gain value before expiration|A call's underlying is below its strike. What moneyness category is this?
+Delta|An option's local price sensitivity to the underlying price|An exact guaranteed probability of profit|You estimate the small option-price change for a small underlying-price change. What Greek is this?
+Gamma|The sensitivity of an option's delta to the underlying price|The option's sensitivity only to elapsed time|You measure how delta changes as the underlying price changes. What Greek is this?
+Theta|An option's sensitivity to the passage of time|The option's sensitivity only to currency conversion|You estimate an option's value change from time passing, with other inputs fixed. What Greek is this?
+Vega|An option's sensitivity to implied volatility|The option's sensitivity only to the number of shares outstanding|You estimate option-value changes when implied volatility changes. What Greek is this?
+Rho|An option's sensitivity to interest rates|The option's sensitivity only to daily stock volume|You estimate option-value changes when interest rates change. What Greek is this?
+Implied volatility|Volatility inferred from option prices using a pricing model|The exact volatility that must occur in the future|A pricing model solves for volatility that matches a traded premium. What volatility is this?
+Realized volatility|Volatility measured from observed returns over a period|Volatility guaranteed by today's option price|You calculate dispersion from past actual returns. What volatility measure is this?
+Volatility smile|A pattern of implied volatility across different strikes|A guarantee that every call option rises in value|Different strikes show different implied volatilities in a curved pattern. What pattern is this?
+Covered call|A short call paired with sufficient ownership of the underlying|A long call with no other position|You own shares and write calls against them. What strategy is this?
+Protective put|A long put paired with ownership of the underlying|A short put with no related share ownership|You own stock and buy a put to limit certain downside exposure. What strategy is this?
+Cash-secured put|A short put supported by cash for potential purchase obligations|A put purchase guaranteed to lose no money|You write a put and reserve cash to buy the shares if assigned. What strategy is this?
+Naked call|A short call without sufficient underlying coverage|A call purchase paid for entirely in cash|You sell a call without owning enough underlying shares. What position is this?
+Vertical spread|Options of the same type and expiration at different strikes|Two identical options with no differences at all|You combine a long and short call with one expiry and different strikes. What spread is this?
+Bull call spread|A long lower-strike call paired with a short higher-strike call|A short lower-strike call paired with a long higher-strike call|You buy a lower-strike call and sell a higher-strike call for the same expiry. What spread is this?
+Bear put spread|A long higher-strike put paired with a short lower-strike put|A short higher-strike put paired with a long lower-strike put|You buy a higher-strike put and sell a lower-strike put for the same expiry. What spread is this?
+Calendar spread|Options at different expirations, often the same strike|Options with only identical strikes and expirations|You combine options with different expiration dates. What spread family is this?
+Straddle|A call and put at the same strike and expiration|A share and bond from unrelated companies|You buy a call and put with matching strike and expiry. What options combination is this?
+Strangle|A call and put at different strikes with the same expiration|A call and put that must have identical strikes|You buy a lower-strike put and higher-strike call with one expiry. What combination is this?
+Open interest|The number of outstanding derivative contracts|The number of contracts traded only today|You count contracts still outstanding rather than today's executions. What measure is this?
+Futures contract|A standardized contract for a specified future transaction|A right with no obligation to transact for either party|An exchange-standardized agreement commits parties to a future transaction. What contract is this?
+Forward contract|A privately agreed contract for a future transaction|A stock order guaranteed to fill today|Two parties privately fix terms for a future delivery. What contract is this?
+Futures margin|Collateral supporting a futures position's obligations|A down payment purchasing ownership of the underlying commodity|You post collateral to support obligations on a futures position. What margin is this?
+Mark to market|Updating a position's value to current market prices|Holding its accounting value forever at the original price|A futures position is revalued using current prices. What valuation process is this?
+Variation margin|Transfers reflecting changes in a margined position's value|A company's ordinary dividend payment|Daily futures gains and losses lead to collateral transfers. What margin flow is this?
+Notional value|The reference exposure amount underlying a financial contract|Always the cash paid upfront for the contract|You multiply a futures price by its contract quantity. What exposure value is this?
+Contract multiplier|The factor converting quoted price moves into contract amounts|The number of trading days in a month|One quoted point corresponds to a specified money amount per contract. What factor sets that amount?
+Basis|The price difference between related cash and futures prices|The sum of all unrelated asset prices|You compare a commodity's spot price with its futures price. What difference is this?
+Contango|A futures curve with later prices above nearer prices|A futures curve with later prices below nearer prices|Later commodity futures trade above near-term futures. What curve structure is this?
+Backwardation|A futures curve with later prices below nearer prices|A futures curve with later prices above nearer prices|Later commodity futures trade below near-term futures. What curve structure is this?
+Roll yield|The return effect associated with shifting futures exposure across maturities|A guaranteed profit from every futures rollover|A futures investor changes contracts and experiences curve-related return effects. What return component is this?
+Swap|An agreement to exchange specified cash-flow streams|An ordinary purchase of one company's common shares|Two parties exchange fixed and floating interest payments. What contract family is this?
+Interest-rate swap|A swap exchanging interest-payment streams|A swap exchanging only physical warehouse inventory|One party pays fixed interest and receives floating interest. What swap is this?
+Credit default swap|A contract transferring specified credit-event risk|A guarantee that an issuer can never default|A buyer pays a premium for payment upon a defined credit event. What derivative is this?
+# 4|Microeconomics foundations
+Scarcity|Limited resources relative to competing wants|The absence of any trade-offs in production|Resources cannot satisfy every possible desire at once. What basic economic condition is this?
+Opportunity cost|The value of the best alternative forgone|Only a payment already made in the past|Choosing one project means giving up the best other project. What cost is that forgone benefit?
+Trade-off|Giving up one benefit to obtain another|Getting unlimited benefits without sacrificing anything|A business accepts lower speed to reduce costs. What choice relationship is this?
+Incentive|A factor influencing the rewards or costs of a decision|A factor that never changes behavior|A bonus makes workers more willing to reach a target. What economic mechanism is this?
+Marginal benefit|The additional benefit from one more unit or action|The total benefit from every unit combined|You assess the gain from producing one extra unit. What benefit is this?
+Marginal cost|The additional cost of one more unit or action|The average cost of every unit already produced|You assess the added cost of producing one extra unit. What cost is this?
+Supply|Quantities sellers are willing and able to offer at different prices|Only the quantity buyers want at one price|A schedule links possible prices with quantities sellers would offer. What schedule is this?
+Demand|Quantities buyers are willing and able to purchase at different prices|Every desire regardless of ability to pay|A schedule links prices with quantities buyers would purchase. What schedule is this?
+Quantity demanded|The amount buyers wish to buy at a specified price|The whole demand relationship at every possible price|At a price of $5, buyers want 100 units. What is the 100-unit measure?
+Quantity supplied|The amount sellers wish to sell at a specified price|The whole supply relationship at every possible price|At a price of $5, sellers offer 80 units. What is the 80-unit measure?
+Law of demand|Other things equal, a higher price generally reduces quantity demanded|A higher price always increases quantity demanded|In a standard model, raising a good's own price lowers purchases. What principle describes this?
+Law of supply|Other things equal, a higher price generally increases quantity supplied|A higher price always reduces quantity supplied|In a standard model, a higher output price encourages more production. What principle describes this?
+Equilibrium|A state where modeled opposing forces are balanced|A guarantee that every participant is satisfied|At a market price, quantity supplied equals quantity demanded. What state is this?
+Shortage|Quantity demanded exceeding quantity supplied at the stated price|Quantity supplied exceeding quantity demanded|At the posted price, buyers want more than sellers offer. What imbalance is this?
+Surplus|Quantity supplied exceeding quantity demanded at the stated price|Quantity demanded exceeding quantity supplied|At the posted price, sellers offer more than buyers want. What imbalance is this?
+Demand shift|A change in demand at given prices from a nonprice factor|A movement caused only by the good's own price|Higher buyer income changes desired purchases at every unchanged price. What curve change is this?
+Supply shift|A change in supply at given prices from a nonprice factor|A movement caused only by the good's own price|A new production technology changes output offered at every unchanged price. What curve change is this?
+Price elasticity of demand|The responsiveness of quantity demanded to price changes|The responsiveness of stock prices to corporate taxes only|You compare percentage purchase changes with percentage price changes. What responsiveness measure is this?
+Elastic demand|Demand whose quantity responds proportionally more than price|Demand with no quantity response to price|A 1% price rise reduces quantity demanded by more than 1%. What demand category is this?
+Inelastic demand|Demand whose quantity responds proportionally less than price|Demand whose quantity must change more than price|A 1% price rise reduces quantity demanded by less than 1%. What demand category is this?
+Unit-elastic demand|Demand whose quantity responds proportionally as much as price|Demand with zero responsiveness to price|A price change produces an equal-magnitude percentage quantity change. What elasticity category is this?
+Income elasticity|The responsiveness of quantity demanded to income changes|The responsiveness of quantity only to its own price|You compare percentage purchase changes with percentage income changes. What elasticity is this?
+Cross-price elasticity|The response of demand for one good to another good's price|The response of demand only to changes in buyer income|Coffee demand changes when the price of tea changes. What elasticity measures that response?
+Substitutes|Goods that can serve as alternatives for a similar purpose|Goods that must always be consumed together|Buyers can choose tea instead of coffee. What relationship can these goods have?
+Complements|Goods commonly used together|Goods that can never be jointly consumed|Printer demand affects demand for compatible ink. What relationship can these goods have?
+Normal good|A good whose demand rises with income, other things equal|A good whose demand must fall as income rises|People buy more of a good when income rises, holding prices fixed. What good category is this?
+Inferior good|A good whose demand falls as income rises, other things equal|A good that must be physically defective|Consumers switch away from a good as their income rises. What economic category is this?
+Consumer surplus|Willingness to pay above what consumers actually pay|Total business revenue after production costs|A buyer would pay $20 but pays $12. What benefit is the $8 gap?
+Producer surplus|Receipts above the minimum sellers would accept for those units|A firm's total accounting revenue by itself|A seller receives more than its minimum acceptable amount for supplied units. What surplus is this?
+Total surplus|Consumer surplus plus producer surplus in a market model|The sum of all government taxes only|You add buyers' and sellers' gains from exchange. What market welfare measure is this?
+Deadweight loss|Lost total surplus from foregone mutually beneficial activity|A cash transfer that necessarily benefits no one|A distortion prevents beneficial trades and reduces total surplus. What welfare loss is this?
+Price ceiling|A legally imposed maximum price|A legally imposed minimum price|A rule prohibits sellers from charging above a specified level. What price control is this?
+Price floor|A legally imposed minimum price|A legally imposed maximum price|A rule prohibits transactions below a specified price. What price control is this?
+Binding price control|A control that changes the market outcome under the model|A control set so far away that it has no effect|A maximum price below equilibrium restricts the market price. What kind of control is this?
+Tax incidence|How an imposed tax's economic burden is distributed|Only the identity of the party sending money to the government|You analyze who ultimately bears a tax after prices adjust. What analysis is this?
+Subsidy|Support lowering a recipient's cost or increasing its payment|A compulsory payment imposed on every buyer|A government pays part of the cost of producing a good. What support is this?
+Externality|An effect on others not fully reflected in a transaction's price|Every effect paid for under a contract|A factory's pollution harms nearby residents without compensation. What economic effect is this?
+Negative externality|An uncompensated harmful effect on others|A fully priced benefit to the original buyer only|Noise from production imposes an unpaid cost on neighbors. What effect is this?
+Positive externality|A benefit to others not fully captured by the decision maker|A cost borne only by the original seller|An activity benefits nearby people who did not pay for that benefit. What effect is this?
+Public good|A good that is nonrival and difficult to exclude people from using|Any good sold by a government-owned shop|One person's use does not reduce others' use and exclusion is difficult. What good category is this?
+Common resource|A resource that is rival but hard to exclude users from|A resource with unlimited supply and no competition for use|A shared fishery is hard to exclude users from, but catches deplete fish. What resource type is this?
+Free rider|A person benefiting without contributing to the associated cost|A person paying more than everyone else for a private good|Someone enjoys a public benefit without helping fund it. What behavior is this?
+Tragedy of the commons|Overuse of a shared rival resource under weak exclusion|A guarantee that all common property must be worthless|Uncontrolled users deplete a shared resource faster than it recovers. What problem is this?
+Property rights|Defined rights to control, use and transfer resources|A rule requiring every resource to be free for everyone|An owner has enforceable rights to use and transfer an asset. What institution is this?
+Transaction cost|A cost of arranging, completing or enforcing an exchange|Only the direct material cost of producing a good|Negotiating and enforcing a contract consumes resources. What economic cost is this?
+Information asymmetry|One party having relevant information another lacks|Every party possessing identical relevant knowledge|A seller knows an asset's defect but a buyer does not. What information problem is this?
+Adverse selection|Hidden information influencing who chooses to transact|Hidden behavior arising only after a contract|Higher-risk people are more likely to buy insurance at an average price. What information problem is this?
+Moral hazard|Incentives for changed risk-taking when consequences are shifted|Only misinformation before a contract is agreed|After becoming insured, someone becomes less careful because another party bears some loss. What problem is this?
+Principal-agent problem|Misaligned incentives between a delegator and an agent|A situation where both parties' interests must be identical|A manager pursues personal perks at shareholders' expense. What relationship problem is this?
+Sunk cost|A past cost that cannot be recovered|A future cost that can still be avoided|A nonrefundable payment has already been made. What cost category is this?
+# 5|Firms and market structure
+Fixed cost|A cost that does not vary with output within the stated range|A cost that rises for every additional unit produced|A factory pays the same monthly rent at several output levels. What cost type is this?
+Variable cost|A cost that changes with the quantity produced|A cost that can never change when production changes|More units require more raw materials. What cost type is the material expense?
+Total cost|The combined cost of producing a specified output|Only the cost of producing the final extra unit|You add all fixed and variable production costs. What cost measure results?
+Average cost|Total cost divided by the quantity produced|Only the additional cost of the next unit|You divide total production costs by total units. What per-unit measure is this?
+Average fixed cost|Fixed cost divided by the quantity produced|Fixed cost multiplied by the stock price|You spread the same rent across each unit produced. What per-unit cost is this?
+Average variable cost|Variable cost divided by the quantity produced|Total fixed cost divided by the share count|You divide material and other variable costs by output. What per-unit measure is this?
+Economies of scale|Falling average cost as production scale increases|A rule that every larger business must have lower costs forever|A larger factory spreads overhead and lowers cost per unit. What scale effect is this?
+Diseconomies of scale|Rising average cost as production scale increases|A guarantee that small companies always outperform large ones|Growing complexity raises per-unit cost beyond a certain size. What scale effect is this?
+Economies of scope|Cost savings from producing different products jointly|Only cost savings from producing more of one product|A firm lowers costs by sharing resources across two product lines. What cost effect is this?
+Productivity|Output relative to the inputs used|The same as a company's nominal share price|A worker produces more output per hour. What measure has improved?
+Diminishing marginal returns|Falling extra output from more of one input while others are fixed|A claim that total output must immediately fall|With machines fixed, each added worker contributes less extra output. What production principle is this?
+Production function|A relationship linking inputs to feasible output|A rule setting the legal price of every product|A model maps labor and capital inputs to possible production. What relationship is this?
+Capital input|Produced resources used to make other goods or services|Only the money in a consumer's wallet|Machines and equipment help a business produce output. What input category is this?
+Labor input|Human work used in production|Only the value of a firm's buildings|Workers' hours contribute to production. What input category is this?
+Human capital|Skills, knowledge and capabilities embodied in people|Only cash borrowed to pay wages|Training improves a worker's productive knowledge. What capital is being developed?
+Economic profit|Revenue minus explicit and implicit opportunity costs|Revenue minus explicit accounting costs only|You deduct both paid expenses and forgone alternatives from revenue. What profit concept results?
+Accounting profit|Revenue minus recognized explicit accounting expenses|Revenue minus every implicit opportunity cost as well|You subtract recorded business expenses from sales. What profit concept results?
+Perfect competition|A model with many price-taking firms and homogeneous output|A model with one seller controlling all production|Many firms sell identical goods and individually take the market price. What market model is this?
+Monopoly|A market with a single seller of the relevant product|A market with many independent identical sellers|One supplier serves the relevant product market. What market structure is this?
+Oligopoly|A market dominated by a small number of major sellers|A market with exactly one possible buyer|A few large firms account for most sales in an industry. What market structure is this?
+Monopolistic competition|Many sellers offering differentiated products|One seller supplying a perfectly identical commodity|Many restaurants compete with differentiated menus and brands. What market model can describe this?
+Monopsony|A market with a single buyer of the relevant input or product|A market with a single seller and many buyers|One employer is the only purchaser of labor in the modeled market. What buyer structure is this?
+Market power|The ability to influence price or trading terms|The inability to affect any price under all circumstances|A firm can influence the price it charges rather than merely accept it. What ability is this?
+Price taker|A participant too small to influence the relevant market price|A firm that can set any price without changing sales|A small commodity producer accepts the prevailing market price. What role is this?
+Price maker|A participant with some ability to influence its selling price|A participant legally guaranteed unlimited pricing power|A differentiated seller can influence its own price. What pricing role is this?
+Barrier to entry|An obstacle to entering and competing in a market|A guarantee that all entrants will be profitable|Licensing, scale requirements or switching costs impede new competitors. What obstacle category is this?
+Natural monopoly|A market where one supplier can serve demand at lower cost than multiple firms|A claim that every monopoly is created by government|High fixed infrastructure costs make one network cheaper than duplicate networks. What market condition is this?
+Network effect|A product's value changing as more users participate|A company's profit guaranteed to double with every user|A communications platform becomes more useful as its user base grows. What effect is this?
+Switching cost|The cost of changing suppliers, products or systems|Only the original cost of starting any company|Moving software platforms requires retraining and data migration. What cost is this?
+Product differentiation|Making products distinct in features, service or perceived value|Requiring all competitors to sell identical products|A business competes through distinct design and service. What product strategy is this?
+Price discrimination|Charging different prices under differing conditions beyond cost differences|Charging a single identical price to every buyer|A seller charges different customer groups different prices for a similar service. What pricing practice is this?
+Markup|The amount added above a cost or reference price|The same ratio as profit margin in every case|A seller adds an amount above unit cost to set a price. What addition is this?
+Marginal revenue|The additional revenue from one more unit sold|The total revenue from every unit sold|You calculate how much sales revenue changes after one extra sale. What revenue measure is this?
+Profit maximization|Choosing feasible actions to maximize economic profit|Maximizing revenue regardless of all costs|A firm compares additional revenue and additional cost to choose output. What objective is this?
+Shutdown condition|A condition where temporarily stopping output reduces losses|A guarantee that every unprofitable firm must close forever|A firm evaluates whether producing adds more avoidable cost than revenue. What decision condition is this?
+Market entry|A new firm beginning to compete in a market|A company permanently stopping all operations|A new producer begins selling in an industry. What market event is this?
+Market exit|A firm leaving a market or stopping the relevant activity|A new firm starting to compete in that market|A producer withdraws from an industry. What market event is this?
+Cartel|A group coordinating to restrict competition among its members|A group guaranteed to benefit consumers through lower prices|Competing sellers coordinate output and prices to reduce competition. What organization is this?
+Collusion|Coordination between competitors to limit competition|Every instance of ordinary independent pricing|Rivals coordinate their pricing rather than compete independently. What conduct is this?
+Competition policy|Rules and enforcement addressing anticompetitive conduct and market structure|Rules requiring every business to charge the same price|Authorities examine a merger's effects on competition. What policy area is this?
+Market concentration|The extent to which activity is held by a few participants|The temperature inside a securities exchange|A few firms account for most industry sales. What structural characteristic is high?
+HHI|An index calculated from squared market shares|An index measuring only consumer price inflation|You add the squared market shares of all industry firms. What concentration index is this?
+Game theory|Analysis of decisions whose outcomes depend on others' choices|A method proving every competitor chooses the same action|Two firms choose prices while considering each other's responses. What analytical field studies this?
+Nash equilibrium|A strategy profile where no player benefits from changing alone|An outcome that must maximize everyone's total welfare|Given everyone else's actions, nobody wants to change alone. What strategic state is this?
+Dominant strategy|A strategy best for a player regardless of others' choices|A strategy best only if one exact opposing action occurs|One action is best against every possible rival action. What strategy category is this?
+Prisoner's dilemma|A game where individual incentives can produce a jointly worse outcome|A game where cooperation is always each player's dominant action|Two parties each have an incentive to defect, leaving both worse off than cooperation. What game is this?
+Credible commitment|A promise supported by incentives or mechanisms making it believable|A promise that has no consequence if broken|A firm's costly action makes its future threat believable. What strategic device is this?
+Signaling|An informed party conveying information through observable action|An uninformed party offering a menu to reveal others' types|A credential helps a worker communicate otherwise hidden ability. What information mechanism is this?
+Screening|An uninformed party using choices or tests to reveal information|An informed party advertising a credential about itself|A lender uses application terms and checks to learn borrower risk. What information mechanism is this?
+Rent seeking|Using resources to obtain transfers or privileges rather than create value|Every ordinary payment for renting a productive building|A firm spends money securing protection from competition rather than improving output. What activity is this?
+# 5|Macroeconomics
+Macroeconomics|The study of economy-wide activity and aggregates|The study only of one household's purchase choice|You study national output, inflation and unemployment together. What economics field is this?
+Microeconomics|The study of individual choices, firms and markets|The study only of economy-wide totals|You study how a household and one firm's choices interact. What economics field is this?
+GDP|The value of final goods and services produced within an economy|The total value of all existing financial assets|You measure newly produced final output inside a country's borders. What output measure is this?
+Nominal GDP|GDP valued using current-period prices|GDP with all price changes removed|Current output is valued at current prices. What GDP measure is this?
+Real GDP|GDP adjusted to remove the effect of price changes|GDP valued only at current-period prices|You compare output over time while adjusting for price changes. What GDP measure is this?
+GDP per capita|GDP divided by population|GDP divided by the number of stock exchanges|You divide national output by the number of residents. What measure is this?
+GDP deflator|A price measure comparing nominal and real GDP|A count of people who are unemployed|You compare nominal output value with its real-volume measure. What broad price index is involved?
+GNI|Income accruing to an economy's residents, including net income from abroad|Only production physically located inside its borders|You adjust domestic production income for residents' net income from abroad. What national income measure is this?
+Consumption|Household spending on goods and services in national accounts|Only a company's spending on factory equipment|Households purchase food, transport and services. What GDP expenditure category is this?
+Investment in GDP|Spending on produced capital and inventory changes|Every exchange of existing stocks between investors|A firm purchases newly produced machinery. What national-accounts expenditure category is this?
+Government purchases|Government spending on currently produced goods and services|Every transfer payment automatically counted as new output|A government buys newly supplied road construction. What GDP expenditure category is this?
+Net exports|Exports minus imports|Exports plus imports|You subtract imports from exports in an expenditure account. What component results?
+Business cycle|Fluctuations in economy-wide activity around longer-run growth|A fixed timetable guaranteeing identical recessions|An economy alternates between expansion and contraction. What pattern of activity is this?
+Expansion|A phase of broadly increasing economic activity|A phase requiring every household's income to rise|National activity generally increases after a trough. What cycle phase is this?
+Contraction|A phase of broadly declining economic activity|Any one stock's intraday price decline|Production and spending broadly decline across an economy. What cycle phase is this?
+Recession|A significant broad decline in economic activity|Any single quarter of falling share prices|Economic activity falls substantially across several sectors. What broad downturn label can apply?
+Recovery|A rebound in activity after a downturn|A guarantee that every firm returns to its old peak immediately|Economic output starts improving after a contraction. What phase is this?
+Potential output|Estimated output sustainable with normal resource use|The maximum output conceivable with no real constraints|Economists estimate sustainable production at normal capacity use. What output benchmark is this?
+Output gap|Actual output relative to estimated potential output|Exports minus imports only|You compare current output with sustainable capacity. What macroeconomic gap is this?
+Aggregate demand|Total planned demand for an economy's output at different price levels|Only one consumer's demand for one product|A model combines household, firm, government and foreign demand for output. What aggregate is this?
+Aggregate supply|The relationship between overall output supplied and the price level|Only the supply of one small-cap company's shares|A model links economy-wide production with the general price level. What aggregate is this?
+Demand shock|An unexpected change in planned aggregate spending|Only a change in one stock's float|Households and firms suddenly reduce spending. What macroeconomic shock is this?
+Supply shock|An unexpected change in productive capacity or production costs|Only a change in aggregate demand|An energy disruption raises production costs across many industries. What shock is this?
+Inflation|An increase in the general price level over time|A rise in only one company's stock price|Broad consumer prices rise over a period. What price process is this?
+Deflation|A decrease in the general price level over time|A slower but still positive rate of inflation|The broad price level falls over a period. What price process is this?
+Disinflation|A decline in the inflation rate while prices may still rise|A required fall in the general price level|Inflation drops from 8% to 3% while remaining positive. What process is this?
+Stagflation|Weak economic activity combined with high inflation|Strong growth combined with permanently zero prices|An economy has stagnant activity and persistent inflation. What combination is this?
+Price level|A measure of prices across a basket of goods and services|Only the price of one stock|An index summarizes broad prices at a point in time. What aggregate does it represent?
+CPI|A measure of consumer prices for a defined basket|A measure only of company profits|An index tracks prices paid by consumers for a basket of purchases. What common price index is this?
+PPI|A measure of prices received by producers|A measure only of household unemployment|An index tracks selling prices received by domestic producers. What price index is this?
+Core inflation|Inflation measured after excluding selected volatile categories|Inflation measured after excluding every rising price|A price measure excludes food and energy to examine underlying trends. What inflation measure is this?
+Headline inflation|Inflation measured using the full specified price basket|Inflation measured only from financial headlines|A broad inflation measure includes food and energy. What measure is this?
+Inflation expectations|Beliefs about future inflation|The inflation rate guaranteed by a government|Households forecast future general price increases. What expectations are these?
+Purchasing power|The goods and services an amount of money can buy|The number of stock orders a broker can route|The same money buys fewer groceries after prices rise. What ability has declined?
+Unemployment rate|Unemployed people as a share of the labor force|People without jobs as a share of all residents|You divide unemployed people by employed plus unemployed people. What rate is this?
+Labor force|People employed or unemployed under the statistical definition|Every person living in an economy|A survey combines employed people and qualifying unemployed people. What group is this?
+Participation rate|The labor force as a share of the relevant population|Unemployed people as a share of all stocks traded|You compare the labor force with the defined working-age population. What rate is this?
+Frictional unemployment|Unemployment from searching and matching between jobs|Unemployment caused only by an economy-wide recession|A worker leaves one job and searches for another. What unemployment type may describe this?
+Structural unemployment|Unemployment from mismatches in skills, location or institutions|Unemployment caused only by a brief voluntary holiday|Available jobs require skills displaced workers do not have. What unemployment type is this?
+Cyclical unemployment|Unemployment associated with weak economy-wide demand|Unemployment arising only from routine job search|A downturn reduces hiring and employment broadly. What unemployment type is this?
+Underemployment|Employment below desired hours or skill utilization|Every form of full-time work regardless of preference|A worker wants full-time hours but can obtain only part-time work. What condition is this?
+Discouraged worker|A person not currently searching due to job-market discouragement|Any unemployed person actively applying for work|Someone wants work but stops searching because no jobs seem available. What worker category is this?
+Real wage|Pay adjusted for the general price level|Pay measured without any inflation adjustment|You measure earnings in terms of what they can buy. What wage measure is this?
+Nominal wage|Pay measured in money units without inflation adjustment|Pay measured after removing all price changes|A contract states hourly pay in current dollars. What wage measure is this?
+Productivity growth|An increase in output per unit of input|An increase only in the number of stock tickers|Output per worker-hour rises over time. What economic improvement is this?
+Economic growth|An increase in an economy's output over time|Any one-time rise in an individual share's price|An economy produces more real output across years. What process is this?
+Capital deepening|An increase in capital per worker|A decrease in all physical investment to zero|Workers have more machines and equipment per person. What growth input change is this?
+Total factor productivity|Output efficiency beyond changes in measured factor quantities|Only the total amount of money borrowed by a firm|Output rises beyond what measured labor and capital increases explain. What residual efficiency measure is this?
+Leading indicator|A measure used to signal possible future activity|A measure guaranteed to predict every turning point|An analyst tracks a series believed to change before the business cycle. What indicator type is this?
+Lagging indicator|A measure tending to change after broader activity changes|A measure that must perfectly predict tomorrow's market|An economic series generally responds after a cycle shift. What indicator type is this?
+# 5|Money, banking and policy
+Monetary policy|Central-bank actions affecting monetary and financial conditions|Government decisions only about taxes and budget spending|A central bank adjusts policy tools to influence economic conditions. What policy is this?
+Fiscal policy|Government decisions about spending, taxation and borrowing|Only a central bank's securities purchases|A government changes taxes and its spending budget. What policy is this?
+Central bank|An institution responsible for key monetary-system functions|A commercial company selling only ordinary household insurance|An institution manages monetary policy and core payment-system functions. What institution is this?
+Commercial bank|An institution accepting deposits and extending credit|An institution that never lends or takes deposits|A financial institution holds customer deposits and makes business loans. What institution is this?
+Bank reserves|Balances and eligible cash banks hold for payment and liquidity needs|All shares owned by a bank's shareholders|A bank holds balances at the central bank to settle payments. What balances are these?
+Bank deposit|A customer's claim on funds held by a bank|Ownership of the bank's common stock|You place money in a bank account and hold a claim on that bank. What claim is this?
+Bank loan|Credit extended by a bank under repayment terms|A nonrepayable gift from the bank|A bank advances funds to a borrower who must repay under an agreement. What credit is this?
+Credit creation|Creation of credit claims, often including deposits through bank lending|Creation of unlimited real resources without constraints|A bank makes a loan and credits a deposit account. What financial process has occurred?
+Deposit insurance|A scheme protecting eligible deposits under stated limits and rules|A guarantee protecting every investment from market loss|A scheme covers qualifying bank deposits if a bank fails. What protection is this?
+Bank capital|Owners' funds and qualifying loss-absorbing financing|The same as every customer's withdrawable deposit|A bank absorbs losses using its equity and qualifying capital. What buffer is this?
+Capital adequacy|The sufficiency of capital relative to a financial institution's risks|The number of branches relative to employees|A regulator evaluates a bank's loss-absorbing capital against exposures. What condition is assessed?
+Reserve requirement|A rule specifying required reserve holdings for covered institutions|A universal fixed rule identical in every country and period|A jurisdiction requires covered banks to hold certain reserves. What requirement is this?
+Policy rate|A central bank's key rate used to influence monetary conditions|The guaranteed annual return of every stock|A central bank sets or targets a key short-term interest rate. What rate is this?
+Rate hike|An increase in a specified interest rate|A guaranteed increase in every asset price|A central bank raises its policy rate. What rate action is this?
+Rate cut|A decrease in a specified interest rate|A guarantee that all loans immediately become free|A central bank lowers its policy rate. What rate action is this?
+Open-market operation|A central bank's market transaction to influence liquidity or rates|Any consumer purchase made in a supermarket|A central bank buys or sells securities to manage monetary conditions. What operation is this?
+Quantitative easing|Central-bank asset purchases aimed at easing broader financial conditions|A guarantee that consumer inflation rises immediately|A central bank buys longer-term assets to ease financial conditions. What policy is this?
+Quantitative tightening|Reducing central-bank asset holdings through runoff or sales|A guarantee that every stock immediately falls|A central bank reduces its securities holdings by allowing runoff. What policy is this?
+Forward guidance|Communication about prospective policy intentions|A legally guaranteed forecast of all future market prices|A central bank communicates how it expects to approach future policy. What tool is this?
+Lender of last resort|An institution providing emergency liquidity under stated conditions|An institution required to rescue every insolvent investment|A central bank provides emergency liquidity to eligible institutions. What role is this?
+Liquidity facility|A mechanism providing funding or liquid assets under defined terms|A guaranteed profit-generating stock strategy|A central bank offers eligible borrowers short-term funding against collateral. What mechanism is this?
+Repo|A sale of securities with an agreement to repurchase them|A permanent gift of securities with no return arrangement|A party sells securities and agrees to buy them back later. What financing transaction is this?
+Reverse repo|The purchase side of a repurchase agreement|An equity dividend paid only in additional stock|A party buys securities while agreeing to sell them back. What side of a repo is this?
+Discount window|A central-bank lending channel for eligible institutions|A brokerage app's chart showing cheap stocks|An eligible bank borrows through a central-bank lending channel. What facility is this?
+Money supply|A defined measure of money held or circulating in an economy|The number of public companies in the stock market|Economists count specified currency and deposit categories. What monetary aggregate are they measuring?
+Monetary base|Currency and specified central-bank reserve balances|Every long-term bond and stock in an economy|A measure combines currency with banks' central-bank reserves. What aggregate is this?
+Broad money|A money aggregate including currency and broader deposit categories|Only physical notes and coins|A monetary measure includes a broad range of qualifying deposits. What money category is this?
+Velocity of money|Nominal spending relative to a specified money stock|The speed of a stock exchange's computer connection|You divide nominal expenditure by a monetary aggregate. What turnover measure is this?
+Seigniorage|Resources or income associated with issuing money|A company's income from selling ordinary shares|An issuer obtains resources through the creation of money. What economic revenue concept is this?
+Nominal interest rate|An interest rate before adjusting for inflation|An interest rate that has already removed price-level changes|A loan quotes an annual money interest rate before inflation adjustment. What rate is this?
+Real interest rate|An interest rate adjusted for inflation or expected inflation|An interest rate always identical to the nominal rate|You assess a lending return in purchasing-power terms. What interest rate is this?
+Fisher relation|The relationship linking nominal rates, real rates and inflation|A rule linking stock float with fishing output|A model links nominal interest to real interest and inflation. What relation is this?
+Monetary transmission|The channels through which monetary policy affects the economy|A guarantee that one rate change has an instant fixed effect|Policy changes affect credit, asset prices and spending through several channels. What process is this?
+Liquidity trap|A situation where conventional monetary easing has limited traction|A guarantee that all banks must immediately fail|Very low rates and money-holding preferences weaken ordinary policy effects. What macroeconomic condition is this?
+Automatic stabilizer|A fiscal mechanism that responds to activity without a new decision|A law guaranteeing that recessions cannot occur|Tax receipts and qualifying benefits change automatically during a downturn. What fiscal mechanism is this?
+Fiscal stimulus|A fiscal change intended to increase aggregate demand|A policy guaranteed to pay for itself in every case|A government increases spending or lowers taxes to support demand. What policy stance is this?
+Fiscal consolidation|Policies intended to reduce deficits or improve fiscal balances|A guaranteed immediate rise in national output|A government changes taxes or spending to improve its budget balance. What fiscal process is this?
+Budget deficit|Spending exceeding revenue over a budget period|The accumulated stock of all past borrowing|A government spends more than it collects this year. What budget result is this?
+Budget surplus|Revenue exceeding spending over a budget period|All government debt necessarily falling to zero|A government collects more than it spends this year. What budget result is this?
+Public debt|The stock of government borrowing obligations|Only this year's excess spending over revenue|You measure outstanding government borrowing across past periods. What fiscal stock is this?
+Primary balance|The fiscal balance excluding interest payments|The fiscal balance excluding every tax receipt|You assess a government budget before interest expense. What balance is this?
+Debt-to-GDP|Debt relative to annual gross domestic product|Debt relative to the number of stock-market accounts|You compare public borrowing obligations with the economy's annual output. What ratio is this?
+Crowding out|A reduction in other activity caused by competing resource or funding use|A claim that every public project has zero benefits|Government borrowing competes for funds and reduces some private investment in a model. What effect is this?
+Fiscal multiplier|The output change relative to a fiscal-policy change|A guaranteed universal constant for all economies|You compare an output response with the spending change that caused it in a model. What multiplier is this?
+Progressive tax|A tax where the effective burden rises with the relevant base|A tax charging the same money amount to everyone|Higher incomes face higher effective tax rates. What tax structure is this?
+Regressive tax|A tax where the effective burden falls with the relevant base|A tax where the effective rate rises at every income level|Lower incomes bear a larger percentage burden than higher incomes. What tax structure is this?
+Proportional tax|A tax with a constant rate on its defined base|A tax with a fixed money payment at every income|A tax applies the same percentage to each unit of taxable income. What structure is this?
+Marginal tax rate|The tax on an additional unit of taxable income|Total tax divided by all income only|You ask how much tax applies to the next dollar earned. What rate is this?
+Effective tax rate|Total relevant tax divided by the relevant income or base|Only the rate charged on the next dollar|You divide total income tax by the specified income measure. What average tax rate is this?
+Transfer payment|A payment without a current good or service received in exchange|A purchase of newly produced goods for government use|A government pays an eligible benefit without purchasing current output. What payment type is this?
+# 6|International economics and evidence
+Exchange rate|The price of one currency expressed in another currency|The average price of all shares in an economy|One euro trades for a stated number of dollars. What price relationship is this?
+Base currency|The first currency whose unit is priced in a currency pair|The second currency used to quote that price|In EUR/USD, one euro is being priced in dollars. What role does the euro have?
+Quote currency|The currency used to price one unit of the base currency|The currency always named first in a pair|In EUR/USD, the price is expressed in dollars. What role does the dollar have?
+Currency appreciation|An increase in a currency's value relative to another|A fall in its value relative to the other currency|One euro buys more dollars than before. What happened to the euro versus the dollar?
+Currency depreciation|A decrease in a currency's value relative to another|A rise in its value relative to the other currency|One euro buys fewer dollars than before. What happened to the euro versus the dollar?
+Floating exchange rate|An exchange rate mainly determined by market trading|A rate guaranteed to remain permanently unchanged|A currency's price adjusts mainly through supply and demand. What exchange-rate regime is this?
+Fixed exchange rate|A rate maintained near a target through policy arrangements|A rate that cannot ever come under pressure|Authorities aim to keep a currency at a chosen exchange-rate target. What regime is this?
+Currency peg|An arrangement linking a currency's value to a reference|A guarantee that the linked currency can never devalue|A currency is maintained near a chosen foreign-currency value. What arrangement is this?
+Devaluation|A downward official adjustment under a managed or fixed-rate arrangement|Every market-driven decline in a freely floating currency|Authorities lower their currency's official target value. What policy adjustment is this?
+Revaluation|An upward official adjustment under a managed or fixed-rate arrangement|Every market-driven rise in a freely floating currency|Authorities raise their currency's official target value. What policy adjustment is this?
+Currency risk|Risk from changes in exchange rates|Risk eliminated by using any foreign-currency account|A dollar asset changes value in euros because the exchange rate moves. What risk is this?
+Currency hedge|An exposure designed to offset exchange-rate risk|A guarantee of profit regardless of all price movements|An investor offsets foreign-exchange exposure with a related contract. What protection strategy is this?
+Purchasing power parity|A framework comparing currencies through relative price levels|A guarantee that all currencies buy identical baskets every day|You compare currencies using the prices of comparable baskets. What framework is this?
+Real exchange rate|A nominal exchange rate adjusted for relative price levels|A nominal exchange rate with no price adjustment|You adjust a currency rate for domestic and foreign prices. What exchange-rate measure is this?
+Trade balance|Exports minus imports of specified goods and services|Exports plus imports plus all bank deposits|You compare what an economy sells abroad with what it buys abroad. What external balance is this?
+Current account|The external balance of goods, services, income and current transfers|Only purchases of foreign stocks and bonds|A country's external account includes trade and primary and secondary income. What account is this?
+Financial account|The external account of transactions in financial assets and liabilities|The account containing only exported consumer goods|You record cross-border purchases of securities and financial claims. What external account is this?
+Balance of payments|A system recording an economy's transactions with the rest of the world|Only a company's annual cash-flow statement|You compile residents' external transactions in a consistent accounting system. What system is this?
+Foreign reserves|Foreign assets held by monetary authorities for specified purposes|All shares held by domestic individual investors|A central bank holds eligible foreign assets for external-policy needs. What holdings are these?
+Foreign direct investment|Cross-border investment associated with lasting influence in a business|Every brief purchase of a foreign share for trading|A company acquires a substantial operating interest in a foreign business. What investment category is this?
+Portfolio investment|Investment in financial securities without the direct-investment relationship|Only construction of factories controlled abroad|An investor purchases foreign bonds without controlling the issuer. What cross-border category is this?
+Comparative advantage|A lower opportunity cost in producing a good relative to another producer|The highest absolute output in every good|A country gives up less of another product to produce one more unit. What advantage is this?
+Absolute advantage|The ability to produce more output from given inputs than another producer|The same as having the lowest opportunity cost in every case|One producer makes more units using the same resources. What productive advantage is this?
+Tariff|A tax applied to imported or exported goods under stated rules|A guarantee that domestic prices will fall|A government imposes a tax on imported goods. What trade measure is this?
+Import quota|A restriction on the quantity of a good that may be imported|A tax rate applied identically to every sale|A rule limits how many units may enter from abroad. What trade restriction is this?
+Terms of trade|Export prices relative to import prices|The number of stocks in an investor's watchlist|You compare a country's export-price index with its import-price index. What ratio is this?
+Capital flight|A substantial movement of capital away from an economy or exposure|A guaranteed rise in all domestic investment|Investors move funds abroad because of deteriorating local confidence. What outflow pattern is this?
+Carry trade|Borrowing or funding in one asset to hold a higher-yielding exposure|A risk-free profit guaranteed by any interest-rate difference|A trader funds in a low-rate currency and invests in a higher-rate currency. What strategy is this?
+Arithmetic mean|The sum of observations divided by their count|The middle ordered observation only|You add all returns and divide by the number of observations. What average is this?
+Geometric mean|The compounded average based on multiplying growth factors|The sum of growth rates divided by their count in every case|You seek one constant rate that reproduces compounded growth. What average is this?
+Median|The middle value of ordered observations|The sum of all observations divided by their count|You sort outcomes and identify the middle value. What statistic is this?
+Variance|The average squared deviation from a mean under a specified convention|The arithmetic mean without any deviation calculation|You square deviations from an average and aggregate them. What dispersion statistic is this?
+Covariance|A measure of how two variables deviate jointly from their means|Proof that one variable necessarily causes the other|You measure whether two returns' deviations tend to share a direction. What unscaled joint measure is this?
+Regression|A statistical model relating an outcome to explanatory variables|Proof that every fitted relationship is causal|You estimate how observed returns relate to selected explanatory variables. What modeling approach is this?
+Regression coefficient|A fitted change in an outcome per unit of a variable, conditional on the model|A guaranteed causal effect in every observational dataset|A fitted model estimates the response to one explanatory variable holding modeled others fixed. What parameter is this?
+R-squared|A measure of variation explained by a fitted model under its definition|The probability that the model is true|You compare a fitted model's explained variation with total variation. What fit measure is this?
+Residual|The difference between an observed outcome and its model prediction|The total sum of all predicted outcomes|An actual return differs from its fitted model value. What is that difference?
+Sample|The observations selected from a population|Every possible observation in the population|You analyze 1,000 observations drawn from a larger group. What group is the 1,000?
+Population|The full group about which an analysis seeks conclusions|Only the observations already included in one sample|An analyst wants conclusions about all qualifying firms. What target group is this?
+Sampling error|Variation caused by observing a sample rather than the full population|Only a mistake made while typing data|Two random samples yield different estimates even without mistakes. What uncertainty is this?
+Confidence interval|An interval produced by a method with stated long-run coverage under assumptions|A guaranteed range containing every future observation|A statistical method reports an estimate with a coverage-based uncertainty interval. What interval is this?
+P-value|Under a null model, the probability of a result at least as extreme as observed|The probability that the null hypothesis is true|You quantify how extreme a test result is under its null assumptions. What statistic is this?
+Statistical significance|A test result meeting a chosen statistical decision threshold|Proof that an effect is economically large or useful|A hypothesis test's result passes its specified threshold. What statistical label is this?
+Economic significance|The practical magnitude or importance of an economic effect|Only whether a p-value is below a threshold|A tiny effect is statistically detectable but commercially irrelevant. Which importance concept addresses its size?
+Causation|A relationship where changing one factor produces an effect on another|Any observed correlation regardless of other factors|A controlled change in one factor changes an outcome through a mechanism. What relationship is this?
+Confounder|A factor influencing both an explanatory variable and the outcome|A factor proven unrelated to both variables|An omitted variable affects both exposure and results. What source of misleading association is this?
+Endogeneity|Correlation between an explanatory variable and the model's error|A guarantee that every regression coefficient is unbiased|A model's explanatory variable is related to omitted influences in its error. What modeling problem is this?
+Out-of-sample test|Evaluation using observations excluded from model fitting|Evaluation only on the data used to tune the model|A strategy is assessed on data kept outside its fitting process. What test is this?
+Stress test|An assessment of outcomes under specified adverse scenarios|A guarantee that every possible crisis has been covered|A portfolio is evaluated under severe hypothetical market conditions. What assessment is this?
+Scenario analysis|Evaluating outcomes under a set of specified assumptions|A prediction guaranteed to match the next market event|You compare results under several plausible future conditions. What analytical approach is this?

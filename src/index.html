@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#071e48">
+<meta name="description" content="Practice languages and learning games with simple cards and saved progress.">
+<title>German practice</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23071e48'/%3E%3Ctext x='16' y='24' text-anchor='middle' font-family='Arial' font-size='24' font-weight='bold' fill='white'%3ED%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script defer src="app.js"></script>
+</head>
+<body>
+<header class="navigation">
+  <details id="languages-menu" class="games-menu">
+    <summary id="languages-toggle" aria-expanded="false" aria-controls="languages-list">LANGUAGES <span aria-hidden="true">⬇️</span></summary>
+    <nav id="languages-list" class="games-list" aria-label="Languages">
+      <button id="french-words-mode" class="game-option mode" data-section="french" type="button" aria-pressed="false">1. French words</button>
+      <button id="french-sentences-mode" class="game-option mode" data-section="french" type="button" aria-pressed="false">2. French sentences</button>
+      <button id="words-mode" class="game-option mode active" data-section="german" type="button" aria-pressed="true">3. German words</button>
+      <button id="sentences-mode" class="game-option mode" data-section="german" type="button" aria-pressed="false">4. German sentences</button>
+      <button id="kana-mode" class="game-option mode" data-section="japanese" type="button" aria-pressed="false">5. Hiragana + Katakana</button>
+      <button id="kanji-mode" class="game-option mode" data-section="japanese" type="button" aria-pressed="false">6. Kanji</button>
+      <button id="spanish-words-mode" class="game-option mode" data-section="spanish" type="button" aria-pressed="false">7. Spanish words</button>
+      <button id="spanish-sentences-mode" class="game-option mode" data-section="spanish" type="button" aria-pressed="false">8. Spanish sentences</button>
+      <button id="italian-words-mode" class="game-option mode" data-section="italian" type="button" aria-pressed="false">9. Italian words</button>
+      <button id="italian-sentences-mode" class="game-option mode" data-section="italian" type="button" aria-pressed="false">10. Italian sentences</button>
+      <button id="greek-words-mode" class="game-option mode" data-section="greek" type="button" aria-pressed="false">11. Greek words</button>
+      <button id="greek-sentences-mode" class="game-option mode" data-section="greek" type="button" aria-pressed="false">12. Greek sentences</button>
+      <button id="hangul-mode" class="game-option mode" data-section="korean" type="button" aria-pressed="false">13. Korean Hangul</button>
+      <button id="korean-words-mode" class="game-option mode" data-section="korean" type="button" aria-pressed="false">14. Korean words</button>
+    </nav>
+  </details>
+  <details id="games-menu" class="games-menu">
+    <summary id="games-toggle" aria-expanded="false" aria-controls="games-list">GAMES <span aria-hidden="true">⬇️</span></summary>
+    <nav id="games-list" class="games-list" aria-label="Games">
+      <button id="programming-section" class="game-option" data-section="programming" type="button" aria-pressed="false">1. Programming</button>
+      <button id="quant-section" class="game-option" data-section="quant" type="button" aria-pressed="false">2. QUANT</button>
+      <button id="economics-mode" class="game-option mode" data-section="economics" type="button" aria-pressed="false">3. Economics</button>
+      <button id="arithmetic-section" class="game-option" data-section="arithmetic" type="button" aria-pressed="false">4. Arithmetic</button>
+      <button id="trivia-mode" class="game-option mode" data-section="trivia" type="button" aria-pressed="false">5. Trivia</button>
+    </nav>
+  </details>
+</header>
+<details id="support-menu" class="games-menu" hidden>
+  <summary aria-expanded="false" aria-controls="support-options">Support <span aria-hidden="true">♥</span></summary>
+  <div id="support-options">
+    <strong>Support PlayDanki</strong>
+    <div class="amounts">
+      <a data-amount="2">$2</a><a data-amount="5">$5</a>
+      <a data-amount="10">$10</a><a data-amount="100">$100</a>
+    </div>
+    <p id="support-note" role="status"></p>
+  </div>
+</details>
+<main id="game" aria-label="German practice" tabindex="-1">
+  <section class="practice">
+    <div id="position" class="position">1 / 5000</div>
+    <div class="prompt-heading">
+      <h1 id="word" lang="en">the</h1>
+    </div>
+    <img id="question-image" class="question-image" alt="Flag to identify" hidden>
+    <div id="answer-box" class="answer-box"><span id="translation" class="translation" lang="de">der</span></div>
+    <button id="again" class="again" type="button" hidden>REPLAY</button>
+    <button id="retry" class="again" type="button" hidden>Retry</button>
+    <div id="feedback" class="feedback" role="status" aria-live="polite"></div>
+  </section>
+  <button id="next-card" type="button">Next Card</button>
+</main>
+<aside id="german-tracker" class="tracker">
+  <section id="history" class="history" aria-label="Daily practice history" hidden>
+    <div class="history-head"><strong id="history-title">Previous days · Deutsch 5000</strong><button id="close-history" type="button" aria-label="Close daily history">×</button></div>
+    <div id="history-rows"><p class="empty-history">Your practice days will appear here.</p></div>
+    <a class="credits" href="credits.txt" target="_blank" rel="noopener">List credits</a>
+  </section>
+  <button id="today" type="button" aria-expanded="false" aria-controls="history">
+    <span class="today-label"><span id="tracker-period">Today</span> <span class="chevron" aria-hidden="true">⌃</span></span>
+    <span id="today-count">Practiced 0/5000</span>
+    <span id="today-score">Correct = 0%</span>
+  </button>
+  <a id="kanji-credit" class="kanji-credit" href="credits.txt" target="_blank" rel="noopener" hidden>KANJIDIC · EDRDG</a>
+</aside>
+<iframe id="arithmetic-frame" class="arithmetic-frame" title="Weekly arithmetic practice" hidden></iframe>
+<script id="word-data" type="application/json">WORD_DATA</script>
+<script id="sentence-data" type="application/json">SENTENCE_DATA</script>
+<script id="french-word-data" type="application/json">FRENCH_WORD_DATA</script>
+<script id="french-sentence-data" type="application/json">FRENCH_SENTENCE_DATA</script>
+<script id="kana-data" type="application/json">KANA_DATA</script>
+<script id="kanji-data" type="application/json">KANJI_DATA</script>
+<script id="economics-data" type="application/json">ECONOMICS_DATA</script>
+<script id="trivia-info" type="application/json">TRIVIA_INFO</script>
+<script id="trivia-data" type="application/json">[]</script>
+<script id="language-info" type="application/json">LANGUAGE_INFO</script>
+<script id="support-config" type="application/json">SUPPORT_CONFIG</script>
+<script id="spanish-words-data" type="application/json">[]</script>
+<script id="spanish-sentences-data" type="application/json">[]</script>
+<script id="italian-words-data" type="application/json">[]</script>
+<script id="italian-sentences-data" type="application/json">[]</script>
+<script id="greek-words-data" type="application/json">[]</script>
+<script id="greek-sentences-data" type="application/json">[]</script>
+<script id="korean-hangul-data" type="application/json">[]</script>
+<script id="korean-words-data" type="application/json">[]</script>
+</body>
+</html>

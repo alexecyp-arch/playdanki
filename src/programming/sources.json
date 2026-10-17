@@ -1,0 +1,23 @@
+{
+  "authorship": "Original short definitions, examples and project scenarios written for this course. Each of 500 authored micro-lessons is revisited through ten question types. Intentional repetition supports memorization; this is not a frequency-ranked trivia bank.",
+  "reviewed": "2026-10-04",
+  "references": [
+    {"title":"MDN Learn web development","url":"https://developer.mozilla.org/en-US/docs/Learn_web_development"},
+    {"title":"MDN JavaScript Guide","url":"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"},
+    {"title":"MDN Using Fetch","url":"https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch"},
+    {"title":"MDN localStorage","url":"https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage"},
+    {"title":"MDN Web Speech API","url":"https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API"},
+    {"title":"MDN Web Audio API","url":"https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API"},
+    {"title":"Python tutorial","url":"https://docs.python.org/3/tutorial/"},
+    {"title":"Python tkinter","url":"https://docs.python.org/3/library/tkinter.html"},
+    {"title":"Python sqlite3","url":"https://docs.python.org/3/library/sqlite3.html"},
+    {"title":"Chrome extension development","url":"https://developer.chrome.com/docs/extensions/develop"},
+    {"title":"Chrome extension service-worker lifecycle","url":"https://developer.chrome.com/docs/extensions/develop/concepts/service-workers/lifecycle"},
+    {"title":"Chrome content scripts","url":"https://developer.chrome.com/docs/extensions/develop/concepts/content-scripts"},
+    {"title":"Chrome extension messaging","url":"https://developer.chrome.com/docs/extensions/develop/concepts/messaging"},
+    {"title":"Chrome offscreen documents","url":"https://developer.chrome.com/docs/extensions/reference/api/offscreen"},
+    {"title":"PowerShell overview","url":"https://learn.microsoft.com/en-us/powershell/scripting/overview"},
+    {"title":"WebView2 runtime distribution","url":"https://learn.microsoft.com/en-us/microsoft-edge/webview2/concepts/distribution"},
+    {"title":"PyInstaller operating mode","url":"https://pyinstaller.org/en/stable/operating-mode.html"}
+  ]
+}

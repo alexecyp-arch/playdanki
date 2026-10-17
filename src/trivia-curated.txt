@@ -1,0 +1,573 @@
+# Original concise questions. @ lines set the topic; final column is estimated difficulty.
+@AI
+What does AI stand for?|Artificial intelligence|Automated Internet|1
+What does a machine-learning model learn from?|Data|Its screen size|1
+What does LLM stand for in AI?|Large language model|Logical login manager|1
+What is generative AI designed to produce?|New content based on learned patterns|Only a fixed list of database records|1
+In machine learning, what is a label?|The target answer attached to a training example|The name of a computer folder|1
+What is supervised learning trained with?|Examples paired with target answers|Only a reward with no target answers|1
+What is unsupervised learning commonly used to find?|Patterns in unlabeled data|Passwords in encrypted files|1
+What kind of learning uses rewards to guide actions?|Reinforcement learning|Ordinary file compression|1
+What is a chatbot?|Software that interacts through conversation|A physical network cable|1
+What is an AI hallucination?|A generated claim that is false or unsupported|A guaranteed factual citation|1
+What is a prompt in generative AI?|An input that guides the model's response|A compulsory software update|1
+What does inference mean in machine learning?|Using a trained model to make an output|Collecting all training data from scratch|1
+What does training change in a neural network?|Its learned parameters|The physical size of the keyboard|1
+What is a token in a language model?|A unit of text processed by the model|Always one complete English word|1
+What does a context window limit?|How many tokens a model can consider at once|The monitor's brightness|1
+What is a neural network's weight?|A learned numerical parameter|The mass of its computer|1
+What is fine-tuning?|Further training an existing model for a task|Replacing every model parameter with zero|1
+What does RAG stand for?|Retrieval-augmented generation|Random answer guessing|1
+What does retrieval-augmented generation add to a model's input?|Information retrieved from outside sources|A guarantee that every answer is true|1
+What is an embedding in AI?|A numerical representation of data|A physical memory slot|1
+What is computer vision mainly concerned with?|Interpreting images and video|Improving a monitor's eyesight|1
+What is natural language processing concerned with?|Human language|Electrical power transmission|1
+What is speech recognition used to do?|Convert spoken audio into text|Convert text into electricity|1
+What is text-to-speech used to do?|Generate spoken audio from text|Recognize handwriting from a photograph|1
+What does OCR stand for?|Optical character recognition|Online cash reserve|1
+What is a classifier designed to predict?|A category|Only a continuous measurement|1
+What is regression commonly used to predict?|A numerical value|Only the name of a category|1
+What is clustering used to group?|Similar examples|Only examples with identical file names|1
+What is a training set used for?|Learning model parameters|Only reporting the final benchmark score|1
+What is a test set used to evaluate?|Performance on examples held out from training|The physical strength of a computer case|1
+What is overfitting?|Learning training details that fail to generalize|A model fitting all unseen tasks perfectly|1
+What is underfitting?|A model failing to learn relevant patterns|A model memorizing every training example perfectly|1
+What is a loss function used to measure?|The model's error for an objective|The computer's resale price|2
+What does gradient descent adjust?|Parameters to reduce a loss|The number of pixels on a screen|2
+What is a learning rate?|The size of parameter-update steps|The number of subjects in a school|2
+What is an epoch in model training?|One pass through the training dataset|One second of computer uptime|2
+What is a batch in machine learning?|A group of examples processed together|A group of computer monitors|2
+What is a hyperparameter?|A setting chosen for the training process|A weight learned directly as part of that process|2
+What does regularization aim to reduce?|Overfitting|The need for any training data|2
+What does dropout do during neural-network training?|Temporarily disables selected activations|Permanently deletes every training example|2
+What is data leakage in model evaluation?|Information from evaluation data entering training|A liquid spill on a keyboard|2
+What does a confusion matrix summarize?|Predicted categories compared with actual categories|A model's electricity use|2
+What is precision for a positive class?|The share of predicted positives that are correct|The share of all real positives that were found|2
+What is recall for a positive class?|The share of real positives that were found|The share of predicted positives that are correct|2
+What is a false positive?|A positive prediction for an actually negative example|A negative prediction for an actually positive example|2
+What is a false negative?|A negative prediction for an actually positive example|A positive prediction for an actually negative example|2
+What does the F1 score combine?|Precision and recall|Price and electricity consumption|2
+What does a model benchmark provide?|A standardized evaluation task or set of tasks|A guarantee of perfect real-world performance|2
+What is distribution shift?|A change in the data patterns a model encounters|Moving a computer to another desk|2
+What is transfer learning?|Using knowledge learned on one task for another|Copying a screen image to a printer|2
+What is self-supervised learning able to derive from data?|Its own training targets|A guaranteed legal license for that data|2
+What does reinforcement learning call the decision-maker?|The agent|The monitor|2
+What is an action in reinforcement learning?|A choice made by the agent|The label attached to a computer cable|2
+What is a policy in reinforcement learning?|A rule for selecting actions|A list of a company's shareholders|2
+What does a reward signal help an agent optimize?|Its behavior toward an objective|Its keyboard layout|2
+What does a multimodal model handle?|More than one type of input or output|Only one language|2
+What is image segmentation used to identify?|Regions or objects at the pixel level|Only the size of an image file|2
+What does object detection usually locate?|Objects and their positions in an image|The computer's physical address|2
+What is semantic search based on?|Meaning or conceptual similarity|Only exact spelling matches|2
+What is a vector database commonly used to search?|Stored embeddings|Printed books without digitization|2
+What does cosine similarity compare?|The angle between vectors|The temperature of a processor|2
+What does dimensionality reduction do?|Represent data with fewer dimensions|Reduce the physical height of a monitor|2
+What does PCA stand for?|Principal component analysis|Private computer access|2
+What does a decision tree use to make predictions?|A sequence of branching tests|A single randomly chosen password|2
+What is a random forest made of?|Multiple decision trees|Multiple encrypted hard drives|2
+What is an ensemble model?|A combination of models|A single untrained parameter|2
+What does k-nearest neighbors use for prediction?|Nearby examples in feature space|The newest examples by timestamp alone|2
+What is a convolutional neural network especially associated with?|Processing spatial patterns such as images|Managing bank transfers|2
+What is a recurrent neural network designed to process?|Sequential data|Only unordered file names|2
+What does a transformer use to relate positions in a sequence?|Attention mechanisms|Mechanical gears|2
+Which 2017 paper introduced the Transformer architecture?|Attention Is All You Need|The Origin of Species|2
+What is self-attention used to relate?|Different positions within the same sequence|Only the user's physical surroundings|2
+What does positional information help a transformer distinguish?|The order of sequence elements|The user's bank balance|2
+What does an autoregressive language model typically predict?|The next token using earlier tokens|The text without using any earlier context|2
+What does temperature commonly influence in text generation?|The randomness of token sampling|The CPU's cooling-fan setting|2
+What is greedy decoding?|Choosing the highest-scoring next token at each step|Choosing a random word from a dictionary|2
+What does quantization reduce in a model?|The numerical precision used for parameters|The legal age of its users|2
+What does model distillation train?|A smaller model using a larger model's outputs|A monitor using a printer's ink|2
+What is model pruning intended to remove?|Parameters or components judged unnecessary|All the data used for evaluation|2
+What is federated learning designed to keep decentralized?|The training data held by participants|The meaning of model outputs|2
+What does differential privacy aim to limit?|Information revealed about any individual record|The number of languages a model can speak|2
+What is an adversarial example?|An input crafted to mislead a model|An ordinary paper user manual|2
+What is prompt injection?|Untrusted input attempting to redirect a model's instructions|A method of cooling a graphics card|2
+What is human-in-the-loop AI?|A workflow with human review or intervention|A system with no human involvement at any stage|2
+What does explainable AI try to make clearer?|The reasons or factors behind model behavior|The physical wiring of every keyboard|2
+What is model calibration concerned with?|Whether predicted probabilities match observed frequencies|Whether the screen's colors match a printer|2
+What does a sigmoid function map inputs into?|Values between 0 and 1|Only negative integers|3
+What does a softmax function produce?|A normalized distribution over alternatives|A list of unbounded negative integers|3
+What does backpropagation calculate?|Gradients through a neural network|The model's electricity tariff|3
+What is a GAN made of?|A generator and a discriminator|A printer and a scanner|3
+What does a diffusion model learn to reverse?|A process that adds noise to data|A process that signs legal contracts|3
+What is a latent representation?|An internal learned representation of data|The computer's physical serial number|3
+What is catastrophic forgetting?|Losing earlier capabilities while learning new tasks|Deleting a browser's history|3
+What is few-shot prompting?|Giving a small number of examples in the prompt|Training only on one byte|2
+What is zero-shot prompting?|Asking for a task without task examples in the prompt|Using a model with no training at all|2
+What is a hallucination rate measuring?|How often evaluated outputs contain unsupported claims|How fast a model types characters|2
+@Greek Cypriot History
+Which city is the capital of the Republic of Cyprus?|Nicosia|Limassol|1
+In which year did the Republic of Cyprus become independent?|1960|1974|1
+Which country administered Cyprus immediately before independence?|Britain|France|1
+Who was the first president of the Republic of Cyprus?|Archbishop Makarios III|Glafcos Clerides|1
+What did the Greek Cypriot demand for enosis mean?|Union with Greece|Partition into two separate states|1
+What did the Turkish Cypriot demand for taksim mean?|Partition|Union with Greece|1
+What was EOKA's principal goal during the 1955–1959 struggle?|Ending British rule and achieving union with Greece|Joining the Soviet Union|1
+Who led EOKA under the name Digenis?|Georgios Grivas|Eleftherios Venizelos|1
+In which year did EOKA begin its armed campaign?|1955|1964|1
+On what date is the start of the EOKA struggle commemorated?|1 April|1 October|1
+Which saint is closely associated with the founding of the Church of Cyprus?|Barnabas|Augustine of Hippo|1
+Which ancient city was near modern Famagusta?|Salamis|Olympia|1
+Which Cypriot archaeological site is famous for Neolithic circular houses?|Choirokoitia|Knossos|1
+Which Cypriot city has famous Roman mosaic floors at its archaeological site?|Paphos|Nicosia|1
+Which ancient site near Limassol is known for its Greco-Roman theatre?|Kourion|Delphi|1
+Which goddess was worshipped at the sanctuary at Kouklia?|Aphrodite|Artemis|1
+Which mountain range contains Cyprus's UNESCO-listed painted churches?|Troodos|The Alps|1
+Which material is strongly associated with ancient Cyprus's mining history?|Copper|Coal|1
+What is the Green Line in Cyprus?|A UN-patrolled buffer zone dividing the island|A railway from Paphos to Limassol|1
+What does UNFICYP stand for?|United Nations Peacekeeping Force in Cyprus|United Nations Fisheries Council of Cyprus|1
+In which year was UNFICYP established?|1964|1983|1
+Which UN body established UNFICYP?|The Security Council|The International Court of Justice|1
+What are Akrotiri and Dhekelia?|British Sovereign Base Areas|Independent Cypriot city-states|1
+In which year did Turkey invade Cyprus?|1974|1960|1
+On which date did the first Turkish invasion of Cyprus begin?|20 July 1974|1 April 1955|1
+What event immediately preceded Turkey's July 1974 invasion?|A coup against President Makarios|Cyprus joining the European Union|1
+Which military junta backed the July 1974 coup in Cyprus?|The junta ruling Greece|The government of Italy|1
+Who was briefly installed as president by the July 1974 coup?|Nikos Sampson|Spyros Kyprianou|2
+Which city contains the Varosha district?|Famagusta|Larnaca|1
+What happened to most of Varosha after 1974?|It was fenced off and its inhabitants displaced|It became Cyprus's new capital|1
+Which two cities gave their names to the 1959 agreements on Cyprus?|Zurich and London|Paris and Rome|2
+Which three states were guarantor powers under the 1960 Treaty of Guarantee?|Greece, Turkey and the United Kingdom|France, Italy and Germany|2
+Who was the Republic of Cyprus's first vice-president?|Fazıl Küçük|Rauf Denktaş|2
+Which two languages are official under the Republic of Cyprus's constitution?|Greek and Turkish|Greek and English|1
+In which year did Cyprus join the European Union?|2004|1981|1
+In which year did Cyprus adopt the euro?|2008|2004|1
+Who was the UN secretary-general associated with the 2004 reunification plan?|Kofi Annan|Dag Hammarskjöld|2
+How did Greek Cypriot voters vote in the 2004 Annan Plan referendum?|A majority rejected it|A majority approved it|1
+Which UN resolution declared the 1983 northern declaration of independence legally invalid?|Security Council Resolution 541|Security Council Resolution 186|2
+What was the Ottoman conquest of Cyprus completed in 1571 associated with?|The fall of Famagusta|The founding of Nicosia|2
+In which year did Britain take over the administration of Cyprus?|1878|1925|2
+In which year did Britain formally annex Cyprus?|1914|1960|2
+In which year did Cyprus become a British Crown colony?|1925|1878|2
+Which medieval dynasty ruled Cyprus before the Venetians?|The Lusignans|The Romanovs|2
+Which republic ruled Cyprus from 1489 until the Ottoman conquest?|Venice|Genoa|2
+Which queen transferred the Kingdom of Cyprus to Venice in 1489?|Caterina Cornaro|Cleopatra VII|2
+Which English king captured Cyprus in 1191?|Richard I|Henry VIII|2
+Which ruler founded the Lusignan dynasty's rule in Cyprus?|Guy de Lusignan|Charlemagne|2
+Which empire governed Cyprus before Richard I's conquest?|The Byzantine Empire|The Aztec Empire|2
+Which district contains the UNESCO site of Choirokoitia?|Larnaca|Kyrenia|2
+What does Aceramic Neolithic mean?|The New Stone Age before pottery use|The Iron Age after coinage|2
+What are the Tombs of the Kings in Paphos mainly examples of?|Hellenistic and Roman burial architecture|Medieval royal palaces|2
+Which Cypriot city was known in antiquity as Kition?|Larnaca|Limassol|2
+Which ancient kingdom was centered near modern Kouklia?|Palaepaphos|Sparta|2
+What is Lefkosia another name for?|Nicosia|Paphos|1
+What is Lemesos another name for?|Limassol|Famagusta|1
+What is Ammochostos another name for?|Famagusta|Kyrenia|1
+What is Keryneia another name for?|Kyrenia|Larnaca|1
+Which monastery is strongly associated with Makarios III?|Kykkos Monastery|Mount Athos's Great Lavra|2
+Who became president of Cyprus after Makarios III's death in 1977?|Spyros Kyprianou|Tassos Papadopoulos|2
+Who was president of Cyprus when the Annan Plan referendum was held?|Tassos Papadopoulos|Makarios III|2
+What is the principal religion historically associated with Greek Cypriots?|Eastern Orthodox Christianity|Shinto|1
+What is a klephtiko dish traditionally based on?|Slow-cooked lamb|Raw tuna|1
+Which Cypriot product is a traditional sweet dessert wine?|Commandaria|Tequila|1
+What is halloumi traditionally made from?|Milk|Wheat flour|1
+Which ancient philosopher born in Kition founded Stoicism?|Zeno|Epicurus|2
+Which ancient Cypriot king of Salamis resisted Persian rule?|Evagoras I|Leonidas I|2
+Which year saw the Cypriot revolt against British rule known as Oktovriana?|1931|1959|2
+What was the 1950 Greek Cypriot plebiscite chiefly about?|Union with Greece|Joining NATO|2
+What do the olive branches on Cyprus's national flag symbolize?|Peace|Naval victory|1
+What is shown above the olive branches on Cyprus's flag?|The outline of the island|A royal crown|1
+@Greek History
+Which ancient Greek city is associated with the development of democracy?|Athens|Sparta|1
+Which ancient Greek city is especially associated with military discipline?|Sparta|Corinth|1
+Who is traditionally credited with the Iliad and the Odyssey?|Homer|Herodotus|1
+Who wrote the Histories describing the Greco-Persian Wars?|Herodotus|Euclid|1
+Who wrote a history of the Peloponnesian War?|Thucydides|Hippocrates|1
+Which two powers fought the Peloponnesian War?|Athens and Sparta|Rome and Carthage|1
+In which year did the Battle of Marathon take place?|490 BCE|480 BCE|2
+Which Persian king launched the invasion defeated at Marathon?|Darius I|Cyrus II|2
+Which Spartan king led the defense at Thermopylae?|Leonidas I|Philip II|1
+In which year were Thermopylae and Salamis fought?|480 BCE|404 BCE|2
+Which battle in 480 BCE was primarily a naval battle?|Salamis|Thermopylae|1
+Which Athenian leader is closely associated with the victory at Salamis?|Themistocles|Solon|1
+Which Persian ruler invaded Greece in 480 BCE?|Xerxes I|Artaxerxes II|2
+Which alliance was led by Athens after the Persian Wars?|The Delian League|The Hanseatic League|2
+Which leader is associated with Athens's Golden Age?|Pericles|Justinian I|1
+Which goddess was the Parthenon dedicated to?|Athena|Aphrodite|1
+What is an acropolis?|The elevated fortified part of a city|A city's harbor warehouse|1
+Which sanctuary was famous for the oracle of Apollo?|Delphi|Mycenae|1
+Where were the ancient Olympic Games held?|Olympia|Athens|1
+What was a polis in ancient Greece?|A city-state|A warship|1
+What were hoplites?|Heavily armed infantry soldiers|Temple singers|1
+What was a phalanx?|A close infantry formation|An irrigation device|1
+What was a trireme?|A warship with three levels of rowers|A cavalry regiment|1
+Which civilization built the palace at Knossos?|The Minoans|The Spartans|1
+On which island is Knossos?|Crete|Cyprus|1
+Which civilization used Linear B to write an early form of Greek?|The Mycenaeans|The Etruscans|2
+Which script of ancient Crete remains undeciphered?|Linear A|Linear B|2
+Which king was Alexander the Great's father?|Philip II of Macedon|Leonidas I|1
+Who tutored Alexander the Great?|Aristotle|Socrates|1
+Which empire did Alexander the Great conquer?|The Achaemenid Persian Empire|The Ottoman Empire|1
+Which Egyptian city was founded by Alexander the Great?|Alexandria|Cairo|1
+In which year did Alexander the Great die?|323 BCE|146 BCE|2
+What is the Hellenistic period associated with?|The spread of Greek culture after Alexander's conquests|The beginning of Ottoman rule in Athens|1
+Which Egyptian dynasty descended from a general of Alexander?|The Ptolemies|The Tudors|2
+Which mathematician wrote the Elements?|Euclid|Pythagoras|1
+Which Greek scientist is associated with the principle of buoyancy?|Archimedes|Hippocrates|1
+Which physician is traditionally called the father of medicine?|Hippocrates|Aeschylus|1
+Who wrote the tragedy Antigone?|Sophocles|Aristophanes|1
+Who wrote the Oresteia trilogy?|Aeschylus|Euripides|2
+Who wrote the tragedy Medea?|Euripides|Sophocles|2
+Which playwright is especially known for ancient Greek comedy?|Aristophanes|Herodotus|1
+Which philosopher founded the Academy in Athens?|Plato|Aristotle|1
+Which philosopher founded the Lyceum in Athens?|Aristotle|Plato|1
+What did ostracism in ancient Athens allow citizens to do?|Vote to exile a person temporarily|Grant hereditary kingship|2
+Which lawgiver's name gave English the word draconian?|Draco|Pericles|2
+Which Athenian lawgiver is associated with reforms easing debt bondage?|Solon|Xerxes|2
+Which empire captured Constantinople in 1453?|The Ottoman Empire|The Mongol Empire|1
+What was the principal capital of the Byzantine Empire?|Constantinople|Sparta|1
+In which year did the Greek War of Independence begin?|1821|1830|1
+What is Greece's Independence Day?|25 March|28 October|1
+What does Greece commemorate on Ohi Day?|Its refusal of an Italian ultimatum in 1940|The fall of Constantinople in 1453|1
+Which empire did the Greek revolutionaries fight for independence from?|The Ottoman Empire|The British Empire|1
+Who was the first governor of independent Greece?|Ioannis Kapodistrias|Otto of Bavaria|1
+Which secret society helped prepare the Greek revolution?|Filiki Eteria|The Carbon Trust|2
+Which 1827 naval battle helped secure Greek independence?|Navarino|Trafalgar|2
+Which British poet supported the Greek independence struggle and died at Missolonghi?|Lord Byron|William Wordsworth|1
+Who became the first king of modern Greece in 1832?|Otto|Constantine I|2
+Which 1830 agreement recognized Greece as an independent state?|The London Protocol|The Treaty of Versailles|2
+Which city was Greece's capital before Athens became the capital in 1834?|Nafplio|Thessaloniki|2
+Which statesman is associated with the Great Idea and major early-20th-century reforms?|Eleftherios Venizelos|Georgios Grivas|2
+Which conflict brought Thessaloniki into the Greek state in 1912?|The First Balkan War|The Crimean War|2
+What does the term Megali Idea refer to?|A vision of expanding Greece to include Greek-populated lands|A plan to abandon the Greek language|2
+What was the 1923 Greek-Turkish population exchange based primarily on?|Religion|Occupation|2
+Which treaty governed the 1923 Greek-Turkish population exchange?|The Treaty of Lausanne|The Treaty of Rome|2
+In which year did the Greek military junta seize power?|1967|1974|2
+In which year did Greece return to civilian democratic government after the junta?|1974|1981|1
+Who headed Greece's civilian government after the junta fell in 1974?|Konstantinos Karamanlis|Andreas Papandreou|2
+What does Metapolitefsi refer to in modern Greek history?|The transition after the fall of the junta|The founding of the Delian League|2
+In which year did Greece join the European Economic Community?|1981|2004|1
+In which year did Athens host the first modern Olympic Games?|1896|1900|1
+Which islands were transferred from Italy to Greece after World War II?|The Dodecanese|The Balearic Islands|2
+@Luxury & HNW World
+What does HNW commonly mean in wealth management?|High net worth|High national wage|1
+What does UHNW commonly mean in wealth management?|Ultra-high net worth|Unhedged national wealth|1
+What is a family office designed to manage?|The financial affairs of a wealthy family|The office supplies of every public company|1
+What is a single-family office dedicated to?|One wealthy family|Every resident of one country|1
+What is a multi-family office designed to serve?|Several wealthy families|Only a government's treasury|1
+What is concierge service mainly intended to provide?|Personal assistance with arrangements and requests|A guarantee of investment returns|1
+What is provenance in the art market?|An artwork's documented history of ownership|The thickness of its frame|1
+Why does authenticity matter in the collectible market?|It helps establish that an item is genuine|It guarantees that the item's price will rise|1
+What is an auction reserve price?|The minimum price the seller agrees to accept|The maximum price any buyer may bid|1
+What is a buyer's premium at an auction?|An extra fee added to the winning bid|A discount automatically paid to the seller|1
+What is the hammer price at an auction?|The winning bid before additional fees|The total including every tax and fee|1
+What is haute couture?|High-end made-to-measure fashion meeting specific industry criteria|Any mass-produced branded clothing|1
+What does bespoke usually mean for tailoring?|Made to a client's individual specifications|Produced only in standardized sizes|1
+What is prêt-à-porter?|Ready-to-wear clothing|Clothing made exclusively by hand for one client|1
+What material gives platinum jewelry its main metal content?|Platinum|Aluminum|1
+What does 24-karat gold indicate?|Gold of approximately 99.9% purity|Gold containing approximately 50% copper|1
+What is the gold proportion in 18-karat gold?|75%|90%|1
+What is a watch complication?|A function beyond basic time display|Any accidental scratch on the case|1
+What does a chronograph measure?|Elapsed time|Only the moon's phase|1
+What does a perpetual calendar watch account for?|Different month lengths and the usual leap-year cycle|Every future change in civil-calendar law|2
+What does a tourbillon rotate in a mechanical watch?|The escapement assembly|The watch's entire dial|2
+What powers an automatic mechanical watch?|A rotor moved by the wearer's motion|A solar-powered digital battery alone|1
+What does a minute repeater use to indicate time?|Audible chimes|A digital calculator display|2
+What does GMT on a watch commonly help display?|An additional time zone|Only atmospheric pressure|1
+Which Swiss watchmaker makes the Submariner?|Rolex|Patek Philippe|1
+In which year did Rolex launch the Submariner?|1953|1976|2
+Which watchmaker introduced the Nautilus in 1976?|Patek Philippe|Cartier|1
+Which city is closely associated with Patek Philippe's founding?|Geneva|Milan|1
+In which year was the company that became Patek Philippe founded?|1839|1905|2
+Which watchmaker is associated with the Royal Oak?|Audemars Piguet|Rolex|1
+Which designer is associated with the original Royal Oak and Nautilus?|Gérald Genta|Enzo Ferrari|2
+Which luxury house is associated with the Birkin bag?|Hermès|Chanel|1
+Which luxury house is associated with the Tank watch?|Cartier|Gucci|1
+Which French fashion house was founded by Gabrielle Chanel?|Chanel|Dior|1
+Which Italian city is Ferrari closely associated with?|Maranello|Venice|1
+Who founded Ferrari?|Enzo Ferrari|Ferruccio Lamborghini|1
+Which carmaker is associated with the prancing-horse emblem?|Ferrari|Bentley|1
+Which luxury carmaker uses the Spirit of Ecstasy ornament?|Rolls-Royce|Lamborghini|1
+Which carmaker is associated with the flying-B emblem?|Bentley|Maserati|1
+Which Italian sports-car brand was founded by Ferruccio Lamborghini?|Lamborghini|Ferrari|1
+Which carmaker uses a trident emblem?|Maserati|Porsche|1
+Which Italian shipbuilder is especially associated with luxury yachts?|Benetti|Boeing|1
+What is a yacht charter?|Hiring the use of a yacht for a period|Buying permanent shares in every marina|1
+What does a yacht's draft measure?|The depth of its hull below the waterline|The height of its tallest antenna|2
+What does gross tonnage measure for a vessel?|A measure based on enclosed internal volume|The exact weight of its cargo|2
+What is fractional ownership of a private aircraft?|Owning a share with allocated use rights|Renting only its luggage compartment|1
+Which region gives authentic Champagne its protected geographical name?|Champagne in France|Any sparkling-wine region|1
+Which French region is especially associated with Pinot Noir and Chardonnay?|Burgundy|Bordeaux exclusively|1
+Which French region is famous for many Cabernet Sauvignon and Merlot blends?|Bordeaux|Champagne|1
+What is a wine vintage?|The year its grapes were harvested|The year its label was designed|1
+What is a sommelier especially trained in?|Wine service and selection|Aircraft maintenance|1
+What is terroir associated with in wine?|The influence of a growing place and its conditions|Only the shape of the bottle|2
+What is a magnum wine bottle's usual capacity?|1.5 litres|0.75 litres|1
+What is an illiquid asset?|An asset that may take time to sell without a major price concession|An asset that can always be sold instantly at full value|1
+What does succession planning prepare for?|The transfer of ownership or leadership|The automatic elimination of inheritance law|1
+What is philanthropy?|Giving resources for public or charitable benefit|Paying only for personal luxury consumption|1
+What is an endowment?|A fund invested to support an institution over time|A mandatory one-day spending account|1
+@Pharmacology
+What does pharmacology study?|Drugs and their effects|The movement of planets|1
+What does an active ingredient in a medicine provide?|Its pharmacological effect|Only the color of the packaging|1
+What is a generic medicine designed to match?|An approved reference medicine's active ingredient and relevant performance|Any product with similar packaging|1
+What is an antibiotic generally used to target?|Bacteria|All viruses|1
+What is an antiviral medicine designed to target?|Viruses|Only bacterial cell walls|1
+What is an analgesic used to reduce?|Pain|Blood sugar exclusively|1
+What is an antipyretic used to reduce?|Fever|The size of a broken bone|1
+What is an anesthetic used to reduce or eliminate?|Sensation|All memory permanently|1
+What is an antihistamine designed to block?|Histamine's effects|The production of all red blood cells|1
+What is a bronchodilator designed to widen?|The airways|The bones of the arm|1
+What is an anticoagulant designed to reduce?|Blood clotting|The amount of oxygen in the air|1
+What is a diuretic designed to increase?|Urine production|Bone length|1
+What is insulin's main physiological role?|Helping regulate blood glucose|Producing stomach acid|1
+What is a vaccine designed to train?|The immune system|The digestive muscles exclusively|1
+What is a placebo?|An inactive comparison treatment|A guaranteed cure for every illness|1
+What is a double-blind drug trial intended to conceal?|Treatment assignments from participants and relevant investigators|Every result from all regulators forever|1
+What does bioavailability describe?|How much of a dose reaches systemic circulation|How expensive the drug is|2
+What does a drug's half-life describe?|The time for its concentration to fall by half under specified conditions|The time for a tablet to break exactly in two|2
+What does pharmacokinetics study?|How the body handles a drug|Only a drug's brand name|2
+What does pharmacodynamics study?|How a drug acts on the body|Only the cost of transporting a drug|2
+What does ADME stand for in pharmacokinetics?|Absorption, distribution, metabolism and excretion|Administration, delivery, marketing and export|2
+What is a receptor agonist?|A substance that activates a receptor|A substance that always destroys the receptor|2
+What is a receptor antagonist?|A substance that blocks receptor activation|A substance that always activates every receptor|2
+What is a contraindication?|A circumstance in which a treatment should not be used|Proof that the treatment has no side effects|1
+What is an adverse drug reaction?|An unwanted harmful response to a medicine|The normal design of its box|1
+What is a drug interaction?|One substance affecting another drug's action or handling|Two tablets having the same color|1
+What is the therapeutic index related to?|The separation between effective and toxic doses|The number of pages in a drug brochure|2
+What does drug tolerance mean?|A reduced response after repeated exposure|An allergic response to every drug|2
+What does first-pass metabolism commonly reduce?|The amount of an orally taken drug reaching systemic circulation|The amount of air inhaled into the lungs|2
+Which organ is central to the metabolism of many drugs?|The liver|The spleen exclusively|1
+Which organs are central to the excretion of many drugs and metabolites?|The kidneys|The ears|1
+What is an intravenous drug given into?|A vein|The stomach|1
+What is an intramuscular injection given into?|A muscle|A vein|1
+What does the oral route mean?|Through the mouth|Through a vein|1
+What is a sublingual medicine placed under?|The tongue|The eyelid|1
+What is a topical medicine applied to?|A body surface such as skin|Always directly into a vein|1
+What is a clinical trial phase I commonly focused on?|Initial safety and dose assessment|Only mass-market advertising|2
+What is a clinical trial phase III commonly designed to assess?|Benefits and risks in a larger patient population|The color of the final retail packaging|2
+What is pharmacovigilance concerned with?|Monitoring medicine safety|Tracking a pharmacy's electricity meter|2
+What is antimicrobial resistance?|Microbes becoming less susceptible to antimicrobial drugs|Humans becoming immune to every infection|1
+Which drug class includes penicillin?|Beta-lactam antibiotics|Opioid analgesics|2
+Which enzyme family is central to the metabolism of many drugs?|Cytochrome P450|DNA polymerase alone|2
+What does an extended-release formulation aim to change?|The rate of drug release over time|The medicine's legal identity|2
+What is a medicine's dosage form?|Its physical form, such as tablet or injection|Its trademark alone|1
+What is an excipient in a medicine?|An ingredient serving a formulation role rather than the main therapeutic effect|The only active ingredient|2
+@Law
+What is the purpose of a constitution?|To establish a state's basic legal framework|To list every private purchase|1
+What does jurisdiction describe?|A court's or authority's legal power over a matter|The age of a courthouse building|1
+What is a statute?|A law enacted by a legislature|Any newspaper opinion|1
+What is case law based on?|Court decisions|Only election advertisements|1
+What does precedent mean in common-law reasoning?|An earlier decision relevant to a later case|An unfiled personal opinion|1
+What is a civil case chiefly concerned with?|A legal dispute involving private rights or obligations|Only prosecution for crimes|1
+What is a criminal case chiefly concerned with?|An alleged offense prosecuted by public authority|Only disagreement over a garden fence|1
+What is a plaintiff in a civil case?|The party bringing the claim|Always the judge|1
+What is a defendant?|The party against whom a case is brought|The court's stenographer|1
+What is an appeal?|A request for a higher court to review a decision|An automatic new criminal charge|1
+What is an injunction?|A court order requiring or prohibiting an action|A tax receipt|1
+What is an affidavit?|A written statement sworn or affirmed to be true|An unsigned marketing slogan|1
+What is a subpoena?|An order requiring testimony or production of evidence|A guarantee of acquittal|1
+What does the presumption of innocence mean?|An accused person is treated as innocent until proved guilty|An accused person must prove every witness is dishonest|1
+What is the usual criminal standard of proof in U.S. courts?|Beyond a reasonable doubt|Any slight possibility|1
+What is habeas corpus used to challenge?|The lawfulness of detention|The price of a property|1
+What does due process concern?|Fair legal procedures and protections|The speed of an advertising campaign|1
+What is a tort?|A civil wrong recognized by law|Every breach of etiquette|1
+What does negligence generally involve?|Failing to exercise the legally required care|Any accidental event regardless of legal duty|1
+What is defamation generally concerned with?|False statements harming reputation|All unfavorable opinions automatically|1
+What does copyright mainly protect?|Original expression|Every general idea|1
+What does a trademark identify?|The commercial source of goods or services|A country's national border|1
+What does a patent protect?|An invention that meets the legal requirements|Any business idea without an application|1
+What is a contract?|A legally enforceable agreement|Every casual promise without exception|1
+What does mens rea refer to in criminal law?|The required mental element of an offense|The courtroom's seating plan|2
+What does actus reus refer to in criminal law?|The required conduct or external elements of an offense|Only the defendant's name|2
+What is a conflict of interest?|A competing interest that may compromise judgment or duty|Every difference of opinion|1
+What is attorney-client privilege designed to protect?|Certain confidential communications for legal advice|Every document owned by a lawyer's client|2
+What is arbitration?|A dispute-resolution process using an arbitrator|An election for a new legislature|1
+What is mediation?|A process in which a neutral person helps parties seek agreement|A judge automatically imposing a prison sentence|1
+What does sovereign immunity concern?|Limits on suing a state or sovereign|A guarantee against every military attack|2
+What is the rule of law?|Government and citizens being subject to law|A ruler being exempt from all legal limits|1
+What does separation of powers divide?|Government functions among institutions|All private businesses into equal sizes|1
+What is judicial review?|Court review of the legality or constitutionality of government action|A compulsory vote on every court case|2
+What is diplomatic immunity intended to support?|Diplomatic functions free from certain host-state legal constraints|Unlimited permission to commit crimes without consequences anywhere|2
+Which court handles disputes between states at the UN level?|The International Court of Justice|The International Criminal Court|1
+Which court prosecutes individuals for specified international crimes?|The International Criminal Court|The International Court of Justice|1
+What is extradition?|The transfer of a person to another jurisdiction for legal proceedings or punishment|The automatic cancellation of a criminal charge|1
+What is asylum concerned with?|Protection from persecution under applicable law|A general guarantee of citizenship for every traveler|1
+What does a nondisclosure agreement restrict?|Disclosure of specified confidential information|Every form of public speech forever|1
+@Criminal Justice & Famous Cases
+What type of fraud was Bernie Madoff's operation?|A Ponzi scheme|A legal deposit-insurance system|1
+What is a Ponzi scheme's central mechanism?|Using new investors' money to pay earlier investors|Earning all payouts from genuine operating profits|1
+Which U.S. energy company collapsed in a famous accounting scandal in 2001?|Enron|Tesla|1
+What did the Watergate scandal ultimately lead Richard Nixon to do?|Resign the presidency|Become chief justice|1
+In which year did Richard Nixon resign?|1974|1963|1
+Which U.S. case is associated with warnings about custodial interrogation rights?|Miranda v. Arizona|Brown v. Board of Education|1
+Which U.S. case held racial segregation in public schools unconstitutional?|Brown v. Board of Education|Marbury v. Madison|1
+Which U.S. Supreme Court case is associated with establishing judicial review?|Marbury v. Madison|Miranda v. Arizona|2
+What was the Nuremberg trial of major Nazi leaders held after?|World War II|The French Revolution|1
+Which city hosted the principal postwar trial of major Nazi leaders?|Nuremberg|Vienna|1
+What is forensic evidence?|Evidence obtained through scientific examination|Only a confession|1
+What does DNA profiling compare?|Selected genetic markers|A person's handwriting alone|1
+What is a chain of custody intended to document?|Who handled evidence and when|The ownership of a courthouse|1
+What is perjury?|Knowingly making a false material statement under oath|Refusing every optional interview|1
+What is obstruction of justice generally concerned with?|Interfering with legal proceedings or investigations|Disagreeing with a law in public|1
+What is money laundering designed to conceal?|The criminal origin of funds|Only the color of banknotes|1
+What is embezzlement?|Misappropriating assets entrusted to one's care|Selling one's own property lawfully|1
+What is insider trading law chiefly concerned with in securities markets?|Trading improperly on material nonpublic information|Every purchase by a company's customer|1
+What is a plea bargain?|An agreement resolving criminal charges under specified terms|A guarantee that no crime occurred|1
+What is an acquittal?|A finding that the prosecution did not establish guilt|A prison sentence after conviction|1
+What is a wrongful conviction?|A conviction of a person who should not have been convicted|A conviction for an unpopular but valid law alone|1
+What is the Innocence Project especially associated with?|Challenging wrongful convictions, often using DNA evidence|Selling private prison buildings|1
+What was Alfred Dreyfus's profession when wrongly convicted of treason in France?|Army officer|Bank manager|2
+Which writer published J'Accuse in defense of Alfred Dreyfus?|Émile Zola|Victor Hugo|2
+Which ancient philosopher was sentenced to death in Athens in 399 BCE?|Socrates|Aristotle|1
+What poison is traditionally associated with Socrates's death?|Hemlock|Arsenic|1
+Which 1932 case involved a kidnapped American aviator's baby?|The Lindbergh kidnapping|The Watergate burglary|2
+What does a coroner commonly investigate?|Certain deaths and their causes or circumstances|Every civil property dispute|1
+What is ballistic examination commonly used to study?|Firearms, ammunition and projectile evidence|Only blood-group types|1
+What is a fingerprint's value in forensics based on?|Distinctive ridge patterns|The color of the fingernail|1
+@Engineering
+What is the SI unit of force?|The newton|The watt|1
+What is the SI unit of power?|The watt|The joule|1
+What is the SI unit of energy?|The joule|The ampere|1
+What is the SI unit of electrical current?|The ampere|The volt|1
+What is the SI unit of electrical resistance?|The ohm|The hertz|1
+What does a transformer change in an AC electrical system?|Voltage levels|The chemical element in a wire|1
+What does a rectifier convert?|AC to DC|Mechanical motion into sound only|1
+What does an inverter commonly convert?|DC to AC|Iron into copper|1
+What is a transistor used to do?|Switch or amplify electronic signals|Store liquid fuel|1
+What is a capacitor used to store?|Electrical energy in an electric field|Mechanical energy in a flywheel|1
+What does an inductor store energy in?|A magnetic field|A chemical fuel tank|2
+What is a diode designed to allow preferentially?|Current flow in one direction|Equal current flow in every direction under all conditions|1
+What does Ohm's law relate?|Voltage, current and resistance|Mass, volume and density|1
+What does a fuse protect against?|Excessive electrical current|Every lightning strike without exception|1
+What is tensile stress associated with?|Pulling a material apart|Only squeezing a material|1
+What is compressive stress associated with?|Squeezing a material|Only pulling a material apart|1
+What is shear stress associated with?|Forces acting parallel to a surface|Only uniform pressure from all directions|2
+What is material fatigue?|Damage accumulating under repeated loading|A metal becoming sleepy|1
+What does a safety factor compare?|Capacity with expected demand or loading|A product's price with its advertising budget|2
+What does reinforced concrete combine?|Concrete and reinforcing material, commonly steel|Only concrete and paper|1
+Why is steel commonly added to concrete?|To help carry tensile loads|To eliminate all weight|1
+What does a turbine extract energy from?|A moving fluid such as water, steam or air|Only a stationary solid block|1
+What does a pump do?|Moves fluid by adding energy|Always removes every dissolved impurity|1
+What does a heat exchanger transfer?|Heat between fluids or systems|Only electrical data|1
+What does thermodynamics study?|Heat, work and energy|Only the motion of planets|1
+What does a feedback control system use to adjust behavior?|Measured output compared with a target|Only a random timer|1
+What does CAD stand for in engineering?|Computer-aided design|Controlled air density|1
+What does CNC stand for in manufacturing?|Computer numerical control|Chemical neutralization chamber|1
+What is additive manufacturing also commonly called?|3D printing|Traditional subtractive milling|1
+What does a bridge's span describe?|The distance between supports|Only the height of its railings|1
+@Philosophy
+What does epistemology study?|Knowledge and justification|Only the motion of stars|1
+What does ethics study?|Moral questions and principles|Only word spelling|1
+What does metaphysics investigate?|The fundamental nature of reality|Only election procedures|1
+What does logic study?|Valid reasoning and inference|Only historical dates|1
+What does aesthetics study?|Art, beauty and related judgments|Only the temperature of colors|1
+What is a deductive argument intended to provide?|A conclusion guaranteed by its premises if valid|A conclusion based only on popularity|1
+What is inductive reasoning based on?|Evidence supporting a probable generalization|A guarantee independent of evidence|1
+What is the Socratic method associated with?|Questioning assumptions through dialogue|Avoiding every question|1
+Which philosopher taught Plato?|Socrates|Aristotle|1
+Who wrote The Republic?|Plato|Epicurus|1
+Who wrote the Nicomachean Ethics?|Aristotle|Descartes|1
+Which philosopher is associated with 'I think, therefore I am'?|René Descartes|David Hume|1
+What is empiricism's main emphasis?|Knowledge derived from experience|Knowledge derived only from royal authority|1
+What is rationalism's main emphasis?|Reason as a source of knowledge|Only measurements of body temperature|1
+What is utilitarianism chiefly concerned with?|Consequences for overall well-being|Following a rule regardless of every consequence|1
+What is deontological ethics chiefly concerned with?|Duties and moral rules|Only maximizing financial profit|1
+What is virtue ethics chiefly concerned with?|Character and virtues|Only the wording of statutes|1
+Which philosopher is associated with the categorical imperative?|Immanuel Kant|John Stuart Mill|1
+What is Stoicism especially associated with?|Cultivating virtue and distinguishing what is within one's control|Seeking unlimited luxury as the sole moral goal|1
+Which Roman emperor was a Stoic philosopher?|Marcus Aurelius|Nero|1
+Who wrote Meditations?|Marcus Aurelius|Machiavelli|1
+Who wrote The Prince?|Niccolò Machiavelli|Thomas Hobbes|1
+Who wrote Leviathan?|Thomas Hobbes|John Locke|1
+Which philosopher is associated with the harm principle?|John Stuart Mill|Thomas Aquinas|1
+What is a social contract theory concerned with?|The basis of political authority and obligations|Only contracts between shopkeepers|1
+What is existentialism especially concerned with?|Existence, freedom, choice and meaning|Only the classification of minerals|1
+Which philosopher wrote Beyond Good and Evil?|Friedrich Nietzsche|Karl Popper|1
+What is falsifiability associated with in philosophy of science?|A claim being open to possible refutation by evidence|A claim being impossible to test under any circumstances|1
+Which philosopher emphasized falsifiability in science?|Karl Popper|Jean-Paul Sartre|1
+What is a logical fallacy?|An error in reasoning|Every conclusion one dislikes|1
+@Geopolitics & International Relations
+What does NATO stand for?|North Atlantic Treaty Organization|National Asian Trade Office|1
+What is NATO primarily?|A collective-defense alliance|A global central bank|1
+What does NATO's Article 5 concern?|Collective defense|A universal common currency|1
+In which year was NATO founded?|1949|1919|1
+In which year was the United Nations founded?|1945|1957|1
+Which five states are permanent members of the UN Security Council?|China, France, Russia, the United Kingdom and the United States|Germany, Japan, India, Brazil and Canada|1
+What does a UN Security Council veto allow a permanent member to block?|A substantive resolution|Every debate in every UN body|1
+What is the UN General Assembly?|The UN body in which all member states are represented|A court that directly sentences individuals|1
+Where is the UN's main headquarters?|New York City|Geneva|1
+Where is the International Court of Justice based?|The Hague|Brussels|1
+What does sovereignty primarily concern?|A state's authority over its affairs and territory|Every country's right to ignore all treaties automatically|1
+What is an embargo?|A restriction or ban on specified trade|An automatic military occupation|1
+What are sanctions?|Restrictive measures intended to influence behavior|Only rewards for complying with an alliance|1
+What is soft power based on?|Attraction and influence|Only military coercion|1
+What is a balance of power concerned with?|Preventing domination by one actor or coalition|Making every country equally large|1
+What is a bilateral agreement?|An agreement between two parties|An agreement involving every state|1
+What is a multilateral agreement?|An agreement involving several parties|An agreement with only one private signer|1
+What is an armistice?|An agreement to stop fighting|An automatic permanent peace settlement|1
+What is a ceasefire?|A suspension of hostilities|A guarantee that a conflict can never restart|1
+What is a proxy war?|A conflict in which outside powers support local participants|A war fought only by computer servers|1
+What does deterrence aim to do?|Discourage an action by making its expected cost high|Guarantee that no conflict can ever occur|1
+What is a sphere of influence?|An area where a power has substantial influence|A legally identical form of annexation in every case|1
+What was the Cold War primarily a rivalry between?|The United States and the Soviet Union|France and the Ottoman Empire|1
+Which treaty signed in 1992 established the European Union?|The Maastricht Treaty|The Treaty of Versailles|1
+What is the Schengen Area primarily associated with?|Travel without routine internal border checks|A single worldwide tax rate|1
+What does OPEC concern?|Petroleum-exporting countries|Only international aviation|1
+What is the WTO concerned with?|International trade rules|Managing the world's armies|1
+What is a state's territorial sea measured outward from?|Its legal coastal baselines|Its highest mountain|2
+What does an exclusive economic zone chiefly give a coastal state?|Specified resource and economic rights|Full sovereignty over all foreign ships everywhere|2
+What is the Suez Canal designed to connect?|The Mediterranean Sea and the Red Sea|The Atlantic and Pacific Oceans|1
+@Technology
+What does CPU stand for?|Central processing unit|Computer power utility|1
+What does GPU stand for?|Graphics processing unit|General payment utility|1
+What does RAM stand for?|Random-access memory|Remote account manager|1
+What does SSD stand for in computer storage?|Solid-state drive|Standard screen display|1
+What does USB stand for?|Universal Serial Bus|Unified security bank|1
+What does HTML stand for?|HyperText Markup Language|High Transfer Machine Logic|1
+What does HTTP stand for?|Hypertext Transfer Protocol|Hardware Timing Test Procedure|1
+What does HTTPS add to HTTP communication?|Transport encryption and authentication using TLS|A guarantee that every website is honest|1
+What does DNS translate for common internet use?|Domain names into network-address information|Photographs into sound|1
+What is an IP address used to identify?|A network interface on an IP network|A website owner's legal identity automatically|1
+What does an operating system manage?|Hardware resources and software execution|Only the keyboard's printed letters|1
+What is an algorithm?|A defined procedure for solving a problem or completing a task|Only a physical circuit board|1
+What is source code?|Human-readable instructions written in a programming language|The packaging of a processor|1
+What is a compiler used to do?|Translate code into another executable or intermediate form|Only make a monitor brighter|1
+What is an API?|An interface for software components to interact|A physical computer power outlet|1
+What does encryption do?|Transforms readable data using a key-based method|Guarantees that data can never be deleted|1
+What does two-factor authentication require?|Two different categories of authentication evidence|Typing the same password twice|1
+What is phishing?|Deceptive attempts to obtain sensitive information|An ordinary software backup|1
+What is ransomware designed to demand?|Payment after restricting access or threatening disclosure|A normal printer refill|1
+What is a firewall used to filter?|Network traffic|Dust inside a computer case|1
+What does a VPN commonly create?|An encrypted tunnel between network endpoints|Guaranteed anonymity against every observer|1
+What is open-source software?|Software whose source is licensed for use, study, modification and sharing|Any software that costs nothing|1
+What is cloud computing?|Using computing resources delivered over a network|Computing that only works during cloudy weather|1
+What is a database index intended to speed up?|Relevant data lookups|The physical motion of a hard-drive case|1
+What does a backup provide?|A recoverable copy of data|A guarantee that no original file can be damaged|1
+What is latency in networking?|The delay in communication|Only the amount of stored data|1
+What is bandwidth commonly used to describe?|A communication channel's data-transfer capacity|The physical width of a keyboard|1
+What does a cache store?|Data kept for faster reuse|Only deleted files|1
+What is version control used to track?|Changes to files over time|The exact location of every computer|1
+What does blockchain arrange into a linked sequence?|Records grouped into cryptographically connected blocks|Only images arranged by color|1
+@Space & Astronomy
+Which planet is known as the Red Planet?|Mars|Venus|1
+Which star is at the center of our solar system?|The Sun|Sirius|1
+What is a light-year a unit of?|Distance|Time|1
+What is the Milky Way?|The galaxy containing our solar system|A single nearby planet|1
+Which planet is nearest to the Sun?|Mercury|Venus|1
+Which planet is the largest in our solar system?|Jupiter|Saturn|1
+Which planet is famous for its extensive visible ring system?|Saturn|Mars|1
+What does Earth's rotation mainly cause?|Day and night|The annual cycle of seasons by itself|1
+What mainly causes Earth's seasons?|Its axial tilt during its orbit around the Sun|Earth being dramatically closer to the Sun in northern summer|1
+What is an exoplanet?|A planet outside our solar system|A moon orbiting Earth|1
+What is a black hole?|A region whose gravity prevents light escaping from within its event horizon|An ordinary shadow on the Moon|1
+What is the event horizon of a black hole?|The boundary beyond which escape to the outside is impossible|A solid surface made of rock|1
+What is a supernova?|An explosive stellar event|An ordinary meteor in Earth's atmosphere|1
+What is a neutron star?|A compact stellar remnant mainly supported by dense nuclear matter|A cloud made only of hydrogen gas|2
+What is nuclear fusion?|Combining light nuclei into heavier nuclei|Splitting a heavy nucleus into smaller nuclei|1
+What process powers the Sun?|Nuclear fusion|Ordinary chemical burning|1
+Who was the first human to travel into space?|Yuri Gagarin|Neil Armstrong|1
+Who was the first person to walk on the Moon?|Neil Armstrong|Yuri Gagarin|1
+In which year did Apollo 11 land humans on the Moon?|1969|1957|1
+What was Sputnik 1?|The first artificial Earth satellite|The first crewed lunar lander|1
+What does ISS stand for?|International Space Station|Interstellar Satellite Ship|1
+What is a comet typically rich in?|Ice and dust|Only solid refined steel|1
+What is a meteorite?|A space rock that reaches the ground|Only the visible streak in the atmosphere|1
+What is the asteroid belt mainly located between?|Mars and Jupiter|Earth and Venus|1
+What is redshift in astronomy often associated with?|Light shifting toward longer wavelengths|Light becoming automatically brighter|1
+What is the cosmic microwave background?|Radiation left from the early universe|Only radio signals sent by Earth|2
+What is dark matter inferred mainly from?|Its gravitational effects|A direct photograph of every dark-matter particle|2
+What is a geostationary satellite positioned to do?|Remain above the same point on Earth's equator|Remain over every location at once|2
+What is escape velocity?|The speed needed to escape a gravitational body's pull without further propulsion|The speed at which sound travels in air|2
+What is an astronomical unit based on?|The average Earth-Sun distance|The diameter of the Milky Way|1

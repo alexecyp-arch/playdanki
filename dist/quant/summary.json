@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "total": 5000,
+  "skills": 500,
+  "subjectLabels": {
+    "statistics": "Statistics",
+    "probability": "Probability",
+    "arithmetic": "Percentages, ratios and growth",
+    "decisions": "Expected value, Kelly and decisions",
+    "papers": "Reading scientific papers",
+    "calculus": "Calculus",
+    "applications": "Trading, betting and poker",
+    "models": "Regression and models",
+    "product": "A/B testing and product analytics",
+    "information": "Information theory"
+  },
+  "subjects": {
+    "statistics": {
+      "count": 1500,
+      "percentage": 30
+    },
+    "probability": {
+      "count": 750,
+      "percentage": 15
+    },
+    "arithmetic": {
+      "count": 500,
+      "percentage": 10
+    },
+    "decisions": {
+      "count": 500,
+      "percentage": 10
+    },
+    "papers": {
+      "count": 500,
+      "percentage": 10
+    },
+    "calculus": {
+      "count": 500,
+      "percentage": 10
+    },
+    "applications": {
+      "count": 350,
+      "percentage": 7
+    },
+    "models": {
+      "count": 200,
+      "percentage": 4
+    },
+    "product": {
+      "count": 100,
+      "percentage": 2
+    },
+    "information": {
+      "count": 100,
+      "percentage": 2
+    }
+  },
+  "contentHash": "9ec1c72a94717d727cd78ee608d58ba4e542d22eec565f5781a2f71821dfa27c",
+  "style": "simultaneous ungraded flashcards",
+  "reset": "none",
+  "practiceStorage": "browser-local",
+  "accuracy": "not rated",
+  "mastery": "not rated"
+}

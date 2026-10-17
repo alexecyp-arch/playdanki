@@ -1,0 +1,448 @@
+German practice — list credits
+
+This learning deck contains 5,000 distinct German dictionary headwords with
+short English translations. Inflected forms are consolidated, German spelling
+and capitalisation are normalised, duplicates are removed, and common English
+translations are simplified. Ordering uses aggregated word-form occurrences in
+the German OpenSubtitles 2018 frequency list. This is a corpus-based ranking,
+not a claim that one ordering is universal across speech, news, and writing.
+
+Frequency data: FrequencyWords / OpenSubtitles 2018, by Hermit Dave and
+contributors. https://github.com/hermitdave/FrequencyWords
+Data license: Creative Commons Attribution-ShareAlike 4.0.
+https://creativecommons.org/licenses/by-sa/4.0/
+
+Lemmatization lookup: spaCy lookups data, Explosion and contributors.
+https://github.com/explosion/spacy-lookups-data
+German lemma lookup includes TIGER-derived resources; see upstream notices.
+Lookup project license: MIT.
+
+Translations: Deutsch-English FreeDict+WikDict, edition 2025.11.23,
+maintained by Karl Bartel; Wiktionary contributors via DBnary.
+https://www.wikdict.com/page/download
+https://www.wiktionary.org/
+https://dbnary.getalp.org/
+Dictionary's embedded license: Creative Commons Attribution-ShareAlike 3.0.
+https://creativecommons.org/licenses/by-sa/3.0/
+
+The adapted word dataset is available under CC BY-SA 4.0. Changes: frequency
+aggregation, lemma merging, filtering, spelling normalisation, shorter glosses,
+deduplication, and translation corrections. No dictionary example sentences,
+pronunciations, or long definitions are included in the trainer.
+
+German translation review, 3 October 2026: all 5,000 displayed word pairs were
+reviewed. 426 English translations were corrected or clarified for ordinary
+usage, 13 headwords were corrected, and alternate dictionary meanings were
+updated to keep valid translations out of the wrong-answer box. Card positions
+and saved progress were preserved. Detailed changes are recorded in the source
+repository at scripts/german-translation-review.json.
+
+Disputed meanings were cross-checked with Duden and Langenscheidt; their full
+definitions and examples are not reproduced in this learning deck.
+https://www.duden.de/rechtschreibung/Vater
+https://www.duden.de/rechtschreibung/Herzschlag
+https://de.langenscheidt.com/englisch-deutsch/daddy
+
+Sentences 1000
+This deck contains 1,000 distinct short German sentences and everyday
+expressions. Ordering follows descending cleaned sentence occurrence counts
+in OpenSubtitles2018. One-word entries, names, subtitle noises, bare noun
+fragments and malformed lines are filtered out. This represents subtitle
+usage; it is not a universal ranking of all real-life German conversation.
+The simple English translations and contrasting wrong choices were authored
+for this trainer. The current aim game displays only the correct translation.
+
+Sentence frequency list: orgtre and contributors, Top OpenSubtitles Sentences.
+https://github.com/orgtre/top-open-subtitles-sentences
+https://github.com/orgtre/top-open-subtitles-sentences/blob/main/bld/top_sentences/de_top_sentences.csv
+Upstream notice: the lists retain the underlying corpus's terms. The upstream
+Python code is CC BY 3.0; that code is not included in this trainer.
+
+Underlying corpus: OPUS OpenSubtitles2018, sourced from OpenSubtitles.
+https://www.opensubtitles.org/
+https://opus.nlpl.eu/legacy/OpenSubtitles-v2018.php
+P. Lison and J. Tiedemann (2016), OpenSubtitles2016: Extracting Large Parallel
+Corpora from Movie and TV Subtitles. Proceedings of LREC 2016.
+
+MIT License — spaCy lookups data
+Copyright (c) 2019 ExplosionAI GmbH
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE.
+
+Japanese Kana and Kanji
+
+Kana: the 46 modern basic Hiragana and 46 modern basic Katakana. Romanized
+sounds use the usual Hepburn-style spellings (shi, chi, tsu, fu). を / ヲ are
+shown as "o (wo)": wo identifies the spelling, while o is the usual sound.
+No voiced forms, small kana, combinations, or obsolete wi/we are included.
+Reference charts: https://www.tofugu.com/japanese/learn-hiragana/
+https://www.tofugu.com/japanese/learn-katakana/
+
+Kana frequency counts: Chikamatsu, N., Yokoyama, S., Nozaki, H., Long, E.,
+and Fukuda, S. (2000). A Japanese logographic character frequency list for
+cognitive science research. Behavior Research Methods, Instruments, &
+Computers 32, 482-500. Appendices B and C list character occurrence counts
+in the 1993 Asahi Shimbun corpus: 20,711,361 Hiragana and 3,608,288 Katakana.
+https://doi.org/10.3758/BF03200819
+Author's copy:
+https://researchmap.jp/YOKOYAMA_Shoichi/published_papers/622371/attachment_file.pdf
+Only the basic characters' factual counts were transcribed; the paper and
+its page images are not distributed by this website. ヲ has no listed count.
+Each new local calendar day has all 92 characters once, then 408 repetitions:
+204 Hiragana and 204 Katakana, apportioned by each script's observed counts
+using the largest-remainder method. This gives 250 answers per script in a
+500-answer day. A minimum weight of 1 handles an absent frequency count;
+each character is covered in the opening 92 regardless of its repeat weight.
+The order is shuffled deterministically for the day, so reload keeps the
+current card. Extra rounds use weighted repetitions; daily totals are additive.
+
+Jōyō Kanji: a curated KANJIDIC2 extract, downloaded 3 October 2026 (local
+time), source file date 2 October 2026. Exactly 2,136 distinct characters
+marked elementary-school grades 1-6 (1,026) or secondary-school grade 8
+(1,110) are included. Name-only Kanji (grades 9/10) are excluded. English
+labels use dictionary meanings, with brief labels and parentheses removed
+where suitable; other meanings are retained to reject ambiguous distractors.
+2,037 characters have the source's Mainichi Shimbun frequency rank; these
+come first in rank order. The remaining 99 follow by grade and stable order.
+Frequency ranks describe newspaper usage, rather than every type of Japanese.
+https://www.edrdg.org/wiki/KANJIDIC_Project.html
+Data: https://www.edrdg.org/pub/Nihongo/kanjidic2.xml.gz
+Documentation: https://www.edrdg.org/kanjidic/kanjidic2_dtdh.html
+
+KANJIDIC2 copyright: James William Breen and the Electronic Dictionary
+Research and Development Group (EDRDG). This derived Kanji dataset is
+distributed under Creative Commons Attribution-ShareAlike 4.0.
+https://www.edrdg.org/edrdg/licence.html
+https://creativecommons.org/licenses/by-sa/4.0/
+https://creativecommons.org/licenses/by-sa/4.0/legalcode
+No endorsement by EDRDG is implied. Dictionary data is supplied without
+warranty. scripts/update-kanji.mjs provides the monthly refresh procedure
+for the curated extract; it downloads the latest KANJIDIC2, checks the exact
+2,136-character set, and retains only meanings, frequency ranks and grades.
+SKIP, other dictionary search codes, and proprietary descriptors are omitted.
+
+Economics 3500
+
+An original easy-to-hard trading and economics curriculum with 3,500 distinct
+prompts: 720 terminology cards, 720 definition-to-term questions, 720 applied
+concept scenarios, and 1,340 numerical questions spanning 100 calculation skills.
+The opening 70 terms emphasize small-cap trading; the later topics broaden to
+execution, risk, financial statements, valuation, portfolios, bonds, derivatives,
+microeconomics, macroeconomics, monetary policy and international economics.
+Ordering is curated by practical relevance and learning prerequisites. It is
+not a measured frequency ranking of a universal list of economic items.
+
+Definitions, scenarios and contrasting incorrect choices were written for this
+trainer. Numerical problems use hypothetical amounts and explicitly stated
+model assumptions. Unless another precision is given, numerical choices are
+rounded to at most two decimals; m means million and bn means billion. Stop
+levels are triggers, not guaranteed fills; planned-risk problems explicitly
+exclude slippage and fees. No account-specific broker, tax or leverage rules
+are assumed. Economics uses Monday-to-Sunday weeks in the browser's local time.
+The weekly count and card position restart on Monday; replaying within a week
+retains that week's totals. Earlier daily records are combined into week totals.
+
+Concepts cross-checked on 3 October 2026 against primary educational references:
+SEC / Investor.gov — order types, execution, corporate actions and accounts.
+https://www.investor.gov/introduction-investing/investing-basics/how-stock-markets-work/types-orders
+https://www.investor.gov/introduction-investing/investing-basics/how-stock-markets-work/executing-order
+https://www.sec.gov/about/reports-publications/beginners-guide-financial-statements
+https://www.investor.gov/introduction-investing/investing-basics/glossary/reverse-stock-splits
+FINRA — low-priced stocks, liquidity and concentration risk.
+https://www.finra.org/investors/insights/low-priced-stocks-big-problems
+https://www.finra.org/investors/insights/concentration-risk
+https://www.finra.org/finra-data/browse-catalog/short-sale-volume
+https://www.investor.gov/introduction-investing/investing-basics/glossary/securities-lending
+https://www.sec.gov/rules-regulations/staff-guidance/trading-markets-frequently-asked-questions-8
+LULD Operating Committee — U.S. stock price bands and trading pauses.
+https://www.luldplan.com/
+Cboe Options Institute and CME — option rights, Greeks and futures margin.
+https://www.cboe.com/optionsinstitute/defining-options
+https://www.cmegroup.com/education/courses/understanding-the-benefits-of-futures/the-benefits-of-futures-margins
+https://www.cmegroup.com/education/courses/option-greeks/options-gamma-the-greeks.hideSubnav.educationIframe.html?hideAddThisExt=y&hideFooter=y&hideHeader=y&hideRightRail=y
+Federal Reserve — monetary policy and interest-rate concepts.
+https://www.federalreserve.gov/monetarypolicy.htm
+BEA and BLS — output, inflation and consumer-price measures.
+https://www.bea.gov/resources/learning-center/what-to-know-gdp
+https://www.bls.gov/cpi/questions-and-answers.htm
+IMF — supply, demand and economic foundations.
+https://www.imf.org/en/publications/fandd/issues/series/back-to-basics/supply-and-demand
+NIST — statistical estimation and confidence intervals.
+https://www.itl.nist.gov/div898/handbook/pmd/section5/pmd511.htm
+
+The curriculum contains independently worded explanations rather than extracts
+of those references. Reproducible content sources: src/economics-terms.txt and
+scripts/economics-calculations.mjs; scripts/build-economics.mjs checks counts,
+unique prompts and distinct rounded choices before generating the static deck.
+
+TRIVIA 20000
+
+20,000 curated questions. Science, AI, history,
+economics, geography, law, medicine, technology, culture, Greek and Cypriot
+history, geopolitics, business, philosophy, engineering, astronomy, physics,
+luxury and wealth, pharmacology, inventions, criminal justice, flags and
+capitals receive the emphasis. Difficulty is an editorial estimate. There is
+no claim that this is a statistically measured ranking of the 20,000 most
+frequently asked questions. Some later questions require specialist knowledge.
+
+Trivia's position and round accuracy carry across local midnights. Completing
+all 20,000 unlocks REPLAY, which starts a fresh round while retaining dated
+practice history. Progress is saved only in this browser.
+
+The bank is a collection of separately licensed contributions, not a relicensing
+of those sources. Each record's source and original source identifier are in
+trivia/sources.json, in the same order as the ten trivia/N.json question files.
+Selection counts are in trivia/summary.json. Changes include filtering, removal
+of exact and similar duplicates, punctuation repair, estimated difficulty,
+topical selection, and reduction to one correct and one incorrect alternative.
+The dataset answer keys are retained unless an original question replaces them.
+
+OpenTriviaQA — uberspot and contributors. CC BY-SA 4.0.
+https://github.com/uberspot/OpenTriviaQA
+https://creativecommons.org/licenses/by-sa/4.0/
+Adapted OpenTriviaQA contributions remain available under CC BY-SA 4.0.
+Full license: licenses/OpenTriviaQA-LICENSE.txt
+
+SciQ — Johannes Welbl, Nelson F. Liu and Matt Gardner (2017),
+Crowdsourcing Multiple Choice Science Questions. CC BY-NC 3.0.
+https://huggingface.co/datasets/allenai/sciq
+https://arxiv.org/abs/1707.06209
+https://creativecommons.org/licenses/by-nc/3.0/
+SciQ contributions are for noncommercial use under their original license.
+Supporting textbook passages are not republished.
+Full license: licenses/SciQ-LICENSE.txt
+
+MMLU — Dan Hendrycks, Collin Burns, Steven Basart, Andy Zou, Mantas Mazeika,
+Dawn Song and Jacob Steinhardt (2021), Measuring Massive Multitask Language
+Understanding. MIT license as distributed by the authors and CAIS.
+https://github.com/hendrycks/test
+https://huggingface.co/datasets/cais/mmlu
+Full license: licenses/MMLU-LICENSE.txt
+
+GeoNames — country and capital records. CC BY 4.0.
+https://www.geonames.org/export/
+https://download.geonames.org/export/dump/countryInfo.txt
+https://creativecommons.org/licenses/by/4.0/
+Ambiguous and recently changing capital designations were omitted from the
+automatically generated capital set. Names use common English spellings.
+
+flag-icons — Panayiotis Lipiridis and contributors. MIT license.
+https://github.com/lipis/flag-icons
+194 country flags are stored as self-contained SVG images so they work in
+Windows browsers without relying on emoji fonts or third-party image servers.
+Full license: licenses/flag-icons-LICENSE.txt
+
+Original focused questions and economic definitions were written for the game.
+Selected primary references checked on 3 October 2026 include:
+Google Machine Learning Crash Course and glossary:
+https://developers.google.com/machine-learning/crash-course
+https://developers.google.com/machine-learning/glossary
+Vaswani et al., Attention Is All You Need (2017):
+https://arxiv.org/abs/1706.03762
+Cyprus Ministry of Foreign Affairs — historical background:
+https://www.gov.cy/mfa/en/documents/historical-background/
+UN Peacekeeping — UNFICYP:
+https://peacekeeping.un.org/en/node/104030
+UNESCO — Choirokoitia, Paphos and the Painted Churches of Troodos:
+https://whc.unesco.org/en/list/848/
+https://whc.unesco.org/en/list/79/
+https://whc.unesco.org/en/list/351/
+Greek Ministry of Foreign Affairs — independence treaties and protocols:
+https://200years.mfa.gr/en/international-treaties-en/
+U.S. Courts — legal glossary (U.S. procedure is identified in the questions):
+https://www.uscourts.gov/glossary
+FDA — pharmaceutical glossary:
+https://www.fda.gov/drugs/drug-approvals-and-databases/drugsfda-glossary-terms
+Rolex, Patek Philippe and Ferrari — historical information:
+https://newsroom.rolex.com/watches/oyster-collection/submariner
+https://www.patek.com/en/manufacture/a-story-of-independence/the-founders
+https://www.patek.com/en/collection/nautilus
+https://www.ferrari.com/en-EN/history
+
+Medical questions teach terminology and underlying science rather than personal
+treatment choices; clinical dosing and patient-management scenarios are omitted.
+Legal and international-relations questions use stated jurisdictions or general
+concepts; changes in leaders, prices and undated live rankings are excluded.
+
+French practice — Français 5000 and Sentences 1000
+
+5,000 distinct French dictionary headwords and 1,000 short common sentences.
+Words use base forms and verb infinitives; essential reflexive pronouns are
+retained. Past-participle adjective forms, alphabet fragments and spelling
+duplicates are removed. Independent noun meanings are retained. All displayed
+word pairs were reviewed, with 1,122 curated headword corrections or additions
+in src/french-word-overrides.tsv. English labels favor ordinary meanings.
+This is an editorial review rather than native-speaker certification.
+
+Word ordering: Lexique 3.83 by Boris New, Christophe Pallier and contributors.
+https://lexique.org/
+https://lexique.org/databases/Lexique383/Lexique383.tsv
+The freqlemfilms2 field supplies subtitle lemma frequencies. Repeated entries
+within a part of speech use the maximum, then parts of speech are summed.
+Counts are factual corpus observations; the ranking is not universal across
+every kind of conversation, writing, or news. Lexique's website currently links
+this license for its data: https://creativecommons.org/licenses/by-nc/4.0/
+Lexique frequency contributions retain their upstream noncommercial terms.
+
+Dictionary: français-English FreeDict+WikDict, edition 2025.11.21,
+maintained by Karl Bartel; Wiktionary contributors via DBnary.
+https://www.wikdict.com/page/download
+https://download.wikdict.com/dictionaries/tei/recommended/fra-eng.tei
+Embedded dictionary license: CC BY-SA 3.0.
+https://creativecommons.org/licenses/by-sa/3.0/
+Adapted English dictionary glosses and alternate meanings use CC BY-SA 4.0.
+https://creativecommons.org/licenses/by-sa/4.0/
+Changes: meaning selection, shorter glosses, base-form filtering, spelling
+normalization, deduplication, and English translation corrections. This does
+not replace the separate upstream terms for the Lexique frequency component.
+The adapted data is downloadable at french/words.json.
+
+English FrequencyWords / OpenSubtitles2018 was used as a build-time heuristic
+when choosing common English labels; its raw list is not shipped in the game.
+https://github.com/hermitdave/FrequencyWords
+Data license: CC BY-SA 4.0.
+
+French sentence frequency: orgtre and contributors, Top OpenSubtitles Sentences.
+https://github.com/orgtre/top-open-subtitles-sentences
+https://github.com/orgtre/top-open-subtitles-sentences/blob/main/bld/top_sentences/fr_top_sentences.csv
+Counts follow the same OPUS OpenSubtitles2018 source and upstream corpus terms
+described for German sentences. Spellings are cleaned, repeated variants and
+bare noun fragments are removed, and short everyday phrases are selected.
+Their English meanings were reviewed and simplified for this trainer.
+
+Some starting bilingual references: Tatoeba contributors, selected by CK at
+ManyThings.org. CC BY 2.0 France.
+https://www.manythings.org/anki/
+https://tatoeba.org/
+https://creativecommons.org/licenses/by/2.0/fr/
+Each reused pair's sentence IDs and contributor names, along with occurrence
+counts and whether the translation was edited, are in
+french/sentence-sources.json. The deck is available at french/sentences.json.
+The collection retains these separate source licenses. Source download URLs,
+sizes and checksums are in french/source-manifest.json. Rebuild instructions:
+scripts/french-content.md.
+
+Flashcard practice — 8 October 2026
+
+Flashcard games show their prompt and correct answer together. Space or Enter
+advances one card, with no reveal step. Phones have a small Next Card button
+at the bottom. It stays hidden on computers, and no keyboard hint is shown.
+Language cards show English first and the target language below.
+Aim targets, distractor choices and background-click scoring are removed.
+Held-key repeats do not advance more cards. Menus, settings and history controls
+do not count as practice. Skips count as ungraded practice, not correct answers.
+Earlier correct/wrong and aim-miss records remain saved in the browser.
+Text sizes stay constant between cards; longer text wraps instead of shrinking.
+
+Arithmetic requires a typed answer and advances automatically only when it is
+correct. Its original generator, operations, ranges, settings, 2,000-answer
+weekly goal and Monday-to-Sunday history remain. Space and Enter cannot skip it.
+ArithmeticAim has been removed from the menu and publication.
+Earlier manually added totals and historical 1,000-card goals are preserved.
+Earlier ungraded arithmetic practice remains in the saved totals.
+The green cursor is shared by the game, menus and arithmetic interfaces.
+
+Programming — 4 October 2026
+
+5,000 original question-and-answer cards, progressing through ten difficulty
+bands and 52 continuous course weeks. Weeks 1–8 have 97 new cards; weeks 9–52
+have 96. The ten question perspectives for each of 500 authored micro-lessons
+provide intentional repetition. The course starts at computer basics and
+ends in practical extension, TTS, screener and desktop application engineering.
+Subject counts match the requested percentages exactly. This is an authored
+learning sequence, not a statistically measured ranking of popular questions.
+
+Course data, the plan, counts and selected primary technical references are
+available in programming/cards.json, programming/curriculum-plan.json,
+programming/summary.json and programming/sources.json. The references check
+technical facts; short examples and project scenarios are original.
+Rebuild and review behavior are documented in scripts/programming-content.md
+in the source checkout. Speech voices, browser capabilities and packaging
+prerequisites depend on the target environment and are identified as such.
+
+Programming also shows each answer immediately and advances with Space or
+Enter. Its 5,000 cards continue in curriculum order across course boundaries.
+Completed new cards never reset on a calendar rollover. Replay starts again
+at card 1 while keeping total course completion. Earlier knowledge ratings,
+review dates and mastery records stay saved; skips do not change those ratings.
+All personal progress is kept only in this browser using a separate storage key.
+
+QUANT — 8 October 2026
+
+5,000 original question-and-answer cards, from 500 authored skills with ten
+different teaching views each. Continuous difficulty progresses from simple
+percentages and probability to combined professional quantitative reasoning.
+Exact topic shares: statistics 30%, probability 15%, arithmetic 10%, EV/Kelly
+and decisions 10%, papers 10%, calculus 10%, trading/betting/poker 7%, models
+4%, product analytics 2%, information theory 2%. These are curriculum choices,
+not a measured popularity ranking. Definitions and worked examples are original.
+Selected primary/reference sources verify mathematics and research methods;
+the source manifest, curriculum plan and counts are in quant/sources.json,
+quant/curriculum-plan.json and quant/summary.json.
+
+QUANT uses the current simultaneous question-and-answer style. Space or Enter
+advances once, with no aiming, reveal, ratings or calendar resets.
+Long text wraps at fixed sizes. Progress, practice history and per-card visits
+use the separate browser-only quant5000:v1 key. Replay after 5,000 retains 100%
+course completion. Ungraded practice cannot establish accuracy, weak topics
+or mastery; these are shown as not rated rather than inferred from skips.
+Review consists of authored recurrence across views and later applications.
+
+Additional languages — 16 October 2026
+
+Spanish, Italian and Modern Greek: 5,000 unique base words and 1,000
+short bilingual sentences each. Korean: 5,000 dictionary-form words and
+40 Hangul letters (24 basic and 16 combined/tense letters), with a 500-card
+daily symbol practice goal. Every card shows English/sound above and the
+target language below simultaneously. These selected corpus rankings are
+not a universal ranking of all speech and writing. Words can have other
+meanings in context; labels give short learner meanings.
+
+Dictionary and ranking sources include Wiktionary contributors, WikDict,
+Kaikki/Wiktextract, subtitle frequency lists, Morph-it and learner lists.
+The exact input files, licenses, hashes, changes and sentence contributor
+attributions for each deck are in the public files:
+languages/spanish-sources.json
+languages/italian-sources.json
+languages/greek-sources.json
+languages/korean-sources.json
+The adapted word and sentence payloads are alongside those manifests in
+languages/. Source component licenses apply separately; attribution and
+share-alike terms remain with the corresponding dictionary contributions.
+
+Korean dictionary glosses: English Wiktionary contributors, adapted from
+the Korean dictionary extracted by Kaikki/Wiktextract. CC BY-SA 4.0:
+https://creativecommons.org/licenses/by-sa/4.0/
+https://kaikki.org/dictionary/Korean/
+https://en.wiktionary.org/wiki/Appendix:Basic_Korean_Vocabulary_List
+The source word entry is https://en.wiktionary.org/wiki/<word>#Korean;
+its history is available through that entry's History tab. The Korean
+manifest retains the selected sense IDs and identifies edited labels.
+The derived Korean word payload is offered under the same CC BY-SA 4.0
+terms. No affiliation with Wiktionary or NIKL is implied.
+
+Hangul inventory and romanization checked against the National Institute
+of Korean Language; compact sound labels are original learning aids:
+https://www.korean.go.kr/eng_hangeul/principle/001.html
+https://www.korean.go.kr/front_eng/roman/roman_01.do
+Romanized sounds are approximate and depend on syllable position/context.
+The review weights count letters in OpenSubtitles Korean surface tokens,
+decomposed into initial/medial/final letters. FrequencyWords contributors,
+CC BY-SA 4.0, https://github.com/hermitdave/FrequencyWords
+
+New decks load only when selected; all personal progress remains in this
+browser. Rebuild details are in scripts/languages-content.md and each
+language's content notes in the source repository.

@@ -1,0 +1,6 @@
+{
+  "enabled": false,
+  "currency": "USD",
+  "genericUrl": "",
+  "amountUrls": {"2": "", "5": "", "10": "", "100": ""}
+}

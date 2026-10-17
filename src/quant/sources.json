@@ -1,0 +1,479 @@
+{
+  "authorship": "Original concise explanations and worked scenarios; references support mathematical definitions and research methods. No financial outcomes are guaranteed.",
+  "sources": [
+    {
+      "id": "q-openstax-econ",
+      "title": "Open Stax Principles of Economics: budget constraints and marginal analysis",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/2-1-how-individuals-make-choices-based-on-their-budget-constraint",
+      "note": "Reference for opportunity cost, marginal reasoning and original business examples."
+    },
+    {
+      "id": "q-kelly",
+      "title": "J. L. Kelly, A New Interpretation of Information Rate (1956)",
+      "url": "https://www.kiv.zcu.cz/~vavra/zti/KELLY.PDF",
+      "note": "Original log-growth criterion. Our examples distinguish known probabilities from uncertain estimated edges."
+    },
+    {
+      "id": "q-cme-risk",
+      "title": "CME Group: Risk Management and Your Trade Plan",
+      "url": "https://www.cmegroup.com/education/courses/building-a-trade-plan/risk-management-and-your-trade-plan",
+      "note": "Position risk and risk/reward terminology; scenarios and calculations are original."
+    },
+    {
+      "id": "q-poker",
+      "title": "Poker Stars Learn: Pot Odds",
+      "url": "https://www.pokerstars.com/poker/learn/lesson/pot-odds/",
+      "note": "Calling price, equity and implied-odds context. Exact worked examples are recalculated independently."
+    },
+    {
+      "id": "q-betfair",
+      "title": "Betfair: How do odds work?",
+      "url": "https://support.betfair.com/app/answers/detail/6482-sportsbook-how-do-odds-work",
+      "note": "Decimal/fractional price conventions, not a source of estimated winning probabilities."
+    },
+    {
+      "id": "q-bis",
+      "title": "BIS: Market risk terminology",
+      "url": "https://www.bis.org/committees/bcbs/basel-framework/standard/mar/10/inforce/2022-01-01/published/2019-12-15",
+      "note": "Va R and expected-shortfall definitions; discrete-tail examples use worst-tail averages."
+    },
+    {
+      "id": "q-cme-performance",
+      "title": "CME Group: Evaluating CTAs",
+      "url": "https://www.cmegroup.com/education/courses/managed-futures/evaluating-ctas-quantitative-and-qualitative-factors",
+      "note": "Performance and risk-adjusted measures."
+    },
+    {
+      "id": "quant-stat-nist",
+      "title": "NIST/SEMATECH e-Handbook of Statistical Methods",
+      "url": "https://www.itl.nist.gov/div898/handbook/",
+      "note": "Reference checks for descriptive statistics, sampling, intervals, tests and diagnostics."
+    },
+    {
+      "id": "quant-stat-asa",
+      "title": "American Statistical Association statement on p-values",
+      "url": "https://www.amstat.org/asa/files/pdfs/P-ValueStatement.pdf",
+      "note": "Primary professional statement; p-value interpretation and limits."
+    },
+    {
+      "id": "quant-stat-cochrane",
+      "title": "Cochrane Handbook, Chapter 10: Analysing data and undertaking meta-analyses",
+      "url": "https://www.cochrane.org/authors/handbooks-and-manuals/handbook/current/chapter-10",
+      "note": "Reference checks for effect measures, synthesis, heterogeneity and prediction intervals."
+    },
+    {
+      "id": "quant-stat-bh",
+      "title": "Benjamini and Hochberg (1995), Controlling the False Discovery Rate",
+      "url": "https://www.math.tau.ac.il/~ybenja/MyPapers/benjamini_hochberg1995.pdf",
+      "note": "Original multiple-testing procedure; examples are independently authored."
+    },
+    {
+      "id": "quant-stat-holm",
+      "title": "Holm (1979), A Simple Sequentially Rejective Multiple Test Procedure",
+      "url": "https://doi.org/10.2307/4615733",
+      "note": "Original step-down familywise-error procedure."
+    },
+    {
+      "id": "quant-stat-causal",
+      "title": "Hernan and Robins, Causal Inference: What If",
+      "url": "https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/",
+      "note": "Author-hosted text; confounding, selection, causal assumptions and sensitivity."
+    },
+    {
+      "id": "quant-stat-estimation",
+      "title": "Statlect: Point estimation",
+      "url": "https://www.statlect.com/fundamentals-of-statistics/point-estimation",
+      "note": "Author-written reference for estimator bias, consistency and efficiency."
+    },
+    {
+      "id": "quant-stat-mixed",
+      "title": "Penn State STAT 502: Random Effects and Introduction to Mixed Models",
+      "url": "https://online.stat.psu.edu/stat502/Lesson06",
+      "note": "University reference for variance components and mixed models."
+    },
+    {
+      "id": "quant-stat-survival",
+      "title": "Penn State STAT 509: Objectives, Endpoints, and Estimation",
+      "url": "https://online.stat.psu.edu/stat509/Lesson06",
+      "note": "University reference for event-time outcomes and censoring."
+    },
+    {
+      "id": "quant-stat-discrete",
+      "title": "Penn State STAT 504: Analysis of Discrete Data",
+      "url": "https://online.stat.psu.edu/stat504/",
+      "note": "University reference for risks, odds, counts and categorical analyses."
+    },
+    {
+      "id": "quant-stat-panel",
+      "title": "Stata: Interpreting the intercept in the fixed-effects model",
+      "url": "https://www.stata.com/support/faqs/statistics/intercept-in-fixed-effects-model/",
+      "note": "Official model documentation; fixed/within versus random-effects assumptions."
+    },
+    {
+      "id": "quant-stat-robust",
+      "title": "Stata: Robust inference for linear models",
+      "url": "https://www.stata.com/features/overview/robust-inference-for-linear-models/",
+      "note": "Official reference for heteroskedasticity- and cluster-robust standard errors."
+    },
+    {
+      "id": "quant-stat-cluster",
+      "title": "Abadie, Athey, Imbens and Wooldridge: When Should You Adjust Standard Errors for Clustering?",
+      "url": "https://arxiv.org/abs/1710.02926",
+      "note": "Primary methodological research; uncertainty depends on sampling and assignment design."
+    },
+    {
+      "id": "quant-stat-regression",
+      "title": "Penn State STAT 501: Regression Methods",
+      "url": "https://online.stat.psu.edu/stat501/",
+      "note": "University reference checks for residuals, assumptions and multicollinearity."
+    },
+    {
+      "id": "quant-stat-km",
+      "title": "Stanford STAT331: Kaplan-Meier estimator",
+      "url": "https://web.stanford.edu/~lutian/coursepdf/unit5.pdf",
+      "note": "University reference for risk sets, product-limit estimation and independent censoring."
+    },
+    {
+      "id": "quant-stat-missing",
+      "title": "van Buuren and Groothuis-Oudshoorn: mice, Multivariate Imputation by Chained Equations",
+      "url": "https://www.jstatsoft.org/article/view/v045i03",
+      "note": "Primary software/methods paper for imputation models and diagnostics."
+    },
+    {
+      "id": "quant-stat-rubin",
+      "title": "mice reference: Combine estimates by pooling rules",
+      "url": "https://amices.org/mice/reference/pool.html",
+      "note": "Author-maintained reference for Rubin variance pooling and model inputs."
+    },
+    {
+      "id": "quant-stat-equivalence",
+      "title": "JASP: Frequentist and Bayesian Equivalence Testing",
+      "url": "https://jasp-stats.org/2020/06/02/frequentist-and-bayesian-equivalence-testing-in-jasp/",
+      "note": "Official statistical software reference for two one-sided equivalence tests."
+    },
+    {
+      "id": "quant-stat-noninferiority",
+      "title": "FDA: Non-Inferiority Clinical Trials",
+      "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/non-inferiority-clinical-trials",
+      "note": "Primary guidance checked for statistical margins and interpretation; all examples are hypothetical."
+    },
+    {
+      "id": "quant-stat-scoring",
+      "title": "Gneiting and Raftery: Strictly Proper Scoring Rules, Prediction, and Estimation",
+      "url": "https://sites.stat.washington.edu/people/raftery/Research/PDF/Gneiting2007jasa.pdf",
+      "note": "Primary paper checked for probabilistic forecast evaluation and Brier scoring."
+    },
+    {
+      "id": "quant-probability-rules",
+      "title": "OpenStax: Probability rules and conditional events",
+      "url": "https://openstax.org/books/introductory-statistics-2e/pages/3-3-two-basic-rules-of-probability",
+      "note": "Reference verification for original event, count and conditional-probability examples; no textbook assessment text copied."
+    },
+    {
+      "id": "quant-distributions",
+      "title": "NIST/SEMATECH: Gallery of probability distributions",
+      "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda366.htm",
+      "note": "Distribution domains, parameters, density functions and tail behavior."
+    },
+    {
+      "id": "quant-normal",
+      "title": "NIST: Normal distribution",
+      "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda3661.htm",
+      "note": "Normal density, scale and standardization."
+    },
+    {
+      "id": "quant-binomial",
+      "title": "NIST: Binomial distribution",
+      "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda366i.htm",
+      "note": "Binomial counts and assumptions."
+    },
+    {
+      "id": "quant-poisson",
+      "title": "NIST: Poisson distribution",
+      "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda366j.htm",
+      "note": "Poisson count probabilities and moments."
+    },
+    {
+      "id": "quant-exponential",
+      "title": "NIST: Exponential distribution",
+      "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda3667.htm",
+      "note": "Exponential waiting times and parameterization."
+    },
+    {
+      "id": "quant-lognormal",
+      "title": "NIST: Lognormal distribution",
+      "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda3669.htm",
+      "note": "Positive multiplicative outcomes and log-scale modeling."
+    },
+    {
+      "id": "quant-beta",
+      "title": "NIST: Beta distribution",
+      "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda366h.htm",
+      "note": "Beta density and support."
+    },
+    {
+      "id": "quant-power-law",
+      "title": "Clauset, Shalizi and Newman: Power-law distributions in empirical data",
+      "url": "https://arxiv.org/abs/0706.1062",
+      "note": "Original research on tail fitting, goodness of fit and alternatives; examples are independently authored."
+    },
+    {
+      "id": "quant-calculus-single",
+      "title": "OpenStax: Defining the derivative",
+      "url": "https://openstax.org/books/calculus-volume-1/pages/3-1-defining-the-derivative",
+      "note": "Standard definitions checked against the reference; all practical scenarios and explanations are original."
+    },
+    {
+      "id": "quant-calculus-integral",
+      "title": "OpenStax: The definite integral",
+      "url": "https://openstax.org/books/calculus-volume-1/pages/5-2-the-definite-integral",
+      "note": "Accumulation, signed areas and definite integration."
+    },
+    {
+      "id": "quant-calculus-multiple",
+      "title": "OpenStax: Partial derivatives",
+      "url": "https://openstax.org/books/calculus-volume-3/pages/4-3-partial-derivatives",
+      "note": "Partial differentiation and local multidimensional rates."
+    },
+    {
+      "id": "quant-calculus-constraints",
+      "title": "OpenStax: Lagrange multipliers",
+      "url": "https://openstax.org/books/calculus-volume-3/pages/4-8-lagrange-multipliers",
+      "note": "Equality-constrained extrema and interpretation."
+    },
+    {
+      "id": "quant-logistic-equation",
+      "title": "OpenStax: The logistic equation",
+      "url": "https://openstax.org/books/calculus-volume-2/pages/4-4-the-logistic-equation",
+      "note": "Exponential and capacity-limited differential-equation models."
+    },
+    {
+      "id": "quant-mit-probability",
+      "title": "MIT OpenCourseWare: Introduction to Probability and Statistics",
+      "url": "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/",
+      "note": "University probability reference for original counting, Bayesian and uncertainty explanations."
+    },
+    {
+      "id": "quant-stan-predictive",
+      "title": "Stan User's Guide: Posterior and prior predictive checks",
+      "url": "https://mc-stan.org/docs/stan-users-guide/posterior-predictive-checks.html",
+      "note": "Primary software documentation for model checks and predictive uncertainty; all course examples are original."
+    },
+    {
+      "id": "quant-stan-calibration",
+      "title": "Stan User's Guide: Simulation-based calibration checking",
+      "url": "https://mc-stan.org/docs/stan-users-guide/simulation-based-calibration.html",
+      "note": "Primary documentation on simulation validation and independent information."
+    },
+    {
+      "id": "quant-scoring-rules",
+      "title": "Gneiting and Raftery: Strictly Proper Scoring Rules, Prediction, and Estimation",
+      "url": "https://sites.stat.washington.edu/raftery/Research/PDF/Gneiting2007jasa.pdf",
+      "note": "Original research for forecast scoring, calibration and sharpness; original course examples use binary Brier loss."
+    },
+    {
+      "id": "quant-convex-optimization",
+      "title": "Boyd and Vandenberghe: Convex Optimization",
+      "url": "https://web.stanford.edu/~boyd/cvxbook/",
+      "note": "Author-hosted mathematical reference for convexity, gradients, curvature and constrained optimization."
+    },
+    {
+      "id": "quant-kelly-original",
+      "title": "Kelly: A New Interpretation of Information Rate",
+      "url": "https://www.princeton.edu/~wbialek/rome/refs/kelly_56.pdf",
+      "note": "Original expected-log-growth derivation; the course's monetary examples and uncertainty discussion are original."
+    },
+    {
+      "id": "qres-consort",
+      "title": "CONSORT 2025: reporting randomized trials",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11996237/",
+      "note": "Primary reporting guideline; design, registration and participant flow."
+    },
+    {
+      "id": "qres-asa",
+      "title": "ASA statement on p-values",
+      "url": "https://www.amstat.org/asa/files/pdfs/p-valuestatement.pdf",
+      "note": "Primary statement; interpretation, effect sizes and transparent reporting."
+    },
+    {
+      "id": "qres-nist",
+      "title": "NIST: model validation",
+      "url": "https://www.itl.nist.gov/div898/handbook/pmd/section4/pmd44.htm",
+      "note": "Official statistical reference; residuals and limitations of R-squared."
+    },
+    {
+      "id": "qres-google",
+      "title": "Google Machine Learning Crash Course",
+      "url": "https://developers.google.com/machine-learning/crash-course",
+      "note": "Official reference; linear/logistic models and generalization."
+    },
+    {
+      "id": "qres-splits",
+      "title": "Google: training, validation and test sets",
+      "url": "https://developers.google.com/machine-learning/crash-course/overfitting/dividing-datasets",
+      "note": "Official reference; held-out evaluation and repeated tuning."
+    },
+    {
+      "id": "qres-logloss",
+      "title": "Google: logistic loss and regularization",
+      "url": "https://developers.google.com/machine-learning/crash-course/logistic-regression/loss-regularization",
+      "note": "Official reference; binary log loss and complexity penalties."
+    },
+    {
+      "id": "qres-whatif",
+      "title": "Hernan and Robins: Causal Inference, What If",
+      "url": "https://miguelhernan.org/s/hernanrobins_WhatIf_2jan25.pdf",
+      "note": "Authors’ textbook; causal assumptions and identification."
+    },
+    {
+      "id": "qres-preregister",
+      "title": "Nosek et al.: The preregistration revolution",
+      "url": "https://doi.org/10.1073/pnas.1708274114",
+      "note": "Primary paper; prospective predictions versus exploratory analyses."
+    },
+    {
+      "id": "qres-meta",
+      "title": "Cochrane Handbook, Chapter 10",
+      "url": "https://www.cochrane.org/authors/handbooks-and-manuals/handbook/current/chapter-10",
+      "note": "Official methods reference; inverse-variance pooling and heterogeneity."
+    },
+    {
+      "id": "qres-missing",
+      "title": "Cochrane Handbook, Chapter 13",
+      "url": "https://www.cochrane.org/authors/handbooks-and-manuals/handbook/current/chapter-13",
+      "note": "Official methods reference; missing studies/results and funnel plots."
+    },
+    {
+      "id": "qres-trialbias",
+      "title": "Cochrane Handbook, Chapter 8",
+      "url": "https://www.cochrane.org/authors/handbooks-and-manuals/handbook/current/chapter-08",
+      "note": "Official methods reference; randomization, missing data and selective results."
+    },
+    {
+      "id": "qres-exp",
+      "title": "Microsoft: pre-experiment design",
+      "url": "https://www.microsoft.com/en-us/research/group/experimentation-platform-exp/articles/patterns-of-trustworthy-experimentation-pre-experiment-stage",
+      "note": "Primary practitioner research; hypotheses, power, metrics and allocation."
+    },
+    {
+      "id": "qres-guardrails",
+      "title": "Microsoft: monitoring controlled experiments",
+      "url": "https://www.microsoft.com/en-us/research/articles/patterns-of-trustworthy-experimentation-during-experiment-stage/",
+      "note": "Primary practitioner research; guardrails and measurement quality."
+    },
+    {
+      "id": "qres-srm",
+      "title": "Microsoft: sample-ratio mismatch",
+      "url": "https://www.microsoft.com/en-us/research/articles/diagnosing-sample-ratio-mismatch-in-a-b-testing/",
+      "note": "Primary practitioner research; unexpected allocation as a data-quality signal."
+    },
+    {
+      "id": "qres-sequential",
+      "title": "Johari et al.: Always Valid Inference",
+      "url": "https://pubsonline.informs.org/doi/pdf/10.1287/opre.2021.2135",
+      "note": "Primary paper; sequential methods for continuous monitoring."
+    },
+    {
+      "id": "qres-rd",
+      "title": "Imbens and Lemieux: Regression Discontinuity Designs",
+      "url": "https://www.nber.org/papers/t0337",
+      "note": "Primary methods paper; local identification around a treatment threshold."
+    },
+    {
+      "id": "qres-did",
+      "title": "Callaway and Sant’Anna: Difference-in-Differences with Multiple Time Periods",
+      "url": "https://arxiv.org/abs/1803.09015",
+      "note": "Primary methods paper; parallel trends and heterogeneous timing."
+    },
+    {
+      "id": "qres-shannon",
+      "title": "Shannon: A Mathematical Theory of Communication",
+      "url": "https://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf",
+      "note": "Original paper; information and entropy. All exercise examples are original."
+    },
+    {
+      "id": "qres-infotheory",
+      "title": "Berkeley: Information Theory and Statistics",
+      "url": "https://www.stat.berkeley.edu/users/binyu/212A/",
+      "note": "University course reference; relative entropy and information processing."
+    },
+    {
+      "id": "qres-power",
+      "title": "Button et al.: Power failure",
+      "url": "https://doi.org/10.1038/nrn3475",
+      "note": "Primary methodological analysis; power and selected effect inflation."
+    },
+    {
+      "id": "qres-replicate",
+      "title": "Open Science Collaboration: Estimating reproducibility",
+      "url": "https://doi.org/10.1126/science.aac4716",
+      "note": "Primary replication research; independent evidence and effect comparisons."
+    },
+    {
+      "id": "qres-flex",
+      "title": "Simmons et al.: False-Positive Psychology",
+      "url": "https://doi.org/10.1177/0956797611417632",
+      "note": "Primary methods paper; undisclosed analytical flexibility."
+    },
+    {
+      "id": "qres-stripe",
+      "title": "Stripe: customer lifetime value",
+      "url": "https://stripe.com/resources/more/customer-lifetime-value",
+      "note": "Business reference for revenue, lifetime and margin; simplified exercise assumptions are explicit."
+    },
+    {
+      "id": "qres-timecv",
+      "title": "scikit-learn: TimeSeriesSplit",
+      "url": "https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.TimeSeriesSplit.html",
+      "note": "Official documentation; ordered evaluation and gap handling."
+    },
+    {
+      "id": "qres-nested",
+      "title": "scikit-learn: nested cross-validation",
+      "url": "https://scikit-learn.org/stable/auto_examples/model_selection/plot_nested_cross_validation_iris.html",
+      "note": "Official documentation; separate tuning from performance evaluation."
+    },
+    {
+      "id": "qres-calibration",
+      "title": "scikit-learn: probability calibration",
+      "url": "https://scikit-learn.org/stable/modules/calibration.html",
+      "note": "Official documentation; calibration curves and proper-score limitations."
+    },
+    {
+      "id": "qres-leakage",
+      "title": "scikit-learn: common pitfalls",
+      "url": "https://scikit-learn.org/stable/common_pitfalls.html",
+      "note": "Official documentation; leakage and fitting preprocessing only on training data."
+    },
+    {
+      "id": "qres-estimands",
+      "title": "ICH E9(R1): estimands and sensitivity analysis",
+      "url": "https://www.ema.europa.eu/en/documents/scientific-guideline/ich-e9-r1-addendum-estimands-sensitivity-analysis-clinical-trials-guideline-statistical-principles_en.pdf",
+      "note": "Official methodological guideline; specify the effect and align sensitivity analyses."
+    },
+    {
+      "id": "qres-cluster",
+      "title": "CONSORT extension to cluster randomized trials",
+      "url": "https://www.bmj.com/content/345/bmj.e5661",
+      "note": "Primary guideline; correlated observations and equal-cluster design effect."
+    },
+    {
+      "id": "qres-external",
+      "title": "Kowalski: examining external validity within an experiment",
+      "url": "https://www.nber.org/papers/w24834",
+      "note": "Primary methods paper; treatment-effect variation and external validity."
+    },
+    {
+      "id": "qres-selection-models",
+      "title": "Cawley and Talbot: overfitting in model selection",
+      "url": "https://www.jmlr.org/beta/papers/v11/cawley10a.html",
+      "note": "Primary methods paper; selection bias in performance evaluation."
+    },
+    {
+      "id": "qres-shift",
+      "title": "Rojas-Carulla et al.: Invariant Models for Causal Transfer Learning",
+      "url": "https://www.jmlr.org/papers/v19/16-432.html",
+      "note": "Primary methods paper; distribution changes and conditional invariance."
+    }
+  ]
+}

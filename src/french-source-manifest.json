@@ -1,0 +1,35 @@
+{
+  "retrieved": "2026-10-04",
+  "sources": [
+    {
+      "filename": "lexique.txt",
+      "url": "https://lexique.org/databases/Lexique383/Lexique383.tsv",
+      "bytes": 25850780,
+      "sha256": "637ba37a767a66679c48371d673ece50cbf541b49a4e40e598963d4f3fbce52b"
+    },
+    {
+      "filename": "wikdict.tei",
+      "url": "https://download.wikdict.com/dictionaries/tei/recommended/fra-eng.tei",
+      "bytes": 56040055,
+      "sha256": "bba77f367ff3833ed933224748fdd1642c0cdb057bc527c97b1d29cc47b47d40"
+    },
+    {
+      "filename": "sentences.txt",
+      "url": "https://raw.githubusercontent.com/orgtre/top-open-subtitles-sentences/main/bld/top_sentences/fr_top_sentences.csv",
+      "bytes": 202952,
+      "sha256": "f631f244cdf4d50896a0aa8c5d3b3a2d7d834e2348f78f18fbad6fffa0a4f22e"
+    },
+    {
+      "filename": "tatoeba.zip",
+      "url": "https://www.manythings.org/anki/fra-eng.zip",
+      "bytes": 8242175,
+      "sha256": "9e35994767f7307dc1fa9d5efcc36681f3756a1bdaaa02c1381b3eb11461261e"
+    },
+    {
+      "filename": "englishFrequency.txt",
+      "url": "https://raw.githubusercontent.com/hermitdave/FrequencyWords/master/content/2018/en/en_50k.txt",
+      "bytes": 622749,
+      "sha256": "5351ff405b1126ef555791dd4d9798a48e3e9a501a9fc481a9da957752cfb458"
+    }
+  ]
+}

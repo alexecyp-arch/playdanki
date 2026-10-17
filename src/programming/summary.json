@@ -1,0 +1,3833 @@
+{
+  "version": 1,
+  "total": 5000,
+  "weeks": [
+    {
+      "week": 1,
+      "start": 1,
+      "end": 97,
+      "count": 97
+    },
+    {
+      "week": 2,
+      "start": 98,
+      "end": 194,
+      "count": 97
+    },
+    {
+      "week": 3,
+      "start": 195,
+      "end": 291,
+      "count": 97
+    },
+    {
+      "week": 4,
+      "start": 292,
+      "end": 388,
+      "count": 97
+    },
+    {
+      "week": 5,
+      "start": 389,
+      "end": 485,
+      "count": 97
+    },
+    {
+      "week": 6,
+      "start": 486,
+      "end": 582,
+      "count": 97
+    },
+    {
+      "week": 7,
+      "start": 583,
+      "end": 679,
+      "count": 97
+    },
+    {
+      "week": 8,
+      "start": 680,
+      "end": 776,
+      "count": 97
+    },
+    {
+      "week": 9,
+      "start": 777,
+      "end": 872,
+      "count": 96
+    },
+    {
+      "week": 10,
+      "start": 873,
+      "end": 968,
+      "count": 96
+    },
+    {
+      "week": 11,
+      "start": 969,
+      "end": 1064,
+      "count": 96
+    },
+    {
+      "week": 12,
+      "start": 1065,
+      "end": 1160,
+      "count": 96
+    },
+    {
+      "week": 13,
+      "start": 1161,
+      "end": 1256,
+      "count": 96
+    },
+    {
+      "week": 14,
+      "start": 1257,
+      "end": 1352,
+      "count": 96
+    },
+    {
+      "week": 15,
+      "start": 1353,
+      "end": 1448,
+      "count": 96
+    },
+    {
+      "week": 16,
+      "start": 1449,
+      "end": 1544,
+      "count": 96
+    },
+    {
+      "week": 17,
+      "start": 1545,
+      "end": 1640,
+      "count": 96
+    },
+    {
+      "week": 18,
+      "start": 1641,
+      "end": 1736,
+      "count": 96
+    },
+    {
+      "week": 19,
+      "start": 1737,
+      "end": 1832,
+      "count": 96
+    },
+    {
+      "week": 20,
+      "start": 1833,
+      "end": 1928,
+      "count": 96
+    },
+    {
+      "week": 21,
+      "start": 1929,
+      "end": 2024,
+      "count": 96
+    },
+    {
+      "week": 22,
+      "start": 2025,
+      "end": 2120,
+      "count": 96
+    },
+    {
+      "week": 23,
+      "start": 2121,
+      "end": 2216,
+      "count": 96
+    },
+    {
+      "week": 24,
+      "start": 2217,
+      "end": 2312,
+      "count": 96
+    },
+    {
+      "week": 25,
+      "start": 2313,
+      "end": 2408,
+      "count": 96
+    },
+    {
+      "week": 26,
+      "start": 2409,
+      "end": 2504,
+      "count": 96
+    },
+    {
+      "week": 27,
+      "start": 2505,
+      "end": 2600,
+      "count": 96
+    },
+    {
+      "week": 28,
+      "start": 2601,
+      "end": 2696,
+      "count": 96
+    },
+    {
+      "week": 29,
+      "start": 2697,
+      "end": 2792,
+      "count": 96
+    },
+    {
+      "week": 30,
+      "start": 2793,
+      "end": 2888,
+      "count": 96
+    },
+    {
+      "week": 31,
+      "start": 2889,
+      "end": 2984,
+      "count": 96
+    },
+    {
+      "week": 32,
+      "start": 2985,
+      "end": 3080,
+      "count": 96
+    },
+    {
+      "week": 33,
+      "start": 3081,
+      "end": 3176,
+      "count": 96
+    },
+    {
+      "week": 34,
+      "start": 3177,
+      "end": 3272,
+      "count": 96
+    },
+    {
+      "week": 35,
+      "start": 3273,
+      "end": 3368,
+      "count": 96
+    },
+    {
+      "week": 36,
+      "start": 3369,
+      "end": 3464,
+      "count": 96
+    },
+    {
+      "week": 37,
+      "start": 3465,
+      "end": 3560,
+      "count": 96
+    },
+    {
+      "week": 38,
+      "start": 3561,
+      "end": 3656,
+      "count": 96
+    },
+    {
+      "week": 39,
+      "start": 3657,
+      "end": 3752,
+      "count": 96
+    },
+    {
+      "week": 40,
+      "start": 3753,
+      "end": 3848,
+      "count": 96
+    },
+    {
+      "week": 41,
+      "start": 3849,
+      "end": 3944,
+      "count": 96
+    },
+    {
+      "week": 42,
+      "start": 3945,
+      "end": 4040,
+      "count": 96
+    },
+    {
+      "week": 43,
+      "start": 4041,
+      "end": 4136,
+      "count": 96
+    },
+    {
+      "week": 44,
+      "start": 4137,
+      "end": 4232,
+      "count": 96
+    },
+    {
+      "week": 45,
+      "start": 4233,
+      "end": 4328,
+      "count": 96
+    },
+    {
+      "week": 46,
+      "start": 4329,
+      "end": 4424,
+      "count": 96
+    },
+    {
+      "week": 47,
+      "start": 4425,
+      "end": 4520,
+      "count": 96
+    },
+    {
+      "week": 48,
+      "start": 4521,
+      "end": 4616,
+      "count": 96
+    },
+    {
+      "week": 49,
+      "start": 4617,
+      "end": 4712,
+      "count": 96
+    },
+    {
+      "week": 50,
+      "start": 4713,
+      "end": 4808,
+      "count": 96
+    },
+    {
+      "week": 51,
+      "start": 4809,
+      "end": 4904,
+      "count": 96
+    },
+    {
+      "week": 52,
+      "start": 4905,
+      "end": 5000,
+      "count": 96
+    }
+  ],
+  "subjects": {
+    "Fundamentals": 500,
+    "Tools": 150,
+    "HTML": 500,
+    "CSS": 500,
+    "JavaScript": 1750,
+    "APIs": 250,
+    "Extensions": 200,
+    "Windows": 100,
+    "Python": 1000,
+    "SQL": 50
+  },
+  "lessons": [
+    {
+      "start": 1,
+      "end": 10,
+      "subject": "Fundamentals",
+      "term": "computer",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 11,
+      "end": 20,
+      "subject": "Fundamentals",
+      "term": "program",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 21,
+      "end": 30,
+      "subject": "Fundamentals",
+      "term": "code",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 31,
+      "end": 40,
+      "subject": "Fundamentals",
+      "term": "programming language",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 41,
+      "end": 50,
+      "subject": "Fundamentals",
+      "term": "instruction",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 51,
+      "end": 60,
+      "subject": "Fundamentals",
+      "term": "input",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 61,
+      "end": 70,
+      "subject": "Fundamentals",
+      "term": "output",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 71,
+      "end": 80,
+      "subject": "Fundamentals",
+      "term": "hardware",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 81,
+      "end": 90,
+      "subject": "Fundamentals",
+      "term": "software",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 91,
+      "end": 100,
+      "subject": "Fundamentals",
+      "term": "memory",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 101,
+      "end": 110,
+      "subject": "Fundamentals",
+      "term": "storage",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 111,
+      "end": 120,
+      "subject": "Fundamentals",
+      "term": "operating system",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 121,
+      "end": 130,
+      "subject": "Fundamentals",
+      "term": "file",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 131,
+      "end": 140,
+      "subject": "Fundamentals",
+      "term": "folder",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 141,
+      "end": 150,
+      "subject": "Fundamentals",
+      "term": "file name",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 151,
+      "end": 160,
+      "subject": "Fundamentals",
+      "term": "file extension",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 161,
+      "end": 170,
+      "subject": "Fundamentals",
+      "term": "text file",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 171,
+      "end": 180,
+      "subject": "Fundamentals",
+      "term": "plain text",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 181,
+      "end": 190,
+      "subject": "Fundamentals",
+      "term": "saving a file",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 191,
+      "end": 200,
+      "subject": "Fundamentals",
+      "term": "running a program",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 201,
+      "end": 210,
+      "subject": "Tools",
+      "term": "code editor",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 211,
+      "end": 220,
+      "subject": "Tools",
+      "term": "working folder",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 221,
+      "end": 230,
+      "subject": "HTML",
+      "term": "browser",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 231,
+      "end": 240,
+      "subject": "HTML",
+      "term": "web page",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 241,
+      "end": 250,
+      "subject": "HTML",
+      "term": "website",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 251,
+      "end": 260,
+      "subject": "HTML",
+      "term": "HTML",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 261,
+      "end": 270,
+      "subject": "HTML",
+      "term": "HTML tag",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 271,
+      "end": 280,
+      "subject": "HTML",
+      "term": "HTML element",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 281,
+      "end": 290,
+      "subject": "HTML",
+      "term": "opening and closing tags",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 291,
+      "end": 300,
+      "subject": "HTML",
+      "term": "HTML attribute",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 301,
+      "end": 310,
+      "subject": "HTML",
+      "term": "HTML doctype",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 311,
+      "end": 320,
+      "subject": "HTML",
+      "term": "html root element",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 321,
+      "end": 330,
+      "subject": "HTML",
+      "term": "head element",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 331,
+      "end": 340,
+      "subject": "HTML",
+      "term": "body element",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 341,
+      "end": 350,
+      "subject": "HTML",
+      "term": "HTML heading",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 351,
+      "end": 360,
+      "subject": "HTML",
+      "term": "HTML paragraph",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 361,
+      "end": 370,
+      "subject": "CSS",
+      "term": "CSS",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 371,
+      "end": 380,
+      "subject": "CSS",
+      "term": "stylesheet",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 381,
+      "end": 390,
+      "subject": "CSS",
+      "term": "CSS rule",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 391,
+      "end": 400,
+      "subject": "CSS",
+      "term": "CSS selector",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 401,
+      "end": 410,
+      "subject": "CSS",
+      "term": "CSS declaration",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 411,
+      "end": 420,
+      "subject": "CSS",
+      "term": "text color",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 421,
+      "end": 430,
+      "subject": "CSS",
+      "term": "background color",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 431,
+      "end": 440,
+      "subject": "CSS",
+      "term": "font size",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 441,
+      "end": 450,
+      "subject": "CSS",
+      "term": "padding",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 451,
+      "end": 460,
+      "subject": "JavaScript",
+      "term": "JavaScript",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 461,
+      "end": 470,
+      "subject": "JavaScript",
+      "term": "JavaScript variable",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 471,
+      "end": 480,
+      "subject": "JavaScript",
+      "term": "JavaScript number",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 481,
+      "end": 490,
+      "subject": "JavaScript",
+      "term": "JavaScript string",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 491,
+      "end": 500,
+      "subject": "JavaScript",
+      "term": "console.log",
+      "difficultyLevel": 1
+    },
+    {
+      "start": 501,
+      "end": 510,
+      "subject": "Fundamentals",
+      "term": "Boolean value",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 511,
+      "end": 520,
+      "subject": "Fundamentals",
+      "term": "comparison",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 521,
+      "end": 530,
+      "subject": "Fundamentals",
+      "term": "execution sequence",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 531,
+      "end": 540,
+      "subject": "Fundamentals",
+      "term": "program state",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 541,
+      "end": 550,
+      "subject": "Fundamentals",
+      "term": "condition",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 551,
+      "end": 560,
+      "subject": "Fundamentals",
+      "term": "iteration",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 561,
+      "end": 570,
+      "subject": "Fundamentals",
+      "term": "algorithm",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 571,
+      "end": 580,
+      "subject": "Fundamentals",
+      "term": "bug",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 581,
+      "end": 590,
+      "subject": "Fundamentals",
+      "term": "error message",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 591,
+      "end": 600,
+      "subject": "Fundamentals",
+      "term": "debugging",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 601,
+      "end": 610,
+      "subject": "HTML",
+      "term": "anchor link",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 611,
+      "end": 620,
+      "subject": "HTML",
+      "term": "URL",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 621,
+      "end": 630,
+      "subject": "HTML",
+      "term": "relative URL",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 631,
+      "end": 640,
+      "subject": "HTML",
+      "term": "image element",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 641,
+      "end": 650,
+      "subject": "HTML",
+      "term": "alternative image text",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 651,
+      "end": 660,
+      "subject": "HTML",
+      "term": "unordered list",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 661,
+      "end": 670,
+      "subject": "HTML",
+      "term": "ordered list",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 671,
+      "end": 680,
+      "subject": "HTML",
+      "term": "div container",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 681,
+      "end": 690,
+      "subject": "HTML",
+      "term": "span container",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 691,
+      "end": 700,
+      "subject": "HTML",
+      "term": "HTML button",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 701,
+      "end": 710,
+      "subject": "HTML",
+      "term": "input element",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 711,
+      "end": 720,
+      "subject": "HTML",
+      "term": "input label",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 721,
+      "end": 730,
+      "subject": "HTML",
+      "term": "HTML form",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 731,
+      "end": 740,
+      "subject": "CSS",
+      "term": "margin",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 741,
+      "end": 750,
+      "subject": "CSS",
+      "term": "CSS border",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 751,
+      "end": 760,
+      "subject": "CSS",
+      "term": "CSS width",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 761,
+      "end": 770,
+      "subject": "CSS",
+      "term": "CSS height",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 771,
+      "end": 780,
+      "subject": "CSS",
+      "term": "class selector",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 781,
+      "end": 790,
+      "subject": "CSS",
+      "term": "id selector",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 791,
+      "end": 800,
+      "subject": "CSS",
+      "term": "CSS inheritance",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 801,
+      "end": 810,
+      "subject": "CSS",
+      "term": "CSS box model",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 811,
+      "end": 820,
+      "subject": "CSS",
+      "term": "border-box sizing",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 821,
+      "end": 830,
+      "subject": "CSS",
+      "term": "CSS display",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 831,
+      "end": 840,
+      "subject": "CSS",
+      "term": "flex layout",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 841,
+      "end": 850,
+      "subject": "CSS",
+      "term": "layout gap",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 851,
+      "end": 860,
+      "subject": "CSS",
+      "term": "flex alignment",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 861,
+      "end": 870,
+      "subject": "JavaScript",
+      "term": "let and const",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 871,
+      "end": 880,
+      "subject": "JavaScript",
+      "term": "const declaration",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 881,
+      "end": 890,
+      "subject": "JavaScript",
+      "term": "variable reassignment",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 891,
+      "end": 900,
+      "subject": "JavaScript",
+      "term": "JavaScript addition",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 901,
+      "end": 910,
+      "subject": "JavaScript",
+      "term": "JavaScript subtraction",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 911,
+      "end": 920,
+      "subject": "JavaScript",
+      "term": "JavaScript multiplication",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 921,
+      "end": 930,
+      "subject": "JavaScript",
+      "term": "JavaScript division",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 931,
+      "end": 940,
+      "subject": "JavaScript",
+      "term": "remainder operator",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 941,
+      "end": 950,
+      "subject": "JavaScript",
+      "term": "strict equality",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 951,
+      "end": 960,
+      "subject": "JavaScript",
+      "term": "if statement",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 961,
+      "end": 970,
+      "subject": "JavaScript",
+      "term": "if and else",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 971,
+      "end": 980,
+      "subject": "JavaScript",
+      "term": "function definition",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 981,
+      "end": 990,
+      "subject": "JavaScript",
+      "term": "function call",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 991,
+      "end": 1000,
+      "subject": "Tools",
+      "term": "browser developer tools",
+      "difficultyLevel": 2
+    },
+    {
+      "start": 1001,
+      "end": 1010,
+      "subject": "Fundamentals",
+      "term": "scope",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1011,
+      "end": 1020,
+      "subject": "Fundamentals",
+      "term": "mutation",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1021,
+      "end": 1030,
+      "subject": "HTML",
+      "term": "input name attribute",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1031,
+      "end": 1040,
+      "subject": "HTML",
+      "term": "placeholder text",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1041,
+      "end": 1050,
+      "subject": "HTML",
+      "term": "number input",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1051,
+      "end": 1060,
+      "subject": "HTML",
+      "term": "checkbox input",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1061,
+      "end": 1070,
+      "subject": "HTML",
+      "term": "select control",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1071,
+      "end": 1080,
+      "subject": "HTML",
+      "term": "textarea control",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1081,
+      "end": 1090,
+      "subject": "HTML",
+      "term": "required control",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1091,
+      "end": 1100,
+      "subject": "HTML",
+      "term": "main landmark",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1101,
+      "end": 1110,
+      "subject": "HTML",
+      "term": "submit button",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1111,
+      "end": 1120,
+      "subject": "CSS",
+      "term": "grid layout",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1121,
+      "end": 1130,
+      "subject": "CSS",
+      "term": "flex direction",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1131,
+      "end": 1140,
+      "subject": "CSS",
+      "term": "flex wrapping",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1141,
+      "end": 1150,
+      "subject": "CSS",
+      "term": "maximum width",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1151,
+      "end": 1160,
+      "subject": "CSS",
+      "term": "media query",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1161,
+      "end": 1170,
+      "subject": "CSS",
+      "term": "rem unit",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1171,
+      "end": 1180,
+      "subject": "CSS",
+      "term": "visible focus indicator",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1181,
+      "end": 1190,
+      "subject": "JavaScript",
+      "term": "less-than comparison",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1191,
+      "end": 1200,
+      "subject": "JavaScript",
+      "term": "logical AND",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1201,
+      "end": 1210,
+      "subject": "JavaScript",
+      "term": "logical OR",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1211,
+      "end": 1220,
+      "subject": "JavaScript",
+      "term": "logical NOT",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1221,
+      "end": 1230,
+      "subject": "JavaScript",
+      "term": "while loop",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1231,
+      "end": 1240,
+      "subject": "JavaScript",
+      "term": "for loop",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1241,
+      "end": 1250,
+      "subject": "JavaScript",
+      "term": "increment operator",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1251,
+      "end": 1260,
+      "subject": "JavaScript",
+      "term": "break statement",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1261,
+      "end": 1270,
+      "subject": "JavaScript",
+      "term": "function parameter",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1271,
+      "end": 1280,
+      "subject": "JavaScript",
+      "term": "return value",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1281,
+      "end": 1290,
+      "subject": "JavaScript",
+      "term": "function-local variable",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1291,
+      "end": 1300,
+      "subject": "JavaScript",
+      "term": "JavaScript array",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1301,
+      "end": 1310,
+      "subject": "JavaScript",
+      "term": "array index",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1311,
+      "end": 1320,
+      "subject": "JavaScript",
+      "term": "array length",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1321,
+      "end": 1330,
+      "subject": "JavaScript",
+      "term": "array push",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1331,
+      "end": 1340,
+      "subject": "JavaScript",
+      "term": "for-of loop",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1341,
+      "end": 1350,
+      "subject": "JavaScript",
+      "term": "JavaScript object",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1351,
+      "end": 1360,
+      "subject": "JavaScript",
+      "term": "object property access",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1361,
+      "end": 1370,
+      "subject": "JavaScript",
+      "term": "DOM",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1371,
+      "end": 1380,
+      "subject": "JavaScript",
+      "term": "querySelector",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1381,
+      "end": 1390,
+      "subject": "JavaScript",
+      "term": "textContent",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1391,
+      "end": 1400,
+      "subject": "JavaScript",
+      "term": "classList",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1401,
+      "end": 1410,
+      "subject": "JavaScript",
+      "term": "addEventListener",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1411,
+      "end": 1420,
+      "subject": "JavaScript",
+      "term": "click handler",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1421,
+      "end": 1430,
+      "subject": "JavaScript",
+      "term": "event object",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1431,
+      "end": 1440,
+      "subject": "JavaScript",
+      "term": "input value property",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1441,
+      "end": 1450,
+      "subject": "JavaScript",
+      "term": "Number conversion",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1451,
+      "end": 1460,
+      "subject": "JavaScript",
+      "term": "preventDefault",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1461,
+      "end": 1470,
+      "subject": "JavaScript",
+      "term": "null element guard",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1471,
+      "end": 1480,
+      "subject": "JavaScript",
+      "term": "pure helper function",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1481,
+      "end": 1490,
+      "subject": "Tools",
+      "term": "breakpoint",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1491,
+      "end": 1500,
+      "subject": "Tools",
+      "term": "Elements panel",
+      "difficultyLevel": 3
+    },
+    {
+      "start": 1501,
+      "end": 1510,
+      "subject": "Fundamentals",
+      "term": "event-driven program",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1511,
+      "end": 1520,
+      "subject": "Fundamentals",
+      "term": "asynchronous task",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1521,
+      "end": 1530,
+      "subject": "HTML",
+      "term": "script element",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1531,
+      "end": 1540,
+      "subject": "HTML",
+      "term": "defer script loading",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1541,
+      "end": 1550,
+      "subject": "HTML",
+      "term": "accessible control name",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1551,
+      "end": 1560,
+      "subject": "HTML",
+      "term": "document language",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1561,
+      "end": 1570,
+      "subject": "HTML",
+      "term": "fieldset grouping",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1571,
+      "end": 1580,
+      "subject": "CSS",
+      "term": "CSS custom property",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1581,
+      "end": 1590,
+      "subject": "CSS",
+      "term": "text wrapping",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1591,
+      "end": 1600,
+      "subject": "CSS",
+      "term": "overflow handling",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1601,
+      "end": 1610,
+      "subject": "CSS",
+      "term": "relative positioning",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1611,
+      "end": 1620,
+      "subject": "CSS",
+      "term": "absolute positioning",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1621,
+      "end": 1630,
+      "subject": "JavaScript",
+      "term": "template literal",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1631,
+      "end": 1640,
+      "subject": "JavaScript",
+      "term": "undefined value",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1641,
+      "end": 1650,
+      "subject": "JavaScript",
+      "term": "null value",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1651,
+      "end": 1660,
+      "subject": "JavaScript",
+      "term": "typeof operator",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1661,
+      "end": 1670,
+      "subject": "JavaScript",
+      "term": "truthy and falsy values",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1671,
+      "end": 1680,
+      "subject": "JavaScript",
+      "term": "NaN",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1681,
+      "end": 1690,
+      "subject": "JavaScript",
+      "term": "Number.isFinite",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1691,
+      "end": 1700,
+      "subject": "JavaScript",
+      "term": "optional chaining",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1701,
+      "end": 1710,
+      "subject": "JavaScript",
+      "term": "nullish coalescing",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1711,
+      "end": 1720,
+      "subject": "JavaScript",
+      "term": "object destructuring",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1721,
+      "end": 1730,
+      "subject": "JavaScript",
+      "term": "array destructuring",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1731,
+      "end": 1740,
+      "subject": "JavaScript",
+      "term": "object spread",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1741,
+      "end": 1750,
+      "subject": "JavaScript",
+      "term": "array spread",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1751,
+      "end": 1760,
+      "subject": "JavaScript",
+      "term": "arrow function",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1761,
+      "end": 1770,
+      "subject": "JavaScript",
+      "term": "array map",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1771,
+      "end": 1780,
+      "subject": "JavaScript",
+      "term": "array filter",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1781,
+      "end": 1790,
+      "subject": "JavaScript",
+      "term": "array find",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1791,
+      "end": 1800,
+      "subject": "JavaScript",
+      "term": "array some",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1801,
+      "end": 1810,
+      "subject": "JavaScript",
+      "term": "array every",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1811,
+      "end": 1820,
+      "subject": "JavaScript",
+      "term": "array reduce",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1821,
+      "end": 1830,
+      "subject": "JavaScript",
+      "term": "numeric array sorting",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1831,
+      "end": 1840,
+      "subject": "JavaScript",
+      "term": "array slice",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1841,
+      "end": 1850,
+      "subject": "APIs",
+      "term": "JSON format",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1851,
+      "end": 1860,
+      "subject": "JavaScript",
+      "term": "JSON.stringify",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1861,
+      "end": 1870,
+      "subject": "JavaScript",
+      "term": "JSON.parse",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1871,
+      "end": 1880,
+      "subject": "JavaScript",
+      "term": "localStorage usage",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1881,
+      "end": 1890,
+      "subject": "APIs",
+      "term": "client and server",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1891,
+      "end": 1900,
+      "subject": "APIs",
+      "term": "HTTP",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1901,
+      "end": 1910,
+      "subject": "APIs",
+      "term": "HTTP request",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1911,
+      "end": 1920,
+      "subject": "APIs",
+      "term": "HTTP response",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1921,
+      "end": 1930,
+      "subject": "Extensions",
+      "term": "browser extension",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1931,
+      "end": 1940,
+      "subject": "Extensions",
+      "term": "extension manifest",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1941,
+      "end": 1950,
+      "subject": "Extensions",
+      "term": "Manifest V3",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1951,
+      "end": 1960,
+      "subject": "Extensions",
+      "term": "extension popup",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1961,
+      "end": 1970,
+      "subject": "Extensions",
+      "term": "content script",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1971,
+      "end": 1980,
+      "subject": "Windows",
+      "term": "desktop process",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1981,
+      "end": 1990,
+      "subject": "Tools",
+      "term": "terminal",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 1991,
+      "end": 2000,
+      "subject": "Tools",
+      "term": "file path",
+      "difficultyLevel": 4
+    },
+    {
+      "start": 2001,
+      "end": 2010,
+      "subject": "Fundamentals",
+      "term": "separation of concerns",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2011,
+      "end": 2020,
+      "subject": "Fundamentals",
+      "term": "error handling",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2021,
+      "end": 2030,
+      "subject": "HTML",
+      "term": "status live region",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2031,
+      "end": 2040,
+      "subject": "HTML",
+      "term": "disabled control",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2041,
+      "end": 2050,
+      "subject": "HTML",
+      "term": "range input",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2051,
+      "end": 2060,
+      "subject": "HTML",
+      "term": "output element",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2061,
+      "end": 2070,
+      "subject": "CSS",
+      "term": "visually hidden content",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2071,
+      "end": 2080,
+      "subject": "CSS",
+      "term": "text contrast",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2081,
+      "end": 2090,
+      "subject": "CSS",
+      "term": "stacking order",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2091,
+      "end": 2100,
+      "subject": "CSS",
+      "term": "pointer-events control",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2101,
+      "end": 2110,
+      "subject": "APIs",
+      "term": "HTTP GET",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2111,
+      "end": 2120,
+      "subject": "APIs",
+      "term": "HTTP POST",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2121,
+      "end": 2130,
+      "subject": "APIs",
+      "term": "HTTP status code",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2131,
+      "end": 2140,
+      "subject": "APIs",
+      "term": "CORS",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2141,
+      "end": 2150,
+      "subject": "APIs",
+      "term": "API key",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2151,
+      "end": 2160,
+      "subject": "APIs",
+      "term": "API rate limit",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2161,
+      "end": 2170,
+      "subject": "APIs",
+      "term": "URL query parameters",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2171,
+      "end": 2180,
+      "subject": "JavaScript",
+      "term": "try and catch",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2181,
+      "end": 2190,
+      "subject": "JavaScript",
+      "term": "throw statement",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2191,
+      "end": 2200,
+      "subject": "JavaScript",
+      "term": "Error message property",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2201,
+      "end": 2210,
+      "subject": "JavaScript",
+      "term": "Promise",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2211,
+      "end": 2220,
+      "subject": "JavaScript",
+      "term": "promise handlers",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2221,
+      "end": 2230,
+      "subject": "JavaScript",
+      "term": "async function",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2231,
+      "end": 2240,
+      "subject": "JavaScript",
+      "term": "await expression",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2241,
+      "end": 2250,
+      "subject": "JavaScript",
+      "term": "Promise.all",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2251,
+      "end": 2260,
+      "subject": "JavaScript",
+      "term": "fetch response handling",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2261,
+      "end": 2270,
+      "subject": "JavaScript",
+      "term": "AbortController",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2271,
+      "end": 2280,
+      "subject": "JavaScript",
+      "term": "event delegation",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2281,
+      "end": 2290,
+      "subject": "JavaScript",
+      "term": "removeEventListener",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2291,
+      "end": 2300,
+      "subject": "JavaScript",
+      "term": "setInterval",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2301,
+      "end": 2310,
+      "subject": "JavaScript",
+      "term": "timer cleanup",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2311,
+      "end": 2320,
+      "subject": "JavaScript",
+      "term": "speechSynthesis controller",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2321,
+      "end": 2330,
+      "subject": "JavaScript",
+      "term": "SpeechSynthesisUtterance",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2331,
+      "end": 2340,
+      "subject": "JavaScript",
+      "term": "speech voice list",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2341,
+      "end": 2350,
+      "subject": "JavaScript",
+      "term": "voiceschanged event",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2351,
+      "end": 2360,
+      "subject": "JavaScript",
+      "term": "speech cancellation",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2361,
+      "end": 2370,
+      "subject": "JavaScript",
+      "term": "speech pause and resume",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2371,
+      "end": 2380,
+      "subject": "JavaScript",
+      "term": "speech end callback",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2381,
+      "end": 2390,
+      "subject": "JavaScript",
+      "term": "speech text splitting",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2391,
+      "end": 2400,
+      "subject": "JavaScript",
+      "term": "speech queue state",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2401,
+      "end": 2410,
+      "subject": "JavaScript",
+      "term": "AudioContext",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2411,
+      "end": 2420,
+      "subject": "JavaScript",
+      "term": "GainNode",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2421,
+      "end": 2430,
+      "subject": "Extensions",
+      "term": "extension permissions",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2431,
+      "end": 2440,
+      "subject": "Extensions",
+      "term": "activeTab permission",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2441,
+      "end": 2450,
+      "subject": "Extensions",
+      "term": "scripting API",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2451,
+      "end": 2460,
+      "subject": "Extensions",
+      "term": "runtime message passing",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2461,
+      "end": 2470,
+      "subject": "Extensions",
+      "term": "extension service worker",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2471,
+      "end": 2480,
+      "subject": "Windows",
+      "term": "localhost service",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2481,
+      "end": 2490,
+      "subject": "Windows",
+      "term": "local network port",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2491,
+      "end": 2500,
+      "subject": "Tools",
+      "term": "software dependency",
+      "difficultyLevel": 5
+    },
+    {
+      "start": 2501,
+      "end": 2510,
+      "subject": "Fundamentals",
+      "term": "data transformation",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2511,
+      "end": 2520,
+      "subject": "Fundamentals",
+      "term": "data validation",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2521,
+      "end": 2530,
+      "subject": "HTML",
+      "term": "data table",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2531,
+      "end": 2540,
+      "subject": "HTML",
+      "term": "table caption",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2541,
+      "end": 2550,
+      "subject": "CSS",
+      "term": "tabular numerals",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2551,
+      "end": 2560,
+      "subject": "CSS",
+      "term": "sticky table heading",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2561,
+      "end": 2570,
+      "subject": "CSS",
+      "term": "responsive table container",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2571,
+      "end": 2580,
+      "subject": "JavaScript",
+      "term": "object property shorthand",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2581,
+      "end": 2590,
+      "subject": "JavaScript",
+      "term": "default parameter",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2591,
+      "end": 2600,
+      "subject": "JavaScript",
+      "term": "rest parameter",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2601,
+      "end": 2610,
+      "subject": "JavaScript",
+      "term": "spread arguments",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2611,
+      "end": 2620,
+      "subject": "JavaScript",
+      "term": "Object.entries",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2621,
+      "end": 2630,
+      "subject": "JavaScript",
+      "term": "Object.keys",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2631,
+      "end": 2640,
+      "subject": "JavaScript",
+      "term": "Object.values",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2641,
+      "end": 2650,
+      "subject": "JavaScript",
+      "term": "string trim",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2651,
+      "end": 2660,
+      "subject": "JavaScript",
+      "term": "string split",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2661,
+      "end": 2670,
+      "subject": "JavaScript",
+      "term": "array join",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2671,
+      "end": 2680,
+      "subject": "Python",
+      "term": "Python language",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2681,
+      "end": 2690,
+      "subject": "Python",
+      "term": "Python print function",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2691,
+      "end": 2700,
+      "subject": "Python",
+      "term": "Python assignment",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2701,
+      "end": 2710,
+      "subject": "Python",
+      "term": "Python identifier",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2711,
+      "end": 2720,
+      "subject": "Python",
+      "term": "Python numeric types",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2721,
+      "end": 2730,
+      "subject": "Python",
+      "term": "Python string",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2731,
+      "end": 2740,
+      "subject": "Python",
+      "term": "Python Boolean",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2741,
+      "end": 2750,
+      "subject": "Python",
+      "term": "Python None",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2751,
+      "end": 2760,
+      "subject": "Python",
+      "term": "Python indentation",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2761,
+      "end": 2770,
+      "subject": "Python",
+      "term": "Python comment",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2771,
+      "end": 2780,
+      "subject": "Python",
+      "term": "Python arithmetic",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2781,
+      "end": 2790,
+      "subject": "Python",
+      "term": "Python comparison",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2791,
+      "end": 2800,
+      "subject": "Python",
+      "term": "Python Boolean operators",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2801,
+      "end": 2810,
+      "subject": "Python",
+      "term": "Python if block",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2811,
+      "end": 2820,
+      "subject": "Python",
+      "term": "Python elif and else",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2821,
+      "end": 2830,
+      "subject": "Python",
+      "term": "Python for loop",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2831,
+      "end": 2840,
+      "subject": "Python",
+      "term": "Python range",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2841,
+      "end": 2850,
+      "subject": "Python",
+      "term": "Python while loop",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2851,
+      "end": 2860,
+      "subject": "Python",
+      "term": "Python break",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2861,
+      "end": 2870,
+      "subject": "Python",
+      "term": "Python function definition",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2871,
+      "end": 2880,
+      "subject": "Python",
+      "term": "Python function parameter",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2881,
+      "end": 2890,
+      "subject": "Python",
+      "term": "Python return statement",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2891,
+      "end": 2900,
+      "subject": "Python",
+      "term": "Python list",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2901,
+      "end": 2910,
+      "subject": "Python",
+      "term": "Python indexing",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2911,
+      "end": 2920,
+      "subject": "Python",
+      "term": "Python list append",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2921,
+      "end": 2930,
+      "subject": "Python",
+      "term": "Python dictionary",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2931,
+      "end": 2940,
+      "subject": "Python",
+      "term": "Python tuple",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2941,
+      "end": 2950,
+      "subject": "Python",
+      "term": "Python set",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2951,
+      "end": 2960,
+      "subject": "Python",
+      "term": "Python import",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2961,
+      "end": 2970,
+      "subject": "APIs",
+      "term": "API documentation",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2971,
+      "end": 2980,
+      "subject": "APIs",
+      "term": "request timeout",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2981,
+      "end": 2990,
+      "subject": "Windows",
+      "term": "desktop event loop",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 2991,
+      "end": 3000,
+      "subject": "Tools",
+      "term": "Python virtual environment",
+      "difficultyLevel": 6
+    },
+    {
+      "start": 3001,
+      "end": 3010,
+      "subject": "Fundamentals",
+      "term": "boundary validation",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3011,
+      "end": 3020,
+      "subject": "Fundamentals",
+      "term": "cache",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3021,
+      "end": 3030,
+      "subject": "HTML",
+      "term": "table header scope",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3031,
+      "end": 3040,
+      "subject": "CSS",
+      "term": "table number alignment",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3041,
+      "end": 3050,
+      "subject": "CSS",
+      "term": "scroll containment",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3051,
+      "end": 3060,
+      "subject": "CSS",
+      "term": "reduced-motion preference",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3061,
+      "end": 3070,
+      "subject": "JavaScript",
+      "term": "Map collection",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3071,
+      "end": 3080,
+      "subject": "JavaScript",
+      "term": "Set collection",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3081,
+      "end": 3090,
+      "subject": "JavaScript",
+      "term": "Object.hasOwn",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3091,
+      "end": 3100,
+      "subject": "JavaScript",
+      "term": "structuredClone",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3101,
+      "end": 3110,
+      "subject": "JavaScript",
+      "term": "Intl.NumberFormat",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3111,
+      "end": 3120,
+      "subject": "JavaScript",
+      "term": "percentage change calculation",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3121,
+      "end": 3130,
+      "subject": "JavaScript",
+      "term": "refresh-in-flight guard",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3131,
+      "end": 3140,
+      "subject": "JavaScript",
+      "term": "request generation token",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3141,
+      "end": 3150,
+      "subject": "JavaScript",
+      "term": "debouncing",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3151,
+      "end": 3160,
+      "subject": "JavaScript",
+      "term": "throttling",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3161,
+      "end": 3170,
+      "subject": "Python",
+      "term": "dictionary get method",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3171,
+      "end": 3180,
+      "subject": "Python",
+      "term": "membership test",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3181,
+      "end": 3190,
+      "subject": "Python",
+      "term": "dictionary items",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3191,
+      "end": 3200,
+      "subject": "Python",
+      "term": "list comprehension",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3201,
+      "end": 3210,
+      "subject": "Python",
+      "term": "string strip method",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3211,
+      "end": 3220,
+      "subject": "Python",
+      "term": "string split method",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3221,
+      "end": 3230,
+      "subject": "Python",
+      "term": "string join method",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3231,
+      "end": 3240,
+      "subject": "Python",
+      "term": "f-string",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3241,
+      "end": 3250,
+      "subject": "Python",
+      "term": "try and except",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3251,
+      "end": 3260,
+      "subject": "Python",
+      "term": "raising an exception",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3261,
+      "end": 3270,
+      "subject": "Python",
+      "term": "with statement",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3271,
+      "end": 3280,
+      "subject": "Python",
+      "term": "reading a text file",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3281,
+      "end": 3290,
+      "subject": "Python",
+      "term": "writing a text file",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3291,
+      "end": 3300,
+      "subject": "Python",
+      "term": "UTF-8 encoding",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3301,
+      "end": 3310,
+      "subject": "Python",
+      "term": "json.loads",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3311,
+      "end": 3320,
+      "subject": "Python",
+      "term": "json.dumps",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3321,
+      "end": 3330,
+      "subject": "Python",
+      "term": "pathlib Path",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3331,
+      "end": 3340,
+      "subject": "Python",
+      "term": "CSV reader",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3341,
+      "end": 3350,
+      "subject": "Python",
+      "term": "timezone-aware datetime",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3351,
+      "end": 3360,
+      "subject": "Python",
+      "term": "Decimal arithmetic",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3361,
+      "end": 3370,
+      "subject": "Python",
+      "term": "statistics mean",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3371,
+      "end": 3380,
+      "subject": "Python",
+      "term": "sorted key function",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3381,
+      "end": 3390,
+      "subject": "Python",
+      "term": "generator function",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3391,
+      "end": 3400,
+      "subject": "Python",
+      "term": "urllib HTTP request",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3401,
+      "end": 3410,
+      "subject": "Python",
+      "term": "price percentage change",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3411,
+      "end": 3420,
+      "subject": "Python",
+      "term": "volume ratio",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3421,
+      "end": 3430,
+      "subject": "Python",
+      "term": "screener filtering",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3431,
+      "end": 3440,
+      "subject": "Python",
+      "term": "missing market data",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3441,
+      "end": 3450,
+      "subject": "APIs",
+      "term": "data freshness timestamp",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3451,
+      "end": 3460,
+      "subject": "APIs",
+      "term": "exponential backoff",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3461,
+      "end": 3470,
+      "subject": "Extensions",
+      "term": "extension storage API",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3471,
+      "end": 3480,
+      "subject": "Windows",
+      "term": "Tkinter interface",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3481,
+      "end": 3490,
+      "subject": "Tools",
+      "term": "Python package installation",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3491,
+      "end": 3500,
+      "subject": "Tools",
+      "term": "dependency lock or pinned version",
+      "difficultyLevel": 7
+    },
+    {
+      "start": 3501,
+      "end": 3510,
+      "subject": "Fundamentals",
+      "term": "concurrency",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3511,
+      "end": 3520,
+      "subject": "Fundamentals",
+      "term": "parallelism",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3521,
+      "end": 3530,
+      "subject": "Fundamentals",
+      "term": "resource lifetime",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3531,
+      "end": 3540,
+      "subject": "HTML",
+      "term": "safe new-window link",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3541,
+      "end": 3550,
+      "subject": "CSS",
+      "term": "logical spacing properties",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3551,
+      "end": 3560,
+      "subject": "CSS",
+      "term": "layout containment",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3561,
+      "end": 3570,
+      "subject": "APIs",
+      "term": "WebSocket connection",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3571,
+      "end": 3580,
+      "subject": "APIs",
+      "term": "authentication and authorization",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3581,
+      "end": 3590,
+      "subject": "APIs",
+      "term": "paginated API response",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3591,
+      "end": 3600,
+      "subject": "JavaScript",
+      "term": "closure",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3601,
+      "end": 3610,
+      "subject": "JavaScript",
+      "term": "arrow lexical this",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3611,
+      "end": 3620,
+      "subject": "JavaScript",
+      "term": "JavaScript module",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3621,
+      "end": 3630,
+      "subject": "JavaScript",
+      "term": "browser event loop",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3631,
+      "end": 3640,
+      "subject": "JavaScript",
+      "term": "microtask ordering",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3641,
+      "end": 3650,
+      "subject": "JavaScript",
+      "term": "promise finally",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3651,
+      "end": 3660,
+      "subject": "JavaScript",
+      "term": "Promise.allSettled",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3661,
+      "end": 3670,
+      "subject": "JavaScript",
+      "term": "async iteration",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3671,
+      "end": 3680,
+      "subject": "JavaScript",
+      "term": "Web Worker",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3681,
+      "end": 3690,
+      "subject": "JavaScript",
+      "term": "requestAnimationFrame",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3691,
+      "end": 3700,
+      "subject": "JavaScript",
+      "term": "performance.now",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3701,
+      "end": 3710,
+      "subject": "JavaScript",
+      "term": "WebSocket message handling",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3711,
+      "end": 3720,
+      "subject": "JavaScript",
+      "term": "socket reconnection policy",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3721,
+      "end": 3730,
+      "subject": "JavaScript",
+      "term": "stream update sequencing",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3731,
+      "end": 3740,
+      "subject": "JavaScript",
+      "term": "component cleanup ownership",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3741,
+      "end": 3750,
+      "subject": "Python",
+      "term": "Python class",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3751,
+      "end": 3760,
+      "subject": "Python",
+      "term": "Python initializer",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3761,
+      "end": 3770,
+      "subject": "Python",
+      "term": "dataclass",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3771,
+      "end": 3780,
+      "subject": "Python",
+      "term": "type annotation",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3781,
+      "end": 3790,
+      "subject": "Python",
+      "term": "mutable default argument trap",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3791,
+      "end": 3800,
+      "subject": "Python",
+      "term": "shallow and deep copy",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3801,
+      "end": 3810,
+      "subject": "Python",
+      "term": "atomic file replacement",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3811,
+      "end": 3820,
+      "subject": "Python",
+      "term": "requests library",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3821,
+      "end": 3830,
+      "subject": "Python",
+      "term": "structured logging",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3831,
+      "end": 3840,
+      "subject": "Python",
+      "term": "unittest case",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3841,
+      "end": 3850,
+      "subject": "Python",
+      "term": "thread pool for I/O",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3851,
+      "end": 3860,
+      "subject": "Python",
+      "term": "thread-safe queue",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3861,
+      "end": 3870,
+      "subject": "Python",
+      "term": "asyncio coroutine",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3871,
+      "end": 3880,
+      "subject": "Python",
+      "term": "subprocess argument list",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3881,
+      "end": 3890,
+      "subject": "Python",
+      "term": "argparse options",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3891,
+      "end": 3900,
+      "subject": "Python",
+      "term": "environment variable configuration",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3901,
+      "end": 3910,
+      "subject": "Python",
+      "term": "configuration schema checks",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3911,
+      "end": 3920,
+      "subject": "Python",
+      "term": "profiling a Python tool",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3921,
+      "end": 3930,
+      "subject": "SQL",
+      "term": "SQLite database",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3931,
+      "end": 3940,
+      "subject": "SQL",
+      "term": "SELECT query",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3941,
+      "end": 3950,
+      "subject": "Extensions",
+      "term": "content-script isolated world",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3951,
+      "end": 3960,
+      "subject": "Extensions",
+      "term": "extension callback lastError",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3961,
+      "end": 3970,
+      "subject": "Windows",
+      "term": "PowerShell object pipeline",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3971,
+      "end": 3980,
+      "subject": "Windows",
+      "term": "Python application packaging",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3981,
+      "end": 3990,
+      "subject": "Tools",
+      "term": "Git repository",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 3991,
+      "end": 4000,
+      "subject": "Tools",
+      "term": "Git diff",
+      "difficultyLevel": 8
+    },
+    {
+      "start": 4001,
+      "end": 4010,
+      "subject": "Fundamentals",
+      "term": "application trust boundary",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4011,
+      "end": 4020,
+      "subject": "Fundamentals",
+      "term": "application state machine",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4021,
+      "end": 4030,
+      "subject": "Fundamentals",
+      "term": "idempotent operation",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4031,
+      "end": 4040,
+      "subject": "HTML",
+      "term": "busy region state",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4041,
+      "end": 4050,
+      "subject": "CSS",
+      "term": "dashboard layout stability",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4051,
+      "end": 4060,
+      "subject": "CSS",
+      "term": "accessible loading presentation",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4061,
+      "end": 4070,
+      "subject": "APIs",
+      "term": "snapshot and incremental updates",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4071,
+      "end": 4080,
+      "subject": "APIs",
+      "term": "request idempotency key",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4081,
+      "end": 4090,
+      "subject": "APIs",
+      "term": "backend secret boundary",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4091,
+      "end": 4100,
+      "subject": "JavaScript",
+      "term": "reader text extraction",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4101,
+      "end": 4110,
+      "subject": "JavaScript",
+      "term": "PDF text extraction boundary",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4111,
+      "end": 4120,
+      "subject": "JavaScript",
+      "term": "TTS session generation",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4121,
+      "end": 4130,
+      "subject": "JavaScript",
+      "term": "quote normalization",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4131,
+      "end": 4140,
+      "subject": "JavaScript",
+      "term": "stable screener ranking",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4141,
+      "end": 4150,
+      "subject": "JavaScript",
+      "term": "immutable UI state update",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4151,
+      "end": 4160,
+      "subject": "JavaScript",
+      "term": "bounded message batching",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4161,
+      "end": 4170,
+      "subject": "JavaScript",
+      "term": "coherent render batch",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4171,
+      "end": 4180,
+      "subject": "JavaScript",
+      "term": "worker message contract",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4181,
+      "end": 4190,
+      "subject": "JavaScript",
+      "term": "frontend calculation boundary",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4191,
+      "end": 4200,
+      "subject": "JavaScript",
+      "term": "received data schema",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4201,
+      "end": 4210,
+      "subject": "JavaScript",
+      "term": "safe text rendering",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4211,
+      "end": 4220,
+      "subject": "JavaScript",
+      "term": "IndexedDB transaction",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4221,
+      "end": 4230,
+      "subject": "JavaScript",
+      "term": "browser storage migration",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4231,
+      "end": 4240,
+      "subject": "JavaScript",
+      "term": "browser behavior test",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4241,
+      "end": 4250,
+      "subject": "Python",
+      "term": "stream processing boundary",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4251,
+      "end": 4260,
+      "subject": "Python",
+      "term": "chunked file reading",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4261,
+      "end": 4270,
+      "subject": "Python",
+      "term": "generator processing pipeline",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4271,
+      "end": 4280,
+      "subject": "Python",
+      "term": "API client abstraction",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4281,
+      "end": 4290,
+      "subject": "Python",
+      "term": "normalized quote record",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4291,
+      "end": 4300,
+      "subject": "Python",
+      "term": "joining records by symbol",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4301,
+      "end": 4310,
+      "subject": "Python",
+      "term": "market timestamp interpretation",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4311,
+      "end": 4320,
+      "subject": "Python",
+      "term": "numeric comparison tolerance",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4321,
+      "end": 4330,
+      "subject": "Python",
+      "term": "decimal rounding policy",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4331,
+      "end": 4340,
+      "subject": "Python",
+      "term": "windowed volume aggregation",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4341,
+      "end": 4350,
+      "subject": "Python",
+      "term": "cache expiration policy",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4351,
+      "end": 4360,
+      "subject": "Python",
+      "term": "SQLite parameter binding",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4361,
+      "end": 4370,
+      "subject": "Python",
+      "term": "database transaction ownership",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4371,
+      "end": 4380,
+      "subject": "Python",
+      "term": "GUI thread handoff",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4381,
+      "end": 4390,
+      "subject": "Python",
+      "term": "Tkinter after scheduling",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4391,
+      "end": 4400,
+      "subject": "Python",
+      "term": "file polling automation",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4401,
+      "end": 4410,
+      "subject": "Python",
+      "term": "test fixture",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4411,
+      "end": 4420,
+      "subject": "Python",
+      "term": "exception chaining",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4421,
+      "end": 4430,
+      "subject": "Python",
+      "term": "custom context manager",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4431,
+      "end": 4440,
+      "subject": "Python",
+      "term": "process pool workload",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4441,
+      "end": 4450,
+      "subject": "SQL",
+      "term": "parameterized SQL",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4451,
+      "end": 4460,
+      "subject": "Extensions",
+      "term": "extension message sender validation",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4461,
+      "end": 4470,
+      "subject": "Extensions",
+      "term": "optional permission change",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4471,
+      "end": 4480,
+      "subject": "Extensions",
+      "term": "extension keyboard command",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4481,
+      "end": 4490,
+      "subject": "Windows",
+      "term": "WebView2 host boundary",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4491,
+      "end": 4500,
+      "subject": "Tools",
+      "term": "Git ignore rule",
+      "difficultyLevel": 9
+    },
+    {
+      "start": 4501,
+      "end": 4510,
+      "subject": "Fundamentals",
+      "term": "end-to-end request trace",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4511,
+      "end": 4520,
+      "subject": "JavaScript",
+      "term": "click-to-result pipeline",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4521,
+      "end": 4530,
+      "subject": "JavaScript",
+      "term": "backend error contract",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4531,
+      "end": 4540,
+      "subject": "APIs",
+      "term": "provider schema version",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4541,
+      "end": 4550,
+      "subject": "JavaScript",
+      "term": "complete cache key",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4551,
+      "end": 4560,
+      "subject": "JavaScript",
+      "term": "state recheck after await",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4561,
+      "end": 4570,
+      "subject": "JavaScript",
+      "term": "optimistic change rollback",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4571,
+      "end": 4580,
+      "subject": "JavaScript",
+      "term": "bounded retry controller",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4581,
+      "end": 4590,
+      "subject": "APIs",
+      "term": "uncertain request reconciliation",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4591,
+      "end": 4600,
+      "subject": "Fundamentals",
+      "term": "explicit component contract",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4601,
+      "end": 4610,
+      "subject": "JavaScript",
+      "term": "reader controller composition",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4611,
+      "end": 4620,
+      "subject": "JavaScript",
+      "term": "site extraction adapter",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4621,
+      "end": 4630,
+      "subject": "JavaScript",
+      "term": "lossless speech chunk boundary",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4631,
+      "end": 4640,
+      "subject": "JavaScript",
+      "term": "saved voice identity recovery",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4641,
+      "end": 4650,
+      "subject": "JavaScript",
+      "term": "speech failure recovery policy",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4651,
+      "end": 4660,
+      "subject": "JavaScript",
+      "term": "speech setting application",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4661,
+      "end": 4670,
+      "subject": "JavaScript",
+      "term": "reader keyboard interaction",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4671,
+      "end": 4680,
+      "subject": "Extensions",
+      "term": "offscreen extension document",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4681,
+      "end": 4690,
+      "subject": "JavaScript",
+      "term": "audio resource ownership",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4691,
+      "end": 4700,
+      "subject": "JavaScript",
+      "term": "audio gain headroom",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4701,
+      "end": 4710,
+      "subject": "Extensions",
+      "term": "worker restart reconstruction",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4711,
+      "end": 4720,
+      "subject": "JavaScript",
+      "term": "transferable buffer ownership",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4721,
+      "end": 4730,
+      "subject": "JavaScript",
+      "term": "stream backpressure policy",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4731,
+      "end": 4740,
+      "subject": "JavaScript",
+      "term": "live quote update coalescing",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4741,
+      "end": 4750,
+      "subject": "APIs",
+      "term": "stream gap recovery contract",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4751,
+      "end": 4760,
+      "subject": "JavaScript",
+      "term": "snapshot and delta handoff",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4761,
+      "end": 4770,
+      "subject": "JavaScript",
+      "term": "calculation and display precision",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4771,
+      "end": 4780,
+      "subject": "JavaScript",
+      "term": "testable screener calculation boundary",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4781,
+      "end": 4790,
+      "subject": "CSS",
+      "term": "layout read and write batching",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4791,
+      "end": 4800,
+      "subject": "CSS",
+      "term": "zoom and long-content release check",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4801,
+      "end": 4810,
+      "subject": "JavaScript",
+      "term": "validated navigation destination",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4811,
+      "end": 4820,
+      "subject": "JavaScript",
+      "term": "extension executable code boundary",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4821,
+      "end": 4830,
+      "subject": "Extensions",
+      "term": "release permission audit",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4831,
+      "end": 4840,
+      "subject": "Extensions",
+      "term": "cross-site extension regression matrix",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4841,
+      "end": 4850,
+      "subject": "Python",
+      "term": "backend input and output boundary",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4851,
+      "end": 4860,
+      "subject": "Python",
+      "term": "reliable automation run record",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4861,
+      "end": 4870,
+      "subject": "Python",
+      "term": "database backup verification",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4871,
+      "end": 4880,
+      "subject": "SQL",
+      "term": "transaction rollback boundary",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4881,
+      "end": 4890,
+      "subject": "SQL",
+      "term": "index and query plan check",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4891,
+      "end": 4900,
+      "subject": "JavaScript",
+      "term": "cross-tab state conflict policy",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4901,
+      "end": 4910,
+      "subject": "JavaScript",
+      "term": "application lifetime boundary",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4911,
+      "end": 4920,
+      "subject": "Windows",
+      "term": "desktop runtime distribution contract",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4921,
+      "end": 4930,
+      "subject": "Windows",
+      "term": "desktop startup and shutdown ownership",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4931,
+      "end": 4940,
+      "subject": "Python",
+      "term": "cooperative batch cancellation",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4941,
+      "end": 4950,
+      "subject": "Python",
+      "term": "packaged application resource path",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4951,
+      "end": 4960,
+      "subject": "Fundamentals",
+      "term": "reproducible release procedure",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4961,
+      "end": 4970,
+      "subject": "Tools",
+      "term": "release artifact provenance",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4971,
+      "end": 4980,
+      "subject": "Fundamentals",
+      "term": "failure-based engineering priority",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4981,
+      "end": 4990,
+      "subject": "JavaScript",
+      "term": "application failure test matrix",
+      "difficultyLevel": 10
+    },
+    {
+      "start": 4991,
+      "end": 5000,
+      "subject": "JavaScript",
+      "term": "end-to-end application failure diagnosis",
+      "difficultyLevel": 10
+    }
+  ],
+  "contentHash": "fe07284cddfc4f99835509872fbd2fd13cad799dde56faaaf5e9495d9d301863"
+}

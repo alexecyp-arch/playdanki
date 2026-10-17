@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Arithmetic practice. 2,000 correct answers each Monday–Sunday week.">
+<title>Weekly arithmetic</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='white'/%3E%3Cpath d='M7 12h18M7 20h18' stroke='black' stroke-width='3'/%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#fff;color:#181818;font:14px/1.5 system-ui,sans-serif}main{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;padding:24px 28px}#exercise{flex:1;display:flex;align-items:center;align-content:center;justify-content:center;flex-wrap:wrap;gap:20px;padding:48px 0;font:135px/1.25 ui-monospace,monospace}#problem{white-space:nowrap;font-size:var(--problem-size,135px)}#answer{width:4ch;max-width:100%;font:inherit;border:0;border-bottom:2px solid #aaa;border-radius:0;padding:5px 2px;text-align:center;background:#fff;color:#181818}#answer:focus{outline:0;border-bottom-color:#181818}#bottom{width:100%;max-width:580px;margin:0 auto;color:#626262}h1{font-size:14px;font-weight:400;margin:0 0 4px}#stats{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 18px}#total{font-size:16px;color:#333;font-variant-numeric:tabular-nums}#remaining{font-size:13px;margin:2px 0 10px}p{margin:8px 0}small{font-size:13px}details{border-top:1px solid #eee;padding:9px 0}summary{cursor:pointer;width:fit-content}input,button{font:inherit}input[type=number]{width:66px;padding:4px;border:1px solid #aaa;border-radius:0}input[type=checkbox]{accent-color:#222}button{background:white;color:#181818;border:1px solid #999;padding:6px 14px;cursor:pointer}.ops{display:flex;flex-wrap:wrap;gap:12px;margin:14px 0}fieldset{border:0;padding:0;margin:16px 0}legend{margin-bottom:5px}.range{display:flex;align-items:center;flex-wrap:wrap;gap:7px}table{width:100%;border-collapse:collapse;margin-top:12px;font-size:14px}th,td{text-align:left;padding:7px 0;border-bottom:1px solid #eee}th:last-child,td:last-child{text-align:right}#warning,#error{color:#9c250e;font-size:14px}@media(max-width:600px){main{padding:18px}#exercise{font-size:72px;gap:18px;padding:36px 0}#problem{font-size:min(72px,var(--problem-size,72px))}#stats{gap:2px 14px}input[type=number]{width:60px}}
+#bottom{position:absolute;top:12px;right:16px;width:580px;max-width:calc((100vw - 32px)/.3);margin:0;transform:scale(.3);transform-origin:top right;background:white;z-index:1}main{position:relative;padding-top:90px}#credit-note{font-size:14px}#credit-form{border-top:1px solid #eee;padding-top:10px;margin-top:14px}#credit-form input{width:100px}
+body{background:#071e48;color:#fff;font-weight:700;color-scheme:dark}
+#exercise{font-weight:700}
+#answer{background:#071e48;color:#fff;border-bottom-color:#a3b4d1}
+#answer:focus{border-bottom-color:#fff}
+#bottom{position:fixed;top:auto;bottom:16px;right:16px;width:580px;max-width:calc((100vw - 32px)/.75);transform:scale(.75);transform-origin:bottom right;background:#071e48;color:#fff}
+#bottom,#bottom *{color:#fff;font-weight:700}
+#bottom button,#bottom input[type=number]{background:#071e48;color:#fff}
+#bottom input[type=checkbox]{accent-color:#fff}
+#exercise{flex-direction:row;flex-wrap:nowrap;gap:16px;padding:2rem 0 10rem;justify-content:center;text-align:center}
+#problem{white-space:normal;overflow-wrap:anywhere;font-size:135px}
+#answer{width:fit-content;min-width:2ch;max-width:100%;border:2px solid #45618e;border-radius:.65rem;background:#102c59;padding:.1em .4em;font-size:clamp(3rem,8vw,7rem);overflow-wrap:anywhere}
+@media(max-width:600px){#exercise{padding:1.5rem 0 12rem;gap:1rem}#problem{font-size:72px}}
+#exercise label#problem{white-space:nowrap;flex-shrink:0}
+#exercise input#answer{width:6ch;min-width:0;flex-shrink:0;border:0;border-bottom:2px solid #a3b4d1;border-radius:0;padding:0;background:transparent;font-weight:700;text-align:left;caret-color:#fff;outline:0}
+#exercise input#answer:focus{border-bottom-color:#fff}
+@media(max-width:700px){#exercise{gap:8px}#exercise label#problem,#exercise input#answer{font-size:24px}}
+:root{--game-cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Ccircle cx='7' cy='7' r='4' fill='%2337ee45' stroke='%23000' stroke-width='1.5'/%3E%3C/svg%3E") 7 7,crosshair}
+*,*::before,*::after{cursor:var(--game-cursor)!important}
+body:focus,#game:focus,#exercise:focus,.arithmetic-frame:focus{outline:none}
+:root{--study-size:3.5rem;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+@media(max-width:600px){:root{--study-size:2rem}}
+#word,#translation,#question,#exercise #problem,#exercise #answer,#study #answer,#study #code{font-size:var(--study-size);line-height:1.25}
+#answer-box,#exercise #answer,#study .answer,#study pre{border:0;border-radius:0;background:transparent;box-shadow:none;padding:0}
+#answer-box{min-width:0}
+#study .answer{max-width:100%}
+#exercise #problem,#exercise #answer{max-width:100%;white-space:normal;overflow-wrap:anywhere}
+#next-card{display:none;position:fixed;left:50%;bottom:calc(.5rem + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:4;min-height:2rem;min-width:5rem;border:0;border-radius:0;background:#071e48;box-shadow:none;color:#fff;padding:.35rem .65rem;font:700 .75rem/1.2 Arial,Helvetica,sans-serif;white-space:nowrap;touch-action:manipulation}
+@media(hover:none) and (pointer:coarse) and (max-width:600px),(hover:none) and (pointer:coarse) and (max-height:600px){#next-card{display:block}.tracker,#tracker{bottom:calc(3rem + env(safe-area-inset-bottom,0px))}.course-main{padding-bottom:8rem}}
+</style>
+<main>
+<div id="exercise"><label id="problem" for="answer"></label><input id="answer" type="text" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="Answer" autofocus></div>
+<section id="bottom" aria-label="Weekly progress and settings">
+<h1>Weekly arithmetic</h1>
+<div id="stats"><div id="total"></div><div id="week"></div></div>
+<div id="remaining"></div>
+<p id="warning" role="alert" hidden></p>
+<details id="settings"><summary>Settings</summary>
+<form id="options">
+<div class="ops"><label><input type="checkbox" name="op" value="0" checked> Addition</label><label><input type="checkbox" name="op" value="1" checked> Subtraction</label><label><input type="checkbox" name="op" value="2" checked> Multiplication</label><label><input type="checkbox" name="op" value="3" checked> Division</label></div>
+<fieldset><legend>Addition ranges</legend><div class="range"><input name="a0" type="number" min="1" max="999" required aria-label="Addition first minimum"> to <input name="a1" type="number" min="1" max="999" required aria-label="Addition first maximum"> + <input name="a2" type="number" min="1" max="999" required aria-label="Addition second minimum"> to <input name="a3" type="number" min="1" max="999" required aria-label="Addition second maximum"></div><small>Subtraction uses these sums in reverse.</small></fieldset>
+<fieldset><legend>Multiplication ranges</legend><div class="range"><input name="m0" type="number" min="1" max="999" required aria-label="Multiplication first minimum"> to <input name="m1" type="number" min="1" max="999" required aria-label="Multiplication first maximum"> × <input name="m2" type="number" min="1" max="999" required aria-label="Multiplication second minimum"> to <input name="m3" type="number" min="1" max="999" required aria-label="Multiplication second maximum"></div><small>Division uses these products in reverse; answers are whole numbers.</small></fieldset>
+<p id="error" role="alert"></p><button>Apply</button>
+</form><form id="credit-form"><label for="credit-count">Already completed this week</label> <input id="credit-count" type="number" min="1" max="1000000" step="1" required> <button>Add to this week</button><p id="credit-note" role="status"></p></form></details>
+<details id="history"><summary>Weekly totals</summary><table><thead><tr><th>Monday – Sunday</th><th>Practiced / goal</th></tr></thead><tbody id="rows"></tbody></table></details>
+</section>
+<noscript>Please enable JavaScript to practice.</noscript>
+</main>
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id),prefix='weekly-arithmetic-v1:',tab=crypto.randomUUID?crypto.randomUUID():Date.now()+'-'+Math.random(),memory=new Map();
+let storage=true,expected,current='',totals={},cfg={ops:[0,1,2,3],a:[2,100,2,100],m:[2,12,2,100]};
+function warn(){storage=false;$('warning').hidden=false;$('warning').textContent='Browser storage is unavailable. You can practice, but new progress will be lost when this page closes.'}
+function get(k){if(!storage)return memory.get(k)||null;try{const v=localStorage.getItem(k);if(v!==null)memory.set(k,v);return v}catch(e){warn();return memory.get(k)||null}}
+function put(k,v){memory.set(k,String(v));if(storage)try{localStorage.setItem(k,String(v))}catch(e){warn()}}
+function monday(d=new Date()){const x=new Date(d.getFullYear(),d.getMonth(),d.getDate(),12);x.setDate(x.getDate()-(x.getDay()+6)%7);return x.getFullYear()+'-'+String(x.getMonth()+1).padStart(2,'0')+'-'+String(x.getDate()).padStart(2,'0')}
+function goalForWeek(k){return k>='2026-09-14'?2000:1000}
+function date(k){const [y,m,d]=k.split('-').map(Number);return new Date(y,m-1,d,12)}
+function label(k){const a=date(k),b=date(k);b.setDate(b.getDate()+6);const f={day:'numeric',month:'short'};return a.toLocaleDateString('en-GB',f)+' – '+b.toLocaleDateString('en-GB',{...f,year:'numeric'})}
+function readTotals(){const stems=[prefix+'count:',prefix+'practice:'];if(storage)try{for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&stems.some(stem=>k.startsWith(stem)))memory.set(k,localStorage.getItem(k))}for(const k of memory.keys())if(stems.some(stem=>k.startsWith(stem))&&localStorage.getItem(k)===null)memory.delete(k)}catch(e){warn()}
+const out={};for(const [k,v]of memory){const stem=stems.find(stem=>k.startsWith(stem));if(!stem)continue;const week=k.slice(stem.length,stem.length+10),n=Number(v);if(/^\d{4}-\d{2}-\d{2}$/.test(week)&&Number.isSafeInteger(n)&&n>=0)out[week]=(out[week]||0)+n}return out}
+function renderHistory(){const keys=Object.keys(totals).sort(),rows=[];if(keys.length){const d=date(keys[0]),end=date(current);while(d<=end){const k=monday(d);rows.push(k);d.setDate(d.getDate()+7)}}for(const k of keys)if(!rows.includes(k))rows.push(k);$('rows').replaceChildren(...rows.sort().reverse().map(k=>{const tr=document.createElement('tr'),a=document.createElement('td'),b=document.createElement('td');a.textContent=label(k)+(k===current?' · this week':'');b.textContent=(totals[k]||0).toLocaleString()+' / '+goalForWeek(k).toLocaleString('en-GB');tr.append(a,b);return tr}))}
+function refresh(){current=monday();totals=readTotals();const n=totals[current]||0,goal=goalForWeek(current);$('week').textContent='Mon '+label(current);$('total').textContent='Practiced '+n.toLocaleString()+' / '+goal.toLocaleString('en-GB')+' · '+(n/goal*100).toLocaleString(undefined,{maximumFractionDigits:1})+'%';$('remaining').textContent=n<goal?(goal-n).toLocaleString()+' to go this week':'Weekly goal reached. Keep going if you like.';if($('history').open)renderHistory()}
+function valid(c){return c&&Array.isArray(c.ops)&&c.ops.length>0&&c.ops.every(n=>[0,1,2,3].includes(n))&&['a','m'].every(k=>Array.isArray(c[k])&&c[k].length===4&&c[k].every(n=>Number.isInteger(n)&&n>=1&&n<=999)&&c[k][0]<=c[k][1]&&c[k][2]<=c[k][3])}
+try{const saved=JSON.parse(get(prefix+'settings'));if(valid(saved))cfg=saved}catch(e){}
+for(const k of ['a','m'])cfg[k].forEach((v,i)=>$('options').elements[k+i].value=v);
+document.querySelectorAll('[name=op]').forEach(el=>el.checked=cfg.ops.includes(+el.value));
+const rand=(min,max)=>min+Math.floor(Math.random()*(max-min+1));
+function next(){const op=cfg.ops[rand(0,cfg.ops.length-1)],r=cfg[op<2?'a':'m'],a=rand(r[0],r[1]),b=rand(r[2],r[3]);let text;
+if(op===0){text=a+' + '+b;expected=a+b}if(op===1){text=(a+b)+' − '+a;expected=b}if(op===2){text=a+' × '+b;expected=a*b}if(op===3){text=(a*b)+' ÷ '+a;expected=b}
+$('problem').textContent=text+' =';$('answer').value=''}
+function menuOpen(){try{return parent!==window&&!!parent.document.querySelector('.games-menu[open]')}catch{return false}}
+function checkAnswer(e){if(document.hidden||menuOpen()||$('settings').open||$('history').open||e.isComposing||!/^\d+$/.test($('answer').value.trim())||Number($('answer').value)!==expected)return;current=monday();const k=prefix+'count:'+current+':'+tab;put(k,(Number(get(k))||0)+1);next();refresh()}
+$('answer').addEventListener('input',checkAnswer);$('answer').addEventListener('compositionend',checkAnswer);
+document.addEventListener('keydown',e=>{if(e.isComposing||e.ctrlKey||e.altKey||e.metaKey||!(e.key==='Enter'||e.key===' '||e.code==='Space'))return;if(e.target!==$('answer')&&e.target.closest?.('input,textarea,select,[contenteditable="true"],summary,a,button'))return;e.preventDefault();if(!menuOpen()&&!$('settings').open&&!$('history').open)$('answer').focus({preventScroll:true})});
+$('options').addEventListener('submit',e=>{e.preventDefault();const c={ops:[...document.querySelectorAll('[name=op]:checked')].map(el=>+el.value)};for(const k of ['a','m'])c[k]=[0,1,2,3].map(i=>Number($('options').elements[k+i].value));if(!valid(c)){$('error').textContent='Choose at least one operation. Use whole numbers from 1 to 999, with each minimum no greater than its maximum.';return}cfg=c;put(prefix+'settings',JSON.stringify(cfg));$('error').textContent='';$('settings').open=false;next();$('answer').focus({preventScroll:true})});
+$('credit-form').addEventListener('submit',e=>{e.preventDefault();const n=Number($('credit-count').value);if(!Number.isSafeInteger(n)||n<1||n>1000000)return;const key=prefix+'count:'+monday()+':manual-'+tab+'-'+Date.now();put(key,n);refresh();$('credit-count').value='';$('credit-note').textContent=storage?n.toLocaleString()+' added to this week.':'Could not save this addition; browser storage is unavailable.';});
+$('history').addEventListener('toggle',()=>{if($('history').open){totals=readTotals();renderHistory()}});
+addEventListener('storage',e=>{if(e.key===null||e.key.startsWith(prefix))refresh()});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh()});
+setInterval(()=>{if(current!==monday())refresh()},1000);
+if(document.modelContext?.registerTool)try{Promise.resolve(document.modelContext.registerTool({name:'read_weekly_arithmetic_totals',description:'Read the saved weekly arithmetic totals and current goal.',inputSchema:{type:'object',properties:{},additionalProperties:false},annotations:{readOnlyHint:true},execute:()=>({week:monday(),goal:goalForWeek(monday()),totals:readTotals()})})).catch(()=>{})}catch(e){}
+refresh();next();$('answer').focus({preventScroll:true});
+})();
+</script>
+</html>

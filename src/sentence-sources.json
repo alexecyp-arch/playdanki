@@ -1,0 +1,5007 @@
+{
+  "source": "https://github.com/orgtre/top-open-subtitles-sentences/blob/main/bld/top_sentences/de_top_sentences.csv",
+  "corpus": "OpenSubtitles2018",
+  "selection": "1,000 unique short German sentences and everyday expressions, ordered by exact cleaned subtitle occurrence count; names, noises, bare noun fragments and malformed lines filtered out. English translations and contrasting wrong choices authored for this trainer.",
+  "cards": [
+    {
+      "german": "Ich weiß.",
+      "source_rank": 15,
+      "count": 37654
+    },
+    {
+      "german": "Komm schon.",
+      "source_rank": 17,
+      "count": 34133
+    },
+    {
+      "german": "Was ist los?",
+      "source_rank": 20,
+      "count": 32028
+    },
+    {
+      "german": "Was ist das?",
+      "source_rank": 21,
+      "count": 31044
+    },
+    {
+      "german": "Ich weiß nicht.",
+      "source_rank": 24,
+      "count": 28696
+    },
+    {
+      "german": "Tut mir leid.",
+      "source_rank": 26,
+      "count": 25946
+    },
+    {
+      "german": "Alles klar.",
+      "source_rank": 30,
+      "count": 24070
+    },
+    {
+      "german": "In Ordnung.",
+      "source_rank": 33,
+      "count": 23156
+    },
+    {
+      "german": "Vielen Dank.",
+      "source_rank": 35,
+      "count": 22396
+    },
+    {
+      "german": "Keine Ahnung.",
+      "source_rank": 39,
+      "count": 21166
+    },
+    {
+      "german": "Ich weiß es nicht.",
+      "source_rank": 41,
+      "count": 19127
+    },
+    {
+      "german": "Was ist passiert?",
+      "source_rank": 42,
+      "count": 19110
+    },
+    {
+      "german": "Es tut mir leid.",
+      "source_rank": 43,
+      "count": 18789
+    },
+    {
+      "german": "Was ist?",
+      "source_rank": 45,
+      "count": 18300
+    },
+    {
+      "german": "Wie bitte?",
+      "source_rank": 52,
+      "count": 16822
+    },
+    {
+      "german": "Gute Nacht.",
+      "source_rank": 55,
+      "count": 15776
+    },
+    {
+      "german": "Komm her.",
+      "source_rank": 57,
+      "count": 15305
+    },
+    {
+      "german": "Ach ja?",
+      "source_rank": 59,
+      "count": 14296
+    },
+    {
+      "german": "Hör auf!",
+      "source_rank": 60,
+      "count": 14054
+    },
+    {
+      "german": "Warum nicht?",
+      "source_rank": 61,
+      "count": 14006
+    },
+    {
+      "german": "Schon gut.",
+      "source_rank": 62,
+      "count": 13970
+    },
+    {
+      "german": "Alles in Ordnung?",
+      "source_rank": 64,
+      "count": 13880
+    },
+    {
+      "german": "Gehen wir.",
+      "source_rank": 65,
+      "count": 13602
+    },
+    {
+      "german": "Was denn?",
+      "source_rank": 69,
+      "count": 12973
+    },
+    {
+      "german": "Kommen Sie.",
+      "source_rank": 70,
+      "count": 12771
+    },
+    {
+      "german": "Ich liebe dich.",
+      "source_rank": 71,
+      "count": 12720
+    },
+    {
+      "german": "Guten Tag.",
+      "source_rank": 74,
+      "count": 12461
+    },
+    {
+      "german": "Was soll das?",
+      "source_rank": 75,
+      "count": 12406
+    },
+    {
+      "german": "Na los.",
+      "source_rank": 78,
+      "count": 11996
+    },
+    {
+      "german": "Guten Morgen.",
+      "source_rank": 79,
+      "count": 11809
+    },
+    {
+      "german": "Sehr gut.",
+      "source_rank": 83,
+      "count": 11278
+    },
+    {
+      "german": "Keine Sorge.",
+      "source_rank": 85,
+      "count": 11146
+    },
+    {
+      "german": "Ich auch.",
+      "source_rank": 86,
+      "count": 11102
+    },
+    {
+      "german": "Na gut.",
+      "source_rank": 90,
+      "count": 10730
+    },
+    {
+      "german": "Ich verstehe.",
+      "source_rank": 93,
+      "count": 10572
+    },
+    {
+      "german": "Nein, danke.",
+      "source_rank": 95,
+      "count": 10281
+    },
+    {
+      "german": "Ich kann nicht.",
+      "source_rank": 101,
+      "count": 9975
+    },
+    {
+      "german": "Oh nein.",
+      "source_rank": 104,
+      "count": 9597
+    },
+    {
+      "german": "Was meinst du?",
+      "source_rank": 105,
+      "count": 9576
+    },
+    {
+      "german": "Wer ist das?",
+      "source_rank": 107,
+      "count": 9521
+    },
+    {
+      "german": "Weißt du was?",
+      "source_rank": 109,
+      "count": 9216
+    },
+    {
+      "german": "Oh, ja.",
+      "source_rank": 111,
+      "count": 8929
+    },
+    {
+      "german": "Kein Problem.",
+      "source_rank": 112,
+      "count": 8922
+    },
+    {
+      "german": "Wo ist er?",
+      "source_rank": 113,
+      "count": 8871
+    },
+    {
+      "german": "Auf Wiedersehen.",
+      "source_rank": 115,
+      "count": 8834
+    },
+    {
+      "german": "Siehst du?",
+      "source_rank": 117,
+      "count": 8768
+    },
+    {
+      "german": "Wie geht's?",
+      "source_rank": 120,
+      "count": 8510
+    },
+    {
+      "german": "Wer sind Sie?",
+      "source_rank": 122,
+      "count": 8149
+    },
+    {
+      "german": "Warten Sie.",
+      "source_rank": 124,
+      "count": 8098
+    },
+    {
+      "german": "Guten Abend.",
+      "source_rank": 125,
+      "count": 8057
+    },
+    {
+      "german": "Also gut.",
+      "source_rank": 128,
+      "count": 7830
+    },
+    {
+      "german": "Bis dann.",
+      "source_rank": 129,
+      "count": 7806
+    },
+    {
+      "german": "Noch nicht.",
+      "source_rank": 130,
+      "count": 7764
+    },
+    {
+      "german": "Hör zu.",
+      "source_rank": 133,
+      "count": 7632
+    },
+    {
+      "german": "Das stimmt.",
+      "source_rank": 137,
+      "count": 7447
+    },
+    {
+      "german": "Wer ist da?",
+      "source_rank": 138,
+      "count": 7411
+    },
+    {
+      "german": "Was machst du?",
+      "source_rank": 139,
+      "count": 7338
+    },
+    {
+      "german": "Ganz ruhig.",
+      "source_rank": 142,
+      "count": 7237
+    },
+    {
+      "german": "Was ist denn?",
+      "source_rank": 146,
+      "count": 6988
+    },
+    {
+      "german": "Natürlich nicht.",
+      "source_rank": 147,
+      "count": 6965
+    },
+    {
+      "german": "Und du?",
+      "source_rank": 148,
+      "count": 6955
+    },
+    {
+      "german": "Na schön.",
+      "source_rank": 149,
+      "count": 6906
+    },
+    {
+      "german": "Was willst du?",
+      "source_rank": 150,
+      "count": 6815
+    },
+    {
+      "german": "Viel Glück.",
+      "source_rank": 151,
+      "count": 6792
+    },
+    {
+      "german": "Ja, natürlich.",
+      "source_rank": 153,
+      "count": 6770
+    },
+    {
+      "german": "Na und?",
+      "source_rank": 155,
+      "count": 6537
+    },
+    {
+      "german": "Was machst du da?",
+      "source_rank": 156,
+      "count": 6531
+    },
+    {
+      "german": "Moment mal.",
+      "source_rank": 157,
+      "count": 6473
+    },
+    {
+      "german": "Entschuldigen Sie.",
+      "source_rank": 158,
+      "count": 6468
+    },
+    {
+      "german": "Das ist gut.",
+      "source_rank": 162,
+      "count": 6410
+    },
+    {
+      "german": "Ja, ich weiß.",
+      "source_rank": 163,
+      "count": 6400
+    },
+    {
+      "german": "Das ist alles.",
+      "source_rank": 165,
+      "count": 6231
+    },
+    {
+      "german": "Vergiss es.",
+      "source_rank": 166,
+      "count": 6177
+    },
+    {
+      "german": "Was machst du hier?",
+      "source_rank": 168,
+      "count": 6175
+    },
+    {
+      "german": "Setz dich.",
+      "source_rank": 169,
+      "count": 6159
+    },
+    {
+      "german": "Mach schon.",
+      "source_rank": 172,
+      "count": 6046
+    },
+    {
+      "german": "Wieso nicht?",
+      "source_rank": 174,
+      "count": 6005
+    },
+    {
+      "german": "Komm mit.",
+      "source_rank": 175,
+      "count": 5952
+    },
+    {
+      "german": "Wo bist du?",
+      "source_rank": 181,
+      "count": 5796
+    },
+    {
+      "german": "Wo ist sie?",
+      "source_rank": 182,
+      "count": 5782
+    },
+    {
+      "german": "Was war das?",
+      "source_rank": 186,
+      "count": 5759
+    },
+    {
+      "german": "Was soll das heißen?",
+      "source_rank": 188,
+      "count": 5653
+    },
+    {
+      "german": "Wer bist du?",
+      "source_rank": 192,
+      "count": 5501
+    },
+    {
+      "german": "Keine Bewegung!",
+      "source_rank": 194,
+      "count": 5474
+    },
+    {
+      "german": "Ja, klar.",
+      "source_rank": 200,
+      "count": 5308
+    },
+    {
+      "german": "Was wollen Sie?",
+      "source_rank": 202,
+      "count": 5281
+    },
+    {
+      "german": "Pass auf!",
+      "source_rank": 205,
+      "count": 5194
+    },
+    {
+      "german": "Sehen Sie?",
+      "source_rank": 206,
+      "count": 5176
+    },
+    {
+      "german": "Gern geschehen.",
+      "source_rank": 207,
+      "count": 5143
+    },
+    {
+      "german": "Kommt schon.",
+      "source_rank": 208,
+      "count": 5127
+    },
+    {
+      "german": "Das ist es.",
+      "source_rank": 209,
+      "count": 5126
+    },
+    {
+      "german": "Steh auf!",
+      "source_rank": 210,
+      "count": 5118
+    },
+    {
+      "german": "Ich auch nicht.",
+      "source_rank": 212,
+      "count": 5097
+    },
+    {
+      "german": "Was ist hier los?",
+      "source_rank": 214,
+      "count": 5063
+    },
+    {
+      "german": "Los geht's.",
+      "source_rank": 215,
+      "count": 5062
+    },
+    {
+      "german": "Setzen Sie sich.",
+      "source_rank": 217,
+      "count": 5049
+    },
+    {
+      "german": "Verstehst du?",
+      "source_rank": 219,
+      "count": 4974
+    },
+    {
+      "german": "Bitte sehr.",
+      "source_rank": 221,
+      "count": 4932
+    },
+    {
+      "german": "Was ist denn los?",
+      "source_rank": 222,
+      "count": 4885
+    },
+    {
+      "german": "Ich komme.",
+      "source_rank": 223,
+      "count": 4882
+    },
+    {
+      "german": "Ach so.",
+      "source_rank": 224,
+      "count": 4870
+    },
+    {
+      "german": "Ich muss los.",
+      "source_rank": 225,
+      "count": 4773
+    },
+    {
+      "german": "Bist du sicher?",
+      "source_rank": 226,
+      "count": 4766
+    },
+    {
+      "german": "Er ist tot.",
+      "source_rank": 227,
+      "count": 4748
+    },
+    {
+      "german": "Einen Moment.",
+      "source_rank": 228,
+      "count": 4747
+    },
+    {
+      "german": "Ja, genau.",
+      "source_rank": 229,
+      "count": 4713
+    },
+    {
+      "german": "Das reicht.",
+      "source_rank": 232,
+      "count": 4654
+    },
+    {
+      "german": "Im Ernst?",
+      "source_rank": 234,
+      "count": 4644
+    },
+    {
+      "german": "Bis später.",
+      "source_rank": 235,
+      "count": 4643
+    },
+    {
+      "german": "Gar nichts.",
+      "source_rank": 237,
+      "count": 4621
+    },
+    {
+      "german": "Wie geht es dir?",
+      "source_rank": 239,
+      "count": 4588
+    },
+    {
+      "german": "Geht es dir gut?",
+      "source_rank": 241,
+      "count": 4574
+    },
+    {
+      "german": "Hören Sie.",
+      "source_rank": 243,
+      "count": 4546
+    },
+    {
+      "german": "Mir geht's gut.",
+      "source_rank": 244,
+      "count": 4542
+    },
+    {
+      "german": "Halt die Klappe.",
+      "source_rank": 245,
+      "count": 4509
+    },
+    {
+      "german": "Ist schon gut.",
+      "source_rank": 248,
+      "count": 4455
+    },
+    {
+      "german": "Das geht nicht.",
+      "source_rank": 250,
+      "count": 4433
+    },
+    {
+      "german": "Du hast recht.",
+      "source_rank": 252,
+      "count": 4424
+    },
+    {
+      "german": "Gut gemacht.",
+      "source_rank": 254,
+      "count": 4366
+    },
+    {
+      "german": "Oh, Mann.",
+      "source_rank": 255,
+      "count": 4353
+    },
+    {
+      "german": "Da ist er.",
+      "source_rank": 256,
+      "count": 4352
+    },
+    {
+      "german": "Woher weißt du das?",
+      "source_rank": 257,
+      "count": 4352
+    },
+    {
+      "german": "Aus dem Weg!",
+      "source_rank": 258,
+      "count": 4333
+    },
+    {
+      "german": "Komm rein.",
+      "source_rank": 260,
+      "count": 4314
+    },
+    {
+      "german": "Es ist vorbei.",
+      "source_rank": 261,
+      "count": 4305
+    },
+    {
+      "german": "Wo willst du hin?",
+      "source_rank": 263,
+      "count": 4298
+    },
+    {
+      "german": "Beeil dich.",
+      "source_rank": 265,
+      "count": 4268
+    },
+    {
+      "german": "Warte mal.",
+      "source_rank": 266,
+      "count": 4265
+    },
+    {
+      "german": "Hau ab!",
+      "source_rank": 269,
+      "count": 4190
+    },
+    {
+      "german": "Wovon redest du?",
+      "source_rank": 270,
+      "count": 4180
+    },
+    {
+      "german": "Raus hier!",
+      "source_rank": 273,
+      "count": 4158
+    },
+    {
+      "german": "Lass mich los!",
+      "source_rank": 274,
+      "count": 4129
+    },
+    {
+      "german": "Es tut mir so leid.",
+      "source_rank": 275,
+      "count": 4129
+    },
+    {
+      "german": "Und dann?",
+      "source_rank": 276,
+      "count": 4118
+    },
+    {
+      "german": "Na klar.",
+      "source_rank": 277,
+      "count": 4114
+    },
+    {
+      "german": "Auf keinen Fall.",
+      "source_rank": 278,
+      "count": 4078
+    },
+    {
+      "german": "Danke schön.",
+      "source_rank": 279,
+      "count": 4064
+    },
+    {
+      "german": "Sei still!",
+      "source_rank": 283,
+      "count": 4021
+    },
+    {
+      "german": "Was meinen Sie?",
+      "source_rank": 285,
+      "count": 4009
+    },
+    {
+      "german": "Darf ich?",
+      "source_rank": 290,
+      "count": 3940
+    },
+    {
+      "german": "Meine Güte.",
+      "source_rank": 291,
+      "count": 3939
+    },
+    {
+      "german": "Ich muss gehen.",
+      "source_rank": 292,
+      "count": 3896
+    },
+    {
+      "german": "Ist gut.",
+      "source_rank": 293,
+      "count": 3892
+    },
+    {
+      "german": "Danke sehr.",
+      "source_rank": 294,
+      "count": 3874
+    },
+    {
+      "german": "Ist alles in Ordnung?",
+      "source_rank": 296,
+      "count": 3857
+    },
+    {
+      "german": "Ich verstehe nicht.",
+      "source_rank": 299,
+      "count": 3814
+    },
+    {
+      "german": "Und jetzt?",
+      "source_rank": 300,
+      "count": 3796
+    },
+    {
+      "german": "Das weiß ich.",
+      "source_rank": 303,
+      "count": 3712
+    },
+    {
+      "german": "Wo warst du?",
+      "source_rank": 306,
+      "count": 3689
+    },
+    {
+      "german": "Hilf mir!",
+      "source_rank": 307,
+      "count": 3688
+    },
+    {
+      "german": "Sieh dir das an.",
+      "source_rank": 308,
+      "count": 3670
+    },
+    {
+      "german": "Das war's.",
+      "source_rank": 309,
+      "count": 3643
+    },
+    {
+      "german": "Beruhige dich.",
+      "source_rank": 310,
+      "count": 3642
+    },
+    {
+      "german": "Was gibt's?",
+      "source_rank": 311,
+      "count": 3639
+    },
+    {
+      "german": "Wie geht's dir?",
+      "source_rank": 312,
+      "count": 3618
+    },
+    {
+      "german": "Was zum Teufel?",
+      "source_rank": 313,
+      "count": 3616
+    },
+    {
+      "german": "Sieh mich an.",
+      "source_rank": 317,
+      "count": 3588
+    },
+    {
+      "german": "Ja, sicher.",
+      "source_rank": 318,
+      "count": 3581
+    },
+    {
+      "german": "Weiß nicht.",
+      "source_rank": 319,
+      "count": 3577
+    },
+    {
+      "german": "Sehr schön.",
+      "source_rank": 322,
+      "count": 3553
+    },
+    {
+      "german": "Keine Angst.",
+      "source_rank": 324,
+      "count": 3507
+    },
+    {
+      "german": "Ganz genau.",
+      "source_rank": 327,
+      "count": 3447
+    },
+    {
+      "german": "Ich wusste es.",
+      "source_rank": 328,
+      "count": 3439
+    },
+    {
+      "german": "Entschuldigen Sie mich.",
+      "source_rank": 329,
+      "count": 3419
+    },
+    {
+      "german": "Das ist er.",
+      "source_rank": 330,
+      "count": 3403
+    },
+    {
+      "german": "Wie geht es Ihnen?",
+      "source_rank": 332,
+      "count": 3369
+    },
+    {
+      "german": "Das bin ich.",
+      "source_rank": 333,
+      "count": 3367
+    },
+    {
+      "german": "Gute Idee.",
+      "source_rank": 335,
+      "count": 3346
+    },
+    {
+      "german": "Kann ich Ihnen helfen?",
+      "source_rank": 336,
+      "count": 3344
+    },
+    {
+      "german": "Ich bin hier.",
+      "source_rank": 337,
+      "count": 3317
+    },
+    {
+      "german": "Was meinst du damit?",
+      "source_rank": 338,
+      "count": 3314
+    },
+    {
+      "german": "Nicht wahr?",
+      "source_rank": 340,
+      "count": 3307
+    },
+    {
+      "german": "Wie heißt du?",
+      "source_rank": 342,
+      "count": 3293
+    },
+    {
+      "german": "Ich nicht.",
+      "source_rank": 343,
+      "count": 3291
+    },
+    {
+      "german": "Und Sie?",
+      "source_rank": 345,
+      "count": 3288
+    },
+    {
+      "german": "Ich gehe.",
+      "source_rank": 346,
+      "count": 3285
+    },
+    {
+      "german": "Ja, bitte.",
+      "source_rank": 348,
+      "count": 3274
+    },
+    {
+      "german": "Bitte nicht.",
+      "source_rank": 350,
+      "count": 3262
+    },
+    {
+      "german": "Auf geht's.",
+      "source_rank": 352,
+      "count": 3238
+    },
+    {
+      "german": "Hier entlang.",
+      "source_rank": 353,
+      "count": 3238
+    },
+    {
+      "german": "Bist du verrückt?",
+      "source_rank": 355,
+      "count": 3234
+    },
+    {
+      "german": "Du auch.",
+      "source_rank": 357,
+      "count": 3189
+    },
+    {
+      "german": "Wer war das?",
+      "source_rank": 358,
+      "count": 3171
+    },
+    {
+      "german": "Das glaube ich nicht.",
+      "source_rank": 360,
+      "count": 3144
+    },
+    {
+      "german": "Lass das.",
+      "source_rank": 364,
+      "count": 3113
+    },
+    {
+      "german": "Ja, danke.",
+      "source_rank": 365,
+      "count": 3110
+    },
+    {
+      "german": "Was heißt das?",
+      "source_rank": 366,
+      "count": 3104
+    },
+    {
+      "german": "Sieh mal.",
+      "source_rank": 367,
+      "count": 3101
+    },
+    {
+      "german": "Wie viel?",
+      "source_rank": 368,
+      "count": 3092
+    },
+    {
+      "german": "Alles wird gut.",
+      "source_rank": 369,
+      "count": 3091
+    },
+    {
+      "german": "Mal sehen.",
+      "source_rank": 370,
+      "count": 3088
+    },
+    {
+      "german": "Nicht wirklich.",
+      "source_rank": 371,
+      "count": 3087
+    },
+    {
+      "german": "Nicht schlecht.",
+      "source_rank": 372,
+      "count": 3085
+    },
+    {
+      "german": "Fick dich!",
+      "source_rank": 373,
+      "count": 3082
+    },
+    {
+      "german": "Sind Sie sicher?",
+      "source_rank": 374,
+      "count": 3064
+    },
+    {
+      "german": "Das ist unmöglich.",
+      "source_rank": 375,
+      "count": 3061
+    },
+    {
+      "german": "Was hast du gesagt?",
+      "source_rank": 377,
+      "count": 3038
+    },
+    {
+      "german": "Ich glaube nicht.",
+      "source_rank": 378,
+      "count": 3038
+    },
+    {
+      "german": "Gut so.",
+      "source_rank": 379,
+      "count": 3022
+    },
+    {
+      "german": "Was hast du vor?",
+      "source_rank": 381,
+      "count": 3009
+    },
+    {
+      "german": "Wo gehst du hin?",
+      "source_rank": 382,
+      "count": 3002
+    },
+    {
+      "german": "Hör mir zu.",
+      "source_rank": 383,
+      "count": 3001
+    },
+    {
+      "german": "Was soll ich tun?",
+      "source_rank": 384,
+      "count": 2984
+    },
+    {
+      "german": "Ich weiß es.",
+      "source_rank": 385,
+      "count": 2976
+    },
+    {
+      "german": "Geht's dir gut?",
+      "source_rank": 388,
+      "count": 2930
+    },
+    {
+      "german": "Lass mich in Ruhe.",
+      "source_rank": 389,
+      "count": 2930
+    },
+    {
+      "german": "Ist ja gut.",
+      "source_rank": 390,
+      "count": 2927
+    },
+    {
+      "german": "Das ist nicht wahr.",
+      "source_rank": 391,
+      "count": 2922
+    },
+    {
+      "german": "Mach dir keine Sorgen.",
+      "source_rank": 392,
+      "count": 2921
+    },
+    {
+      "german": "Was ist los mit dir?",
+      "source_rank": 393,
+      "count": 2914
+    },
+    {
+      "german": "Herzlichen Glückwunsch.",
+      "source_rank": 395,
+      "count": 2909
+    },
+    {
+      "german": "Was hast du?",
+      "source_rank": 397,
+      "count": 2898
+    },
+    {
+      "german": "Gehen Sie.",
+      "source_rank": 401,
+      "count": 2880
+    },
+    {
+      "german": "Nur zu.",
+      "source_rank": 402,
+      "count": 2879
+    },
+    {
+      "german": "Kommen Sie rein.",
+      "source_rank": 403,
+      "count": 2868
+    },
+    {
+      "german": "Wach auf!",
+      "source_rank": 405,
+      "count": 2832
+    },
+    {
+      "german": "Hört auf!",
+      "source_rank": 406,
+      "count": 2824
+    },
+    {
+      "german": "So ist es.",
+      "source_rank": 407,
+      "count": 2819
+    },
+    {
+      "german": "Wie meinst du das?",
+      "source_rank": 409,
+      "count": 2816
+    },
+    {
+      "german": "Ich bin's.",
+      "source_rank": 412,
+      "count": 2785
+    },
+    {
+      "german": "Was ist mit dir?",
+      "source_rank": 413,
+      "count": 2785
+    },
+    {
+      "german": "Weiß ich nicht.",
+      "source_rank": 414,
+      "count": 2775
+    },
+    {
+      "german": "Nicht schießen!",
+      "source_rank": 415,
+      "count": 2772
+    },
+    {
+      "german": "Hör auf damit.",
+      "source_rank": 416,
+      "count": 2767
+    },
+    {
+      "german": "Es reicht.",
+      "source_rank": 418,
+      "count": 2758
+    },
+    {
+      "german": "Was hat er gesagt?",
+      "source_rank": 422,
+      "count": 2736
+    },
+    {
+      "german": "Mir geht es gut.",
+      "source_rank": 423,
+      "count": 2718
+    },
+    {
+      "german": "Halt's Maul!",
+      "source_rank": 424,
+      "count": 2716
+    },
+    {
+      "german": "Das stimmt nicht.",
+      "source_rank": 426,
+      "count": 2696
+    },
+    {
+      "german": "Woher wissen Sie das?",
+      "source_rank": 429,
+      "count": 2689
+    },
+    {
+      "german": "Was ist es?",
+      "source_rank": 431,
+      "count": 2681
+    },
+    {
+      "german": "Freut mich.",
+      "source_rank": 433,
+      "count": 2671
+    },
+    {
+      "german": "Stehen bleiben!",
+      "source_rank": 434,
+      "count": 2666
+    },
+    {
+      "german": "Entspann dich.",
+      "source_rank": 435,
+      "count": 2660
+    },
+    {
+      "german": "Wissen Sie was?",
+      "source_rank": 440,
+      "count": 2618
+    },
+    {
+      "german": "Na komm.",
+      "source_rank": 442,
+      "count": 2608
+    },
+    {
+      "german": "Das ist toll.",
+      "source_rank": 443,
+      "count": 2599
+    },
+    {
+      "german": "Das weiß ich nicht.",
+      "source_rank": 444,
+      "count": 2591
+    },
+    {
+      "german": "Und wie?",
+      "source_rank": 445,
+      "count": 2588
+    },
+    {
+      "german": "Lass mich!",
+      "source_rank": 446,
+      "count": 2585
+    },
+    {
+      "german": "Wohin gehst du?",
+      "source_rank": 447,
+      "count": 2574
+    },
+    {
+      "german": "Was bedeutet das?",
+      "source_rank": 450,
+      "count": 2560
+    },
+    {
+      "german": "Nicht jetzt.",
+      "source_rank": 452,
+      "count": 2543
+    },
+    {
+      "german": "Ich denke schon.",
+      "source_rank": 453,
+      "count": 2542
+    },
+    {
+      "german": "Hier lang.",
+      "source_rank": 456,
+      "count": 2536
+    },
+    {
+      "german": "Hände hoch!",
+      "source_rank": 457,
+      "count": 2536
+    },
+    {
+      "german": "Hör mal.",
+      "source_rank": 458,
+      "count": 2524
+    },
+    {
+      "german": "Was machst du denn hier?",
+      "source_rank": 459,
+      "count": 2523
+    },
+    {
+      "german": "Was denkst du?",
+      "source_rank": 460,
+      "count": 2522
+    },
+    {
+      "german": "Gute Arbeit.",
+      "source_rank": 461,
+      "count": 2521
+    },
+    {
+      "german": "Was tust du?",
+      "source_rank": 462,
+      "count": 2506
+    },
+    {
+      "german": "Ja, gut.",
+      "source_rank": 463,
+      "count": 2505
+    },
+    {
+      "german": "Alles gut.",
+      "source_rank": 465,
+      "count": 2483
+    },
+    {
+      "german": "Ja, das stimmt.",
+      "source_rank": 466,
+      "count": 2479
+    },
+    {
+      "german": "Weg da!",
+      "source_rank": 467,
+      "count": 2471
+    },
+    {
+      "german": "Was hast du getan?",
+      "source_rank": 469,
+      "count": 2469
+    },
+    {
+      "german": "Was sagst du?",
+      "source_rank": 470,
+      "count": 2468
+    },
+    {
+      "german": "Das tut mir leid.",
+      "source_rank": 474,
+      "count": 2454
+    },
+    {
+      "german": "Bitte schön.",
+      "source_rank": 475,
+      "count": 2447
+    },
+    {
+      "german": "Was machen wir jetzt?",
+      "source_rank": 477,
+      "count": 2434
+    },
+    {
+      "german": "Komm zurück!",
+      "source_rank": 480,
+      "count": 2428
+    },
+    {
+      "german": "Machst du Witze?",
+      "source_rank": 481,
+      "count": 2428
+    },
+    {
+      "german": "Sei vorsichtig.",
+      "source_rank": 483,
+      "count": 2408
+    },
+    {
+      "german": "Mach's gut.",
+      "source_rank": 486,
+      "count": 2385
+    },
+    {
+      "german": "Lass uns gehen.",
+      "source_rank": 487,
+      "count": 2383
+    },
+    {
+      "german": "Stimmt's?",
+      "source_rank": 488,
+      "count": 2383
+    },
+    {
+      "german": "Ich verspreche es.",
+      "source_rank": 492,
+      "count": 2374
+    },
+    {
+      "german": "Wie denn?",
+      "source_rank": 494,
+      "count": 2355
+    },
+    {
+      "german": "Geh weg!",
+      "source_rank": 496,
+      "count": 2341
+    },
+    {
+      "german": "Bis bald.",
+      "source_rank": 498,
+      "count": 2339
+    },
+    {
+      "german": "Ganz sicher.",
+      "source_rank": 499,
+      "count": 2338
+    },
+    {
+      "german": "Verstehen Sie?",
+      "source_rank": 500,
+      "count": 2335
+    },
+    {
+      "german": "Wo sind sie?",
+      "source_rank": 501,
+      "count": 2335
+    },
+    {
+      "german": "Das kann ich nicht.",
+      "source_rank": 502,
+      "count": 2331
+    },
+    {
+      "german": "Das werde ich.",
+      "source_rank": 503,
+      "count": 2324
+    },
+    {
+      "german": "Nicht mehr.",
+      "source_rank": 504,
+      "count": 2320
+    },
+    {
+      "german": "Das ist richtig.",
+      "source_rank": 505,
+      "count": 2317
+    },
+    {
+      "german": "Bleib hier.",
+      "source_rank": 506,
+      "count": 2317
+    },
+    {
+      "german": "Oh, danke.",
+      "source_rank": 507,
+      "count": 2313
+    },
+    {
+      "german": "Nicht bewegen.",
+      "source_rank": 513,
+      "count": 2289
+    },
+    {
+      "german": "Ich bin gleich wieder da.",
+      "source_rank": 514,
+      "count": 2287
+    },
+    {
+      "german": "Ich schon.",
+      "source_rank": 515,
+      "count": 2286
+    },
+    {
+      "german": "Vertrau mir.",
+      "source_rank": 516,
+      "count": 2286
+    },
+    {
+      "german": "Spinnst du?",
+      "source_rank": 517,
+      "count": 2279
+    },
+    {
+      "german": "Gib her.",
+      "source_rank": 518,
+      "count": 2271
+    },
+    {
+      "german": "Was geht hier vor?",
+      "source_rank": 519,
+      "count": 2265
+    },
+    {
+      "german": "Wer weiß?",
+      "source_rank": 520,
+      "count": 2264
+    },
+    {
+      "german": "Schon wieder?",
+      "source_rank": 521,
+      "count": 2240
+    },
+    {
+      "german": "Bis morgen.",
+      "source_rank": 522,
+      "count": 2237
+    },
+    {
+      "german": "Noch mal.",
+      "source_rank": 523,
+      "count": 2233
+    },
+    {
+      "german": "Helft mir!",
+      "source_rank": 524,
+      "count": 2233
+    },
+    {
+      "german": "Steig ein.",
+      "source_rank": 528,
+      "count": 2202
+    },
+    {
+      "german": "Wir müssen los.",
+      "source_rank": 529,
+      "count": 2195
+    },
+    {
+      "german": "Das ist verrückt.",
+      "source_rank": 531,
+      "count": 2188
+    },
+    {
+      "german": "Wie spät ist es?",
+      "source_rank": 532,
+      "count": 2186
+    },
+    {
+      "german": "Ach was.",
+      "source_rank": 536,
+      "count": 2177
+    },
+    {
+      "german": "Nicht nötig.",
+      "source_rank": 540,
+      "count": 2155
+    },
+    {
+      "german": "Ist das wahr?",
+      "source_rank": 541,
+      "count": 2153
+    },
+    {
+      "german": "Von wem?",
+      "source_rank": 542,
+      "count": 2150
+    },
+    {
+      "german": "Beeilt euch!",
+      "source_rank": 543,
+      "count": 2146
+    },
+    {
+      "german": "Viel Spaß.",
+      "source_rank": 544,
+      "count": 2142
+    },
+    {
+      "german": "Ich danke Ihnen.",
+      "source_rank": 547,
+      "count": 2138
+    },
+    {
+      "german": "Schön, dich zu sehen.",
+      "source_rank": 549,
+      "count": 2130
+    },
+    {
+      "german": "Na also.",
+      "source_rank": 550,
+      "count": 2129
+    },
+    {
+      "german": "Auf jeden Fall.",
+      "source_rank": 551,
+      "count": 2127
+    },
+    {
+      "german": "Was tust du da?",
+      "source_rank": 554,
+      "count": 2120
+    },
+    {
+      "german": "Also dann.",
+      "source_rank": 555,
+      "count": 2118
+    },
+    {
+      "german": "Zu spät.",
+      "source_rank": 556,
+      "count": 2118
+    },
+    {
+      "german": "Sie kommen.",
+      "source_rank": 557,
+      "count": 2109
+    },
+    {
+      "german": "Sehr erfreut.",
+      "source_rank": 559,
+      "count": 2106
+    },
+    {
+      "german": "Er ist weg.",
+      "source_rank": 560,
+      "count": 2105
+    },
+    {
+      "german": "Aber nein.",
+      "source_rank": 561,
+      "count": 2099
+    },
+    {
+      "german": "Aber natürlich.",
+      "source_rank": 562,
+      "count": 2094
+    },
+    {
+      "german": "Los jetzt!",
+      "source_rank": 564,
+      "count": 2075
+    },
+    {
+      "german": "Verpiss dich!",
+      "source_rank": 565,
+      "count": 2066
+    },
+    {
+      "german": "Ich habe Angst.",
+      "source_rank": 566,
+      "count": 2065
+    },
+    {
+      "german": "Wie heißen Sie?",
+      "source_rank": 567,
+      "count": 2064
+    },
+    {
+      "german": "Wie auch immer.",
+      "source_rank": 568,
+      "count": 2054
+    },
+    {
+      "german": "Ich liebe dich auch.",
+      "source_rank": 570,
+      "count": 2049
+    },
+    {
+      "german": "Ich verstehe das nicht.",
+      "source_rank": 574,
+      "count": 2033
+    },
+    {
+      "german": "Genau so.",
+      "source_rank": 577,
+      "count": 2022
+    },
+    {
+      "german": "Ist das klar?",
+      "source_rank": 578,
+      "count": 2013
+    },
+    {
+      "german": "Da ist sie.",
+      "source_rank": 579,
+      "count": 2012
+    },
+    {
+      "german": "Was kann ich für Sie tun?",
+      "source_rank": 580,
+      "count": 2010
+    },
+    {
+      "german": "Mach ich.",
+      "source_rank": 583,
+      "count": 1997
+    },
+    {
+      "german": "Halt den Mund!",
+      "source_rank": 585,
+      "count": 1996
+    },
+    {
+      "german": "Gar nicht.",
+      "source_rank": 586,
+      "count": 1995
+    },
+    {
+      "german": "Hörst du mich?",
+      "source_rank": 587,
+      "count": 1988
+    },
+    {
+      "german": "Ist das alles?",
+      "source_rank": 589,
+      "count": 1982
+    },
+    {
+      "german": "Stimmt das?",
+      "source_rank": 590,
+      "count": 1975
+    },
+    {
+      "german": "Das ist lächerlich.",
+      "source_rank": 591,
+      "count": 1973
+    },
+    {
+      "german": "Wir müssen reden.",
+      "source_rank": 592,
+      "count": 1971
+    },
+    {
+      "german": "Sie ist tot.",
+      "source_rank": 593,
+      "count": 1970
+    },
+    {
+      "german": "Es geht mir gut.",
+      "source_rank": 594,
+      "count": 1970
+    },
+    {
+      "german": "Was machen Sie da?",
+      "source_rank": 595,
+      "count": 1969
+    },
+    {
+      "german": "Was redest du da?",
+      "source_rank": 597,
+      "count": 1964
+    },
+    {
+      "german": "Bist du bereit?",
+      "source_rank": 602,
+      "count": 1950
+    },
+    {
+      "german": "Ich hab's.",
+      "source_rank": 603,
+      "count": 1949
+    },
+    {
+      "german": "Ich glaube schon.",
+      "source_rank": 604,
+      "count": 1948
+    },
+    {
+      "german": "Was jetzt?",
+      "source_rank": 606,
+      "count": 1944
+    },
+    {
+      "german": "Es geht los.",
+      "source_rank": 609,
+      "count": 1939
+    },
+    {
+      "german": "Hören Sie auf!",
+      "source_rank": 610,
+      "count": 1937
+    },
+    {
+      "german": "Überhaupt nicht.",
+      "source_rank": 612,
+      "count": 1934
+    },
+    {
+      "german": "Da drüben.",
+      "source_rank": 613,
+      "count": 1929
+    },
+    {
+      "german": "Frohe Weihnachten.",
+      "source_rank": 616,
+      "count": 1925
+    },
+    {
+      "german": "Für mich?",
+      "source_rank": 618,
+      "count": 1920
+    },
+    {
+      "german": "Wo ist es?",
+      "source_rank": 619,
+      "count": 1919
+    },
+    {
+      "german": "Das ist mir egal.",
+      "source_rank": 620,
+      "count": 1906
+    },
+    {
+      "german": "Ich meine es ernst.",
+      "source_rank": 621,
+      "count": 1905
+    },
+    {
+      "german": "Geh schon.",
+      "source_rank": 622,
+      "count": 1903
+    },
+    {
+      "german": "Keine Ursache.",
+      "source_rank": 623,
+      "count": 1902
+    },
+    {
+      "german": "Wie schön.",
+      "source_rank": 626,
+      "count": 1897
+    },
+    {
+      "german": "Ist mir egal.",
+      "source_rank": 627,
+      "count": 1896
+    },
+    {
+      "german": "Das kann nicht sein.",
+      "source_rank": 628,
+      "count": 1895
+    },
+    {
+      "german": "Was machen Sie hier?",
+      "source_rank": 629,
+      "count": 1893
+    },
+    {
+      "german": "Ich habe keine Ahnung.",
+      "source_rank": 630,
+      "count": 1881
+    },
+    {
+      "german": "Aber sicher.",
+      "source_rank": 632,
+      "count": 1880
+    },
+    {
+      "german": "Leck mich!",
+      "source_rank": 633,
+      "count": 1878
+    },
+    {
+      "german": "Ist das dein Ernst?",
+      "source_rank": 634,
+      "count": 1878
+    },
+    {
+      "german": "Was soll ich sagen?",
+      "source_rank": 635,
+      "count": 1874
+    },
+    {
+      "german": "Ich bin es.",
+      "source_rank": 636,
+      "count": 1874
+    },
+    {
+      "german": "Wie fühlst du dich?",
+      "source_rank": 637,
+      "count": 1871
+    },
+    {
+      "german": "Das ist wahr.",
+      "source_rank": 638,
+      "count": 1869
+    },
+    {
+      "german": "Wir sehen uns.",
+      "source_rank": 639,
+      "count": 1864
+    },
+    {
+      "german": "Hier ist es.",
+      "source_rank": 640,
+      "count": 1861
+    },
+    {
+      "german": "Pass auf dich auf.",
+      "source_rank": 642,
+      "count": 1852
+    },
+    {
+      "german": "Helfen Sie mir.",
+      "source_rank": 644,
+      "count": 1844
+    },
+    {
+      "german": "Verdammt noch mal!",
+      "source_rank": 646,
+      "count": 1839
+    },
+    {
+      "german": "In der Tat.",
+      "source_rank": 648,
+      "count": 1832
+    },
+    {
+      "german": "Ach, wirklich?",
+      "source_rank": 649,
+      "count": 1832
+    },
+    {
+      "german": "Da bist du ja.",
+      "source_rank": 650,
+      "count": 1829
+    },
+    {
+      "german": "Kommen Sie mit.",
+      "source_rank": 651,
+      "count": 1810
+    },
+    {
+      "german": "Hier, bitte.",
+      "source_rank": 652,
+      "count": 1807
+    },
+    {
+      "german": "Wo bin ich?",
+      "source_rank": 654,
+      "count": 1801
+    },
+    {
+      "german": "Nein, natürlich nicht.",
+      "source_rank": 655,
+      "count": 1791
+    },
+    {
+      "german": "Was ist denn das?",
+      "source_rank": 656,
+      "count": 1790
+    },
+    {
+      "german": "Du meine Güte.",
+      "source_rank": 657,
+      "count": 1788
+    },
+    {
+      "german": "Ich höre.",
+      "source_rank": 658,
+      "count": 1783
+    },
+    {
+      "german": "Lasst mich los!",
+      "source_rank": 659,
+      "count": 1782
+    },
+    {
+      "german": "Meine Herren.",
+      "source_rank": 660,
+      "count": 1780
+    },
+    {
+      "german": "Ich kümmere mich darum.",
+      "source_rank": 663,
+      "count": 1777
+    },
+    {
+      "german": "Was dann?",
+      "source_rank": 665,
+      "count": 1775
+    },
+    {
+      "german": "Hast du verstanden?",
+      "source_rank": 666,
+      "count": 1771
+    },
+    {
+      "german": "Und ich?",
+      "source_rank": 668,
+      "count": 1769
+    },
+    {
+      "german": "Wo sind wir?",
+      "source_rank": 671,
+      "count": 1766
+    },
+    {
+      "german": "Ich komme mit.",
+      "source_rank": 673,
+      "count": 1759
+    },
+    {
+      "german": "Was ist das denn?",
+      "source_rank": 675,
+      "count": 1758
+    },
+    {
+      "german": "Da sind sie.",
+      "source_rank": 676,
+      "count": 1755
+    },
+    {
+      "german": "Ja, richtig.",
+      "source_rank": 677,
+      "count": 1754
+    },
+    {
+      "german": "Das ist sie.",
+      "source_rank": 678,
+      "count": 1753
+    },
+    {
+      "german": "Beruhigen Sie sich.",
+      "source_rank": 679,
+      "count": 1752
+    },
+    {
+      "german": "Was sollen wir tun?",
+      "source_rank": 680,
+      "count": 1748
+    },
+    {
+      "german": "Wir gehen.",
+      "source_rank": 681,
+      "count": 1747
+    },
+    {
+      "german": "Er ist hier.",
+      "source_rank": 682,
+      "count": 1744
+    },
+    {
+      "german": "Erinnerst du dich?",
+      "source_rank": 683,
+      "count": 1743
+    },
+    {
+      "german": "Weg hier!",
+      "source_rank": 684,
+      "count": 1741
+    },
+    {
+      "german": "Nein, ist es nicht.",
+      "source_rank": 685,
+      "count": 1741
+    },
+    {
+      "german": "Nicht doch.",
+      "source_rank": 686,
+      "count": 1738
+    },
+    {
+      "german": "Ich kann das nicht.",
+      "source_rank": 688,
+      "count": 1735
+    },
+    {
+      "german": "Also los.",
+      "source_rank": 689,
+      "count": 1728
+    },
+    {
+      "german": "Wovon reden Sie?",
+      "source_rank": 691,
+      "count": 1725
+    },
+    {
+      "german": "Tu es.",
+      "source_rank": 692,
+      "count": 1724
+    },
+    {
+      "german": "Macht nichts.",
+      "source_rank": 693,
+      "count": 1721
+    },
+    {
+      "german": "Ich bin dabei.",
+      "source_rank": 694,
+      "count": 1720
+    },
+    {
+      "german": "Lass los!",
+      "source_rank": 695,
+      "count": 1715
+    },
+    {
+      "german": "Du lügst.",
+      "source_rank": 697,
+      "count": 1715
+    },
+    {
+      "german": "Dann los.",
+      "source_rank": 698,
+      "count": 1714
+    },
+    {
+      "german": "Bin gleich wieder da.",
+      "source_rank": 699,
+      "count": 1713
+    },
+    {
+      "german": "Ganz recht.",
+      "source_rank": 701,
+      "count": 1707
+    },
+    {
+      "german": "Da ist es.",
+      "source_rank": 703,
+      "count": 1693
+    },
+    {
+      "german": "Na dann.",
+      "source_rank": 704,
+      "count": 1692
+    },
+    {
+      "german": "Macht schon!",
+      "source_rank": 707,
+      "count": 1684
+    },
+    {
+      "german": "Hey, Leute.",
+      "source_rank": 708,
+      "count": 1681
+    },
+    {
+      "german": "Das weißt du.",
+      "source_rank": 709,
+      "count": 1680
+    },
+    {
+      "german": "Aber ja.",
+      "source_rank": 710,
+      "count": 1679
+    },
+    {
+      "german": "Das gefällt mir.",
+      "source_rank": 711,
+      "count": 1677
+    },
+    {
+      "german": "Du bist verrückt.",
+      "source_rank": 714,
+      "count": 1672
+    },
+    {
+      "german": "Wirklich nicht?",
+      "source_rank": 715,
+      "count": 1671
+    },
+    {
+      "german": "Sehr witzig.",
+      "source_rank": 718,
+      "count": 1664
+    },
+    {
+      "german": "Ich muss.",
+      "source_rank": 719,
+      "count": 1663
+    },
+    {
+      "german": "Wie du willst.",
+      "source_rank": 720,
+      "count": 1663
+    },
+    {
+      "german": "Mir auch.",
+      "source_rank": 721,
+      "count": 1662
+    },
+    {
+      "german": "Ja, stimmt.",
+      "source_rank": 722,
+      "count": 1660
+    },
+    {
+      "german": "Wer ist es?",
+      "source_rank": 723,
+      "count": 1657
+    },
+    {
+      "german": "Was tust du hier?",
+      "source_rank": 724,
+      "count": 1650
+    },
+    {
+      "german": "Bleib stehen!",
+      "source_rank": 727,
+      "count": 1645
+    },
+    {
+      "german": "Für dich.",
+      "source_rank": 728,
+      "count": 1641
+    },
+    {
+      "german": "Hörst du?",
+      "source_rank": 730,
+      "count": 1638
+    },
+    {
+      "german": "Ich hab ihn.",
+      "source_rank": 731,
+      "count": 1629
+    },
+    {
+      "german": "Das tue ich.",
+      "source_rank": 732,
+      "count": 1629
+    },
+    {
+      "german": "Soll das ein Witz sein?",
+      "source_rank": 733,
+      "count": 1629
+    },
+    {
+      "german": "Meinst du?",
+      "source_rank": 734,
+      "count": 1628
+    },
+    {
+      "german": "Und ob.",
+      "source_rank": 735,
+      "count": 1626
+    },
+    {
+      "german": "Na toll.",
+      "source_rank": 737,
+      "count": 1621
+    },
+    {
+      "german": "Nein, noch nicht.",
+      "source_rank": 738,
+      "count": 1614
+    },
+    {
+      "german": "Was zum Teufel ist das?",
+      "source_rank": 740,
+      "count": 1611
+    },
+    {
+      "german": "Wie meinen Sie das?",
+      "source_rank": 741,
+      "count": 1607
+    },
+    {
+      "german": "Oder nicht?",
+      "source_rank": 744,
+      "count": 1600
+    },
+    {
+      "german": "Ich muss mit dir reden.",
+      "source_rank": 745,
+      "count": 1599
+    },
+    {
+      "german": "Tu das nicht.",
+      "source_rank": 746,
+      "count": 1599
+    },
+    {
+      "german": "Einfach so.",
+      "source_rank": 749,
+      "count": 1593
+    },
+    {
+      "german": "Hast du?",
+      "source_rank": 750,
+      "count": 1589
+    },
+    {
+      "german": "Ich bitte dich.",
+      "source_rank": 751,
+      "count": 1588
+    },
+    {
+      "german": "Das ist schön.",
+      "source_rank": 752,
+      "count": 1586
+    },
+    {
+      "german": "Was noch?",
+      "source_rank": 753,
+      "count": 1584
+    },
+    {
+      "german": "Ist es das?",
+      "source_rank": 754,
+      "count": 1584
+    },
+    {
+      "german": "Für immer.",
+      "source_rank": 756,
+      "count": 1582
+    },
+    {
+      "german": "Ich bin bereit.",
+      "source_rank": 757,
+      "count": 1578
+    },
+    {
+      "german": "Nein, nicht!",
+      "source_rank": 759,
+      "count": 1572
+    },
+    {
+      "german": "Eigentlich nicht.",
+      "source_rank": 760,
+      "count": 1572
+    },
+    {
+      "german": "Mach auf!",
+      "source_rank": 761,
+      "count": 1570
+    },
+    {
+      "german": "So ist es gut.",
+      "source_rank": 762,
+      "count": 1569
+    },
+    {
+      "german": "Komm jetzt.",
+      "source_rank": 763,
+      "count": 1568
+    },
+    {
+      "german": "Fass mich nicht an!",
+      "source_rank": 764,
+      "count": 1568
+    },
+    {
+      "german": "Geht nicht.",
+      "source_rank": 765,
+      "count": 1567
+    },
+    {
+      "german": "Ah ja.",
+      "source_rank": 766,
+      "count": 1565
+    },
+    {
+      "german": "Was machen Sie?",
+      "source_rank": 768,
+      "count": 1562
+    },
+    {
+      "german": "Geht es Ihnen gut?",
+      "source_rank": 769,
+      "count": 1558
+    },
+    {
+      "german": "Das verstehe ich nicht.",
+      "source_rank": 770,
+      "count": 1557
+    },
+    {
+      "german": "Ich hasse dich!",
+      "source_rank": 771,
+      "count": 1555
+    },
+    {
+      "german": "Oh, gut.",
+      "source_rank": 773,
+      "count": 1551
+    },
+    {
+      "german": "Ich kann nicht mehr.",
+      "source_rank": 774,
+      "count": 1548
+    },
+    {
+      "german": "Ich bin müde.",
+      "source_rank": 775,
+      "count": 1547
+    },
+    {
+      "german": "Bist du in Ordnung?",
+      "source_rank": 777,
+      "count": 1546
+    },
+    {
+      "german": "Was ist mit ihm?",
+      "source_rank": 778,
+      "count": 1543
+    },
+    {
+      "german": "Ich dich auch.",
+      "source_rank": 779,
+      "count": 1542
+    },
+    {
+      "german": "Geht klar.",
+      "source_rank": 780,
+      "count": 1542
+    },
+    {
+      "german": "Verschwinden Sie!",
+      "source_rank": 781,
+      "count": 1540
+    },
+    {
+      "german": "Ein bisschen.",
+      "source_rank": 784,
+      "count": 1532
+    },
+    {
+      "german": "Wir sind da.",
+      "source_rank": 785,
+      "count": 1529
+    },
+    {
+      "german": "Was ist damit?",
+      "source_rank": 786,
+      "count": 1528
+    },
+    {
+      "german": "Verzeihen Sie.",
+      "source_rank": 787,
+      "count": 1528
+    },
+    {
+      "german": "Ich bin gleich zurück.",
+      "source_rank": 790,
+      "count": 1519
+    },
+    {
+      "german": "Das ist nicht fair.",
+      "source_rank": 791,
+      "count": 1516
+    },
+    {
+      "german": "Warum denn?",
+      "source_rank": 792,
+      "count": 1513
+    },
+    {
+      "german": "Bis gleich.",
+      "source_rank": 793,
+      "count": 1510
+    },
+    {
+      "german": "Ich habe eine Idee.",
+      "source_rank": 794,
+      "count": 1504
+    },
+    {
+      "german": "Stimmt was nicht?",
+      "source_rank": 795,
+      "count": 1501
+    },
+    {
+      "german": "Ganz einfach.",
+      "source_rank": 798,
+      "count": 1493
+    },
+    {
+      "german": "Warte hier.",
+      "source_rank": 801,
+      "count": 1488
+    },
+    {
+      "german": "Das macht nichts.",
+      "source_rank": 803,
+      "count": 1484
+    },
+    {
+      "german": "Wie geht es ihm?",
+      "source_rank": 804,
+      "count": 1482
+    },
+    {
+      "german": "Das wusste ich nicht.",
+      "source_rank": 805,
+      "count": 1481
+    },
+    {
+      "german": "Wie war das?",
+      "source_rank": 806,
+      "count": 1478
+    },
+    {
+      "german": "Zum Beispiel?",
+      "source_rank": 808,
+      "count": 1475
+    },
+    {
+      "german": "Du siehst gut aus.",
+      "source_rank": 810,
+      "count": 1470
+    },
+    {
+      "german": "Woher soll ich das wissen?",
+      "source_rank": 813,
+      "count": 1468
+    },
+    {
+      "german": "Nein, bitte.",
+      "source_rank": 814,
+      "count": 1463
+    },
+    {
+      "german": "Hab keine Angst.",
+      "source_rank": 815,
+      "count": 1459
+    },
+    {
+      "german": "Lassen Sie mich los!",
+      "source_rank": 816,
+      "count": 1459
+    },
+    {
+      "german": "Alles ist gut.",
+      "source_rank": 817,
+      "count": 1458
+    },
+    {
+      "german": "Wie viele?",
+      "source_rank": 818,
+      "count": 1452
+    },
+    {
+      "german": "Hier drüben.",
+      "source_rank": 819,
+      "count": 1451
+    },
+    {
+      "german": "Sag es.",
+      "source_rank": 820,
+      "count": 1450
+    },
+    {
+      "german": "Das hoffe ich.",
+      "source_rank": 822,
+      "count": 1450
+    },
+    {
+      "german": "Sag es mir.",
+      "source_rank": 824,
+      "count": 1444
+    },
+    {
+      "german": "Seht euch das an.",
+      "source_rank": 825,
+      "count": 1443
+    },
+    {
+      "german": "Mach weiter.",
+      "source_rank": 829,
+      "count": 1433
+    },
+    {
+      "german": "Was tun Sie da?",
+      "source_rank": 830,
+      "count": 1432
+    },
+    {
+      "german": "Er kommt.",
+      "source_rank": 833,
+      "count": 1429
+    },
+    {
+      "german": "Du weißt schon.",
+      "source_rank": 837,
+      "count": 1423
+    },
+    {
+      "german": "Nicht viel.",
+      "source_rank": 838,
+      "count": 1422
+    },
+    {
+      "german": "Ist das so?",
+      "source_rank": 840,
+      "count": 1417
+    },
+    {
+      "german": "Was machst du denn?",
+      "source_rank": 843,
+      "count": 1413
+    },
+    {
+      "german": "Alles Gute.",
+      "source_rank": 845,
+      "count": 1412
+    },
+    {
+      "german": "Das ist unglaublich.",
+      "source_rank": 846,
+      "count": 1406
+    },
+    {
+      "german": "Wieso denn?",
+      "source_rank": 847,
+      "count": 1404
+    },
+    {
+      "german": "Wisst ihr was?",
+      "source_rank": 848,
+      "count": 1402
+    },
+    {
+      "german": "Nein, warte.",
+      "source_rank": 849,
+      "count": 1402
+    },
+    {
+      "german": "Ich weiß, ich weiß.",
+      "source_rank": 850,
+      "count": 1400
+    },
+    {
+      "german": "Was soll denn das?",
+      "source_rank": 852,
+      "count": 1398
+    },
+    {
+      "german": "Das hier.",
+      "source_rank": 854,
+      "count": 1396
+    },
+    {
+      "german": "Das ist großartig.",
+      "source_rank": 857,
+      "count": 1394
+    },
+    {
+      "german": "Los, komm.",
+      "source_rank": 859,
+      "count": 1391
+    },
+    {
+      "german": "Glaub mir.",
+      "source_rank": 860,
+      "count": 1388
+    },
+    {
+      "german": "Aber warum?",
+      "source_rank": 863,
+      "count": 1382
+    },
+    {
+      "german": "Ich erinnere mich.",
+      "source_rank": 864,
+      "count": 1381
+    },
+    {
+      "german": "Und was?",
+      "source_rank": 867,
+      "count": 1376
+    },
+    {
+      "german": "Sie haben Recht.",
+      "source_rank": 869,
+      "count": 1371
+    },
+    {
+      "german": "Ich danke dir.",
+      "source_rank": 870,
+      "count": 1371
+    },
+    {
+      "german": "Sie auch.",
+      "source_rank": 873,
+      "count": 1364
+    },
+    {
+      "german": "Schau mal.",
+      "source_rank": 874,
+      "count": 1363
+    },
+    {
+      "german": "Es ist wichtig.",
+      "source_rank": 875,
+      "count": 1362
+    },
+    {
+      "german": "Ganz gut.",
+      "source_rank": 876,
+      "count": 1361
+    },
+    {
+      "german": "Ach nein?",
+      "source_rank": 878,
+      "count": 1361
+    },
+    {
+      "german": "Und warum?",
+      "source_rank": 881,
+      "count": 1355
+    },
+    {
+      "german": "Du bist dran.",
+      "source_rank": 882,
+      "count": 1353
+    },
+    {
+      "german": "Hören Sie mich?",
+      "source_rank": 885,
+      "count": 1348
+    },
+    {
+      "german": "Wir werden sehen.",
+      "source_rank": 886,
+      "count": 1346
+    },
+    {
+      "german": "Hast du das gehört?",
+      "source_rank": 887,
+      "count": 1345
+    },
+    {
+      "german": "Nun gut.",
+      "source_rank": 889,
+      "count": 1343
+    },
+    {
+      "german": "Hört zu.",
+      "source_rank": 891,
+      "count": 1339
+    },
+    {
+      "german": "Auf den Boden!",
+      "source_rank": 892,
+      "count": 1338
+    },
+    {
+      "german": "Es ist wahr.",
+      "source_rank": 894,
+      "count": 1337
+    },
+    {
+      "german": "Mit wem?",
+      "source_rank": 896,
+      "count": 1337
+    },
+    {
+      "german": "Her damit.",
+      "source_rank": 897,
+      "count": 1337
+    },
+    {
+      "german": "Was ist denn hier los?",
+      "source_rank": 898,
+      "count": 1336
+    },
+    {
+      "german": "Nicht ganz.",
+      "source_rank": 899,
+      "count": 1336
+    },
+    {
+      "german": "Kommst du?",
+      "source_rank": 900,
+      "count": 1335
+    },
+    {
+      "german": "Entschuldigt mich.",
+      "source_rank": 901,
+      "count": 1330
+    },
+    {
+      "german": "Was meinen Sie damit?",
+      "source_rank": 905,
+      "count": 1327
+    },
+    {
+      "german": "Wer ist sie?",
+      "source_rank": 906,
+      "count": 1325
+    },
+    {
+      "german": "Ja, ich auch.",
+      "source_rank": 907,
+      "count": 1324
+    },
+    {
+      "german": "Na bitte.",
+      "source_rank": 909,
+      "count": 1321
+    },
+    {
+      "german": "Wir haben es geschafft.",
+      "source_rank": 912,
+      "count": 1316
+    },
+    {
+      "german": "Sonst noch was?",
+      "source_rank": 913,
+      "count": 1312
+    },
+    {
+      "german": "Wie lange?",
+      "source_rank": 914,
+      "count": 1306
+    },
+    {
+      "german": "Sag schon.",
+      "source_rank": 916,
+      "count": 1302
+    },
+    {
+      "german": "Da lang.",
+      "source_rank": 918,
+      "count": 1301
+    },
+    {
+      "german": "Es funktioniert.",
+      "source_rank": 919,
+      "count": 1299
+    },
+    {
+      "german": "Komm mal her.",
+      "source_rank": 922,
+      "count": 1296
+    },
+    {
+      "german": "Sie ist weg.",
+      "source_rank": 924,
+      "count": 1295
+    },
+    {
+      "german": "Klingt gut.",
+      "source_rank": 925,
+      "count": 1295
+    },
+    {
+      "german": "Genau hier.",
+      "source_rank": 926,
+      "count": 1294
+    },
+    {
+      "german": "Ich komme gleich.",
+      "source_rank": 929,
+      "count": 1293
+    },
+    {
+      "german": "Schau dir das an.",
+      "source_rank": 931,
+      "count": 1291
+    },
+    {
+      "german": "Beweg dich!",
+      "source_rank": 932,
+      "count": 1291
+    },
+    {
+      "german": "Mach die Tür auf!",
+      "source_rank": 936,
+      "count": 1283
+    },
+    {
+      "german": "Es wird alles gut.",
+      "source_rank": 937,
+      "count": 1283
+    },
+    {
+      "german": "Und weiter?",
+      "source_rank": 939,
+      "count": 1281
+    },
+    {
+      "german": "Ich bitte Sie.",
+      "source_rank": 942,
+      "count": 1280
+    },
+    {
+      "german": "Ja, und?",
+      "source_rank": 943,
+      "count": 1280
+    },
+    {
+      "german": "Guter Junge.",
+      "source_rank": 944,
+      "count": 1279
+    },
+    {
+      "german": "Ich schwöre es.",
+      "source_rank": 945,
+      "count": 1279
+    },
+    {
+      "german": "Siehst du das?",
+      "source_rank": 946,
+      "count": 1279
+    },
+    {
+      "german": "Ich schwöre.",
+      "source_rank": 948,
+      "count": 1277
+    },
+    {
+      "german": "Es ist alles in Ordnung.",
+      "source_rank": 949,
+      "count": 1276
+    },
+    {
+      "german": "Wie heißt er?",
+      "source_rank": 952,
+      "count": 1274
+    },
+    {
+      "german": "Es ist zu spät.",
+      "source_rank": 953,
+      "count": 1274
+    },
+    {
+      "german": "Nimm das.",
+      "source_rank": 954,
+      "count": 1273
+    },
+    {
+      "german": "Das verstehe ich.",
+      "source_rank": 956,
+      "count": 1272
+    },
+    {
+      "german": "Das ist nicht gut.",
+      "source_rank": 957,
+      "count": 1272
+    },
+    {
+      "german": "Einen Augenblick.",
+      "source_rank": 960,
+      "count": 1271
+    },
+    {
+      "german": "Hast du Hunger?",
+      "source_rank": 962,
+      "count": 1268
+    },
+    {
+      "german": "Oh, bitte.",
+      "source_rank": 964,
+      "count": 1266
+    },
+    {
+      "german": "Was ist denn passiert?",
+      "source_rank": 965,
+      "count": 1266
+    },
+    {
+      "german": "Entschuldigen Sie bitte.",
+      "source_rank": 966,
+      "count": 1266
+    },
+    {
+      "german": "Was ist da los?",
+      "source_rank": 967,
+      "count": 1263
+    },
+    {
+      "german": "Ich bin fertig.",
+      "source_rank": 970,
+      "count": 1258
+    },
+    {
+      "german": "Wir müssen gehen.",
+      "source_rank": 971,
+      "count": 1258
+    },
+    {
+      "german": "Hast du das gesehen?",
+      "source_rank": 973,
+      "count": 1256
+    },
+    {
+      "german": "Bist du dir sicher?",
+      "source_rank": 974,
+      "count": 1256
+    },
+    {
+      "german": "Was soll ich machen?",
+      "source_rank": 975,
+      "count": 1256
+    },
+    {
+      "german": "Hier bin ich.",
+      "source_rank": 978,
+      "count": 1252
+    },
+    {
+      "german": "Es ist in Ordnung.",
+      "source_rank": 979,
+      "count": 1252
+    },
+    {
+      "german": "Ich versuche es.",
+      "source_rank": 980,
+      "count": 1251
+    },
+    {
+      "german": "Wie geht es ihr?",
+      "source_rank": 981,
+      "count": 1251
+    },
+    {
+      "german": "Ja, wirklich.",
+      "source_rank": 982,
+      "count": 1249
+    },
+    {
+      "german": "Er hat recht.",
+      "source_rank": 983,
+      "count": 1249
+    },
+    {
+      "german": "Wie immer.",
+      "source_rank": 986,
+      "count": 1244
+    },
+    {
+      "german": "Das ist ein Befehl.",
+      "source_rank": 987,
+      "count": 1244
+    },
+    {
+      "german": "Habe ich.",
+      "source_rank": 988,
+      "count": 1241
+    },
+    {
+      "german": "Wer sagt das?",
+      "source_rank": 989,
+      "count": 1240
+    },
+    {
+      "german": "Eine Sekunde.",
+      "source_rank": 990,
+      "count": 1240
+    },
+    {
+      "german": "Du nicht?",
+      "source_rank": 992,
+      "count": 1236
+    },
+    {
+      "german": "Wer ist er?",
+      "source_rank": 993,
+      "count": 1236
+    },
+    {
+      "german": "Bin ich nicht.",
+      "source_rank": 994,
+      "count": 1235
+    },
+    {
+      "german": "Du hast es geschafft.",
+      "source_rank": 996,
+      "count": 1231
+    },
+    {
+      "german": "Schluss jetzt!",
+      "source_rank": 997,
+      "count": 1231
+    },
+    {
+      "german": "Stimmt etwas nicht?",
+      "source_rank": 998,
+      "count": 1228
+    },
+    {
+      "german": "Immer mit der Ruhe.",
+      "source_rank": 999,
+      "count": 1226
+    },
+    {
+      "german": "Was soll's?",
+      "source_rank": 1000,
+      "count": 1226
+    },
+    {
+      "german": "Nicht hier.",
+      "source_rank": 1002,
+      "count": 1223
+    },
+    {
+      "german": "Nach Hause.",
+      "source_rank": 1004,
+      "count": 1222
+    },
+    {
+      "german": "Wir haben ein Problem.",
+      "source_rank": 1005,
+      "count": 1221
+    },
+    {
+      "german": "Bewegt euch!",
+      "source_rank": 1006,
+      "count": 1220
+    },
+    {
+      "german": "Weißt du noch?",
+      "source_rank": 1008,
+      "count": 1216
+    },
+    {
+      "german": "Kommst du mit?",
+      "source_rank": 1009,
+      "count": 1213
+    },
+    {
+      "german": "Guck mal.",
+      "source_rank": 1010,
+      "count": 1213
+    },
+    {
+      "german": "Nicht gut.",
+      "source_rank": 1011,
+      "count": 1211
+    },
+    {
+      "german": "Ja, vielleicht.",
+      "source_rank": 1012,
+      "count": 1211
+    },
+    {
+      "german": "Und los!",
+      "source_rank": 1015,
+      "count": 1208
+    },
+    {
+      "german": "An die Arbeit.",
+      "source_rank": 1016,
+      "count": 1208
+    },
+    {
+      "german": "Seht ihr?",
+      "source_rank": 1018,
+      "count": 1206
+    },
+    {
+      "german": "Lass mal sehen.",
+      "source_rank": 1019,
+      "count": 1205
+    },
+    {
+      "german": "Ist es nicht.",
+      "source_rank": 1021,
+      "count": 1200
+    },
+    {
+      "german": "Das ist es nicht.",
+      "source_rank": 1022,
+      "count": 1196
+    },
+    {
+      "german": "Du siehst toll aus.",
+      "source_rank": 1023,
+      "count": 1196
+    },
+    {
+      "german": "Ich brauche Hilfe.",
+      "source_rank": 1024,
+      "count": 1195
+    },
+    {
+      "german": "Folgen Sie mir.",
+      "source_rank": 1025,
+      "count": 1193
+    },
+    {
+      "german": "Seit wann?",
+      "source_rank": 1026,
+      "count": 1192
+    },
+    {
+      "german": "Wo wollen Sie hin?",
+      "source_rank": 1027,
+      "count": 1191
+    },
+    {
+      "german": "Was soll das bedeuten?",
+      "source_rank": 1028,
+      "count": 1190
+    },
+    {
+      "german": "Ich helfe dir.",
+      "source_rank": 1029,
+      "count": 1190
+    },
+    {
+      "german": "Wie läuft's?",
+      "source_rank": 1030,
+      "count": 1189
+    },
+    {
+      "german": "Schön, Sie zu sehen.",
+      "source_rank": 1033,
+      "count": 1189
+    },
+    {
+      "german": "Klar doch.",
+      "source_rank": 1034,
+      "count": 1187
+    },
+    {
+      "german": "Was sagst du da?",
+      "source_rank": 1035,
+      "count": 1187
+    },
+    {
+      "german": "Sind Sie verrückt?",
+      "source_rank": 1036,
+      "count": 1186
+    },
+    {
+      "german": "Was hast du gemacht?",
+      "source_rank": 1037,
+      "count": 1185
+    },
+    {
+      "german": "Zum Wohl.",
+      "source_rank": 1039,
+      "count": 1184
+    },
+    {
+      "german": "Wie das?",
+      "source_rank": 1043,
+      "count": 1178
+    },
+    {
+      "german": "Hey, Mann.",
+      "source_rank": 1046,
+      "count": 1175
+    },
+    {
+      "german": "Nicht so schnell.",
+      "source_rank": 1047,
+      "count": 1173
+    },
+    {
+      "german": "Sehen Sie sich das an.",
+      "source_rank": 1048,
+      "count": 1173
+    },
+    {
+      "german": "Hast du gehört?",
+      "source_rank": 1049,
+      "count": 1173
+    },
+    {
+      "german": "Komm schon, Mann.",
+      "source_rank": 1050,
+      "count": 1172
+    },
+    {
+      "german": "Und das?",
+      "source_rank": 1051,
+      "count": 1172
+    },
+    {
+      "german": "Wovon sprichst du?",
+      "source_rank": 1053,
+      "count": 1168
+    },
+    {
+      "german": "Wie alt bist du?",
+      "source_rank": 1054,
+      "count": 1168
+    },
+    {
+      "german": "Keine Chance.",
+      "source_rank": 1055,
+      "count": 1167
+    },
+    {
+      "german": "Nehmen Sie Platz.",
+      "source_rank": 1056,
+      "count": 1166
+    },
+    {
+      "german": "Ich weiß nicht, was ich sagen soll.",
+      "source_rank": 1059,
+      "count": 1159
+    },
+    {
+      "german": "Alles bestens.",
+      "source_rank": 1060,
+      "count": 1158
+    },
+    {
+      "german": "Jetzt nicht mehr.",
+      "source_rank": 1061,
+      "count": 1158
+    },
+    {
+      "german": "Das ergibt keinen Sinn.",
+      "source_rank": 1064,
+      "count": 1157
+    },
+    {
+      "german": "Ich bin da.",
+      "source_rank": 1065,
+      "count": 1155
+    },
+    {
+      "german": "Worum geht es?",
+      "source_rank": 1066,
+      "count": 1155
+    },
+    {
+      "german": "Hören Sie mir zu.",
+      "source_rank": 1068,
+      "count": 1154
+    },
+    {
+      "german": "Schau mich an.",
+      "source_rank": 1070,
+      "count": 1153
+    },
+    {
+      "german": "Ich warte.",
+      "source_rank": 1071,
+      "count": 1153
+    },
+    {
+      "german": "Ist da jemand?",
+      "source_rank": 1072,
+      "count": 1149
+    },
+    {
+      "german": "Halt dich fest!",
+      "source_rank": 1074,
+      "count": 1149
+    },
+    {
+      "german": "Keine Panik.",
+      "source_rank": 1075,
+      "count": 1149
+    },
+    {
+      "german": "Kommt her.",
+      "source_rank": 1076,
+      "count": 1149
+    },
+    {
+      "german": "Ist er das?",
+      "source_rank": 1077,
+      "count": 1148
+    },
+    {
+      "german": "Was hat sie gesagt?",
+      "source_rank": 1078,
+      "count": 1147
+    },
+    {
+      "german": "Kann sein.",
+      "source_rank": 1083,
+      "count": 1142
+    },
+    {
+      "german": "Das sehe ich.",
+      "source_rank": 1085,
+      "count": 1141
+    },
+    {
+      "german": "Das freut mich.",
+      "source_rank": 1086,
+      "count": 1141
+    },
+    {
+      "german": "Ich mach das.",
+      "source_rank": 1087,
+      "count": 1140
+    },
+    {
+      "german": "Dann mal los.",
+      "source_rank": 1089,
+      "count": 1139
+    },
+    {
+      "german": "Halt an!",
+      "source_rank": 1090,
+      "count": 1137
+    },
+    {
+      "german": "Oh, verdammt.",
+      "source_rank": 1091,
+      "count": 1135
+    },
+    {
+      "german": "Kommt rein.",
+      "source_rank": 1092,
+      "count": 1135
+    },
+    {
+      "german": "Das habe ich.",
+      "source_rank": 1094,
+      "count": 1134
+    },
+    {
+      "german": "Nicht schon wieder.",
+      "source_rank": 1095,
+      "count": 1134
+    },
+    {
+      "german": "Hören Sie zu.",
+      "source_rank": 1096,
+      "count": 1133
+    },
+    {
+      "german": "Gut, danke.",
+      "source_rank": 1097,
+      "count": 1131
+    },
+    {
+      "german": "Was willst du hier?",
+      "source_rank": 1099,
+      "count": 1130
+    },
+    {
+      "german": "Fangen wir an.",
+      "source_rank": 1100,
+      "count": 1129
+    },
+    {
+      "german": "Haut ab!",
+      "source_rank": 1101,
+      "count": 1129
+    },
+    {
+      "german": "Es war ein Unfall.",
+      "source_rank": 1102,
+      "count": 1128
+    },
+    {
+      "german": "In Deckung!",
+      "source_rank": 1103,
+      "count": 1126
+    },
+    {
+      "german": "Ich brauche deine Hilfe.",
+      "source_rank": 1104,
+      "count": 1125
+    },
+    {
+      "german": "Du bleibst hier.",
+      "source_rank": 1105,
+      "count": 1125
+    },
+    {
+      "german": "Lass mich raten.",
+      "source_rank": 1109,
+      "count": 1123
+    },
+    {
+      "german": "Wo denn?",
+      "source_rank": 1110,
+      "count": 1123
+    },
+    {
+      "german": "Und was jetzt?",
+      "source_rank": 1111,
+      "count": 1122
+    },
+    {
+      "german": "Was weiß ich?",
+      "source_rank": 1114,
+      "count": 1119
+    },
+    {
+      "german": "Ich denke nicht.",
+      "source_rank": 1115,
+      "count": 1119
+    },
+    {
+      "german": "Du hattest recht.",
+      "source_rank": 1116,
+      "count": 1119
+    },
+    {
+      "german": "Bist du das?",
+      "source_rank": 1119,
+      "count": 1116
+    },
+    {
+      "german": "Er ist es.",
+      "source_rank": 1120,
+      "count": 1115
+    },
+    {
+      "german": "Ich habe Hunger.",
+      "source_rank": 1121,
+      "count": 1114
+    },
+    {
+      "german": "Guten Appetit.",
+      "source_rank": 1122,
+      "count": 1114
+    },
+    {
+      "german": "Was willst du von mir?",
+      "source_rank": 1125,
+      "count": 1113
+    },
+    {
+      "german": "Kann ich helfen?",
+      "source_rank": 1126,
+      "count": 1110
+    },
+    {
+      "german": "Fahren wir.",
+      "source_rank": 1127,
+      "count": 1109
+    },
+    {
+      "german": "Dreh dich um.",
+      "source_rank": 1128,
+      "count": 1109
+    },
+    {
+      "german": "Sieht so aus.",
+      "source_rank": 1129,
+      "count": 1108
+    },
+    {
+      "german": "Sag's mir.",
+      "source_rank": 1130,
+      "count": 1106
+    },
+    {
+      "german": "Worauf wartest du?",
+      "source_rank": 1131,
+      "count": 1106
+    },
+    {
+      "german": "Hey, Kumpel.",
+      "source_rank": 1133,
+      "count": 1104
+    },
+    {
+      "german": "Geh nicht.",
+      "source_rank": 1134,
+      "count": 1103
+    },
+    {
+      "german": "Von wegen.",
+      "source_rank": 1136,
+      "count": 1102
+    },
+    {
+      "german": "Was willst du damit sagen?",
+      "source_rank": 1138,
+      "count": 1101
+    },
+    {
+      "german": "Es ist nichts.",
+      "source_rank": 1140,
+      "count": 1096
+    },
+    {
+      "german": "Bist du fertig?",
+      "source_rank": 1142,
+      "count": 1095
+    },
+    {
+      "german": "Was hast du denn?",
+      "source_rank": 1143,
+      "count": 1095
+    },
+    {
+      "german": "Oh, hallo.",
+      "source_rank": 1144,
+      "count": 1094
+    },
+    {
+      "german": "Warum ich?",
+      "source_rank": 1145,
+      "count": 1094
+    },
+    {
+      "german": "Wie sieht's aus?",
+      "source_rank": 1146,
+      "count": 1092
+    },
+    {
+      "german": "Nein, habe ich nicht.",
+      "source_rank": 1149,
+      "count": 1088
+    },
+    {
+      "german": "Hallo, Schatz.",
+      "source_rank": 1150,
+      "count": 1088
+    },
+    {
+      "german": "Komm mit mir.",
+      "source_rank": 1151,
+      "count": 1087
+    },
+    {
+      "german": "Mit Vergnügen.",
+      "source_rank": 1152,
+      "count": 1086
+    },
+    {
+      "german": "Was gibt es?",
+      "source_rank": 1155,
+      "count": 1085
+    },
+    {
+      "german": "Was denken Sie?",
+      "source_rank": 1157,
+      "count": 1083
+    },
+    {
+      "german": "Ganz und gar nicht.",
+      "source_rank": 1158,
+      "count": 1082
+    },
+    {
+      "german": "Ich liebe sie.",
+      "source_rank": 1162,
+      "count": 1080
+    },
+    {
+      "german": "Das gibt's doch nicht.",
+      "source_rank": 1163,
+      "count": 1080
+    },
+    {
+      "german": "Ich liebe es.",
+      "source_rank": 1164,
+      "count": 1080
+    },
+    {
+      "german": "Verzeih mir.",
+      "source_rank": 1165,
+      "count": 1080
+    },
+    {
+      "german": "Ich bin gleich da.",
+      "source_rank": 1173,
+      "count": 1074
+    },
+    {
+      "german": "Was sagst du dazu?",
+      "source_rank": 1174,
+      "count": 1074
+    },
+    {
+      "german": "Entschuldige mich.",
+      "source_rank": 1176,
+      "count": 1072
+    },
+    {
+      "german": "Du schaffst das.",
+      "source_rank": 1178,
+      "count": 1068
+    },
+    {
+      "german": "Ich brauche dich.",
+      "source_rank": 1181,
+      "count": 1066
+    },
+    {
+      "german": "Nicht anfassen.",
+      "source_rank": 1182,
+      "count": 1066
+    },
+    {
+      "german": "Das war ich.",
+      "source_rank": 1183,
+      "count": 1065
+    },
+    {
+      "german": "Schönen Tag noch.",
+      "source_rank": 1184,
+      "count": 1062
+    },
+    {
+      "german": "Und dir?",
+      "source_rank": 1185,
+      "count": 1062
+    },
+    {
+      "german": "Kommt mit.",
+      "source_rank": 1186,
+      "count": 1061
+    },
+    {
+      "german": "Ist doch egal.",
+      "source_rank": 1187,
+      "count": 1061
+    },
+    {
+      "german": "Ja, das bin ich.",
+      "source_rank": 1188,
+      "count": 1060
+    },
+    {
+      "german": "Ich hab dich lieb.",
+      "source_rank": 1189,
+      "count": 1057
+    },
+    {
+      "german": "Ich hab dich.",
+      "source_rank": 1190,
+      "count": 1056
+    },
+    {
+      "german": "Was sagt er?",
+      "source_rank": 1191,
+      "count": 1054
+    },
+    {
+      "german": "Was haben Sie vor?",
+      "source_rank": 1192,
+      "count": 1052
+    },
+    {
+      "german": "Mehr nicht.",
+      "source_rank": 1193,
+      "count": 1051
+    },
+    {
+      "german": "Es stimmt.",
+      "source_rank": 1194,
+      "count": 1050
+    },
+    {
+      "german": "Setz dich hin.",
+      "source_rank": 1195,
+      "count": 1049
+    },
+    {
+      "german": "Oh doch.",
+      "source_rank": 1198,
+      "count": 1048
+    },
+    {
+      "german": "Im Gegenteil.",
+      "source_rank": 1199,
+      "count": 1047
+    },
+    {
+      "german": "Jetzt schon.",
+      "source_rank": 1200,
+      "count": 1046
+    },
+    {
+      "german": "Wir müssen hier weg.",
+      "source_rank": 1201,
+      "count": 1045
+    },
+    {
+      "german": "Komm raus!",
+      "source_rank": 1202,
+      "count": 1044
+    },
+    {
+      "german": "Ich bin mir nicht sicher.",
+      "source_rank": 1204,
+      "count": 1043
+    },
+    {
+      "german": "Sieht gut aus.",
+      "source_rank": 1206,
+      "count": 1041
+    },
+    {
+      "german": "Habe ich nicht.",
+      "source_rank": 1207,
+      "count": 1038
+    },
+    {
+      "german": "Das geht dich nichts an.",
+      "source_rank": 1208,
+      "count": 1034
+    },
+    {
+      "german": "Ja, das ist es.",
+      "source_rank": 1209,
+      "count": 1033
+    },
+    {
+      "german": "Sag das nicht.",
+      "source_rank": 1210,
+      "count": 1033
+    },
+    {
+      "german": "Das ist nicht nötig.",
+      "source_rank": 1211,
+      "count": 1033
+    },
+    {
+      "german": "Wie ist das möglich?",
+      "source_rank": 1212,
+      "count": 1031
+    },
+    {
+      "german": "Verstehst du das?",
+      "source_rank": 1215,
+      "count": 1029
+    },
+    {
+      "german": "Was tun Sie hier?",
+      "source_rank": 1219,
+      "count": 1026
+    },
+    {
+      "german": "Warte kurz.",
+      "source_rank": 1220,
+      "count": 1025
+    },
+    {
+      "german": "Willst du mich verarschen?",
+      "source_rank": 1222,
+      "count": 1024
+    },
+    {
+      "german": "Von mir aus.",
+      "source_rank": 1226,
+      "count": 1022
+    },
+    {
+      "german": "Oh, wirklich?",
+      "source_rank": 1227,
+      "count": 1022
+    },
+    {
+      "german": "Was machen wir?",
+      "source_rank": 1228,
+      "count": 1021
+    },
+    {
+      "german": "Sie sind hier.",
+      "source_rank": 1229,
+      "count": 1021
+    },
+    {
+      "german": "Das habe ich nicht gesagt.",
+      "source_rank": 1230,
+      "count": 1020
+    },
+    {
+      "german": "Was tun Sie?",
+      "source_rank": 1231,
+      "count": 1019
+    },
+    {
+      "german": "Aber wie?",
+      "source_rank": 1232,
+      "count": 1019
+    },
+    {
+      "german": "Ich bin dran.",
+      "source_rank": 1233,
+      "count": 1016
+    },
+    {
+      "german": "Feuer einstellen!",
+      "source_rank": 1235,
+      "count": 1016
+    },
+    {
+      "german": "Sei ruhig.",
+      "source_rank": 1236,
+      "count": 1016
+    },
+    {
+      "german": "Hey, du.",
+      "source_rank": 1237,
+      "count": 1014
+    },
+    {
+      "german": "Darum geht es nicht.",
+      "source_rank": 1241,
+      "count": 1009
+    },
+    {
+      "german": "Wohin gehen wir?",
+      "source_rank": 1242,
+      "count": 1008
+    },
+    {
+      "german": "Wir haben ihn.",
+      "source_rank": 1247,
+      "count": 1004
+    },
+    {
+      "german": "Geh jetzt.",
+      "source_rank": 1248,
+      "count": 1003
+    },
+    {
+      "german": "Wo ist er hin?",
+      "source_rank": 1249,
+      "count": 1002
+    },
+    {
+      "german": "Schluss damit!",
+      "source_rank": 1251,
+      "count": 999
+    },
+    {
+      "german": "Was wollen Sie von mir?",
+      "source_rank": 1252,
+      "count": 999
+    },
+    {
+      "german": "Es ist gut.",
+      "source_rank": 1254,
+      "count": 996
+    },
+    {
+      "german": "Ist er tot?",
+      "source_rank": 1255,
+      "count": 994
+    },
+    {
+      "german": "Es geht schon.",
+      "source_rank": 1256,
+      "count": 991
+    },
+    {
+      "german": "Ich bin schwanger.",
+      "source_rank": 1257,
+      "count": 988
+    },
+    {
+      "german": "Oh je.",
+      "source_rank": 1258,
+      "count": 988
+    },
+    {
+      "german": "Geh nach Hause.",
+      "source_rank": 1262,
+      "count": 987
+    },
+    {
+      "german": "Finger weg!",
+      "source_rank": 1263,
+      "count": 986
+    },
+    {
+      "german": "Ach, komm schon.",
+      "source_rank": 1265,
+      "count": 984
+    },
+    {
+      "german": "Reiß dich zusammen.",
+      "source_rank": 1266,
+      "count": 984
+    },
+    {
+      "german": "Da ist er ja.",
+      "source_rank": 1269,
+      "count": 983
+    },
+    {
+      "german": "Ja, habe ich.",
+      "source_rank": 1270,
+      "count": 983
+    },
+    {
+      "german": "Er lebt.",
+      "source_rank": 1271,
+      "count": 982
+    },
+    {
+      "german": "Ich fasse es nicht.",
+      "source_rank": 1273,
+      "count": 981
+    },
+    {
+      "german": "Wohl kaum.",
+      "source_rank": 1274,
+      "count": 981
+    },
+    {
+      "german": "Ich hatte keine Wahl.",
+      "source_rank": 1276,
+      "count": 979
+    },
+    {
+      "german": "Das ist nett.",
+      "source_rank": 1277,
+      "count": 979
+    },
+    {
+      "german": "Ich weiß auch nicht.",
+      "source_rank": 1278,
+      "count": 978
+    },
+    {
+      "german": "Das dachte ich mir.",
+      "source_rank": 1281,
+      "count": 975
+    },
+    {
+      "german": "Es geht nicht.",
+      "source_rank": 1282,
+      "count": 974
+    },
+    {
+      "german": "Ja, hallo?",
+      "source_rank": 1283,
+      "count": 973
+    },
+    {
+      "german": "Ich bin nicht sicher.",
+      "source_rank": 1284,
+      "count": 973
+    },
+    {
+      "german": "Nein, bin ich nicht.",
+      "source_rank": 1285,
+      "count": 972
+    },
+    {
+      "german": "Was machst du denn da?",
+      "source_rank": 1287,
+      "count": 971
+    },
+    {
+      "german": "Wer seid ihr?",
+      "source_rank": 1290,
+      "count": 967
+    },
+    {
+      "german": "Was wollt ihr?",
+      "source_rank": 1292,
+      "count": 966
+    },
+    {
+      "german": "Oh, tut mir leid.",
+      "source_rank": 1296,
+      "count": 961
+    },
+    {
+      "german": "Wir sehen uns später.",
+      "source_rank": 1297,
+      "count": 959
+    },
+    {
+      "german": "Mir egal.",
+      "source_rank": 1302,
+      "count": 957
+    },
+    {
+      "german": "Ich muss jetzt gehen.",
+      "source_rank": 1304,
+      "count": 955
+    },
+    {
+      "german": "Woher willst du das wissen?",
+      "source_rank": 1306,
+      "count": 955
+    },
+    {
+      "german": "Was auch immer.",
+      "source_rank": 1309,
+      "count": 954
+    },
+    {
+      "german": "Warum bist du hier?",
+      "source_rank": 1310,
+      "count": 954
+    },
+    {
+      "german": "Ich habe ihn.",
+      "source_rank": 1312,
+      "count": 953
+    },
+    {
+      "german": "Bin gleich zurück.",
+      "source_rank": 1313,
+      "count": 952
+    },
+    {
+      "german": "Nicht zu fassen.",
+      "source_rank": 1315,
+      "count": 950
+    },
+    {
+      "german": "Leb wohl.",
+      "source_rank": 1318,
+      "count": 949
+    },
+    {
+      "german": "Willst du?",
+      "source_rank": 1319,
+      "count": 949
+    },
+    {
+      "german": "Oh, komm schon.",
+      "source_rank": 1320,
+      "count": 949
+    },
+    {
+      "german": "Was hältst du davon?",
+      "source_rank": 1321,
+      "count": 949
+    },
+    {
+      "german": "Bist du verletzt?",
+      "source_rank": 1322,
+      "count": 948
+    },
+    {
+      "german": "Passen Sie auf.",
+      "source_rank": 1323,
+      "count": 946
+    },
+    {
+      "german": "Ich bleibe hier.",
+      "source_rank": 1325,
+      "count": 945
+    },
+    {
+      "german": "Schauen Sie.",
+      "source_rank": 1327,
+      "count": 944
+    },
+    {
+      "german": "Kannst du mich hören?",
+      "source_rank": 1328,
+      "count": 944
+    },
+    {
+      "german": "Beruhig dich.",
+      "source_rank": 1329,
+      "count": 943
+    },
+    {
+      "german": "Schon klar.",
+      "source_rank": 1330,
+      "count": 942
+    },
+    {
+      "german": "Ja oder nein?",
+      "source_rank": 1332,
+      "count": 942
+    },
+    {
+      "german": "Es ist wunderschön.",
+      "source_rank": 1333,
+      "count": 942
+    },
+    {
+      "german": "Das ist für dich.",
+      "source_rank": 1334,
+      "count": 942
+    },
+    {
+      "german": "Wie ist es gelaufen?",
+      "source_rank": 1336,
+      "count": 940
+    },
+    {
+      "german": "Was hat das zu bedeuten?",
+      "source_rank": 1337,
+      "count": 940
+    },
+    {
+      "german": "Ich komme sofort.",
+      "source_rank": 1339,
+      "count": 939
+    },
+    {
+      "german": "Fahren Sie fort.",
+      "source_rank": 1340,
+      "count": 938
+    },
+    {
+      "german": "Ich kenne dich.",
+      "source_rank": 1341,
+      "count": 938
+    },
+    {
+      "german": "Wie fühlen Sie sich?",
+      "source_rank": 1342,
+      "count": 937
+    },
+    {
+      "german": "Echt jetzt?",
+      "source_rank": 1345,
+      "count": 934
+    },
+    {
+      "german": "Das bezweifle ich.",
+      "source_rank": 1346,
+      "count": 933
+    },
+    {
+      "german": "Wir müssen hier raus.",
+      "source_rank": 1348,
+      "count": 931
+    },
+    {
+      "german": "Hast du Angst?",
+      "source_rank": 1351,
+      "count": 929
+    },
+    {
+      "german": "Was habe ich getan?",
+      "source_rank": 1352,
+      "count": 928
+    },
+    {
+      "german": "Wir müssen weg.",
+      "source_rank": 1353,
+      "count": 928
+    },
+    {
+      "german": "Ich verstehe es nicht.",
+      "source_rank": 1354,
+      "count": 927
+    },
+    {
+      "german": "Sie sind weg.",
+      "source_rank": 1355,
+      "count": 927
+    },
+    {
+      "german": "Lassen Sie mich!",
+      "source_rank": 1356,
+      "count": 927
+    },
+    {
+      "german": "Da wären wir.",
+      "source_rank": 1358,
+      "count": 926
+    },
+    {
+      "german": "Wann war das?",
+      "source_rank": 1359,
+      "count": 926
+    },
+    {
+      "german": "Ein wenig.",
+      "source_rank": 1360,
+      "count": 925
+    },
+    {
+      "german": "Wie sehe ich aus?",
+      "source_rank": 1362,
+      "count": 924
+    },
+    {
+      "german": "Setzt euch.",
+      "source_rank": 1363,
+      "count": 923
+    },
+    {
+      "german": "Passt auf!",
+      "source_rank": 1365,
+      "count": 922
+    },
+    {
+      "german": "Kommen Sie her.",
+      "source_rank": 1368,
+      "count": 918
+    },
+    {
+      "german": "Hörst du das?",
+      "source_rank": 1369,
+      "count": 918
+    },
+    {
+      "german": "Schon in Ordnung.",
+      "source_rank": 1370,
+      "count": 918
+    },
+    {
+      "german": "Ich mache das.",
+      "source_rank": 1371,
+      "count": 918
+    },
+    {
+      "german": "Es ist meine Schuld.",
+      "source_rank": 1372,
+      "count": 918
+    },
+    {
+      "german": "Für was?",
+      "source_rank": 1373,
+      "count": 917
+    },
+    {
+      "german": "Du machst Witze.",
+      "source_rank": 1375,
+      "count": 916
+    },
+    {
+      "german": "Lieber nicht.",
+      "source_rank": 1376,
+      "count": 916
+    },
+    {
+      "german": "Wer denn?",
+      "source_rank": 1377,
+      "count": 914
+    },
+    {
+      "german": "Beeilen Sie sich.",
+      "source_rank": 1378,
+      "count": 913
+    },
+    {
+      "german": "Ich habe nichts getan.",
+      "source_rank": 1379,
+      "count": 913
+    },
+    {
+      "german": "Auf die Knie!",
+      "source_rank": 1382,
+      "count": 911
+    },
+    {
+      "german": "Nicht unbedingt.",
+      "source_rank": 1384,
+      "count": 908
+    },
+    {
+      "german": "Wie kommst du darauf?",
+      "source_rank": 1385,
+      "count": 908
+    },
+    {
+      "german": "Hast du mich verstanden?",
+      "source_rank": 1388,
+      "count": 905
+    },
+    {
+      "german": "Darf ich reinkommen?",
+      "source_rank": 1389,
+      "count": 905
+    },
+    {
+      "german": "Warum denn nicht?",
+      "source_rank": 1390,
+      "count": 905
+    },
+    {
+      "german": "Ich bring dich um!",
+      "source_rank": 1391,
+      "count": 905
+    },
+    {
+      "german": "Ruf mich an.",
+      "source_rank": 1392,
+      "count": 904
+    },
+    {
+      "german": "Steigen Sie ein.",
+      "source_rank": 1393,
+      "count": 903
+    },
+    {
+      "german": "Sieh dich an.",
+      "source_rank": 1394,
+      "count": 903
+    },
+    {
+      "german": "Zu Befehl.",
+      "source_rank": 1398,
+      "count": 900
+    },
+    {
+      "german": "Hab ich nicht.",
+      "source_rank": 1399,
+      "count": 899
+    },
+    {
+      "german": "Danke, Mann.",
+      "source_rank": 1400,
+      "count": 898
+    },
+    {
+      "german": "Das tut weh.",
+      "source_rank": 1405,
+      "count": 897
+    },
+    {
+      "german": "Was geht?",
+      "source_rank": 1406,
+      "count": 897
+    },
+    {
+      "german": "Schon möglich.",
+      "source_rank": 1407,
+      "count": 896
+    },
+    {
+      "german": "Seht mal.",
+      "source_rank": 1409,
+      "count": 895
+    },
+    {
+      "german": "Keine Zeit.",
+      "source_rank": 1410,
+      "count": 895
+    },
+    {
+      "german": "Du Idiot!",
+      "source_rank": 1411,
+      "count": 895
+    },
+    {
+      "german": "Bleib ruhig.",
+      "source_rank": 1412,
+      "count": 894
+    },
+    {
+      "german": "Ja, ich verstehe.",
+      "source_rank": 1413,
+      "count": 894
+    },
+    {
+      "german": "Es ist spät.",
+      "source_rank": 1415,
+      "count": 893
+    },
+    {
+      "german": "Aber was?",
+      "source_rank": 1416,
+      "count": 893
+    },
+    {
+      "german": "Bin ich.",
+      "source_rank": 1417,
+      "count": 890
+    },
+    {
+      "german": "Was macht er?",
+      "source_rank": 1418,
+      "count": 888
+    },
+    {
+      "german": "Warum sollte ich?",
+      "source_rank": 1419,
+      "count": 888
+    },
+    {
+      "german": "Kommen Sie schon.",
+      "source_rank": 1420,
+      "count": 888
+    },
+    {
+      "german": "Noch einmal.",
+      "source_rank": 1422,
+      "count": 886
+    },
+    {
+      "german": "Was du nicht sagst.",
+      "source_rank": 1423,
+      "count": 886
+    },
+    {
+      "german": "Weiter so.",
+      "source_rank": 1425,
+      "count": 884
+    },
+    {
+      "german": "Gute Frage.",
+      "source_rank": 1426,
+      "count": 884
+    },
+    {
+      "german": "Was ist mit mir?",
+      "source_rank": 1428,
+      "count": 883
+    },
+    {
+      "german": "Was haben Sie?",
+      "source_rank": 1432,
+      "count": 881
+    },
+    {
+      "german": "Wir müssen uns beeilen.",
+      "source_rank": 1433,
+      "count": 879
+    },
+    {
+      "german": "Da kommt er.",
+      "source_rank": 1435,
+      "count": 876
+    },
+    {
+      "german": "Bist du da?",
+      "source_rank": 1437,
+      "count": 874
+    },
+    {
+      "german": "Was ist mit ihr?",
+      "source_rank": 1438,
+      "count": 873
+    },
+    {
+      "german": "Fahr los!",
+      "source_rank": 1439,
+      "count": 873
+    },
+    {
+      "german": "Oh, hey.",
+      "source_rank": 1440,
+      "count": 872
+    },
+    {
+      "german": "Ich hoffe es.",
+      "source_rank": 1441,
+      "count": 872
+    },
+    {
+      "german": "Braves Mädchen.",
+      "source_rank": 1442,
+      "count": 871
+    },
+    {
+      "german": "Ich kann es nicht glauben.",
+      "source_rank": 1445,
+      "count": 870
+    },
+    {
+      "german": "Nein, schon gut.",
+      "source_rank": 1446,
+      "count": 870
+    },
+    {
+      "german": "Werde ich.",
+      "source_rank": 1447,
+      "count": 870
+    },
+    {
+      "german": "Findest du?",
+      "source_rank": 1448,
+      "count": 869
+    },
+    {
+      "german": "Ich glaub's nicht.",
+      "source_rank": 1450,
+      "count": 868
+    },
+    {
+      "german": "Nein, nichts.",
+      "source_rank": 1451,
+      "count": 868
+    },
+    {
+      "german": "Du bist es.",
+      "source_rank": 1452,
+      "count": 867
+    },
+    {
+      "german": "Ganz bestimmt.",
+      "source_rank": 1453,
+      "count": 867
+    },
+    {
+      "german": "Was hast du da?",
+      "source_rank": 1454,
+      "count": 867
+    },
+    {
+      "german": "Und was ist das?",
+      "source_rank": 1455,
+      "count": 867
+    },
+    {
+      "german": "Er ist nicht hier.",
+      "source_rank": 1456,
+      "count": 866
+    },
+    {
+      "german": "Und was dann?",
+      "source_rank": 1460,
+      "count": 864
+    },
+    {
+      "german": "Glauben Sie mir.",
+      "source_rank": 1463,
+      "count": 862
+    },
+    {
+      "german": "Du musst.",
+      "source_rank": 1464,
+      "count": 861
+    },
+    {
+      "german": "Folgt mir.",
+      "source_rank": 1465,
+      "count": 861
+    },
+    {
+      "german": "Gibt es ein Problem?",
+      "source_rank": 1467,
+      "count": 860
+    },
+    {
+      "german": "Warum hast du das getan?",
+      "source_rank": 1468,
+      "count": 859
+    },
+    {
+      "german": "Geht schon.",
+      "source_rank": 1469,
+      "count": 859
+    },
+    {
+      "german": "Gefällt es dir?",
+      "source_rank": 1470,
+      "count": 858
+    },
+    {
+      "german": "Töte ihn!",
+      "source_rank": 1473,
+      "count": 857
+    },
+    {
+      "german": "So ist's gut.",
+      "source_rank": 1477,
+      "count": 854
+    },
+    {
+      "german": "Ja, gern.",
+      "source_rank": 1479,
+      "count": 852
+    },
+    {
+      "german": "Ich mach das schon.",
+      "source_rank": 1480,
+      "count": 852
+    },
+    {
+      "german": "Das ist egal.",
+      "source_rank": 1482,
+      "count": 851
+    },
+    {
+      "german": "Wir sind fertig.",
+      "source_rank": 1483,
+      "count": 850
+    },
+    {
+      "german": "Das ist nicht möglich.",
+      "source_rank": 1484,
+      "count": 850
+    },
+    {
+      "german": "Wir haben keine Zeit.",
+      "source_rank": 1485,
+      "count": 850
+    },
+    {
+      "german": "Was haben Sie gesagt?",
+      "source_rank": 1486,
+      "count": 849
+    },
+    {
+      "german": "Kann ich nicht.",
+      "source_rank": 1488,
+      "count": 849
+    },
+    {
+      "german": "Bestimmt nicht.",
+      "source_rank": 1490,
+      "count": 846
+    },
+    {
+      "german": "Ich liebe ihn.",
+      "source_rank": 1492,
+      "count": 845
+    },
+    {
+      "german": "Verdammt nochmal!",
+      "source_rank": 1493,
+      "count": 844
+    },
+    {
+      "german": "Wo bist du gewesen?",
+      "source_rank": 1494,
+      "count": 844
+    },
+    {
+      "german": "Wie heißt sie?",
+      "source_rank": 1495,
+      "count": 844
+    },
+    {
+      "german": "Noch etwas?",
+      "source_rank": 1496,
+      "count": 843
+    },
+    {
+      "german": "Ja, das ist er.",
+      "source_rank": 1497,
+      "count": 842
+    },
+    {
+      "german": "Was ist mit dir los?",
+      "source_rank": 1498,
+      "count": 842
+    },
+    {
+      "german": "Ich gehe jetzt.",
+      "source_rank": 1502,
+      "count": 839
+    },
+    {
+      "german": "Willkommen zurück.",
+      "source_rank": 1503,
+      "count": 839
+    },
+    {
+      "german": "Jetzt gleich.",
+      "source_rank": 1504,
+      "count": 838
+    },
+    {
+      "german": "Geht's?",
+      "source_rank": 1505,
+      "count": 837
+    },
+    {
+      "german": "Komm schon, komm schon.",
+      "source_rank": 1508,
+      "count": 836
+    },
+    {
+      "german": "Mein Fehler.",
+      "source_rank": 1510,
+      "count": 835
+    },
+    {
+      "german": "Wie ist das passiert?",
+      "source_rank": 1511,
+      "count": 835
+    },
+    {
+      "german": "Antworte mir!",
+      "source_rank": 1512,
+      "count": 835
+    },
+    {
+      "german": "Einen Moment, bitte.",
+      "source_rank": 1513,
+      "count": 835
+    },
+    {
+      "german": "Kommen Sie herein.",
+      "source_rank": 1516,
+      "count": 832
+    },
+    {
+      "german": "Sie sind verrückt.",
+      "source_rank": 1518,
+      "count": 832
+    },
+    {
+      "german": "Ist es.",
+      "source_rank": 1521,
+      "count": 830
+    },
+    {
+      "german": "Gefällt mir.",
+      "source_rank": 1522,
+      "count": 829
+    },
+    {
+      "german": "Wird gemacht.",
+      "source_rank": 1523,
+      "count": 829
+    },
+    {
+      "german": "Die Polizei?",
+      "source_rank": 1524,
+      "count": 828
+    },
+    {
+      "german": "Sie ist hier.",
+      "source_rank": 1525,
+      "count": 828
+    },
+    {
+      "german": "Wo gehen wir hin?",
+      "source_rank": 1527,
+      "count": 828
+    },
+    {
+      "german": "Vertrauen Sie mir.",
+      "source_rank": 1529,
+      "count": 827
+    },
+    {
+      "german": "Das spielt keine Rolle.",
+      "source_rank": 1531,
+      "count": 826
+    },
+    {
+      "german": "Jetzt nicht.",
+      "source_rank": 1533,
+      "count": 825
+    },
+    {
+      "german": "Wie Sie wollen.",
+      "source_rank": 1534,
+      "count": 824
+    },
+    {
+      "german": "Ich erinnere mich nicht.",
+      "source_rank": 1536,
+      "count": 823
+    },
+    {
+      "german": "Ja, mir geht's gut.",
+      "source_rank": 1537,
+      "count": 823
+    },
+    {
+      "german": "Gib mir deine Hand.",
+      "source_rank": 1538,
+      "count": 822
+    },
+    {
+      "german": "Ich sehe nichts.",
+      "source_rank": 1539,
+      "count": 822
+    },
+    {
+      "german": "Sie können gehen.",
+      "source_rank": 1541,
+      "count": 820
+    },
+    {
+      "german": "Warum tust du das?",
+      "source_rank": 1542,
+      "count": 819
+    },
+    {
+      "german": "Wie schade.",
+      "source_rank": 1545,
+      "count": 818
+    },
+    {
+      "german": "Ich bin beeindruckt.",
+      "source_rank": 1546,
+      "count": 817
+    },
+    {
+      "german": "Das heißt?",
+      "source_rank": 1547,
+      "count": 816
+    },
+    {
+      "german": "Es tut mir wirklich leid.",
+      "source_rank": 1548,
+      "count": 816
+    },
+    {
+      "german": "Was sagen Sie?",
+      "source_rank": 1553,
+      "count": 814
+    },
+    {
+      "german": "Das gefällt mir nicht.",
+      "source_rank": 1554,
+      "count": 813
+    },
+    {
+      "german": "Bleib bei mir.",
+      "source_rank": 1555,
+      "count": 813
+    },
+    {
+      "german": "Haben Sie verstanden?",
+      "source_rank": 1556,
+      "count": 812
+    },
+    {
+      "german": "Kommt nicht in Frage.",
+      "source_rank": 1557,
+      "count": 812
+    },
+    {
+      "german": "Ich hab sie.",
+      "source_rank": 1558,
+      "count": 812
+    },
+    {
+      "german": "Sehen Sie mich an.",
+      "source_rank": 1560,
+      "count": 810
+    },
+    {
+      "german": "Was ist das hier?",
+      "source_rank": 1561,
+      "count": 810
+    },
+    {
+      "german": "Kennen Sie ihn?",
+      "source_rank": 1563,
+      "count": 808
+    },
+    {
+      "german": "Augenblick mal.",
+      "source_rank": 1564,
+      "count": 807
+    },
+    {
+      "german": "Und wenn nicht?",
+      "source_rank": 1565,
+      "count": 806
+    },
+    {
+      "german": "Das wird schon.",
+      "source_rank": 1567,
+      "count": 806
+    },
+    {
+      "german": "Danke vielmals.",
+      "source_rank": 1568,
+      "count": 805
+    },
+    {
+      "german": "Sicher nicht.",
+      "source_rank": 1569,
+      "count": 805
+    },
+    {
+      "german": "Ich habe keine Angst.",
+      "source_rank": 1570,
+      "count": 804
+    },
+    {
+      "german": "Es geht ihm gut.",
+      "source_rank": 1571,
+      "count": 803
+    },
+    {
+      "german": "Ich weiß nicht, was ich tun soll.",
+      "source_rank": 1572,
+      "count": 802
+    },
+    {
+      "german": "Na endlich.",
+      "source_rank": 1573,
+      "count": 802
+    },
+    {
+      "german": "Seien Sie vorsichtig.",
+      "source_rank": 1575,
+      "count": 801
+    },
+    {
+      "german": "Nein, ich glaube nicht.",
+      "source_rank": 1577,
+      "count": 801
+    },
+    {
+      "german": "Schwer zu sagen.",
+      "source_rank": 1579,
+      "count": 800
+    },
+    {
+      "german": "Hab ich.",
+      "source_rank": 1580,
+      "count": 800
+    },
+    {
+      "german": "Ich komme wieder.",
+      "source_rank": 1582,
+      "count": 798
+    },
+    {
+      "german": "Du weißt, was ich meine.",
+      "source_rank": 1583,
+      "count": 798
+    },
+    {
+      "german": "Lassen Sie mich in Ruhe.",
+      "source_rank": 1585,
+      "count": 797
+    },
+    {
+      "german": "Schon besser.",
+      "source_rank": 1586,
+      "count": 797
+    },
+    {
+      "german": "Du schaffst es.",
+      "source_rank": 1588,
+      "count": 796
+    },
+    {
+      "german": "Das ist fantastisch.",
+      "source_rank": 1590,
+      "count": 796
+    },
+    {
+      "german": "Lass es.",
+      "source_rank": 1591,
+      "count": 796
+    },
+    {
+      "german": "Wieso das?",
+      "source_rank": 1594,
+      "count": 796
+    },
+    {
+      "german": "Warten Sie hier.",
+      "source_rank": 1598,
+      "count": 793
+    },
+    {
+      "german": "Schon gut, schon gut.",
+      "source_rank": 1599,
+      "count": 793
+    },
+    {
+      "german": "Oder was?",
+      "source_rank": 1600,
+      "count": 793
+    },
+    {
+      "german": "Komm runter.",
+      "source_rank": 1602,
+      "count": 792
+    },
+    {
+      "german": "Was ist geschehen?",
+      "source_rank": 1604,
+      "count": 791
+    },
+    {
+      "german": "Viel besser.",
+      "source_rank": 1605,
+      "count": 790
+    },
+    {
+      "german": "Ich bin noch nicht fertig.",
+      "source_rank": 1606,
+      "count": 790
+    },
+    {
+      "german": "Oh, wow.",
+      "source_rank": 1607,
+      "count": 790
+    },
+    {
+      "german": "Nichts für ungut.",
+      "source_rank": 1609,
+      "count": 789
+    },
+    {
+      "german": "Kennen wir uns?",
+      "source_rank": 1610,
+      "count": 789
+    },
+    {
+      "german": "Ja, ich denke schon.",
+      "source_rank": 1612,
+      "count": 788
+    },
+    {
+      "german": "Wollen wir?",
+      "source_rank": 1613,
+      "count": 787
+    }
+  ]
+}

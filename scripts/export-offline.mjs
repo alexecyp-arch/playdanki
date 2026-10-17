@@ -1,0 +1,36 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+const root=new URL('../',import.meta.url),target=path.resolve(process.argv[2]||'outputs');
+await fs.mkdir(target,{recursive:true});
+let html=await fs.readFile(new URL('dist/index.html',root),'utf8');
+const marker='<script id="trivia-data" type="application/json">[]</script>';
+if(!html.includes(marker))throw Error('Offline Trivia marker missing');
+const data=await fs.readFile(new URL('src/trivia.json',root),'utf8');
+html=html.replace(marker,'<script id="trivia-data" type="application/json">'+data.replace(/</g,'\\u003c')+'</script>');
+for(const name of ['spanish-words','spanish-sentences','italian-words','italian-sentences','greek-words','greek-sentences','korean-hangul','korean-words']){
+ const marker='<script id="'+name+'-data" type="application/json">[]</script>',cards=await fs.readFile(new URL('dist/languages/'+name+'.json',root),'utf8');
+ if(!html.includes(marker))throw Error('Offline '+name+' marker missing');
+ html=html.replace(marker,'<script id="'+name+'-data" type="application/json">'+cards.replace(/</g,'\\u003c')+'</script>');
+}
+await fs.writeFile(path.join(target,'Deutsch-5000.html'),html);
+await fs.copyFile(new URL('dist/arithmetic.html',root),path.join(target,'arithmetic.html'));
+await fs.rm(path.join(target,'arithmetic-aim.html'),{force:true});
+let programming=await fs.readFile(new URL('dist/programming.html',root),'utf8');
+const programmingData=await fs.readFile(new URL('src/programming/cards.json',root),'utf8'),programmingMarker='<script id="programming-data" type="application/json">[]</script>';
+if(!programming.includes(programmingMarker))throw Error('Offline Programming marker missing');
+programming=programming.replace(programmingMarker,'<script id="programming-data" type="application/json">'+programmingData.replace(/</g,'\\u003c')+'</script>');
+await fs.writeFile(path.join(target,'programming.html'),programming);
+await fs.cp(new URL('dist/programming/',root),path.join(target,'programming'),{recursive:true});
+let quant=await fs.readFile(new URL('dist/quant.html',root),'utf8');
+const quantData=await fs.readFile(new URL('src/quant/cards.json',root),'utf8'),quantMarker='<script id="quant-data" type="application/json">[]</script>';
+if(!quant.includes(quantMarker))throw Error('Offline QUANT marker missing');
+quant=quant.replace(quantMarker,'<script id="quant-data" type="application/json">'+quantData.replace(/</g,'\\u003c')+'</script>');
+await fs.writeFile(path.join(target,'quant.html'),quant);
+await fs.cp(new URL('dist/quant/',root),path.join(target,'quant'),{recursive:true});
+await fs.copyFile(new URL('dist/credits.txt',root),path.join(target,'credits.txt'));
+await fs.cp(new URL('dist/licenses/',root),path.join(target,'licenses'),{recursive:true});
+await fs.mkdir(path.join(target,'trivia'),{recursive:true});
+for(const name of ['sources.json','summary.json'])await fs.copyFile(new URL('dist/trivia/'+name,root),path.join(target,'trivia',name));
+await fs.cp(new URL('dist/french/',root),path.join(target,'french'),{recursive:true});
+await fs.cp(new URL('dist/languages/',root),path.join(target,'languages'),{recursive:true});
+console.log(JSON.stringify({offlineHtmlBytes:Buffer.byteLength(html),trivia:20000,frenchWords:5000,frenchSentences:1000,programming:5000,quant:5000}));

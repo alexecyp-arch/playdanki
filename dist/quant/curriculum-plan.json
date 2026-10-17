@@ -1,0 +1,6266 @@
+{
+  "total": 5000,
+  "calendarGroups": false,
+  "reset": "none",
+  "ordering": "Continuous from foundational arithmetic to integrated professional judgment; topic interleaving respects prerequisites.",
+  "perspectives": [
+    "definition",
+    "purpose",
+    "intuition",
+    "rule",
+    "worked example",
+    "error spotting",
+    "comparison",
+    "assumptions",
+    "application",
+    "transfer"
+  ],
+  "weights": {
+    "statistics": 30,
+    "probability": 15,
+    "arithmetic": 10,
+    "decisions": 10,
+    "papers": 10,
+    "calculus": 10,
+    "applications": 7,
+    "models": 4,
+    "product": 2,
+    "information": 2
+  },
+  "skills": [
+    {
+      "key": "prac-percent",
+      "concept": "Percent",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 1,
+      "lastCard": 10,
+      "difficultyBand": 1,
+      "prerequisites": []
+    },
+    {
+      "key": "prac-percent-of",
+      "concept": "A percentage of an amount",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 11,
+      "lastCard": 20,
+      "difficultyBand": 1,
+      "prerequisites": [
+        "prac-percent"
+      ]
+    },
+    {
+      "key": "prob-chance",
+      "concept": "Probability as a chance",
+      "subject": "probability",
+      "topic": "Probability basics",
+      "firstCard": 21,
+      "lastCard": 30,
+      "difficultyBand": 1,
+      "prerequisites": []
+    },
+    {
+      "key": "prac-net-payoffs",
+      "concept": "Net payoff",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 31,
+      "lastCard": 40,
+      "difficultyBand": 1,
+      "prerequisites": []
+    },
+    {
+      "key": "prac-ev",
+      "concept": "Expected value",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 41,
+      "lastCard": 50,
+      "difficultyBand": 1,
+      "prerequisites": [
+        "prac-net-payoffs",
+        "prac-percent-of",
+        "prob-chance"
+      ]
+    },
+    {
+      "key": "prac-percentage-points",
+      "concept": "Percentage points",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 51,
+      "lastCard": 60,
+      "difficultyBand": 1,
+      "prerequisites": [
+        "prac-percent-of"
+      ]
+    },
+    {
+      "key": "prob-complement",
+      "concept": "The opposite event",
+      "subject": "probability",
+      "topic": "Probability basics",
+      "firstCard": 61,
+      "lastCard": 70,
+      "difficultyBand": 1,
+      "prerequisites": [
+        "prob-chance"
+      ]
+    },
+    {
+      "key": "prac-positive-ev",
+      "concept": "Positive expected value",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 71,
+      "lastCard": 80,
+      "difficultyBand": 1,
+      "prerequisites": [
+        "prac-ev"
+      ]
+    },
+    {
+      "key": "stat-observation",
+      "concept": "Observation",
+      "subject": "statistics",
+      "topic": "Data basics",
+      "firstCard": 81,
+      "lastCard": 90,
+      "difficultyBand": 1,
+      "prerequisites": []
+    },
+    {
+      "key": "paper-question",
+      "concept": "A testable research question",
+      "subject": "papers",
+      "topic": "Reading research",
+      "firstCard": 91,
+      "lastCard": 100,
+      "difficultyBand": 1,
+      "prerequisites": []
+    },
+    {
+      "key": "calc-function",
+      "concept": "Function as a rule",
+      "subject": "calculus",
+      "topic": "Functions and change",
+      "firstCard": 101,
+      "lastCard": 110,
+      "difficultyBand": 1,
+      "prerequisites": []
+    },
+    {
+      "key": "stat-population-sample",
+      "concept": "Population and sample",
+      "subject": "statistics",
+      "topic": "Data basics",
+      "firstCard": 111,
+      "lastCard": 120,
+      "difficultyBand": 1,
+      "prerequisites": [
+        "stat-observation"
+      ]
+    },
+    {
+      "key": "model-input-output",
+      "concept": "Model inputs and outputs",
+      "subject": "models",
+      "topic": "Prediction basics",
+      "firstCard": 121,
+      "lastCard": 130,
+      "difficultyBand": 1,
+      "prerequisites": []
+    },
+    {
+      "key": "stat-variable-types",
+      "concept": "Variable",
+      "subject": "statistics",
+      "topic": "Data basics",
+      "firstCard": 131,
+      "lastCard": 140,
+      "difficultyBand": 1,
+      "prerequisites": [
+        "stat-observation"
+      ]
+    },
+    {
+      "key": "prac-percent-change",
+      "concept": "Percentage change",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 141,
+      "lastCard": 150,
+      "difficultyBand": 1,
+      "prerequisites": [
+        "prac-percentage-points"
+      ]
+    },
+    {
+      "key": "prob-equal-outcomes",
+      "concept": "Equally likely outcomes",
+      "subject": "probability",
+      "topic": "Probability basics",
+      "firstCard": 151,
+      "lastCard": 160,
+      "difficultyBand": 1,
+      "prerequisites": [
+        "prob-complement"
+      ]
+    },
+    {
+      "key": "prac-outcome-vs-decision",
+      "concept": "Decision quality versus outcome",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 161,
+      "lastCard": 170,
+      "difficultyBand": 1,
+      "prerequisites": [
+        "prac-positive-ev"
+      ]
+    },
+    {
+      "key": "stat-frequency",
+      "concept": "Frequency",
+      "subject": "statistics",
+      "topic": "Data basics",
+      "firstCard": 171,
+      "lastCard": 180,
+      "difficultyBand": 1,
+      "prerequisites": [
+        "stat-variable-types"
+      ]
+    },
+    {
+      "key": "paper-population",
+      "concept": "Target population",
+      "subject": "papers",
+      "topic": "Reading research",
+      "firstCard": 181,
+      "lastCard": 190,
+      "difficultyBand": 1,
+      "prerequisites": [
+        "paper-question"
+      ]
+    },
+    {
+      "key": "calc-graph",
+      "concept": "Reading a graph",
+      "subject": "calculus",
+      "topic": "Functions and change",
+      "firstCard": 191,
+      "lastCard": 200,
+      "difficultyBand": 1,
+      "prerequisites": [
+        "calc-function"
+      ]
+    },
+    {
+      "key": "stat-mean",
+      "concept": "Mean",
+      "subject": "statistics",
+      "topic": "Descriptive statistics",
+      "firstCard": 201,
+      "lastCard": 210,
+      "difficultyBand": 1,
+      "prerequisites": [
+        "stat-variable-types"
+      ]
+    },
+    {
+      "key": "prac-risk-reward",
+      "concept": "Risk/reward and win rate",
+      "subject": "applications",
+      "topic": "Trading, betting and poker",
+      "firstCard": 211,
+      "lastCard": 220,
+      "difficultyBand": 1,
+      "prerequisites": [
+        "prac-ev",
+        "prac-net-payoffs",
+        "stat-mean"
+      ]
+    },
+    {
+      "key": "product-conversion",
+      "concept": "Conversion rate",
+      "subject": "product",
+      "topic": "Product basics",
+      "firstCard": 221,
+      "lastCard": 230,
+      "difficultyBand": 1,
+      "prerequisites": []
+    },
+    {
+      "key": "stat-median",
+      "concept": "Median",
+      "subject": "statistics",
+      "topic": "Descriptive statistics",
+      "firstCard": 231,
+      "lastCard": 240,
+      "difficultyBand": 1,
+      "prerequisites": [
+        "stat-mean"
+      ]
+    },
+    {
+      "key": "prob-base-rate",
+      "concept": "Base rate",
+      "subject": "probability",
+      "topic": "Probability basics",
+      "firstCard": 241,
+      "lastCard": 250,
+      "difficultyBand": 1,
+      "prerequisites": [
+        "prob-equal-outcomes"
+      ]
+    },
+    {
+      "key": "prac-opportunity-cost",
+      "concept": "Opportunity cost",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 251,
+      "lastCard": 260,
+      "difficultyBand": 1,
+      "prerequisites": [
+        "prac-outcome-vs-decision"
+      ]
+    },
+    {
+      "key": "stat-mode",
+      "concept": "Mode",
+      "subject": "statistics",
+      "topic": "Descriptive statistics",
+      "firstCard": 261,
+      "lastCard": 270,
+      "difficultyBand": 1,
+      "prerequisites": [
+        "stat-frequency"
+      ]
+    },
+    {
+      "key": "info-surprise-intuition",
+      "concept": "Information as surprise",
+      "subject": "information",
+      "topic": "Information basics",
+      "firstCard": 271,
+      "lastCard": 280,
+      "difficultyBand": 1,
+      "prerequisites": []
+    },
+    {
+      "key": "prac-ratio",
+      "concept": "Ratio",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 281,
+      "lastCard": 290,
+      "difficultyBand": 1,
+      "prerequisites": [
+        "prac-percent-change"
+      ]
+    },
+    {
+      "key": "prob-conditional-group",
+      "concept": "Conditional probability in counts",
+      "subject": "probability",
+      "topic": "Probability basics",
+      "firstCard": 291,
+      "lastCard": 300,
+      "difficultyBand": 1,
+      "prerequisites": [
+        "prob-base-rate"
+      ]
+    },
+    {
+      "key": "stat-range",
+      "concept": "Range",
+      "subject": "statistics",
+      "topic": "Descriptive statistics",
+      "firstCard": 301,
+      "lastCard": 310,
+      "difficultyBand": 1,
+      "prerequisites": [
+        "stat-variable-types"
+      ]
+    },
+    {
+      "key": "paper-sample",
+      "concept": "A measured sample",
+      "subject": "papers",
+      "topic": "Reading research",
+      "firstCard": 311,
+      "lastCard": 320,
+      "difficultyBand": 1,
+      "prerequisites": [
+        "paper-population"
+      ]
+    },
+    {
+      "key": "calc-slope",
+      "concept": "Slope as change per unit",
+      "subject": "calculus",
+      "topic": "Functions and change",
+      "firstCard": 321,
+      "lastCard": 330,
+      "difficultyBand": 1,
+      "prerequisites": [
+        "calc-graph"
+      ]
+    },
+    {
+      "key": "stat-variance-intuition",
+      "concept": "Variance intuition",
+      "subject": "statistics",
+      "topic": "Spread and uncertainty",
+      "firstCard": 331,
+      "lastCard": 340,
+      "difficultyBand": 1,
+      "prerequisites": [
+        "stat-mean"
+      ]
+    },
+    {
+      "key": "prac-decimal-odds",
+      "concept": "Decimal odds and implied probability",
+      "subject": "applications",
+      "topic": "Trading, betting and poker",
+      "firstCard": 341,
+      "lastCard": 350,
+      "difficultyBand": 1,
+      "prerequisites": [
+        "prac-risk-reward",
+        "prac-ratio",
+        "prob-chance"
+      ]
+    },
+    {
+      "key": "model-line-intuition",
+      "concept": "A straight-line prediction",
+      "subject": "models",
+      "topic": "Prediction basics",
+      "firstCard": 351,
+      "lastCard": 360,
+      "difficultyBand": 1,
+      "prerequisites": [
+        "model-input-output"
+      ]
+    },
+    {
+      "key": "stat-sd-intuition",
+      "concept": "Standard deviation intuition",
+      "subject": "statistics",
+      "topic": "Spread and uncertainty",
+      "firstCard": 361,
+      "lastCard": 370,
+      "difficultyBand": 1,
+      "prerequisites": [
+        "stat-variance-intuition"
+      ]
+    },
+    {
+      "key": "prob-independence",
+      "concept": "Independent events",
+      "subject": "probability",
+      "topic": "Probability basics",
+      "firstCard": 371,
+      "lastCard": 380,
+      "difficultyBand": 1,
+      "prerequisites": [
+        "prob-conditional-group"
+      ]
+    },
+    {
+      "key": "stat-sample-size",
+      "concept": "Sample size",
+      "subject": "statistics",
+      "topic": "Sampling basics",
+      "firstCard": 381,
+      "lastCard": 390,
+      "difficultyBand": 1,
+      "prerequisites": [
+        "stat-population-sample"
+      ]
+    },
+    {
+      "key": "paper-comparison",
+      "concept": "A comparison group",
+      "subject": "papers",
+      "topic": "Reading research",
+      "firstCard": 391,
+      "lastCard": 400,
+      "difficultyBand": 1,
+      "prerequisites": [
+        "paper-question"
+      ]
+    },
+    {
+      "key": "calc-rate-units",
+      "concept": "Rate units",
+      "subject": "calculus",
+      "topic": "Functions and change",
+      "firstCard": 401,
+      "lastCard": 410,
+      "difficultyBand": 1,
+      "prerequisites": [
+        "calc-slope"
+      ]
+    },
+    {
+      "key": "stat-observed-rate",
+      "concept": "Observed rate",
+      "subject": "statistics",
+      "topic": "Data basics",
+      "firstCard": 411,
+      "lastCard": 420,
+      "difficultyBand": 1,
+      "prerequisites": [
+        "stat-frequency",
+        "stat-sample-size"
+      ]
+    },
+    {
+      "key": "prac-pot-odds",
+      "concept": "Poker calling price",
+      "subject": "applications",
+      "topic": "Trading, betting and poker",
+      "firstCard": 421,
+      "lastCard": 430,
+      "difficultyBand": 1,
+      "prerequisites": [
+        "prac-decimal-odds",
+        "prac-percent-of",
+        "prob-chance"
+      ]
+    },
+    {
+      "key": "stat-outlier",
+      "concept": "Outlier",
+      "subject": "statistics",
+      "topic": "Descriptive statistics",
+      "firstCard": 431,
+      "lastCard": 440,
+      "difficultyBand": 1,
+      "prerequisites": [
+        "stat-mean",
+        "stat-median"
+      ]
+    },
+    {
+      "key": "prob-dependence",
+      "concept": "Dependent events",
+      "subject": "probability",
+      "topic": "Probability basics",
+      "firstCard": 441,
+      "lastCard": 450,
+      "difficultyBand": 1,
+      "prerequisites": [
+        "prob-independence"
+      ]
+    },
+    {
+      "key": "stat-correlation-intuition",
+      "concept": "Correlation intuition",
+      "subject": "statistics",
+      "topic": "Association basics",
+      "firstCard": 451,
+      "lastCard": 460,
+      "difficultyBand": 1,
+      "prerequisites": [
+        "stat-variable-types"
+      ]
+    },
+    {
+      "key": "stat-uncertainty",
+      "concept": "Statistical uncertainty",
+      "subject": "statistics",
+      "topic": "Sampling basics",
+      "firstCard": 461,
+      "lastCard": 470,
+      "difficultyBand": 1,
+      "prerequisites": [
+        "stat-sample-size",
+        "stat-observed-rate"
+      ]
+    },
+    {
+      "key": "prob-odds",
+      "concept": "Probability versus odds",
+      "subject": "probability",
+      "topic": "Probability basics",
+      "firstCard": 471,
+      "lastCard": 480,
+      "difficultyBand": 1,
+      "prerequisites": [
+        "prob-dependence"
+      ]
+    },
+    {
+      "key": "paper-correlation-cause",
+      "concept": "Association versus cause",
+      "subject": "papers",
+      "topic": "Reading research",
+      "firstCard": 481,
+      "lastCard": 490,
+      "difficultyBand": 1,
+      "prerequisites": [
+        "paper-comparison"
+      ]
+    },
+    {
+      "key": "calc-linear-model",
+      "concept": "Linear model",
+      "subject": "calculus",
+      "topic": "Functions and change",
+      "firstCard": 491,
+      "lastCard": 500,
+      "difficultyBand": 1,
+      "prerequisites": [
+        "calc-rate-units"
+      ]
+    },
+    {
+      "key": "prac-fractions",
+      "concept": "Fractions as percentages",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 501,
+      "lastCard": 510,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "prac-ratio"
+      ]
+    },
+    {
+      "key": "prob-union",
+      "concept": "Inclusive OR",
+      "subject": "probability",
+      "topic": "Combining events",
+      "firstCard": 511,
+      "lastCard": 520,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "prob-odds"
+      ]
+    },
+    {
+      "key": "prac-break-even",
+      "concept": "Break-even win probability",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 521,
+      "lastCard": 530,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "prac-opportunity-cost"
+      ]
+    },
+    {
+      "key": "stat-weighted-mean",
+      "concept": "Weighted mean",
+      "subject": "statistics",
+      "topic": "Descriptive statistics",
+      "firstCard": 531,
+      "lastCard": 540,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "stat-mean"
+      ]
+    },
+    {
+      "key": "paper-randomization",
+      "concept": "Random assignment",
+      "subject": "papers",
+      "topic": "Study design",
+      "firstCard": 541,
+      "lastCard": 550,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "paper-comparison",
+        "paper-sample"
+      ]
+    },
+    {
+      "key": "calc-average-change",
+      "concept": "Average rate of change",
+      "subject": "calculus",
+      "topic": "Rates of change",
+      "firstCard": 551,
+      "lastCard": 560,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "calc-linear-model"
+      ]
+    },
+    {
+      "key": "stat-even-median",
+      "concept": "Median with an even count",
+      "subject": "statistics",
+      "topic": "Descriptive statistics",
+      "firstCard": 561,
+      "lastCard": 570,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "stat-median"
+      ]
+    },
+    {
+      "key": "prac-bluff-threshold",
+      "concept": "Break-even poker bluff",
+      "subject": "applications",
+      "topic": "Trading, betting and poker",
+      "firstCard": 571,
+      "lastCard": 580,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "prac-pot-odds"
+      ]
+    },
+    {
+      "key": "model-intercept",
+      "concept": "Intercept",
+      "subject": "models",
+      "topic": "Linear models",
+      "firstCard": 581,
+      "lastCard": 590,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "model-line-intuition"
+      ]
+    },
+    {
+      "key": "stat-percentile",
+      "concept": "Percentile",
+      "subject": "statistics",
+      "topic": "Descriptive statistics",
+      "firstCard": 591,
+      "lastCard": 600,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "stat-median",
+        "stat-observed-rate"
+      ]
+    },
+    {
+      "key": "prac-negative-returns",
+      "concept": "Negative returns",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 601,
+      "lastCard": 610,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "prac-fractions"
+      ]
+    },
+    {
+      "key": "prob-intersection",
+      "concept": "AND event",
+      "subject": "probability",
+      "topic": "Combining events",
+      "firstCard": 611,
+      "lastCard": 620,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "prob-union"
+      ]
+    },
+    {
+      "key": "prac-decimal-ev",
+      "concept": "Expected return at decimal odds",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 621,
+      "lastCard": 630,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "prac-break-even"
+      ]
+    },
+    {
+      "key": "stat-iqr",
+      "concept": "Interquartile range",
+      "subject": "statistics",
+      "topic": "Descriptive statistics",
+      "firstCard": 631,
+      "lastCard": 640,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "stat-percentile"
+      ]
+    },
+    {
+      "key": "paper-control",
+      "concept": "A control condition",
+      "subject": "papers",
+      "topic": "Study design",
+      "firstCard": 641,
+      "lastCard": 650,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "paper-randomization"
+      ]
+    },
+    {
+      "key": "calc-curved-function",
+      "concept": "Changing slopes",
+      "subject": "calculus",
+      "topic": "Rates of change",
+      "firstCard": 651,
+      "lastCard": 660,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "calc-average-change"
+      ]
+    },
+    {
+      "key": "stat-histogram",
+      "concept": "Histogram",
+      "subject": "statistics",
+      "topic": "Descriptive statistics",
+      "firstCard": 661,
+      "lastCard": 670,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "stat-frequency",
+        "stat-variable-types"
+      ]
+    },
+    {
+      "key": "prac-outs",
+      "concept": "Poker outs and drawing probability",
+      "subject": "applications",
+      "topic": "Trading, betting and poker",
+      "firstCard": 671,
+      "lastCard": 680,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "prac-bluff-threshold"
+      ]
+    },
+    {
+      "key": "product-ab-random",
+      "concept": "A randomized A/B test",
+      "subject": "product",
+      "topic": "Product experiments",
+      "firstCard": 681,
+      "lastCard": 690,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "product-conversion",
+        "paper-randomization"
+      ]
+    },
+    {
+      "key": "stat-right-skew",
+      "concept": "Right skew",
+      "subject": "statistics",
+      "topic": "Distribution shape",
+      "firstCard": 691,
+      "lastCard": 700,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "stat-mean",
+        "stat-median",
+        "stat-histogram"
+      ]
+    },
+    {
+      "key": "prob-disjoint",
+      "concept": "Mutually exclusive events",
+      "subject": "probability",
+      "topic": "Combining events",
+      "firstCard": 701,
+      "lastCard": 710,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "prob-intersection"
+      ]
+    },
+    {
+      "key": "prac-money-risk",
+      "concept": "Risk tolerance and EV",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 711,
+      "lastCard": 720,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "prac-decimal-ev"
+      ]
+    },
+    {
+      "key": "stat-left-skew",
+      "concept": "Left skew",
+      "subject": "statistics",
+      "topic": "Distribution shape",
+      "firstCard": 721,
+      "lastCard": 730,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "stat-right-skew"
+      ]
+    },
+    {
+      "key": "info-signal-noise",
+      "concept": "Signal versus noise",
+      "subject": "information",
+      "topic": "Information basics",
+      "firstCard": 731,
+      "lastCard": 740,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "info-surprise-intuition"
+      ]
+    },
+    {
+      "key": "prac-discount-chain",
+      "concept": "Successive discounts",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 741,
+      "lastCard": 750,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "prac-negative-returns"
+      ]
+    },
+    {
+      "key": "prob-total",
+      "concept": "Total probability",
+      "subject": "probability",
+      "topic": "Conditional probability",
+      "firstCard": 751,
+      "lastCard": 760,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "prob-disjoint"
+      ]
+    },
+    {
+      "key": "prac-decision-tree",
+      "concept": "Decision tree",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 761,
+      "lastCard": 770,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "prac-money-risk"
+      ]
+    },
+    {
+      "key": "stat-relative-frequency",
+      "concept": "Relative frequency",
+      "subject": "statistics",
+      "topic": "Data basics",
+      "firstCard": 771,
+      "lastCard": 780,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "stat-frequency",
+        "stat-observed-rate"
+      ]
+    },
+    {
+      "key": "paper-blinding",
+      "concept": "Blinding",
+      "subject": "papers",
+      "topic": "Study design",
+      "firstCard": 781,
+      "lastCard": 790,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "paper-control"
+      ]
+    },
+    {
+      "key": "calc-limit-intuition",
+      "concept": "Limit",
+      "subject": "calculus",
+      "topic": "Limits and local change",
+      "firstCard": 791,
+      "lastCard": 800,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "calc-curved-function"
+      ]
+    },
+    {
+      "key": "stat-sample-variance",
+      "concept": "Sample variance",
+      "subject": "statistics",
+      "topic": "Spread and uncertainty",
+      "firstCard": 801,
+      "lastCard": 810,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "stat-variance-intuition",
+        "stat-sample-size"
+      ]
+    },
+    {
+      "key": "prac-position-size",
+      "concept": "Risk-based position size",
+      "subject": "applications",
+      "topic": "Trading, betting and poker",
+      "firstCard": 811,
+      "lastCard": 820,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "prac-outs"
+      ]
+    },
+    {
+      "key": "model-slope",
+      "concept": "Slope",
+      "subject": "models",
+      "topic": "Linear models",
+      "firstCard": 821,
+      "lastCard": 830,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "model-intercept"
+      ]
+    },
+    {
+      "key": "stat-population-sd",
+      "concept": "Population standard deviation",
+      "subject": "statistics",
+      "topic": "Spread and uncertainty",
+      "firstCard": 831,
+      "lastCard": 840,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "stat-sd-intuition",
+        "stat-sample-variance"
+      ]
+    },
+    {
+      "key": "prac-weighted-average",
+      "concept": "Weighted average",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 841,
+      "lastCard": 850,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "prac-discount-chain"
+      ]
+    },
+    {
+      "key": "prob-bayes-counts",
+      "concept": "Bayes with natural counts",
+      "subject": "probability",
+      "topic": "Conditional probability",
+      "firstCard": 851,
+      "lastCard": 860,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "prob-total"
+      ]
+    },
+    {
+      "key": "prac-uncertain-probability",
+      "concept": "Uncertain probability estimates",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 861,
+      "lastCard": 870,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "prac-decision-tree"
+      ]
+    },
+    {
+      "key": "stat-z-score",
+      "concept": "Z-score",
+      "subject": "statistics",
+      "topic": "Descriptive statistics",
+      "firstCard": 871,
+      "lastCard": 880,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "stat-population-sd"
+      ]
+    },
+    {
+      "key": "paper-measurement",
+      "concept": "A defined outcome measure",
+      "subject": "papers",
+      "topic": "Study design",
+      "firstCard": 881,
+      "lastCard": 890,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "paper-question",
+        "paper-control"
+      ]
+    },
+    {
+      "key": "calc-local-rate",
+      "concept": "Instantaneous rate",
+      "subject": "calculus",
+      "topic": "Limits and local change",
+      "firstCard": 891,
+      "lastCard": 900,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "calc-limit-intuition"
+      ]
+    },
+    {
+      "key": "stat-robust-center",
+      "concept": "Robust summary",
+      "subject": "statistics",
+      "topic": "Descriptive statistics",
+      "firstCard": 901,
+      "lastCard": 910,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "stat-iqr",
+        "stat-outlier"
+      ]
+    },
+    {
+      "key": "prac-overround",
+      "concept": "Bookmaker overround",
+      "subject": "applications",
+      "topic": "Trading, betting and poker",
+      "firstCard": 911,
+      "lastCard": 920,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "prac-position-size"
+      ]
+    },
+    {
+      "key": "stat-paired-data",
+      "concept": "Paired measurements",
+      "subject": "statistics",
+      "topic": "Study design",
+      "firstCard": 921,
+      "lastCard": 930,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "stat-mean",
+        "stat-observation"
+      ]
+    },
+    {
+      "key": "prob-tree",
+      "concept": "Probability tree",
+      "subject": "probability",
+      "topic": "Conditional probability",
+      "firstCard": 931,
+      "lastCard": 940,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "prob-bayes-counts"
+      ]
+    },
+    {
+      "key": "stat-sample-proportion",
+      "concept": "Sample proportion",
+      "subject": "statistics",
+      "topic": "Descriptive statistics",
+      "firstCard": 941,
+      "lastCard": 950,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "stat-observed-rate",
+        "stat-uncertainty"
+      ]
+    },
+    {
+      "key": "prac-rates",
+      "concept": "Rates and denominators",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 951,
+      "lastCard": 960,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "prac-weighted-average"
+      ]
+    },
+    {
+      "key": "prob-replacement",
+      "concept": "Sampling with replacement",
+      "subject": "probability",
+      "topic": "Sampling and chance",
+      "firstCard": 961,
+      "lastCard": 970,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "prob-tree"
+      ]
+    },
+    {
+      "key": "stat-covariance-intuition",
+      "concept": "Covariance intuition",
+      "subject": "statistics",
+      "topic": "Association basics",
+      "firstCard": 971,
+      "lastCard": 980,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "stat-mean",
+        "stat-paired-data",
+        "stat-correlation-intuition"
+      ]
+    },
+    {
+      "key": "paper-observation-experiment",
+      "concept": "Observation versus intervention",
+      "subject": "papers",
+      "topic": "Study design",
+      "firstCard": 981,
+      "lastCard": 990,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "paper-correlation-cause",
+        "paper-randomization"
+      ]
+    },
+    {
+      "key": "calc-continuity",
+      "concept": "Continuity",
+      "subject": "calculus",
+      "topic": "Limits and local change",
+      "firstCard": 991,
+      "lastCard": 1000,
+      "difficultyBand": 2,
+      "prerequisites": [
+        "calc-local-rate"
+      ]
+    },
+    {
+      "key": "prac-drawdown-recovery",
+      "concept": "Loss recovery",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 1001,
+      "lastCard": 1010,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "prac-rates"
+      ]
+    },
+    {
+      "key": "prob-random-variable",
+      "concept": "Random variable",
+      "subject": "probability",
+      "topic": "Random variables",
+      "firstCard": 1011,
+      "lastCard": 1020,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "prob-replacement"
+      ]
+    },
+    {
+      "key": "prac-kelly-purpose",
+      "concept": "Kelly’s objective",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 1021,
+      "lastCard": 1030,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "prac-uncertain-probability",
+        "prac-break-even"
+      ]
+    },
+    {
+      "key": "stat-random-sample",
+      "concept": "Simple random sample",
+      "subject": "statistics",
+      "topic": "Sampling",
+      "firstCard": 1031,
+      "lastCard": 1040,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "stat-population-sample",
+        "stat-sample-size"
+      ]
+    },
+    {
+      "key": "paper-effect-size",
+      "concept": "Size of a study effect",
+      "subject": "papers",
+      "topic": "Interpreting results",
+      "firstCard": 1041,
+      "lastCard": 1050,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "paper-comparison",
+        "paper-measurement"
+      ]
+    },
+    {
+      "key": "calc-derivative",
+      "concept": "Derivative notation",
+      "subject": "calculus",
+      "topic": "Derivatives",
+      "firstCard": 1051,
+      "lastCard": 1060,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "calc-continuity"
+      ]
+    },
+    {
+      "key": "stat-selection-bias",
+      "concept": "Selection bias",
+      "subject": "statistics",
+      "topic": "Sampling",
+      "firstCard": 1061,
+      "lastCard": 1070,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "stat-random-sample"
+      ]
+    },
+    {
+      "key": "prac-implied-odds",
+      "concept": "Poker implied odds",
+      "subject": "applications",
+      "topic": "Trading, betting and poker",
+      "firstCard": 1071,
+      "lastCard": 1080,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "prac-overround"
+      ]
+    },
+    {
+      "key": "model-residual",
+      "concept": "Residual",
+      "subject": "models",
+      "topic": "Model fitting",
+      "firstCard": 1081,
+      "lastCard": 1090,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "model-slope"
+      ]
+    },
+    {
+      "key": "stat-nonresponse",
+      "concept": "Nonresponse bias",
+      "subject": "statistics",
+      "topic": "Sampling",
+      "firstCard": 1091,
+      "lastCard": 1100,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "stat-selection-bias"
+      ]
+    },
+    {
+      "key": "prac-compound-return",
+      "concept": "Compound return",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 1101,
+      "lastCard": 1110,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "prac-drawdown-recovery"
+      ]
+    },
+    {
+      "key": "prob-mass-function",
+      "concept": "Probability mass function",
+      "subject": "probability",
+      "topic": "Random variables",
+      "firstCard": 1111,
+      "lastCard": 1120,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "prob-random-variable"
+      ]
+    },
+    {
+      "key": "prac-kelly-formula",
+      "concept": "Binary Kelly fraction",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 1121,
+      "lastCard": 1130,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "prac-kelly-purpose",
+        "prac-decimal-odds"
+      ]
+    },
+    {
+      "key": "stat-independent-observations",
+      "concept": "Independent observations",
+      "subject": "statistics",
+      "topic": "Sampling",
+      "firstCard": 1131,
+      "lastCard": 1140,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "stat-paired-data",
+        "stat-covariance-intuition"
+      ]
+    },
+    {
+      "key": "paper-absolute-relative",
+      "concept": "Absolute and relative risk reduction",
+      "subject": "papers",
+      "topic": "Interpreting results",
+      "firstCard": 1141,
+      "lastCard": 1150,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "paper-effect-size"
+      ]
+    },
+    {
+      "key": "calc-power-rule",
+      "concept": "Power rule",
+      "subject": "calculus",
+      "topic": "Derivatives",
+      "firstCard": 1151,
+      "lastCard": 1160,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "calc-derivative"
+      ]
+    },
+    {
+      "key": "stat-representativeness",
+      "concept": "Representative evidence",
+      "subject": "statistics",
+      "topic": "Sampling",
+      "firstCard": 1161,
+      "lastCard": 1170,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "stat-selection-bias",
+        "stat-random-sample"
+      ]
+    },
+    {
+      "key": "prac-roi",
+      "concept": "ROI and stake turnover",
+      "subject": "applications",
+      "topic": "Trading, betting and poker",
+      "firstCard": 1171,
+      "lastCard": 1180,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "prac-implied-odds"
+      ]
+    },
+    {
+      "key": "product-lift",
+      "concept": "Absolute versus relative lift",
+      "subject": "product",
+      "topic": "Product metrics",
+      "firstCard": 1181,
+      "lastCard": 1190,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "product-ab-random",
+        "paper-absolute-relative"
+      ]
+    },
+    {
+      "key": "stat-sampling-distribution",
+      "concept": "Sampling distribution",
+      "subject": "statistics",
+      "topic": "Sampling",
+      "firstCard": 1191,
+      "lastCard": 1200,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "stat-mean",
+        "stat-sample-proportion",
+        "stat-uncertainty"
+      ]
+    },
+    {
+      "key": "prob-cumulative",
+      "concept": "Cumulative distribution",
+      "subject": "probability",
+      "topic": "Random variables",
+      "firstCard": 1201,
+      "lastCard": 1210,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "prob-mass-function"
+      ]
+    },
+    {
+      "key": "prac-fractional-kelly",
+      "concept": "Half and quarter Kelly",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 1211,
+      "lastCard": 1220,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "prac-kelly-formula"
+      ]
+    },
+    {
+      "key": "stat-se-mean",
+      "concept": "Standard error of a mean",
+      "subject": "statistics",
+      "topic": "Sampling",
+      "firstCard": 1221,
+      "lastCard": 1230,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "stat-sampling-distribution",
+        "stat-sample-variance",
+        "stat-independent-observations"
+      ]
+    },
+    {
+      "key": "info-surprisal",
+      "concept": "Surprisal in bits",
+      "subject": "information",
+      "topic": "Information measures",
+      "firstCard": 1231,
+      "lastCard": 1240,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "info-surprise-intuition"
+      ]
+    },
+    {
+      "key": "prac-geometric-mean",
+      "concept": "Geometric average return",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 1241,
+      "lastCard": 1250,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "prac-compound-return"
+      ]
+    },
+    {
+      "key": "prob-continuous",
+      "concept": "Discrete versus continuous",
+      "subject": "probability",
+      "topic": "Random variables",
+      "firstCard": 1251,
+      "lastCard": 1260,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "prob-cumulative"
+      ]
+    },
+    {
+      "key": "prac-bankroll-definition",
+      "concept": "Bankroll and changing stakes",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 1261,
+      "lastCard": 1270,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "prac-fractional-kelly"
+      ]
+    },
+    {
+      "key": "stat-se-proportion",
+      "concept": "Standard error of a proportion",
+      "subject": "statistics",
+      "topic": "Sampling",
+      "firstCard": 1271,
+      "lastCard": 1280,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "stat-sample-proportion",
+        "stat-sampling-distribution"
+      ]
+    },
+    {
+      "key": "paper-ci-reading",
+      "concept": "Reading a confidence interval",
+      "subject": "papers",
+      "topic": "Interpreting results",
+      "firstCard": 1281,
+      "lastCard": 1290,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "paper-effect-size"
+      ]
+    },
+    {
+      "key": "calc-sum-rule",
+      "concept": "Constant and sum rules",
+      "subject": "calculus",
+      "topic": "Derivatives",
+      "firstCard": 1291,
+      "lastCard": 1300,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "calc-power-rule"
+      ]
+    },
+    {
+      "key": "stat-fourfold-sample",
+      "concept": "Square-root sample-size rule",
+      "subject": "statistics",
+      "topic": "Sampling",
+      "firstCard": 1301,
+      "lastCard": 1310,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "stat-se-mean",
+        "stat-se-proportion"
+      ]
+    },
+    {
+      "key": "prac-slippage",
+      "concept": "Slippage and transaction costs",
+      "subject": "applications",
+      "topic": "Trading, betting and poker",
+      "firstCard": 1311,
+      "lastCard": 1320,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "prac-roi"
+      ]
+    },
+    {
+      "key": "model-least-squares",
+      "concept": "Least-squares fitting",
+      "subject": "models",
+      "topic": "Model fitting",
+      "firstCard": 1321,
+      "lastCard": 1330,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "model-residual"
+      ]
+    },
+    {
+      "key": "stat-law-large-numbers",
+      "concept": "Law of large numbers",
+      "subject": "statistics",
+      "topic": "Sampling",
+      "firstCard": 1331,
+      "lastCard": 1340,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "stat-mean",
+        "stat-independent-observations"
+      ]
+    },
+    {
+      "key": "prac-cagr",
+      "concept": "Compound annual growth rate",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 1341,
+      "lastCard": 1350,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "prac-geometric-mean"
+      ]
+    },
+    {
+      "key": "prob-density",
+      "concept": "Probability density",
+      "subject": "probability",
+      "topic": "Random variables",
+      "firstCard": 1351,
+      "lastCard": 1360,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "prob-continuous"
+      ]
+    },
+    {
+      "key": "prac-negative-kelly",
+      "concept": "Zero and negative Kelly",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 1361,
+      "lastCard": 1370,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "prac-bankroll-definition"
+      ]
+    },
+    {
+      "key": "stat-central-limit",
+      "concept": "Central limit theorem",
+      "subject": "statistics",
+      "topic": "Sampling",
+      "firstCard": 1371,
+      "lastCard": 1380,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "stat-sampling-distribution",
+        "stat-law-large-numbers",
+        "stat-variance-intuition"
+      ]
+    },
+    {
+      "key": "paper-pvalue-reading",
+      "concept": "What a p-value asks",
+      "subject": "papers",
+      "topic": "Interpreting results",
+      "firstCard": 1381,
+      "lastCard": 1390,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "paper-ci-reading"
+      ]
+    },
+    {
+      "key": "calc-tangent",
+      "concept": "Local linear approximation",
+      "subject": "calculus",
+      "topic": "Derivatives",
+      "firstCard": 1391,
+      "lastCard": 1400,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "calc-sum-rule"
+      ]
+    },
+    {
+      "key": "stat-cluster-sample",
+      "concept": "Clustered sample",
+      "subject": "statistics",
+      "topic": "Sampling",
+      "firstCard": 1401,
+      "lastCard": 1410,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "stat-independent-observations",
+        "stat-random-sample"
+      ]
+    },
+    {
+      "key": "stat-stratified-sample",
+      "concept": "Stratified sample",
+      "subject": "statistics",
+      "topic": "Sampling",
+      "firstCard": 1411,
+      "lastCard": 1420,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "stat-weighted-mean",
+        "stat-random-sample"
+      ]
+    },
+    {
+      "key": "prob-rv-mean",
+      "concept": "Expected value of a random variable",
+      "subject": "probability",
+      "topic": "Random variables",
+      "firstCard": 1421,
+      "lastCard": 1430,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "prob-density"
+      ]
+    },
+    {
+      "key": "stat-finite-population",
+      "concept": "Finite population correction",
+      "subject": "statistics",
+      "topic": "Sampling",
+      "firstCard": 1431,
+      "lastCard": 1440,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "stat-se-mean",
+        "stat-random-sample"
+      ]
+    },
+    {
+      "key": "prac-doubling",
+      "concept": "Doubling time",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 1441,
+      "lastCard": 1450,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "prac-cagr"
+      ]
+    },
+    {
+      "key": "prob-rv-variance",
+      "concept": "Variance of a random variable",
+      "subject": "probability",
+      "topic": "Random variables",
+      "firstCard": 1451,
+      "lastCard": 1460,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "prob-rv-mean"
+      ]
+    },
+    {
+      "key": "stat-bootstrap",
+      "concept": "Bootstrap",
+      "subject": "statistics",
+      "topic": "Sampling",
+      "firstCard": 1461,
+      "lastCard": 1470,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "stat-sampling-distribution",
+        "stat-cluster-sample"
+      ]
+    },
+    {
+      "key": "paper-practical-significance",
+      "concept": "Practical significance",
+      "subject": "papers",
+      "topic": "Interpreting results",
+      "firstCard": 1471,
+      "lastCard": 1480,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "paper-pvalue-reading"
+      ]
+    },
+    {
+      "key": "calc-marginal-cost",
+      "concept": "Marginal cost",
+      "subject": "calculus",
+      "topic": "Economic derivatives",
+      "firstCard": 1481,
+      "lastCard": 1490,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "calc-tangent"
+      ]
+    },
+    {
+      "key": "prob-bernoulli",
+      "concept": "Bernoulli trial",
+      "subject": "probability",
+      "topic": "Discrete distributions",
+      "firstCard": 1491,
+      "lastCard": 1500,
+      "difficultyBand": 3,
+      "prerequisites": [
+        "prob-rv-variance"
+      ]
+    },
+    {
+      "key": "prac-relative-base",
+      "concept": "Changing the comparison base",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 1501,
+      "lastCard": 1510,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "prac-doubling"
+      ]
+    },
+    {
+      "key": "prob-binomial",
+      "concept": "Binomial count",
+      "subject": "probability",
+      "topic": "Discrete distributions",
+      "firstCard": 1511,
+      "lastCard": 1520,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "prob-bernoulli"
+      ]
+    },
+    {
+      "key": "prac-utility",
+      "concept": "Expected utility",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 1521,
+      "lastCard": 1530,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "prac-negative-kelly"
+      ]
+    },
+    {
+      "key": "stat-parameter-statistic",
+      "concept": "Parameter and statistic",
+      "subject": "statistics",
+      "topic": "Estimation",
+      "firstCard": 1531,
+      "lastCard": 1540,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "stat-population-sample",
+        "stat-sampling-distribution"
+      ]
+    },
+    {
+      "key": "paper-preregistration",
+      "concept": "Preregistration",
+      "subject": "papers",
+      "topic": "Transparent research",
+      "firstCard": 1541,
+      "lastCard": 1550,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "paper-pvalue-reading"
+      ]
+    },
+    {
+      "key": "calc-product-rule",
+      "concept": "Product rule",
+      "subject": "calculus",
+      "topic": "Derivative techniques",
+      "firstCard": 1551,
+      "lastCard": 1560,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "calc-marginal-cost"
+      ]
+    },
+    {
+      "key": "stat-point-estimate",
+      "concept": "Point estimate",
+      "subject": "statistics",
+      "topic": "Estimation",
+      "firstCard": 1561,
+      "lastCard": 1570,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "stat-parameter-statistic"
+      ]
+    },
+    {
+      "key": "prac-sports-kelly",
+      "concept": "Kelly sizing for a sports price",
+      "subject": "applications",
+      "topic": "Trading, betting and poker",
+      "firstCard": 1571,
+      "lastCard": 1580,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "prac-slippage"
+      ]
+    },
+    {
+      "key": "model-rsquared",
+      "concept": "R-squared",
+      "subject": "models",
+      "topic": "Model diagnostics",
+      "firstCard": 1581,
+      "lastCard": 1590,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "model-least-squares"
+      ]
+    },
+    {
+      "key": "stat-estimator-bias",
+      "concept": "Estimator bias",
+      "subject": "statistics",
+      "topic": "Estimation",
+      "firstCard": 1591,
+      "lastCard": 1600,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "stat-point-estimate",
+        "stat-sampling-distribution"
+      ]
+    },
+    {
+      "key": "prac-indexing",
+      "concept": "Index numbers",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 1601,
+      "lastCard": 1610,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "prac-relative-base"
+      ]
+    },
+    {
+      "key": "prob-binomial-tail",
+      "concept": "Binomial tail",
+      "subject": "probability",
+      "topic": "Discrete distributions",
+      "firstCard": 1611,
+      "lastCard": 1620,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "prob-binomial"
+      ]
+    },
+    {
+      "key": "prac-concave-utility",
+      "concept": "Concave wealth utility",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 1621,
+      "lastCard": 1630,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "prac-utility"
+      ]
+    },
+    {
+      "key": "stat-estimator-variance",
+      "concept": "Estimator variance",
+      "subject": "statistics",
+      "topic": "Estimation",
+      "firstCard": 1631,
+      "lastCard": 1640,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "stat-estimator-bias",
+        "stat-se-mean"
+      ]
+    },
+    {
+      "key": "paper-primary-outcome",
+      "concept": "Primary endpoint",
+      "subject": "papers",
+      "topic": "Transparent research",
+      "firstCard": 1641,
+      "lastCard": 1650,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "paper-preregistration"
+      ]
+    },
+    {
+      "key": "calc-quotient-rule",
+      "concept": "Quotient rule",
+      "subject": "calculus",
+      "topic": "Derivative techniques",
+      "firstCard": 1651,
+      "lastCard": 1660,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "calc-product-rule"
+      ]
+    },
+    {
+      "key": "stat-consistency",
+      "concept": "Consistent estimator",
+      "subject": "statistics",
+      "topic": "Estimation",
+      "firstCard": 1661,
+      "lastCard": 1670,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "stat-law-large-numbers",
+        "stat-estimator-bias",
+        "stat-estimator-variance"
+      ]
+    },
+    {
+      "key": "prac-closing-line",
+      "concept": "Closing-line value",
+      "subject": "applications",
+      "topic": "Trading, betting and poker",
+      "firstCard": 1671,
+      "lastCard": 1680,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "prac-sports-kelly"
+      ]
+    },
+    {
+      "key": "product-guardrails",
+      "concept": "Guardrail metrics",
+      "subject": "product",
+      "topic": "Product experiments",
+      "firstCard": 1681,
+      "lastCard": 1690,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "product-lift",
+        "paper-primary-outcome"
+      ]
+    },
+    {
+      "key": "stat-efficiency",
+      "concept": "Estimator efficiency",
+      "subject": "statistics",
+      "topic": "Estimation",
+      "firstCard": 1691,
+      "lastCard": 1700,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "stat-estimator-variance",
+        "stat-robust-center"
+      ]
+    },
+    {
+      "key": "prob-geometric",
+      "concept": "Geometric waiting count",
+      "subject": "probability",
+      "topic": "Discrete distributions",
+      "firstCard": 1701,
+      "lastCard": 1710,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "prob-binomial-tail"
+      ]
+    },
+    {
+      "key": "prac-certainty-equivalent",
+      "concept": "Certainty equivalent",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 1711,
+      "lastCard": 1720,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "prac-concave-utility"
+      ]
+    },
+    {
+      "key": "stat-mse",
+      "concept": "Mean squared error",
+      "subject": "statistics",
+      "topic": "Estimation",
+      "firstCard": 1721,
+      "lastCard": 1730,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "stat-estimator-bias",
+        "stat-estimator-variance"
+      ]
+    },
+    {
+      "key": "info-entropy",
+      "concept": "Entropy",
+      "subject": "information",
+      "topic": "Information measures",
+      "firstCard": 1731,
+      "lastCard": 1740,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "info-surprisal"
+      ]
+    },
+    {
+      "key": "prac-unit-conversion",
+      "concept": "Consistent units",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 1741,
+      "lastCard": 1750,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "prac-indexing"
+      ]
+    },
+    {
+      "key": "prob-poisson",
+      "concept": "Poisson event count",
+      "subject": "probability",
+      "topic": "Discrete distributions",
+      "firstCard": 1751,
+      "lastCard": 1760,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "prob-geometric"
+      ]
+    },
+    {
+      "key": "prac-information-value",
+      "concept": "Value of information",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 1761,
+      "lastCard": 1770,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "prac-certainty-equivalent"
+      ]
+    },
+    {
+      "key": "stat-confidence-coverage",
+      "concept": "95% confidence interval",
+      "subject": "statistics",
+      "topic": "Confidence intervals",
+      "firstCard": 1771,
+      "lastCard": 1780,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "stat-sampling-distribution",
+        "stat-point-estimate"
+      ]
+    },
+    {
+      "key": "paper-attrition",
+      "concept": "Attrition and missing outcomes",
+      "subject": "papers",
+      "topic": "Study validity",
+      "firstCard": 1781,
+      "lastCard": 1790,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "paper-randomization",
+        "paper-measurement"
+      ]
+    },
+    {
+      "key": "calc-chain-rule",
+      "concept": "Chain rule",
+      "subject": "calculus",
+      "topic": "Derivative techniques",
+      "firstCard": 1791,
+      "lastCard": 1800,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "calc-quotient-rule"
+      ]
+    },
+    {
+      "key": "stat-normal-mean-ci",
+      "concept": "Mean interval with known population SD",
+      "subject": "statistics",
+      "topic": "Confidence intervals",
+      "firstCard": 1801,
+      "lastCard": 1810,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "stat-se-mean",
+        "stat-confidence-coverage",
+        "stat-central-limit"
+      ]
+    },
+    {
+      "key": "prac-fill-risk",
+      "concept": "Execution risk versus trigger rules",
+      "subject": "applications",
+      "topic": "Trading, betting and poker",
+      "firstCard": 1811,
+      "lastCard": 1820,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "prac-closing-line"
+      ]
+    },
+    {
+      "key": "stat-t-mean-ci",
+      "concept": "Student t interval for a mean",
+      "subject": "statistics",
+      "topic": "Confidence intervals",
+      "firstCard": 1821,
+      "lastCard": 1830,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "stat-sample-variance",
+        "stat-normal-mean-ci"
+      ]
+    },
+    {
+      "key": "prac-log-return",
+      "concept": "Logarithmic return",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 1831,
+      "lastCard": 1840,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "prac-unit-conversion"
+      ]
+    },
+    {
+      "key": "prob-exponential",
+      "concept": "Exponential waiting time",
+      "subject": "probability",
+      "topic": "Continuous distributions",
+      "firstCard": 1841,
+      "lastCard": 1850,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "prob-poisson"
+      ]
+    },
+    {
+      "key": "prac-perfect-information",
+      "concept": "Expected value of perfect information",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 1851,
+      "lastCard": 1860,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "prac-information-value"
+      ]
+    },
+    {
+      "key": "stat-wilson-interval",
+      "concept": "Wilson interval for a proportion",
+      "subject": "statistics",
+      "topic": "Confidence intervals",
+      "firstCard": 1861,
+      "lastCard": 1870,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "stat-se-proportion",
+        "stat-confidence-coverage"
+      ]
+    },
+    {
+      "key": "paper-confounding",
+      "concept": "Confounding",
+      "subject": "papers",
+      "topic": "Causal interpretation",
+      "firstCard": 1871,
+      "lastCard": 1880,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "paper-observation-experiment"
+      ]
+    },
+    {
+      "key": "calc-exponential-rule",
+      "concept": "Exponential derivative",
+      "subject": "calculus",
+      "topic": "Derivative techniques",
+      "firstCard": 1881,
+      "lastCard": 1890,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "calc-chain-rule"
+      ]
+    },
+    {
+      "key": "stat-interval-width",
+      "concept": "Confidence interval width",
+      "subject": "statistics",
+      "topic": "Confidence intervals",
+      "firstCard": 1891,
+      "lastCard": 1900,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "stat-confidence-coverage",
+        "stat-fourfold-sample"
+      ]
+    },
+    {
+      "key": "prac-return-volatility",
+      "concept": "Volatility and return units",
+      "subject": "applications",
+      "topic": "Trading, betting and poker",
+      "firstCard": 1901,
+      "lastCard": 1910,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "prac-fill-risk"
+      ]
+    },
+    {
+      "key": "stat-prediction-interval",
+      "concept": "Prediction interval",
+      "subject": "statistics",
+      "topic": "Confidence intervals",
+      "firstCard": 1911,
+      "lastCard": 1920,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "stat-normal-mean-ci",
+        "stat-t-mean-ci"
+      ]
+    },
+    {
+      "key": "prob-uniform",
+      "concept": "Uniform distribution",
+      "subject": "probability",
+      "topic": "Continuous distributions",
+      "firstCard": 1921,
+      "lastCard": 1930,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "prob-exponential"
+      ]
+    },
+    {
+      "key": "stat-paired-interval",
+      "concept": "Interval for a paired mean change",
+      "subject": "statistics",
+      "topic": "Confidence intervals",
+      "firstCard": 1931,
+      "lastCard": 1940,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "stat-paired-data",
+        "stat-t-mean-ci"
+      ]
+    },
+    {
+      "key": "prac-real-return",
+      "concept": "Inflation-adjusted return",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 1941,
+      "lastCard": 1950,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "prac-log-return"
+      ]
+    },
+    {
+      "key": "prob-normal",
+      "concept": "Normal distribution",
+      "subject": "probability",
+      "topic": "Continuous distributions",
+      "firstCard": 1951,
+      "lastCard": 1960,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "prob-uniform"
+      ]
+    },
+    {
+      "key": "stat-two-mean-se",
+      "concept": "Difference between independent means",
+      "subject": "statistics",
+      "topic": "Confidence intervals",
+      "firstCard": 1961,
+      "lastCard": 1970,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "stat-se-mean",
+        "stat-t-mean-ci",
+        "stat-independent-observations"
+      ]
+    },
+    {
+      "key": "paper-reverse-causation",
+      "concept": "Reverse causation",
+      "subject": "papers",
+      "topic": "Causal interpretation",
+      "firstCard": 1971,
+      "lastCard": 1980,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "paper-confounding"
+      ]
+    },
+    {
+      "key": "calc-log-rule",
+      "concept": "Logarithmic derivative",
+      "subject": "calculus",
+      "topic": "Derivative techniques",
+      "firstCard": 1981,
+      "lastCard": 1990,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "calc-exponential-rule"
+      ]
+    },
+    {
+      "key": "model-multiple-regression",
+      "concept": "Multiple regression",
+      "subject": "models",
+      "topic": "Multivariable models",
+      "firstCard": 1991,
+      "lastCard": 2000,
+      "difficultyBand": 4,
+      "prerequisites": [
+        "model-slope",
+        "paper-confounding"
+      ]
+    },
+    {
+      "key": "prac-pooled-rates",
+      "concept": "Pooling rates with unequal groups",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 2001,
+      "lastCard": 2010,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "prac-real-return"
+      ]
+    },
+    {
+      "key": "prob-standardize",
+      "concept": "Standard score",
+      "subject": "probability",
+      "topic": "Continuous distributions",
+      "firstCard": 2011,
+      "lastCard": 2020,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "prob-normal"
+      ]
+    },
+    {
+      "key": "prac-ruin",
+      "concept": "Risk of ruin",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 2021,
+      "lastCard": 2030,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "prac-perfect-information"
+      ]
+    },
+    {
+      "key": "stat-null-alternative",
+      "concept": "Null and alternative hypotheses",
+      "subject": "statistics",
+      "topic": "Hypothesis testing",
+      "firstCard": 2031,
+      "lastCard": 2040,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "stat-parameter-statistic",
+        "stat-confidence-coverage"
+      ]
+    },
+    {
+      "key": "paper-multiple-testing",
+      "concept": "Many hypothesis tests",
+      "subject": "papers",
+      "topic": "Research errors",
+      "firstCard": 2041,
+      "lastCard": 2050,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "paper-primary-outcome",
+        "paper-pvalue-reading"
+      ]
+    },
+    {
+      "key": "calc-curvature",
+      "concept": "Second derivative",
+      "subject": "calculus",
+      "topic": "Optimization",
+      "firstCard": 2051,
+      "lastCard": 2060,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "calc-log-rule"
+      ]
+    },
+    {
+      "key": "stat-p-value",
+      "concept": "P-value",
+      "subject": "statistics",
+      "topic": "Hypothesis testing",
+      "firstCard": 2061,
+      "lastCard": 2070,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "stat-null-alternative",
+        "stat-sampling-distribution"
+      ]
+    },
+    {
+      "key": "prac-sharpe-sortino",
+      "concept": "Sharpe and downside risk",
+      "subject": "applications",
+      "topic": "Trading, betting and poker",
+      "firstCard": 2071,
+      "lastCard": 2080,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "prac-return-volatility"
+      ]
+    },
+    {
+      "key": "model-dummy",
+      "concept": "Dummy variables",
+      "subject": "models",
+      "topic": "Multivariable models",
+      "firstCard": 2081,
+      "lastCard": 2090,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "model-multiple-regression"
+      ]
+    },
+    {
+      "key": "stat-alpha",
+      "concept": "Significance level alpha",
+      "subject": "statistics",
+      "topic": "Hypothesis testing",
+      "firstCard": 2091,
+      "lastCard": 2100,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "stat-p-value"
+      ]
+    },
+    {
+      "key": "prac-simple-vs-compound",
+      "concept": "Simple versus compound growth",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 2101,
+      "lastCard": 2110,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "prac-pooled-rates"
+      ]
+    },
+    {
+      "key": "prob-lognormal",
+      "concept": "Lognormal model",
+      "subject": "probability",
+      "topic": "Continuous distributions",
+      "firstCard": 2111,
+      "lastCard": 2120,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "prob-standardize"
+      ]
+    },
+    {
+      "key": "prac-log-growth",
+      "concept": "Expected logarithmic growth",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 2121,
+      "lastCard": 2130,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "prac-ruin",
+        "prac-log-return",
+        "prac-compound-return"
+      ]
+    },
+    {
+      "key": "stat-type-one",
+      "concept": "Type I error",
+      "subject": "statistics",
+      "topic": "Hypothesis testing",
+      "firstCard": 2131,
+      "lastCard": 2140,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "stat-alpha"
+      ]
+    },
+    {
+      "key": "paper-optional-stopping",
+      "concept": "Unplanned significance stopping",
+      "subject": "papers",
+      "topic": "Research errors",
+      "firstCard": 2141,
+      "lastCard": 2150,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "paper-preregistration",
+        "paper-multiple-testing"
+      ]
+    },
+    {
+      "key": "calc-stationary",
+      "concept": "Stationary point",
+      "subject": "calculus",
+      "topic": "Optimization",
+      "firstCard": 2151,
+      "lastCard": 2160,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "calc-curvature"
+      ]
+    },
+    {
+      "key": "stat-type-two",
+      "concept": "Type II error",
+      "subject": "statistics",
+      "topic": "Hypothesis testing",
+      "firstCard": 2161,
+      "lastCard": 2170,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "stat-type-one"
+      ]
+    },
+    {
+      "key": "prac-max-drawdown",
+      "concept": "Maximum drawdown",
+      "subject": "applications",
+      "topic": "Trading, betting and poker",
+      "firstCard": 2171,
+      "lastCard": 2180,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "prac-sharpe-sortino"
+      ]
+    },
+    {
+      "key": "product-power",
+      "concept": "Power and detectable lift",
+      "subject": "product",
+      "topic": "Product experiments",
+      "firstCard": 2181,
+      "lastCard": 2190,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "product-lift",
+        "paper-ci-reading"
+      ]
+    },
+    {
+      "key": "stat-power",
+      "concept": "Statistical power",
+      "subject": "statistics",
+      "topic": "Hypothesis testing",
+      "firstCard": 2191,
+      "lastCard": 2200,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "stat-type-two",
+        "stat-fourfold-sample"
+      ]
+    },
+    {
+      "key": "prob-memoryless",
+      "concept": "Memoryless waiting",
+      "subject": "probability",
+      "topic": "Continuous distributions",
+      "firstCard": 2201,
+      "lastCard": 2210,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "prob-lognormal"
+      ]
+    },
+    {
+      "key": "prac-overbetting",
+      "concept": "Overbetting relative to Kelly",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 2211,
+      "lastCard": 2220,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "prac-log-growth"
+      ]
+    },
+    {
+      "key": "stat-one-sided",
+      "concept": "One-sided test",
+      "subject": "statistics",
+      "topic": "Hypothesis testing",
+      "firstCard": 2221,
+      "lastCard": 2230,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "stat-null-alternative",
+        "stat-alpha"
+      ]
+    },
+    {
+      "key": "info-cross-entropy",
+      "concept": "Cross-entropy",
+      "subject": "information",
+      "topic": "Prediction scoring",
+      "firstCard": 2231,
+      "lastCard": 2240,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "info-entropy"
+      ]
+    },
+    {
+      "key": "prac-continuous-growth",
+      "concept": "Continuous compounding",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 2241,
+      "lastCard": 2250,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "prac-simple-vs-compound"
+      ]
+    },
+    {
+      "key": "prob-beta",
+      "concept": "Beta probability model",
+      "subject": "probability",
+      "topic": "Continuous distributions",
+      "firstCard": 2251,
+      "lastCard": 2260,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "prob-memoryless"
+      ]
+    },
+    {
+      "key": "prac-dynamic-sizing",
+      "concept": "Fractional sizing and path effects",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 2261,
+      "lastCard": 2270,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "prac-overbetting"
+      ]
+    },
+    {
+      "key": "stat-two-sided",
+      "concept": "Two-sided test",
+      "subject": "statistics",
+      "topic": "Hypothesis testing",
+      "firstCard": 2271,
+      "lastCard": 2280,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "stat-one-sided",
+        "stat-p-value"
+      ]
+    },
+    {
+      "key": "paper-phacking",
+      "concept": "P-hacking",
+      "subject": "papers",
+      "topic": "Research errors",
+      "firstCard": 2281,
+      "lastCard": 2290,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "paper-multiple-testing",
+        "paper-optional-stopping"
+      ]
+    },
+    {
+      "key": "calc-extremum-test",
+      "concept": "Testing an optimum",
+      "subject": "calculus",
+      "topic": "Optimization",
+      "firstCard": 2291,
+      "lastCard": 2300,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "calc-stationary"
+      ]
+    },
+    {
+      "key": "stat-z-test",
+      "concept": "Standardized test statistic",
+      "subject": "statistics",
+      "topic": "Hypothesis testing",
+      "firstCard": 2301,
+      "lastCard": 2310,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "stat-z-score",
+        "stat-se-mean",
+        "stat-null-alternative"
+      ]
+    },
+    {
+      "key": "prac-turnover-hurdle",
+      "concept": "Turnover and cost drag",
+      "subject": "applications",
+      "topic": "Trading, betting and poker",
+      "firstCard": 2311,
+      "lastCard": 2320,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "prac-max-drawdown"
+      ]
+    },
+    {
+      "key": "model-interaction",
+      "concept": "Interaction",
+      "subject": "models",
+      "topic": "Multivariable models",
+      "firstCard": 2321,
+      "lastCard": 2330,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "model-dummy",
+        "paper-multiple-testing"
+      ]
+    },
+    {
+      "key": "stat-t-vs-z",
+      "concept": "t versus z inference",
+      "subject": "statistics",
+      "topic": "Hypothesis testing",
+      "firstCard": 2331,
+      "lastCard": 2340,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "stat-t-mean-ci",
+        "stat-z-test"
+      ]
+    },
+    {
+      "key": "prac-cost-basis-points",
+      "concept": "Costs in basis points",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 2341,
+      "lastCard": 2350,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "prac-continuous-growth"
+      ]
+    },
+    {
+      "key": "prob-large-numbers",
+      "concept": "Law of large numbers",
+      "subject": "probability",
+      "topic": "Repeated trials",
+      "firstCard": 2351,
+      "lastCard": 2360,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "prob-beta"
+      ]
+    },
+    {
+      "key": "prac-correlated-kelly",
+      "concept": "Related bets and Kelly",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 2361,
+      "lastCard": 2370,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "prac-dynamic-sizing"
+      ]
+    },
+    {
+      "key": "stat-absence-evidence",
+      "concept": "Absence of evidence",
+      "subject": "statistics",
+      "topic": "Hypothesis testing",
+      "firstCard": 2371,
+      "lastCard": 2380,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "stat-confidence-coverage",
+        "stat-power",
+        "stat-interval-width"
+      ]
+    },
+    {
+      "key": "paper-harking",
+      "concept": "HARKing",
+      "subject": "papers",
+      "topic": "Research errors",
+      "firstCard": 2381,
+      "lastCard": 2390,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "paper-preregistration",
+        "paper-phacking"
+      ]
+    },
+    {
+      "key": "calc-boundaries",
+      "concept": "Boundary checks",
+      "subject": "calculus",
+      "topic": "Optimization",
+      "firstCard": 2391,
+      "lastCard": 2400,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "calc-extremum-test"
+      ]
+    },
+    {
+      "key": "stat-practical-significance",
+      "concept": "Practical significance",
+      "subject": "statistics",
+      "topic": "Effect sizes",
+      "firstCard": 2401,
+      "lastCard": 2410,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "stat-p-value",
+        "stat-absence-evidence"
+      ]
+    },
+    {
+      "key": "stat-effect-size",
+      "concept": "Effect size",
+      "subject": "statistics",
+      "topic": "Effect sizes",
+      "firstCard": 2411,
+      "lastCard": 2420,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "stat-practical-significance"
+      ]
+    },
+    {
+      "key": "prob-central-limit",
+      "concept": "Central limit approximation",
+      "subject": "probability",
+      "topic": "Repeated trials",
+      "firstCard": 2421,
+      "lastCard": 2430,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "prob-large-numbers"
+      ]
+    },
+    {
+      "key": "stat-cohens-d",
+      "concept": "Cohen’s d",
+      "subject": "statistics",
+      "topic": "Effect sizes",
+      "firstCard": 2431,
+      "lastCard": 2440,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "stat-effect-size",
+        "stat-sd-intuition"
+      ]
+    },
+    {
+      "key": "prac-cost-adjusted-hurdle",
+      "concept": "Cost-adjusted break-even growth",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 2441,
+      "lastCard": 2450,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "prac-cost-basis-points"
+      ]
+    },
+    {
+      "key": "prob-heavy-tails",
+      "concept": "Heavy tails",
+      "subject": "probability",
+      "topic": "Tail risk",
+      "firstCard": 2451,
+      "lastCard": 2460,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "prob-central-limit"
+      ]
+    },
+    {
+      "key": "stat-planned-threshold",
+      "concept": "Prespecified meaningful threshold",
+      "subject": "statistics",
+      "topic": "Study design",
+      "firstCard": 2461,
+      "lastCard": 2470,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "stat-practical-significance",
+        "stat-effect-size",
+        "stat-alpha"
+      ]
+    },
+    {
+      "key": "paper-publication-bias",
+      "concept": "Publication bias",
+      "subject": "papers",
+      "topic": "Research errors",
+      "firstCard": 2471,
+      "lastCard": 2480,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "paper-primary-outcome",
+        "paper-phacking"
+      ]
+    },
+    {
+      "key": "calc-elasticity",
+      "concept": "Elasticity",
+      "subject": "calculus",
+      "topic": "Economic derivatives",
+      "firstCard": 2481,
+      "lastCard": 2490,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "calc-boundaries"
+      ]
+    },
+    {
+      "key": "prob-power-law",
+      "concept": "Power-law tail",
+      "subject": "probability",
+      "topic": "Tail risk",
+      "firstCard": 2491,
+      "lastCard": 2500,
+      "difficultyBand": 5,
+      "prerequisites": [
+        "prob-heavy-tails"
+      ]
+    },
+    {
+      "key": "prac-annualizing-return",
+      "concept": "Annualizing a period return",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 2501,
+      "lastCard": 2510,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "prac-cost-adjusted-hurdle"
+      ]
+    },
+    {
+      "key": "prob-combinations",
+      "concept": "Combinations",
+      "subject": "probability",
+      "topic": "Counting outcomes",
+      "firstCard": 2511,
+      "lastCard": 2520,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "prob-power-law"
+      ]
+    },
+    {
+      "key": "prac-posterior-edge",
+      "concept": "Averaging uncertain edges",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 2521,
+      "lastCard": 2530,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "prac-correlated-kelly"
+      ]
+    },
+    {
+      "key": "stat-absolute-risk",
+      "concept": "Absolute risk difference",
+      "subject": "statistics",
+      "topic": "Effect measures",
+      "firstCard": 2531,
+      "lastCard": 2540,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "stat-effect-size",
+        "stat-sample-proportion"
+      ]
+    },
+    {
+      "key": "paper-replication",
+      "concept": "Replication",
+      "subject": "papers",
+      "topic": "Reliable evidence",
+      "firstCard": 2541,
+      "lastCard": 2550,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "paper-ci-reading",
+        "paper-publication-bias"
+      ]
+    },
+    {
+      "key": "calc-integral-picture",
+      "concept": "Integral as accumulation",
+      "subject": "calculus",
+      "topic": "Integration",
+      "firstCard": 2551,
+      "lastCard": 2560,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "calc-elasticity"
+      ]
+    },
+    {
+      "key": "stat-risk-ratio",
+      "concept": "Risk ratio",
+      "subject": "statistics",
+      "topic": "Effect measures",
+      "firstCard": 2561,
+      "lastCard": 2570,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "stat-absolute-risk"
+      ]
+    },
+    {
+      "key": "prac-diversification",
+      "concept": "Covariance and diversification",
+      "subject": "applications",
+      "topic": "Trading, betting and poker",
+      "firstCard": 2571,
+      "lastCard": 2580,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "prac-turnover-hurdle"
+      ]
+    },
+    {
+      "key": "model-logistic",
+      "concept": "Logistic regression",
+      "subject": "models",
+      "topic": "Probability models",
+      "firstCard": 2581,
+      "lastCard": 2590,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "model-multiple-regression"
+      ]
+    },
+    {
+      "key": "stat-odds-ratio",
+      "concept": "Odds ratio",
+      "subject": "statistics",
+      "topic": "Effect measures",
+      "firstCard": 2591,
+      "lastCard": 2600,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "stat-risk-ratio"
+      ]
+    },
+    {
+      "key": "prac-sqrt-time",
+      "concept": "Square-root time volatility scaling",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 2601,
+      "lastCard": 2610,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "prac-annualizing-return"
+      ]
+    },
+    {
+      "key": "prob-collisions",
+      "concept": "At least one matching pair",
+      "subject": "probability",
+      "topic": "Counting outcomes",
+      "firstCard": 2611,
+      "lastCard": 2620,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "prob-combinations"
+      ]
+    },
+    {
+      "key": "prac-robust-sizing",
+      "concept": "Sizing with probability uncertainty",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 2621,
+      "lastCard": 2630,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "prac-posterior-edge"
+      ]
+    },
+    {
+      "key": "stat-nnt",
+      "concept": "Number needed to treat",
+      "subject": "statistics",
+      "topic": "Effect measures",
+      "firstCard": 2631,
+      "lastCard": 2640,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "stat-absolute-risk"
+      ]
+    },
+    {
+      "key": "paper-winners-curse",
+      "concept": "Winner’s curse in research",
+      "subject": "papers",
+      "topic": "Reliable evidence",
+      "firstCard": 2641,
+      "lastCard": 2650,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "paper-replication",
+        "paper-phacking"
+      ]
+    },
+    {
+      "key": "calc-antiderivative",
+      "concept": "Antiderivative",
+      "subject": "calculus",
+      "topic": "Integration",
+      "firstCard": 2651,
+      "lastCard": 2660,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "calc-integral-picture"
+      ]
+    },
+    {
+      "key": "stat-hazard-ratio",
+      "concept": "Hazard ratio",
+      "subject": "statistics",
+      "topic": "Effect measures",
+      "firstCard": 2661,
+      "lastCard": 2670,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "stat-risk-ratio",
+        "stat-prediction-interval"
+      ]
+    },
+    {
+      "key": "prac-var",
+      "concept": "Value at Risk",
+      "subject": "applications",
+      "topic": "Trading, betting and poker",
+      "firstCard": 2671,
+      "lastCard": 2680,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "prac-diversification"
+      ]
+    },
+    {
+      "key": "product-cohorts",
+      "concept": "Cohort retention and churn",
+      "subject": "product",
+      "topic": "Product metrics",
+      "firstCard": 2681,
+      "lastCard": 2690,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "product-conversion",
+        "product-guardrails"
+      ]
+    },
+    {
+      "key": "stat-pearson",
+      "concept": "Pearson correlation",
+      "subject": "statistics",
+      "topic": "Association",
+      "firstCard": 2691,
+      "lastCard": 2700,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "stat-covariance-intuition",
+        "stat-population-sd",
+        "stat-correlation-intuition"
+      ]
+    },
+    {
+      "key": "prob-hypergeometric",
+      "concept": "Hypergeometric count",
+      "subject": "probability",
+      "topic": "Discrete distributions",
+      "firstCard": 2701,
+      "lastCard": 2710,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "prob-collisions"
+      ]
+    },
+    {
+      "key": "prac-sample-information",
+      "concept": "Imperfect information value",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 2711,
+      "lastCard": 2720,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "prac-robust-sizing"
+      ]
+    },
+    {
+      "key": "stat-spearman",
+      "concept": "Spearman rank correlation",
+      "subject": "statistics",
+      "topic": "Association",
+      "firstCard": 2721,
+      "lastCard": 2730,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "stat-pearson",
+        "stat-percentile"
+      ]
+    },
+    {
+      "key": "info-kl",
+      "concept": "KL divergence",
+      "subject": "information",
+      "topic": "Information measures",
+      "firstCard": 2731,
+      "lastCard": 2740,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "info-cross-entropy"
+      ]
+    },
+    {
+      "key": "prac-leverage",
+      "concept": "Leverage and capital returns",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 2741,
+      "lastCard": 2750,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "prac-sqrt-time"
+      ]
+    },
+    {
+      "key": "prob-sum-variance",
+      "concept": "Variance of a sum",
+      "subject": "probability",
+      "topic": "Combined uncertainty",
+      "firstCard": 2751,
+      "lastCard": 2760,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "prob-hypergeometric"
+      ]
+    },
+    {
+      "key": "prac-decision-threshold",
+      "concept": "Probability threshold for action",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 2761,
+      "lastCard": 2770,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "prac-sample-information"
+      ]
+    },
+    {
+      "key": "stat-covariance-formula",
+      "concept": "Sample covariance",
+      "subject": "statistics",
+      "topic": "Association",
+      "firstCard": 2771,
+      "lastCard": 2780,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "stat-covariance-intuition",
+        "stat-sample-variance",
+        "stat-pearson"
+      ]
+    },
+    {
+      "key": "paper-dag",
+      "concept": "Causal diagrams",
+      "subject": "papers",
+      "topic": "Causal reasoning",
+      "firstCard": 2781,
+      "lastCard": 2790,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "paper-confounding",
+        "paper-reverse-causation"
+      ]
+    },
+    {
+      "key": "calc-fundamental",
+      "concept": "Fundamental theorem",
+      "subject": "calculus",
+      "topic": "Integration",
+      "firstCard": 2791,
+      "lastCard": 2800,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "calc-antiderivative"
+      ]
+    },
+    {
+      "key": "stat-zero-correlation",
+      "concept": "Zero correlation and nonlinear dependence",
+      "subject": "statistics",
+      "topic": "Association",
+      "firstCard": 2801,
+      "lastCard": 2810,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "stat-pearson",
+        "stat-spearman",
+        "stat-independent-observations"
+      ]
+    },
+    {
+      "key": "prac-expected-shortfall",
+      "concept": "Expected shortfall",
+      "subject": "applications",
+      "topic": "Trading, betting and poker",
+      "firstCard": 2811,
+      "lastCard": 2820,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "prac-var"
+      ]
+    },
+    {
+      "key": "model-transforms",
+      "concept": "Log transforms",
+      "subject": "models",
+      "topic": "Model specification",
+      "firstCard": 2821,
+      "lastCard": 2830,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "model-slope",
+        "model-multiple-regression"
+      ]
+    },
+    {
+      "key": "stat-measurement-attenuation",
+      "concept": "Attenuation from measurement error",
+      "subject": "statistics",
+      "topic": "Measurement",
+      "firstCard": 2831,
+      "lastCard": 2840,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "stat-pearson",
+        "stat-uncertainty"
+      ]
+    },
+    {
+      "key": "prac-return-contributions",
+      "concept": "Portfolio return contributions",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 2841,
+      "lastCard": 2850,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "prac-leverage"
+      ]
+    },
+    {
+      "key": "prob-conditional-mean",
+      "concept": "Conditional expectation",
+      "subject": "probability",
+      "topic": "Combined uncertainty",
+      "firstCard": 2851,
+      "lastCard": 2860,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "prob-sum-variance"
+      ]
+    },
+    {
+      "key": "prac-option-to-wait",
+      "concept": "Value of waiting",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 2861,
+      "lastCard": 2870,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "prac-decision-threshold"
+      ]
+    },
+    {
+      "key": "stat-regression-mean",
+      "concept": "Regression to the mean",
+      "subject": "statistics",
+      "topic": "Association",
+      "firstCard": 2871,
+      "lastCard": 2880,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "stat-correlation-intuition",
+        "stat-sampling-distribution"
+      ]
+    },
+    {
+      "key": "paper-collider",
+      "concept": "Collider bias",
+      "subject": "papers",
+      "topic": "Causal reasoning",
+      "firstCard": 2881,
+      "lastCard": 2890,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "paper-dag"
+      ]
+    },
+    {
+      "key": "calc-signed-area",
+      "concept": "Signed area",
+      "subject": "calculus",
+      "topic": "Integration",
+      "firstCard": 2891,
+      "lastCard": 2900,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "calc-fundamental"
+      ]
+    },
+    {
+      "key": "stat-confounding",
+      "concept": "Confounding",
+      "subject": "statistics",
+      "topic": "Causal reasoning",
+      "firstCard": 2901,
+      "lastCard": 2910,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "stat-correlation-intuition",
+        "stat-selection-bias"
+      ]
+    },
+    {
+      "key": "prac-poker-ranges",
+      "concept": "Poker range combinations",
+      "subject": "applications",
+      "topic": "Trading, betting and poker",
+      "firstCard": 2911,
+      "lastCard": 2920,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "prac-expected-shortfall"
+      ]
+    },
+    {
+      "key": "stat-collider",
+      "concept": "Collider bias",
+      "subject": "statistics",
+      "topic": "Causal reasoning",
+      "firstCard": 2921,
+      "lastCard": 2930,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "stat-confounding"
+      ]
+    },
+    {
+      "key": "prob-bayes-formula",
+      "concept": "Bayes formula",
+      "subject": "probability",
+      "topic": "Bayesian updating",
+      "firstCard": 2931,
+      "lastCard": 2940,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "prob-conditional-mean"
+      ]
+    },
+    {
+      "key": "stat-simpson",
+      "concept": "Simpson’s paradox",
+      "subject": "statistics",
+      "topic": "Association",
+      "firstCard": 2941,
+      "lastCard": 2950,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "stat-weighted-mean",
+        "stat-confounding",
+        "stat-collider"
+      ]
+    },
+    {
+      "key": "prac-growth-decomposition",
+      "concept": "Multiplicative business growth",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 2951,
+      "lastCard": 2960,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "prac-return-contributions"
+      ]
+    },
+    {
+      "key": "prob-bayes-odds",
+      "concept": "Likelihood ratios and odds",
+      "subject": "probability",
+      "topic": "Bayesian updating",
+      "firstCard": 2961,
+      "lastCard": 2970,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "prob-bayes-formula"
+      ]
+    },
+    {
+      "key": "stat-effect-modification",
+      "concept": "Effect modification",
+      "subject": "statistics",
+      "topic": "Association",
+      "firstCard": 2971,
+      "lastCard": 2980,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "stat-effect-size",
+        "stat-two-mean-se",
+        "stat-confounding"
+      ]
+    },
+    {
+      "key": "paper-selection",
+      "concept": "Selection into a study",
+      "subject": "papers",
+      "topic": "Study validity",
+      "firstCard": 2981,
+      "lastCard": 2990,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "paper-population",
+        "paper-attrition",
+        "paper-collider"
+      ]
+    },
+    {
+      "key": "calc-density-integral",
+      "concept": "Integrating a density",
+      "subject": "calculus",
+      "topic": "Probability and calculus",
+      "firstCard": 2991,
+      "lastCard": 3000,
+      "difficultyBand": 6,
+      "prerequisites": [
+        "calc-signed-area"
+      ]
+    },
+    {
+      "key": "prac-elasticity",
+      "concept": "Elasticity",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 3001,
+      "lastCard": 3010,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "prac-growth-decomposition"
+      ]
+    },
+    {
+      "key": "prob-likelihood",
+      "concept": "Likelihood",
+      "subject": "probability",
+      "topic": "Bayesian updating",
+      "firstCard": 3011,
+      "lastCard": 3020,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "prob-bayes-odds"
+      ]
+    },
+    {
+      "key": "prac-multioutcome-kelly",
+      "concept": "Kelly with more than two outcomes",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 3021,
+      "lastCard": 3030,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "prac-option-to-wait"
+      ]
+    },
+    {
+      "key": "stat-multiple-testing",
+      "concept": "Multiplicity",
+      "subject": "statistics",
+      "topic": "Multiple testing",
+      "firstCard": 3031,
+      "lastCard": 3040,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "stat-type-one",
+        "stat-alpha"
+      ]
+    },
+    {
+      "key": "paper-meta-analysis",
+      "concept": "Meta-analysis",
+      "subject": "papers",
+      "topic": "Evidence synthesis",
+      "firstCard": 3041,
+      "lastCard": 3050,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "paper-replication",
+        "paper-publication-bias"
+      ]
+    },
+    {
+      "key": "calc-partial",
+      "concept": "Partial derivative",
+      "subject": "calculus",
+      "topic": "Multivariable calculus",
+      "firstCard": 3051,
+      "lastCard": 3060,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "calc-density-integral"
+      ]
+    },
+    {
+      "key": "stat-familywise-error",
+      "concept": "Familywise error rate",
+      "subject": "statistics",
+      "topic": "Multiple testing",
+      "firstCard": 3061,
+      "lastCard": 3070,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "stat-multiple-testing"
+      ]
+    },
+    {
+      "key": "prac-betting-sample",
+      "concept": "Win-rate uncertainty in betting",
+      "subject": "applications",
+      "topic": "Trading, betting and poker",
+      "firstCard": 3071,
+      "lastCard": 3080,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "prac-poker-ranges",
+        "stat-mean"
+      ]
+    },
+    {
+      "key": "model-cross-validation",
+      "concept": "Cross-validation",
+      "subject": "models",
+      "topic": "Model validation",
+      "firstCard": 3081,
+      "lastCard": 3090,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "model-least-squares",
+        "model-rsquared"
+      ]
+    },
+    {
+      "key": "stat-false-discovery-rate",
+      "concept": "False discovery rate",
+      "subject": "statistics",
+      "topic": "Multiple testing",
+      "firstCard": 3091,
+      "lastCard": 3100,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "stat-familywise-error"
+      ]
+    },
+    {
+      "key": "prac-small-return-approx",
+      "concept": "Small-return approximations",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 3101,
+      "lastCard": 3110,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "prac-elasticity"
+      ]
+    },
+    {
+      "key": "prob-calibration",
+      "concept": "Probability calibration",
+      "subject": "probability",
+      "topic": "Forecast evaluation",
+      "firstCard": 3111,
+      "lastCard": 3120,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "prob-likelihood"
+      ]
+    },
+    {
+      "key": "prac-portfolio-kelly",
+      "concept": "Portfolio log-growth optimization",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 3121,
+      "lastCard": 3130,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "prac-multioutcome-kelly",
+        "prac-correlated-kelly",
+        "prac-diversification"
+      ]
+    },
+    {
+      "key": "stat-bonferroni",
+      "concept": "Bonferroni correction",
+      "subject": "statistics",
+      "topic": "Multiple testing",
+      "firstCard": 3131,
+      "lastCard": 3140,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "stat-familywise-error"
+      ]
+    },
+    {
+      "key": "paper-inverse-variance",
+      "concept": "Inverse-variance weighting",
+      "subject": "papers",
+      "topic": "Evidence synthesis",
+      "firstCard": 3141,
+      "lastCard": 3150,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "paper-meta-analysis",
+        "paper-ci-reading"
+      ]
+    },
+    {
+      "key": "calc-gradient",
+      "concept": "Gradient",
+      "subject": "calculus",
+      "topic": "Multivariable calculus",
+      "firstCard": 3151,
+      "lastCard": 3160,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "calc-partial"
+      ]
+    },
+    {
+      "key": "stat-holm",
+      "concept": "Holm step-down correction",
+      "subject": "statistics",
+      "topic": "Multiple testing",
+      "firstCard": 3161,
+      "lastCard": 3170,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "stat-bonferroni"
+      ]
+    },
+    {
+      "key": "prac-poker-hourly",
+      "concept": "Poker hourly expectation",
+      "subject": "applications",
+      "topic": "Trading, betting and poker",
+      "firstCard": 3171,
+      "lastCard": 3180,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "prac-betting-sample"
+      ]
+    },
+    {
+      "key": "product-unit-economics",
+      "concept": "Customer lifetime value and acquisition cost",
+      "subject": "product",
+      "topic": "Product economics",
+      "firstCard": 3181,
+      "lastCard": 3190,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "product-cohorts",
+        "paper-practical-significance"
+      ]
+    },
+    {
+      "key": "stat-benjamini-hochberg",
+      "concept": "Benjamini–Hochberg procedure",
+      "subject": "statistics",
+      "topic": "Multiple testing",
+      "firstCard": 3191,
+      "lastCard": 3200,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "stat-false-discovery-rate",
+        "stat-holm"
+      ]
+    },
+    {
+      "key": "prob-brier",
+      "concept": "Brier score",
+      "subject": "probability",
+      "topic": "Forecast evaluation",
+      "firstCard": 3201,
+      "lastCard": 3210,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "prob-calibration"
+      ]
+    },
+    {
+      "key": "prac-loss-constraint",
+      "concept": "Risk constraints versus growth optimum",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 3211,
+      "lastCard": 3220,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "prac-portfolio-kelly"
+      ]
+    },
+    {
+      "key": "stat-optional-stopping",
+      "concept": "Optional stopping",
+      "subject": "statistics",
+      "topic": "Study design",
+      "firstCard": 3221,
+      "lastCard": 3230,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "stat-alpha",
+        "stat-multiple-testing"
+      ]
+    },
+    {
+      "key": "info-mutual-information",
+      "concept": "Mutual information",
+      "subject": "information",
+      "topic": "Information measures",
+      "firstCard": 3231,
+      "lastCard": 3240,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "info-entropy",
+        "info-kl"
+      ]
+    },
+    {
+      "key": "prac-fee-compounding",
+      "concept": "Recurring fee drag",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 3241,
+      "lastCard": 3250,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "prac-small-return-approx"
+      ]
+    },
+    {
+      "key": "prob-beta-update",
+      "concept": "Beta-binomial update",
+      "subject": "probability",
+      "topic": "Bayesian updating",
+      "firstCard": 3251,
+      "lastCard": 3260,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "prob-brier"
+      ]
+    },
+    {
+      "key": "prac-risk-budget",
+      "concept": "Allocation of risk budgets",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 3261,
+      "lastCard": 3270,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "prac-loss-constraint"
+      ]
+    },
+    {
+      "key": "stat-p-hacking",
+      "concept": "P-hacking",
+      "subject": "statistics",
+      "topic": "Research reliability",
+      "firstCard": 3271,
+      "lastCard": 3280,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "stat-multiple-testing",
+        "stat-optional-stopping"
+      ]
+    },
+    {
+      "key": "paper-heterogeneity",
+      "concept": "Between-study heterogeneity",
+      "subject": "papers",
+      "topic": "Evidence synthesis",
+      "firstCard": 3281,
+      "lastCard": 3290,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "paper-inverse-variance"
+      ]
+    },
+    {
+      "key": "calc-directional",
+      "concept": "Directional derivative",
+      "subject": "calculus",
+      "topic": "Multivariable calculus",
+      "firstCard": 3291,
+      "lastCard": 3300,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "calc-gradient"
+      ]
+    },
+    {
+      "key": "stat-harking",
+      "concept": "HARKing",
+      "subject": "statistics",
+      "topic": "Research reliability",
+      "firstCard": 3301,
+      "lastCard": 3310,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "stat-p-hacking"
+      ]
+    },
+    {
+      "key": "prac-backtest-bias",
+      "concept": "Backtest selection and missing failures",
+      "subject": "applications",
+      "topic": "Trading, betting and poker",
+      "firstCard": 3311,
+      "lastCard": 3320,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "prac-poker-hourly"
+      ]
+    },
+    {
+      "key": "model-regularization",
+      "concept": "Regularization",
+      "subject": "models",
+      "topic": "Model validation",
+      "firstCard": 3321,
+      "lastCard": 3330,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "model-cross-validation",
+        "model-multiple-regression"
+      ]
+    },
+    {
+      "key": "stat-publication-bias",
+      "concept": "Publication bias",
+      "subject": "statistics",
+      "topic": "Research reliability",
+      "firstCard": 3331,
+      "lastCard": 3340,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "stat-p-hacking",
+        "stat-selection-bias"
+      ]
+    },
+    {
+      "key": "prac-precision",
+      "concept": "Precision versus accuracy",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 3341,
+      "lastCard": 3350,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "prac-fee-compounding"
+      ]
+    },
+    {
+      "key": "prob-predictive",
+      "concept": "Posterior predictive uncertainty",
+      "subject": "probability",
+      "topic": "Bayesian updating",
+      "firstCard": 3351,
+      "lastCard": 3360,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "prob-beta-update"
+      ]
+    },
+    {
+      "key": "prac-model-risk",
+      "concept": "Model risk in a decision",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 3361,
+      "lastCard": 3370,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "prac-risk-budget"
+      ]
+    },
+    {
+      "key": "stat-winners-curse",
+      "concept": "Winner’s curse",
+      "subject": "statistics",
+      "topic": "Research reliability",
+      "firstCard": 3371,
+      "lastCard": 3380,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "stat-estimator-bias",
+        "stat-power",
+        "stat-multiple-testing"
+      ]
+    },
+    {
+      "key": "paper-funnel",
+      "concept": "Funnel-plot interpretation",
+      "subject": "papers",
+      "topic": "Evidence synthesis",
+      "firstCard": 3381,
+      "lastCard": 3390,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "paper-heterogeneity",
+        "paper-publication-bias"
+      ]
+    },
+    {
+      "key": "calc-hessian",
+      "concept": "Curvature matrix",
+      "subject": "calculus",
+      "topic": "Multivariable calculus",
+      "firstCard": 3391,
+      "lastCard": 3400,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "calc-directional"
+      ]
+    },
+    {
+      "key": "stat-replication",
+      "concept": "Replication",
+      "subject": "statistics",
+      "topic": "Research reliability",
+      "firstCard": 3401,
+      "lastCard": 3410,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "stat-confidence-coverage",
+        "stat-winners-curse"
+      ]
+    },
+    {
+      "key": "stat-preregistration",
+      "concept": "Preregistration",
+      "subject": "statistics",
+      "topic": "Study design",
+      "firstCard": 3411,
+      "lastCard": 3420,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "stat-harking",
+        "stat-optional-stopping"
+      ]
+    },
+    {
+      "key": "prob-monte-carlo",
+      "concept": "Monte Carlo estimate",
+      "subject": "probability",
+      "topic": "Simulation",
+      "firstCard": 3421,
+      "lastCard": 3430,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "prob-predictive"
+      ]
+    },
+    {
+      "key": "stat-design-effect",
+      "concept": "Cluster design effect",
+      "subject": "statistics",
+      "topic": "Sampling",
+      "firstCard": 3431,
+      "lastCard": 3440,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "stat-cluster-sample",
+        "stat-se-mean"
+      ]
+    },
+    {
+      "key": "prac-odds-formats",
+      "concept": "Converting odds formats",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 3441,
+      "lastCard": 3450,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "prac-precision"
+      ]
+    },
+    {
+      "key": "prob-mc-error",
+      "concept": "Monte Carlo precision",
+      "subject": "probability",
+      "topic": "Simulation",
+      "firstCard": 3451,
+      "lastCard": 3460,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "prob-monte-carlo"
+      ]
+    },
+    {
+      "key": "stat-minimum-detectable",
+      "concept": "Minimum detectable effect",
+      "subject": "statistics",
+      "topic": "Study design",
+      "firstCard": 3461,
+      "lastCard": 3470,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "stat-power",
+        "stat-planned-threshold",
+        "stat-fourfold-sample"
+      ]
+    },
+    {
+      "key": "paper-systematic-review",
+      "concept": "Systematic evidence search",
+      "subject": "papers",
+      "topic": "Evidence synthesis",
+      "firstCard": 3471,
+      "lastCard": 3480,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "paper-meta-analysis",
+        "paper-funnel"
+      ]
+    },
+    {
+      "key": "calc-total-change",
+      "concept": "Total differential",
+      "subject": "calculus",
+      "topic": "Multivariable calculus",
+      "firstCard": 3481,
+      "lastCard": 3490,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "calc-hessian"
+      ]
+    },
+    {
+      "key": "prob-markov-bound",
+      "concept": "A conservative probability bound",
+      "subject": "probability",
+      "topic": "Probability bounds",
+      "firstCard": 3491,
+      "lastCard": 3500,
+      "difficultyBand": 7,
+      "prerequisites": [
+        "prob-mc-error"
+      ]
+    },
+    {
+      "key": "prac-dimensional-check",
+      "concept": "Dimensional checks",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 3501,
+      "lastCard": 3510,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "prac-odds-formats"
+      ]
+    },
+    {
+      "key": "prob-quantile",
+      "concept": "Quantile threshold",
+      "subject": "probability",
+      "topic": "Tail risk",
+      "firstCard": 3511,
+      "lastCard": 3520,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "prob-markov-bound"
+      ]
+    },
+    {
+      "key": "prac-robust-ev",
+      "concept": "Robust decisions across plausible models",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 3521,
+      "lastCard": 3530,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "prac-model-risk"
+      ]
+    },
+    {
+      "key": "stat-welch-test",
+      "concept": "Welch two-sample test",
+      "subject": "statistics",
+      "topic": "Statistical methods",
+      "firstCard": 3531,
+      "lastCard": 3540,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "stat-two-mean-se",
+        "stat-t-vs-z"
+      ]
+    },
+    {
+      "key": "paper-instrument",
+      "concept": "Instrumental variables",
+      "subject": "papers",
+      "topic": "Causal designs",
+      "firstCard": 3541,
+      "lastCard": 3550,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "paper-dag",
+        "paper-confounding"
+      ]
+    },
+    {
+      "key": "calc-constraint",
+      "concept": "Feasible constraint",
+      "subject": "calculus",
+      "topic": "Constrained optimization",
+      "firstCard": 3551,
+      "lastCard": 3560,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "calc-total-change"
+      ]
+    },
+    {
+      "key": "stat-paired-test",
+      "concept": "Paired t test",
+      "subject": "statistics",
+      "topic": "Statistical methods",
+      "firstCard": 3561,
+      "lastCard": 3570,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "stat-paired-interval",
+        "stat-nonresponse"
+      ]
+    },
+    {
+      "key": "prac-serial-sharpe",
+      "concept": "Autocorrelation and annualized Sharpe",
+      "subject": "applications",
+      "topic": "Trading, betting and poker",
+      "firstCard": 3571,
+      "lastCard": 3580,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "prac-backtest-bias"
+      ]
+    },
+    {
+      "key": "model-leakage",
+      "concept": "Data leakage",
+      "subject": "models",
+      "topic": "Deployment validity",
+      "firstCard": 3581,
+      "lastCard": 3590,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "model-cross-validation"
+      ]
+    },
+    {
+      "key": "stat-anova",
+      "concept": "One-way ANOVA",
+      "subject": "statistics",
+      "topic": "Statistical methods",
+      "firstCard": 3591,
+      "lastCard": 3600,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "stat-multiple-testing",
+        "stat-welch-test"
+      ]
+    },
+    {
+      "key": "prac-effective-exposure",
+      "concept": "Weighted exposure duration",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 3601,
+      "lastCard": 3610,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "prac-dimensional-check"
+      ]
+    },
+    {
+      "key": "prob-maximum",
+      "concept": "Maximum of independent outcomes",
+      "subject": "probability",
+      "topic": "Tail risk",
+      "firstCard": 3611,
+      "lastCard": 3620,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "prob-quantile"
+      ]
+    },
+    {
+      "key": "prac-regret",
+      "concept": "Regret and minimax comparison",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 3621,
+      "lastCard": 3630,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "prac-robust-ev"
+      ]
+    },
+    {
+      "key": "stat-f-statistic",
+      "concept": "ANOVA F statistic",
+      "subject": "statistics",
+      "topic": "Statistical methods",
+      "firstCard": 3631,
+      "lastCard": 3640,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "stat-anova",
+        "stat-variance-intuition"
+      ]
+    },
+    {
+      "key": "paper-rd",
+      "concept": "Regression discontinuity",
+      "subject": "papers",
+      "topic": "Causal designs",
+      "firstCard": 3641,
+      "lastCard": 3650,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "paper-instrument",
+        "model-slope"
+      ]
+    },
+    {
+      "key": "calc-lagrange",
+      "concept": "Lagrange multiplier",
+      "subject": "calculus",
+      "topic": "Constrained optimization",
+      "firstCard": 3651,
+      "lastCard": 3660,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "calc-constraint"
+      ]
+    },
+    {
+      "key": "stat-heteroskedasticity",
+      "concept": "Heteroskedasticity",
+      "subject": "statistics",
+      "topic": "Model assumptions",
+      "firstCard": 3661,
+      "lastCard": 3670,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "stat-estimator-variance",
+        "stat-two-mean-se"
+      ]
+    },
+    {
+      "key": "prac-calibrated-bets",
+      "concept": "Probability calibration versus betting value",
+      "subject": "applications",
+      "topic": "Trading, betting and poker",
+      "firstCard": 3671,
+      "lastCard": 3680,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "prac-serial-sharpe"
+      ]
+    },
+    {
+      "key": "product-sequential",
+      "concept": "Planned sequential testing",
+      "subject": "product",
+      "topic": "Product experiments",
+      "firstCard": 3681,
+      "lastCard": 3690,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "product-power",
+        "paper-optional-stopping"
+      ]
+    },
+    {
+      "key": "stat-robust-se",
+      "concept": "Heteroskedasticity-robust standard errors",
+      "subject": "statistics",
+      "topic": "Model assumptions",
+      "firstCard": 3691,
+      "lastCard": 3700,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "stat-heteroskedasticity",
+        "stat-z-test"
+      ]
+    },
+    {
+      "key": "prob-loss-sequence",
+      "concept": "Losing streak probability",
+      "subject": "probability",
+      "topic": "Repeated trials",
+      "firstCard": 3701,
+      "lastCard": 3710,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "prob-maximum"
+      ]
+    },
+    {
+      "key": "prac-discounted-choices",
+      "concept": "Present value under uncertainty",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 3711,
+      "lastCard": 3720,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "prac-regret"
+      ]
+    },
+    {
+      "key": "stat-cluster-robust",
+      "concept": "Cluster-robust standard errors",
+      "subject": "statistics",
+      "topic": "Model assumptions",
+      "firstCard": 3721,
+      "lastCard": 3730,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "stat-cluster-sample",
+        "stat-robust-se",
+        "stat-design-effect"
+      ]
+    },
+    {
+      "key": "info-calibration",
+      "concept": "Probability calibration",
+      "subject": "information",
+      "topic": "Forecast quality",
+      "firstCard": 3731,
+      "lastCard": 3740,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "info-cross-entropy",
+        "model-logistic"
+      ]
+    },
+    {
+      "key": "prac-margin-markup",
+      "concept": "Profit margin versus markup",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 3741,
+      "lastCard": 3750,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "prac-effective-exposure"
+      ]
+    },
+    {
+      "key": "prob-tail-dependence",
+      "concept": "Joint extreme risk",
+      "subject": "probability",
+      "topic": "Combined uncertainty",
+      "firstCard": 3751,
+      "lastCard": 3760,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "prob-loss-sequence"
+      ]
+    },
+    {
+      "key": "prac-liquidity",
+      "concept": "Liquidity constraints in decisions",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 3761,
+      "lastCard": 3770,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "prac-discounted-choices"
+      ]
+    },
+    {
+      "key": "stat-multicollinearity",
+      "concept": "Multicollinearity",
+      "subject": "statistics",
+      "topic": "Model assumptions",
+      "firstCard": 3771,
+      "lastCard": 3780,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "stat-estimator-variance",
+        "stat-pearson"
+      ]
+    },
+    {
+      "key": "paper-did",
+      "concept": "Difference-in-differences",
+      "subject": "papers",
+      "topic": "Causal designs",
+      "firstCard": 3781,
+      "lastCard": 3790,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "paper-confounding",
+        "paper-comparison"
+      ]
+    },
+    {
+      "key": "calc-integral-expected",
+      "concept": "Continuous expected value",
+      "subject": "calculus",
+      "topic": "Probability and calculus",
+      "firstCard": 3791,
+      "lastCard": 3800,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "calc-lagrange"
+      ]
+    },
+    {
+      "key": "stat-panel-fixed-effects",
+      "concept": "Panel fixed effects",
+      "subject": "statistics",
+      "topic": "Grouped models",
+      "firstCard": 3801,
+      "lastCard": 3810,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "stat-paired-data",
+        "stat-confounding",
+        "stat-cluster-robust"
+      ]
+    },
+    {
+      "key": "prac-parlays",
+      "concept": "Joint probability of combined bets",
+      "subject": "applications",
+      "topic": "Trading, betting and poker",
+      "firstCard": 3811,
+      "lastCard": 3820,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "prac-calibrated-bets"
+      ]
+    },
+    {
+      "key": "model-time-validation",
+      "concept": "Temporal validation",
+      "subject": "models",
+      "topic": "Deployment validity",
+      "firstCard": 3821,
+      "lastCard": 3830,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "model-leakage"
+      ]
+    },
+    {
+      "key": "stat-random-intercept",
+      "concept": "Random-intercept model",
+      "subject": "statistics",
+      "topic": "Grouped models",
+      "firstCard": 3831,
+      "lastCard": 3840,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "stat-panel-fixed-effects",
+        "stat-cluster-sample"
+      ]
+    },
+    {
+      "key": "prac-horizon-match",
+      "concept": "Matching return horizons",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 3841,
+      "lastCard": 3850,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "prac-margin-markup"
+      ]
+    },
+    {
+      "key": "prob-mixtures",
+      "concept": "Mixture distribution",
+      "subject": "probability",
+      "topic": "Modeling uncertainty",
+      "firstCard": 3851,
+      "lastCard": 3860,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "prob-tail-dependence"
+      ]
+    },
+    {
+      "key": "prac-marginal-capital",
+      "concept": "Marginal use of scarce capital",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 3861,
+      "lastCard": 3870,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "prac-liquidity"
+      ]
+    },
+    {
+      "key": "stat-mixed-model",
+      "concept": "Mixed-effects model",
+      "subject": "statistics",
+      "topic": "Grouped models",
+      "firstCard": 3871,
+      "lastCard": 3880,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "stat-random-intercept",
+        "stat-robust-se"
+      ]
+    },
+    {
+      "key": "paper-matching",
+      "concept": "Matching and propensity scores",
+      "subject": "papers",
+      "topic": "Causal designs",
+      "firstCard": 3881,
+      "lastCard": 3890,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "paper-dag",
+        "paper-selection",
+        "model-logistic"
+      ]
+    },
+    {
+      "key": "calc-exponential-equation",
+      "concept": "Differential equation",
+      "subject": "calculus",
+      "topic": "Dynamic models",
+      "firstCard": 3891,
+      "lastCard": 3900,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "calc-integral-expected"
+      ]
+    },
+    {
+      "key": "stat-icc",
+      "concept": "Intraclass correlation",
+      "subject": "statistics",
+      "topic": "Grouped models",
+      "firstCard": 3901,
+      "lastCard": 3910,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "stat-random-intercept",
+        "stat-design-effect"
+      ]
+    },
+    {
+      "key": "prac-time-information",
+      "concept": "Timestamped information in trading",
+      "subject": "applications",
+      "topic": "Trading, betting and poker",
+      "firstCard": 3911,
+      "lastCard": 3920,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "prac-parlays"
+      ]
+    },
+    {
+      "key": "stat-partial-pooling",
+      "concept": "Partial pooling",
+      "subject": "statistics",
+      "topic": "Grouped models",
+      "firstCard": 3921,
+      "lastCard": 3930,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "stat-mixed-model",
+        "stat-winners-curse",
+        "stat-mse"
+      ]
+    },
+    {
+      "key": "prob-selection-conditioning",
+      "concept": "Conditioning on selection",
+      "subject": "probability",
+      "topic": "Conditional probability",
+      "firstCard": 3931,
+      "lastCard": 3940,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "prob-mixtures"
+      ]
+    },
+    {
+      "key": "stat-repeated-measures",
+      "concept": "Repeated measures",
+      "subject": "statistics",
+      "topic": "Grouped models",
+      "firstCard": 3941,
+      "lastCard": 3950,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "stat-paired-data",
+        "stat-mixed-model",
+        "stat-nonresponse"
+      ]
+    },
+    {
+      "key": "prac-after-tax",
+      "concept": "After-tax comparison conventions",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 3951,
+      "lastCard": 3960,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "prac-horizon-match"
+      ]
+    },
+    {
+      "key": "prob-stopping-rule",
+      "concept": "A stopping rule changes the event",
+      "subject": "probability",
+      "topic": "Repeated trials",
+      "firstCard": 3961,
+      "lastCard": 3970,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "prob-selection-conditioning"
+      ]
+    },
+    {
+      "key": "stat-residual-checks",
+      "concept": "Residual diagnostics",
+      "subject": "statistics",
+      "topic": "Model assumptions",
+      "firstCard": 3971,
+      "lastCard": 3980,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "stat-heteroskedasticity",
+        "stat-mixed-model",
+        "stat-confounding"
+      ]
+    },
+    {
+      "key": "paper-mediation",
+      "concept": "Mediation and bad controls",
+      "subject": "papers",
+      "topic": "Causal designs",
+      "firstCard": 3981,
+      "lastCard": 3990,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "paper-dag",
+        "paper-collider",
+        "paper-matching"
+      ]
+    },
+    {
+      "key": "calc-logistic-growth",
+      "concept": "Capacity-limited growth",
+      "subject": "calculus",
+      "topic": "Dynamic models",
+      "firstCard": 3991,
+      "lastCard": 4000,
+      "difficultyBand": 8,
+      "prerequisites": [
+        "calc-exponential-equation"
+      ]
+    },
+    {
+      "key": "prac-threshold-rounding",
+      "concept": "Rounding near a decision threshold",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 4001,
+      "lastCard": 4010,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "prac-after-tax"
+      ]
+    },
+    {
+      "key": "prob-parameter-uncertainty",
+      "concept": "An estimated probability is uncertain",
+      "subject": "probability",
+      "topic": "Modeling uncertainty",
+      "firstCard": 4011,
+      "lastCard": 4020,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "prob-stopping-rule"
+      ]
+    },
+    {
+      "key": "prac-selected-edge",
+      "concept": "Selection-adjusted edge estimates",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 4021,
+      "lastCard": 4030,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "prac-marginal-capital"
+      ]
+    },
+    {
+      "key": "stat-survival-time",
+      "concept": "Time-to-event outcome",
+      "subject": "statistics",
+      "topic": "Survival analysis",
+      "firstCard": 4031,
+      "lastCard": 4040,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "stat-hazard-ratio",
+        "stat-repeated-measures"
+      ]
+    },
+    {
+      "key": "paper-transport",
+      "concept": "Transporting an effect",
+      "subject": "papers",
+      "topic": "External validity",
+      "firstCard": 4041,
+      "lastCard": 4050,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "paper-selection",
+        "paper-heterogeneity"
+      ]
+    },
+    {
+      "key": "calc-finite-difference",
+      "concept": "Finite differences",
+      "subject": "calculus",
+      "topic": "Numerical calculus",
+      "firstCard": 4051,
+      "lastCard": 4060,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "calc-logistic-growth"
+      ]
+    },
+    {
+      "key": "stat-censoring",
+      "concept": "Right censoring",
+      "subject": "statistics",
+      "topic": "Survival analysis",
+      "firstCard": 4061,
+      "lastCard": 4070,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "stat-survival-time",
+        "stat-nonresponse"
+      ]
+    },
+    {
+      "key": "prac-sequence-risk",
+      "concept": "Sequence risk with withdrawals",
+      "subject": "applications",
+      "topic": "Trading, betting and poker",
+      "firstCard": 4071,
+      "lastCard": 4080,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "prac-time-information"
+      ]
+    },
+    {
+      "key": "model-distribution-shift",
+      "concept": "Distribution shift",
+      "subject": "models",
+      "topic": "Deployment validity",
+      "firstCard": 4081,
+      "lastCard": 4090,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "model-time-validation",
+        "info-calibration",
+        "paper-transport"
+      ]
+    },
+    {
+      "key": "stat-kaplan-meier",
+      "concept": "Kaplan–Meier estimator",
+      "subject": "statistics",
+      "topic": "Survival analysis",
+      "firstCard": 4091,
+      "lastCard": 4100,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "stat-censoring",
+        "stat-sample-proportion"
+      ]
+    },
+    {
+      "key": "prac-combined-stress",
+      "concept": "Combining adverse multiplicative changes",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 4101,
+      "lastCard": 4110,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "prac-threshold-rounding"
+      ]
+    },
+    {
+      "key": "prob-total-variance",
+      "concept": "Within and between variation",
+      "subject": "probability",
+      "topic": "Combined uncertainty",
+      "firstCard": 4111,
+      "lastCard": 4120,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "prob-parameter-uncertainty"
+      ]
+    },
+    {
+      "key": "prac-staged-investment",
+      "concept": "Staged commitment and informative pilots",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 4121,
+      "lastCard": 4130,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "prac-selected-edge"
+      ]
+    },
+    {
+      "key": "stat-hazard-risk",
+      "concept": "Hazard versus cumulative risk",
+      "subject": "statistics",
+      "topic": "Survival analysis",
+      "firstCard": 4131,
+      "lastCard": 4140,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "stat-hazard-ratio",
+        "stat-kaplan-meier"
+      ]
+    },
+    {
+      "key": "paper-estimand",
+      "concept": "A clearly defined estimand",
+      "subject": "papers",
+      "topic": "Causal targets",
+      "firstCard": 4141,
+      "lastCard": 4150,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "paper-instrument",
+        "paper-mediation"
+      ]
+    },
+    {
+      "key": "calc-numerical-integral",
+      "concept": "Numerical integration",
+      "subject": "calculus",
+      "topic": "Numerical calculus",
+      "firstCard": 4151,
+      "lastCard": 4160,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "calc-finite-difference"
+      ]
+    },
+    {
+      "key": "stat-proportional-hazards",
+      "concept": "Proportional-hazards assumption",
+      "subject": "statistics",
+      "topic": "Survival analysis",
+      "firstCard": 4161,
+      "lastCard": 4170,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "stat-hazard-risk",
+        "stat-residual-checks"
+      ]
+    },
+    {
+      "key": "prac-beta-vs-alpha",
+      "concept": "Market exposure versus independent skill",
+      "subject": "applications",
+      "topic": "Trading, betting and poker",
+      "firstCard": 4171,
+      "lastCard": 4180,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "prac-sequence-risk"
+      ]
+    },
+    {
+      "key": "stat-meta-analysis",
+      "concept": "Meta-analysis",
+      "subject": "statistics",
+      "topic": "Evidence synthesis",
+      "firstCard": 4181,
+      "lastCard": 4190,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "stat-replication",
+        "stat-weighted-mean"
+      ]
+    },
+    {
+      "key": "prob-many-requirements",
+      "concept": "Several conditions must hold",
+      "subject": "probability",
+      "topic": "Combined uncertainty",
+      "firstCard": 4191,
+      "lastCard": 4200,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "prob-total-variance"
+      ]
+    },
+    {
+      "key": "prac-sunk-cost",
+      "concept": "Sunk costs and incremental decisions",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 4201,
+      "lastCard": 4210,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "prac-staged-investment"
+      ]
+    },
+    {
+      "key": "stat-inverse-variance",
+      "concept": "Inverse-variance weighting",
+      "subject": "statistics",
+      "topic": "Evidence synthesis",
+      "firstCard": 4211,
+      "lastCard": 4220,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "stat-meta-analysis",
+        "stat-estimator-variance"
+      ]
+    },
+    {
+      "key": "info-data-processing",
+      "concept": "Data-processing inequality",
+      "subject": "information",
+      "topic": "Information limits",
+      "firstCard": 4221,
+      "lastCard": 4230,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "info-mutual-information",
+        "model-distribution-shift"
+      ]
+    },
+    {
+      "key": "prac-conditional-aggregation",
+      "concept": "Aggregation across changing groups",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 4231,
+      "lastCard": 4240,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "prac-combined-stress"
+      ]
+    },
+    {
+      "key": "prob-calibration-sharpness",
+      "concept": "Calibration versus discrimination",
+      "subject": "probability",
+      "topic": "Forecast evaluation",
+      "firstCard": 4241,
+      "lastCard": 4250,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "prob-many-requirements"
+      ]
+    },
+    {
+      "key": "prac-stopping-rule",
+      "concept": "Optimal stopping versus statistical peeking",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 4251,
+      "lastCard": 4260,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "prac-sunk-cost"
+      ]
+    },
+    {
+      "key": "stat-common-effect-meta",
+      "concept": "Common-effect meta-analysis",
+      "subject": "statistics",
+      "topic": "Evidence synthesis",
+      "firstCard": 4261,
+      "lastCard": 4270,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "stat-inverse-variance",
+        "stat-effect-modification"
+      ]
+    },
+    {
+      "key": "paper-sensitivity",
+      "concept": "Sensitivity analysis",
+      "subject": "papers",
+      "topic": "Robust evidence",
+      "firstCard": 4271,
+      "lastCard": 4280,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "paper-estimand",
+        "paper-attrition",
+        "paper-confounding"
+      ]
+    },
+    {
+      "key": "calc-gradient-step",
+      "concept": "Gradient descent step",
+      "subject": "calculus",
+      "topic": "Numerical optimization",
+      "firstCard": 4281,
+      "lastCard": 4290,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "calc-numerical-integral"
+      ]
+    },
+    {
+      "key": "stat-random-meta",
+      "concept": "Random-effects meta-analysis",
+      "subject": "statistics",
+      "topic": "Evidence synthesis",
+      "firstCard": 4291,
+      "lastCard": 4300,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "stat-common-effect-meta",
+        "stat-estimator-variance"
+      ]
+    },
+    {
+      "key": "prac-capacity-impact",
+      "concept": "Capacity and market impact",
+      "subject": "applications",
+      "topic": "Trading, betting and poker",
+      "firstCard": 4301,
+      "lastCard": 4310,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "prac-beta-vs-alpha"
+      ]
+    },
+    {
+      "key": "model-causal-coefficient",
+      "concept": "Prediction coefficients versus causal effects",
+      "subject": "models",
+      "topic": "Model interpretation",
+      "firstCard": 4311,
+      "lastCard": 4320,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "model-multiple-regression",
+        "paper-dag",
+        "paper-estimand"
+      ]
+    },
+    {
+      "key": "stat-tau-heterogeneity",
+      "concept": "Between-study variance tau squared",
+      "subject": "statistics",
+      "topic": "Evidence synthesis",
+      "firstCard": 4321,
+      "lastCard": 4330,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "stat-random-meta"
+      ]
+    },
+    {
+      "key": "prac-absolute-stakes",
+      "concept": "Absolute scale behind relative effects",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 4331,
+      "lastCard": 4340,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "prac-conditional-aggregation"
+      ]
+    },
+    {
+      "key": "prob-zero-events",
+      "concept": "No observed rare events",
+      "subject": "probability",
+      "topic": "Simulation",
+      "firstCard": 4341,
+      "lastCard": 4350,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "prob-calibration-sharpness"
+      ]
+    },
+    {
+      "key": "prac-sensitivity-rank",
+      "concept": "Sensitivity of opportunity rankings",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 4351,
+      "lastCard": 4360,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "prac-stopping-rule"
+      ]
+    },
+    {
+      "key": "stat-i-squared",
+      "concept": "I squared",
+      "subject": "statistics",
+      "topic": "Evidence synthesis",
+      "firstCard": 4361,
+      "lastCard": 4370,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "stat-tau-heterogeneity",
+        "stat-familywise-error"
+      ]
+    },
+    {
+      "key": "paper-clusters",
+      "concept": "Clustered observations",
+      "subject": "papers",
+      "topic": "Study dependence",
+      "firstCard": 4371,
+      "lastCard": 4380,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "paper-randomization",
+        "paper-ci-reading"
+      ]
+    },
+    {
+      "key": "calc-convexity",
+      "concept": "Convex objective",
+      "subject": "calculus",
+      "topic": "Optimization",
+      "firstCard": 4381,
+      "lastCard": 4390,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "calc-gradient-step"
+      ]
+    },
+    {
+      "key": "stat-funnel-plot",
+      "concept": "Funnel plot",
+      "subject": "statistics",
+      "topic": "Evidence synthesis",
+      "firstCard": 4391,
+      "lastCard": 4400,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "stat-publication-bias",
+        "stat-i-squared"
+      ]
+    },
+    {
+      "key": "stat-meta-regression",
+      "concept": "Meta-regression",
+      "subject": "statistics",
+      "topic": "Evidence synthesis",
+      "firstCard": 4401,
+      "lastCard": 4410,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "stat-random-meta",
+        "stat-effect-modification",
+        "stat-multicollinearity"
+      ]
+    },
+    {
+      "key": "prob-mixture-sensitivity",
+      "concept": "Scenario weight sensitivity",
+      "subject": "probability",
+      "topic": "Modeling uncertainty",
+      "firstCard": 4411,
+      "lastCard": 4420,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "prob-zero-events"
+      ]
+    },
+    {
+      "key": "stat-missingness",
+      "concept": "Missing-data mechanisms",
+      "subject": "statistics",
+      "topic": "Missing data",
+      "firstCard": 4421,
+      "lastCard": 4430,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "stat-nonresponse",
+        "stat-censoring",
+        "stat-selection-bias"
+      ]
+    },
+    {
+      "key": "prac-uncertain-compounding",
+      "concept": "Uncertainty compounded over time",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 4431,
+      "lastCard": 4440,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "prac-absolute-stakes"
+      ]
+    },
+    {
+      "key": "prob-tail-model-fit",
+      "concept": "Choosing a tail model",
+      "subject": "probability",
+      "topic": "Tail risk",
+      "firstCard": 4441,
+      "lastCard": 4450,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "prob-mixture-sensitivity"
+      ]
+    },
+    {
+      "key": "stat-multiple-imputation",
+      "concept": "Multiple imputation",
+      "subject": "statistics",
+      "topic": "Missing data",
+      "firstCard": 4451,
+      "lastCard": 4460,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "stat-missingness",
+        "stat-estimator-variance"
+      ]
+    },
+    {
+      "key": "paper-protocol-integrity",
+      "concept": "Protocol changes and analysis integrity",
+      "subject": "papers",
+      "topic": "Transparent research",
+      "firstCard": 4461,
+      "lastCard": 4470,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "paper-preregistration",
+        "paper-primary-outcome",
+        "paper-phacking"
+      ]
+    },
+    {
+      "key": "calc-robust-optimum",
+      "concept": "Model optimum versus robust choice",
+      "subject": "calculus",
+      "topic": "Optimization under uncertainty",
+      "firstCard": 4471,
+      "lastCard": 4480,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "calc-convexity"
+      ]
+    },
+    {
+      "key": "prob-ruin-walk",
+      "concept": "Ruin in a simple random walk",
+      "subject": "probability",
+      "topic": "Repeated decisions",
+      "firstCard": 4481,
+      "lastCard": 4490,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "prob-tail-model-fit"
+      ]
+    },
+    {
+      "key": "product-srm",
+      "concept": "Sample-ratio mismatch",
+      "subject": "product",
+      "topic": "Experiment trustworthiness",
+      "firstCard": 4491,
+      "lastCard": 4500,
+      "difficultyBand": 9,
+      "prerequisites": [
+        "product-ab-random",
+        "paper-selection",
+        "paper-protocol-integrity"
+      ]
+    },
+    {
+      "key": "prac-leveraged-compound",
+      "concept": "Leveraged net growth over a path",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 4501,
+      "lastCard": 4510,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "prac-uncertain-compounding"
+      ]
+    },
+    {
+      "key": "prob-edge-forecast",
+      "concept": "Forecast probabilities and price",
+      "subject": "probability",
+      "topic": "Forecast evaluation",
+      "firstCard": 4511,
+      "lastCard": 4520,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "prob-ruin-walk"
+      ]
+    },
+    {
+      "key": "prac-joint-uncertainty",
+      "concept": "Joint portfolio and model uncertainty",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 4521,
+      "lastCard": 4530,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "prac-sensitivity-rank"
+      ]
+    },
+    {
+      "key": "stat-equivalence",
+      "concept": "Equivalence testing",
+      "subject": "statistics",
+      "topic": "Professional judgement",
+      "firstCard": 4531,
+      "lastCard": 4540,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "stat-absence-evidence",
+        "stat-planned-threshold",
+        "stat-one-sided"
+      ]
+    },
+    {
+      "key": "paper-appraisal",
+      "concept": "Whole-study appraisal",
+      "subject": "papers",
+      "topic": "Research judgment",
+      "firstCard": 4541,
+      "lastCard": 4550,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "paper-estimand",
+        "paper-sensitivity",
+        "paper-protocol-integrity"
+      ]
+    },
+    {
+      "key": "calc-log-growth",
+      "concept": "Expected log growth",
+      "subject": "calculus",
+      "topic": "Quantitative finance calculus",
+      "firstCard": 4551,
+      "lastCard": 4560,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "calc-robust-optimum"
+      ]
+    },
+    {
+      "key": "stat-noninferiority",
+      "concept": "Noninferiority",
+      "subject": "statistics",
+      "topic": "Professional judgement",
+      "firstCard": 4561,
+      "lastCard": 4570,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "stat-equivalence",
+        "stat-confidence-coverage"
+      ]
+    },
+    {
+      "key": "prac-kelly-evidence",
+      "concept": "Kelly after edge validation",
+      "subject": "applications",
+      "topic": "Trading, betting and poker",
+      "firstCard": 4571,
+      "lastCard": 4580,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "prac-capacity-impact"
+      ]
+    },
+    {
+      "key": "model-nested-validation",
+      "concept": "Nested model evaluation",
+      "subject": "models",
+      "topic": "Professional validation",
+      "firstCard": 4581,
+      "lastCard": 4590,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "model-cross-validation",
+        "model-regularization",
+        "model-time-validation",
+        "model-distribution-shift"
+      ]
+    },
+    {
+      "key": "stat-sensitivity-analysis",
+      "concept": "Sensitivity analysis",
+      "subject": "statistics",
+      "topic": "Professional judgement",
+      "firstCard": 4591,
+      "lastCard": 4600,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "stat-confounding",
+        "stat-residual-checks",
+        "stat-missingness"
+      ]
+    },
+    {
+      "key": "prac-multi-cost-hurdle",
+      "concept": "Exact multi-cost profitability hurdle",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 4601,
+      "lastCard": 4610,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "prac-leveraged-compound"
+      ]
+    },
+    {
+      "key": "prob-outside-validation",
+      "concept": "Validation in the target setting",
+      "subject": "probability",
+      "topic": "Forecast evaluation",
+      "firstCard": 4611,
+      "lastCard": 4620,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "prob-edge-forecast"
+      ]
+    },
+    {
+      "key": "prac-optimizer-error",
+      "concept": "Optimization can amplify estimation error",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 4621,
+      "lastCard": 4630,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "prac-joint-uncertainty"
+      ]
+    },
+    {
+      "key": "stat-robustness-checks",
+      "concept": "Robustness checks",
+      "subject": "statistics",
+      "topic": "Professional judgement",
+      "firstCard": 4631,
+      "lastCard": 4640,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "stat-p-hacking",
+        "stat-parameter-statistic",
+        "stat-robust-center"
+      ]
+    },
+    {
+      "key": "paper-conflicting-evidence",
+      "concept": "Reconciling different studies",
+      "subject": "papers",
+      "topic": "Research judgment",
+      "firstCard": 4641,
+      "lastCard": 4650,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "paper-replication",
+        "paper-winners-curse",
+        "paper-heterogeneity",
+        "paper-inverse-variance"
+      ]
+    },
+    {
+      "key": "calc-likelihood-slope",
+      "concept": "Optimizing a binary likelihood",
+      "subject": "calculus",
+      "topic": "Statistical calculus",
+      "firstCard": 4651,
+      "lastCard": 4660,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "calc-log-growth"
+      ]
+    },
+    {
+      "key": "stat-selection-aware",
+      "concept": "Selection-aware inference",
+      "subject": "statistics",
+      "topic": "Professional judgement",
+      "firstCard": 4661,
+      "lastCard": 4670,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "stat-winners-curse",
+        "stat-multiple-testing",
+        "stat-confidence-coverage"
+      ]
+    },
+    {
+      "key": "prac-search-and-holdout",
+      "concept": "Large backtest search and genuine holdouts",
+      "subject": "applications",
+      "topic": "Trading, betting and poker",
+      "firstCard": 4671,
+      "lastCard": 4680,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "prac-kelly-evidence"
+      ]
+    },
+    {
+      "key": "product-rollout-judgment",
+      "concept": "Evidence-based product rollout",
+      "subject": "product",
+      "topic": "Product judgment",
+      "firstCard": 4681,
+      "lastCard": 4690,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "product-srm",
+        "product-sequential",
+        "product-unit-economics",
+        "paper-transport"
+      ]
+    },
+    {
+      "key": "stat-independent-validation",
+      "concept": "Independent validation",
+      "subject": "statistics",
+      "topic": "Professional judgement",
+      "firstCard": 4691,
+      "lastCard": 4700,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "stat-selection-aware",
+        "stat-independent-observations",
+        "stat-representativeness"
+      ]
+    },
+    {
+      "key": "prob-costly-positive",
+      "concept": "False alarms and decision costs",
+      "subject": "probability",
+      "topic": "Decision probabilities",
+      "firstCard": 4701,
+      "lastCard": 4710,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "prob-outside-validation"
+      ]
+    },
+    {
+      "key": "stat-rare-risk-inference",
+      "concept": "Inference about rare risks",
+      "subject": "statistics",
+      "topic": "Professional judgement",
+      "firstCard": 4711,
+      "lastCard": 4720,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "stat-wilson-interval",
+        "stat-prediction-interval",
+        "stat-independent-observations"
+      ]
+    },
+    {
+      "key": "prac-tail-recovery",
+      "concept": "Tail loss and recovery feasibility",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 4721,
+      "lastCard": 4730,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "prac-multi-cost-hurdle"
+      ]
+    },
+    {
+      "key": "prac-basket-method",
+      "concept": "Portfolio-weighting method audit",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 4731,
+      "lastCard": 4740,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "prac-tail-recovery"
+      ]
+    },
+    {
+      "key": "prob-joint-allocation",
+      "concept": "Joint allocation audit",
+      "subject": "probability",
+      "topic": "Combined uncertainty",
+      "firstCard": 4741,
+      "lastCard": 4750,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "prob-costly-positive"
+      ]
+    },
+    {
+      "key": "prac-growth-vs-money",
+      "concept": "Expected wealth versus sustainable growth",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 4751,
+      "lastCard": 4760,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "prac-optimizer-error",
+        "prac-log-growth",
+        "prac-tail-recovery"
+      ]
+    },
+    {
+      "key": "stat-forecast-calibration",
+      "concept": "Probability calibration",
+      "subject": "statistics",
+      "topic": "Professional judgement",
+      "firstCard": 4761,
+      "lastCard": 4770,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "stat-sample-proportion",
+        "stat-se-proportion",
+        "stat-independent-validation"
+      ]
+    },
+    {
+      "key": "paper-benefit-harm",
+      "concept": "Absolute benefit–harm judgment",
+      "subject": "papers",
+      "topic": "Research judgment",
+      "firstCard": 4771,
+      "lastCard": 4780,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "paper-absolute-relative",
+        "paper-transport",
+        "paper-appraisal"
+      ]
+    },
+    {
+      "key": "calc-sensitivity-propagation",
+      "concept": "First-order uncertainty propagation",
+      "subject": "calculus",
+      "topic": "Uncertainty and calculus",
+      "firstCard": 4781,
+      "lastCard": 4790,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "calc-likelihood-slope"
+      ]
+    },
+    {
+      "key": "stat-ecological-fallacy",
+      "concept": "Ecological fallacy",
+      "subject": "statistics",
+      "topic": "Professional judgement",
+      "firstCard": 4791,
+      "lastCard": 4800,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "stat-simpson",
+        "stat-meta-regression",
+        "stat-confounding"
+      ]
+    },
+    {
+      "key": "prac-roi-evidence",
+      "concept": "Interpreting a 400-bet 6% ROI record",
+      "subject": "applications",
+      "topic": "Trading, betting and poker",
+      "firstCard": 4801,
+      "lastCard": 4810,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "prac-search-and-holdout"
+      ]
+    },
+    {
+      "key": "model-decision-utility",
+      "concept": "Prediction quality versus decision value",
+      "subject": "models",
+      "topic": "Professional prediction",
+      "firstCard": 4811,
+      "lastCard": 4820,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "model-logistic",
+        "info-calibration",
+        "model-nested-validation"
+      ]
+    },
+    {
+      "key": "stat-transportability",
+      "concept": "Transportability",
+      "subject": "statistics",
+      "topic": "Professional judgement",
+      "firstCard": 4821,
+      "lastCard": 4830,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "stat-representativeness",
+        "stat-effect-modification",
+        "stat-risk-ratio"
+      ]
+    },
+    {
+      "key": "prac-cash-flow-return",
+      "concept": "Time-weighted versus money-weighted return",
+      "subject": "arithmetic",
+      "topic": "Percentages, ratios and growth",
+      "firstCard": 4831,
+      "lastCard": 4840,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "prac-basket-method"
+      ]
+    },
+    {
+      "key": "prob-predictive-audit",
+      "concept": "Checking a fitted probability model",
+      "subject": "probability",
+      "topic": "Modeling uncertainty",
+      "firstCard": 4841,
+      "lastCard": 4850,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "prob-joint-allocation"
+      ]
+    },
+    {
+      "key": "prac-tail-decision",
+      "concept": "Decision value with rare catastrophic outcomes",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 4851,
+      "lastCard": 4860,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "prac-growth-vs-money"
+      ]
+    },
+    {
+      "key": "stat-causal-identification",
+      "concept": "Causal identification",
+      "subject": "statistics",
+      "topic": "Professional judgement",
+      "firstCard": 4861,
+      "lastCard": 4870,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "stat-confounding",
+        "stat-collider",
+        "stat-transportability"
+      ]
+    },
+    {
+      "key": "paper-evidence-updating",
+      "concept": "Updating a body of evidence",
+      "subject": "papers",
+      "topic": "Research judgment",
+      "firstCard": 4871,
+      "lastCard": 4880,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "paper-systematic-review",
+        "paper-appraisal",
+        "paper-publication-bias"
+      ]
+    },
+    {
+      "key": "calc-numerical-audit",
+      "concept": "Numerical result audit",
+      "subject": "calculus",
+      "topic": "Numerical calculus",
+      "firstCard": 4881,
+      "lastCard": 4890,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "calc-sensitivity-propagation"
+      ]
+    },
+    {
+      "key": "stat-meta-prediction",
+      "concept": "Meta-analytic prediction interval",
+      "subject": "statistics",
+      "topic": "Professional judgement",
+      "firstCard": 4891,
+      "lastCard": 4900,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "stat-random-meta",
+        "stat-tau-heterogeneity",
+        "stat-prediction-interval"
+      ]
+    },
+    {
+      "key": "stat-dependent-evidence",
+      "concept": "Dependent evidence",
+      "subject": "statistics",
+      "topic": "Professional judgement",
+      "firstCard": 4901,
+      "lastCard": 4910,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "stat-meta-analysis",
+        "stat-independent-observations",
+        "stat-covariance-formula"
+      ]
+    },
+    {
+      "key": "prob-uncertainty-decomposition",
+      "concept": "Three layers of uncertainty",
+      "subject": "probability",
+      "topic": "Modeling uncertainty",
+      "firstCard": 4911,
+      "lastCard": 4920,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "prob-predictive-audit"
+      ]
+    },
+    {
+      "key": "prac-commercial-voi",
+      "concept": "Commercial value of further research",
+      "subject": "decisions",
+      "topic": "Expected value, Kelly and decisions",
+      "firstCard": 4921,
+      "lastCard": 4930,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "prac-tail-decision"
+      ]
+    },
+    {
+      "key": "stat-precision-validity",
+      "concept": "Precision versus validity",
+      "subject": "statistics",
+      "topic": "Professional judgement",
+      "firstCard": 4931,
+      "lastCard": 4940,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "stat-practical-significance",
+        "stat-measurement-attenuation",
+        "stat-causal-identification"
+      ]
+    },
+    {
+      "key": "info-information-value",
+      "concept": "Information gain and decision value",
+      "subject": "information",
+      "topic": "Information judgment",
+      "firstCard": 4941,
+      "lastCard": 4950,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "info-kl",
+        "info-mutual-information",
+        "model-decision-utility"
+      ]
+    },
+    {
+      "key": "prob-professional-checklist",
+      "concept": "Probability decision audit",
+      "subject": "probability",
+      "topic": "Quantitative judgment",
+      "firstCard": 4951,
+      "lastCard": 4960,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "prob-uncertainty-decomposition"
+      ]
+    },
+    {
+      "key": "stat-uncertain-decisions",
+      "concept": "Decisions under statistical uncertainty",
+      "subject": "statistics",
+      "topic": "Professional judgement",
+      "firstCard": 4961,
+      "lastCard": 4970,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "stat-precision-validity",
+        "stat-independent-validation",
+        "stat-rare-risk-inference",
+        "stat-sensitivity-analysis"
+      ]
+    },
+    {
+      "key": "paper-independent-confirmation",
+      "concept": "Exploration followed by confirmation",
+      "subject": "papers",
+      "topic": "Research judgment",
+      "firstCard": 4971,
+      "lastCard": 4980,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "paper-harking",
+        "paper-phacking",
+        "paper-sensitivity",
+        "paper-replication"
+      ]
+    },
+    {
+      "key": "calc-professional-model",
+      "concept": "A calculus model is a decision tool",
+      "subject": "calculus",
+      "topic": "Quantitative judgment",
+      "firstCard": 4981,
+      "lastCard": 4990,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "calc-numerical-audit"
+      ]
+    },
+    {
+      "key": "prac-integrated-commercial",
+      "concept": "Integrated quantitative opportunity audit",
+      "subject": "applications",
+      "topic": "Trading, betting and poker",
+      "firstCard": 4991,
+      "lastCard": 5000,
+      "difficultyBand": 10,
+      "prerequisites": [
+        "prac-roi-evidence",
+        "prac-absolute-stakes",
+        "prac-commercial-voi"
+      ]
+    }
+  ],
+  "review": "Concepts recur in worked examples, comparisons, error spotting and later applications. Ungraded skips do not infer weak topics or automatic due dates."
+}

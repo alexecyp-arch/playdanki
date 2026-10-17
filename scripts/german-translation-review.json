@@ -1,0 +1,5581 @@
+{
+  "reviewDate": "2026-10-03",
+  "reviewedWords": 5000,
+  "originalSourceCommit": "b70229b5c4029bd94d41c6c4cebdd80a7e0e778b",
+  "translationsChanged": 426,
+  "headwordsCorrected": 13,
+  "aliasRowsChanged": 465,
+  "aliasLabelsAdded": 309,
+  "wordPositionsPreserved": true,
+  "sources": [
+    "Existing FreeDict and WikDict English translation entries and German definitions",
+    "Duden definitions and Langenscheidt bilingual dictionary for disputed words",
+    "Manual review of all 5000 displayed German and English pairs"
+  ],
+  "changes": [
+    {
+      "position": 37,
+      "before": [
+        "wenn",
+        "when",
+        ""
+      ],
+      "after": [
+        "wenn",
+        "if",
+        "conjunction"
+      ]
+    },
+    {
+      "position": 97,
+      "before": [
+        "wirklich",
+        "real",
+        "adj"
+      ],
+      "after": [
+        "wirklich",
+        "really",
+        "adv"
+      ]
+    },
+    {
+      "position": 176,
+      "before": [
+        "natürlich",
+        "natural",
+        "adj"
+      ],
+      "after": [
+        "natürlich",
+        "of course",
+        "adv"
+      ]
+    },
+    {
+      "position": 137,
+      "before": [
+        "genau",
+        "exact",
+        "adj"
+      ],
+      "after": [
+        "genau",
+        "exactly",
+        "adv"
+      ]
+    },
+    {
+      "position": 146,
+      "before": [
+        "erst",
+        "first",
+        "adv"
+      ],
+      "after": [
+        "erst",
+        "only",
+        "adv"
+      ]
+    },
+    {
+      "position": 149,
+      "before": [
+        "gerade",
+        "straight",
+        "adj"
+      ],
+      "after": [
+        "gerade",
+        "just",
+        "adv"
+      ]
+    },
+    {
+      "position": 206,
+      "before": [
+        "hin",
+        "to",
+        "adv"
+      ],
+      "after": [
+        "hin",
+        "there",
+        "adv"
+      ]
+    },
+    {
+      "position": 210,
+      "before": [
+        "rein",
+        "clean",
+        "adj"
+      ],
+      "after": [
+        "rein",
+        "in",
+        "adv"
+      ]
+    },
+    {
+      "position": 226,
+      "before": [
+        "schaffen",
+        "create",
+        "v"
+      ],
+      "after": [
+        "schaffen",
+        "manage",
+        "v"
+      ]
+    },
+    {
+      "position": 247,
+      "before": [
+        "stunden",
+        "defer",
+        "v"
+      ],
+      "after": [
+        "Stunde",
+        "hour",
+        "n"
+      ]
+    },
+    {
+      "position": 267,
+      "before": [
+        "darüber",
+        "above it",
+        "pronominalAdverb"
+      ],
+      "after": [
+        "darüber",
+        "about it",
+        "pronominalAdverb"
+      ]
+    },
+    {
+      "position": 274,
+      "before": [
+        "daran",
+        "thereon",
+        "adv"
+      ],
+      "after": [
+        "daran",
+        "at it",
+        "pronominalAdverb"
+      ]
+    },
+    {
+      "position": 293,
+      "before": [
+        "Glück",
+        "Glueck",
+        "n"
+      ],
+      "after": [
+        "Glück",
+        "luck",
+        "n"
+      ]
+    },
+    {
+      "position": 294,
+      "before": [
+        "hi",
+        "to",
+        "adv"
+      ],
+      "after": [
+        "hi",
+        "hello",
+        "interjection"
+      ]
+    },
+    {
+      "position": 302,
+      "before": [
+        "darauf",
+        "thereon",
+        "adv"
+      ],
+      "after": [
+        "darauf",
+        "on it",
+        "pronominalAdverb"
+      ]
+    },
+    {
+      "position": 318,
+      "before": [
+        "Ahnung",
+        "foreboding",
+        "n"
+      ],
+      "after": [
+        "Ahnung",
+        "idea",
+        "n"
+      ]
+    },
+    {
+      "position": 325,
+      "before": [
+        "scheinen",
+        "shine",
+        "v"
+      ],
+      "after": [
+        "scheinen",
+        "seem",
+        "v"
+      ]
+    },
+    {
+      "position": 332,
+      "before": [
+        "Geschichte",
+        "history",
+        "n"
+      ],
+      "after": [
+        "Geschichte",
+        "story",
+        "n"
+      ]
+    },
+    {
+      "position": 337,
+      "before": [
+        "dran",
+        "get it",
+        "adv"
+      ],
+      "after": [
+        "dran",
+        "at it",
+        "adv"
+      ]
+    },
+    {
+      "position": 338,
+      "before": [
+        "Land",
+        "land",
+        "n"
+      ],
+      "after": [
+        "Land",
+        "country",
+        "n"
+      ]
+    },
+    {
+      "position": 355,
+      "before": [
+        "bestimmt",
+        "definite",
+        "adj"
+      ],
+      "after": [
+        "bestimmt",
+        "certain",
+        "adj"
+      ]
+    },
+    {
+      "position": 358,
+      "before": [
+        "klingen",
+        "ring",
+        "v"
+      ],
+      "after": [
+        "klingen",
+        "sound",
+        "v"
+      ]
+    },
+    {
+      "position": 360,
+      "before": [
+        "gewesen",
+        "has-been",
+        "adj"
+      ],
+      "after": [
+        "gewesen",
+        "former",
+        "adj"
+      ]
+    },
+    {
+      "position": 366,
+      "before": [
+        "endlich",
+        "finite",
+        "adj"
+      ],
+      "after": [
+        "endlich",
+        "finally",
+        "adv"
+      ]
+    },
+    {
+      "position": 376,
+      "before": [
+        "glücklich",
+        "lucky",
+        "adj"
+      ],
+      "after": [
+        "glücklich",
+        "happy",
+        "adj"
+      ]
+    },
+    {
+      "position": 396,
+      "before": [
+        "schuld",
+        "responsible",
+        "adj"
+      ],
+      "after": [
+        "schuld",
+        "at fault",
+        "adj"
+      ]
+    },
+    {
+      "position": 398,
+      "before": [
+        "plan",
+        "planar",
+        "adj"
+      ],
+      "after": [
+        "Plan",
+        "plan",
+        "n"
+      ]
+    },
+    {
+      "position": 400,
+      "before": [
+        "Gesicht",
+        "muzzle",
+        "n"
+      ],
+      "after": [
+        "Gesicht",
+        "face",
+        "n"
+      ]
+    },
+    {
+      "position": 415,
+      "before": [
+        "ehrlich",
+        "real",
+        "adj"
+      ],
+      "after": [
+        "ehrlich",
+        "honest",
+        "adj"
+      ]
+    },
+    {
+      "position": 421,
+      "before": [
+        "Hund",
+        "Hund",
+        "n"
+      ],
+      "after": [
+        "Hund",
+        "dog",
+        "n"
+      ]
+    },
+    {
+      "position": 453,
+      "before": [
+        "werfen",
+        "give birth",
+        "v"
+      ],
+      "after": [
+        "werfen",
+        "throw",
+        "v"
+      ]
+    },
+    {
+      "position": 455,
+      "before": [
+        "Papa",
+        "Papa",
+        "n"
+      ],
+      "after": [
+        "Papa",
+        "dad",
+        "n"
+      ]
+    },
+    {
+      "position": 456,
+      "before": [
+        "aussehen",
+        "look",
+        "v"
+      ],
+      "after": [
+        "aussehen",
+        "look like",
+        "v"
+      ]
+    },
+    {
+      "position": 460,
+      "before": [
+        "außer",
+        "out of",
+        "preposition"
+      ],
+      "after": [
+        "außer",
+        "except",
+        "preposition"
+      ]
+    },
+    {
+      "position": 464,
+      "before": [
+        "sondern",
+        "separate",
+        "v"
+      ],
+      "after": [
+        "sondern",
+        "but rather",
+        "conjunction"
+      ]
+    },
+    {
+      "position": 472,
+      "before": [
+        "wohin",
+        "where",
+        "adv"
+      ],
+      "after": [
+        "wohin",
+        "where to",
+        "adv"
+      ]
+    },
+    {
+      "position": 477,
+      "before": [
+        "wahrscheinlich",
+        "probable",
+        "adj"
+      ],
+      "after": [
+        "wahrscheinlich",
+        "probably",
+        "adv"
+      ]
+    },
+    {
+      "position": 488,
+      "before": [
+        "hierher",
+        "hither",
+        "adv"
+      ],
+      "after": [
+        "hierher",
+        "here",
+        "adv"
+      ]
+    },
+    {
+      "position": 491,
+      "before": [
+        "klappen",
+        "fold",
+        "v"
+      ],
+      "after": [
+        "klappen",
+        "work",
+        "v"
+      ]
+    },
+    {
+      "position": 513,
+      "before": [
+        "Stück",
+        "part",
+        "n"
+      ],
+      "after": [
+        "Stück",
+        "piece",
+        "n"
+      ]
+    },
+    {
+      "position": 529,
+      "before": [
+        "licht",
+        "light",
+        "adj"
+      ],
+      "after": [
+        "Licht",
+        "light",
+        "n"
+      ]
+    },
+    {
+      "position": 549,
+      "before": [
+        "Fuß",
+        "base",
+        "n"
+      ],
+      "after": [
+        "Fuß",
+        "foot",
+        "n"
+      ]
+    },
+    {
+      "position": 550,
+      "before": [
+        "i",
+        "eek",
+        "interjection"
+      ],
+      "after": [
+        "i",
+        "yuck",
+        "interjection"
+      ]
+    },
+    {
+      "position": 554,
+      "before": [
+        "vorstellen",
+        "move forward",
+        "v"
+      ],
+      "after": [
+        "vorstellen",
+        "introduce",
+        "v"
+      ]
+    },
+    {
+      "position": 560,
+      "before": [
+        "komisch",
+        "comic",
+        "adj"
+      ],
+      "after": [
+        "komisch",
+        "strange",
+        "adj"
+      ]
+    },
+    {
+      "position": 562,
+      "before": [
+        "hassen",
+        "mob",
+        "v"
+      ],
+      "after": [
+        "hassen",
+        "hate",
+        "v"
+      ]
+    },
+    {
+      "position": 565,
+      "before": [
+        "Opfer",
+        "sacrifice",
+        "n"
+      ],
+      "after": [
+        "Opfer",
+        "victim",
+        "n"
+      ]
+    },
+    {
+      "position": 568,
+      "before": [
+        "still",
+        "still",
+        "adj"
+      ],
+      "after": [
+        "still",
+        "quiet",
+        "adj"
+      ]
+    },
+    {
+      "position": 569,
+      "before": [
+        "übernehmen",
+        "assume",
+        "v"
+      ],
+      "after": [
+        "übernehmen",
+        "take over",
+        "v"
+      ]
+    },
+    {
+      "position": 571,
+      "before": [
+        "Leiche",
+        "typographic omission",
+        "n"
+      ],
+      "after": [
+        "Leiche",
+        "corpse",
+        "n"
+      ]
+    },
+    {
+      "position": 572,
+      "before": [
+        "kosten",
+        "taste",
+        "v"
+      ],
+      "after": [
+        "kosten",
+        "cost",
+        "v"
+      ]
+    },
+    {
+      "position": 584,
+      "before": [
+        "genauso",
+        "as well",
+        "adv"
+      ],
+      "after": [
+        "genauso",
+        "just as",
+        "adv"
+      ]
+    },
+    {
+      "position": 587,
+      "before": [
+        "verletzt",
+        "offended",
+        "adj"
+      ],
+      "after": [
+        "verletzt",
+        "injured",
+        "adj"
+      ]
+    },
+    {
+      "position": 593,
+      "before": [
+        "kraft",
+        "through",
+        "preposition"
+      ],
+      "after": [
+        "kraft",
+        "by virtue of",
+        "preposition"
+      ]
+    },
+    {
+      "position": 609,
+      "before": [
+        "nachdenken",
+        "ponder",
+        "v"
+      ],
+      "after": [
+        "nachdenken",
+        "think about",
+        "v"
+      ]
+    },
+    {
+      "position": 625,
+      "before": [
+        "weh",
+        "woebegone",
+        "adj"
+      ],
+      "after": [
+        "weh",
+        "painful",
+        "adj"
+      ]
+    },
+    {
+      "position": 634,
+      "before": [
+        "Daddy",
+        "codger",
+        "n"
+      ],
+      "after": [
+        "Daddy",
+        "dad",
+        "n"
+      ]
+    },
+    {
+      "position": 638,
+      "before": [
+        "Mund",
+        "mund",
+        "n"
+      ],
+      "after": [
+        "Mund",
+        "mouth",
+        "n"
+      ]
+    },
+    {
+      "position": 647,
+      "before": [
+        "absolut",
+        "absolute",
+        "adj"
+      ],
+      "after": [
+        "absolut",
+        "absolutely",
+        "adv"
+      ]
+    },
+    {
+      "position": 654,
+      "before": [
+        "verbringen",
+        "acquire",
+        "v"
+      ],
+      "after": [
+        "verbringen",
+        "spend time",
+        "v"
+      ]
+    },
+    {
+      "position": 662,
+      "before": [
+        "Ma",
+        "ma",
+        "n"
+      ],
+      "after": [
+        "Ma",
+        "mom",
+        "n"
+      ]
+    },
+    {
+      "position": 670,
+      "before": [
+        "wunderbar",
+        "miraculous",
+        "adj"
+      ],
+      "after": [
+        "wunderbar",
+        "wonderful",
+        "adj"
+      ]
+    },
+    {
+      "position": 688,
+      "before": [
+        "mitnehmen",
+        "take with",
+        "v"
+      ],
+      "after": [
+        "mitnehmen",
+        "take along",
+        "v"
+      ]
+    },
+    {
+      "position": 702,
+      "before": [
+        "tatsächlich",
+        "actual",
+        "adj"
+      ],
+      "after": [
+        "tatsächlich",
+        "actually",
+        "adv"
+      ]
+    },
+    {
+      "position": 715,
+      "before": [
+        "sieben",
+        "sift",
+        "v"
+      ],
+      "after": [
+        "sieben",
+        "seven",
+        "numeral"
+      ]
+    },
+    {
+      "position": 721,
+      "before": [
+        "ständig",
+        "persistent",
+        "adj"
+      ],
+      "after": [
+        "ständig",
+        "constant",
+        "adj"
+      ]
+    },
+    {
+      "position": 774,
+      "before": [
+        "Partner",
+        "associate",
+        "n"
+      ],
+      "after": [
+        "Partner",
+        "partner",
+        "n"
+      ]
+    },
+    {
+      "position": 777,
+      "before": [
+        "Hochzeit",
+        "golden age",
+        "n"
+      ],
+      "after": [
+        "Hochzeit",
+        "wedding",
+        "n"
+      ]
+    },
+    {
+      "position": 791,
+      "before": [
+        "gemeinsam",
+        "common",
+        "adj"
+      ],
+      "after": [
+        "gemeinsam",
+        "together",
+        "adv"
+      ]
+    },
+    {
+      "position": 806,
+      "before": [
+        "einladen",
+        "load in",
+        "v"
+      ],
+      "after": [
+        "einladen",
+        "invite",
+        "v"
+      ]
+    },
+    {
+      "position": 815,
+      "before": [
+        "bar",
+        "bare",
+        "adj"
+      ],
+      "after": [
+        "bar",
+        "cash",
+        "adj"
+      ]
+    },
+    {
+      "position": 817,
+      "before": [
+        "Boot",
+        "boot",
+        "n"
+      ],
+      "after": [
+        "Boot",
+        "boat",
+        "n"
+      ]
+    },
+    {
+      "position": 827,
+      "before": [
+        "Wein",
+        "vine",
+        "n"
+      ],
+      "after": [
+        "Wein",
+        "wine",
+        "n"
+      ]
+    },
+    {
+      "position": 833,
+      "before": [
+        "aufgeben",
+        "relinquish",
+        "v"
+      ],
+      "after": [
+        "aufgeben",
+        "give up",
+        "v"
+      ]
+    },
+    {
+      "position": 834,
+      "before": [
+        "leisten",
+        "allow oneself",
+        "v"
+      ],
+      "after": [
+        "leisten",
+        "perform",
+        "v"
+      ]
+    },
+    {
+      "position": 843,
+      "before": [
+        "unbedingt",
+        "unconditional",
+        "adj"
+      ],
+      "after": [
+        "unbedingt",
+        "definitely",
+        "adv"
+      ]
+    },
+    {
+      "position": 849,
+      "before": [
+        "Kontrolle",
+        "inspection",
+        "n"
+      ],
+      "after": [
+        "Kontrolle",
+        "control",
+        "n"
+      ]
+    },
+    {
+      "position": 847,
+      "before": [
+        "verliebt",
+        "enamoured",
+        "adj"
+      ],
+      "after": [
+        "verliebt",
+        "in love",
+        "adj"
+      ]
+    },
+    {
+      "position": 869,
+      "before": [
+        "gesucht",
+        "affected",
+        "adj"
+      ],
+      "after": [
+        "gesucht",
+        "wanted",
+        "adj"
+      ]
+    },
+    {
+      "position": 871,
+      "before": [
+        "schenken",
+        "donate",
+        "v"
+      ],
+      "after": [
+        "schenken",
+        "give as a gift",
+        "v"
+      ]
+    },
+    {
+      "position": 877,
+      "before": [
+        "zumindest",
+        "leastways",
+        "adv"
+      ],
+      "after": [
+        "zumindest",
+        "at least",
+        "adv"
+      ]
+    },
+    {
+      "position": 888,
+      "before": [
+        "Bulle",
+        "bulla",
+        "n"
+      ],
+      "after": [
+        "Bulle",
+        "bull",
+        "n"
+      ]
+    },
+    {
+      "position": 899,
+      "before": [
+        "Wald",
+        "Wald",
+        "n"
+      ],
+      "after": [
+        "Wald",
+        "forest",
+        "n"
+      ]
+    },
+    {
+      "position": 923,
+      "before": [
+        "Näher",
+        "sewer",
+        "n"
+      ],
+      "after": [
+        "Näher",
+        "sewing worker",
+        "n"
+      ]
+    },
+    {
+      "position": 924,
+      "before": [
+        "offensichtlich",
+        "apparently",
+        "adj"
+      ],
+      "after": [
+        "offensichtlich",
+        "obvious",
+        "adj"
+      ]
+    },
+    {
+      "position": 966,
+      "before": [
+        "nämlich",
+        "same",
+        "adj"
+      ],
+      "after": [
+        "nämlich",
+        "namely",
+        "adv"
+      ]
+    },
+    {
+      "position": 969,
+      "before": [
+        "weihnachten",
+        "approach",
+        "v"
+      ],
+      "after": [
+        "Weihnachten",
+        "Christmas",
+        "n"
+      ]
+    },
+    {
+      "position": 972,
+      "before": [
+        "verhalten",
+        "restrain",
+        "v"
+      ],
+      "after": [
+        "verhalten",
+        "behave",
+        "v"
+      ]
+    },
+    {
+      "position": 977,
+      "before": [
+        "erwachsen",
+        "arise",
+        "v"
+      ],
+      "after": [
+        "erwachsen",
+        "adult",
+        "adj"
+      ]
+    },
+    {
+      "position": 991,
+      "before": [
+        "Lust",
+        "inclination",
+        "n"
+      ],
+      "after": [
+        "Lust",
+        "desire",
+        "n"
+      ]
+    },
+    {
+      "position": 1003,
+      "before": [
+        "namens",
+        "in the name of",
+        "preposition"
+      ],
+      "after": [
+        "namens",
+        "named",
+        "preposition"
+      ]
+    },
+    {
+      "position": 1018,
+      "before": [
+        "indem",
+        "meanwhile",
+        "adv"
+      ],
+      "after": [
+        "indem",
+        "by",
+        "conjunction"
+      ]
+    },
+    {
+      "position": 1024,
+      "before": [
+        "klauen",
+        "pinch",
+        "v"
+      ],
+      "after": [
+        "klauen",
+        "steal",
+        "v"
+      ]
+    },
+    {
+      "position": 1030,
+      "before": [
+        "abhauen",
+        "cut off",
+        "v"
+      ],
+      "after": [
+        "abhauen",
+        "run away",
+        "v"
+      ]
+    },
+    {
+      "position": 1031,
+      "before": [
+        "verbrechen",
+        "perpetrate",
+        "v"
+      ],
+      "after": [
+        "Verbrechen",
+        "crime",
+        "n"
+      ]
+    },
+    {
+      "position": 1034,
+      "before": [
+        "Hals",
+        "tack",
+        "n"
+      ],
+      "after": [
+        "Hals",
+        "neck",
+        "n"
+      ]
+    },
+    {
+      "position": 1035,
+      "before": [
+        "Loch",
+        "loch",
+        "n"
+      ],
+      "after": [
+        "Loch",
+        "hole",
+        "n"
+      ]
+    },
+    {
+      "position": 1058,
+      "before": [
+        "aufstehen",
+        "rise",
+        "v"
+      ],
+      "after": [
+        "aufstehen",
+        "get up",
+        "v"
+      ]
+    },
+    {
+      "position": 1077,
+      "before": [
+        "gebrochen",
+        "fractional",
+        "adj"
+      ],
+      "after": [
+        "gebrochen",
+        "broken",
+        "adj"
+      ]
+    },
+    {
+      "position": 1085,
+      "before": [
+        "Achtung",
+        "esteem",
+        "n"
+      ],
+      "after": [
+        "Achtung",
+        "attention",
+        "n"
+      ]
+    },
+    {
+      "position": 1099,
+      "before": [
+        "fressen",
+        "gorge",
+        "v"
+      ],
+      "after": [
+        "fressen",
+        "eat",
+        "v"
+      ]
+    },
+    {
+      "position": 1129,
+      "before": [
+        "unterhalten",
+        "hold underneath",
+        "v"
+      ],
+      "after": [
+        "unterhalten",
+        "entertain",
+        "v"
+      ]
+    },
+    {
+      "position": 1133,
+      "before": [
+        "Messer",
+        "gager",
+        "n"
+      ],
+      "after": [
+        "Messer",
+        "knife",
+        "n"
+      ]
+    },
+    {
+      "position": 1155,
+      "before": [
+        "wiederholen",
+        "fetch back",
+        "v"
+      ],
+      "after": [
+        "wiederholen",
+        "repeat",
+        "v"
+      ]
+    },
+    {
+      "position": 1183,
+      "before": [
+        "Tor",
+        "fool",
+        "n"
+      ],
+      "after": [
+        "Tor",
+        "gate",
+        "n"
+      ]
+    },
+    {
+      "position": 1191,
+      "before": [
+        "erfüllen",
+        "elate",
+        "v"
+      ],
+      "after": [
+        "erfüllen",
+        "fulfill",
+        "v"
+      ]
+    },
+    {
+      "position": 1193,
+      "before": [
+        "See",
+        "sea",
+        "n"
+      ],
+      "after": [
+        "See",
+        "lake",
+        "n"
+      ]
+    },
+    {
+      "position": 1196,
+      "before": [
+        "Gang",
+        "gang",
+        "n"
+      ],
+      "after": [
+        "Gang",
+        "corridor",
+        "n"
+      ]
+    },
+    {
+      "position": 1200,
+      "before": [
+        "lauten",
+        "be",
+        "v"
+      ],
+      "after": [
+        "lauten",
+        "read",
+        "v"
+      ]
+    },
+    {
+      "position": 1214,
+      "before": [
+        "scharf",
+        "sharp-edged",
+        "adj"
+      ],
+      "after": [
+        "scharf",
+        "sharp",
+        "adj"
+      ]
+    },
+    {
+      "position": 1248,
+      "before": [
+        "schlau",
+        "sly",
+        "adj"
+      ],
+      "after": [
+        "schlau",
+        "clever",
+        "adj"
+      ]
+    },
+    {
+      "position": 1253,
+      "before": [
+        "Thema",
+        "theme",
+        "n"
+      ],
+      "after": [
+        "Thema",
+        "topic",
+        "n"
+      ]
+    },
+    {
+      "position": 1266,
+      "before": [
+        "Quatsch",
+        "bullshit",
+        "n"
+      ],
+      "after": [
+        "Quatsch",
+        "nonsense",
+        "n"
+      ]
+    },
+    {
+      "position": 1274,
+      "before": [
+        "beibringen",
+        "provide",
+        "v"
+      ],
+      "after": [
+        "beibringen",
+        "teach",
+        "v"
+      ]
+    },
+    {
+      "position": 1275,
+      "before": [
+        "zulassen",
+        "tolerate",
+        "v"
+      ],
+      "after": [
+        "zulassen",
+        "allow",
+        "v"
+      ]
+    },
+    {
+      "position": 1293,
+      "before": [
+        "angetan",
+        "appropriate",
+        "adj"
+      ],
+      "after": [
+        "angetan",
+        "impressed",
+        "adj"
+      ]
+    },
+    {
+      "position": 1303,
+      "before": [
+        "Termin",
+        "date",
+        "n"
+      ],
+      "after": [
+        "Termin",
+        "appointment",
+        "n"
+      ]
+    },
+    {
+      "position": 1306,
+      "before": [
+        "albern",
+        "play up",
+        "v"
+      ],
+      "after": [
+        "albern",
+        "silly",
+        "adj"
+      ]
+    },
+    {
+      "position": 1318,
+      "before": [
+        "Wahnsinn",
+        "crazy",
+        "n"
+      ],
+      "after": [
+        "Wahnsinn",
+        "madness",
+        "n"
+      ]
+    },
+    {
+      "position": 1326,
+      "before": [
+        "Jason",
+        "Jasen",
+        "n"
+      ],
+      "after": [
+        "Jason",
+        "Jason",
+        "n"
+      ]
+    },
+    {
+      "position": 1327,
+      "before": [
+        "anhalten",
+        "urge",
+        "v"
+      ],
+      "after": [
+        "anhalten",
+        "stop",
+        "v"
+      ]
+    },
+    {
+      "position": 1334,
+      "before": [
+        "zustehen",
+        "be",
+        "v"
+      ],
+      "after": [
+        "zustehen",
+        "be entitled to",
+        "v"
+      ]
+    },
+    {
+      "position": 1341,
+      "before": [
+        "Einheit",
+        "unity",
+        "n"
+      ],
+      "after": [
+        "Einheit",
+        "unit",
+        "n"
+      ]
+    },
+    {
+      "position": 1343,
+      "before": [
+        "Hintern",
+        "behind",
+        "n"
+      ],
+      "after": [
+        "Hintern",
+        "buttocks",
+        "n"
+      ]
+    },
+    {
+      "position": 1345,
+      "before": [
+        "regen",
+        "move",
+        "v"
+      ],
+      "after": [
+        "Regen",
+        "rain",
+        "n"
+      ]
+    },
+    {
+      "position": 1355,
+      "before": [
+        "Steig",
+        "climb",
+        "n"
+      ],
+      "after": [
+        "Steig",
+        "path",
+        "n"
+      ]
+    },
+    {
+      "position": 1363,
+      "before": [
+        "begehen",
+        "inspect",
+        "v"
+      ],
+      "after": [
+        "begehen",
+        "commit",
+        "v"
+      ]
+    },
+    {
+      "position": 1367,
+      "before": [
+        "Knast",
+        "detention",
+        "n"
+      ],
+      "after": [
+        "Knast",
+        "prison",
+        "n"
+      ]
+    },
+    {
+      "position": 1368,
+      "before": [
+        "daraus",
+        "hence",
+        "pronominalAdverb"
+      ],
+      "after": [
+        "daraus",
+        "from that",
+        "pronominalAdverb"
+      ]
+    },
+    {
+      "position": 1390,
+      "before": [
+        "überlassen",
+        "spare",
+        "v"
+      ],
+      "after": [
+        "überlassen",
+        "leave to",
+        "v"
+      ]
+    },
+    {
+      "position": 1392,
+      "before": [
+        "sommer",
+        "just",
+        ""
+      ],
+      "after": [
+        "Sommer",
+        "summer",
+        "n"
+      ]
+    },
+    {
+      "position": 1404,
+      "before": [
+        "stammen",
+        "come",
+        "v"
+      ],
+      "after": [
+        "stammen",
+        "come from",
+        "v"
+      ]
+    },
+    {
+      "position": 1414,
+      "before": [
+        "festhalten",
+        "fasten",
+        "v"
+      ],
+      "after": [
+        "festhalten",
+        "hold on to",
+        "v"
+      ]
+    },
+    {
+      "position": 1420,
+      "before": [
+        "Anzug",
+        "approach",
+        "n"
+      ],
+      "after": [
+        "Anzug",
+        "suit",
+        "n"
+      ]
+    },
+    {
+      "position": 1425,
+      "before": [
+        "längst",
+        "long",
+        "adv"
+      ],
+      "after": [
+        "längst",
+        "long ago",
+        "adv"
+      ]
+    },
+    {
+      "position": 1438,
+      "before": [
+        "Lager",
+        "warehouse",
+        "n"
+      ],
+      "after": [
+        "Lager",
+        "camp",
+        "n"
+      ]
+    },
+    {
+      "position": 1452,
+      "before": [
+        "Rom",
+        "Rom",
+        "n"
+      ],
+      "after": [
+        "Rom",
+        "Rome",
+        "n"
+      ]
+    },
+    {
+      "position": 1457,
+      "before": [
+        "anziehen",
+        "attire",
+        "v"
+      ],
+      "after": [
+        "anziehen",
+        "put on",
+        "v"
+      ]
+    },
+    {
+      "position": 1468,
+      "before": [
+        "Sieg",
+        "Sieg",
+        "n"
+      ],
+      "after": [
+        "Sieg",
+        "victory",
+        "n"
+      ]
+    },
+    {
+      "position": 1472,
+      "before": [
+        "übersetzen",
+        "ferry",
+        "v"
+      ],
+      "after": [
+        "übersetzen",
+        "translate",
+        "v"
+      ]
+    },
+    {
+      "position": 1488,
+      "before": [
+        "üben",
+        "exercise",
+        "v"
+      ],
+      "after": [
+        "üben",
+        "practice",
+        "v"
+      ]
+    },
+    {
+      "position": 1494,
+      "before": [
+        "verbinden",
+        "bandage",
+        "v"
+      ],
+      "after": [
+        "verbinden",
+        "connect",
+        "v"
+      ]
+    },
+    {
+      "position": 1504,
+      "before": [
+        "ausziehen",
+        "extract",
+        "v"
+      ],
+      "after": [
+        "ausziehen",
+        "take off",
+        "v"
+      ]
+    },
+    {
+      "position": 1505,
+      "before": [
+        "durcheinander",
+        "chaotic",
+        "adv"
+      ],
+      "after": [
+        "durcheinander",
+        "mixed up",
+        "adv"
+      ]
+    },
+    {
+      "position": 1518,
+      "before": [
+        "einfallen",
+        "intrude",
+        "v"
+      ],
+      "after": [
+        "einfallen",
+        "come to mind",
+        "v"
+      ]
+    },
+    {
+      "position": 1524,
+      "before": [
+        "einsperren",
+        "bolt in",
+        "v"
+      ],
+      "after": [
+        "einsperren",
+        "lock up",
+        "v"
+      ]
+    },
+    {
+      "position": 1526,
+      "before": [
+        "ausgezeichnet",
+        "decorated",
+        "adj"
+      ],
+      "after": [
+        "ausgezeichnet",
+        "excellent",
+        "adj"
+      ]
+    },
+    {
+      "position": 1534,
+      "before": [
+        "Bastard",
+        "mongrel",
+        "n"
+      ],
+      "after": [
+        "Bastard",
+        "bastard",
+        "n"
+      ]
+    },
+    {
+      "position": 1552,
+      "before": [
+        "Medikament",
+        "medicament",
+        "n"
+      ],
+      "after": [
+        "Medikament",
+        "medicine",
+        "n"
+      ]
+    },
+    {
+      "position": 1556,
+      "before": [
+        "weshalb",
+        "so",
+        "conjunction"
+      ],
+      "after": [
+        "weshalb",
+        "why",
+        "adv"
+      ]
+    },
+    {
+      "position": 1577,
+      "before": [
+        "knapp",
+        "scant",
+        "adj"
+      ],
+      "after": [
+        "knapp",
+        "scarce",
+        "adj"
+      ]
+    },
+    {
+      "position": 1594,
+      "before": [
+        "Ton",
+        "clay",
+        "n"
+      ],
+      "after": [
+        "Ton",
+        "sound",
+        "n"
+      ]
+    },
+    {
+      "position": 1600,
+      "before": [
+        "Schatten",
+        "shade",
+        "n"
+      ],
+      "after": [
+        "Schatten",
+        "shadow",
+        "n"
+      ]
+    },
+    {
+      "position": 1603,
+      "before": [
+        "Gnade",
+        "clemency",
+        "n"
+      ],
+      "after": [
+        "Gnade",
+        "mercy",
+        "n"
+      ]
+    },
+    {
+      "position": 1611,
+      "before": [
+        "Gruß",
+        "salutation",
+        "n"
+      ],
+      "after": [
+        "Gruß",
+        "greeting",
+        "n"
+      ]
+    },
+    {
+      "position": 1613,
+      "before": [
+        "anlügen",
+        "lie",
+        "v"
+      ],
+      "after": [
+        "anlügen",
+        "lie to",
+        "v"
+      ]
+    },
+    {
+      "position": 1615,
+      "before": [
+        "desto",
+        "all the",
+        "conjunction"
+      ],
+      "after": [
+        "desto",
+        "the more",
+        "conjunction"
+      ]
+    },
+    {
+      "position": 1624,
+      "before": [
+        "Leo",
+        "Leon",
+        "n"
+      ],
+      "after": [
+        "Leo",
+        "Leo",
+        "n"
+      ]
+    },
+    {
+      "position": 1626,
+      "before": [
+        "Truppe",
+        "body of soldiers",
+        "n"
+      ],
+      "after": [
+        "Truppe",
+        "troops",
+        "n"
+      ]
+    },
+    {
+      "position": 1633,
+      "before": [
+        "spuren",
+        "lay a track",
+        "v"
+      ],
+      "after": [
+        "spuren",
+        "obey",
+        "v"
+      ]
+    },
+    {
+      "position": 1652,
+      "before": [
+        "Bauer",
+        "cage",
+        "n"
+      ],
+      "after": [
+        "Bauer",
+        "farmer",
+        "n"
+      ]
+    },
+    {
+      "position": 1656,
+      "before": [
+        "Aufnahme",
+        "start",
+        "n"
+      ],
+      "after": [
+        "Aufnahme",
+        "recording",
+        "n"
+      ]
+    },
+    {
+      "position": 1686,
+      "before": [
+        "billig",
+        "fitting",
+        "adj"
+      ],
+      "after": [
+        "billig",
+        "cheap",
+        "adj"
+      ]
+    },
+    {
+      "position": 1687,
+      "before": [
+        "abgeben",
+        "concede",
+        "v"
+      ],
+      "after": [
+        "abgeben",
+        "hand in",
+        "v"
+      ]
+    },
+    {
+      "position": 1752,
+      "before": [
+        "heiligen",
+        "holy",
+        "v"
+      ],
+      "after": [
+        "heiligen",
+        "sanctify",
+        "v"
+      ]
+    },
+    {
+      "position": 1764,
+      "before": [
+        "vorn",
+        "fore",
+        "Adverb"
+      ],
+      "after": [
+        "vorn",
+        "in front",
+        "adv"
+      ]
+    },
+    {
+      "position": 1774,
+      "before": [
+        "Marie",
+        "Maree",
+        "n"
+      ],
+      "after": [
+        "Marie",
+        "Marie",
+        "n"
+      ]
+    },
+    {
+      "position": 1798,
+      "before": [
+        "Gift",
+        "gift",
+        "n"
+      ],
+      "after": [
+        "Gift",
+        "poison",
+        "n"
+      ]
+    },
+    {
+      "position": 1800,
+      "before": [
+        "Carl",
+        "Carles",
+        "n"
+      ],
+      "after": [
+        "Carl",
+        "Carl",
+        "n"
+      ]
+    },
+    {
+      "position": 1835,
+      "before": [
+        "Rate",
+        "rate",
+        "n"
+      ],
+      "after": [
+        "Rate",
+        "installment",
+        "n"
+      ]
+    },
+    {
+      "position": 1857,
+      "before": [
+        "Wetter",
+        "punter",
+        "n"
+      ],
+      "after": [
+        "Wetter",
+        "weather",
+        "n"
+      ]
+    },
+    {
+      "position": 1864,
+      "before": [
+        "ausdrücken",
+        "squeeze",
+        "v"
+      ],
+      "after": [
+        "ausdrücken",
+        "express",
+        "v"
+      ]
+    },
+    {
+      "position": 1879,
+      "before": [
+        "verloben",
+        "affiance",
+        "v"
+      ],
+      "after": [
+        "verloben",
+        "get engaged",
+        "v"
+      ]
+    },
+    {
+      "position": 1882,
+      "before": [
+        "Ermittlung",
+        "determining",
+        "n"
+      ],
+      "after": [
+        "Ermittlung",
+        "investigation",
+        "n"
+      ]
+    },
+    {
+      "position": 1898,
+      "before": [
+        "Krebs",
+        "crayfish",
+        "n"
+      ],
+      "after": [
+        "Krebs",
+        "cancer",
+        "n"
+      ]
+    },
+    {
+      "position": 1900,
+      "before": [
+        "Ross",
+        "steed",
+        "n"
+      ],
+      "after": [
+        "Ross",
+        "horse",
+        "n"
+      ]
+    },
+    {
+      "position": 1913,
+      "before": [
+        "champagner",
+        "champagne",
+        "adj"
+      ],
+      "after": [
+        "Champagner",
+        "champagne",
+        "n"
+      ]
+    },
+    {
+      "position": 1947,
+      "before": [
+        "schief",
+        "oblique",
+        "adj"
+      ],
+      "after": [
+        "schief",
+        "crooked",
+        "adj"
+      ]
+    },
+    {
+      "position": 1948,
+      "before": [
+        "Koch",
+        "Cook",
+        "n"
+      ],
+      "after": [
+        "Koch",
+        "cook",
+        "n"
+      ]
+    },
+    {
+      "position": 1957,
+      "before": [
+        "Unterhaltung",
+        "maintenance",
+        "n"
+      ],
+      "after": [
+        "Unterhaltung",
+        "conversation",
+        "n"
+      ]
+    },
+    {
+      "position": 1966,
+      "before": [
+        "Unterricht",
+        "teaching",
+        "n"
+      ],
+      "after": [
+        "Unterricht",
+        "lesson",
+        "n"
+      ]
+    },
+    {
+      "position": 1968,
+      "before": [
+        "Quelle",
+        "spring",
+        "n"
+      ],
+      "after": [
+        "Quelle",
+        "source",
+        "n"
+      ]
+    },
+    {
+      "position": 1974,
+      "before": [
+        "Bürger",
+        "inhabitant",
+        "n"
+      ],
+      "after": [
+        "Bürger",
+        "citizen",
+        "n"
+      ]
+    },
+    {
+      "position": 1984,
+      "before": [
+        "Pech",
+        "pitch",
+        "n"
+      ],
+      "after": [
+        "Pech",
+        "bad luck",
+        "n"
+      ]
+    },
+    {
+      "position": 1992,
+      "before": [
+        "belügen",
+        "lie",
+        "v"
+      ],
+      "after": [
+        "belügen",
+        "lie to",
+        "v"
+      ]
+    },
+    {
+      "position": 1995,
+      "before": [
+        "grenzen",
+        "abut",
+        "v"
+      ],
+      "after": [
+        "grenzen",
+        "border",
+        "v"
+      ]
+    },
+    {
+      "position": 2010,
+      "before": [
+        "rechtzeitig",
+        "opportune",
+        "adj"
+      ],
+      "after": [
+        "rechtzeitig",
+        "on time",
+        "adv"
+      ]
+    },
+    {
+      "position": 2041,
+      "before": [
+        "mittel",
+        "mediocre",
+        "adj"
+      ],
+      "after": [
+        "Mittel",
+        "means",
+        "n"
+      ]
+    },
+    {
+      "position": 2061,
+      "before": [
+        "abschneiden",
+        "amputate",
+        "v"
+      ],
+      "after": [
+        "abschneiden",
+        "cut off",
+        "v"
+      ]
+    },
+    {
+      "position": 2063,
+      "before": [
+        "vergiften",
+        "contaminate",
+        "v"
+      ],
+      "after": [
+        "vergiften",
+        "poison",
+        "v"
+      ]
+    },
+    {
+      "position": 2076,
+      "before": [
+        "vorgehen",
+        "happen",
+        "v"
+      ],
+      "after": [
+        "vorgehen",
+        "proceed",
+        "v"
+      ]
+    },
+    {
+      "position": 2079,
+      "before": [
+        "Genosse",
+        "companion",
+        "n"
+      ],
+      "after": [
+        "Genosse",
+        "comrade",
+        "n"
+      ]
+    },
+    {
+      "position": 2085,
+      "before": [
+        "anschließen",
+        "affiliate",
+        "v"
+      ],
+      "after": [
+        "anschließen",
+        "connect",
+        "v"
+      ]
+    },
+    {
+      "position": 2100,
+      "before": [
+        "zurücklassen",
+        "maroon",
+        "v"
+      ],
+      "after": [
+        "zurücklassen",
+        "leave behind",
+        "v"
+      ]
+    },
+    {
+      "position": 2104,
+      "before": [
+        "spenden",
+        "dispense",
+        "v"
+      ],
+      "after": [
+        "spenden",
+        "donate",
+        "v"
+      ]
+    },
+    {
+      "position": 2113,
+      "before": [
+        "Löwe",
+        "Leo",
+        "n"
+      ],
+      "after": [
+        "Löwe",
+        "lion",
+        "n"
+      ]
+    },
+    {
+      "position": 2125,
+      "before": [
+        "Rad",
+        "rad",
+        "n"
+      ],
+      "after": [
+        "Rad",
+        "wheel",
+        "n"
+      ]
+    },
+    {
+      "position": 2172,
+      "before": [
+        "bewaffnet",
+        "weaponed",
+        "adj"
+      ],
+      "after": [
+        "bewaffnet",
+        "armed",
+        "adj"
+      ]
+    },
+    {
+      "position": 2182,
+      "before": [
+        "Besitzer",
+        "possessor",
+        "n"
+      ],
+      "after": [
+        "Besitzer",
+        "owner",
+        "n"
+      ]
+    },
+    {
+      "position": 2189,
+      "before": [
+        "soviel",
+        "as far as",
+        ""
+      ],
+      "after": [
+        "soviel",
+        "so much",
+        "pron"
+      ]
+    },
+    {
+      "position": 2211,
+      "before": [
+        "Prüfung",
+        "check",
+        "n"
+      ],
+      "after": [
+        "Prüfung",
+        "exam",
+        "n"
+      ]
+    },
+    {
+      "position": 2219,
+      "before": [
+        "einziehen",
+        "penetrate",
+        "v"
+      ],
+      "after": [
+        "einziehen",
+        "move in",
+        "v"
+      ]
+    },
+    {
+      "position": 2235,
+      "before": [
+        "Kurzer",
+        "shooter",
+        "n"
+      ],
+      "after": [
+        "Kurzer",
+        "shot (drink)",
+        "n"
+      ]
+    },
+    {
+      "position": 2236,
+      "before": [
+        "Fresse",
+        "kisser",
+        "n"
+      ],
+      "after": [
+        "Fresse",
+        "mouth",
+        "n"
+      ]
+    },
+    {
+      "position": 2237,
+      "before": [
+        "nützen",
+        "useful",
+        "v"
+      ],
+      "after": [
+        "nützen",
+        "be useful",
+        "v"
+      ]
+    },
+    {
+      "position": 2247,
+      "before": [
+        "osten",
+        "orientate",
+        "v"
+      ],
+      "after": [
+        "Osten",
+        "east",
+        "n"
+      ]
+    },
+    {
+      "position": 2252,
+      "before": [
+        "Knarre",
+        "ratchet",
+        "n"
+      ],
+      "after": [
+        "Knarre",
+        "gun",
+        "n"
+      ]
+    },
+    {
+      "position": 2261,
+      "before": [
+        "umlegen",
+        "apportion",
+        "v"
+      ],
+      "after": [
+        "umlegen",
+        "kill",
+        "v"
+      ]
+    },
+    {
+      "position": 2266,
+      "before": [
+        "Indianer",
+        "Indian",
+        "n"
+      ],
+      "after": [
+        "Indianer",
+        "Native American",
+        "n"
+      ]
+    },
+    {
+      "position": 2270,
+      "before": [
+        "belästigen",
+        "badger",
+        "v"
+      ],
+      "after": [
+        "belästigen",
+        "harass",
+        "v"
+      ]
+    },
+    {
+      "position": 2291,
+      "before": [
+        "Klamotte",
+        "big",
+        "n"
+      ],
+      "after": [
+        "Klamotte",
+        "item of clothing",
+        "n"
+      ]
+    },
+    {
+      "position": 2297,
+      "before": [
+        "betragen",
+        "amount",
+        "v"
+      ],
+      "after": [
+        "betragen",
+        "amount to",
+        "v"
+      ]
+    },
+    {
+      "position": 2304,
+      "before": [
+        "not",
+        "necessary",
+        "adj"
+      ],
+      "after": [
+        "Not",
+        "need",
+        "n"
+      ]
+    },
+    {
+      "position": 2328,
+      "before": [
+        "wüst",
+        "desert",
+        "adj"
+      ],
+      "after": [
+        "wüst",
+        "desolate",
+        "adj"
+      ]
+    },
+    {
+      "position": 2333,
+      "before": [
+        "ausführen",
+        "export",
+        "v"
+      ],
+      "after": [
+        "ausführen",
+        "carry out",
+        "v"
+      ]
+    },
+    {
+      "position": 2341,
+      "before": [
+        "Verhandlung",
+        "trial",
+        "n"
+      ],
+      "after": [
+        "Verhandlung",
+        "negotiation",
+        "n"
+      ]
+    },
+    {
+      "position": 2365,
+      "before": [
+        "Miete",
+        "clamp",
+        "n"
+      ],
+      "after": [
+        "Miete",
+        "rent",
+        "n"
+      ]
+    },
+    {
+      "position": 2367,
+      "before": [
+        "daneben",
+        "that",
+        "adv"
+      ],
+      "after": [
+        "daneben",
+        "beside it",
+        "adv"
+      ]
+    },
+    {
+      "position": 2368,
+      "before": [
+        "Klaus",
+        "kloyz",
+        "n"
+      ],
+      "after": [
+        "Klaus",
+        "Klaus (name)",
+        "n"
+      ]
+    },
+    {
+      "position": 2397,
+      "before": [
+        "beschweren",
+        "weight down",
+        "v"
+      ],
+      "after": [
+        "beschweren",
+        "complain",
+        "v"
+      ]
+    },
+    {
+      "position": 2399,
+      "before": [
+        "angezogen",
+        "decent",
+        "adj"
+      ],
+      "after": [
+        "angezogen",
+        "dressed",
+        "adj"
+      ]
+    },
+    {
+      "position": 2403,
+      "before": [
+        "locken",
+        "curl",
+        "v"
+      ],
+      "after": [
+        "locken",
+        "lure",
+        "v"
+      ]
+    },
+    {
+      "position": 2405,
+      "before": [
+        "erholen",
+        "relax",
+        "v"
+      ],
+      "after": [
+        "erholen",
+        "recover",
+        "v"
+      ]
+    },
+    {
+      "position": 2401,
+      "before": [
+        "einnehmen",
+        "capture",
+        "v"
+      ],
+      "after": [
+        "einnehmen",
+        "take",
+        "v"
+      ]
+    },
+    {
+      "position": 2424,
+      "before": [
+        "Überfall",
+        "assailment",
+        "n"
+      ],
+      "after": [
+        "Überfall",
+        "attack",
+        "n"
+      ]
+    },
+    {
+      "position": 2433,
+      "before": [
+        "Kostüm",
+        "suit",
+        "n"
+      ],
+      "after": [
+        "Kostüm",
+        "costume",
+        "n"
+      ]
+    },
+    {
+      "position": 2434,
+      "before": [
+        "verbessern",
+        "correct",
+        "v"
+      ],
+      "after": [
+        "verbessern",
+        "improve",
+        "v"
+      ]
+    },
+    {
+      "position": 2452,
+      "before": [
+        "Militär",
+        "serviceman",
+        "n"
+      ],
+      "after": [
+        "Militär",
+        "military",
+        "n"
+      ]
+    },
+    {
+      "position": 2454,
+      "before": [
+        "ermitteln",
+        "identify",
+        "v"
+      ],
+      "after": [
+        "ermitteln",
+        "investigate",
+        "v"
+      ]
+    },
+    {
+      "position": 2483,
+      "before": [
+        "kürzlich",
+        "recent",
+        "adj"
+      ],
+      "after": [
+        "kürzlich",
+        "recently",
+        "adv"
+      ]
+    },
+    {
+      "position": 2497,
+      "before": [
+        "befreundet",
+        "friend",
+        "adj"
+      ],
+      "after": [
+        "befreundet",
+        "friends",
+        "adj"
+      ]
+    },
+    {
+      "position": 2504,
+      "before": [
+        "zustoßen",
+        "attack",
+        "v"
+      ],
+      "after": [
+        "zustoßen",
+        "happen",
+        "v"
+      ]
+    },
+    {
+      "position": 2526,
+      "before": [
+        "Abschluss",
+        "exclusion",
+        "n"
+      ],
+      "after": [
+        "Abschluss",
+        "completion",
+        "n"
+      ]
+    },
+    {
+      "position": 2533,
+      "before": [
+        "auflegen",
+        "load",
+        "v"
+      ],
+      "after": [
+        "auflegen",
+        "hang up",
+        "v"
+      ]
+    },
+    {
+      "position": 2536,
+      "before": [
+        "modern",
+        "molder",
+        "v"
+      ],
+      "after": [
+        "modern",
+        "modern",
+        "adj"
+      ]
+    },
+    {
+      "position": 2551,
+      "before": [
+        "ausgerechnet",
+        "calculated",
+        "adj"
+      ],
+      "after": [
+        "ausgerechnet",
+        "of all things",
+        "adv"
+      ]
+    },
+    {
+      "position": 2559,
+      "before": [
+        "überstehen",
+        "project",
+        "v"
+      ],
+      "after": [
+        "überstehen",
+        "survive",
+        "v"
+      ]
+    },
+    {
+      "position": 2565,
+      "before": [
+        "Funk",
+        "funk",
+        "n"
+      ],
+      "after": [
+        "Funk",
+        "radio",
+        "n"
+      ]
+    },
+    {
+      "position": 2576,
+      "before": [
+        "faul",
+        "rotten",
+        "adj"
+      ],
+      "after": [
+        "faul",
+        "lazy",
+        "adj"
+      ]
+    },
+    {
+      "position": 2625,
+      "before": [
+        "Flur",
+        "farmland",
+        "n"
+      ],
+      "after": [
+        "Flur",
+        "hallway",
+        "n"
+      ]
+    },
+    {
+      "position": 2638,
+      "before": [
+        "außen",
+        "external",
+        "Adverb"
+      ],
+      "after": [
+        "außen",
+        "outside",
+        "adv"
+      ]
+    },
+    {
+      "position": 2643,
+      "before": [
+        "Stift",
+        "pivot",
+        "n"
+      ],
+      "after": [
+        "Stift",
+        "pen",
+        "n"
+      ]
+    },
+    {
+      "position": 2644,
+      "before": [
+        "Note",
+        "note",
+        "n"
+      ],
+      "after": [
+        "Note",
+        "grade",
+        "n"
+      ]
+    },
+    {
+      "position": 2664,
+      "before": [
+        "anrichten",
+        "perpetrate",
+        "v"
+      ],
+      "after": [
+        "anrichten",
+        "cause",
+        "v"
+      ]
+    },
+    {
+      "position": 2683,
+      "before": [
+        "Sender",
+        "emitter",
+        "n"
+      ],
+      "after": [
+        "Sender",
+        "transmitter",
+        "n"
+      ]
+    },
+    {
+      "position": 2685,
+      "before": [
+        "Narr",
+        "freak",
+        "n"
+      ],
+      "after": [
+        "Narr",
+        "fool",
+        "n"
+      ]
+    },
+    {
+      "position": 2688,
+      "before": [
+        "darunter",
+        "thereunder",
+        "pronominalAdverb"
+      ],
+      "after": [
+        "darunter",
+        "under it",
+        "pronominalAdverb"
+      ]
+    },
+    {
+      "position": 2693,
+      "before": [
+        "Bahnhof",
+        "station",
+        "n"
+      ],
+      "after": [
+        "Bahnhof",
+        "train station",
+        "n"
+      ]
+    },
+    {
+      "position": 2694,
+      "before": [
+        "rauch",
+        "thick",
+        "adj"
+      ],
+      "after": [
+        "Rauch",
+        "smoke",
+        "n"
+      ]
+    },
+    {
+      "position": 2702,
+      "before": [
+        "jahrelang",
+        "long-standing",
+        "adj"
+      ],
+      "after": [
+        "jahrelang",
+        "for years",
+        "adv"
+      ]
+    },
+    {
+      "position": 2710,
+      "before": [
+        "beleidigt",
+        "huffy",
+        "adj"
+      ],
+      "after": [
+        "beleidigt",
+        "offended",
+        "adj"
+      ]
+    },
+    {
+      "position": 2729,
+      "before": [
+        "umso",
+        "even",
+        "conjunction"
+      ],
+      "after": [
+        "umso",
+        "all the more",
+        "conjunction"
+      ]
+    },
+    {
+      "position": 2737,
+      "before": [
+        "vorkommen",
+        "advance",
+        "v"
+      ],
+      "after": [
+        "vorkommen",
+        "occur",
+        "v"
+      ]
+    },
+    {
+      "position": 2761,
+      "before": [
+        "angeln",
+        "angle",
+        "v"
+      ],
+      "after": [
+        "angeln",
+        "fish",
+        "v"
+      ]
+    },
+    {
+      "position": 2766,
+      "before": [
+        "Aufzeichnung",
+        "note",
+        "n"
+      ],
+      "after": [
+        "Aufzeichnung",
+        "recording",
+        "n"
+      ]
+    },
+    {
+      "position": 2767,
+      "before": [
+        "endgültig",
+        "definitive",
+        "adj"
+      ],
+      "after": [
+        "endgültig",
+        "final",
+        "adj"
+      ]
+    },
+    {
+      "position": 2773,
+      "before": [
+        "dreimal",
+        "thrice",
+        "adv"
+      ],
+      "after": [
+        "dreimal",
+        "three times",
+        "adv"
+      ]
+    },
+    {
+      "position": 2825,
+      "before": [
+        "Herrschaft",
+        "lordship",
+        "n"
+      ],
+      "after": [
+        "Herrschaft",
+        "rule",
+        "n"
+      ]
+    },
+    {
+      "position": 2828,
+      "before": [
+        "deuten",
+        "point",
+        "v"
+      ],
+      "after": [
+        "deuten",
+        "interpret",
+        "v"
+      ]
+    },
+    {
+      "position": 2860,
+      "before": [
+        "Sprung",
+        "crack",
+        "n"
+      ],
+      "after": [
+        "Sprung",
+        "jump",
+        "n"
+      ]
+    },
+    {
+      "position": 2868,
+      "before": [
+        "schelten",
+        "complain",
+        "v"
+      ],
+      "after": [
+        "schelten",
+        "scold",
+        "v"
+      ]
+    },
+    {
+      "position": 2869,
+      "before": [
+        "Liebhaber",
+        "enthusiast",
+        "n"
+      ],
+      "after": [
+        "Liebhaber",
+        "lover",
+        "n"
+      ]
+    },
+    {
+      "position": 2890,
+      "before": [
+        "blockieren",
+        "interlock",
+        "v"
+      ],
+      "after": [
+        "blockieren",
+        "block",
+        "v"
+      ]
+    },
+    {
+      "position": 2897,
+      "before": [
+        "durchdrehen",
+        "mince",
+        "v"
+      ],
+      "after": [
+        "durchdrehen",
+        "freak out",
+        "v"
+      ]
+    },
+    {
+      "position": 2907,
+      "before": [
+        "Ausrüstung",
+        "outfit",
+        "n"
+      ],
+      "after": [
+        "Ausrüstung",
+        "equipment",
+        "n"
+      ]
+    },
+    {
+      "position": 2924,
+      "before": [
+        "Wohnzimmer",
+        "parlour",
+        "n"
+      ],
+      "after": [
+        "Wohnzimmer",
+        "living room",
+        "n"
+      ]
+    },
+    {
+      "position": 2953,
+      "before": [
+        "Ausweg",
+        "solution",
+        "n"
+      ],
+      "after": [
+        "Ausweg",
+        "way out",
+        "n"
+      ]
+    },
+    {
+      "position": 2954,
+      "before": [
+        "hinweg",
+        "begone",
+        "adv"
+      ],
+      "after": [
+        "hinweg",
+        "away",
+        "adv"
+      ]
+    },
+    {
+      "position": 2955,
+      "before": [
+        "schmuck",
+        "pretty",
+        "adj"
+      ],
+      "after": [
+        "Schmuck",
+        "jewelry",
+        "n"
+      ]
+    },
+    {
+      "position": 2964,
+      "before": [
+        "Steuer",
+        "Steuer",
+        "n"
+      ],
+      "after": [
+        "Steuer",
+        "tax",
+        "n"
+      ]
+    },
+    {
+      "position": 2966,
+      "before": [
+        "Ausbildung",
+        "education",
+        "n"
+      ],
+      "after": [
+        "Ausbildung",
+        "training",
+        "n"
+      ]
+    },
+    {
+      "position": 2984,
+      "before": [
+        "sozusagen",
+        "quasi",
+        "adv"
+      ],
+      "after": [
+        "sozusagen",
+        "so to speak",
+        "adv"
+      ]
+    },
+    {
+      "position": 3013,
+      "before": [
+        "Anschlag",
+        "strike",
+        "n"
+      ],
+      "after": [
+        "Anschlag",
+        "attack",
+        "n"
+      ]
+    },
+    {
+      "position": 3037,
+      "before": [
+        "Anblick",
+        "looking",
+        "n"
+      ],
+      "after": [
+        "Anblick",
+        "sight",
+        "n"
+      ]
+    },
+    {
+      "position": 3041,
+      "before": [
+        "Abschied",
+        "parting",
+        "n"
+      ],
+      "after": [
+        "Abschied",
+        "goodbye",
+        "n"
+      ]
+    },
+    {
+      "position": 3034,
+      "before": [
+        "aufhängen",
+        "suspend",
+        "v"
+      ],
+      "after": [
+        "aufhängen",
+        "hang up",
+        "v"
+      ]
+    },
+    {
+      "position": 3044,
+      "before": [
+        "zünden",
+        "fire",
+        "v"
+      ],
+      "after": [
+        "zünden",
+        "ignite",
+        "v"
+      ]
+    },
+    {
+      "position": 3074,
+      "before": [
+        "überfahren",
+        "overshoot",
+        "v"
+      ],
+      "after": [
+        "überfahren",
+        "run over",
+        "v"
+      ]
+    },
+    {
+      "position": 3107,
+      "before": [
+        "Geschwindigkeit",
+        "velocity",
+        "n"
+      ],
+      "after": [
+        "Geschwindigkeit",
+        "speed",
+        "n"
+      ]
+    },
+    {
+      "position": 3109,
+      "before": [
+        "Betrüger",
+        "fraud",
+        "n"
+      ],
+      "after": [
+        "Betrüger",
+        "fraudster",
+        "n"
+      ]
+    },
+    {
+      "position": 3111,
+      "before": [
+        "aufziehen",
+        "open",
+        "v"
+      ],
+      "after": [
+        "aufziehen",
+        "raise",
+        "v"
+      ]
+    },
+    {
+      "position": 3132,
+      "before": [
+        "bezüglich",
+        "referential",
+        "adj"
+      ],
+      "after": [
+        "bezüglich",
+        "regarding",
+        "preposition"
+      ]
+    },
+    {
+      "position": 3138,
+      "before": [
+        "anmachen",
+        "dress",
+        "v"
+      ],
+      "after": [
+        "anmachen",
+        "turn on",
+        "v"
+      ]
+    },
+    {
+      "position": 3139,
+      "before": [
+        "Staffel",
+        "squadron",
+        "n"
+      ],
+      "after": [
+        "Staffel",
+        "season",
+        "n"
+      ]
+    },
+    {
+      "position": 3146,
+      "before": [
+        "hinkriegen",
+        "carry off",
+        "v"
+      ],
+      "after": [
+        "hinkriegen",
+        "manage",
+        "v"
+      ]
+    },
+    {
+      "position": 3169,
+      "before": [
+        "pst",
+        "hist",
+        "interjection"
+      ],
+      "after": [
+        "pst",
+        "shh",
+        "interjection"
+      ]
+    },
+    {
+      "position": 3174,
+      "before": [
+        "begeben",
+        "happen",
+        "v"
+      ],
+      "after": [
+        "begeben",
+        "go",
+        "v"
+      ]
+    },
+    {
+      "position": 3223,
+      "before": [
+        "sicherstellen",
+        "confiscate",
+        "v"
+      ],
+      "after": [
+        "sicherstellen",
+        "ensure",
+        "v"
+      ]
+    },
+    {
+      "position": 3245,
+      "before": [
+        "segeln",
+        "glide",
+        "v"
+      ],
+      "after": [
+        "segeln",
+        "sail",
+        "v"
+      ]
+    },
+    {
+      "position": 3263,
+      "before": [
+        "Mars",
+        "top",
+        "n"
+      ],
+      "after": [
+        "Mars",
+        "Mars",
+        "n"
+      ]
+    },
+    {
+      "position": 3289,
+      "before": [
+        "eventuell",
+        "possible",
+        "adj"
+      ],
+      "after": [
+        "eventuell",
+        "possibly",
+        "adv"
+      ]
+    },
+    {
+      "position": 3300,
+      "before": [
+        "Tüte",
+        "cornet",
+        "n"
+      ],
+      "after": [
+        "Tüte",
+        "bag",
+        "n"
+      ]
+    },
+    {
+      "position": 3304,
+      "before": [
+        "Salat",
+        "lettuce",
+        "n"
+      ],
+      "after": [
+        "Salat",
+        "salad",
+        "n"
+      ]
+    },
+    {
+      "position": 3330,
+      "before": [
+        "Grüner",
+        "Green",
+        "n"
+      ],
+      "after": [
+        "Grüner",
+        "Green Party member",
+        "n"
+      ]
+    },
+    {
+      "position": 3331,
+      "before": [
+        "Papi",
+        "daddy",
+        "n"
+      ],
+      "after": [
+        "Papi",
+        "dad",
+        "n"
+      ]
+    },
+    {
+      "position": 3333,
+      "before": [
+        "Hühnchen",
+        "pullet",
+        "n"
+      ],
+      "after": [
+        "Hühnchen",
+        "chicken",
+        "n"
+      ]
+    },
+    {
+      "position": 3338,
+      "before": [
+        "Panzer",
+        "armour",
+        "n"
+      ],
+      "after": [
+        "Panzer",
+        "tank",
+        "n"
+      ]
+    },
+    {
+      "position": 3363,
+      "before": [
+        "Heroin",
+        "heroine",
+        "n"
+      ],
+      "after": [
+        "Heroin",
+        "heroin",
+        "n"
+      ]
+    },
+    {
+      "position": 3374,
+      "before": [
+        "Frisur",
+        "haircut",
+        "n"
+      ],
+      "after": [
+        "Frisur",
+        "hairstyle",
+        "n"
+      ]
+    },
+    {
+      "position": 3396,
+      "before": [
+        "Anlage",
+        "disposition",
+        "n"
+      ],
+      "after": [
+        "Anlage",
+        "facility",
+        "n"
+      ]
+    },
+    {
+      "position": 3410,
+      "before": [
+        "Kasse",
+        "cash",
+        "n"
+      ],
+      "after": [
+        "Kasse",
+        "cash register",
+        "n"
+      ]
+    },
+    {
+      "position": 3447,
+      "before": [
+        "Trennung",
+        "segregation",
+        "n"
+      ],
+      "after": [
+        "Trennung",
+        "separation",
+        "n"
+      ]
+    },
+    {
+      "position": 3490,
+      "before": [
+        "Bahn",
+        "path",
+        "n"
+      ],
+      "after": [
+        "Bahn",
+        "railway",
+        "n"
+      ]
+    },
+    {
+      "position": 3505,
+      "before": [
+        "Model",
+        "mold",
+        "n"
+      ],
+      "after": [
+        "Model",
+        "model",
+        "n"
+      ]
+    },
+    {
+      "position": 3531,
+      "before": [
+        "Sau",
+        "boar",
+        "n"
+      ],
+      "after": [
+        "Sau",
+        "sow",
+        "n"
+      ]
+    },
+    {
+      "position": 3545,
+      "before": [
+        "Ausland",
+        "abroad",
+        "n"
+      ],
+      "after": [
+        "Ausland",
+        "foreign countries",
+        "n"
+      ]
+    },
+    {
+      "position": 3546,
+      "before": [
+        "schultern",
+        "sling",
+        "v"
+      ],
+      "after": [
+        "schultern",
+        "shoulder",
+        "v"
+      ]
+    },
+    {
+      "position": 3560,
+      "before": [
+        "Geschworene",
+        "jurywoman",
+        "n"
+      ],
+      "after": [
+        "Geschworene",
+        "juror",
+        "n"
+      ]
+    },
+    {
+      "position": 3576,
+      "before": [
+        "Vorname",
+        "forename",
+        "n"
+      ],
+      "after": [
+        "Vorname",
+        "first name",
+        "n"
+      ]
+    },
+    {
+      "position": 3596,
+      "before": [
+        "Bewährung",
+        "reliability",
+        "n"
+      ],
+      "after": [
+        "Bewährung",
+        "probation",
+        "n"
+      ]
+    },
+    {
+      "position": 3601,
+      "before": [
+        "registrieren",
+        "notice",
+        "v"
+      ],
+      "after": [
+        "registrieren",
+        "register",
+        "v"
+      ]
+    },
+    {
+      "position": 3612,
+      "before": [
+        "Tonne",
+        "barrel",
+        "n"
+      ],
+      "after": [
+        "Tonne",
+        "tonne",
+        "n"
+      ]
+    },
+    {
+      "position": 3613,
+      "before": [
+        "Kanzlei",
+        "chancellery",
+        "n"
+      ],
+      "after": [
+        "Kanzlei",
+        "law firm",
+        "n"
+      ]
+    },
+    {
+      "position": 3658,
+      "before": [
+        "büßen",
+        "expiate",
+        "v"
+      ],
+      "after": [
+        "büßen",
+        "atone",
+        "v"
+      ]
+    },
+    {
+      "position": 3670,
+      "before": [
+        "klarkommen",
+        "tolerate",
+        "v"
+      ],
+      "after": [
+        "klarkommen",
+        "cope",
+        "v"
+      ]
+    },
+    {
+      "position": 3672,
+      "before": [
+        "verborgen",
+        "lend",
+        "v"
+      ],
+      "after": [
+        "verborgen",
+        "hidden",
+        "adj"
+      ]
+    },
+    {
+      "position": 3673,
+      "before": [
+        "verstärken",
+        "invigorate",
+        "v"
+      ],
+      "after": [
+        "verstärken",
+        "strengthen",
+        "v"
+      ]
+    },
+    {
+      "position": 3678,
+      "before": [
+        "Nacken",
+        "nape",
+        "n"
+      ],
+      "after": [
+        "Nacken",
+        "back of neck",
+        "n"
+      ]
+    },
+    {
+      "position": 3693,
+      "before": [
+        "Wehe",
+        "travail",
+        "n"
+      ],
+      "after": [
+        "Wehe",
+        "contraction",
+        "n"
+      ]
+    },
+    {
+      "position": 3698,
+      "before": [
+        "Heirat",
+        "wedding",
+        "n"
+      ],
+      "after": [
+        "Heirat",
+        "marriage",
+        "n"
+      ]
+    },
+    {
+      "position": 3715,
+      "before": [
+        "Marsch",
+        "marsh",
+        "n"
+      ],
+      "after": [
+        "Marsch",
+        "march",
+        "n"
+      ]
+    },
+    {
+      "position": 3760,
+      "before": [
+        "einholen",
+        "recover",
+        "v"
+      ],
+      "after": [
+        "einholen",
+        "catch up",
+        "v"
+      ]
+    },
+    {
+      "position": 3787,
+      "before": [
+        "Hochzeitstag",
+        "wedding day",
+        "n"
+      ],
+      "after": [
+        "Hochzeitstag",
+        "wedding anniversary",
+        "n"
+      ]
+    },
+    {
+      "position": 3805,
+      "before": [
+        "Autounfall",
+        "bingle",
+        "n"
+      ],
+      "after": [
+        "Autounfall",
+        "car accident",
+        "n"
+      ]
+    },
+    {
+      "position": 3818,
+      "before": [
+        "mitfahren",
+        "go",
+        "v"
+      ],
+      "after": [
+        "mitfahren",
+        "ride along",
+        "v"
+      ]
+    },
+    {
+      "position": 3820,
+      "before": [
+        "beantragen",
+        "propose",
+        "v"
+      ],
+      "after": [
+        "beantragen",
+        "apply for",
+        "v"
+      ]
+    },
+    {
+      "position": 3821,
+      "before": [
+        "tippen",
+        "tap",
+        "v"
+      ],
+      "after": [
+        "tippen",
+        "type",
+        "v"
+      ]
+    },
+    {
+      "position": 3836,
+      "before": [
+        "nachfragen",
+        "request",
+        "v"
+      ],
+      "after": [
+        "nachfragen",
+        "ask again",
+        "v"
+      ]
+    },
+    {
+      "position": 3842,
+      "before": [
+        "Konkurrenz",
+        "competitor",
+        "n"
+      ],
+      "after": [
+        "Konkurrenz",
+        "competition",
+        "n"
+      ]
+    },
+    {
+      "position": 3866,
+      "before": [
+        "aufsetzen",
+        "don",
+        "v"
+      ],
+      "after": [
+        "aufsetzen",
+        "put on",
+        "v"
+      ]
+    },
+    {
+      "position": 3868,
+      "before": [
+        "Vorstand",
+        "senior executive",
+        "n"
+      ],
+      "after": [
+        "Vorstand",
+        "board",
+        "n"
+      ]
+    },
+    {
+      "position": 3871,
+      "before": [
+        "egoistisch",
+        "egoistical",
+        "adj"
+      ],
+      "after": [
+        "egoistisch",
+        "selfish",
+        "adj"
+      ]
+    },
+    {
+      "position": 3880,
+      "before": [
+        "Ablenkung",
+        "deflection",
+        "n"
+      ],
+      "after": [
+        "Ablenkung",
+        "distraction",
+        "n"
+      ]
+    },
+    {
+      "position": 3886,
+      "before": [
+        "stillen",
+        "allay",
+        "v"
+      ],
+      "after": [
+        "stillen",
+        "breastfeed",
+        "v"
+      ]
+    },
+    {
+      "position": 3891,
+      "before": [
+        "aufführen",
+        "misbehave",
+        "v"
+      ],
+      "after": [
+        "aufführen",
+        "perform",
+        "v"
+      ]
+    },
+    {
+      "position": 3898,
+      "before": [
+        "Miese",
+        "bad point",
+        "n"
+      ],
+      "after": [
+        "Miese",
+        "losses",
+        "n"
+      ]
+    },
+    {
+      "position": 3900,
+      "before": [
+        "anmelden",
+        "announce",
+        "v"
+      ],
+      "after": [
+        "anmelden",
+        "register",
+        "v"
+      ]
+    },
+    {
+      "position": 3910,
+      "before": [
+        "ansetzen",
+        "sew",
+        "v"
+      ],
+      "after": [
+        "ansetzen",
+        "apply",
+        "v"
+      ]
+    },
+    {
+      "position": 3945,
+      "before": [
+        "isolieren",
+        "insulate",
+        "v"
+      ],
+      "after": [
+        "isolieren",
+        "isolate",
+        "v"
+      ]
+    },
+    {
+      "position": 3947,
+      "before": [
+        "mauern",
+        "mason",
+        "v"
+      ],
+      "after": [
+        "mauern",
+        "build a wall",
+        "v"
+      ]
+    },
+    {
+      "position": 3954,
+      "before": [
+        "Vorbild",
+        "exemplar",
+        "n"
+      ],
+      "after": [
+        "Vorbild",
+        "role model",
+        "n"
+      ]
+    },
+    {
+      "position": 3968,
+      "before": [
+        "Papierkram",
+        "bumf",
+        "n"
+      ],
+      "after": [
+        "Papierkram",
+        "paperwork",
+        "n"
+      ]
+    },
+    {
+      "position": 3986,
+      "before": [
+        "übermorgen",
+        "overmorrow",
+        "adv"
+      ],
+      "after": [
+        "übermorgen",
+        "day after tomorrow",
+        "adv"
+      ]
+    },
+    {
+      "position": 4018,
+      "before": [
+        "hinweisen",
+        "portend",
+        "v"
+      ],
+      "after": [
+        "hinweisen",
+        "point out",
+        "v"
+      ]
+    },
+    {
+      "position": 4027,
+      "before": [
+        "Feierabend",
+        "closing time",
+        "n"
+      ],
+      "after": [
+        "Feierabend",
+        "end of work",
+        "n"
+      ]
+    },
+    {
+      "position": 4028,
+      "before": [
+        "wegtreten",
+        "dismiss",
+        "v"
+      ],
+      "after": [
+        "wegtreten",
+        "step away",
+        "v"
+      ]
+    },
+    {
+      "position": 4039,
+      "before": [
+        "Hahn",
+        "cock",
+        "n"
+      ],
+      "after": [
+        "Hahn",
+        "rooster",
+        "n"
+      ]
+    },
+    {
+      "position": 4040,
+      "before": [
+        "blättern",
+        "riffle",
+        "v"
+      ],
+      "after": [
+        "blättern",
+        "turn pages",
+        "v"
+      ]
+    },
+    {
+      "position": 4051,
+      "before": [
+        "Mangel",
+        "mangle",
+        "n"
+      ],
+      "after": [
+        "Mangel",
+        "lack",
+        "n"
+      ]
+    },
+    {
+      "position": 4077,
+      "before": [
+        "Schneider",
+        "Taylor",
+        "n"
+      ],
+      "after": [
+        "Schneider",
+        "tailor",
+        "n"
+      ]
+    },
+    {
+      "position": 4078,
+      "before": [
+        "Maß",
+        "liter of beer",
+        "n"
+      ],
+      "after": [
+        "Maß",
+        "measure",
+        "n"
+      ]
+    },
+    {
+      "position": 4084,
+      "before": [
+        "möglichst",
+        "as possible",
+        "adv"
+      ],
+      "after": [
+        "möglichst",
+        "as ... as possible",
+        "adv"
+      ]
+    },
+    {
+      "position": 4088,
+      "before": [
+        "Vollidiot",
+        "wally",
+        "n"
+      ],
+      "after": [
+        "Vollidiot",
+        "complete idiot",
+        "n"
+      ]
+    },
+    {
+      "position": 4095,
+      "before": [
+        "funken",
+        "cable",
+        "v"
+      ],
+      "after": [
+        "funken",
+        "send by radio",
+        "v"
+      ]
+    },
+    {
+      "position": 4107,
+      "before": [
+        "Pilz",
+        "fungus",
+        "n"
+      ],
+      "after": [
+        "Pilz",
+        "mushroom",
+        "n"
+      ]
+    },
+    {
+      "position": 4140,
+      "before": [
+        "gratis",
+        "gratis",
+        "adj"
+      ],
+      "after": [
+        "gratis",
+        "free",
+        "adv"
+      ]
+    },
+    {
+      "position": 4165,
+      "before": [
+        "Wien",
+        "Wien",
+        "n"
+      ],
+      "after": [
+        "Wien",
+        "Vienna",
+        "n"
+      ]
+    },
+    {
+      "position": 4182,
+      "before": [
+        "Agnes",
+        "Annice",
+        "n"
+      ],
+      "after": [
+        "Agnes",
+        "Agnes",
+        "n"
+      ]
+    },
+    {
+      "position": 4190,
+      "before": [
+        "mitbekommen",
+        "given",
+        "v"
+      ],
+      "after": [
+        "mitbekommen",
+        "notice",
+        "v"
+      ]
+    },
+    {
+      "position": 4214,
+      "before": [
+        "abkommen",
+        "run",
+        "v"
+      ],
+      "after": [
+        "abkommen",
+        "deviate",
+        "v"
+      ]
+    },
+    {
+      "position": 4244,
+      "before": [
+        "kippen",
+        "cant",
+        "v"
+      ],
+      "after": [
+        "kippen",
+        "tip over",
+        "v"
+      ]
+    },
+    {
+      "position": 4248,
+      "before": [
+        "ablaufen",
+        "start",
+        "v"
+      ],
+      "after": [
+        "ablaufen",
+        "expire",
+        "v"
+      ]
+    },
+    {
+      "position": 4256,
+      "before": [
+        "Mode",
+        "mode",
+        "n"
+      ],
+      "after": [
+        "Mode",
+        "fashion",
+        "n"
+      ]
+    },
+    {
+      "position": 4258,
+      "before": [
+        "Speck",
+        "back fat",
+        "n"
+      ],
+      "after": [
+        "Speck",
+        "bacon",
+        "n"
+      ]
+    },
+    {
+      "position": 4269,
+      "before": [
+        "verständigen",
+        "warn",
+        "v"
+      ],
+      "after": [
+        "verständigen",
+        "inform",
+        "v"
+      ]
+    },
+    {
+      "position": 4279,
+      "before": [
+        "Gleichgewicht",
+        "equilibrium",
+        "n"
+      ],
+      "after": [
+        "Gleichgewicht",
+        "balance",
+        "n"
+      ]
+    },
+    {
+      "position": 4297,
+      "before": [
+        "Melanie",
+        "Melany",
+        "n"
+      ],
+      "after": [
+        "Melanie",
+        "Melanie",
+        "n"
+      ]
+    },
+    {
+      "position": 4305,
+      "before": [
+        "Transporter",
+        "shuttle",
+        "n"
+      ],
+      "after": [
+        "Transporter",
+        "van",
+        "n"
+      ]
+    },
+    {
+      "position": 4342,
+      "before": [
+        "fade",
+        "insipid",
+        "adj"
+      ],
+      "after": [
+        "fade",
+        "bland",
+        "adj"
+      ]
+    },
+    {
+      "position": 4343,
+      "before": [
+        "Überrest",
+        "vestige",
+        "n"
+      ],
+      "after": [
+        "Überrest",
+        "remains",
+        "n"
+      ]
+    },
+    {
+      "position": 4351,
+      "before": [
+        "Feuerwehr",
+        "firefighter",
+        "n"
+      ],
+      "after": [
+        "Feuerwehr",
+        "fire brigade",
+        "n"
+      ]
+    },
+    {
+      "position": 4357,
+      "before": [
+        "hetzen",
+        "sic",
+        "v"
+      ],
+      "after": [
+        "hetzen",
+        "rush",
+        "v"
+      ]
+    },
+    {
+      "position": 4366,
+      "before": [
+        "stundenlang",
+        "lasting for hours",
+        "adj"
+      ],
+      "after": [
+        "stundenlang",
+        "for hours",
+        "adv"
+      ]
+    },
+    {
+      "position": 4370,
+      "before": [
+        "gelegentlich",
+        "soon",
+        "adj"
+      ],
+      "after": [
+        "gelegentlich",
+        "occasionally",
+        "adv"
+      ]
+    },
+    {
+      "position": 4384,
+      "before": [
+        "bereithalten",
+        "hold",
+        "v"
+      ],
+      "after": [
+        "bereithalten",
+        "keep ready",
+        "v"
+      ]
+    },
+    {
+      "position": 4387,
+      "before": [
+        "wickeln",
+        "diaper",
+        "v"
+      ],
+      "after": [
+        "wickeln",
+        "wrap",
+        "v"
+      ]
+    },
+    {
+      "position": 4388,
+      "before": [
+        "Regina",
+        "Regana",
+        "n"
+      ],
+      "after": [
+        "Regina",
+        "Regina",
+        "n"
+      ]
+    },
+    {
+      "position": 4392,
+      "before": [
+        "Haftbefehl",
+        "mittimus",
+        "n"
+      ],
+      "after": [
+        "Haftbefehl",
+        "arrest warrant",
+        "n"
+      ]
+    },
+    {
+      "position": 4393,
+      "before": [
+        "buchstäblich",
+        "literal",
+        "adj"
+      ],
+      "after": [
+        "buchstäblich",
+        "literally",
+        "adv"
+      ]
+    },
+    {
+      "position": 4432,
+      "before": [
+        "beruhen",
+        "base on",
+        "v"
+      ],
+      "after": [
+        "beruhen",
+        "be based on",
+        "v"
+      ]
+    },
+    {
+      "position": 4435,
+      "before": [
+        "Gestalt",
+        "conformation",
+        "n"
+      ],
+      "after": [
+        "Gestalt",
+        "shape",
+        "n"
+      ]
+    },
+    {
+      "position": 4448,
+      "before": [
+        "Knabe",
+        "knave",
+        "n"
+      ],
+      "after": [
+        "Knabe",
+        "boy",
+        "n"
+      ]
+    },
+    {
+      "position": 4461,
+      "before": [
+        "firmen",
+        "confirm",
+        "v"
+      ],
+      "after": [
+        "firmen",
+        "administer confirmation",
+        "v"
+      ]
+    },
+    {
+      "position": 4465,
+      "before": [
+        "füreinander",
+        "each other",
+        "adv"
+      ],
+      "after": [
+        "füreinander",
+        "for each other",
+        "adv"
+      ]
+    },
+    {
+      "position": 4467,
+      "before": [
+        "psychisch",
+        "psychic",
+        "adj"
+      ],
+      "after": [
+        "psychisch",
+        "mental",
+        "adj"
+      ]
+    },
+    {
+      "position": 4470,
+      "before": [
+        "bereden",
+        "converse",
+        "v"
+      ],
+      "after": [
+        "bereden",
+        "discuss",
+        "v"
+      ]
+    },
+    {
+      "position": 4472,
+      "before": [
+        "Schale",
+        "peel",
+        "n"
+      ],
+      "after": [
+        "Schale",
+        "bowl",
+        "n"
+      ]
+    },
+    {
+      "position": 4474,
+      "before": [
+        "Futter",
+        "fodder",
+        "n"
+      ],
+      "after": [
+        "Futter",
+        "feed",
+        "n"
+      ]
+    },
+    {
+      "position": 4480,
+      "before": [
+        "ausstehen",
+        "be",
+        "v"
+      ],
+      "after": [
+        "ausstehen",
+        "stand",
+        "v"
+      ]
+    },
+    {
+      "position": 4486,
+      "before": [
+        "abheben",
+        "cut",
+        "v"
+      ],
+      "after": [
+        "abheben",
+        "take off",
+        "v"
+      ]
+    },
+    {
+      "position": 4488,
+      "before": [
+        "Messe",
+        "mass",
+        "n"
+      ],
+      "after": [
+        "Messe",
+        "trade fair",
+        "n"
+      ]
+    },
+    {
+      "position": 4500,
+      "before": [
+        "ausschließen",
+        "lock out",
+        "v"
+      ],
+      "after": [
+        "ausschließen",
+        "exclude",
+        "v"
+      ]
+    },
+    {
+      "position": 4501,
+      "before": [
+        "fernhalten",
+        "parry",
+        "v"
+      ],
+      "after": [
+        "fernhalten",
+        "keep away",
+        "v"
+      ]
+    },
+    {
+      "position": 4536,
+      "before": [
+        "abhören",
+        "auscultate",
+        "v"
+      ],
+      "after": [
+        "abhören",
+        "listen in",
+        "v"
+      ]
+    },
+    {
+      "position": 4540,
+      "before": [
+        "Paps",
+        "daddy",
+        "n"
+      ],
+      "after": [
+        "Paps",
+        "dad",
+        "n"
+      ]
+    },
+    {
+      "position": 4598,
+      "before": [
+        "zurückzahlen",
+        "reimburse",
+        "v"
+      ],
+      "after": [
+        "zurückzahlen",
+        "repay",
+        "v"
+      ]
+    },
+    {
+      "position": 4608,
+      "before": [
+        "hinreißen",
+        "rapt",
+        "v"
+      ],
+      "after": [
+        "hinreißen",
+        "sweep away",
+        "v"
+      ]
+    },
+    {
+      "position": 4625,
+      "before": [
+        "preisen",
+        "laud",
+        "v"
+      ],
+      "after": [
+        "preisen",
+        "praise",
+        "v"
+      ]
+    },
+    {
+      "position": 4628,
+      "before": [
+        "Flittchen",
+        "chippy",
+        "n"
+      ],
+      "after": [
+        "Flittchen",
+        "slut",
+        "n"
+      ]
+    },
+    {
+      "position": 4633,
+      "before": [
+        "Angehörige",
+        "affiliate",
+        "n"
+      ],
+      "after": [
+        "Angehörige",
+        "relative",
+        "n"
+      ]
+    },
+    {
+      "position": 4635,
+      "before": [
+        "wiederhaben",
+        "back",
+        "v"
+      ],
+      "after": [
+        "wiederhaben",
+        "have back",
+        "v"
+      ]
+    },
+    {
+      "position": 4644,
+      "before": [
+        "streicheln",
+        "fondle",
+        "v"
+      ],
+      "after": [
+        "streicheln",
+        "stroke",
+        "v"
+      ]
+    },
+    {
+      "position": 4660,
+      "before": [
+        "Bruch",
+        "marsh",
+        "n"
+      ],
+      "after": [
+        "Bruch",
+        "fracture",
+        "n"
+      ]
+    },
+    {
+      "position": 4661,
+      "before": [
+        "verschreiben",
+        "mispell",
+        "v"
+      ],
+      "after": [
+        "verschreiben",
+        "prescribe",
+        "v"
+      ]
+    },
+    {
+      "position": 4691,
+      "before": [
+        "Kraut",
+        "Kraut",
+        "n"
+      ],
+      "after": [
+        "Kraut",
+        "herb",
+        "n"
+      ]
+    },
+    {
+      "position": 4710,
+      "before": [
+        "infrage",
+        "contemplable",
+        "adv"
+      ],
+      "after": [
+        "infrage",
+        "in question",
+        "adv"
+      ]
+    },
+    {
+      "position": 4725,
+      "before": [
+        "Herzschlag",
+        "heart attack",
+        "n"
+      ],
+      "after": [
+        "Herzschlag",
+        "heartbeat",
+        "n"
+      ]
+    },
+    {
+      "position": 4735,
+      "before": [
+        "Pressekonferenz",
+        "briefing",
+        "n"
+      ],
+      "after": [
+        "Pressekonferenz",
+        "press conference",
+        "n"
+      ]
+    },
+    {
+      "position": 4737,
+      "before": [
+        "lauern",
+        "watch",
+        "v"
+      ],
+      "after": [
+        "lauern",
+        "lurk",
+        "v"
+      ]
+    },
+    {
+      "position": 4740,
+      "before": [
+        "heikel",
+        "fussy",
+        "adj"
+      ],
+      "after": [
+        "heikel",
+        "tricky",
+        "adj"
+      ]
+    },
+    {
+      "position": 4769,
+      "before": [
+        "Erkenntnis",
+        "decision",
+        "n"
+      ],
+      "after": [
+        "Erkenntnis",
+        "insight",
+        "n"
+      ]
+    },
+    {
+      "position": 4822,
+      "before": [
+        "umgehend",
+        "immediate",
+        "adj"
+      ],
+      "after": [
+        "umgehend",
+        "immediately",
+        "adv"
+      ]
+    },
+    {
+      "position": 4824,
+      "before": [
+        "befassen",
+        "be",
+        "v"
+      ],
+      "after": [
+        "befassen",
+        "deal with",
+        "v"
+      ]
+    },
+    {
+      "position": 4846,
+      "before": [
+        "Ami",
+        "ami",
+        "n"
+      ],
+      "after": [
+        "Ami",
+        "American",
+        "n"
+      ]
+    },
+    {
+      "position": 4848,
+      "before": [
+        "wiederfinden",
+        "find",
+        "v"
+      ],
+      "after": [
+        "wiederfinden",
+        "find again",
+        "v"
+      ]
+    },
+    {
+      "position": 4859,
+      "before": [
+        "schonen",
+        "rest",
+        "v"
+      ],
+      "after": [
+        "schonen",
+        "spare",
+        "v"
+      ]
+    },
+    {
+      "position": 4878,
+      "before": [
+        "Umgang",
+        "acquaintance",
+        "n"
+      ],
+      "after": [
+        "Umgang",
+        "interaction",
+        "n"
+      ]
+    },
+    {
+      "position": 4887,
+      "before": [
+        "erkundigen",
+        "information",
+        "v"
+      ],
+      "after": [
+        "erkundigen",
+        "inquire",
+        "v"
+      ]
+    },
+    {
+      "position": 4893,
+      "before": [
+        "Pony",
+        "fringe",
+        "n"
+      ],
+      "after": [
+        "Pony",
+        "pony",
+        "n"
+      ]
+    },
+    {
+      "position": 4906,
+      "before": [
+        "vorziehen",
+        "bring forward",
+        "v"
+      ],
+      "after": [
+        "vorziehen",
+        "prefer",
+        "v"
+      ]
+    },
+    {
+      "position": 4911,
+      "before": [
+        "Drecksack",
+        "shit",
+        "n"
+      ],
+      "after": [
+        "Drecksack",
+        "bastard",
+        "n"
+      ]
+    },
+    {
+      "position": 4927,
+      "before": [
+        "nachgeben",
+        "give",
+        "v"
+      ],
+      "after": [
+        "nachgeben",
+        "give in",
+        "v"
+      ]
+    },
+    {
+      "position": 4928,
+      "before": [
+        "bösartig",
+        "malign",
+        "adj"
+      ],
+      "after": [
+        "bösartig",
+        "malicious",
+        "adj"
+      ]
+    },
+    {
+      "position": 4934,
+      "before": [
+        "schuften",
+        "work like a horse",
+        "v"
+      ],
+      "after": [
+        "schuften",
+        "work hard",
+        "v"
+      ]
+    },
+    {
+      "position": 4949,
+      "before": [
+        "ick",
+        "me",
+        ""
+      ],
+      "after": [
+        "ick",
+        "I",
+        "pron"
+      ]
+    },
+    {
+      "position": 4957,
+      "before": [
+        "Überstunde",
+        "overtime",
+        "n"
+      ],
+      "after": [
+        "Überstunde",
+        "overtime hour",
+        "n"
+      ]
+    },
+    {
+      "position": 4965,
+      "before": [
+        "Ermordung",
+        "assassination",
+        "n"
+      ],
+      "after": [
+        "Ermordung",
+        "murder",
+        "n"
+      ]
+    },
+    {
+      "position": 4995,
+      "before": [
+        "Auszeichnung",
+        "emphasis",
+        "n"
+      ],
+      "after": [
+        "Auszeichnung",
+        "award",
+        "n"
+      ]
+    }
+  ]
+}
