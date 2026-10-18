@@ -59,6 +59,7 @@ body{position:relative}.tracker{position:absolute}
 @media(max-width:600px){.navigation{top:1.2rem;left:1.2rem}.games-menu summary{gap:.5rem;padding:.65rem .7rem;font-size:.875rem}.games-list{width:min(18rem,calc(100vw - 2.4rem))}main{padding:6rem 1.2rem 8rem;gap:.5rem}h1{font-size:clamp(3rem,12vw,4.4rem)}.sentence-mode h1{font-size:clamp(1.5rem,6.5vw,2.5rem)}.answer-box{margin:1.5rem auto;padding:1rem 1.2rem}.tracker{right:1.3rem;bottom:1.1rem}.position{margin-bottom:.65rem}}
 @media(max-height:600px) and (min-width:601px){main{padding-top:5rem}h1{font-size:3.5rem}.sentence-mode h1{font-size:2rem}.navigation{top:.8rem}}
 .question-image{display:block;width:min(14rem,55vw);max-height:7rem;object-fit:contain;margin:1rem auto .5rem}.question-image[hidden]{display:none}
+.temponotes-link{position:absolute;right:1.5rem;top:1.5rem;z-index:7;background:#102c59;border:1px solid #45618e;border-radius:.4rem;padding:.7rem .85rem;color:white;text-decoration:none;font-size:.85rem;line-height:1.2}.temponotes-link:focus-visible{outline:3px solid white;outline-offset:4px}@media(max-width:600px){.temponotes-link{top:1.2rem;right:1.2rem;font-size:.65rem;padding:.7rem .55rem}.navigation{max-width:calc(100% - 8rem);flex-wrap:wrap}.navigation .games-menu summary{font-size:.75rem;padding:.65rem .5rem;gap:.3rem}}
 .answer-box{position:absolute;left:50%;top:50svh;transform:translate(-50%,-50%);width:max-content;max-width:min(56rem,calc(100vw - 4rem));margin:0}
 @media(max-width:600px){.answer-box{max-width:calc(100vw - 2.4rem)}}
 :root{--game-cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Ccircle cx='7' cy='7' r='4' fill='%2337ee45' stroke='%23000' stroke-width='1.5'/%3E%3C/svg%3E") 7 7,crosshair}
@@ -103,6 +104,7 @@ body:focus,#game:focus,#exercise:focus,.arithmetic-frame:focus{outline:none}
 
 </head>
 <body>
+<a class="temponotes-link" href="temponotes/">TEMPONOTES</a>
 <header class="navigation">
   <details id="languages-menu" class="games-menu">
     <summary id="languages-toggle" aria-expanded="false" aria-controls="languages-list">LANGUAGES <span aria-hidden="true">⬇️</span></summary>

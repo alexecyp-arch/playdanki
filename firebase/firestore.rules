@@ -1,6 +1,38 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    function owns(uid) { return request.auth != null && request.auth.uid == uid; }
+    match /users/{uid}/temponotes/{id} {
+      allow read, delete: if owns(uid);
+      allow create: if owns(uid)
+        && id.matches('^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$')
+        && request.resource.data.keys().hasAll(['body', 'createdAt', 'expiresAt'])
+        && request.resource.data.keys().hasOnly(['body', 'createdAt', 'expiresAt'])
+        && request.resource.data.body is string
+        && request.resource.data.body.size() > 0
+        && request.resource.data.body.size() <= 10000
+        && request.resource.data.createdAt is int
+        && request.resource.data.expiresAt is int
+        && request.resource.data.createdAt >= request.time.toMillis() - 120000
+        && request.resource.data.createdAt <= request.time.toMillis() + 120000
+        && request.resource.data.expiresAt - request.resource.data.createdAt >= 3600000
+        && request.resource.data.expiresAt - request.resource.data.createdAt <= 31536000000
+        && (request.resource.data.expiresAt - request.resource.data.createdAt) % 1800000 == 0
+        && request.resource.data.expiresAt > request.time.toMillis()
+        && request.resource.data.expiresAt <= request.time.toMillis() + 31536000000;
+      allow update: if owns(uid)
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['expiresAt'])
+        && request.resource.data.expiresAt is int
+        && resource.data.expiresAt > request.time.toMillis()
+        && request.resource.data.expiresAt - resource.data.expiresAt in [1800000, 3600000, 21600000]
+        && request.resource.data.expiresAt <= request.time.toMillis() + 31536000000;
+    }
+    match /users/{uid}/temponotesMeta/clock {
+      allow read: if owns(uid);
+      allow create, update: if owns(uid)
+        && request.resource.data.keys().hasOnly(['serverNow'])
+        && request.resource.data.serverNow == request.time;
+    }
     // Each signed-in person can access only their own saved progress.
     match /users/{uid}/progress/{key} {
       allow read: if request.auth != null && request.auth.uid == uid;
