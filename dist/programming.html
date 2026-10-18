@@ -153,7 +153,7 @@ function render(){
 }
 async function refresh(){if(!deck.length||loadError)return;await change(s=>C.presentStudy(s,deck,info,Date.now(),token));render()}
 async function load(){
- busy=true;loadError=false;$('retry').hidden=true;notice('Loading Programming…');setControls();
+ busy=true;loadError=false;$('retry').hidden=true;notice('');setControls();
  try{const embedded=$('programming-data').textContent.trim();if(embedded&&embedded!=='[]')deck=JSON.parse(embedded);else{const response=await fetch('programming/cards.json?v='+info.contentHash);if(!response.ok)throw Error('Course download failed');deck=await response.json()}
  const fields=['question','answer','difficulty','week','subject','topic','subtopic','timesSeen','timesCorrect','timesWrong','masteryState','lastReviewed','nextReview'];
  if(deck.length!==5000||info.weeks.length!==52||deck.some((c,i)=>c.id!==i+1||fields.some(f=>!(f in c))||!c.question||!c.answer))throw Error('Invalid course');notice('');await refresh()}

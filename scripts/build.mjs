@@ -1,5 +1,6 @@
 import fs from 'node:fs/promises';
 import {gzipSync} from 'node:zlib';
+import {createHash} from 'node:crypto';
 import './build-economics.mjs';
 import './build-programming.mjs';
 import './build-quant.mjs';
@@ -40,15 +41,22 @@ const economics=await fs.readFile(new URL('src/economics.json',root),'utf8'),eco
 const economicsKey=s=>s.toLowerCase().replace(/\s+/g,' ').trim();
 if(economicsEntries.length!==3500||new Set(economicsEntries.map(c=>economicsKey(c[0]))).size!==3500||economicsEntries.some((c,i)=>c.length!==6||!c.slice(0,3).every(t=>typeof t==='string'&&t.trim())||economicsKey(c[1])===economicsKey(c[2])||!Number.isInteger(c[3])||(i&&economicsEntries[i-1][3]>c[3])||!['term','recall','scenario','calculation'].includes(c[4])||!c[5]))throw new Error('Expected 3500 unique Economics items with distinct authored choices in curriculum order');
 if(kanjiEntries.length!==2136||new Set(kanjiEntries.map(c=>c[0])).size!==2136||kanjiEntries.some((c,i)=>[...c[0]].length!==1||!c[1]||!Array.isArray(c[3])||!c[3].includes(c[1])||![1,2,3,4,5,6,8].includes(c[4])||!Number.isInteger(c[2])||(i&&kanjiEntries[i-1][2]>c[2])))throw new Error('Expected 2136 unique Jōyō Kanji with valid English meanings in frequency order');
+const coreDeckInfo={};
+await fs.mkdir(new URL('dist/decks/',root),{recursive:true});
+for(const [id,data,url] of [['french-word',frenchWords,'french/words.json'],['french-sentence',frenchSentences,'french/sentences.json'],['sentence',sentences,'decks/sentences.json'],['kanji',kanji,'decks/kanji.json'],['economics',economics,'decks/economics.json']]){
+ coreDeckInfo[id]={count:JSON.parse(data).length,url,version:createHash('sha256').update(data).digest('hex').slice(0,16)};
+ await fs.writeFile(new URL('dist/'+url,root),data);
+}
 html=html.replace('<link rel="stylesheet" href="style.css">','<style>'+css.trim()+'\n'+cursorCss.trim()+'\n'+studyCss.trim()+'\n'+supportCss.trim()+'\n'+accountCss.trim()+'</style>')
  .replace('<script defer src="app.js"></script>','')
- .replace('FRENCH_WORD_DATA',frenchWords.replace(/</g,'\\u003c'))
- .replace('FRENCH_SENTENCE_DATA',frenchSentences.replace(/</g,'\\u003c'))
+ .replace('CORE_DECK_INFO',()=>JSON.stringify(coreDeckInfo))
+ .replace('FRENCH_WORD_DATA','[]')
+ .replace('FRENCH_SENTENCE_DATA','[]')
  .replace('WORD_DATA',words.replace(/</g,'\\u003c'))
- .replace('SENTENCE_DATA',sentences.replace(/</g,'\\u003c'))
+ .replace('SENTENCE_DATA','[]')
  .replace('KANA_DATA',kana.replace(/</g,'\\u003c'))
- .replace('KANJI_DATA',kanji.replace(/</g,'\\u003c'))
- .replace('ECONOMICS_DATA',economics.replace(/</g,'\\u003c'))
+ .replace('KANJI_DATA','[]')
+ .replace('ECONOMICS_DATA','[]')
  .replace('TRIVIA_INFO',JSON.stringify(triviaInfo))
  .replace('LANGUAGE_INFO',JSON.stringify(languageInfo))
  .replace('SUPPORT_CONFIG',()=>JSON.stringify(supportConfig).replace(/</g,'\\u003c'))
@@ -58,7 +66,7 @@ await fs.mkdir(new URL('dist/',root),{recursive:true});
 await fs.rm(new URL('dist/arithmetic-aim.html',root),{force:true});
 await fs.writeFile(new URL('dist/index.html',root),html);
 for(const file of ['account.js','cloud-state.mjs'])await fs.copyFile(new URL('src/'+file,root),new URL('dist/'+file,root));
-await fs.cp(new URL('src/temponotes/',root),new URL('dist/temponotes/',root),{recursive:true,filter:source=>!source.endsWith('.tsx')});
+await fs.cp(new URL('src/temponotes/',root),new URL('dist/temponotes/',root),{recursive:true,filter:source=>!source.endsWith('.tsx')&&!source.endsWith('background.jpg')});
 const notesHtml=await fs.readFile(new URL('src/temponotes/index.html',root),'utf8');
 await fs.writeFile(new URL('dist/temponotes/index.html',root),notesHtml.replace('AUTH_CONFIG',()=>JSON.stringify(authConfig).replace(/</g,'\\u003c')));
 await fs.writeFile(new URL('dist/arithmetic.html',root),arithmetic.replace('</style>',arithmeticTheme.trim()+'\n'+cursorCss.trim()+'\n'+studyCss.trim()+'\n</style>'));

@@ -2,13 +2,15 @@
 const $=id=>document.getElementById(id),modeKeys={french:'french:mode:v1',german:'german:mode:v1',japanese:'japanese:mode:v1',spanish:'spanish:mode:v1',italian:'italian:mode:v1',greek:'greek:mode:v1',korean:'korean:mode:v1'},triviaInfo=JSON.parse($('trivia-info').textContent),triviaLoads=new Map(),languageInfo=JSON.parse($('language-info').textContent),languageLoads=new Map();
 const menuOpen=()=>!!document.querySelector('.games-menu[open]');
 function languageDeck(file,key,title,section,lang,unit,options={}){const info=languageInfo[file];return {key,title,section,lang,unit,limit:info.limit,cards:new Array(info.count),remote:file,...options}}
+const coreDeckInfo=JSON.parse($('core-deck-info').textContent);
+const remoteCards=id=>({cards:new Array(coreDeckInfo[id].count),remote:id,...coreDeckInfo[id]});
 const decks={
-  frenchWords:{key:'francais5000:v1',title:'Français 5000',unit:'words',section:'french',lang:'fr',limit:5000,cards:JSON.parse($('french-word-data').textContent)},
-  frenchSentences:{key:'francais1000sentences:v1',title:'French Sentences 1000',unit:'sentences',section:'french',lang:'fr',limit:1000,fixedChoices:true,cards:JSON.parse($('french-sentence-data').textContent)},
+  frenchWords:{key:'francais5000:v1',title:'Français 5000',unit:'words',section:'french',lang:'fr',limit:5000,...remoteCards('french-word')},
+  frenchSentences:{key:'francais1000sentences:v1',title:'French Sentences 1000',unit:'sentences',section:'french',lang:'fr',limit:1000,fixedChoices:true,...remoteCards('french-sentence')},
   words:{key:'deutsch5000:v1',title:'Deutsch 5000',unit:'words',section:'german',lang:'de',limit:5000,cards:JSON.parse($('word-data').textContent)},
-  sentences:{key:'deutsch1000sentences:v1',title:'Sentences 1000',unit:'sentences',section:'german',lang:'de',limit:1000,cards:JSON.parse($('sentence-data').textContent)},
+  sentences:{key:'deutsch1000sentences:v1',title:'Sentences 1000',unit:'sentences',section:'german',lang:'de',limit:1000,...remoteCards('sentence')},
   kana:{key:'japanese:kana:v1',title:'Hiragana + Katakana',unit:'Kana answers',section:'japanese',lang:'ja',limit:500,daily:true,cards:JSON.parse($('kana-data').textContent)},
-  kanji:{key:'japanese:kanji:v1',title:'Kanji 2136',unit:'Kanji',section:'japanese',lang:'ja',limit:2136,cards:JSON.parse($('kanji-data').textContent)},
+  kanji:{key:'japanese:kanji:v1',title:'Kanji 2136',unit:'Kanji',section:'japanese',lang:'ja',limit:2136,...remoteCards('kanji')},
   spanishWords:languageDeck('spanish-words','spanish5000:v1','Spanish 5000','spanish','es','words'),
   spanishSentences:languageDeck('spanish-sentences','spanish1000sentences:v1','Spanish Sentences 1000','spanish','es','sentences'),
   italianWords:languageDeck('italian-words','italian5000:v1','Italian 5000','italian','it','words'),
@@ -17,7 +19,7 @@ const decks={
   greekSentences:languageDeck('greek-sentences','greek1000sentences:v1','Greek Sentences 1000','greek','el','sentences'),
   hangul:languageDeck('korean-hangul','korean:hangul:v1','Korean Hangul','korean','ko','symbols',{daily:true}),
   koreanWords:languageDeck('korean-words','korean5000:v1','Korean 5000','korean','ko','words'),
-  economics:{key:'economics3500:v1',title:'Economics 3500',unit:'items',section:'economics',lang:'en',fixedChoices:true,weekly:true,cards:JSON.parse($('economics-data').textContent)},
+  economics:{key:'economics3500:v1',title:'Economics 3500',unit:'items',section:'economics',lang:'en',fixedChoices:true,weekly:true,...remoteCards('economics')},
   trivia:{key:'trivia20000:v1',title:'Trivia 20000',unit:'questions',section:'trivia',lang:'en',fixedChoices:true,cumulative:true,limit:triviaInfo.total,cards:new Array(triviaInfo.total)}
 };
 decks.economics.limit=decks.economics.cards.length;
@@ -72,8 +74,8 @@ function render(){
   const total=active.limit,complete=state.cursor===total;again.hidden=!complete;position.textContent=(complete?total:state.cursor+1)+' / '+total;
   if(complete){word.textContent='Complete';feedback.textContent=active.daily?'Daily goal reached.':'All '+total+' '+active.unit+' practiced.';word.lang='en';return}
   shownCard=cardIndex();const current=active.cards[shownCard];
-  if(active.remote&&!current){locked=true;word.textContent='Loading…';const deck=active,view=screenVersion;loadLanguage(deck).then(()=>{if(active===deck&&screenVersion===view)render()}).catch(()=>{if(active===deck&&screenVersion===view){word.textContent='Unable to load cards';feedback.textContent='Check your connection and retry.';$('retry').hidden=false}});return}
-  if(active===decks.trivia&&!current){locked=true;word.textContent='Loading…';const view=screenVersion;loadTrivia(shownCard).then(()=>{if(active===decks.trivia&&screenVersion===view)render()}).catch(()=>{if(active===decks.trivia&&screenVersion===view){word.textContent='Unable to load questions';feedback.textContent='Check your connection and retry.';$('retry').hidden=false}});return}
+  if(active.remote&&!current){locked=true;word.textContent='';const deck=active,view=screenVersion;loadLanguage(deck).then(()=>{if(active===deck&&screenVersion===view)render()}).catch(()=>{if(active===deck&&screenVersion===view){word.textContent='Unable to load cards';feedback.textContent='Check your connection and retry.';$('retry').hidden=false}});return}
+  if(active===decks.trivia&&!current){locked=true;word.textContent='';const view=screenVersion;loadTrivia(shownCard).then(()=>{if(active===decks.trivia&&screenVersion===view)render()}).catch(()=>{if(active===decks.trivia&&screenVersion===view){word.textContent='Unable to load questions';feedback.textContent='Check your connection and retry.';$('retry').hidden=false}});return}
   if(active===decks.trivia){if(current[5]){const img=$('question-image');img.src=current[5];img.hidden=false}const next=shownCard+200;if(next<active.limit&&Math.floor(next/triviaInfo.chunkSize)!==Math.floor(shownCard/triviaInfo.chunkSize))loadTrivia(next).catch(()=>{})}
   const language=active.lang!=='en';word.textContent=current[language?1:0];translation.textContent=current[language?0:1];$('answer-box').hidden=false;centerAnswer();
 }
@@ -97,7 +99,7 @@ function nextCard(){
   if(navigator.locks?.request)navigator.locks.request(deck.key,finish).catch(()=>{if(active===deck&&screenVersion===view){state=read(deck);render()}});else finish();
 }
 function loadTrivia(index){const deck=decks.trivia;if(deck.cards[index])return Promise.resolve();const embedded=$('trivia-data');if(embedded.textContent.trim()!=='[]'){const all=JSON.parse(embedded.textContent);if(all.length!==deck.limit)throw Error('Incomplete question bank');deck.cards=all;embedded.textContent='[]';return Promise.resolve()}const chunk=Math.floor(index/triviaInfo.chunkSize);if(triviaLoads.has(chunk))return triviaLoads.get(chunk);const task=fetch('trivia/'+chunk+'.json?v='+triviaInfo.version).then(r=>{if(!r.ok)throw Error('Question bank unavailable');return r.json()}).then(cards=>{const start=chunk*triviaInfo.chunkSize,expected=Math.min(triviaInfo.chunkSize,deck.limit-start);if(!Array.isArray(cards)||cards.length!==expected||cards.some(c=>!Array.isArray(c)||!c.slice(0,3).every(s=>typeof s==='string'&&s.trim())||c[1]===c[2]))throw Error('Invalid question bank');for(let i=0;i<cards.length;i++)deck.cards[start+i]=cards[i]}).catch(error=>{triviaLoads.delete(chunk);throw error});triviaLoads.set(chunk,task);return task}
-function loadLanguage(deck){if(languageLoads.has(deck.remote))return languageLoads.get(deck.remote);const info=languageInfo[deck.remote],embedded=$(deck.remote+'-data');const task=Promise.resolve().then(()=>embedded.textContent.trim()!=='[]'?JSON.parse(embedded.textContent):fetch('languages/'+deck.remote+'.json?v='+info.version).then(r=>{if(!r.ok)throw Error('Cards unavailable');return r.json()})).then(cards=>{if(!Array.isArray(cards)||cards.length!==info.count||cards.some(c=>!Array.isArray(c)||!c.slice(0,2).every(s=>typeof s==='string'&&s.trim())||(deck===decks.hangul&&(!Number.isFinite(c[2])||c[2]<1))))throw Error('Invalid language cards');deck.cards=cards;embedded.textContent='[]'}).catch(error=>{languageLoads.delete(deck.remote);throw error});languageLoads.set(deck.remote,task);return task}
+function loadLanguage(deck){if(languageLoads.has(deck.remote))return languageLoads.get(deck.remote);const info=languageInfo[deck.remote]||deck,embedded=$(deck.remote+'-data');const task=Promise.resolve().then(()=>embedded.textContent.trim()!=='[]'?JSON.parse(embedded.textContent):fetch((info.url||'languages/'+deck.remote+'.json')+'?v='+info.version).then(r=>{if(!r.ok)throw Error('Cards unavailable');return r.json()})).then(cards=>{if(!Array.isArray(cards)||cards.length!==info.count||cards.some(c=>!Array.isArray(c)||!c.slice(0,2).every(s=>typeof s==='string'&&s.trim())||(deck===decks.hangul&&(!Number.isFinite(c[2])||c[2]<1))))throw Error('Invalid language cards');deck.cards=cards;embedded.textContent='[]'}).catch(error=>{languageLoads.delete(deck.remote);throw error});languageLoads.set(deck.remote,task);return task}
 $('retry').addEventListener('click',()=>render());
 $('next-card').addEventListener('click',nextCard);
 function closeHistory(){history.hidden=true;today.setAttribute('aria-expanded','false')}

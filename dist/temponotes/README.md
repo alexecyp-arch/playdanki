@@ -6,4 +6,4 @@ The new DANKI link returns to the main page. Google sign-in uses the same PlayDa
 
 Notes disappear at expiry. As in the original app, expired database records are removed on the next note sync, rather than by a paid background service. This is ordinary account privacy, not end-to-end encryption. Project administrators retain database access.
 
-React and React DOM are bundled into ui.bundle.js; their licenses accompany it. The repository contains the original TSX source. To rebuild the UI bundle, install React 19, React DOM 19 and esbuild in a development folder, set NODE_PATH to its node_modules, then run `node scripts/bundle-temponotes.cjs`. Normal site builds copy the committed bundle and require no extra dependencies.
+The page runs with plain browser code in ui.js, without React or Tailwind. The original TSX remains as a layout reference. The original photograph is retained in source; the published 1920-pixel WebP is 91% smaller. Normal site builds require no extra dependencies. Firebase Authentication and Firestore handle Google login and private note sync.

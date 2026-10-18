@@ -53,3 +53,4 @@ body{position:relative}.tracker{position:absolute}
 .temponotes-link{position:absolute;right:1.5rem;top:1.5rem;z-index:7;background:#102c59;border:1px solid #45618e;border-radius:.4rem;padding:.7rem .85rem;color:white;text-decoration:none;font-size:.85rem;line-height:1.2}.temponotes-link:focus-visible{outline:3px solid white;outline-offset:4px}@media(max-width:600px){.temponotes-link{top:1.2rem;right:1.2rem;font-size:.65rem;padding:.7rem .55rem}.navigation{max-width:calc(100% - 8rem);flex-wrap:wrap}.navigation .games-menu summary{font-size:.75rem;padding:.65rem .5rem;gap:.3rem}}
 .answer-box{position:absolute;left:50%;top:50svh;transform:translate(-50%,-50%);width:max-content;max-width:min(56rem,calc(100vw - 4rem));margin:0}
 @media(max-width:600px){.answer-box{max-width:calc(100vw - 2.4rem)}}
+@media(max-width:600px){#games-menu .games-list{left:0;right:auto}}

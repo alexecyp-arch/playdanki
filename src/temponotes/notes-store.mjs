@@ -7,11 +7,13 @@ export async function createNotesStore({auth,db,sdk,uid,now=Date.now}){
   const reference=id=>doc(db,'users',uid,'temponotes',id);
   check();
   const clock=doc(db,'users',uid,'temponotesMeta','clock');
-  await setDoc(clock,{serverNow:serverTimestamp()});
-  const stamp=(await getDoc(clock)).data()?.serverNow;
-  check();
-  if(!stamp?.toMillis)throw Error('Could not sync the clock. Please refresh.');
-  offset=Math.round(stamp.toMillis())-now();
+  const syncClock=(async()=>{
+    await setDoc(clock,{serverNow:serverTimestamp()});
+    const stamp=(await getDoc(clock)).data()?.serverNow;
+    check();
+    if(!stamp?.toMillis)throw Error('Could not sync the clock. Please refresh.');
+    offset=Math.round(stamp.toMillis())-now();
+  })();
   let firstResolve,firstReject;
   const first=new Promise((resolve,reject)=>{firstResolve=resolve;firstReject=reject;});
   const stop=onSnapshot(collection(db,'users',uid,'temponotes'),snapshot=>{
@@ -19,7 +21,7 @@ export async function createNotesStore({auth,db,sdk,uid,now=Date.now}){
     notes=new Map(snapshot.docs.map(d=>[d.id,{id:d.id,...d.data()}]));
     syncError=null;firstResolve();
   },error=>{syncError=error;firstReject(error);});
-  try{await first;check();}catch(error){stop();throw error;}
+  try{await Promise.all([first,syncClock]);check();}catch(error){stop();throw error;}
   const cleaning=new Set();
   async function request(url,options={}){
     try{
