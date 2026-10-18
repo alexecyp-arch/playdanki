@@ -1,0 +1,15 @@
+#account-bar{position:fixed;bottom:calc(.75rem + env(safe-area-inset-bottom,0px));left:1rem;z-index:8;display:flex;align-items:end;gap:.4rem}
+#account-bar #support-menu{position:relative;left:auto;bottom:auto}
+#account-menu{position:relative}
+#account-menu[hidden]{display:none}
+#account-menu>summary{font-size:.75rem;line-height:1.2;padding:.5rem .6rem;background:#071e48;border:1px solid #45618e;border-radius:.35rem;color:#fff;font-weight:700;list-style:none}
+#account-menu>summary::-webkit-details-marker{display:none}
+#account-panel{position:absolute;bottom:calc(100% + .5rem);left:0;width:min(19rem,calc(100vw - 2rem));padding:1rem;background:#102c59;border:1px solid #49628b;border-radius:.4rem;text-align:left;box-shadow:0 8px 24px #0005}
+#account-panel p{font-size:.8rem;line-height:1.4;margin:0 0 .65rem}
+#account-panel button{font-size:.8rem;font-weight:700;color:white;border:1px solid #607ca7;border-radius:.3rem;background:#173766;padding:.6rem;margin:.2rem .2rem .2rem 0}
+#account-panel button:disabled{opacity:.55}
+#account-panel button:focus-visible{outline:2px solid white;outline-offset:2px}
+#account-identity{overflow-wrap:anywhere}
+#account-privacy{margin-top:.7rem!important;opacity:.8}
+#account-conflict[hidden],#account-panel [hidden]{display:none}
+@media(max-width:600px){#account-bar{left:.75rem;max-width:calc(50vw - 3.5rem);flex-wrap:wrap}#account-menu>summary{font-size:.6875rem;padding:.5rem}#account-panel{left:0;width:min(18rem,calc(100vw - 1.5rem))}}

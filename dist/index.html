@@ -84,7 +84,22 @@ body:focus,#game:focus,#exercise:focus,.arithmetic-frame:focus{outline:none}
 #support-options a:focus-visible{outline:2px solid #fff;outline-offset:2px}
 #support-options a[aria-disabled=true]{opacity:.55}
 #support-note{margin:.7rem 0 0;font-size:.75rem;line-height:1.4;color:#fff}
-@media(max-width:600px){#support-menu{left:.75rem}#support-menu>summary{font-size:.6875rem;padding:.5rem}}</style>
+@media(max-width:600px){#support-menu{left:.75rem}#support-menu>summary{font-size:.6875rem;padding:.5rem}}
+#account-bar{position:fixed;bottom:calc(.75rem + env(safe-area-inset-bottom,0px));left:1rem;z-index:8;display:flex;align-items:end;gap:.4rem}
+#account-bar #support-menu{position:relative;left:auto;bottom:auto}
+#account-menu{position:relative}
+#account-menu[hidden]{display:none}
+#account-menu>summary{font-size:.75rem;line-height:1.2;padding:.5rem .6rem;background:#071e48;border:1px solid #45618e;border-radius:.35rem;color:#fff;font-weight:700;list-style:none}
+#account-menu>summary::-webkit-details-marker{display:none}
+#account-panel{position:absolute;bottom:calc(100% + .5rem);left:0;width:min(19rem,calc(100vw - 2rem));padding:1rem;background:#102c59;border:1px solid #49628b;border-radius:.4rem;text-align:left;box-shadow:0 8px 24px #0005}
+#account-panel p{font-size:.8rem;line-height:1.4;margin:0 0 .65rem}
+#account-panel button{font-size:.8rem;font-weight:700;color:white;border:1px solid #607ca7;border-radius:.3rem;background:#173766;padding:.6rem;margin:.2rem .2rem .2rem 0}
+#account-panel button:disabled{opacity:.55}
+#account-panel button:focus-visible{outline:2px solid white;outline-offset:2px}
+#account-identity{overflow-wrap:anywhere}
+#account-privacy{margin-top:.7rem!important;opacity:.8}
+#account-conflict[hidden],#account-panel [hidden]{display:none}
+@media(max-width:600px){#account-bar{left:.75rem;max-width:calc(50vw - 3.5rem);flex-wrap:wrap}#account-menu>summary{font-size:.6875rem;padding:.5rem}#account-panel{left:0;width:min(18rem,calc(100vw - 1.5rem))}}</style>
 
 </head>
 <body>
@@ -119,6 +134,7 @@ body:focus,#game:focus,#exercise:focus,.arithmetic-frame:focus{outline:none}
     </nav>
   </details>
 </header>
+<div id="account-bar">
 <details id="support-menu" class="games-menu" hidden>
   <summary aria-expanded="false" aria-controls="support-options">Support <span aria-hidden="true">♥</span></summary>
   <div id="support-options">
@@ -130,6 +146,22 @@ body:focus,#game:focus,#exercise:focus,.arithmetic-frame:focus{outline:none}
     <p id="support-note" role="status"></p>
   </div>
 </details>
+<details id="account-menu" class="games-menu" hidden>
+  <summary aria-expanded="false" aria-controls="account-panel"><span id="account-label">Google sign in</span></summary>
+  <div id="account-panel">
+    <p id="account-identity">Save your place on your other devices.</p>
+    <p id="account-status" role="status" aria-live="polite">Progress saves in this browser.</p>
+    <button id="account-login" type="button" disabled>Sign in with Google</button>
+    <button id="account-sync" type="button" hidden>Save now</button>
+    <button id="account-logout" type="button" hidden>Sign out</button>
+    <div id="account-conflict" hidden>
+      <button id="account-use-cloud" type="button">Use cloud progress</button>
+      <button id="account-use-browser" type="button">Use this browser's progress</button>
+    </div>
+    <p id="account-privacy">Optional. Google handles sign-in. Your game progress is private. Saves sync about every 30 seconds; use Save now before changing devices.</p>
+  </div>
+</details>
+</div>
 <main id="game" aria-label="German practice" tabindex="-1">
   <section class="practice">
     <div id="position" class="position">1 / 5000</div>
@@ -172,6 +204,7 @@ body:focus,#game:focus,#exercise:focus,.arithmetic-frame:focus{outline:none}
 <script id="trivia-data" type="application/json">[]</script>
 <script id="language-info" type="application/json">{"spanish-words":{"count":5000,"limit":5000,"version":"d3a37388fce1e2bd"},"spanish-sentences":{"count":1000,"limit":1000,"version":"d07318b42a1ebf95"},"italian-words":{"count":5000,"limit":5000,"version":"07036731b0dbb47d"},"italian-sentences":{"count":1000,"limit":1000,"version":"8c744d26235d76c3"},"greek-words":{"count":5000,"limit":5000,"version":"baa1172b9e71baa2"},"greek-sentences":{"count":1000,"limit":1000,"version":"6d834ced87e798c2"},"korean-hangul":{"count":40,"limit":500,"version":"e0257a2285b69fad"},"korean-words":{"count":5000,"limit":5000,"version":"09dbcf29d130a268"}}</script>
 <script id="support-config" type="application/json">{"enabled":false,"currency":"USD","genericUrl":"","amountUrls":{"2":"","5":"","10":"","100":""}}</script>
+<script id="auth-config" type="application/json">{"enabled":true,"firebase":{"apiKey":"AIzaSyB8ud_IxBFHMRia0cTG_o_17-H9YRguDsU","authDomain":"playdanki-ad7f6.firebaseapp.com","projectId":"playdanki-ad7f6","appId":"1:882147925198:web:380c092cc4b8db8387c49f"}}</script>
 <script id="spanish-words-data" type="application/json">[]</script>
 <script id="spanish-sentences-data" type="application/json">[]</script>
 <script id="italian-words-data" type="application/json">[]</script>
@@ -240,7 +273,7 @@ function clean(raw,deck){
   return value;
 }
 function read(deck=active){if(!storageOK)return clean(memory.get(deck.key),deck);try{const value=clean(JSON.parse(localStorage.getItem(deck.key)),deck);memory.set(deck.key,value);return value}catch{storageOK=false;warn();return clean(memory.get(deck.key),deck)}}
-function save(deck,value){memory.set(deck.key,value);if(!storageOK)return;try{localStorage.setItem(deck.key,JSON.stringify(value))}catch{storageOK=false;warn()}}
+function save(deck,value){memory.set(deck.key,value);if(!storageOK)return;try{localStorage.setItem(deck.key,JSON.stringify(value));document.dispatchEvent(new Event('danki-progress'))}catch{storageOK=false;warn()}}
 const practiced=row=>row.correct+row.wrong+(row.skipped||0);
 const accuracy=row=>{const graded=row.correct+row.wrong+(row.misses||0);return graded?Math.round(row.correct/graded*1000)/10:null};
 function score(){const row=active.cumulative?state.run:((active.weekly?state.weeks[weekKey()]:state.days[dayKey()])||emptyRow());$('tracker-period').textContent=active.cumulative?'Progress':active.weekly?'This week':'Today';$('today-count').textContent='Practiced '+practiced(row)+'/'+active.limit;$('today-score').hidden=true;if(!history.hidden)renderHistory()}
@@ -340,5 +373,6 @@ for(const link of links){
 }
 note.textContent=config.preview?'Preview — payment link not connected.':config.genericUrl?'Choose an amount, then enter it on Revolut.':'Choose an amount. Continue on Revolut to pay.';
 })();</script>
+<script defer src="account.js"></script>
 </body>
 </html>

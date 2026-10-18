@@ -1,0 +1,9 @@
+{
+  "enabled": true,
+  "firebase": {
+    "apiKey": "AIzaSyB8ud_IxBFHMRia0cTG_o_17-H9YRguDsU",
+    "authDomain": "playdanki-ad7f6.firebaseapp.com",
+    "projectId": "playdanki-ad7f6",
+    "appId": "1:882147925198:web:380c092cc4b8db8387c49f"
+  }
+}

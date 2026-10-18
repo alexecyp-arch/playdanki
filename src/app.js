@@ -49,7 +49,7 @@ function clean(raw,deck){
   return value;
 }
 function read(deck=active){if(!storageOK)return clean(memory.get(deck.key),deck);try{const value=clean(JSON.parse(localStorage.getItem(deck.key)),deck);memory.set(deck.key,value);return value}catch{storageOK=false;warn();return clean(memory.get(deck.key),deck)}}
-function save(deck,value){memory.set(deck.key,value);if(!storageOK)return;try{localStorage.setItem(deck.key,JSON.stringify(value))}catch{storageOK=false;warn()}}
+function save(deck,value){memory.set(deck.key,value);if(!storageOK)return;try{localStorage.setItem(deck.key,JSON.stringify(value));document.dispatchEvent(new Event('danki-progress'))}catch{storageOK=false;warn()}}
 const practiced=row=>row.correct+row.wrong+(row.skipped||0);
 const accuracy=row=>{const graded=row.correct+row.wrong+(row.misses||0);return graded?Math.round(row.correct/graded*1000)/10:null};
 function score(){const row=active.cumulative?state.run:((active.weekly?state.weeks[weekKey()]:state.days[dayKey()])||emptyRow());$('tracker-period').textContent=active.cumulative?'Progress':active.weekly?'This week':'Today';$('today-count').textContent='Practiced '+practiced(row)+'/'+active.limit;$('today-score').hidden=true;if(!history.hidden)renderHistory()}

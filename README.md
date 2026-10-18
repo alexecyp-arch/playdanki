@@ -13,8 +13,9 @@ needed. Rebuild with Node.js 22 or newer:
 node scripts/build.mjs
 ```
 
-Serve `dist/` with any static web server. All game progress stays in the
-visitor's browser. Optional standalone offline export:
+Serve `dist/` with any static web server. Guest progress stays in the
+visitor's browser. Optional Google sign-in saves progress privately in Firebase.
+Optional standalone offline export:
 
 ```text
 node scripts/export-offline.mjs <output-directory>
@@ -26,6 +27,25 @@ Upload this folder to a repository named `playdanki`. In repository Settings
 → Pages, choose **GitHub Actions**. The included workflow builds and publishes
 `dist/` on pushes to `main`. Relative asset paths support both a repository
 URL and a custom domain. No payment information is collected by this site.
+
+## Google sign-in and progress
+
+The small bottom-left Google sign-in menu uses Firebase Authentication and
+Firestore on the Spark plan. See `firebase/SETUP.md` and `firebase/firestore.rules`.
+The public web config is in `src/auth-config.json`; it contains no admin secret.
+Firebase libraries load only when the menu opens or an existing account resumes.
+Guest practice requires no Firebase download.
+
+Game saves remain immediate in browser storage. Cloud saves run about every
+30 seconds and on visibility changes; Save now requests an immediate save.
+Compression keeps full course histories small. Only listed game storage keys
+are synced. Server transactions check the remote save before writing. If both
+devices changed, the user chooses cloud or browser progress; compressed browser
+backups preserve the other copy. Sign-out restores guest progress. Account caches
+are separate. Never loosen owner-only database rules to make a test pass.
+
+Validation: `node scripts/check-cloud-state.mjs` and
+`node --experimental-vm-modules scripts/check-account.mjs`.
 
 ## Support button
 
@@ -50,10 +70,9 @@ the word "donation" does not change the payment provider's account rules.
 
 ## Domain
 
-Desired name: `playdanki.com`. No domain is registered or owned by this
-repository. Add a custom domain only after purchasing it in your own account.
-Do not publish a CNAME file pointing to an unowned domain. Domain registration
-and renewal are separate from GitHub hosting.
+Production domain: `playdanki.com`, purchased by the owner and connected in
+GitHub Pages settings. Domain registration and renewal are separate from hosting.
+The Actions deployment uses the custom domain setting, without a CNAME file.
 
 Progress is stored per website origin: changing from the old address to a
 new domain starts a separate browser store. Existing progress remains at

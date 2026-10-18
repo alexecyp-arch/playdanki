@@ -33,7 +33,7 @@ const $=id=>document.getElementById(id),prefix='weekly-arithmetic-v1:',tab=crypt
 let storage=true,expected,current='',totals={},cfg={ops:[0,1,2,3],a:[2,100,2,100],m:[2,12,2,100]};
 function warn(){storage=false;$('warning').hidden=false;$('warning').textContent='Browser storage is unavailable. You can practice, but new progress will be lost when this page closes.'}
 function get(k){if(!storage)return memory.get(k)||null;try{const v=localStorage.getItem(k);if(v!==null)memory.set(k,v);return v}catch(e){warn();return memory.get(k)||null}}
-function put(k,v){memory.set(k,String(v));if(storage)try{localStorage.setItem(k,String(v))}catch(e){warn()}}
+function put(k,v){memory.set(k,String(v));if(storage)try{localStorage.setItem(k,String(v));try{parent.document.dispatchEvent(new Event('danki-progress'))}catch{}}catch(e){warn()}}
 function monday(d=new Date()){const x=new Date(d.getFullYear(),d.getMonth(),d.getDate(),12);x.setDate(x.getDate()-(x.getDay()+6)%7);return x.getFullYear()+'-'+String(x.getMonth()+1).padStart(2,'0')+'-'+String(x.getDate()).padStart(2,'0')}
 function goalForWeek(k){return k>='2026-09-14'?2000:1000}
 function date(k){const [y,m,d]=k.split('-').map(Number);return new Date(y,m-1,d,12)}

@@ -42,6 +42,7 @@
     </nav>
   </details>
 </header>
+<div id="account-bar">
 <details id="support-menu" class="games-menu" hidden>
   <summary aria-expanded="false" aria-controls="support-options">Support <span aria-hidden="true">♥</span></summary>
   <div id="support-options">
@@ -53,6 +54,22 @@
     <p id="support-note" role="status"></p>
   </div>
 </details>
+<details id="account-menu" class="games-menu" hidden>
+  <summary aria-expanded="false" aria-controls="account-panel"><span id="account-label">Google sign in</span></summary>
+  <div id="account-panel">
+    <p id="account-identity">Save your place on your other devices.</p>
+    <p id="account-status" role="status" aria-live="polite">Progress saves in this browser.</p>
+    <button id="account-login" type="button" disabled>Sign in with Google</button>
+    <button id="account-sync" type="button" hidden>Save now</button>
+    <button id="account-logout" type="button" hidden>Sign out</button>
+    <div id="account-conflict" hidden>
+      <button id="account-use-cloud" type="button">Use cloud progress</button>
+      <button id="account-use-browser" type="button">Use this browser's progress</button>
+    </div>
+    <p id="account-privacy">Optional. Google handles sign-in. Your game progress is private. Saves sync about every 30 seconds; use Save now before changing devices.</p>
+  </div>
+</details>
+</div>
 <main id="game" aria-label="German practice" tabindex="-1">
   <section class="practice">
     <div id="position" class="position">1 / 5000</div>
@@ -92,6 +109,7 @@
 <script id="trivia-data" type="application/json">[]</script>
 <script id="language-info" type="application/json">LANGUAGE_INFO</script>
 <script id="support-config" type="application/json">SUPPORT_CONFIG</script>
+<script id="auth-config" type="application/json">AUTH_CONFIG</script>
 <script id="spanish-words-data" type="application/json">[]</script>
 <script id="spanish-sentences-data" type="application/json">[]</script>
 <script id="italian-words-data" type="application/json">[]</script>

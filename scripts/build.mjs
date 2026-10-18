@@ -14,6 +14,8 @@ const sections=await fs.readFile(new URL('src/sections.js',root),'utf8');
 const cursorCss=await fs.readFile(new URL('src/cursor.css',root),'utf8');
 const studyCss=await fs.readFile(new URL('src/study.css',root),'utf8');
 const supportCss=await fs.readFile(new URL('src/support.css',root),'utf8'),supportJs=await fs.readFile(new URL('src/support.js',root),'utf8'),supportConfig=JSON.parse(await fs.readFile(new URL('src/support-config.json',root),'utf8'));
+const accountCss=await fs.readFile(new URL('src/account.css',root),'utf8'),authConfig=JSON.parse(await fs.readFile(new URL('src/auth-config.json',root),'utf8'));
+if(authConfig.enabled&&(!authConfig.firebase?.apiKey||!authConfig.firebase?.projectId||!authConfig.firebase?.authDomain||!authConfig.firebase?.appId))throw Error('Firebase public web configuration is incomplete');
 if(supportConfig.currency!=='USD')throw Error('Support amounts are denominated in USD');
 const validPayment=value=>{try{const u=new URL(value);return u.protocol==='https:'&&!u.username&&!u.password&&(u.hostname==='revolut.me'||u.hostname==='revolut.com'||u.hostname.endsWith('.revolut.com'))}catch{return false}};
 if(supportConfig.preview)throw Error('Do not publish a payment preview configuration');
@@ -38,7 +40,7 @@ const economics=await fs.readFile(new URL('src/economics.json',root),'utf8'),eco
 const economicsKey=s=>s.toLowerCase().replace(/\s+/g,' ').trim();
 if(economicsEntries.length!==3500||new Set(economicsEntries.map(c=>economicsKey(c[0]))).size!==3500||economicsEntries.some((c,i)=>c.length!==6||!c.slice(0,3).every(t=>typeof t==='string'&&t.trim())||economicsKey(c[1])===economicsKey(c[2])||!Number.isInteger(c[3])||(i&&economicsEntries[i-1][3]>c[3])||!['term','recall','scenario','calculation'].includes(c[4])||!c[5]))throw new Error('Expected 3500 unique Economics items with distinct authored choices in curriculum order');
 if(kanjiEntries.length!==2136||new Set(kanjiEntries.map(c=>c[0])).size!==2136||kanjiEntries.some((c,i)=>[...c[0]].length!==1||!c[1]||!Array.isArray(c[3])||!c[3].includes(c[1])||![1,2,3,4,5,6,8].includes(c[4])||!Number.isInteger(c[2])||(i&&kanjiEntries[i-1][2]>c[2])))throw new Error('Expected 2136 unique Jōyō Kanji with valid English meanings in frequency order');
-html=html.replace('<link rel="stylesheet" href="style.css">','<style>'+css.trim()+'\n'+cursorCss.trim()+'\n'+studyCss.trim()+'\n'+supportCss.trim()+'</style>')
+html=html.replace('<link rel="stylesheet" href="style.css">','<style>'+css.trim()+'\n'+cursorCss.trim()+'\n'+studyCss.trim()+'\n'+supportCss.trim()+'\n'+accountCss.trim()+'</style>')
  .replace('<script defer src="app.js"></script>','')
  .replace('FRENCH_WORD_DATA',frenchWords.replace(/</g,'\\u003c'))
  .replace('FRENCH_SENTENCE_DATA',frenchSentences.replace(/</g,'\\u003c'))
@@ -50,10 +52,12 @@ html=html.replace('<link rel="stylesheet" href="style.css">','<style>'+css.trim(
  .replace('TRIVIA_INFO',JSON.stringify(triviaInfo))
  .replace('LANGUAGE_INFO',JSON.stringify(languageInfo))
  .replace('SUPPORT_CONFIG',()=>JSON.stringify(supportConfig).replace(/</g,'\\u003c'))
- .replace('</body>',()=>'<script>'+schedule.trim()+'</script>\n<script>'+js.trim()+'</script>\n<script>'+sections.trim()+'</script>\n<script>'+supportJs.trim()+'</script>\n</body>');
+ .replace('AUTH_CONFIG',()=>JSON.stringify(authConfig).replace(/</g,'\\u003c'))
+ .replace('</body>',()=>'<script>'+schedule.trim()+'</script>\n<script>'+js.trim()+'</script>\n<script>'+sections.trim()+'</script>\n<script>'+supportJs.trim()+'</script>\n<script defer src="account.js"></script>\n</body>');
 await fs.mkdir(new URL('dist/',root),{recursive:true});
 await fs.rm(new URL('dist/arithmetic-aim.html',root),{force:true});
 await fs.writeFile(new URL('dist/index.html',root),html);
+for(const file of ['account.js','cloud-state.mjs'])await fs.copyFile(new URL('src/'+file,root),new URL('dist/'+file,root));
 await fs.writeFile(new URL('dist/arithmetic.html',root),arithmetic.replace('</style>',arithmeticTheme.trim()+'\n'+cursorCss.trim()+'\n'+studyCss.trim()+'\n</style>'));
 await fs.copyFile(new URL('src/credits.txt',root),new URL('dist/credits.txt',root));
 console.log(JSON.stringify({words:entries.length,sentences:sentenceEntries.length,frenchWords:5000,frenchSentences:1000,kana:kanaEntries.length,kanji:kanjiEntries.length,economics:economicsEntries.length,htmlBytes:Buffer.byteLength(html),compressedBytes:gzipSync(html).length}));
