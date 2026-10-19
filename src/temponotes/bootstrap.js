@@ -18,6 +18,8 @@ if(window.parent!==window){
 button.addEventListener('click',async()=>{button.disabled=true;try{await signInWithPopup(auth,new GoogleAuthProvider());}catch(error){status.textContent='Could not sign in. Please try again.';button.hidden=false;}finally{button.disabled=false;}});
 onAuthStateChanged(auth,async user=>{
   clear();const current=generation;loading=new AbortController();
+  // A boolean login hint starts game-page auth without caching note text or a UID.
+  try{if(user)localStorage.setItem('danki:notes-auth:v1','1');else localStorage.removeItem('danki:notes-auth:v1');}catch{}
   button.hidden=!!user;status.textContent=user?'':'Sign in to use your private notes.';status.hidden=!!user;
   if(!user)return;
   try{
