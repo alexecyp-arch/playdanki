@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import {orderNotes} from '../src/temponotes/note-order.mjs';
+import {createSelection} from '../src/temponotes/selection.mjs';
 const notes=[{id:'late',expiresAt:900,createdAt:1},{id:'early',expiresAt:100,createdAt:2},{id:'recurring',expiresAt:500,createdAt:0,eternalId:'template'}];
 const ids=selected=>orderNotes(notes,selected).map(n=>n.id);
 assert.deepEqual(ids(null),['early','recurring','late']);
@@ -7,4 +8,15 @@ assert.deepEqual(ids('late'),['late','early','recurring'],'Selection overrides e
 assert.deepEqual(ids('recurring'),['recurring','early','late'],'Recurring occurrences can also be selected');
 assert.deepEqual(ids('expired'),ids(null),'Missing/expired selections do not affect normal ordering');
 assert.deepEqual(notes.map(n=>n.expiresAt),[900,100,500],'Selection never changes expiration');
+const data=new Map(),storage={getItem:k=>data.get(k),setItem:(k,v)=>data.set(k,v),removeItem:k=>data.delete(k)};
+let uid='alice';const id='00000000-0000-4000-a000-000000000001';
+const alice=createSelection(storage,'alice',()=>uid);alice.set(id);
+assert.equal(createSelection(storage,'alice',()=>uid).get(),id,'A fresh page restores the selected note');
+uid='bob';const bob=createSelection(storage,'bob',()=>uid);assert.equal(bob.get(),null,'Another account never inherits the highlight');
+alice.set(null);assert.equal(alice.get(),null,'An old account handle cannot read or clear its selection after switching');
+uid='alice';assert.equal(alice.get(),id,'Returning to an account restores its own selection');
+const recurring='eternal:'+id+':2026-10-19';alice.set(recurring);assert.equal(createSelection(storage,'alice',()=>uid).get(),recurring);
+alice.set('private note body');assert.equal(alice.get(),recurring,'Only note IDs may be persisted');
+alice.set(null);assert.equal(alice.get(),null,'Unpin persists across refresh');
+const blocked=createSelection(undefined,'alice',()=>uid);blocked.set(id);assert.equal(blocked.get(),null,'Blocked browser storage does not break notes');
 console.log('Note priority ordering passed.');

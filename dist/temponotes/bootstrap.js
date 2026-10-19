@@ -1,8 +1,9 @@
 import {initializeApp} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js';
 import {getAuth,onAuthStateChanged,beforeAuthStateChanged,GoogleAuthProvider,signInWithPopup} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js';
 import * as sdk from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js';
-import {mount} from './ui.js?v=ba982ac49f58';
-import {createNotesStore} from './notes-store.mjs?v=ba982ac49f58';
+import {mount} from './ui.js?v=c460eee28ad7';
+import {createNotesStore} from './notes-store.mjs?v=c460eee28ad7';
+import {createSelection} from './selection.mjs?v=c460eee28ad7';
 const config=JSON.parse(document.getElementById('auth-config').textContent);
 const app=initializeApp(config.firebase),auth=getAuth(app),db=sdk.getFirestore(app);
 const root=document.getElementById('root'),gate=document.getElementById('auth-gate'),status=document.getElementById('auth-status'),button=document.getElementById('sign-in');
@@ -22,7 +23,9 @@ onAuthStateChanged(auth,async user=>{
   if(!user)return;
   try{
     const pending=createNotesStore({auth,db,sdk,uid:user.uid,signal:loading.signal});
-    gate.hidden=true;unmount=mount(root,async(...args)=>(await pending).request(...args),{visible:window.parent===window||!window.frameElement?.hidden});
+    let storage;try{storage=localStorage;}catch{}
+    const selection=createSelection(storage,user.uid,()=>auth.currentUser?.uid);
+    gate.hidden=true;unmount=mount(root,async(...args)=>(await pending).request(...args),{visible:window.parent===window||!window.frameElement?.hidden,selection});
     const store=await pending;
     if(current!==generation){store.dispose();return;}
     dispose=store.dispose;
