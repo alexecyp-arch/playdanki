@@ -1,4 +1,4 @@
-import {validSchedule,localDay} from './eternal.mjs?v=d726a40b9bbb';
+import {validSchedule,localDay} from './eternal.mjs?v=d218e2601456';
 // Private, account-scoped adapter for the original Temponote interface.
 export async function createNotesStore({auth,db,sdk,uid,now=Date.now,signal}){
   const {doc,collection,setDoc,getDoc,serverTimestamp,onSnapshot,runTransaction,deleteDoc}=sdk;

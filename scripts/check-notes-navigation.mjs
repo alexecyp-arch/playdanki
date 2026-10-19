@@ -10,7 +10,7 @@ const win=new EventTarget(),link=new Element(),frames=[],classes=new Set();
 const location={origin:'https://playdanki.com',pathname:'/',search:'',hash:'#quant',reload(){}};
 const setUrl=url=>{const u=new URL(url,location.origin);location.pathname=u.pathname;location.search=u.search;location.hash=u.hash;};
 const history={pushState:(s,t,u)=>setUrl(u),replaceState:(s,t,u)=>setUrl(u)};
-const document={title:'QUANT',querySelector:()=>link,createElement:()=>new Element(),head:{append(){}},body:{append:f=>frames.push(f),classList:{toggle:(c,on)=>on?classes.add(c):classes.delete(c)}}};
+const document={title:'QUANT',querySelector:()=>link,createElement:()=>new Element(),head:{append(){}},body:{append:f=>frames.push(f),classList:{toggle:(c,on)=>on?classes.add(c):classes.delete(c),remove:c=>classes.delete(c)}}};
 const context=vm.createContext({window:win,document,location,history});
 new vm.Script(await fs.readFile(new URL('../src/notes-navigation.js',import.meta.url),'utf8')).runInContext(context);
 const auth=uid=>win.dispatchEvent(new CustomEvent('danki-auth',{detail:uid}));
@@ -24,6 +24,7 @@ message({},location.origin,'danki-notes-return');assert(!alice.hidden,'Other win
 message(alice.contentWindow,'https://evil.example','danki-notes-return');assert(!alice.hidden,'Other origins cannot switch the page');
 message(alice.contentWindow,location.origin,'danki-notes-return');assert(alice.hidden);assert.equal(location.hash,'#quant');assert.equal(document.title,'QUANT');
 click();assert.equal(frames.length,1,'Repeated visits create no extra listeners or frames');
+win.dispatchEvent(new Event('danki-atlas-opening'));assert(alice.hidden,'Atlas hides the private notes view');setUrl('/data-atlas/');win.dispatchEvent(new Event('popstate'));assert(alice.hidden);setUrl('/');click();
 win.dispatchEvent(new Event('danki-auth-clearing'));assert(alice.removed,'Old note document removed BEFORE the auth change');assert.equal(frames.length,1,'No old-account document is recreated during the transition');
 auth('bob');const bob=frames.at(-1);assert.notEqual(bob,alice);assert(!bob.hidden);
 message(alice.contentWindow,location.origin,'danki-notes-return');assert(!bob.hidden,'Old document cannot control the new owner');

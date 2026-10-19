@@ -1,0 +1,10 @@
+/* Match PlayDanki's background while retaining the original maps and layout. */
+:root,body,.map-section,.map-wrap,.world-map{background:#071e48;color:#fff}
+.metadata,.map-help,.table-heading span,.sort-status{color:#bdcce4}
+.method,.ancestry-note{color:#d6e0f2}
+a,a:visited{color:#b9d2ff}
+.dataset-link,.dataset-link:visited,.dataset-link[aria-current="page"],.row-country,.sort-button{background:#071e48;color:#fff}
+.dataset-link{border-color:#647ea7}.dataset-link[aria-current="page"]{border-color:#fff}
+.skip{background:#071e48;color:#fff}
+a:focus-visible,button:focus-visible{outline-color:#fff}
+.danki-return{float:right;display:inline-flex;align-items:center;justify-content:center;padding:7px 12px;margin-left:12px;border:1px solid #647ea7;background:#102c59;color:#fff!important;text-decoration:none;font:700 11px Arial,Helvetica,sans-serif;letter-spacing:1px}

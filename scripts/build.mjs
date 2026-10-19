@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises';
 import {gzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
+import {atlasVersion} from './build-atlas.mjs';
 import './build-economics.mjs';
 import './build-programming.mjs';
 import './build-quant.mjs';
@@ -9,7 +10,7 @@ import {frenchWords,frenchSentences} from './build-french.mjs';
 import {languageInfo} from './build-languages.mjs';
 const root=new URL('../',import.meta.url);
 const runtimeFiles=['account.js','notes-navigation.js','app.js','card-navigation.js','sections.js','programming.js','quant.js','study.css',...['bootstrap.js','ui.js','notes-store.mjs','eternal-ui.js','eternal.mjs','note-order.mjs','selection.mjs','daily-background.js'].map(f=>'temponotes/'+f)];
-const runtimeVersion=createHash('sha256').update((await Promise.all(runtimeFiles.map(f=>fs.readFile(new URL('src/'+f,root),'utf8')))).join('\n')).digest('hex').slice(0,12);
+const runtimeVersion=createHash('sha256').update((await Promise.all(runtimeFiles.map(f=>fs.readFile(new URL('src/'+f,root),'utf8')))).join('\n')+atlasVersion).digest('hex').slice(0,12);
 let html=await fs.readFile(new URL('src/index.html',root),'utf8');
 const css=await fs.readFile(new URL('src/style.css',root),'utf8');
 const js=await fs.readFile(new URL('src/app.js',root),'utf8');
@@ -68,6 +69,8 @@ html=html.replace('<script defer src="card-navigation.js"></script>',()=>'<scrip
 await fs.mkdir(new URL('dist/',root),{recursive:true});
 await fs.rm(new URL('dist/arithmetic-aim.html',root),{force:true});
 html=html.replace('src="notes-navigation.js"','src="notes-navigation.js?v='+runtimeVersion+'"').replace('src="account.js"','src="account.js?v='+runtimeVersion+'"');
+html=html.replace('</body>','<script defer src="atlas-navigation.js?v='+atlasVersion+'"></script></body>');
+await fs.writeFile(new URL('dist/atlas-navigation.js',root),(await fs.readFile(new URL('src/atlas-navigation.js',root),'utf8')).replaceAll('ATLAS_RELEASE',atlasVersion));
 await fs.writeFile(new URL('dist/index.html',root),html);
 for(const file of ['account.js','cloud-state.mjs','notes-navigation.js'])await fs.copyFile(new URL('src/'+file,root),new URL('dist/'+file,root));
 await fs.writeFile(new URL('dist/notes-navigation.js',root),(await fs.readFile(new URL('src/notes-navigation.js',root),'utf8')).replace('NOTES_RELEASE',runtimeVersion));

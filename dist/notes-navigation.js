@@ -4,7 +4,7 @@ const link=document.querySelector('.temponotes-link');if(!link)return;
 let uid=null,frame=null,shown=false,returnUrl=location.pathname+location.search+location.hash,gameTitle=document.title;
 const style=document.createElement('style');style.textContent='#private-notes-frame{position:fixed;inset:0;width:100%;height:100dvh;border:0;z-index:1000;background:#111225}#private-notes-frame[hidden]{display:none}body.notes-open{overflow:hidden}';document.head.append(style);
 function visibility(){if(!frame)return;frame.hidden=!shown;frame.contentWindow?.postMessage({type:'danki-notes-visibility',visible:shown},location.origin);}
-function prepare(){if(frame)return;frame=document.createElement('iframe');frame.id='private-notes-frame';frame.title='Your private Temponotes';frame.hidden=true;frame.src='/temponotes/?v=d726a40b9bbb';frame.addEventListener('load',visibility);document.body.append(frame);visibility();}
+function prepare(){if(frame)return;frame=document.createElement('iframe');frame.id='private-notes-frame';frame.title='Your private Temponotes';frame.hidden=true;frame.src='/temponotes/?v=d218e2601456';frame.addEventListener('load',visibility);document.body.append(frame);visibility();}
 function display(open){shown=open;document.body.classList.toggle('notes-open',open);document.title=open?'Temponote':gameTitle;visibility();if(open)frame?.contentWindow?.focus();else link.focus({preventScroll:true});}
 window.addEventListener('danki-auth-clearing',()=>{frame?.remove();frame=null;uid=null;});
 window.addEventListener('danki-auth',event=>{
@@ -20,7 +20,8 @@ window.addEventListener('message',event=>{
  if(event.origin!==location.origin||event.source!==frame?.contentWindow||event.data?.type!=='danki-notes-return')return;
  if(shown){history.replaceState(null,'',returnUrl);display(false);}
 });
-window.addEventListener('popstate',()=>{const open=location.pathname==='/temponotes/';if(open)prepare();display(open);});
+window.addEventListener('danki-atlas-opening',()=>{shown=false;document.body.classList.remove('notes-open');visibility();});
+window.addEventListener('popstate',()=>{if(location.pathname.startsWith('/data-atlas/'))return;const open=location.pathname==='/temponotes/';if(open)prepare();display(open);});
 // A restored document must revalidate its owner before displaying any note memory.
 window.addEventListener('pagehide',()=>{frame?.remove();frame=null;});
 window.addEventListener('pageshow',event=>{if(event.persisted){location.reload();}});

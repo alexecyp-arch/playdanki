@@ -9,6 +9,7 @@
 <title>German practice</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23071e48'/%3E%3Ctext x='16' y='24' text-anchor='middle' font-family='Arial' font-size='24' font-weight='bold' fill='white'%3ED%3C/text%3E%3C/svg%3E">
 <style>:root{color-scheme:dark;font-family:Arial,Helvetica,sans-serif;background:#071e48;color:#fff;font-weight:700;font-synthesis:none}
+.atlas-link{display:inline-flex;align-items:center;align-self:center;border:1px solid #45618e;border-radius:.4rem;background:#102c59;color:#fff;text-decoration:none;font:700 .68rem/1.2 Arial,Helvetica,sans-serif;padding:.65rem .55rem;white-space:nowrap}.atlas-link:focus-visible{outline:3px solid white;outline-offset:4px}
 *{box-sizing:border-box}
 body{margin:0;min-height:100svh;background:#071e48}
 button{font:inherit;color:inherit;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
@@ -145,6 +146,7 @@ body:focus,#game:focus,#exercise:focus,.arithmetic-frame:focus{outline:none}
       <button id="trivia-mode" class="game-option mode" data-section="trivia" type="button" aria-pressed="false">5. Trivia</button>
     </nav>
   </details>
+  <a class="atlas-link" href="data-atlas/">DATA ATLAS</a>
 </header>
 <div id="account-bar">
 <details id="support-menu" class="games-menu" hidden>
@@ -339,12 +341,12 @@ function nextCard(){
 function loadTrivia(index){const deck=decks.trivia;if(deck.cards[index])return Promise.resolve();const embedded=$('trivia-data');if(embedded.textContent.trim()!=='[]'){const all=JSON.parse(embedded.textContent);if(all.length!==deck.limit)throw Error('Incomplete question bank');deck.cards=all;embedded.textContent='[]';return Promise.resolve()}const chunk=Math.floor(index/triviaInfo.chunkSize);if(triviaLoads.has(chunk))return triviaLoads.get(chunk);const task=fetch('trivia/'+chunk+'.json?v='+triviaInfo.version).then(r=>{if(!r.ok)throw Error('Question bank unavailable');return r.json()}).then(cards=>{const start=chunk*triviaInfo.chunkSize,expected=Math.min(triviaInfo.chunkSize,deck.limit-start);if(!Array.isArray(cards)||cards.length!==expected||cards.some(c=>!Array.isArray(c)||!c.slice(0,3).every(s=>typeof s==='string'&&s.trim())||c[1]===c[2]))throw Error('Invalid question bank');for(let i=0;i<cards.length;i++)deck.cards[start+i]=cards[i]}).catch(error=>{triviaLoads.delete(chunk);throw error});triviaLoads.set(chunk,task);return task}
 function loadLanguage(deck){if(languageLoads.has(deck.remote))return languageLoads.get(deck.remote);const info=languageInfo[deck.remote]||deck,embedded=$(deck.remote+'-data');const task=Promise.resolve().then(()=>embedded.textContent.trim()!=='[]'?JSON.parse(embedded.textContent):fetch((info.url||'languages/'+deck.remote+'.json')+'?v='+info.version).then(r=>{if(!r.ok)throw Error('Cards unavailable');return r.json()})).then(cards=>{if(!Array.isArray(cards)||cards.length!==info.count||cards.some(c=>!Array.isArray(c)||!c.slice(0,2).every(s=>typeof s==='string'&&s.trim())||(deck===decks.hangul&&(!Number.isFinite(c[2])||c[2]<1))))throw Error('Invalid language cards');deck.cards=cards;embedded.textContent='[]'}).catch(error=>{languageLoads.delete(deck.remote);throw error});languageLoads.set(deck.remote,task);return task}
 $('retry').addEventListener('click',()=>render());
-StudyNavigation.install({next:nextCard,previous:previousCard,enabled:()=>practiceActive&&!menuOpen()&&history.hidden&&!document.body.classList.contains('notes-open')});
+StudyNavigation.install({next:nextCard,previous:previousCard,enabled:()=>practiceActive&&!menuOpen()&&history.hidden&&!(document.body.classList.contains('notes-open')||document.body.classList.contains('atlas-open'))});
 function closeHistory(){history.hidden=true;today.setAttribute('aria-expanded','false')}
 function switchMode(name){reviewCursor=null;if(mode===name){state=read(active);render();return}mode=name;active=decks[name];preferredModes[active.section]=name;state=read(active);if(storageOK&&modeKeys[active.section]){try{localStorage.setItem(modeKeys[active.section],name)}catch{storageOK=false;warn()}}closeHistory();render()}
 for(const [name,b]of Object.entries(modeButtons))b.addEventListener('click',()=>switchMode(name));
 document.addEventListener('practice-section',e=>{reviewCursor=null;practiceActive=!e.detail.startsWith('arithmetic')&&!['programming','quant'].includes(e.detail);closeHistory();if(practiceActive){const next=preferredModes[e.detail];if(mode===next){state=read(active);render()}else switchMode(next)}});
-function skipKey(e){if(!practiceActive||menuOpen()||e.ctrlKey||e.altKey||e.metaKey||e.isComposing)return;const next=e.code==='Space'||e.key===' '||e.key==='Enter';if(!next)return;const control=e.target.closest?.('input,textarea,select,[contenteditable="true"],summary,a,button');if(control&&control!==again)return;e.preventDefault();if(!e.repeat)nextCard()}
+function skipKey(e){if(!practiceActive||document.body.classList.contains('atlas-open')||menuOpen()||e.ctrlKey||e.altKey||e.metaKey||e.isComposing)return;const next=e.code==='Space'||e.key===' '||e.key==='Enter';if(!next)return;const control=e.target.closest?.('input,textarea,select,[contenteditable="true"],summary,a,button');if(control&&control!==again)return;e.preventDefault();if(!e.repeat)nextCard()}
 document.addEventListener('keydown',skipKey);
 document.addEventListener('keydown',e=>{if(!practiceActive||menuOpen())return;if(e.key==='Escape'){closeHistory();today.focus({preventScroll:true})}});
 today.addEventListener('click',()=>{history.hidden=!history.hidden;today.setAttribute('aria-expanded',String(!history.hidden));if(!history.hidden){state=read(active);renderHistory()}});$('close-history').addEventListener('click',()=>{closeHistory();today.focus({preventScroll:true})});
@@ -359,7 +361,7 @@ for(const [section,key]of Object.entries(modeKeys))try{const preferred=localStor
 const startSection=location.hash.slice(1);practiceActive=!['arithmetic','programming','quant'].includes(startSection);mode=preferredModes[startSection]||preferredModes.german;active=decks[mode];state=read(active);render();scheduleMidnight();
 })();</script>
 <script>(()=>{'use strict';
-const $=id=>document.getElementById(id),frame=$('arithmetic-frame'),menus=[...document.querySelectorAll('.games-menu')],subjects=new Set(['french','german','japanese','spanish','italian','greek','korean','economics','trivia','arithmetic','programming','quant']),options=document.querySelectorAll('.navigation .game-option'),embedded={arithmetic:['arithmetic.html?v=d726a40b9bbb','Weekly arithmetic','Weekly arithmetic practice'],programming:['programming.html?v=d726a40b9bbb','Programming','Programming learning cards'],quant:['quant.html?v=d726a40b9bbb','QUANT','QUANT learning cards']};
+const $=id=>document.getElementById(id),frame=$('arithmetic-frame'),menus=[...document.querySelectorAll('.games-menu')],subjects=new Set(['french','german','japanese','spanish','italian','greek','korean','economics','trivia','arithmetic','programming','quant']),options=document.querySelectorAll('.navigation .game-option'),embedded={arithmetic:['arithmetic.html?v=d218e2601456','Weekly arithmetic','Weekly arithmetic practice'],programming:['programming.html?v=d218e2601456','Programming','Programming learning cards'],quant:['quant.html?v=d218e2601456','QUANT','QUANT learning cards']};
 const menuOpen=()=>menus.some(menu=>menu.open);
 let section='german';
 function focusArithmetic(){if(!embedded[section]||menuOpen())return;try{const input=section==='arithmetic'&&frame.contentDocument?.getElementById('answer');if(input)input.focus({preventScroll:true});else frame.contentWindow?.focus()}catch{frame.focus({preventScroll:true})}}
@@ -370,9 +372,9 @@ for(const button of options)button.addEventListener('click',()=>select(button.da
 for(const menu of menus){menu.querySelector('summary').addEventListener('click',()=>{for(const other of menus)if(other!==menu){other.open=false;other.querySelector('summary').setAttribute('aria-expanded','false')}});menu.addEventListener('toggle',()=>menu.querySelector('summary').setAttribute('aria-expanded',String(menu.open)))}
 document.addEventListener('click',e=>{if(menuOpen()&&!e.target.closest('.games-menu'))closeMenu()});
 frame.addEventListener('load',()=>{focusArithmetic();try{const doc=frame.contentDocument;doc.addEventListener('click',e=>{if(menuOpen()){e.preventDefault();e.stopImmediatePropagation();closeMenu()}},true);doc.addEventListener('keydown',e=>{if(menuOpen()&&(e.key==='Escape'||e.key==='Enter'||e.key===' '||e.code==='Space')){e.preventDefault();e.stopImmediatePropagation();if(e.key==='Escape')closeMenu(true)}},true)}catch{}});window.addEventListener('hashchange',show);
-document.addEventListener('click',e=>{if(embedded[section]&&section!=='arithmetic'&&!menuOpen()&&!document.body.classList.contains('notes-open')&&StudyNavigation.canTap(e))frame.contentDocument?.dispatchEvent(new CustomEvent('study-next'));},true);
+document.addEventListener('click',e=>{if(embedded[section]&&section!=='arithmetic'&&!menuOpen()&&!(document.body.classList.contains('notes-open')||document.body.classList.contains('atlas-open'))&&StudyNavigation.canTap(e))frame.contentDocument?.dispatchEvent(new CustomEvent('study-next'));},true);
 // Typed arithmetic cannot be skipped; other embedded games keep their card keys.
-document.addEventListener('keydown',e=>{if(menuOpen()&&e.key==='Escape'){e.preventDefault();e.stopImmediatePropagation();closeMenu(true);return}if(frame.hidden||menuOpen()||e.isComposing||e.ctrlKey||e.altKey||e.metaKey||!(e.key==='Enter'||e.key===' '||e.code==='Space')||e.target.closest?.('input,textarea,select,[contenteditable="true"],summary,a,button'))return;e.preventDefault();e.stopImmediatePropagation();if(section==='arithmetic'){focusArithmetic();return}if(!e.repeat)frame.contentDocument?.dispatchEvent(new CustomEvent('study-next'))},true);
+document.addEventListener('keydown',e=>{if(menuOpen()&&e.key==='Escape'){e.preventDefault();e.stopImmediatePropagation();closeMenu(true);return}if(document.body.classList.contains('atlas-open')||frame.hidden||menuOpen()||e.isComposing||e.ctrlKey||e.altKey||e.metaKey||!(e.key==='Enter'||e.key===' '||e.code==='Space')||e.target.closest?.('input,textarea,select,[contenteditable="true"],summary,a,button'))return;e.preventDefault();e.stopImmediatePropagation();if(section==='arithmetic'){focusArithmetic();return}if(!e.repeat)frame.contentDocument?.dispatchEvent(new CustomEvent('study-next'))},true);
 show();
 })();</script>
 <script>(()=>{'use strict';
@@ -390,7 +392,7 @@ for(const link of links){
 }
 note.textContent=config.preview?'Preview — payment link not connected.':config.genericUrl?'Choose an amount, then enter it on Revolut.':'Choose an amount. Continue on Revolut to pay.';
 })();</script>
-<script defer src="notes-navigation.js?v=d726a40b9bbb"></script>
-<script defer src="account.js?v=d726a40b9bbb"></script>
-</body>
+<script defer src="notes-navigation.js?v=d218e2601456"></script>
+<script defer src="account.js?v=d218e2601456"></script>
+<script defer src="atlas-navigation.js?v=289ff302cb43"></script></body>
 </html>

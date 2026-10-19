@@ -20,7 +20,8 @@ window.addEventListener('message',event=>{
  if(event.origin!==location.origin||event.source!==frame?.contentWindow||event.data?.type!=='danki-notes-return')return;
  if(shown){history.replaceState(null,'',returnUrl);display(false);}
 });
-window.addEventListener('popstate',()=>{const open=location.pathname==='/temponotes/';if(open)prepare();display(open);});
+window.addEventListener('danki-atlas-opening',()=>{shown=false;document.body.classList.remove('notes-open');visibility();});
+window.addEventListener('popstate',()=>{if(location.pathname.startsWith('/data-atlas/'))return;const open=location.pathname==='/temponotes/';if(open)prepare();display(open);});
 // A restored document must revalidate its owner before displaying any note memory.
 window.addEventListener('pagehide',()=>{frame?.remove();frame=null;});
 window.addEventListener('pageshow',event=>{if(event.persisted){location.reload();}});
