@@ -14,13 +14,13 @@ function run(date,mobile=false,parentMobile){
 }
 assert.equal(pictures.length,34);
 for(let day=0;day<68;day++)for(const mobile of [false,true]){
- const result=run(new Date(2026,9,18+day,12),mobile),expected=pictures[day%34][mobile?'mobile':'desktop'];
+ const result=run(new Date(2026,9,18+day,12),mobile),expected=pictures[day%34].desktop;
  assert.equal(result.css,'url("'+expected+'")');assert.equal(result.preload.href,expected);assert.equal(result.updates,1);
  assert(fs.existsSync(new URL('dist/temponotes/'+expected,root)));
 }
 const day=run(new Date(2026,9,18,23,59,59));day.advance(new Date(2026,9,18,23,59,59));assert.equal(day.updates,1,'same-day returns must not swap images');day.advance(new Date(2026,9,19));assert.equal(day.preload.href,pictures[1].desktop);assert.equal(day.updates,2);
-const hidden=run(new Date(2026,9,18,12),true,false);assert.equal(hidden.preload.href,pictures[0].desktop,'Hidden narrow iframe must use the desktop host resolution');hidden.show();assert.equal(hidden.updates,1,'Return does not downgrade or refetch the correct image');hidden.resize(true);assert.equal(hidden.preload.href,pictures[0].mobile);hidden.resize(false);assert.equal(hidden.preload.href,pictures[0].desktop,'Resizing back to desktop restores the high-resolution image');
-const phone=run(new Date(2026,9,18,12),false,true);assert.equal(phone.preload.href,pictures[0].mobile,'A real phone still gets the mobile image');
+const hidden=run(new Date(2026,9,18,12),true,false);assert.equal(hidden.preload.href,pictures[0].desktop,'Hidden narrow iframe must use the desktop host resolution');hidden.show();assert.equal(hidden.updates,1,'Return does not downgrade or refetch the correct image');hidden.resize(true);assert.equal(hidden.preload.href,pictures[0].desktop);hidden.resize(false);assert.equal(hidden.preload.href,pictures[0].desktop,'Resizing back to desktop restores the high-resolution image');
+const phone=run(new Date(2026,9,18,12),false,true);assert.equal(phone.preload.href,pictures[0].desktop,'Tall phones use the larger image instead of a short thumbnail');
 process.env.TZ='Europe/Berlin';const dst=run(new Date(2026,9,25));assert.equal(dst.timer.ms,25*3600000+50,'schedule local midnight across clock changes');
 const html=fs.readFileSync(new URL('dist/temponotes/index.html',root),'utf8');assert(!html.includes('BACKGROUND_DATA'));assert(!html.includes('DAILY_BACKGROUND_SCRIPT'));
 for(const f of ['style.css','navigation.css'])assert(!fs.readFileSync(new URL('dist/temponotes/'+f,root),'utf8').includes('background.webp'));

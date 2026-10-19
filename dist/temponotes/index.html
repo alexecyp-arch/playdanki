@@ -9,7 +9,8 @@
   let active='',timer;
   const preload=document.createElement('link');preload.rel='preload';preload.as='image';document.head.append(preload);
   function update(){
-    const now=new Date(),photo=pictures[index(now)],url=screen.matches?photo.mobile:photo.desktop;
+    // Tall phone screens were stretching the short landscape mobile thumbnails.
+    const now=new Date(),photo=pictures[index(now)],url=photo.desktop;
     if(url!==active){active=url;preload.href=url;document.documentElement.style.setProperty('--daily-background','url("'+url+'")');}
     clearTimeout(timer);
     timer=setTimeout(update,Math.max(1000,new Date(now.getFullYear(),now.getMonth(),now.getDate()+1)-now+50));
@@ -22,4 +23,4 @@
   window.addEventListener('message',event=>{if(event.origin===location.origin&&event.source===window.parent&&event.data?.type==='danki-notes-visibility'&&event.data.visible)update();});
 })();
 </script><title>Temponote</title><link rel="icon" href="./favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="./style.css"><link rel="stylesheet" href="./navigation.css"></head>
-<body><a class="danki-return" href="/">DANKI</a><div id="root"></div><div id="auth-gate" class="auth-gate"><p id="auth-status" role="status" hidden></p><button id="sign-in" hidden>Sign in with Google</button></div><script id="auth-config" type="application/json">{"enabled":true,"firebase":{"apiKey":"AIzaSyB8ud_IxBFHMRia0cTG_o_17-H9YRguDsU","authDomain":"playdanki-ad7f6.firebaseapp.com","projectId":"playdanki-ad7f6","appId":"1:882147925198:web:380c092cc4b8db8387c49f"}}</script><script type="module" src="./bootstrap.js?v=4293a1d0a284"></script></body></html>
+<body><a class="danki-return" href="/">DANKI</a><div id="root"></div><div id="auth-gate" class="auth-gate"><p id="auth-status" role="status" hidden></p><button id="sign-in" hidden>Sign in with Google</button></div><script id="auth-config" type="application/json">{"enabled":true,"firebase":{"apiKey":"AIzaSyB8ud_IxBFHMRia0cTG_o_17-H9YRguDsU","authDomain":"playdanki-ad7f6.firebaseapp.com","projectId":"playdanki-ad7f6","appId":"1:882147925198:web:380c092cc4b8db8387c49f"}}</script><script type="module" src="./bootstrap.js?v=4a495691609a"></script></body></html>

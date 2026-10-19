@@ -7,8 +7,9 @@ const summary=JSON.parse(await fs.readFile(new URL('summary.json',source),'utf8'
 const metadata={version:summary.version,total:summary.total,weeks:summary.weeks,subjects:summary.subjects,contentHash:summary.contentHash};
 const css=await fs.readFile(new URL('src/programming.css',root),'utf8'),cursor=await fs.readFile(new URL('src/cursor.css',root),'utf8'),scheduler=await fs.readFile(new URL('src/programming-scheduler.js',root),'utf8'),js=await fs.readFile(new URL('src/programming.js',root),'utf8');
 const study=await fs.readFile(new URL('src/study.css',root),'utf8');
+const navigation=await fs.readFile(new URL('src/card-navigation.js',root),'utf8');
 let html=await fs.readFile(new URL('src/programming.html',root),'utf8');
-html=html.replace('<link rel="stylesheet" href="programming.css">','<style>'+css+'\n'+cursor+'\n'+study+'</style>').replace('<link rel="stylesheet" href="cursor.css">','').replace('<script defer src="programming-scheduler.js"></script>','').replace('<script defer src="programming.js"></script>','').replace('PROGRAMMING_INFO',JSON.stringify(metadata)).replace('</body>','<script>'+scheduler+'</script>\n<script>'+js+'</script>\n</body>');
+html=html.replace('<script defer src="card-navigation.js"></script>',()=>'<script>'+navigation+'</script>').replace('<link rel="stylesheet" href="programming.css">','<style>'+css+'\n'+cursor+'\n'+study+'</style>').replace('<link rel="stylesheet" href="cursor.css">','').replace('<script defer src="programming-scheduler.js"></script>','').replace('<script defer src="programming.js"></script>','').replace('PROGRAMMING_INFO',JSON.stringify(metadata)).replace('</body>','<script>'+scheduler+'</script>\n<script>'+js+'</script>\n</body>');
 await fs.writeFile(new URL('dist/programming.html',root),html);
 for(const name of ['cards.json','summary.json','curriculum-plan.json','sources.json'])await fs.copyFile(new URL(name,source),new URL(name,target));
 const cards=await fs.readFile(new URL('cards.json',source));

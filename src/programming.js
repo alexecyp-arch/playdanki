@@ -1,13 +1,13 @@
 (()=>{'use strict';
 const C=ProgramCourse,$=id=>document.getElementById(id),KEY='programming5000:v1',info=JSON.parse($('programming-info').textContent);
-let deck=[],state=C.create(),memory=state,storageOK=true,storageNotice='',busy=false,shownToken=null,loadError=false,operation=Promise.resolve();
+let deck=[],state=C.create(),memory=state,storageOK=true,storageNotice='',busy=false,shownToken=null,loadError=false,operation=Promise.resolve(),reviewId=null;
 const percentage=(value,digits=1)=>value.toFixed(digits).replace(/\.?0+$/,'')+'%';
 const token=()=>globalThis.crypto?.randomUUID?.()||Date.now().toString(36)+'-'+Math.random().toString(36).slice(2);
 function notice(message){$('notice').textContent=[...new Set([message,storageNotice].filter(Boolean))].join(' ')}
 function read(){if(!storageOK)return memory;try{const raw=localStorage.getItem(KEY);return raw?C.normalize(JSON.parse(raw)):C.create()}catch{storageOK=false;storageNotice='Saved progress could not be read. It has been kept unchanged. This session will use temporary progress.';notice('');return memory}}
 function save(next){memory=next;if(!storageOK)return;try{const raw=JSON.stringify(next);if(localStorage.getItem(KEY)!==raw){localStorage.setItem(KEY,raw);try{parent.document.dispatchEvent(new Event('danki-progress'))}catch{}}}catch{storageOK=false;storageNotice='This browser could not save progress. Keep this page open to keep this session.';notice('')}}
 function change(fn){const run=()=>{const next=read(),result=fn(next);save(next);state=next;return result};const task=()=>navigator.locks?.request?navigator.locks.request(KEY,run):Promise.resolve().then(run);const result=operation.then(task);operation=result.catch(()=>{});return result}
-function setControls(){document.body.setAttribute('aria-busy',String(busy));for(const id of ['again','retry','next-card'])$(id).disabled=busy}
+function setControls(){document.body.setAttribute('aria-busy',String(busy));$('previous-card').disabled=busy||loadError||(reviewId??state.current?.id??5001)<=1;for(const id of ['again','retry'])$(id).disabled=busy}
 function statLine(container,label,value){const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=label;dd.textContent=value;container.append(dt,dd)}
 function renderStats(){
  const s=C.stats(state,info),values=$('stats-values');values.replaceChildren();
@@ -23,7 +23,7 @@ function render(){
  const s=C.stats(state,info);$('total-progress').textContent='TOTAL PROGRESS: '+percentage(s.totalProgress,2);$('completed-mini').textContent=s.completed.toLocaleString()+' / 5000 completed';
  $('study').hidden=true;$('complete').hidden=true;$('retry').hidden=!loadError;
  if(loadError){shownToken=null;$('card').textContent='CARD —/5000';return}
- if(state.current){const current=state.current,card=deck[current.id-1];shownToken=current.token;$('study').hidden=false;$('card').textContent='CARD '+card.id+'/5000';$('review-label').textContent=card.subject;$('question').textContent=card.question;$('code').textContent=card.code||'';$('code').hidden=!card.code;$('answer').textContent=card.answer}
+ if(state.current||reviewId!==null){const current=state.current||{id:5001},card=deck[(reviewId??current.id)-1];shownToken=reviewId===null?current.token:null;$('study').hidden=false;$('card').textContent='CARD '+card.id+'/5000';$('review-label').textContent=card.subject;$('question').textContent=card.question;$('code').textContent=card.code||'';$('code').hidden=!card.code;$('answer').textContent=card.answer}
  else{shownToken=null;$('complete').hidden=false;$('card').textContent='CARD 5000/5000'}
  if(!$('stats').hidden)renderStats();setControls();
 }
@@ -38,17 +38,18 @@ async function load(){
 }
 function menuOpen(){try{return parent!==window&&!!parent.document.querySelector('.games-menu[open]')}catch{return false}}
 async function advance(){
- if(busy||loadError||!deck.length||!$('stats').hidden||menuOpen()||document.hidden)return;busy=true;setControls();const attempt=shownToken;
+ if(busy||loadError||!deck.length||!$('stats').hidden||menuOpen()||document.hidden)return;if(reviewId!==null){reviewId++;if(reviewId>=(state.current?.id??5001))reviewId=null;render();return;}busy=true;setControls();const attempt=shownToken;
  try{await change(s=>{if(attempt)C.skipStudy(s,attempt,Date.now(),info);else C.startStudyReplay(s);C.presentStudy(s,deck,info,Date.now(),token)});render()}
  catch{notice('Progress could not be saved. Please try again.')}
  finally{busy=false;setControls()}
 }
 $('again').addEventListener('click',advance);document.addEventListener('study-next',advance);
-$('next-card').addEventListener('click',advance);
+function previous(){if(busy||loadError||!$('stats').hidden||menuOpen())return;const id=reviewId??state.current?.id??5001;if(id<=1)return;reviewId=id-1;render();}
+StudyNavigation.install({next:advance,previous,enabled:()=>!busy&&!loadError&&$('stats').hidden&&!menuOpen()});
 function stats(open){$('stats').hidden=!open;$('stats-toggle').setAttribute('aria-expanded',String(open));if(open)renderStats()}
 $('stats-toggle').addEventListener('click',()=>stats($('stats').hidden));$('stats-close').addEventListener('click',()=>stats(false));$('retry').addEventListener('click',load);
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('stats').hidden){stats(false);$('stats-toggle').focus();return}if(e.isComposing||e.ctrlKey||e.altKey||e.metaKey||!(e.key==='Enter'||e.key===' '||e.code==='Space'))return;const control=e.target.closest?.('input,textarea,select,[contenteditable="true"],summary,a,button');if(control&&control!==$('again'))return;e.preventDefault();if(!e.repeat)advance()});
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!busy)refresh().catch(()=>notice('Progress could not refresh. Please reload.'))});
-window.addEventListener('storage',e=>{if((e.key===KEY||e.key===null)&&!busy)refresh().catch(()=>notice('Progress could not refresh. Please reload.'))});
+window.addEventListener('storage',e=>{reviewId=null;if((e.key===KEY||e.key===null)&&!busy)refresh().catch(()=>notice('Progress could not refresh. Please reload.'))});
 state=read();memory=state;load();
 })();

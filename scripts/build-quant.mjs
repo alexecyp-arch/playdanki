@@ -7,8 +7,9 @@ const summary=JSON.parse(await fs.readFile(new URL('summary.json',source),'utf8'
 const info={version:summary.version,total:summary.total,subjectLabels:summary.subjectLabels,contentHash:summary.contentHash};
 const [css,cursor,core,js]=await Promise.all(['src/quant.css','src/cursor.css','src/quant-course.js','src/quant.js'].map(p=>fs.readFile(new URL(p,root),'utf8')));
 const study=await fs.readFile(new URL('src/study.css',root),'utf8');
+const navigation=await fs.readFile(new URL('src/card-navigation.js',root),'utf8');
 let html=await fs.readFile(new URL('src/quant.html',root),'utf8');
-html=html.replace('<link rel="stylesheet" href="quant.css">','<style>'+css+'\n'+cursor+'\n'+study+'</style>').replace('<link rel="stylesheet" href="cursor.css">','').replace('<script defer src="quant-course.js"></script>','').replace('<script defer src="quant.js"></script>','').replace('QUANT_INFO',JSON.stringify(info)).replace('</body>','<script>'+core+'</script>\n<script>'+js+'</script>\n</body>');
+html=html.replace('<script defer src="card-navigation.js"></script>',()=>'<script>'+navigation+'</script>').replace('<link rel="stylesheet" href="quant.css">','<style>'+css+'\n'+cursor+'\n'+study+'</style>').replace('<link rel="stylesheet" href="cursor.css">','').replace('<script defer src="quant-course.js"></script>','').replace('<script defer src="quant.js"></script>','').replace('QUANT_INFO',JSON.stringify(info)).replace('</body>','<script>'+core+'</script>\n<script>'+js+'</script>\n</body>');
 await fs.writeFile(new URL('dist/quant.html',root),html);
 for(const name of ['cards.json','summary.json','curriculum-plan.json','sources.json'])await fs.copyFile(new URL(name,source),new URL(name,target));
 const cards=await fs.readFile(new URL('cards.json',source));

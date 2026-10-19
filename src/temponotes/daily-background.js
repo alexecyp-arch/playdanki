@@ -8,7 +8,8 @@
   let active='',timer;
   const preload=document.createElement('link');preload.rel='preload';preload.as='image';document.head.append(preload);
   function update(){
-    const now=new Date(),photo=pictures[index(now)],url=screen.matches?photo.mobile:photo.desktop;
+    // Tall phone screens were stretching the short landscape mobile thumbnails.
+    const now=new Date(),photo=pictures[index(now)],url=photo.desktop;
     if(url!==active){active=url;preload.href=url;document.documentElement.style.setProperty('--daily-background','url("'+url+'")');}
     clearTimeout(timer);
     timer=setTimeout(update,Math.max(1000,new Date(now.getFullYear(),now.getMonth(),now.getDate()+1)-now+50));

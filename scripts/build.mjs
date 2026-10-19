@@ -13,6 +13,7 @@ const runtimeVersion=createHash('sha256').update((await Promise.all(runtimeFiles
 let html=await fs.readFile(new URL('src/index.html',root),'utf8');
 const css=await fs.readFile(new URL('src/style.css',root),'utf8');
 const js=await fs.readFile(new URL('src/app.js',root),'utf8');
+const cardNavigation=await fs.readFile(new URL('src/card-navigation.js',root),'utf8');
 const sections=await fs.readFile(new URL('src/sections.js',root),'utf8');
 const cursorCss=await fs.readFile(new URL('src/cursor.css',root),'utf8');
 const studyCss=await fs.readFile(new URL('src/study.css',root),'utf8');
@@ -49,7 +50,7 @@ for(const [id,data,url] of [['french-word',frenchWords,'french/words.json'],['fr
  coreDeckInfo[id]={count:JSON.parse(data).length,url,version:createHash('sha256').update(data).digest('hex').slice(0,16)};
  await fs.writeFile(new URL('dist/'+url,root),data);
 }
-html=html.replace('<link rel="stylesheet" href="style.css">','<style>'+css.trim()+'\n'+cursorCss.trim()+'\n'+studyCss.trim()+'\n'+supportCss.trim()+'\n'+accountCss.trim()+'</style>')
+html=html.replace('<script defer src="card-navigation.js"></script>',()=>'<script>'+cardNavigation+'</script>').replace('<link rel="stylesheet" href="style.css">','<style>'+css.trim()+'\n'+cursorCss.trim()+'\n'+studyCss.trim()+'\n'+supportCss.trim()+'\n'+accountCss.trim()+'</style>')
  .replace('<script defer src="app.js"></script>','')
  .replace('CORE_DECK_INFO',()=>JSON.stringify(coreDeckInfo))
  .replace('FRENCH_WORD_DATA','[]')
