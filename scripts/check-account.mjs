@@ -6,7 +6,7 @@ const ids=['auth-config','account-menu','account-label','account-status','accoun
 const elements=Object.fromEntries(ids.map(k=>[k,new Element()]));elements['auth-config'].textContent=JSON.stringify({enabled:true,firebase:{}});
 const storage=new Store(),win=new EventTarget(),document=Object.assign(new EventTarget(),{getElementById:k=>elements[k],hidden:false});
 const key='deutsch5000:v1',guest={v:1,cursor:7,round:1,days:{}};storage.setItem(key,JSON.stringify(guest));
-let interval;const context=vm.createContext({document,window:win,localStorage:storage,navigator:{onLine:true},location:{reload(){}},console:{warn(){}},Event,StorageEvent:class extends Event{constructor(type,init){super(type);Object.assign(this,init)}},setInterval:fn=>(interval=fn,1),clearInterval(){},addEventListener:win.addEventListener.bind(win)});
+let interval;const context=vm.createContext({document,window:win,localStorage:storage,navigator:{onLine:true},location:{reload(){}},console:{warn(){}},Event,CustomEvent,StorageEvent:class extends Event{constructor(type,init){super(type);Object.assign(this,init)}},setInterval:fn=>(interval=fn,1),clearInterval(){},addEventListener:win.addEventListener.bind(win)});
 const fake=new URL('./mock-firebase.mjs',import.meta.url).href,core=new URL('../src/cloud-state.mjs',import.meta.url).href;
 const source=await fs.readFile(new URL('../src/account.js',import.meta.url),'utf8');
 new vm.Script(source,{filename:'account.js',importModuleDynamically:s=>import(s.includes('firebasejs')?fake:core)}).runInContext(context);

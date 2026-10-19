@@ -3,8 +3,10 @@ export function reset(){docs.clear();auth.currentUser=null;listener=null;fail=fa
 export function setFail(value){fail=value}
 export function initializeApp(){return {}}export function getAuth(){return auth}export function getFirestore(){return {}}
 export const browserLocalPersistence={};export async function setPersistence(){}
+let before;
+export function beforeAuthStateChanged(a,cb){before=cb;}
 export function onAuthStateChanged(a,cb){listener=cb;queueMicrotask(()=>cb(a.currentUser))}
-export async function become(user){auth.currentUser=user;await listener(user)}
+export async function become(user){await before?.(user);auth.currentUser=user;await listener(user)}
 export class GoogleAuthProvider{}
 export async function signInWithPopup(){await become({uid:'alice',email:'alice@example.test'})}
 export async function signOut(){await become(null)}

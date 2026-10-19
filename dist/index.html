@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<base href="/">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#071e48">
 <meta name="description" content="Practice languages and learning games with simple cards and saved progress.">
@@ -378,6 +379,7 @@ for(const link of links){
 }
 note.textContent=config.preview?'Preview — payment link not connected.':config.genericUrl?'Choose an amount, then enter it on Revolut.':'Choose an amount. Continue on Revolut to pay.';
 })();</script>
+<script defer src="notes-navigation.js"></script>
 <script defer src="account.js"></script>
 </body>
 </html>

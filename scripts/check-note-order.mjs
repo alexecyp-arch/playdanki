@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+import {orderNotes} from '../src/temponotes/note-order.mjs';
+const notes=[{id:'late',expiresAt:900,createdAt:1},{id:'early',expiresAt:100,createdAt:2},{id:'recurring',expiresAt:500,createdAt:0,eternalId:'template'}];
+const ids=selected=>orderNotes(notes,selected).map(n=>n.id);
+assert.deepEqual(ids(null),['early','recurring','late']);
+assert.deepEqual(ids('late'),['late','early','recurring'],'Selection overrides expiry order');
+assert.deepEqual(ids('recurring'),['recurring','early','late'],'Recurring occurrences can also be selected');
+assert.deepEqual(ids('expired'),ids(null),'Missing/expired selections do not affect normal ordering');
+assert.deepEqual(notes.map(n=>n.expiresAt),[900,100,500],'Selection never changes expiration');
+console.log('Note priority ordering passed.');

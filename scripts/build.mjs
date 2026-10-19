@@ -61,11 +61,11 @@ html=html.replace('<link rel="stylesheet" href="style.css">','<style>'+css.trim(
  .replace('LANGUAGE_INFO',JSON.stringify(languageInfo))
  .replace('SUPPORT_CONFIG',()=>JSON.stringify(supportConfig).replace(/</g,'\\u003c'))
  .replace('AUTH_CONFIG',()=>JSON.stringify(authConfig).replace(/</g,'\\u003c'))
- .replace('</body>',()=>'<script>'+schedule.trim()+'</script>\n<script>'+js.trim()+'</script>\n<script>'+sections.trim()+'</script>\n<script>'+supportJs.trim()+'</script>\n<script defer src="account.js"></script>\n</body>');
+ .replace('</body>',()=>'<script>'+schedule.trim()+'</script>\n<script>'+js.trim()+'</script>\n<script>'+sections.trim()+'</script>\n<script>'+supportJs.trim()+'</script>\n<script defer src="notes-navigation.js"></script>\n<script defer src="account.js"></script>\n</body>');
 await fs.mkdir(new URL('dist/',root),{recursive:true});
 await fs.rm(new URL('dist/arithmetic-aim.html',root),{force:true});
 await fs.writeFile(new URL('dist/index.html',root),html);
-for(const file of ['account.js','cloud-state.mjs'])await fs.copyFile(new URL('src/'+file,root),new URL('dist/'+file,root));
+for(const file of ['account.js','cloud-state.mjs','notes-navigation.js'])await fs.copyFile(new URL('src/'+file,root),new URL('dist/'+file,root));
 await fs.cp(new URL('src/temponotes/',root),new URL('dist/temponotes/',root),{recursive:true,filter:source=>!source.endsWith('.tsx')&&!source.endsWith('background.jpg')});
 const notesHtml=await fs.readFile(new URL('src/temponotes/index.html',root),'utf8');
 const backgrounds=JSON.parse(await fs.readFile(new URL('src/temponotes/backgrounds.json',root),'utf8'));

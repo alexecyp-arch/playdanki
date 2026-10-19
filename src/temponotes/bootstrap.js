@@ -1,20 +1,28 @@
 import {initializeApp} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js';
-import {getAuth,onAuthStateChanged,GoogleAuthProvider,signInWithPopup} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js';
+import {getAuth,onAuthStateChanged,beforeAuthStateChanged,GoogleAuthProvider,signInWithPopup} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js';
 import * as sdk from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js';
 import {mount} from './ui.js';
 import {createNotesStore} from './notes-store.mjs';
 const config=JSON.parse(document.getElementById('auth-config').textContent);
 const app=initializeApp(config.firebase),auth=getAuth(app),db=sdk.getFirestore(app);
 const root=document.getElementById('root'),gate=document.getElementById('auth-gate'),status=document.getElementById('auth-status'),button=document.getElementById('sign-in');
-let generation=0,dispose=()=>{},unmount=()=>{};
+let generation=0,dispose=()=>{},unmount=()=>{},loading;
+function clear(){++generation;loading?.abort();unmount();dispose();unmount=dispose=()=>{};root.replaceChildren();gate.hidden=false;}
+beforeAuthStateChanged(auth,clear);
+window.addEventListener('pagehide',clear);
+window.addEventListener('pageshow',event=>{if(event.persisted)location.reload();});
+if(window.parent!==window){
+ document.querySelector('.danki-return').addEventListener('click',event=>{if(event.button||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;event.preventDefault();window.parent.postMessage({type:'danki-notes-return'},location.origin);});
+ window.addEventListener('message',event=>{if(event.origin===location.origin&&event.source===window.parent&&event.data?.type==='danki-notes-visibility')window.dispatchEvent(new CustomEvent('temponotes-visibility',{detail:!!event.data.visible}));});
+}
 button.addEventListener('click',async()=>{button.disabled=true;try{await signInWithPopup(auth,new GoogleAuthProvider());}catch(error){status.textContent='Could not sign in. Please try again.';button.hidden=false;}finally{button.disabled=false;}});
 onAuthStateChanged(auth,async user=>{
-  const current=++generation;unmount();dispose();unmount=dispose=()=>{};root.replaceChildren();gate.hidden=false;
+  clear();const current=generation;loading=new AbortController();
   button.hidden=!!user;status.textContent=user?'':'Sign in to use your private notes.';status.hidden=!!user;
   if(!user)return;
   try{
-    const pending=createNotesStore({auth,db,sdk,uid:user.uid});
-    gate.hidden=true;unmount=mount(root,async(...args)=>(await pending).request(...args));
+    const pending=createNotesStore({auth,db,sdk,uid:user.uid,signal:loading.signal});
+    gate.hidden=true;unmount=mount(root,async(...args)=>(await pending).request(...args),{visible:window.parent===window||!window.frameElement?.hidden});
     const store=await pending;
     if(current!==generation){store.dispose();return;}
     dispose=store.dispose;

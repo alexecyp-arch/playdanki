@@ -42,4 +42,12 @@ assert.equal((await schedule('POST',{id:eternalId,body:'wrong account',days:[3]}
 assert.equal((await call('POST',{id,body:'wrong account',minutes:60})).status,400);
 assert.equal(rows.has('users/bob/temponotes/'+id),false);
 store.dispose();assert.equal((await store.request('/api/notes')).status,400);
+assert.equal(watchers.size,0,'Disposed stores unsubscribe both private collections');
+await assert.rejects(createNotesStore({auth,db:{},sdk,uid:'alice'}),'A different UID cannot create a store');
+auth.currentUser={uid:'alice'};
+const abort=new AbortController();
+const waiting=createNotesStore({auth,db:{},sdk:{...sdk,setDoc:()=>new Promise(()=>{})},uid:'alice',signal:abort.signal});
+assert.equal(watchers.size,2);abort.abort();
+await assert.rejects(waiting,/Account changed/,'An account change cancels even a stalled first clock sync');
+assert.equal(watchers.size,0,'Pending stores drop both listeners immediately');
 console.log('Temponote checks passed: retry, expiry, atomic extensions, validation, account changes and cleanup.');

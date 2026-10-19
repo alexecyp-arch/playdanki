@@ -1,6 +1,6 @@
 import {validSchedule,localDay} from './eternal.mjs';
 // Private, account-scoped adapter for the original Temponote interface.
-export async function createNotesStore({auth,db,sdk,uid,now=Date.now}){
+export async function createNotesStore({auth,db,sdk,uid,now=Date.now,signal}){
   const {doc,collection,setDoc,getDoc,serverTimestamp,onSnapshot,runTransaction,deleteDoc}=sdk;
   let disposed=false,offset=0,notes=new Map(),eternal=new Map(),syncError=null,eternalError=null;
   const check=()=>{if(disposed||auth.currentUser?.uid!==uid)throw Error('Please sign in again.');};
@@ -19,16 +19,19 @@ export async function createNotesStore({auth,db,sdk,uid,now=Date.now}){
   let firstResolve,firstReject;
   const first=new Promise((resolve,reject)=>{firstResolve=resolve;firstReject=reject;});
   const stop=onSnapshot(collection(db,'users',uid,'temponotes'),snapshot=>{
-    if(disposed)return;
+    if(disposed||auth.currentUser?.uid!==uid)return;
     notes=new Map(snapshot.docs.map(d=>[d.id,{id:d.id,...d.data()}]));
     syncError=null;firstResolve();
   },error=>{syncError=error;firstReject(error);});
   let eternalResolve,eternalReject;
   const firstEternal=new Promise((resolve,reject)=>{eternalResolve=resolve;eternalReject=reject;});
   const stopEternal=onSnapshot(collection(db,'users',uid,'eternalNotes'),snapshot=>{
-    if(disposed)return;eternal=new Map(snapshot.docs.map(d=>[d.id,{id:d.id,...d.data()}]));eternalError=null;eternalResolve();
+    if(disposed||auth.currentUser?.uid!==uid)return;eternal=new Map(snapshot.docs.map(d=>[d.id,{id:d.id,...d.data()}]));eternalError=null;eternalResolve();
   },error=>{eternalError=error;eternalReject(error);});
-  try{await Promise.all([first,firstEternal,syncClock]);check();}catch(error){stop();stopEternal();throw error;}
+  let abortReject;const aborted=new Promise((resolve,reject)=>{abortReject=reject;});
+  const cancel=()=>{disposed=true;stop();stopEternal();notes.clear();eternal.clear();abortReject(Error('Account changed.'));};
+  signal?.addEventListener('abort',cancel,{once:true});if(signal?.aborted)cancel();
+  try{await Promise.race([Promise.all([first,firstEternal,syncClock]),aborted]);check();}catch(error){stop();stopEternal();signal?.removeEventListener('abort',cancel);throw error;}
   const cleaning=new Set();
   async function request(url,options={}){
     try{
@@ -99,6 +102,6 @@ export async function createNotesStore({auth,db,sdk,uid,now=Date.now}){
       throw Error('Invalid request.');
     }catch(error){return Response.json({error:error.message||'Could not sync notes.'},{status:400});}
   }
-  return {request,dispose(){disposed=true;stop();stopEternal();notes.clear();eternal.clear();}};
+  return {request,dispose(){disposed=true;stop();stopEternal();signal?.removeEventListener('abort',cancel);notes.clear();eternal.clear();}};
 }
 function validId(id){return typeof id==='string'&&/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);}
