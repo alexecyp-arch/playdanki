@@ -8,7 +8,7 @@ import {triviaInfo} from './build-trivia.mjs';
 import {frenchWords,frenchSentences} from './build-french.mjs';
 import {languageInfo} from './build-languages.mjs';
 const root=new URL('../',import.meta.url);
-const runtimeFiles=['account.js','notes-navigation.js',...['bootstrap.js','ui.js','notes-store.mjs','eternal-ui.js','eternal.mjs','note-order.mjs'].map(f=>'temponotes/'+f)];
+const runtimeFiles=['account.js','notes-navigation.js',...['bootstrap.js','ui.js','notes-store.mjs','eternal-ui.js','eternal.mjs','note-order.mjs','daily-background.js'].map(f=>'temponotes/'+f)];
 const runtimeVersion=createHash('sha256').update((await Promise.all(runtimeFiles.map(f=>fs.readFile(new URL('src/'+f,root),'utf8')))).join('\n')).digest('hex').slice(0,12);
 let html=await fs.readFile(new URL('src/index.html',root),'utf8');
 const css=await fs.readFile(new URL('src/style.css',root),'utf8');
