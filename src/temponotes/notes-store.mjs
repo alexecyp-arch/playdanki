@@ -18,15 +18,15 @@ export async function createNotesStore({auth,db,sdk,uid,now=Date.now,signal}){
   })();
   let firstResolve,firstReject;
   const first=new Promise((resolve,reject)=>{firstResolve=resolve;firstReject=reject;});
-  const stop=onSnapshot(collection(db,'users',uid,'temponotes'),snapshot=>{
+  const stop=onSnapshot(collection(db,'users',uid,'temponotes'),{includeMetadataChanges:true},snapshot=>{
     if(disposed||auth.currentUser?.uid!==uid)return;
     notes=new Map(snapshot.docs.map(d=>[d.id,{id:d.id,...d.data()}]));
-    syncError=null;firstResolve();
+    syncError=null;if(snapshot.metadata?.fromCache!==true)firstResolve();
   },error=>{syncError=error;firstReject(error);});
   let eternalResolve,eternalReject;
   const firstEternal=new Promise((resolve,reject)=>{eternalResolve=resolve;eternalReject=reject;});
-  const stopEternal=onSnapshot(collection(db,'users',uid,'eternalNotes'),snapshot=>{
-    if(disposed||auth.currentUser?.uid!==uid)return;eternal=new Map(snapshot.docs.map(d=>[d.id,{id:d.id,...d.data()}]));eternalError=null;eternalResolve();
+  const stopEternal=onSnapshot(collection(db,'users',uid,'eternalNotes'),{includeMetadataChanges:true},snapshot=>{
+    if(disposed||auth.currentUser?.uid!==uid)return;eternal=new Map(snapshot.docs.map(d=>[d.id,{id:d.id,...d.data()}]));eternalError=null;if(snapshot.metadata?.fromCache!==true)eternalResolve();
   },error=>{eternalError=error;eternalReject(error);});
   let abortReject;const aborted=new Promise((resolve,reject)=>{abortReject=reject;});
   const cancel=()=>{disposed=true;stop();stopEternal();notes.clear();eternal.clear();abortReject(Error('Account changed.'));};

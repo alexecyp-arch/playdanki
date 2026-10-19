@@ -4,7 +4,7 @@ let clock=1800000000000,watchers=new Map(),queue=Promise.resolve(),rows=new Map(
 const auth={currentUser:{uid:'alice'}};
 const snapshot=r=>({exists:()=>rows.has(r),data:()=>rows.get(r)});
 const emit=()=>{for(const [prefix,callback]of watchers)callback({docs:[...rows].filter(([r])=>r.startsWith(prefix+'/')).map(([r,value])=>({id:r.split('/').at(-1),data:()=>value}))});};
-const sdk={doc:(_, ...p)=>p.join('/'),collection:(_, ...p)=>p.join('/'),serverTimestamp:()=>({toMillis:()=>clock}),setDoc:async(r,v)=>rows.set(r,v),getDoc:async r=>snapshot(r),deleteDoc:async r=>{rows.delete(r);emit();},onSnapshot:(prefix,callback)=>{watchers.set(prefix,callback);emit();return()=>watchers.delete(prefix);},runTransaction:(_,fn)=>{const task=queue.then(async()=>{const writes=[];const value=await fn({get:async r=>snapshot(r),set:(r,v)=>writes.push(()=>rows.set(r,v)),update:(r,v)=>writes.push(()=>rows.set(r,{...rows.get(r),...v})),delete:r=>writes.push(()=>rows.delete(r))});writes.forEach(f=>f());emit();return value;});queue=task.catch(()=>{});return task;}};
+const sdk={doc:(_, ...p)=>p.join('/'),collection:(_, ...p)=>p.join('/'),serverTimestamp:()=>({toMillis:()=>clock}),setDoc:async(r,v)=>rows.set(r,v),getDoc:async r=>snapshot(r),deleteDoc:async r=>{rows.delete(r);emit();},onSnapshot:(prefix,options,callback)=>{watchers.set(prefix,callback);emit();return()=>watchers.delete(prefix);},runTransaction:(_,fn)=>{const task=queue.then(async()=>{const writes=[];const value=await fn({get:async r=>snapshot(r),set:(r,v)=>writes.push(()=>rows.set(r,v)),update:(r,v)=>writes.push(()=>rows.set(r,{...rows.get(r),...v})),delete:r=>writes.push(()=>rows.delete(r))});writes.forEach(f=>f());emit();return value;});queue=task.catch(()=>{});return task;}};
 const store=await createNotesStore({auth,db:{},sdk,uid:'alice',now:()=>clock});
 const id='00000000-0000-4000-a000-000000000001';
 const call=(method,data)=>store.request('/api/notes',{method,body:JSON.stringify(data)});
@@ -50,4 +50,9 @@ const waiting=createNotesStore({auth,db:{},sdk:{...sdk,setDoc:()=>new Promise(()
 assert.equal(watchers.size,2);abort.abort();
 await assert.rejects(waiting,/Account changed/,'An account change cancels even a stalled first clock sync');
 assert.equal(watchers.size,0,'Pending stores drop both listeners immediately');
+const initial=new Map();let ready=false;
+const starting=createNotesStore({auth,db:{},sdk:{...sdk,onSnapshot:(path,options,callback)=>{assert(options.includeMetadataChanges);initial.set(path,callback);callback({docs:[],metadata:{fromCache:true}});return()=>initial.delete(path);}},uid:'alice',now:()=>clock});
+starting.then(()=>{ready=true;});await new Promise(resolve=>setTimeout(resolve,0));assert.equal(ready,false,'An empty startup cache must not clear a saved highlight');
+for(const callback of initial.values())callback({docs:[],metadata:{fromCache:false}});
+const confirmed=await starting;assert(ready,'A confirmed empty account must still finish loading');confirmed.dispose();assert.equal(initial.size,0);
 console.log('Temponote checks passed: retry, expiry, atomic extensions, validation, account changes and cleanup.');
