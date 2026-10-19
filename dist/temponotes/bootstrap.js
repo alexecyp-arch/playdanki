@@ -1,8 +1,8 @@
 import {initializeApp} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js';
 import {getAuth,onAuthStateChanged,beforeAuthStateChanged,GoogleAuthProvider,signInWithPopup} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js';
 import * as sdk from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js';
-import {mount} from './ui.js?v=05a2043de99a';
-import {createNotesStore} from './notes-store.mjs?v=05a2043de99a';
+import {mount} from './ui.js?v=b8dc3241ed4d';
+import {createNotesStore} from './notes-store.mjs?v=b8dc3241ed4d';
 const config=JSON.parse(document.getElementById('auth-config').textContent);
 const app=initializeApp(config.firebase),auth=getAuth(app),db=sdk.getFirestore(app);
 const root=document.getElementById('root'),gate=document.getElementById('auth-gate'),status=document.getElementById('auth-status'),button=document.getElementById('sign-in');
@@ -18,8 +18,6 @@ if(window.parent!==window){
 button.addEventListener('click',async()=>{button.disabled=true;try{await signInWithPopup(auth,new GoogleAuthProvider());}catch(error){status.textContent='Could not sign in. Please try again.';button.hidden=false;}finally{button.disabled=false;}});
 onAuthStateChanged(auth,async user=>{
   clear();const current=generation;loading=new AbortController();
-  // A boolean login hint starts game-page auth without caching note text or a UID.
-  try{if(user)localStorage.setItem('danki:notes-auth:v1','1');else localStorage.removeItem('danki:notes-auth:v1');}catch{}
   button.hidden=!!user;status.textContent=user?'':'Sign in to use your private notes.';status.hidden=!!user;
   if(!user)return;
   try{

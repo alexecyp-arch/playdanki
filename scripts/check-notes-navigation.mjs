@@ -16,7 +16,7 @@ new vm.Script(await fs.readFile(new URL('../src/notes-navigation.js',import.meta
 const auth=uid=>win.dispatchEvent(new CustomEvent('danki-auth',{detail:uid}));
 const click=(extra={})=>{const e=new Event('click',{cancelable:true});Object.assign(e,{button:0,...extra});link.dispatchEvent(e);return e;};
 assert.equal(click().defaultPrevented,false,'Guests retain the normal sign-in route');assert.equal(frames.length,0);
-auth('alice');const alice=frames.at(-1);assert(alice.hidden);assert.equal(alice.src,'/temponotes/');
+auth('alice');const alice=frames.at(-1);assert(alice.hidden);assert(alice.src.startsWith('/temponotes/?v='));
 assert.equal(click({ctrlKey:true}).defaultPrevented,false,'Open in new tab still works');
 assert(click().defaultPrevented);assert.equal(frames.at(-1),alice,'Opening reuses the ready document');assert(!alice.hidden);assert.equal(location.pathname,'/temponotes/');
 const message=(source,origin,type)=>{const e=new Event('message');Object.assign(e,{source,origin,data:{type}});win.dispatchEvent(e);};

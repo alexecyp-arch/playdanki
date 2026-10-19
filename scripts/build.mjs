@@ -69,6 +69,7 @@ await fs.rm(new URL('dist/arithmetic-aim.html',root),{force:true});
 html=html.replace('src="notes-navigation.js"','src="notes-navigation.js?v='+runtimeVersion+'"').replace('src="account.js"','src="account.js?v='+runtimeVersion+'"');
 await fs.writeFile(new URL('dist/index.html',root),html);
 for(const file of ['account.js','cloud-state.mjs','notes-navigation.js'])await fs.copyFile(new URL('src/'+file,root),new URL('dist/'+file,root));
+await fs.writeFile(new URL('dist/notes-navigation.js',root),(await fs.readFile(new URL('src/notes-navigation.js',root),'utf8')).replace('NOTES_RELEASE',runtimeVersion));
 await fs.cp(new URL('src/temponotes/',root),new URL('dist/temponotes/',root),{recursive:true,filter:source=>!source.endsWith('.tsx')&&!source.endsWith('background.jpg')});
 const notesHtml=(await fs.readFile(new URL('src/temponotes/index.html',root),'utf8')).replace('src="./bootstrap.js"','src="./bootstrap.js?v='+runtimeVersion+'"');
 for(const file of runtimeFiles.filter(f=>f.startsWith('temponotes/'))){const source=await fs.readFile(new URL('src/'+file,root),'utf8');await fs.writeFile(new URL('dist/'+file,root),source.replace(/from '(\.\/[^']+\.(?:mjs|js))'/g,(all,path)=>"from '"+path+'?v='+runtimeVersion+"'"));}

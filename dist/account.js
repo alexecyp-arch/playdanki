@@ -1,4 +1,4 @@
-// Optional cloud saves; no Firebase code is downloaded for guests until they open this menu.
+// Restore Google sign-in on startup so private notes can prepare while games run.
 (()=>{'use strict';
 const cfg=JSON.parse(document.getElementById('auth-config').textContent);if(!cfg.enabled)return;
 const $=id=>document.getElementById(id),menu=$('account-menu'),label=$('account-label'),status=$('account-status'),login=$('account-login'),logout=$('account-logout'),sync=$('account-sync'),identity=$('account-identity');
@@ -58,5 +58,5 @@ addEventListener('storage',e=>{if(e.key===ownerKey&&localStorage.getItem(ownerKe
 addEventListener('pagehide',()=>{remember().catch(()=>{})});
 document.addEventListener('visibilitychange',()=>{if(document.hidden){remember().catch(()=>{});flush()}else if(user)flush()});
 document.addEventListener('danki-progress',()=>{if(user&&!settling&&!busy)tell('Saved in this browser · cloud save pending.')});
-try{if(localStorage.getItem(ownerKey)||localStorage.getItem('danki:notes-auth:v1'))setup();else tell('Progress saves in this browser until you sign in.')}catch{tell('Enable browser storage to use account saves.');login.disabled=true}
+try{localStorage.getItem(ownerKey);setup();}catch{tell('Enable browser storage to use account saves.');login.disabled=true}
 })();
