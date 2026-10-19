@@ -8,6 +8,8 @@ import {triviaInfo} from './build-trivia.mjs';
 import {frenchWords,frenchSentences} from './build-french.mjs';
 import {languageInfo} from './build-languages.mjs';
 const root=new URL('../',import.meta.url);
+const runtimeFiles=['account.js','notes-navigation.js',...['bootstrap.js','ui.js','notes-store.mjs','eternal-ui.js','eternal.mjs','note-order.mjs'].map(f=>'temponotes/'+f)];
+const runtimeVersion=createHash('sha256').update((await Promise.all(runtimeFiles.map(f=>fs.readFile(new URL('src/'+f,root),'utf8')))).join('\n')).digest('hex').slice(0,12);
 let html=await fs.readFile(new URL('src/index.html',root),'utf8');
 const css=await fs.readFile(new URL('src/style.css',root),'utf8');
 const js=await fs.readFile(new URL('src/app.js',root),'utf8');
@@ -64,10 +66,12 @@ html=html.replace('<link rel="stylesheet" href="style.css">','<style>'+css.trim(
  .replace('</body>',()=>'<script>'+schedule.trim()+'</script>\n<script>'+js.trim()+'</script>\n<script>'+sections.trim()+'</script>\n<script>'+supportJs.trim()+'</script>\n<script defer src="notes-navigation.js"></script>\n<script defer src="account.js"></script>\n</body>');
 await fs.mkdir(new URL('dist/',root),{recursive:true});
 await fs.rm(new URL('dist/arithmetic-aim.html',root),{force:true});
+html=html.replace('src="notes-navigation.js"','src="notes-navigation.js?v='+runtimeVersion+'"').replace('src="account.js"','src="account.js?v='+runtimeVersion+'"');
 await fs.writeFile(new URL('dist/index.html',root),html);
 for(const file of ['account.js','cloud-state.mjs','notes-navigation.js'])await fs.copyFile(new URL('src/'+file,root),new URL('dist/'+file,root));
 await fs.cp(new URL('src/temponotes/',root),new URL('dist/temponotes/',root),{recursive:true,filter:source=>!source.endsWith('.tsx')&&!source.endsWith('background.jpg')});
-const notesHtml=await fs.readFile(new URL('src/temponotes/index.html',root),'utf8');
+const notesHtml=(await fs.readFile(new URL('src/temponotes/index.html',root),'utf8')).replace('src="./bootstrap.js"','src="./bootstrap.js?v='+runtimeVersion+'"');
+for(const file of runtimeFiles.filter(f=>f.startsWith('temponotes/'))){const source=await fs.readFile(new URL('src/'+file,root),'utf8');await fs.writeFile(new URL('dist/'+file,root),source.replace(/from '(\.\/[^']+\.(?:mjs|js))'/g,(all,path)=>"from '"+path+'?v='+runtimeVersion+"'"));}
 const backgrounds=JSON.parse(await fs.readFile(new URL('src/temponotes/backgrounds.json',root),'utf8'));
 if(backgrounds.length!==34||backgrounds.some(p=>!p.desktop||!p.mobile))throw Error('Expected all 34 daily backgrounds');
 const retainedBackgrounds=new Set(backgrounds.flatMap(p=>[p.desktop.split('/').at(-1),p.mobile.split('/').at(-1)]));
