@@ -2,6 +2,28 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     function owns(uid) { return request.auth != null && request.auth.uid == uid; }
+    match /users/{uid}/eternalNotes/{id} {
+      function validEternal() {
+        return request.resource.data.keys().hasAll(['body', 'days', 'createdAt', 'dismissedOn'])
+          && request.resource.data.keys().hasOnly(['body', 'days', 'createdAt', 'dismissedOn'])
+          && request.resource.data.body is string
+          && request.resource.data.body.size() > 0 && request.resource.data.body.size() <= 10000
+          && request.resource.data.days is list
+          && request.resource.data.days.size() >= 1 && request.resource.data.days.size() <= 7
+          && request.resource.data.days.hasOnly([0, 1, 2, 3, 4, 5, 6])
+          && request.resource.data.days.toSet().size() == request.resource.data.days.size()
+          && request.resource.data.createdAt is int
+          && request.resource.data.dismissedOn is string
+          && (request.resource.data.dismissedOn == '' || request.resource.data.dismissedOn.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$'));
+      }
+      allow read, delete: if owns(uid);
+      allow create: if owns(uid) && validEternal()
+        && id.matches('^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$')
+        && request.resource.data.createdAt >= request.time.toMillis() - 120000
+        && request.resource.data.createdAt <= request.time.toMillis() + 120000;
+      allow update: if owns(uid) && validEternal()
+        && request.resource.data.createdAt == resource.data.createdAt;
+    }
     match /users/{uid}/temponotes/{id} {
       allow read, delete: if owns(uid);
       allow create: if owns(uid)

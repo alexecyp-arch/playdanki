@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {occurrences,validSchedule,localDay} from '../src/temponotes/eternal.mjs';
+process.env.TZ='Asia/Nicosia';
+const schedule={id:'one',body:'150 PUSHUPS',days:[3],createdAt:0,dismissedOn:''};
+assert.equal(occurrences([schedule],new Date(2026,9,20,23,59,59).getTime()).length,0);
+const start=new Date(2026,9,21).getTime(),end=new Date(2026,9,22).getTime();
+let active=occurrences([schedule],start);assert.equal(active.length,1);assert.equal(active[0].createdAt,start);assert.equal(active[0].expiresAt,end);assert.equal(end-start,86400000);
+assert.equal(occurrences([schedule],end-1).length,1);assert.equal(occurrences([schedule],end).length,0);
+assert.equal(occurrences([{...schedule,dismissedOn:'2026-10-21'}],start).length,0);
+assert.equal(occurrences([{...schedule,dismissedOn:'2026-10-21'}],new Date(2026,9,28).getTime()).length,1,'dismissal affects only that date');
+const daily={...schedule,days:[0,1,2,3,4,5,6]};
+for(let d=18;d<32;d++)assert.equal(occurrences([daily],new Date(2026,9,d,12).getTime()).length,1,'one copy per calendar date');
+const fall=new Date(2026,9,25).getTime(),fallEnd=new Date(2026,9,26).getTime();active=occurrences([daily],fall);assert.equal(active[0].expiresAt,fallEnd);assert.equal(fallEnd-fall,25*3600000,'clock changes still end at local midnight');
+assert.equal(localDay(new Date(2026,0,2)),'2026-01-02');
+assert(validSchedule('hello',[1,3,5]));for(const days of [[],[7],[-1],[1,1],['3'],null])assert(!validSchedule('hello',days));assert(!validSchedule(' ',[3]));
+console.log('Eternal checks passed: midnight boundaries, selected weekdays, repeats, dismissal, multi-day, DST and validation.');

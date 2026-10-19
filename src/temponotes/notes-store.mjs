@@ -1,10 +1,12 @@
+import {validSchedule,localDay} from './eternal.mjs';
 // Private, account-scoped adapter for the original Temponote interface.
 export async function createNotesStore({auth,db,sdk,uid,now=Date.now}){
   const {doc,collection,setDoc,getDoc,serverTimestamp,onSnapshot,runTransaction,deleteDoc}=sdk;
-  let disposed=false,offset=0,notes=new Map(),syncError=null;
+  let disposed=false,offset=0,notes=new Map(),eternal=new Map(),syncError=null,eternalError=null;
   const check=()=>{if(disposed||auth.currentUser?.uid!==uid)throw Error('Please sign in again.');};
   const time=()=>now()+offset;
   const reference=id=>doc(db,'users',uid,'temponotes',id);
+  const permanent=id=>doc(db,'users',uid,'eternalNotes',id);
   check();
   const clock=doc(db,'users',uid,'temponotesMeta','clock');
   const syncClock=(async()=>{
@@ -21,12 +23,39 @@ export async function createNotesStore({auth,db,sdk,uid,now=Date.now}){
     notes=new Map(snapshot.docs.map(d=>[d.id,{id:d.id,...d.data()}]));
     syncError=null;firstResolve();
   },error=>{syncError=error;firstReject(error);});
-  try{await Promise.all([first,syncClock]);check();}catch(error){stop();throw error;}
+  let eternalResolve,eternalReject;
+  const firstEternal=new Promise((resolve,reject)=>{eternalResolve=resolve;eternalReject=reject;});
+  const stopEternal=onSnapshot(collection(db,'users',uid,'eternalNotes'),snapshot=>{
+    if(disposed)return;eternal=new Map(snapshot.docs.map(d=>[d.id,{id:d.id,...d.data()}]));eternalError=null;eternalResolve();
+  },error=>{eternalError=error;eternalReject(error);});
+  try{await Promise.all([first,firstEternal,syncClock]);check();}catch(error){stop();stopEternal();throw error;}
   const cleaning=new Set();
   async function request(url,options={}){
     try{
-      check();if(syncError)throw syncError;
+      check();if(syncError||eternalError)throw syncError||eternalError;
       const method=options.method||'GET',t=time();
+      const route=new URL(url,'https://playdanki.com');
+      if(route.pathname==='/api/eternal'){
+        if(method==='DELETE'){
+          const id=route.searchParams.get('id');if(!validId(id))throw Error('Invalid note.');
+          await deleteDoc(permanent(id));check();eternal.delete(id);return Response.json({ok:true});
+        }
+        const {id,body,days,dismiss}=JSON.parse(options.body||'{}');
+        if(!validId(id))throw Error('Invalid note.');
+        if(method==='PATCH'&&dismiss===true){
+          const dismissedOn=localDay(new Date(time()));
+          await runTransaction(db,async tx=>{check();const r=permanent(id),s=await tx.get(r);check();if(!s.exists())throw Error('This note was removed.');tx.update(r,{dismissedOn});});
+          check();const old=eternal.get(id);if(old)eternal.set(id,{...old,dismissedOn});return Response.json({ok:true});
+        }
+        if(!['POST','PATCH'].includes(method)||!validSchedule(body,days))throw Error('Write a note and choose at least one day.');
+        const saved=await runTransaction(db,async tx=>{
+          check();const r=permanent(id),s=await tx.get(r);check();
+          if(method==='POST'&&s.exists())return {id,...s.data()};
+          if(method==='PATCH'&&!s.exists())throw Error('This note was removed.');
+          const value=s.exists()?{...s.data(),body:body.trim(),days:[...days].sort(),dismissedOn:''}:{body:body.trim(),days:[...days].sort(),createdAt:time(),dismissedOn:''};
+          tx.set(r,value);return {id,...value};
+        });check();eternal.set(id,saved);return Response.json({ok:true});
+      }
       if(method==='GET'){
         for(const n of notes.values())if(n.expiresAt<=t&&!cleaning.has(n.id)){
           // Like the original, expiry hides immediately; storage cleanup runs on sync.
@@ -34,7 +63,7 @@ export async function createNotesStore({auth,db,sdk,uid,now=Date.now}){
           runTransaction(db,async tx=>{check();const r=reference(n.id),s=await tx.get(r);check();if(s.exists()&&s.data().expiresAt<=time())tx.delete(r);})
             .catch(()=>{}).finally(()=>cleaning.delete(n.id));
         }
-        return Response.json({notes:[...notes.values()].filter(n=>n.expiresAt>t),serverNow:t});
+        return Response.json({notes:[...notes.values()].filter(n=>n.expiresAt>t),eternalNotes:[...eternal.values()],serverNow:t});
       }
       if(method==='DELETE'){
         const id=new URL(url,'https://playdanki.com').searchParams.get('id');
@@ -70,6 +99,6 @@ export async function createNotesStore({auth,db,sdk,uid,now=Date.now}){
       throw Error('Invalid request.');
     }catch(error){return Response.json({error:error.message||'Could not sync notes.'},{status:400});}
   }
-  return {request,dispose(){disposed=true;stop();notes.clear();}};
+  return {request,dispose(){disposed=true;stop();stopEternal();notes.clear();eternal.clear();}};
 }
 function validId(id){return typeof id==='string'&&/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);}
