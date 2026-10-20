@@ -13,6 +13,7 @@ export function createWeightStore({auth,db,sdk,uid,onChange,onStatus}){
   async add(value,unit){check();const kg=kilograms(value,unit);if(kg===null)throw Error('WEIGHT');if(!ready)throw Error('OFFLINE');
    await sdk.addDoc(ref,{kg,recordedAt:sdk.serverTimestamp()});check();
   },
+  async remove(id){check();if(!ready)throw Error('OFFLINE');if(typeof id!=='string'||!/^[A-Za-z0-9]{20}$/.test(id))throw Error('WEIGHT');await sdk.deleteDoc(sdk.doc(db,'users',uid,'weights',id));check();},
   dispose(){active=false;ready=false;stop();}
  };
 }

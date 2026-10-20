@@ -3,7 +3,7 @@ service cloud.firestore {
   match /databases/{database}/documents {
     function owns(uid) { return request.auth != null && request.auth.uid == uid; }
     match /users/{uid}/weights/{id} {
-      allow read: if owns(uid);
+      allow read, delete: if owns(uid);
       allow create: if owns(uid)
         && request.resource.data.keys().hasAll(['kg', 'recordedAt'])
         && request.resource.data.keys().hasOnly(['kg', 'recordedAt'])

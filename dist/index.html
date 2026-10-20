@@ -368,7 +368,7 @@ for(const [section,key]of Object.entries(modeKeys))try{const preferred=localStor
 const startSection=location.hash.slice(1);practiceActive=!['arithmetic','programming','quant'].includes(startSection);mode=preferredModes[startSection]||preferredModes.german;active=decks[mode];state=read(active);render();scheduleMidnight();
 })();</script>
 <script>(()=>{'use strict';
-const $=id=>document.getElementById(id),frame=$('arithmetic-frame'),menus=[...document.querySelectorAll('.games-menu')],subjects=new Set(['french','german','japanese','spanish','italian','greek','korean','economics','trivia','arithmetic','programming','quant']),options=document.querySelectorAll('.navigation .game-option'),embedded={arithmetic:['arithmetic.html?v=1a33fc67c4ae','Weekly arithmetic','Weekly arithmetic practice'],programming:['programming.html?v=1a33fc67c4ae','Programming','Programming learning cards'],quant:['quant.html?v=1a33fc67c4ae','QUANT','QUANT learning cards']};
+const $=id=>document.getElementById(id),frame=$('arithmetic-frame'),menus=[...document.querySelectorAll('.games-menu')],subjects=new Set(['french','german','japanese','spanish','italian','greek','korean','economics','trivia','arithmetic','programming','quant']),options=document.querySelectorAll('.navigation .game-option'),embedded={arithmetic:['arithmetic.html?v=af1ef2c00140','Weekly arithmetic','Weekly arithmetic practice'],programming:['programming.html?v=af1ef2c00140','Programming','Programming learning cards'],quant:['quant.html?v=af1ef2c00140','QUANT','QUANT learning cards']};
 const menuOpen=()=>menus.some(menu=>menu.open);
 let section='german';
 function focusArithmetic(){if(!embedded[section]||menuOpen())return;try{const input=section==='arithmetic'&&frame.contentDocument?.getElementById('answer');if(input)input.focus({preventScroll:true});else frame.contentWindow?.focus()}catch{frame.focus({preventScroll:true})}}
@@ -399,7 +399,7 @@ for(const link of links){
 }
 note.textContent=config.preview?'Preview — payment link not connected.':config.genericUrl?'Choose an amount, then enter it on Revolut.':'Choose an amount. Continue on Revolut to pay.';
 })();</script>
-<script defer src="notes-navigation.js?v=1a33fc67c4ae"></script>
-<script defer src="account.js?v=1a33fc67c4ae"></script>
-<script defer src="atlas-navigation.js?v=192296d4da46"></script><script defer src="weight-navigation.js?v=1a33fc67c4ae"></script></body>
+<script defer src="notes-navigation.js?v=af1ef2c00140"></script>
+<script defer src="account.js?v=af1ef2c00140"></script>
+<script defer src="atlas-navigation.js?v=192296d4da46"></script><script defer src="weight-navigation.js?v=af1ef2c00140"></script></body>
 </html>

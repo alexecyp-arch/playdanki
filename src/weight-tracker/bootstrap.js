@@ -5,15 +5,17 @@ import {createWeightStore} from './store.mjs';
 import {draw} from './chart.mjs';
 import {kilograms,weight} from './model.mjs';
 const $=id=>document.getElementById(id),app=initializeApp(JSON.parse($('auth-config').textContent).firebase),auth=getAuth(app),db=sdk.getFirestore(app);
-let store=null,entries=[],unit='KG',ready=false,saving=false,generation=0;
-const render=()=>draw($('chart'),entries,unit),controls=()=>{$('add').disabled=!ready||saving||!navigator.onLine;};
-function clear(){generation++;store?.dispose();store=null;entries=[];ready=false;saving=false;$('weight').value='';$('weight-form').hidden=true;$('auth-gate').hidden=false;$('status').textContent='';render();controls();}
+let store=null,entries=[],unit='KG',ready=false,saving=false,generation=0,selectedId=null;
+function controls(){const disabled=!ready||saving||!navigator.onLine;$('add').disabled=disabled;$('remove').disabled=disabled||!selectedId;}
+function render(){const selected=entries.find(p=>p.id===selectedId);if(!selected)selectedId=null;$('selected-entry').hidden=!selected;$('selected-value').textContent=selected?Number(weight(selected.kg,unit).toFixed(2)).toLocaleString()+' '+unit+' · '+new Date(selected.time).toLocaleString().toUpperCase():'';draw($('chart'),entries,unit,{selectedId,onSelect:id=>{if(saving)return;selectedId=id;render();}});controls();}
+function clear(){generation++;store?.dispose();store=null;entries=[];selectedId=null;ready=false;saving=false;$('weight').value='';$('weight-form').hidden=true;$('auth-gate').hidden=false;$('status').textContent='';render();controls();}
 beforeAuthStateChanged(auth,clear);window.addEventListener('pagehide',clear);window.addEventListener('pageshow',e=>{if(e.persisted)location.reload();});
 onAuthStateChanged(auth,user=>{clear();if(!user)return;const current=generation;$('auth-gate').hidden=true;$('weight-form').hidden=false;
  store=createWeightStore({auth,db,sdk,uid:user.uid,onChange:rows=>{if(current!==generation)return;entries=rows;render();},onStatus:(text,online)=>{if(current!==generation)return;ready=online;if(!saving)$('status').textContent=text;controls();}});
 });
 for(const next of ['KG','LB'])$(next.toLowerCase()).addEventListener('click',()=>{const kg=kilograms($('weight').value,unit);unit=next;if(kg!==null)$('weight').value=Number(weight(kg,unit).toFixed(4));$('weight').max=unit==='KG'?'1000':'2204.6226';$('kg').setAttribute('aria-pressed',String(unit==='KG'));$('lb').setAttribute('aria-pressed',String(unit==='LB'));render();});
 $('weight-form').addEventListener('submit',async event=>{event.preventDefault();if(saving||!store||!ready)return;const current=generation;saving=true;controls();$('status').textContent='SAVING';try{await store.add($('weight').value,unit);if(current!==generation)return;$('weight').value='';$('status').textContent='SAVED';}catch(error){if(current===generation)$('status').textContent=navigator.onLine?error.message==='WEIGHT'?'WEIGHT':'RETRY':'OFFLINE';}finally{if(current===generation){saving=false;controls();}}});
+$('remove').addEventListener('click',async()=>{if(saving||!store||!ready||!selectedId)return;const id=selectedId,current=generation;saving=true;controls();$('status').textContent='REMOVING';try{await store.remove(id);if(current!==generation)return;selectedId=null;$('status').textContent='REMOVED';render();}catch{if(current===generation)$('status').textContent=navigator.onLine?'RETRY':'OFFLINE';}finally{if(current===generation){saving=false;controls();}}});
 $('sign-in').addEventListener('click',async()=>{$('sign-in').disabled=true;try{await signInWithPopup(auth,new GoogleAuthProvider());}catch{$('status').textContent='RETRY';}finally{$('sign-in').disabled=false;}});
 for(const type of ['online','offline'])window.addEventListener(type,()=>{if(!navigator.onLine)$('status').textContent='OFFLINE';else if(ready)$('status').textContent='';controls();});
 new ResizeObserver(render).observe($('chart'));window.addEventListener('resize',render);render();
