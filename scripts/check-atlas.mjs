@@ -6,7 +6,7 @@ const window=new EventTarget(),link=new Element(),frames=[],classes=new Set(),lo
 const update=url=>{const u=new URL(url,location.origin);Object.assign(location,{pathname:u.pathname,search:u.search,hash:u.hash});};
 const document={title:'QUANT',querySelector:()=>link,createElement:()=>new Element(),head:{append(){}},body:{append:f=>frames.push(f),classList:{toggle:(c,on)=>on?classes.add(c):classes.delete(c),contains:c=>classes.has(c)}}};
 let pushes=0;const history={pushState:(s,t,url)=>{pushes++;update(url)},replaceState:(s,t,url)=>update(url)};
-vm.runInNewContext(await fs.readFile('src/atlas-navigation.js','utf8'),{window,document,location,history,Event});
+vm.runInNewContext(await fs.readFile('src/atlas-navigation.js','utf8'),{window,document,location,history,Event,CustomEvent});
 assert.equal(frames.length,1);const frame=frames[0];assert(frame.hidden,'Atlas warms while the game stays visible');
 const click=(extra={})=>{const e=new Event('click',{cancelable:true});Object.assign(e,{button:0,...extra});link.dispatchEvent(e);return e};
 assert(!click({ctrlKey:true}).defaultPrevented);assert(click().defaultPrevented);assert(!frame.hidden);assert(classes.has('atlas-open'));assert.equal(location.pathname,'/data-atlas/');

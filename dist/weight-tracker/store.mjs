@@ -1,0 +1,18 @@
+import {kilograms} from './model.mjs?v=e199140e9862';
+export function createWeightStore({auth,db,sdk,uid,onChange,onStatus}){
+ let active=true,ready=false;
+ const check=()=>{if(!active||auth.currentUser?.uid!==uid)throw Error('SIGN IN');};
+ const ref=sdk.collection(db,'users',uid,'weights');
+ const stop=sdk.onSnapshot(sdk.query(ref,sdk.orderBy('recordedAt','asc')),{includeMetadataChanges:true},snapshot=>{
+  if(!active||auth.currentUser?.uid!==uid)return;
+  ready=!snapshot.metadata.fromCache;
+  onChange(snapshot.docs.filter(d=>!d.metadata.hasPendingWrites).map(d=>{const p=d.data();return {id:d.id,kg:p.kg,time:p.recordedAt?.toMillis()};}).filter(p=>Number.isFinite(p.time)));
+  onStatus(ready?'':'OFFLINE',ready);
+ },()=>{if(active){ready=false;onStatus('RETRY',false);}});
+ return {
+  async add(value,unit){check();const kg=kilograms(value,unit);if(kg===null)throw Error('WEIGHT');if(!ready)throw Error('OFFLINE');
+   await sdk.addDoc(ref,{kg,recordedAt:sdk.serverTimestamp()});check();
+  },
+  dispose(){active=false;ready=false;stop();}
+ };
+}

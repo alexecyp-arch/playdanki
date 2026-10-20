@@ -13,3 +13,6 @@
 #account-privacy{margin-top:.7rem!important;opacity:.8}
 #account-conflict[hidden],#account-panel [hidden]{display:none}
 @media(max-width:600px){#account-bar{left:.75rem;max-width:calc(50vw - 3.5rem);flex-wrap:wrap}#account-menu>summary{font-size:.6875rem;padding:.5rem}#account-panel{left:0;width:min(18rem,calc(100vw - 1.5rem))}}
+#account-bar{flex-direction:column;align-items:flex-start}
+#account-bar>.atlas-link,#account-bar>.weight-link,#account-menu>summary{display:flex;align-items:center;justify-content:center;align-self:auto;width:7.75rem;height:2rem;padding:.5rem .6rem;border:1px solid #45618e;border-radius:.35rem;background:#071e48;color:#fff;font:700 .75rem/1.2 Arial,Helvetica,sans-serif;white-space:nowrap;text-decoration:none}
+@media(max-width:600px){#account-bar>.atlas-link,#account-bar>.weight-link,#account-menu>summary{font-size:.6875rem}#account-bar{transform:scale(.65);transform-origin:bottom left}}

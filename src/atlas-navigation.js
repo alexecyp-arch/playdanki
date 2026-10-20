@@ -7,7 +7,7 @@ const style=document.createElement('style');style.textContent='#data-atlas-frame
 function prepare(path='/data-atlas/'){
  if(frame)return;frame=document.createElement('iframe');frame.id='data-atlas-frame';frame.title='Data Atlas';frame.hidden=true;frame.src=path+'?v=ATLAS_RELEASE';document.body.append(frame);
 }
-function display(open){shown=open;frame.hidden=!open;document.body.classList.toggle('atlas-open',open);if(open){window.dispatchEvent(new Event('danki-atlas-opening'));document.title=atlasTitle;frame.contentWindow?.focus();}else{document.title=document.body.classList.contains('notes-open')?'Temponote':gameTitle;link.focus({preventScroll:true});}}
+function display(open){shown=open;frame.hidden=!open;document.body.classList.toggle('atlas-open',open);if(open){window.dispatchEvent(new CustomEvent('danki-view-opening',{detail:'atlas'}));window.dispatchEvent(new Event('danki-atlas-opening'));document.title=atlasTitle;frame.contentWindow?.focus();}else{document.title=document.body.classList.contains('notes-open')?'Temponote':gameTitle;link.focus({preventScroll:true});}}
 function navigate(path){frame.contentWindow.location.replace(path+'?v=ATLAS_RELEASE');}
 link.addEventListener('click',event=>{
  if(event.button!==0||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;
@@ -26,5 +26,6 @@ window.addEventListener('popstate',()=>{
  const path=location.pathname;if(routes.has(path)){prepare(path);if(readyPath!==path)navigate(path);display(true);}
  else if(shown)display(false);
 });
+window.addEventListener('danki-view-opening',event=>{if(event.detail==='atlas')return;shown=false;frame.hidden=true;document.body.classList.remove('atlas-open');});
 prepare();
 })();

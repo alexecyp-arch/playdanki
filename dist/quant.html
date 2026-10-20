@@ -16,6 +16,8 @@ body:focus,#game:focus,#exercise:focus,.arithmetic-frame:focus{outline:none}
 @media(hover:none) and (pointer:coarse) and (max-width:600px),(hover:none) and (pointer:coarse) and (max-height:600px){#previous-card{display:block;min-height:2rem;min-width:5rem;padding:.35rem .65rem;font-size:.75rem}.tracker,#tracker{bottom:calc(3rem + env(safe-area-inset-bottom,0px))}.course-main{padding-bottom:8rem}}
 
 @media(max-width:600px){#previous-card{min-height:2rem;min-width:5rem;padding:.35rem .65rem;font-size:.75rem}.tracker,#tracker{bottom:calc(3rem + env(safe-area-inset-bottom,0px))}}
+/* Scale the phone controls, including the practice counter, to 65%. */
+@media(max-width:600px){.tracker,#tracker{transform:scale(.65);transform-origin:bottom right}#previous-card{transform:translateX(-50%) scale(.65);transform-origin:center bottom}.again,#again,#retry,.stats-head button{transform:scale(.65)}}
 </style><script>(()=>{'use strict';
  const controls='button,a,input,textarea,select,summary,[contenteditable="true"],.games-menu,.navigation,#account-bar,.tracker,#tracker,#history,#stats,[role="dialog"]';
  function canTap(event){return !event.defaultPrevented&&!event.ctrlKey&&!event.metaKey&&!event.altKey&&!event.shiftKey&&event.button===0&&matchMedia('(pointer:coarse),(max-width:600px)').matches&&!event.target.closest?.(controls)&&!window.getSelection()?.toString();}

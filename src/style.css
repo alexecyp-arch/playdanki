@@ -55,3 +55,4 @@ body{position:relative}.tracker{position:absolute}
 .answer-box{position:absolute;left:50%;top:50svh;transform:translate(-50%,-50%);width:max-content;max-width:min(56rem,calc(100vw - 4rem));margin:0}
 @media(max-width:600px){.answer-box{max-width:calc(100vw - 2.4rem)}}
 @media(max-width:600px){#games-menu .games-list{left:0;right:auto}}
+@media(max-width:600px){.navigation{transform:scale(.65);transform-origin:top left}.temponotes-link{transform:scale(.65);transform-origin:top right}}

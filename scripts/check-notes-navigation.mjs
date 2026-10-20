@@ -11,7 +11,7 @@ const location={origin:'https://playdanki.com',pathname:'/',search:'',hash:'#qua
 const setUrl=url=>{const u=new URL(url,location.origin);location.pathname=u.pathname;location.search=u.search;location.hash=u.hash;};
 const history={pushState:(s,t,u)=>setUrl(u),replaceState:(s,t,u)=>setUrl(u)};
 const document={title:'QUANT',querySelector:()=>link,createElement:()=>new Element(),head:{append(){}},body:{append:f=>frames.push(f),classList:{toggle:(c,on)=>on?classes.add(c):classes.delete(c),remove:c=>classes.delete(c)}}};
-const context=vm.createContext({window:win,document,location,history});
+const context=vm.createContext({window:win,document,location,history,CustomEvent});
 new vm.Script(await fs.readFile(new URL('../src/notes-navigation.js',import.meta.url),'utf8')).runInContext(context);
 const auth=uid=>win.dispatchEvent(new CustomEvent('danki-auth',{detail:uid}));
 const click=(extra={})=>{const e=new Event('click',{cancelable:true});Object.assign(e,{button:0,...extra});link.dispatchEvent(e);return e;};

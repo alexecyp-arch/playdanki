@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import {kilograms,weight,chartData} from '../src/weight-tracker/model.mjs';
+import {createWeightStore} from '../src/weight-tracker/store.mjs';
+assert.equal(kilograms(100,'KG'),100);assert.equal(kilograms(100,'LB'),45.359237);assert(Math.abs(weight(45.359237,'LB')-100)<1e-10);
+for(const value of ['',0,-1,Infinity,NaN,'bad',1001])assert.equal(kilograms(value,'KG'),null);
+const data=chartData([{id:'b',kg:80,time:200},{id:'a',kg:81,time:100}]);assert.equal(data.points[0].id,'a');assert(data.y[0]<80&&data.y[1]>81);assert(chartData([{id:'a',kg:80,time:100}]).x[0]<100);assert.equal(chartData([]).points.length,0);
+let callback,stopped=false,rows,status,ready,writes=[];const auth={currentUser:{uid:'alice'}},sdk={collection:(db,...path)=>path,query:(...args)=>args,orderBy:(...args)=>args,onSnapshot:(ref,options,cb)=>{callback=cb;return ()=>stopped=true;},addDoc:async(ref,data)=>{writes.push({ref,data});},serverTimestamp:()=>({server:true})};
+const store=createWeightStore({auth,db:{},sdk,uid:'alice',onChange:v=>rows=v,onStatus:(s,r)=>{status=s;ready=r;}});
+callback({metadata:{fromCache:true},docs:[]});await assert.rejects(store.add(80,'KG'),/OFFLINE/);assert(!ready);
+callback({metadata:{fromCache:false},docs:[]});assert(ready);for(let i=0;i<30;i++)await store.add(176.36980974790207,'LB');assert.equal(writes.length,30);assert(writes.every(w=>w.ref.join('/')==='users/alice/weights'&&Math.abs(w.data.kg-80)<1e-10&&w.data.recordedAt.server));
+callback({metadata:{fromCache:false},docs:[{id:'saved',metadata:{hasPendingWrites:false},data:()=>({kg:80,recordedAt:{toMillis:()=>1000}})},{id:'pending',metadata:{hasPendingWrites:true},data:()=>({kg:81})}]});assert.equal(rows.length,1);assert.equal(rows[0].time,1000);
+auth.currentUser={uid:'bob'};await assert.rejects(store.add(80,'KG'),/SIGN IN/);callback({metadata:{fromCache:false},docs:[]});assert.equal(rows.length,1,'Old account callbacks are ignored');store.dispose();assert(stopped);
+console.log('Weight checks passed: exact units, chart bounds/order, 30 independent cloud entries, server timestamps, pending writes, offline and account separation.');

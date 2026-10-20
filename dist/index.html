@@ -65,6 +65,7 @@ body{position:relative}.tracker{position:absolute}
 .answer-box{position:absolute;left:50%;top:50svh;transform:translate(-50%,-50%);width:max-content;max-width:min(56rem,calc(100vw - 4rem));margin:0}
 @media(max-width:600px){.answer-box{max-width:calc(100vw - 2.4rem)}}
 @media(max-width:600px){#games-menu .games-list{left:0;right:auto}}
+@media(max-width:600px){.navigation{transform:scale(.65);transform-origin:top left}.temponotes-link{transform:scale(.65);transform-origin:top right}}
 :root{--game-cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Ccircle cx='7' cy='7' r='4' fill='%2337ee45' stroke='%23000' stroke-width='1.5'/%3E%3C/svg%3E") 7 7,crosshair}
 *,*::before,*::after{cursor:var(--game-cursor)!important}
 body:focus,#game:focus,#exercise:focus,.arithmetic-frame:focus{outline:none}
@@ -79,6 +80,8 @@ body:focus,#game:focus,#exercise:focus,.arithmetic-frame:focus{outline:none}
 @media(hover:none) and (pointer:coarse) and (max-width:600px),(hover:none) and (pointer:coarse) and (max-height:600px){#previous-card{display:block;min-height:2rem;min-width:5rem;padding:.35rem .65rem;font-size:.75rem}.tracker,#tracker{bottom:calc(3rem + env(safe-area-inset-bottom,0px))}.course-main{padding-bottom:8rem}}
 
 @media(max-width:600px){#previous-card{min-height:2rem;min-width:5rem;padding:.35rem .65rem;font-size:.75rem}.tracker,#tracker{bottom:calc(3rem + env(safe-area-inset-bottom,0px))}}
+/* Scale the phone controls, including the practice counter, to 65%. */
+@media(max-width:600px){.tracker,#tracker{transform:scale(.65);transform-origin:bottom right}#previous-card{transform:translateX(-50%) scale(.65);transform-origin:center bottom}.again,#again,#retry,.stats-head button{transform:scale(.65)}}
 #support-menu{position:fixed;left:1rem;bottom:calc(.75rem + env(safe-area-inset-bottom,0px));z-index:7}
 #support-menu[hidden]{display:none}
 #support-menu>summary{font-size:.75rem;line-height:1.2;gap:.4rem;padding:.5rem .6rem;border-color:#45618e;background:#071e48}
@@ -105,7 +108,10 @@ body:focus,#game:focus,#exercise:focus,.arithmetic-frame:focus{outline:none}
 #account-identity{overflow-wrap:anywhere}
 #account-privacy{margin-top:.7rem!important;opacity:.8}
 #account-conflict[hidden],#account-panel [hidden]{display:none}
-@media(max-width:600px){#account-bar{left:.75rem;max-width:calc(50vw - 3.5rem);flex-wrap:wrap}#account-menu>summary{font-size:.6875rem;padding:.5rem}#account-panel{left:0;width:min(18rem,calc(100vw - 1.5rem))}}</style>
+@media(max-width:600px){#account-bar{left:.75rem;max-width:calc(50vw - 3.5rem);flex-wrap:wrap}#account-menu>summary{font-size:.6875rem;padding:.5rem}#account-panel{left:0;width:min(18rem,calc(100vw - 1.5rem))}}
+#account-bar{flex-direction:column;align-items:flex-start}
+#account-bar>.atlas-link,#account-bar>.weight-link,#account-menu>summary{display:flex;align-items:center;justify-content:center;align-self:auto;width:7.75rem;height:2rem;padding:.5rem .6rem;border:1px solid #45618e;border-radius:.35rem;background:#071e48;color:#fff;font:700 .75rem/1.2 Arial,Helvetica,sans-serif;white-space:nowrap;text-decoration:none}
+@media(max-width:600px){#account-bar>.atlas-link,#account-bar>.weight-link,#account-menu>summary{font-size:.6875rem}#account-bar{transform:scale(.65);transform-origin:bottom left}}</style>
 <script>(()=>{'use strict';
  const controls='button,a,input,textarea,select,summary,[contenteditable="true"],.games-menu,.navigation,#account-bar,.tracker,#tracker,#history,#stats,[role="dialog"]';
  function canTap(event){return !event.defaultPrevented&&!event.ctrlKey&&!event.metaKey&&!event.altKey&&!event.shiftKey&&event.button===0&&matchMedia('(pointer:coarse),(max-width:600px)').matches&&!event.target.closest?.(controls)&&!window.getSelection()?.toString();}
@@ -146,9 +152,10 @@ body:focus,#game:focus,#exercise:focus,.arithmetic-frame:focus{outline:none}
       <button id="trivia-mode" class="game-option mode" data-section="trivia" type="button" aria-pressed="false">5. Trivia</button>
     </nav>
   </details>
-  <a class="atlas-link" href="data-atlas/">DATA ATLAS</a>
 </header>
 <div id="account-bar">
+<a class="weight-link" href="weight-tracker/">WEIGHT TRACKER</a>
+<a class="atlas-link" href="data-atlas/">DATA ATLAS</a>
 <details id="support-menu" class="games-menu" hidden>
   <summary aria-expanded="false" aria-controls="support-options">Support <span aria-hidden="true">♥</span></summary>
   <div id="support-options">
@@ -341,12 +348,12 @@ function nextCard(){
 function loadTrivia(index){const deck=decks.trivia;if(deck.cards[index])return Promise.resolve();const embedded=$('trivia-data');if(embedded.textContent.trim()!=='[]'){const all=JSON.parse(embedded.textContent);if(all.length!==deck.limit)throw Error('Incomplete question bank');deck.cards=all;embedded.textContent='[]';return Promise.resolve()}const chunk=Math.floor(index/triviaInfo.chunkSize);if(triviaLoads.has(chunk))return triviaLoads.get(chunk);const task=fetch('trivia/'+chunk+'.json?v='+triviaInfo.version).then(r=>{if(!r.ok)throw Error('Question bank unavailable');return r.json()}).then(cards=>{const start=chunk*triviaInfo.chunkSize,expected=Math.min(triviaInfo.chunkSize,deck.limit-start);if(!Array.isArray(cards)||cards.length!==expected||cards.some(c=>!Array.isArray(c)||!c.slice(0,3).every(s=>typeof s==='string'&&s.trim())||c[1]===c[2]))throw Error('Invalid question bank');for(let i=0;i<cards.length;i++)deck.cards[start+i]=cards[i]}).catch(error=>{triviaLoads.delete(chunk);throw error});triviaLoads.set(chunk,task);return task}
 function loadLanguage(deck){if(languageLoads.has(deck.remote))return languageLoads.get(deck.remote);const info=languageInfo[deck.remote]||deck,embedded=$(deck.remote+'-data');const task=Promise.resolve().then(()=>embedded.textContent.trim()!=='[]'?JSON.parse(embedded.textContent):fetch((info.url||'languages/'+deck.remote+'.json')+'?v='+info.version).then(r=>{if(!r.ok)throw Error('Cards unavailable');return r.json()})).then(cards=>{if(!Array.isArray(cards)||cards.length!==info.count||cards.some(c=>!Array.isArray(c)||!c.slice(0,2).every(s=>typeof s==='string'&&s.trim())||(deck===decks.hangul&&(!Number.isFinite(c[2])||c[2]<1))))throw Error('Invalid language cards');deck.cards=cards;embedded.textContent='[]'}).catch(error=>{languageLoads.delete(deck.remote);throw error});languageLoads.set(deck.remote,task);return task}
 $('retry').addEventListener('click',()=>render());
-StudyNavigation.install({next:nextCard,previous:previousCard,enabled:()=>practiceActive&&!menuOpen()&&history.hidden&&!(document.body.classList.contains('notes-open')||document.body.classList.contains('atlas-open'))});
+StudyNavigation.install({next:nextCard,previous:previousCard,enabled:()=>practiceActive&&!menuOpen()&&history.hidden&&!(document.body.classList.contains('notes-open')||(document.body.classList.contains('atlas-open')||document.body.classList.contains('weight-open')))});
 function closeHistory(){history.hidden=true;today.setAttribute('aria-expanded','false')}
 function switchMode(name){reviewCursor=null;if(mode===name){state=read(active);render();return}mode=name;active=decks[name];preferredModes[active.section]=name;state=read(active);if(storageOK&&modeKeys[active.section]){try{localStorage.setItem(modeKeys[active.section],name)}catch{storageOK=false;warn()}}closeHistory();render()}
 for(const [name,b]of Object.entries(modeButtons))b.addEventListener('click',()=>switchMode(name));
 document.addEventListener('practice-section',e=>{reviewCursor=null;practiceActive=!e.detail.startsWith('arithmetic')&&!['programming','quant'].includes(e.detail);closeHistory();if(practiceActive){const next=preferredModes[e.detail];if(mode===next){state=read(active);render()}else switchMode(next)}});
-function skipKey(e){if(!practiceActive||document.body.classList.contains('atlas-open')||menuOpen()||e.ctrlKey||e.altKey||e.metaKey||e.isComposing)return;const next=e.code==='Space'||e.key===' '||e.key==='Enter';if(!next)return;const control=e.target.closest?.('input,textarea,select,[contenteditable="true"],summary,a,button');if(control&&control!==again)return;e.preventDefault();if(!e.repeat)nextCard()}
+function skipKey(e){if(!practiceActive||(document.body.classList.contains('atlas-open')||document.body.classList.contains('weight-open'))||menuOpen()||e.ctrlKey||e.altKey||e.metaKey||e.isComposing)return;const next=e.code==='Space'||e.key===' '||e.key==='Enter';if(!next)return;const control=e.target.closest?.('input,textarea,select,[contenteditable="true"],summary,a,button');if(control&&control!==again)return;e.preventDefault();if(!e.repeat)nextCard()}
 document.addEventListener('keydown',skipKey);
 document.addEventListener('keydown',e=>{if(!practiceActive||menuOpen())return;if(e.key==='Escape'){closeHistory();today.focus({preventScroll:true})}});
 today.addEventListener('click',()=>{history.hidden=!history.hidden;today.setAttribute('aria-expanded',String(!history.hidden));if(!history.hidden){state=read(active);renderHistory()}});$('close-history').addEventListener('click',()=>{closeHistory();today.focus({preventScroll:true})});
@@ -361,7 +368,7 @@ for(const [section,key]of Object.entries(modeKeys))try{const preferred=localStor
 const startSection=location.hash.slice(1);practiceActive=!['arithmetic','programming','quant'].includes(startSection);mode=preferredModes[startSection]||preferredModes.german;active=decks[mode];state=read(active);render();scheduleMidnight();
 })();</script>
 <script>(()=>{'use strict';
-const $=id=>document.getElementById(id),frame=$('arithmetic-frame'),menus=[...document.querySelectorAll('.games-menu')],subjects=new Set(['french','german','japanese','spanish','italian','greek','korean','economics','trivia','arithmetic','programming','quant']),options=document.querySelectorAll('.navigation .game-option'),embedded={arithmetic:['arithmetic.html?v=d218e2601456','Weekly arithmetic','Weekly arithmetic practice'],programming:['programming.html?v=d218e2601456','Programming','Programming learning cards'],quant:['quant.html?v=d218e2601456','QUANT','QUANT learning cards']};
+const $=id=>document.getElementById(id),frame=$('arithmetic-frame'),menus=[...document.querySelectorAll('.games-menu')],subjects=new Set(['french','german','japanese','spanish','italian','greek','korean','economics','trivia','arithmetic','programming','quant']),options=document.querySelectorAll('.navigation .game-option'),embedded={arithmetic:['arithmetic.html?v=e199140e9862','Weekly arithmetic','Weekly arithmetic practice'],programming:['programming.html?v=e199140e9862','Programming','Programming learning cards'],quant:['quant.html?v=e199140e9862','QUANT','QUANT learning cards']};
 const menuOpen=()=>menus.some(menu=>menu.open);
 let section='german';
 function focusArithmetic(){if(!embedded[section]||menuOpen())return;try{const input=section==='arithmetic'&&frame.contentDocument?.getElementById('answer');if(input)input.focus({preventScroll:true});else frame.contentWindow?.focus()}catch{frame.focus({preventScroll:true})}}
@@ -372,9 +379,9 @@ for(const button of options)button.addEventListener('click',()=>select(button.da
 for(const menu of menus){menu.querySelector('summary').addEventListener('click',()=>{for(const other of menus)if(other!==menu){other.open=false;other.querySelector('summary').setAttribute('aria-expanded','false')}});menu.addEventListener('toggle',()=>menu.querySelector('summary').setAttribute('aria-expanded',String(menu.open)))}
 document.addEventListener('click',e=>{if(menuOpen()&&!e.target.closest('.games-menu'))closeMenu()});
 frame.addEventListener('load',()=>{focusArithmetic();try{const doc=frame.contentDocument;doc.addEventListener('click',e=>{if(menuOpen()){e.preventDefault();e.stopImmediatePropagation();closeMenu()}},true);doc.addEventListener('keydown',e=>{if(menuOpen()&&(e.key==='Escape'||e.key==='Enter'||e.key===' '||e.code==='Space')){e.preventDefault();e.stopImmediatePropagation();if(e.key==='Escape')closeMenu(true)}},true)}catch{}});window.addEventListener('hashchange',show);
-document.addEventListener('click',e=>{if(embedded[section]&&section!=='arithmetic'&&!menuOpen()&&!(document.body.classList.contains('notes-open')||document.body.classList.contains('atlas-open'))&&StudyNavigation.canTap(e))frame.contentDocument?.dispatchEvent(new CustomEvent('study-next'));},true);
+document.addEventListener('click',e=>{if(embedded[section]&&section!=='arithmetic'&&!menuOpen()&&!(document.body.classList.contains('notes-open')||(document.body.classList.contains('atlas-open')||document.body.classList.contains('weight-open')))&&StudyNavigation.canTap(e))frame.contentDocument?.dispatchEvent(new CustomEvent('study-next'));},true);
 // Typed arithmetic cannot be skipped; other embedded games keep their card keys.
-document.addEventListener('keydown',e=>{if(menuOpen()&&e.key==='Escape'){e.preventDefault();e.stopImmediatePropagation();closeMenu(true);return}if(document.body.classList.contains('atlas-open')||frame.hidden||menuOpen()||e.isComposing||e.ctrlKey||e.altKey||e.metaKey||!(e.key==='Enter'||e.key===' '||e.code==='Space')||e.target.closest?.('input,textarea,select,[contenteditable="true"],summary,a,button'))return;e.preventDefault();e.stopImmediatePropagation();if(section==='arithmetic'){focusArithmetic();return}if(!e.repeat)frame.contentDocument?.dispatchEvent(new CustomEvent('study-next'))},true);
+document.addEventListener('keydown',e=>{if(menuOpen()&&e.key==='Escape'){e.preventDefault();e.stopImmediatePropagation();closeMenu(true);return}if((document.body.classList.contains('atlas-open')||document.body.classList.contains('weight-open'))||frame.hidden||menuOpen()||e.isComposing||e.ctrlKey||e.altKey||e.metaKey||!(e.key==='Enter'||e.key===' '||e.code==='Space')||e.target.closest?.('input,textarea,select,[contenteditable="true"],summary,a,button'))return;e.preventDefault();e.stopImmediatePropagation();if(section==='arithmetic'){focusArithmetic();return}if(!e.repeat)frame.contentDocument?.dispatchEvent(new CustomEvent('study-next'))},true);
 show();
 })();</script>
 <script>(()=>{'use strict';
@@ -392,7 +399,7 @@ for(const link of links){
 }
 note.textContent=config.preview?'Preview — payment link not connected.':config.genericUrl?'Choose an amount, then enter it on Revolut.':'Choose an amount. Continue on Revolut to pay.';
 })();</script>
-<script defer src="notes-navigation.js?v=d218e2601456"></script>
-<script defer src="account.js?v=d218e2601456"></script>
-<script defer src="atlas-navigation.js?v=289ff302cb43"></script></body>
+<script defer src="notes-navigation.js?v=e199140e9862"></script>
+<script defer src="account.js?v=e199140e9862"></script>
+<script defer src="atlas-navigation.js?v=192296d4da46"></script><script defer src="weight-navigation.js?v=e199140e9862"></script></body>
 </html>
