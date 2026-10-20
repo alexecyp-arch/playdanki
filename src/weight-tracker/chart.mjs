@@ -1,7 +1,7 @@
 import {chartData} from './model.mjs';
 const namespace='http://www.w3.org/2000/svg';
 export function draw(svg,entries,unit){
- const width=Math.max(300,Math.round(svg.clientWidth||800)),height=Math.max(260,Math.min(420,width*.48)),left=58,right=width-22,top=25,bottom=height-55;
+ const width=Math.max(300,Math.round(svg.clientWidth||800)),height=window.innerWidth>600?Math.max(260,window.innerHeight-205):Math.max(260,Math.min(420,width*.48)),left=58,right=width-22,top=25,bottom=height-55;
  const data=chartData(entries,unit),x=t=>left+(t-data.x[0])/(data.x[1]-data.x[0])*(right-left),y=v=>bottom-(v-data.y[0])/(data.y[1]-data.y[0])*(bottom-top);
  svg.replaceChildren();svg.setAttribute('viewBox',`0 0 ${width} ${height}`);svg.style.height=height+'px';
  const add=(tag,attrs={},text)=>{const e=document.createElementNS(namespace,tag);for(const [k,v]of Object.entries(attrs))e.setAttribute(k,v);if(text!==undefined)e.textContent=text;svg.append(e);return e;};

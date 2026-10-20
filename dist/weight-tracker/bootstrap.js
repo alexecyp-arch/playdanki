@@ -1,9 +1,9 @@
 import {initializeApp} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js';
 import {getAuth,onAuthStateChanged,beforeAuthStateChanged,GoogleAuthProvider,signInWithPopup} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js';
 import * as sdk from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js';
-import {createWeightStore} from './store.mjs?v=e199140e9862';
-import {draw} from './chart.mjs?v=e199140e9862';
-import {kilograms,weight} from './model.mjs?v=e199140e9862';
+import {createWeightStore} from './store.mjs?v=1a33fc67c4ae';
+import {draw} from './chart.mjs?v=1a33fc67c4ae';
+import {kilograms,weight} from './model.mjs?v=1a33fc67c4ae';
 const $=id=>document.getElementById(id),app=initializeApp(JSON.parse($('auth-config').textContent).firebase),auth=getAuth(app),db=sdk.getFirestore(app);
 let store=null,entries=[],unit='KG',ready=false,saving=false,generation=0;
 const render=()=>draw($('chart'),entries,unit),controls=()=>{$('add').disabled=!ready||saving||!navigator.onLine;};
@@ -16,5 +16,5 @@ for(const next of ['KG','LB'])$(next.toLowerCase()).addEventListener('click',()=
 $('weight-form').addEventListener('submit',async event=>{event.preventDefault();if(saving||!store||!ready)return;const current=generation;saving=true;controls();$('status').textContent='SAVING';try{await store.add($('weight').value,unit);if(current!==generation)return;$('weight').value='';$('status').textContent='SAVED';}catch(error){if(current===generation)$('status').textContent=navigator.onLine?error.message==='WEIGHT'?'WEIGHT':'RETRY':'OFFLINE';}finally{if(current===generation){saving=false;controls();}}});
 $('sign-in').addEventListener('click',async()=>{$('sign-in').disabled=true;try{await signInWithPopup(auth,new GoogleAuthProvider());}catch{$('status').textContent='RETRY';}finally{$('sign-in').disabled=false;}});
 for(const type of ['online','offline'])window.addEventListener(type,()=>{if(!navigator.onLine)$('status').textContent='OFFLINE';else if(ready)$('status').textContent='';controls();});
-new ResizeObserver(render).observe($('chart'));render();
+new ResizeObserver(render).observe($('chart'));window.addEventListener('resize',render);render();
 if(parent!==window)document.querySelector('.danki-return').addEventListener('click',event=>{if(event.button||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;event.preventDefault();parent.postMessage({type:'danki-weight-return'},location.origin);});
