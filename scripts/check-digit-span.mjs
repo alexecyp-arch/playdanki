@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import {createRun,START_LENGTH,DIGIT_MS,GAP_MS,estimatedPercentile,percentileLabel,randomSequence} from '../src/digit-span/model.mjs';
+let time=0,id=0,jobs=new Map(),seen=[];
+const run=createRun({sequence:n=>'0123456789'.repeat(Math.ceil(n/10)).slice(0,n),schedule:(fn,ms)=>{jobs.set(++id,{fn,at:time+ms});return id;},cancel:id=>jobs.delete(id),onChange:s=>seen.push({time,...s})});
+function tick(ms){const end=time+ms;for(;;){const task=[...jobs].sort((a,b)=>a[1].at-b[1].at)[0];if(!task||task[1].at>end)break;time=task[1].at;jobs.delete(task[0]);task[1].fn();}time=end;}
+assert.equal(START_LENGTH,5);assert.equal(DIGIT_MS,500);assert.equal(GAP_MS,500);
+run.start();run.input('99999');assert.equal(run.snapshot().answer,'');tick(499);assert.equal(run.snapshot().digit,'');tick(1);assert.equal(run.snapshot().digit,'0');tick(500);assert.equal(run.snapshot().digit,'');tick(500);assert.equal(run.snapshot().digit,'1');tick(3500);assert.equal(run.snapshot().phase,'recall');
+assert.deepEqual(seen.filter(s=>s.digit).map(s=>[s.time,s.digit]),[[500,'0'],[1500,'1'],[2500,'2'],[3500,'3'],[4500,'4']]);
+run.input('01 x');assert.equal(run.snapshot().answer,'01');run.input('0');assert.equal(run.snapshot().answer,'0');run.input('01234');assert.equal(run.snapshot().phase,'checking');run.input('99999');tick(500);assert.equal(run.snapshot().achieved,5);assert.equal(run.snapshot().length,6);tick(1000+6000);assert.equal(run.snapshot().phase,'recall');run.input('012345');tick(500+1000+7000);assert.equal(run.snapshot().phase,'recall');assert.equal(run.snapshot().achieved,6);
+run.input('9999999');tick(500);assert.equal(run.snapshot().phase,'over');assert.equal(run.snapshot().achieved,6);tick(10000);assert.equal(run.snapshot().phase,'over');
+run.start();tick(2000);run.pause();assert.equal(run.snapshot().phase,'paused');assert.equal(jobs.size,0);tick(10000);run.resume();assert.equal(run.snapshot().length,5);tick(5000);run.input('99999');tick(500);assert.equal(run.snapshot().achieved,0);assert.equal(estimatedPercentile(0),null);assert.equal(percentileLabel(0),'PERCENTILE UNAVAILABLE');
+assert.equal(estimatedPercentile(7),50);assert.equal(percentileLabel(7),'50TH ESTIMATED PERCENTILE');assert.equal(percentileLabel(15),'>99TH ESTIMATED PERCENTILE');for(let n=5;n<20;n++)assert(estimatedPercentile(n)<=estimatedPercentile(n+1));assert.equal(randomSequence(5,()=>0),'00000');run.dispose();assert.equal(jobs.size,0);
+console.log('Digit span passed: 5-digit start, exact 500ms display/500ms gaps, leading zero, editing, increasing lengths, one-failure end, real achieved score, restart, pause cleanup, bounded percentile estimates.');

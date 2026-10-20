@@ -1,4 +1,4 @@
-import {chartData} from './model.mjs?v=af1ef2c00140';
+import {chartData} from './model.mjs?v=033d08abf28f';
 const namespace='http://www.w3.org/2000/svg';
 export function draw(svg,entries,unit,{selectedId=null,onSelect=()=>{}}={}){
  const width=Math.max(300,Math.round(svg.clientWidth||800)),height=window.innerWidth>600?Math.max(260,window.innerHeight-205):Math.max(260,Math.min(420,width*.48)),left=58,right=width-22,top=25,bottom=height-55;

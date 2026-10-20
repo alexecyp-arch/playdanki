@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#071e48"><title>DIGIT SPAN</title><link rel="stylesheet" href="style.css?v=033d08abf28f"></head>
+<body><main>
+<h1>DIGIT SPAN</h1>
+<p id="level">5 DIGITS · 1 MISTAKE ENDS THE RUN</p>
+<div id="digit" aria-label="Digit display"></div>
+<p id="prompt" role="status">REMEMBER THE DIGITS IN ORDER</p>
+<button id="start" type="button">START</button>
+<section id="recall" hidden aria-label="Recall digits">
+<input id="answer" type="text" inputmode="numeric" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Enter the digits in order">
+<div id="keypad" aria-label="Number keypad"></div>
+</section>
+<section id="result" hidden aria-live="polite"><h2 id="score"></h2><p id="percentile"></p>
+<details><summary>PERCENTILE INFO</summary><p>ROUGH STUDY COMPARISON, NOT A MEASURED RANK FOR THIS GAME. 7 DIGITS = ESTIMATED 50TH PERCENTILE.</p><p>WOODS ET AL. (2011): 763 ADULTS, AGES 18–65. LONGEST FORWARD SPAN: MEDIAN 7, STANDARD DEVIATION 1.03. ESTIMATE USES A NORMAL CURVE CENTRED ON THAT MEDIAN.</p><p>THE STUDY USED SPOKEN DIGITS AND 14 TRIALS. THIS GAME USES VISUAL DIGITS AND ENDS AFTER ONE WRONG ANSWER. AGE, PRACTICE AND TEST RULES CAN CHANGE THE COMPARISON.</p></details></section>
+</main><script type="module" src="game.js?v=033d08abf28f"></script></body></html>

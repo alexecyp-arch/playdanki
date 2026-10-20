@@ -9,13 +9,13 @@ import {triviaInfo} from './build-trivia.mjs';
 import {frenchWords,frenchSentences} from './build-french.mjs';
 import {languageInfo} from './build-languages.mjs';
 const root=new URL('../',import.meta.url);
-const runtimeFiles=['account.js','notes-navigation.js','weight-navigation.js','app.js','card-navigation.js','sections.js','programming.js','quant.js','study.css',...['bootstrap.js','ui.js','notes-store.mjs','eternal-ui.js','eternal.mjs','note-order.mjs','selection.mjs','daily-background.js'].map(f=>'temponotes/'+f),...['bootstrap.js','store.mjs','model.mjs','chart.mjs','style.css','index.html'].map(f=>'weight-tracker/'+f)];
+const runtimeFiles=['digit-span/index.html','digit-span/style.css','digit-span/game.js','digit-span/model.mjs','account.js','notes-navigation.js','weight-navigation.js','app.js','card-navigation.js','sections.js','programming.js','quant.js','study.css',...['bootstrap.js','ui.js','notes-store.mjs','eternal-ui.js','eternal.mjs','note-order.mjs','selection.mjs','daily-background.js'].map(f=>'temponotes/'+f),...['bootstrap.js','store.mjs','model.mjs','chart.mjs','style.css','index.html'].map(f=>'weight-tracker/'+f)];
 const runtimeVersion=createHash('sha256').update((await Promise.all(runtimeFiles.map(f=>fs.readFile(new URL('src/'+f,root),'utf8')))).join('\n')+atlasVersion).digest('hex').slice(0,12);
 let html=await fs.readFile(new URL('src/index.html',root),'utf8');
 const css=await fs.readFile(new URL('src/style.css',root),'utf8');
 const js=await fs.readFile(new URL('src/app.js',root),'utf8');
 const cardNavigation=await fs.readFile(new URL('src/card-navigation.js',root),'utf8');
-const sections=(await fs.readFile(new URL('src/sections.js',root),'utf8')).replace(/'(arithmetic|programming|quant)\.html'/g,"'$1.html?v="+runtimeVersion+"'");
+const sections=(await fs.readFile(new URL('src/sections.js',root),'utf8')).replaceAll("'digit-span/index.html'","'digit-span/index.html?v="+runtimeVersion+"'").replace(/'(arithmetic|programming|quant)\.html'/g,"'$1.html?v="+runtimeVersion+"'");
 const cursorCss=await fs.readFile(new URL('src/cursor.css',root),'utf8');
 const studyCss=await fs.readFile(new URL('src/study.css',root),'utf8');
 const supportCss=await fs.readFile(new URL('src/support.css',root),'utf8'),supportJs=await fs.readFile(new URL('src/support.js',root),'utf8'),supportConfig=JSON.parse(await fs.readFile(new URL('src/support-config.json',root),'utf8'));
@@ -77,6 +77,8 @@ await fs.cp(new URL('src/weight-tracker/',root),new URL('dist/weight-tracker/',r
 for(const name of ['bootstrap.js','store.mjs','chart.mjs']){const file='weight-tracker/'+name;const source=await fs.readFile(new URL('src/'+file,root),'utf8');await fs.writeFile(new URL('dist/'+file,root),source.replace(/from '(\.\/[^']+\.(?:mjs|js))'/g,(all,path)=>"from '"+path+'?v='+runtimeVersion+"'"));}
 const weightHtml=(await fs.readFile(new URL('src/weight-tracker/index.html',root),'utf8')).replace('AUTH_CONFIG',JSON.stringify(authConfig)).replace('href="style.css"','href="style.css?v='+runtimeVersion+'"').replace('src="bootstrap.js"','src="bootstrap.js?v='+runtimeVersion+'"');
 await fs.writeFile(new URL('dist/weight-tracker/index.html',root),weightHtml);
+await fs.cp(new URL('src/digit-span/',root),new URL('dist/digit-span/',root),{recursive:true});
+for(const name of ['index.html','game.js']){const file='digit-span/'+name;const source=await fs.readFile(new URL('src/'+file,root),'utf8');await fs.writeFile(new URL('dist/'+file,root),source.replace('href="style.css"','href="style.css?v='+runtimeVersion+'"').replace('src="game.js"','src="game.js?v='+runtimeVersion+'"').replace("'./model.mjs'","'./model.mjs?v="+runtimeVersion+"'"));}
 await fs.writeFile(new URL('dist/index.html',root),html);
 for(const file of ['account.js','cloud-state.mjs','notes-navigation.js'])await fs.copyFile(new URL('src/'+file,root),new URL('dist/'+file,root));
 await fs.writeFile(new URL('dist/notes-navigation.js',root),(await fs.readFile(new URL('src/notes-navigation.js',root),'utf8')).replace('NOTES_RELEASE',runtimeVersion));
