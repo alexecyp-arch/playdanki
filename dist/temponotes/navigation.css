@@ -39,3 +39,5 @@
 
 /* Keep pin selection stable without moving the text or clipping its border. */
 .notes-area{overflow-anchor:none;scroll-behavior:auto}.note{position:relative}.note-pin{display:flex;flex:0 0 15px;visibility:hidden}.note.selected .note-pin{visibility:visible}.note.selected{box-shadow:none;border-color:#b58aff}.note.selected::after{content:"";position:absolute;inset:0;border:1px solid #b58aff;pointer-events:none;z-index:2}.note-heading{cursor:pointer}.note .expiry{text-transform:uppercase}
+
+.note.eternal .delete{margin-left:0}
