@@ -1,14 +1,14 @@
 import {initializeApp} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js';
 import {getAuth,onAuthStateChanged,beforeAuthStateChanged,GoogleAuthProvider,signInWithPopup} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js';
 import * as sdk from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js';
-import {mount} from './ui.js?v=033d08abf28f';
-import {createNotesStore} from './notes-store.mjs?v=033d08abf28f';
-import {createSelection} from './selection.mjs?v=033d08abf28f';
+import {mount} from './ui.js?v=8b5b251da07c';
+import {createNotesStore} from './notes-store.mjs?v=8b5b251da07c';
+import {createCloudSelection} from './cloud-selection.mjs?v=8b5b251da07c';
 const config=JSON.parse(document.getElementById('auth-config').textContent);
 const app=initializeApp(config.firebase),auth=getAuth(app),db=sdk.getFirestore(app);
 const root=document.getElementById('root'),gate=document.getElementById('auth-gate'),status=document.getElementById('auth-status'),button=document.getElementById('sign-in');
-let generation=0,dispose=()=>{},unmount=()=>{},loading;
-function clear(){++generation;loading?.abort();unmount();dispose();unmount=dispose=()=>{};root.replaceChildren();gate.hidden=false;}
+let generation=0,dispose=()=>{},unmount=()=>{},loading,selectionStore;
+function clear(){selectionStore?.dispose();selectionStore=null;++generation;loading?.abort();unmount();dispose();unmount=dispose=()=>{};root.replaceChildren();gate.hidden=false;}
 beforeAuthStateChanged(auth,clear);
 window.addEventListener('pagehide',clear);
 window.addEventListener('pageshow',event=>{if(event.persisted)location.reload();});
@@ -24,7 +24,7 @@ onAuthStateChanged(auth,async user=>{
   try{
     const pending=createNotesStore({auth,db,sdk,uid:user.uid,signal:loading.signal});
     let storage;try{storage=localStorage;}catch{}
-    const selection=createSelection(storage,user.uid,()=>auth.currentUser?.uid);
+    const selection=selectionStore=createCloudSelection({auth,db,sdk,uid:user.uid,storage,onError:()=>{if(current===generation){status.hidden=false;status.textContent='Could not sync the pin. Tap the note to retry.';}}});
     gate.hidden=true;unmount=mount(root,async(...args)=>(await pending).request(...args),{visible:window.parent===window||!window.frameElement?.hidden,selection});
     const store=await pending;
     if(current!==generation){store.dispose();return;}

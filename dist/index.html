@@ -8,31 +8,31 @@
 <meta name="description" content="Practice languages and learning games with simple cards and saved progress.">
 <title>German practice</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23071e48'/%3E%3Ctext x='16' y='24' text-anchor='middle' font-family='Arial' font-size='24' font-weight='bold' fill='white'%3ED%3C/text%3E%3C/svg%3E">
-<style>:root{color-scheme:dark;font-family:Arial,Helvetica,sans-serif;background:#071e48;color:#fff;font-weight:700;font-synthesis:none}
-.atlas-link{display:inline-flex;align-items:center;align-self:center;border:1px solid #45618e;border-radius:.4rem;background:#102c59;color:#fff;text-decoration:none;font:700 .68rem/1.2 Arial,Helvetica,sans-serif;padding:.65rem .55rem;white-space:nowrap}.atlas-link:focus-visible{outline:3px solid white;outline-offset:4px}
+<style>:root{color-scheme:dark;font-family:Arial,Helvetica,sans-serif;background:var(--danki-bg,#071e48);color:#fff;font-weight:700;font-synthesis:none}
+.atlas-link{display:inline-flex;align-items:center;align-self:center;border:1px solid var(--danki-border,#45618e);border-radius:.4rem;background:var(--danki-panel,#102c59);color:#fff;text-decoration:none;font:700 .68rem/1.2 Arial,Helvetica,sans-serif;padding:.65rem .55rem;white-space:nowrap}.atlas-link:focus-visible{outline:3px solid white;outline-offset:4px}
 *{box-sizing:border-box}
-body{margin:0;min-height:100svh;background:#071e48}
+body{margin:0;min-height:100svh;background:var(--danki-bg,#071e48)}
 button{font:inherit;color:inherit;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 button:focus-visible{outline:3px solid #fff;outline-offset:5px}
 .navigation{position:absolute;top:1.5rem;left:1.5rem;z-index:6;display:flex;align-items:flex-start;gap:.5rem}
 .games-menu{position:relative;width:max-content}
-.games-menu summary{display:flex;align-items:center;gap:.9rem;list-style:none;border:1px solid #45618e;border-radius:.4rem;background:#102c59;padding:.65rem .9rem;font-size:1rem;cursor:pointer;user-select:none}
+.games-menu summary{display:flex;align-items:center;gap:.9rem;list-style:none;border:1px solid var(--danki-border,#45618e);border-radius:.4rem;background:var(--danki-panel,#102c59);padding:.65rem .9rem;font-size:1rem;cursor:pointer;user-select:none}
 .games-menu summary::-webkit-details-marker{display:none}
 .games-menu summary:focus-visible{outline:3px solid #fff;outline-offset:4px}
 .games-menu summary span{font-size:.9rem}
 #games-menu .games-list{left:auto;right:0}
-.games-list{position:absolute;left:0;top:calc(100% + .5rem);width:min(18rem,calc(100vw - 3rem));max-height:calc(100svh - 6rem);overflow:auto;overscroll-behavior:contain;background:#102c59;border:1px solid #49628b;border-radius:.65rem;padding:.5rem;box-shadow:0 12px 35px #0005;scrollbar-width:thin}
+.games-list{position:absolute;left:0;top:calc(100% + .5rem);width:min(18rem,calc(100vw - 3rem));max-height:calc(100svh - 6rem);overflow:auto;overscroll-behavior:contain;background:var(--danki-panel,#102c59);border:1px solid #49628b;border-radius:.65rem;padding:.5rem;box-shadow:0 12px 35px #0005;scrollbar-width:thin}
 .game-option{display:block;width:100%;border:0;border-radius:.35rem;padding:.5rem .6rem;text-align:left;background:transparent;font-size:.9375rem;cursor:pointer}
 .game-option.active,.game-option:hover{background:#244576}
-.arithmetic-frame{position:fixed;inset:0;width:100%;height:100svh;border:0;background:#071e48}
+.arithmetic-frame{position:fixed;inset:0;width:100%;height:100svh;border:0;background:var(--danki-bg,#071e48)}
 #game[hidden],.tracker[hidden],.modes[hidden],.arithmetic-frame[hidden]{display:none}
 main{min-height:100svh;display:flex;flex-direction:column;gap:1rem;padding:6.3rem 2rem 9rem}
 .practice{width:min(100%,56rem);text-align:center;margin-inline:auto}
-.position{font-size:.875rem;font-variant-numeric:tabular-nums;letter-spacing:.12em;color:#a3b4d1;margin-bottom:.7rem}
+.position{font-size:.875rem;font-variant-numeric:tabular-nums;letter-spacing:.12em;color:var(--danki-muted,#a3b4d1);margin-bottom:.7rem}
 h1{font-size:clamp(3.2rem,7vw,6.5rem);line-height:1.15;letter-spacing:-.025em;margin:0;overflow-wrap:anywhere}
 .sentence-mode h1{font-size:clamp(2rem,4.2vw,3.6rem);line-height:1.25;max-width:48rem;margin-inline:auto}
 .japanese-mode h1{font-family:Arial,"Yu Gothic","Hiragino Kaku Gothic ProN",sans-serif;letter-spacing:0}
-.answer-box{width:fit-content;max-width:100%;min-width:10rem;margin:2rem auto 1.5rem;border:2px solid #45618e;border-radius:.65rem;background:#102c59;padding:1.2rem 2rem;overflow-wrap:anywhere}
+.answer-box{width:fit-content;max-width:100%;min-width:10rem;margin:2rem auto 1.5rem;border:2px solid var(--danki-border,#45618e);border-radius:.65rem;background:var(--danki-panel,#102c59);padding:1.2rem 2rem;overflow-wrap:anywhere}
 .translation{font-size:clamp(2.5rem,6vw,5rem);line-height:1.2;white-space:pre-line}
 .sentence-mode .translation{font-size:clamp(1.5rem,3.3vw,2.8rem);line-height:1.35}
 .japanese-mode .translation{font-family:Arial,"Yu Gothic","Hiragino Kaku Gothic ProN",sans-serif}
@@ -45,23 +45,23 @@ body{position:relative}.tracker{position:absolute}
 .today-label{font-size:.75rem;color:#91a5c7}
 .chevron{margin-left:.55rem;display:inline-block;font-size:1rem}
 #today[aria-expanded=true] .chevron{transform:rotate(180deg)}
-.history{position:absolute;right:0;bottom:100%;width:min(25rem,calc(100vw - 2rem));max-height:65svh;overflow:auto;background:#102c59;border:1px solid #49628b;border-radius:.65rem;text-align:left;box-shadow:0 12px 35px #0005}
+.history{position:absolute;right:0;bottom:100%;width:min(25rem,calc(100vw - 2rem));max-height:65svh;overflow:auto;background:var(--danki-panel,#102c59);border:1px solid #49628b;border-radius:.65rem;text-align:left;box-shadow:0 12px 35px #0005}
 .history[hidden]{display:none}
 .history-head{padding:1rem 1.2rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #49628b}
 .history-head button{border:0;background:transparent;font-size:1.6rem;line-height:1;padding:0 .2rem;cursor:pointer;color:#c9d6e9}
 .history-row{padding:1rem 1.2rem;border-bottom:1px solid #2d4973;font-size:.875rem;line-height:1.7}
 .history-row:last-child{border-bottom:0}
-.history-date{font-size:.75rem;color:#a3b4d1;margin-bottom:.25rem}
+.history-date{font-size:.75rem;color:var(--danki-muted,#a3b4d1);margin-bottom:.25rem}
 .history-count{font-size:.9375rem}
 .history-score{color:#bdcce4}
-.kanji-credit{display:block;color:#a3b4d1;font-size:.6875rem;margin-top:.2rem}.kanji-credit[hidden]{display:none}
+.kanji-credit{display:block;color:var(--danki-muted,#a3b4d1);font-size:.6875rem;margin-top:.2rem}.kanji-credit[hidden]{display:none}
 .empty-history{margin:0;padding:1.2rem;font-size:.875rem;color:#bdcce4}
 .storage-warning{position:fixed;left:1.5rem;bottom:1.5rem;max-width:min(27rem,70vw);font-size:.8125rem;color:#ffc6bd}
-.again{background:#102c59;border:2px solid #647ea7;border-radius:.65rem;padding:1rem 2rem;font-size:1.25rem;cursor:pointer}.again:hover{background:#173766}.again[hidden]{display:none}.credits{display:block;padding:.7rem 1.2rem;font-size:.75rem;color:#a3b4d1;border-top:1px solid #2d4973}
+.again{background:var(--danki-panel,#102c59);border:2px solid var(--danki-border,#647ea7);border-radius:.65rem;padding:1rem 2rem;font-size:1.25rem;cursor:pointer}.again:hover{background:var(--danki-raised,#173766)}.again[hidden]{display:none}.credits{display:block;padding:.7rem 1.2rem;font-size:.75rem;color:var(--danki-muted,#a3b4d1);border-top:1px solid #2d4973}
 @media(max-width:600px){.navigation{top:1.2rem;left:1.2rem}.games-menu summary{gap:.5rem;padding:.65rem .7rem;font-size:.875rem}.games-list{width:min(18rem,calc(100vw - 2.4rem))}main{padding:6rem 1.2rem 8rem;gap:.5rem}h1{font-size:clamp(3rem,12vw,4.4rem)}.sentence-mode h1{font-size:clamp(1.5rem,6.5vw,2.5rem)}.answer-box{margin:1.5rem auto;padding:1rem 1.2rem}.tracker{right:1.3rem;bottom:1.1rem}.position{margin-bottom:.65rem}}
 @media(max-height:600px) and (min-width:601px){main{padding-top:5rem}h1{font-size:3.5rem}.sentence-mode h1{font-size:2rem}.navigation{top:.8rem}}
 .question-image{display:block;width:min(14rem,55vw);max-height:7rem;object-fit:contain;margin:1rem auto .5rem}.question-image[hidden]{display:none}
-.temponotes-link{position:absolute;right:1.5rem;top:1.5rem;z-index:7;background:#102c59;border:1px solid #45618e;border-radius:.4rem;padding:.7rem .85rem;color:white;text-decoration:none;font-size:.85rem;line-height:1.2}.temponotes-link:focus-visible{outline:3px solid white;outline-offset:4px}@media(max-width:600px){.temponotes-link{top:1.2rem;right:1.2rem;font-size:.65rem;padding:.7rem .55rem}.navigation{max-width:calc(100% - 8rem);flex-wrap:wrap}.navigation .games-menu summary{font-size:.75rem;padding:.65rem .5rem;gap:.3rem}}
+.temponotes-link{position:absolute;right:1.5rem;top:1.5rem;z-index:7;background:var(--danki-panel,#102c59);border:1px solid var(--danki-border,#45618e);border-radius:.4rem;padding:.7rem .85rem;color:white;text-decoration:none;font-size:.85rem;line-height:1.2}.temponotes-link:focus-visible{outline:3px solid white;outline-offset:4px}@media(max-width:600px){.temponotes-link{top:1.2rem;right:1.2rem;font-size:.65rem;padding:.7rem .55rem}.navigation{max-width:calc(100% - 8rem);flex-wrap:wrap}.navigation .games-menu summary{font-size:.75rem;padding:.65rem .5rem;gap:.3rem}}
 .answer-box{position:absolute;left:50%;top:50svh;transform:translate(-50%,-50%);width:max-content;max-width:min(56rem,calc(100vw - 4rem));margin:0}
 @media(max-width:600px){.answer-box{max-width:calc(100vw - 2.4rem)}}
 @media(max-width:600px){#games-menu .games-list{left:0;right:auto}}
@@ -76,7 +76,7 @@ body:focus,#game:focus,#exercise:focus,.arithmetic-frame:focus{outline:none}
 #answer-box{min-width:0}
 #study .answer{max-width:100%}
 #exercise #problem,#exercise #answer{max-width:100%;white-space:normal;overflow-wrap:anywhere}
-#previous-card{display:block;position:fixed;left:50%;bottom:calc(.5rem + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:4;min-height:1.2rem;min-width:0;border:0;border-radius:0;background:#071e48;box-shadow:none;color:#fff;padding:.1rem .3rem;font:700 .55rem/1.2 Arial,Helvetica,sans-serif;white-space:nowrap;touch-action:manipulation}
+#previous-card{display:block;position:fixed;left:50%;bottom:calc(.5rem + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:4;min-height:1.2rem;min-width:0;border:0;border-radius:0;background:var(--danki-bg,#071e48);box-shadow:none;color:#fff;padding:.1rem .3rem;font:700 .55rem/1.2 Arial,Helvetica,sans-serif;white-space:nowrap;touch-action:manipulation}
 @media(hover:none) and (pointer:coarse) and (max-width:600px),(hover:none) and (pointer:coarse) and (max-height:600px){#previous-card{display:block;min-height:2rem;min-width:5rem;padding:.35rem .65rem;font-size:.75rem}.tracker,#tracker{bottom:calc(3rem + env(safe-area-inset-bottom,0px))}.course-main{padding-bottom:8rem}}
 
 @media(max-width:600px){#previous-card{min-height:2rem;min-width:5rem;padding:.35rem .65rem;font-size:.75rem}.tracker,#tracker{bottom:calc(3rem + env(safe-area-inset-bottom,0px))}}
@@ -84,12 +84,12 @@ body:focus,#game:focus,#exercise:focus,.arithmetic-frame:focus{outline:none}
 @media(max-width:600px){.tracker,#tracker{transform:scale(.65);transform-origin:bottom right}#previous-card{transform:translateX(-50%) scale(.65);transform-origin:center bottom}.again,#again,#retry,.stats-head button{transform:scale(.65)}}
 #support-menu{position:fixed;left:1rem;bottom:calc(.75rem + env(safe-area-inset-bottom,0px));z-index:7}
 #support-menu[hidden]{display:none}
-#support-menu>summary{font-size:.75rem;line-height:1.2;gap:.4rem;padding:.5rem .6rem;border-color:#45618e;background:#071e48}
+#support-menu>summary{font-size:.75rem;line-height:1.2;gap:.4rem;padding:.5rem .6rem;border-color:var(--danki-border,#45618e);background:var(--danki-bg,#071e48)}
 #support-menu>summary span{font-size:.75rem}
-#support-options{position:absolute;left:0;bottom:calc(100% + .5rem);width:min(15rem,calc(100vw - 2rem));padding:.8rem;border:1px solid #49628b;border-radius:.4rem;background:#102c59;box-shadow:0 8px 24px #0005;text-align:left}
+#support-options{position:absolute;left:0;bottom:calc(100% + .5rem);width:min(15rem,calc(100vw - 2rem));padding:.8rem;border:1px solid #49628b;border-radius:.4rem;background:var(--danki-panel,#102c59);box-shadow:0 8px 24px #0005;text-align:left}
 #support-options strong{font-size:.875rem}
 #support-options .amounts{display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem;margin-top:.7rem}
-#support-options a{display:block;padding:.55rem;text-align:center;background:#173766;border:1px solid #45618e;border-radius:.3rem;color:#fff;text-decoration:none;font-size:.9375rem;font-weight:700}
+#support-options a{display:block;padding:.55rem;text-align:center;background:var(--danki-raised,#173766);border:1px solid var(--danki-border,#45618e);border-radius:.3rem;color:#fff;text-decoration:none;font-size:.9375rem;font-weight:700}
 #support-options a:focus-visible{outline:2px solid #fff;outline-offset:2px}
 #support-options a[aria-disabled=true]{opacity:.55}
 #support-note{margin:.7rem 0 0;font-size:.75rem;line-height:1.4;color:#fff}
@@ -98,11 +98,11 @@ body:focus,#game:focus,#exercise:focus,.arithmetic-frame:focus{outline:none}
 #account-bar #support-menu{position:relative;left:auto;bottom:auto}
 #account-menu{position:relative}
 #account-menu[hidden]{display:none}
-#account-menu>summary{font-size:.75rem;line-height:1.2;padding:.5rem .6rem;background:#071e48;border:1px solid #45618e;border-radius:.35rem;color:#fff;font-weight:700;list-style:none}
+#account-menu>summary{font-size:.75rem;line-height:1.2;padding:.5rem .6rem;background:var(--danki-bg,#071e48);border:1px solid var(--danki-border,#45618e);border-radius:.35rem;color:#fff;font-weight:700;list-style:none}
 #account-menu>summary::-webkit-details-marker{display:none}
-#account-panel{position:absolute;bottom:calc(100% + .5rem);left:0;width:min(19rem,calc(100vw - 2rem));padding:1rem;background:#102c59;border:1px solid #49628b;border-radius:.4rem;text-align:left;box-shadow:0 8px 24px #0005}
+#account-panel{position:absolute;bottom:calc(100% + .5rem);left:0;width:min(19rem,calc(100vw - 2rem));padding:1rem;background:var(--danki-panel,#102c59);border:1px solid #49628b;border-radius:.4rem;text-align:left;box-shadow:0 8px 24px #0005}
 #account-panel p{font-size:.8rem;line-height:1.4;margin:0 0 .65rem}
-#account-panel button{font-size:.8rem;font-weight:700;color:white;border:1px solid #607ca7;border-radius:.3rem;background:#173766;padding:.6rem;margin:.2rem .2rem .2rem 0}
+#account-panel button{font-size:.8rem;font-weight:700;color:white;border:1px solid #607ca7;border-radius:.3rem;background:var(--danki-raised,#173766);padding:.6rem;margin:.2rem .2rem .2rem 0}
 #account-panel button:disabled{opacity:.55}
 #account-panel button:focus-visible{outline:2px solid white;outline-offset:2px}
 #account-identity{overflow-wrap:anywhere}
@@ -110,7 +110,7 @@ body:focus,#game:focus,#exercise:focus,.arithmetic-frame:focus{outline:none}
 #account-conflict[hidden],#account-panel [hidden]{display:none}
 @media(max-width:600px){#account-bar{left:.75rem;max-width:calc(50vw - 3.5rem);flex-wrap:wrap}#account-menu>summary{font-size:.6875rem;padding:.5rem}#account-panel{left:0;width:min(18rem,calc(100vw - 1.5rem))}}
 #account-bar{flex-direction:column;align-items:flex-start}
-#account-bar>.atlas-link,#account-bar>.weight-link,#account-menu>summary{display:flex;align-items:center;justify-content:center;align-self:auto;width:7.75rem;height:2rem;padding:.5rem .6rem;border:1px solid #45618e;border-radius:.35rem;background:#071e48;color:#fff;font:700 .75rem/1.2 Arial,Helvetica,sans-serif;white-space:nowrap;text-decoration:none}
+#account-bar>.atlas-link,#account-bar>.weight-link,#account-menu>summary{display:flex;align-items:center;justify-content:center;align-self:auto;width:7.75rem;height:2rem;padding:.5rem .6rem;border:1px solid var(--danki-border,#45618e);border-radius:.35rem;background:var(--danki-bg,#071e48);color:#fff;font:700 .75rem/1.2 Arial,Helvetica,sans-serif;white-space:nowrap;text-decoration:none}
 @media(max-width:600px){#account-bar>.atlas-link,#account-bar>.weight-link,#account-menu>summary{font-size:.6875rem}#account-bar{transform:scale(.65);transform-origin:bottom left}}</style>
 <script>(()=>{'use strict';
  const controls='button,a,input,textarea,select,summary,[contenteditable="true"],.games-menu,.navigation,#account-bar,.tracker,#tracker,#history,#stats,[role="dialog"]';
@@ -119,7 +119,7 @@ body:focus,#game:focus,#exercise:focus,.arithmetic-frame:focus{outline:none}
  window.StudyNavigation={canTap,install};
 })();
 </script>
-</head>
+<script id="danki-shared-theme" src="/theme.js?v=2d3875127708"></script><link rel="stylesheet" href="/theme.css?v=2d3875127708"></head>
 <body>
 <a class="temponotes-link" href="temponotes/">TEMPONOTES</a>
 <header class="navigation">
@@ -155,6 +155,7 @@ body:focus,#game:focus,#exercise:focus,.arithmetic-frame:focus{outline:none}
   </details>
 </header>
 <div id="account-bar">
+<div id="theme-switcher" role="group" aria-label="Background colour"><button type="button" data-theme-choice="indigo" aria-label="Indigo background" aria-pressed="true" title="INDIGO"></button><button type="button" data-theme-choice="charcoal" aria-label="Charcoal background" aria-pressed="false" title="CHARCOAL"></button></div>
 <a class="weight-link" href="weight-tracker/">WEIGHT TRACKER</a>
 <a class="atlas-link" href="data-atlas/">DATA ATLAS</a>
 <details id="support-menu" class="games-menu" hidden>
@@ -205,8 +206,8 @@ body:focus,#game:focus,#exercise:focus,.arithmetic-frame:focus{outline:none}
     <a class="credits" href="credits.txt" target="_blank" rel="noopener">List credits</a>
   </section>
   <button id="today" type="button" aria-expanded="false" aria-controls="history">
-    <span class="today-label"><span id="tracker-period">Today</span> <span class="chevron" aria-hidden="true">⌃</span></span>
-    <span id="today-count">Practiced 0/5000</span>
+    <span class="today-label"><span id="tracker-period">All time</span> <span class="chevron" aria-hidden="true">⌃</span></span>
+    <span id="today-count">Practiced 0</span>
     <span id="today-score">Correct = 0%</span>
   </button>
   <a id="kanji-credit" class="kanji-credit" href="credits.txt" target="_blank" rel="noopener" hidden>KANJIDIC · EDRDG</a>
@@ -299,8 +300,8 @@ function read(deck=active){if(!storageOK)return clean(memory.get(deck.key),deck)
 function save(deck,value){memory.set(deck.key,value);if(!storageOK)return;try{localStorage.setItem(deck.key,JSON.stringify(value));document.dispatchEvent(new Event('danki-progress'))}catch{storageOK=false;warn()}}
 const practiced=row=>row.correct+row.wrong+(row.skipped||0);
 const accuracy=row=>{const graded=row.correct+row.wrong+(row.misses||0);return graded?Math.round(row.correct/graded*1000)/10:null};
-function score(){const row=active.cumulative?state.run:((active.weekly?state.weeks[weekKey()]:state.days[dayKey()])||emptyRow());$('tracker-period').textContent=active.cumulative?'Progress':active.weekly?'This week':'Today';$('today-count').textContent='Practiced '+practiced(row)+'/'+active.limit;$('today-score').hidden=true;if(!history.hidden)renderHistory()}
-function renderHistory(){const holder=$('history-rows');$('history-title').textContent=(active.weekly?'Previous weeks · ':'Previous days · ')+active.title;holder.replaceChildren();const rows=active.weekly?state.weeks:state.days,period=active.weekly?weekKey():dayKey(),dates=Object.keys(rows).filter(d=>d!==period).sort().reverse();if(!dates.length){const p=document.createElement('p');p.className='empty-history';p.textContent=active.weekly?'No previous practice weeks yet.':'No previous practice days yet.';holder.append(p);return}const fragment=document.createDocumentFragment();for(const date of dates){const row=rows[date],box=document.createElement('div'),label=document.createElement('div'),count=document.createElement('div'),result=document.createElement('div');box.className='history-row';label.className='history-date';const [y,m,d]=date.split('-').map(Number);label.textContent=new Date(y,m-1,d).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});if(active.weekly){const end=new Date(y,m-1,d+6);label.textContent+=' – '+end.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})}count.className='history-count';count.textContent='Practiced '+practiced(row)+'/'+active.limit;result.className='history-score';const previous=accuracy(row);result.hidden=previous===null;result.textContent=previous===null?'':'Earlier accuracy = '+previous+'%';box.append(label,count,result);fragment.append(box)}holder.append(fragment)}
+function score(){const row=active.cumulative?state.run:((active.weekly?state.weeks[weekKey()]:state.days[dayKey()])||emptyRow());$('tracker-period').textContent='All time';$('today-count').textContent='Practiced '+Object.values(state.days).reduce((sum,item)=>sum+practiced(item),0).toLocaleString();$('today-score').hidden=true;if(!history.hidden)renderHistory()}
+function renderHistory(){const holder=$('history-rows');$('history-title').textContent=(active.weekly?'Previous weeks · ':'Previous days · ')+active.title;holder.replaceChildren();const current=document.createElement('div');current.className='history-row';const label=document.createElement('div');label.className='history-date';label.textContent='Today';const count=document.createElement('div');count.className='history-count';count.textContent='Practiced '+practiced(state.days[dayKey()]||emptyRow()).toLocaleString();current.append(label,count);holder.append(current);const rows=active.weekly?state.weeks:state.days,period=active.weekly?weekKey():dayKey(),dates=Object.keys(rows).filter(d=>d!==period).sort().reverse();if(!dates.length){const p=document.createElement('p');p.className='empty-history';p.textContent=active.weekly?'No previous practice weeks yet.':'No previous practice days yet.';holder.append(p);return}const fragment=document.createDocumentFragment();for(const date of dates){const row=rows[date],box=document.createElement('div'),label=document.createElement('div'),count=document.createElement('div'),result=document.createElement('div');box.className='history-row';label.className='history-date';const [y,m,d]=date.split('-').map(Number);label.textContent=new Date(y,m-1,d).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});if(active.weekly){const end=new Date(y,m-1,d+6);label.textContent+=' – '+end.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})}count.className='history-count';count.textContent='Practiced '+practiced(row)+'/'+active.limit;result.className='history-score';const previous=accuracy(row);result.hidden=previous===null;result.textContent=previous===null?'':'Earlier accuracy = '+previous+'%';box.append(label,count,result);fragment.append(box)}holder.append(fragment)}
 function cardIndex(){if(active===decks.hangul)return active.cards[0]?hangulPracticeOrder(active.cards,dayKey())[shownCursor]:0;if(!active.daily)return shownCursor;const done=practiced(state.days[dayKey()]||{correct:0,wrong:0})+shownCursor-state.cursor,order=kanaPracticeOrder(active.cards,dayKey());return order[done<92?done:92+(done-92)%408]}
 function centerAnswer(){
   if(!practiceActive||game.hidden||answerBox.hidden)return;
@@ -369,7 +370,7 @@ for(const [section,key]of Object.entries(modeKeys))try{const preferred=localStor
 const startSection=location.hash.slice(1);practiceActive=!['arithmetic','programming','quant','digit-span'].includes(startSection);mode=preferredModes[startSection]||preferredModes.german;active=decks[mode];state=read(active);render();scheduleMidnight();
 })();</script>
 <script>(()=>{'use strict';
-const $=id=>document.getElementById(id),frame=$('arithmetic-frame'),menus=[...document.querySelectorAll('.games-menu')],subjects=new Set(['french','german','japanese','spanish','italian','greek','korean','economics','trivia','arithmetic','programming','quant','digit-span']),options=document.querySelectorAll('.navigation .game-option'),embedded={'digit-span':['digit-span/index.html?v=033d08abf28f','Digit Span','Digit Span memory game'],arithmetic:['arithmetic.html?v=033d08abf28f','Weekly arithmetic','Weekly arithmetic practice'],programming:['programming.html?v=033d08abf28f','Programming','Programming learning cards'],quant:['quant.html?v=033d08abf28f','QUANT','QUANT learning cards']};
+const $=id=>document.getElementById(id),frame=$('arithmetic-frame'),menus=[...document.querySelectorAll('.games-menu')],subjects=new Set(['french','german','japanese','spanish','italian','greek','korean','economics','trivia','arithmetic','programming','quant','digit-span']),options=document.querySelectorAll('.navigation .game-option'),embedded={'digit-span':['digit-span/index.html?v=8b5b251da07c','Digit Span','Digit Span memory game'],arithmetic:['arithmetic.html?v=8b5b251da07c','Weekly arithmetic','Weekly arithmetic practice'],programming:['programming.html?v=8b5b251da07c','Programming','Programming learning cards'],quant:['quant.html?v=8b5b251da07c','QUANT','QUANT learning cards']};
 const menuOpen=()=>menus.some(menu=>menu.open);
 let section='german';
 function focusArithmetic(){if(!embedded[section]||menuOpen())return;try{const input=section==='arithmetic'&&frame.contentDocument?.getElementById('answer');if(input)input.focus({preventScroll:true});else frame.contentWindow?.focus()}catch{frame.focus({preventScroll:true})}}
@@ -400,7 +401,7 @@ for(const link of links){
 }
 note.textContent=config.preview?'Preview — payment link not connected.':config.genericUrl?'Choose an amount, then enter it on Revolut.':'Choose an amount. Continue on Revolut to pay.';
 })();</script>
-<script defer src="notes-navigation.js?v=033d08abf28f"></script>
-<script defer src="account.js?v=033d08abf28f"></script>
-<script defer src="atlas-navigation.js?v=192296d4da46"></script><script defer src="weight-navigation.js?v=033d08abf28f"></script></body>
+<script defer src="notes-navigation.js?v=8b5b251da07c"></script>
+<script defer src="account.js?v=8b5b251da07c"></script>
+<script defer src="atlas-navigation.js?v=a0b783398a97"></script><script defer src="weight-navigation.js?v=8b5b251da07c"></script><script defer src="/analytics.js?v=2d3875127708"></script></body>
 </html>

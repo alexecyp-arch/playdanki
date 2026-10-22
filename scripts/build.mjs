@@ -9,7 +9,7 @@ import {triviaInfo} from './build-trivia.mjs';
 import {frenchWords,frenchSentences} from './build-french.mjs';
 import {languageInfo} from './build-languages.mjs';
 const root=new URL('../',import.meta.url);
-const runtimeFiles=['digit-span/index.html','digit-span/style.css','digit-span/game.js','digit-span/model.mjs','account.js','notes-navigation.js','weight-navigation.js','app.js','card-navigation.js','sections.js','programming.js','quant.js','study.css',...['bootstrap.js','ui.js','notes-store.mjs','eternal-ui.js','eternal.mjs','note-order.mjs','selection.mjs','daily-background.js'].map(f=>'temponotes/'+f),...['bootstrap.js','store.mjs','model.mjs','chart.mjs','style.css','index.html'].map(f=>'weight-tracker/'+f)];
+const runtimeFiles=['theme.js','theme.css','analytics.js','analytics-config.json','digit-span/best-score.mjs','digit-span/index.html','digit-span/style.css','digit-span/game.js','digit-span/model.mjs','account.js','notes-navigation.js','weight-navigation.js','app.js','card-navigation.js','sections.js','programming.js','quant.js','study.css',...['bootstrap.js','ui.js','notes-store.mjs','eternal-ui.js','eternal.mjs','note-order.mjs','selection.mjs','cloud-selection.mjs','daily-background.js'].map(f=>'temponotes/'+f),...['bootstrap.js','store.mjs','model.mjs','chart.mjs','style.css','index.html'].map(f=>'weight-tracker/'+f)];
 const runtimeVersion=createHash('sha256').update((await Promise.all(runtimeFiles.map(f=>fs.readFile(new URL('src/'+f,root),'utf8')))).join('\n')+atlasVersion).digest('hex').slice(0,12);
 let html=await fs.readFile(new URL('src/index.html',root),'utf8');
 const css=await fs.readFile(new URL('src/style.css',root),'utf8');
@@ -78,9 +78,10 @@ for(const name of ['bootstrap.js','store.mjs','chart.mjs']){const file='weight-t
 const weightHtml=(await fs.readFile(new URL('src/weight-tracker/index.html',root),'utf8')).replace('AUTH_CONFIG',JSON.stringify(authConfig)).replace('href="style.css"','href="style.css?v='+runtimeVersion+'"').replace('src="bootstrap.js"','src="bootstrap.js?v='+runtimeVersion+'"');
 await fs.writeFile(new URL('dist/weight-tracker/index.html',root),weightHtml);
 await fs.cp(new URL('src/digit-span/',root),new URL('dist/digit-span/',root),{recursive:true});
-for(const name of ['index.html','game.js']){const file='digit-span/'+name;const source=await fs.readFile(new URL('src/'+file,root),'utf8');await fs.writeFile(new URL('dist/'+file,root),source.replace('href="style.css"','href="style.css?v='+runtimeVersion+'"').replace('src="game.js"','src="game.js?v='+runtimeVersion+'"').replace("'./model.mjs'","'./model.mjs?v="+runtimeVersion+"'"));}
+for(const name of ['index.html','game.js']){const file='digit-span/'+name;const source=await fs.readFile(new URL('src/'+file,root),'utf8');await fs.writeFile(new URL('dist/'+file,root),source.replace('href="style.css"','href="style.css?v='+runtimeVersion+'"').replace('src="game.js"','src="game.js?v='+runtimeVersion+'"').replace("'./model.mjs'","'./model.mjs?v="+runtimeVersion+"'").replace("'./best-score.mjs'","'./best-score.mjs?v="+runtimeVersion+"'"));}
 await fs.writeFile(new URL('dist/index.html',root),html);
 for(const file of ['account.js','cloud-state.mjs','notes-navigation.js'])await fs.copyFile(new URL('src/'+file,root),new URL('dist/'+file,root));
+await fs.writeFile(new URL('dist/account.js',root),(await fs.readFile(new URL('src/account.js',root),'utf8')).replace("'./cloud-state.mjs'","'./cloud-state.mjs?v="+runtimeVersion+"'"));
 await fs.writeFile(new URL('dist/notes-navigation.js',root),(await fs.readFile(new URL('src/notes-navigation.js',root),'utf8')).replace('NOTES_RELEASE',runtimeVersion));
 await fs.cp(new URL('src/temponotes/',root),new URL('dist/temponotes/',root),{recursive:true,filter:source=>!source.endsWith('.tsx')&&!source.endsWith('background.jpg')});
 const notesHtml=(await fs.readFile(new URL('src/temponotes/index.html',root),'utf8')).replace('src="./bootstrap.js"','src="./bootstrap.js?v='+runtimeVersion+'"');
@@ -94,3 +95,5 @@ await fs.writeFile(new URL('dist/temponotes/index.html',root),notesHtml.replace(
 await fs.writeFile(new URL('dist/arithmetic.html',root),arithmetic.replace('</style>',arithmeticTheme.trim()+'\n'+cursorCss.trim()+'\n'+studyCss.trim()+'\n</style>'));
 await fs.copyFile(new URL('src/credits.txt',root),new URL('dist/credits.txt',root));
 console.log(JSON.stringify({words:entries.length,sentences:sentenceEntries.length,frenchWords:5000,frenchSentences:1000,kana:kanaEntries.length,kanji:kanjiEntries.length,economics:economicsEntries.length,htmlBytes:Buffer.byteLength(html),compressedBytes:gzipSync(html).length}));
+
+const {buildShared}=await import('./build-shared.mjs');await buildShared(root);

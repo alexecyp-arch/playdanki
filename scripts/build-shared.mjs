@@ -1,0 +1,12 @@
+import fs from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+export async function buildShared(root){
+ const theme=await fs.readFile(new URL('src/theme.css',root),'utf8'),js=await fs.readFile(new URL('src/theme.js',root),'utf8'),analytics=await fs.readFile(new URL('src/analytics.js',root),'utf8'),config=JSON.parse(await fs.readFile(new URL('src/analytics-config.json',root),'utf8'));
+ if(config.enabled&&!/^[a-f0-9]{32}$/.test(config.token))throw Error('Missing valid Cloudflare Web Analytics site token');
+ const version=createHash('sha256').update(theme+js+analytics+JSON.stringify(config)).digest('hex').slice(0,12);
+ await fs.writeFile(new URL('dist/theme.js',root),js);await fs.writeFile(new URL('dist/theme.css',root),theme);await fs.writeFile(new URL('dist/analytics.js',root),analytics.replace('ANALYTICS_CONFIG',JSON.stringify(config)));
+ const colors={'071e48':'bg','102c59':'panel','173766':'raised','45618e':'border','647ea7':'border','a3b4d1':'muted'};
+ const recolor=css=>css.replace(/var\(--danki-(?:bg|panel|raised|border|muted),(#[a-f0-9]{6})\)/gi,'$1').replace(/#(071e48|102c59|173766|45618e|647ea7|a3b4d1)\b/gi,(all,color)=>`var(--danki-${colors[color.toLowerCase()]},${all})`);
+ async function walk(dir){for(const entry of await fs.readdir(dir,{withFileTypes:true})){const path=new URL(entry.name,dir);if(entry.isDirectory())await walk(new URL(entry.name+'/',dir));else if(entry.name.endsWith('.html')){let html=await fs.readFile(path,'utf8');html=html.replace(/<style([^>]*)>([\s\S]*?)<\/style>/gi,(_,attrs,css)=>'<style'+attrs+'>'+recolor(css)+'</style>');html=html.replace(/href="([^"?#]+\.css)(?:\?[^"]*)?"/g,(all,path)=>path.startsWith('http')?all:'href="'+path+'?v='+version+'"');html=html.replace('</head>',`<script id="danki-shared-theme" src="/theme.js?v=${version}"></script><link rel="stylesheet" href="/theme.css?v=${version}"></head>`).replace('</body>',`<script defer src="/analytics.js?v=${version}"></script></body>`);await fs.writeFile(path,html);}else if(entry.name.endsWith('.css')&&entry.name!=='theme.css'){const css=await fs.readFile(path,'utf8');await fs.writeFile(path,recolor(css));}}}
+ await walk(new URL('dist/',root));
+}

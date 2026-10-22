@@ -1,0 +1,9 @@
+html[data-danki-theme="charcoal"]{--danki-bg:#18191c;--danki-panel:#222428;--danki-raised:#2a2d32;--danki-border:#555b64;--danki-muted:#b7bdc6}
+html[data-danki-theme="charcoal"],html[data-danki-theme="charcoal"] body{background-color:var(--danki-bg)!important}
+html[data-danki-theme="charcoal"] .arithmetic-frame,html[data-danki-theme="charcoal"] #data-atlas-frame,html[data-danki-theme="charcoal"] #private-weight-frame{background-color:var(--danki-bg)!important}
+html[data-danki-theme="charcoal"] #chart line{stroke:#4b5057}
+#theme-switcher{display:flex;gap:5px;align-items:center;margin:0 0 2px 0}
+#theme-switcher button{display:grid;place-items:center;width:20px;height:20px;padding:4px;border:0;border-radius:0;background:transparent;cursor:pointer;touch-action:manipulation}
+#theme-switcher button:before{content:"";width:11px;height:11px;border:1px solid #8491a4;background:#071e48}
+#theme-switcher button[data-theme-choice="charcoal"]:before{background:#18191c}
+#theme-switcher button[aria-pressed="true"]:before{outline:1px solid white;outline-offset:2px}
