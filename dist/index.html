@@ -370,7 +370,7 @@ for(const [section,key]of Object.entries(modeKeys))try{const preferred=localStor
 const startSection=location.hash.slice(1);practiceActive=!['arithmetic','programming','quant','digit-span'].includes(startSection);mode=preferredModes[startSection]||preferredModes.german;active=decks[mode];state=read(active);render();scheduleMidnight();
 })();</script>
 <script>(()=>{'use strict';
-const $=id=>document.getElementById(id),frame=$('arithmetic-frame'),menus=[...document.querySelectorAll('.games-menu')],subjects=new Set(['french','german','japanese','spanish','italian','greek','korean','economics','trivia','arithmetic','programming','quant','digit-span']),options=document.querySelectorAll('.navigation .game-option'),embedded={'digit-span':['digit-span/index.html?v=5042795360cb','Digit Span','Digit Span memory game'],arithmetic:['arithmetic.html?v=5042795360cb','Weekly arithmetic','Weekly arithmetic practice'],programming:['programming.html?v=5042795360cb','Programming','Programming learning cards'],quant:['quant.html?v=5042795360cb','QUANT','QUANT learning cards']};
+const $=id=>document.getElementById(id),frame=$('arithmetic-frame'),menus=[...document.querySelectorAll('.games-menu')],subjects=new Set(['french','german','japanese','spanish','italian','greek','korean','economics','trivia','arithmetic','programming','quant','digit-span']),options=document.querySelectorAll('.navigation .game-option'),embedded={'digit-span':['digit-span/index.html?v=04a396f9aba9','Digit Span','Digit Span memory game'],arithmetic:['arithmetic.html?v=04a396f9aba9','Weekly arithmetic','Weekly arithmetic practice'],programming:['programming.html?v=04a396f9aba9','Programming','Programming learning cards'],quant:['quant.html?v=04a396f9aba9','QUANT','QUANT learning cards']};
 const menuOpen=()=>menus.some(menu=>menu.open);
 let section='german';
 function focusArithmetic(){if(!embedded[section]||menuOpen())return;try{const input=section==='arithmetic'&&frame.contentDocument?.getElementById('answer');if(input)input.focus({preventScroll:true});else frame.contentWindow?.focus()}catch{frame.focus({preventScroll:true})}}
@@ -401,7 +401,7 @@ for(const link of links){
 }
 note.textContent=config.preview?'Preview — payment link not connected.':config.genericUrl?'Choose an amount, then enter it on Revolut.':'Choose an amount. Continue on Revolut to pay.';
 })();</script>
-<script defer src="notes-navigation.js?v=5042795360cb"></script>
-<script defer src="account.js?v=5042795360cb"></script>
-<script defer src="atlas-navigation.js?v=d024f35bc399"></script><script defer src="weight-navigation.js?v=5042795360cb"></script><script defer src="/analytics.js?v=991ff9331cb8"></script></body>
+<script defer src="notes-navigation.js?v=04a396f9aba9"></script>
+<script defer src="account.js?v=04a396f9aba9"></script>
+<script defer src="atlas-navigation.js?v=d024f35bc399"></script><script defer src="weight-navigation.js?v=04a396f9aba9"></script><script defer src="/analytics.js?v=991ff9331cb8"></script></body>
 </html>
