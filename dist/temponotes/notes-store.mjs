@@ -1,4 +1,4 @@
-import {validSchedule,localDay} from './eternal.mjs?v=8b5b251da07c';
+import {validSchedule,localDay} from './eternal.mjs?v=5042795360cb';
 // Private, account-scoped adapter for the original Temponote interface.
 export async function createNotesStore({auth,db,sdk,uid,now=Date.now,signal}){
   const {doc,collection,setDoc,getDoc,serverTimestamp,onSnapshot,runTransaction,deleteDoc}=sdk;
@@ -88,7 +88,7 @@ export async function createNotesStore({auth,db,sdk,uid,now=Date.now,signal}){
         check();notes.set(id,saved);return Response.json({ok:true});
       }
       if(method==='PATCH'){
-        if(![30,60,360].includes(minutes))throw Error('Invalid duration.');
+        if(![-30,30,60,360].includes(minutes))throw Error('Invalid duration.');
         const saved=await runTransaction(db,async tx=>{
           check();const r=reference(id),s=await tx.get(r);check();
           if(!s.exists()||s.data().expiresAt<=time())throw Error('This note has expired.');

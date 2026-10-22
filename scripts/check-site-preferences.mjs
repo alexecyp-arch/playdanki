@@ -9,3 +9,12 @@ const source=(await fs.readFile('src/analytics.js','utf8')).replace('ANALYTICS_C
 function analytics({url='https://playdanki.com/',automated=false,frame=false,existing,blocked=false}={}){const u=new URL(url),scripts=[],values=new Map(existing?[['danki:analytics:exclude:v1','1']]:[]),storage={getItem:k=>{if(blocked)throw Error();return values.get(k);},setItem:(k,v)=>{if(blocked)throw Error();values.set(k,v);},removeItem:k=>values.delete(k)},window={};window.top=frame?{}:window;vm.runInNewContext(source,{window,location:u,navigator:{webdriver:automated,userAgent:'Chrome'},URLSearchParams,localStorage:storage,document:{createElement:()=>({setAttribute(k,v){this[k]=v;}}),head:{append:s=>scripts.push(s)}}});return {scripts,values};}
 assert.equal(analytics().scripts.length,1);for(const args of [{url:'http://127.0.0.1:8897/'},{url:'https://playdanki.com/?analytics=off'},{automated:true},{frame:true},{existing:true},{url:'https://playdanki.com/temponotes/'},{url:'https://playdanki.com/weight-tracker/'}])assert.equal(analytics(args).scripts.length,0,JSON.stringify(args));assert.equal(analytics({existing:true,url:'https://playdanki.com/?analytics=on'}).scripts.length,1);assert.equal(analytics({url:'https://playdanki.com/?analytics=off',blocked:true}).scripts.length,0);
 console.log('Preferences passed: persistent maximum best score, cloud inclusion, analytics injection and test/bot/frame/private-page exclusions.');
+
+const themeSource=await fs.readFile('src/theme.js','utf8');
+for(const [stored,expected] of [[null,'charcoal'],['invalid','charcoal'],['charcoal','charcoal'],['indigo','indigo']]){
+ const document={documentElement:{dataset:{}},querySelector:()=>null,querySelectorAll:()=>[],addEventListener:()=>{}};
+ vm.runInNewContext(themeSource,{document,localStorage:{getItem:()=>stored},window:{addEventListener:()=>{}}});
+ assert.equal(document.documentElement.dataset.dankiTheme,expected);
+}
+assert(!(await fs.readFile('src/theme.css','utf8')).includes('outline-offset:2px'));
+console.log('Grey default and no selected white box checks passed.');

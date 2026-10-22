@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {kilograms,weight,chartData} from '../src/weight-tracker/model.mjs';
+import {kilograms,weight,chartData,weeklyChange} from '../src/weight-tracker/model.mjs';
 import {createWeightStore} from '../src/weight-tracker/store.mjs';
 assert.equal(kilograms(100,'KG'),100);assert.equal(kilograms(100,'LB'),45.359237);assert(Math.abs(weight(45.359237,'LB')-100)<1e-10);
 for(const value of ['',0,-1,Infinity,NaN,'bad',1001])assert.equal(kilograms(value,'KG'),null);
@@ -11,3 +11,13 @@ callback({metadata:{fromCache:false},docs:[]});assert(ready);for(let i=0;i<30;i+
 callback({metadata:{fromCache:false},docs:[{id:'saved',metadata:{hasPendingWrites:false},data:()=>({kg:80,recordedAt:{toMillis:()=>1000}})},{id:'pending',metadata:{hasPendingWrites:true},data:()=>({kg:81})}]});assert.equal(rows.length,1);assert.equal(rows[0].time,1000);
 let removed; sdk.doc=(db,...path)=>path;sdk.deleteDoc=async ref=>removed=ref;await store.remove('a'.repeat(20));assert.deepEqual(removed,['users','alice','weights','a'.repeat(20)]);await assert.rejects(store.remove('../bob'),/WEIGHT/);auth.currentUser={uid:'bob'};await assert.rejects(store.remove('a'.repeat(20)),/SIGN IN/);await assert.rejects(store.add(80,'KG'),/SIGN IN/);callback({metadata:{fromCache:false},docs:[]});assert.equal(rows.length,1,'Old account callbacks are ignored');store.dispose();assert(stopped);
 console.log('Weight checks passed: exact units, chart bounds/order, 30 independent cloud entries, server timestamps, pending writes, offline and account separation.');
+
+const week=604800000,weights=[{id:'latest',kg:73,time:week},{id:'old',kg:80,time:0}];
+assert.equal(weeklyChange(weights,'old'),-7);
+assert.equal(weeklyChange([{id:'old',kg:80,time:0},{id:'new',kg:73,time:week*2}],'old'),-3.5);
+assert.equal(weeklyChange([{id:'old',kg:73,time:0},{id:'new',kg:80,time:week}],'old'),7);
+assert.equal(weeklyChange([{id:'old',kg:80,time:0},{id:'new',kg:80,time:week}],'old'),0);
+assert.equal(weeklyChange(weights,'latest'),null);assert.equal(weeklyChange(weights,'missing'),null);
+assert.equal(weeklyChange([{id:'a',kg:80,time:0},{id:'b',kg:73,time:0}],'a'),null);
+assert(Math.abs(weeklyChange(weights,'old','LB')-weight(-7,'LB'))<1e-10);
+console.log('Weekly rate checks passed.');

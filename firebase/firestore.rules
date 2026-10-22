@@ -55,7 +55,7 @@ service cloud.firestore {
         && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['expiresAt'])
         && request.resource.data.expiresAt is int
         && resource.data.expiresAt > request.time.toMillis()
-        && request.resource.data.expiresAt - resource.data.expiresAt in [1800000, 3600000, 21600000]
+        && request.resource.data.expiresAt - resource.data.expiresAt in [-1800000, 1800000, 3600000, 21600000]
         && request.resource.data.expiresAt <= request.time.toMillis() + 31536000000;
     }
     match /users/{uid}/temponotesMeta/clock {

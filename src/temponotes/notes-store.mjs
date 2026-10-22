@@ -88,7 +88,7 @@ export async function createNotesStore({auth,db,sdk,uid,now=Date.now,signal}){
         check();notes.set(id,saved);return Response.json({ok:true});
       }
       if(method==='PATCH'){
-        if(![30,60,360].includes(minutes))throw Error('Invalid duration.');
+        if(![-30,30,60,360].includes(minutes))throw Error('Invalid duration.');
         const saved=await runTransaction(db,async tx=>{
           check();const r=reference(id),s=await tx.get(r);check();
           if(!s.exists()||s.data().expiresAt<=time())throw Error('This note has expired.');

@@ -8,3 +8,10 @@ export function chartData(entries,unit='KG'){
  const pad=Math.max(unit==='LB'?1:.5,(max-min)*.12),first=points[0].time,last=points.at(-1).time;
  return {points,x:first===last?[first-1800000,last+1800000]:[first,last],y:[Math.max(0,min-pad),max+pad]};
 }
+
+export function weeklyChange(entries,selectedId,unit='KG'){
+ const points=entries.filter(p=>Number.isFinite(p.kg)&&p.kg>0&&Number.isFinite(p.time));
+ const selected=points.find(p=>p.id===selectedId),latest=points.reduce((last,p)=>!last||p.time>last.time?p:last,null);
+ if(!selected||!latest||latest.time<=selected.time)return null;
+ return weight(latest.kg-selected.kg,unit)*604800000/(latest.time-selected.time);
+}
