@@ -14,7 +14,9 @@ function refresh(){window.dispatchEvent(new StorageEvent('storage',{key:null}));
 async function apply(value){core.validate(value);const previous=capture();await backup(previous);if(!core.same(capture(),previous))throw Error('Progress changed during restore');for(const key of Object.keys(previous))if(!(key in value))localStorage.removeItem(key);for(const [key,text]of Object.entries(value))localStorage.setItem(key,text);refresh()}
 function controls(){const signed=!!user;label.textContent=signed?'Account':'Google sign in';identity.textContent=signed?(user.email||'Signed in with Google'):'Save your place on your other devices.';login.hidden=signed;logout.hidden=!signed;sync.hidden=!signed;sync.disabled=!signed||busy||settling||!!pending;logout.disabled=busy||settling;login.disabled=!api||busy||settling}
 async function remember(){if(!user||localStorage.getItem(ownerKey)!==user.uid)return;const uid=user.uid,rev=revision,[snapshot,packedBase]=await Promise.all([core.encode(capture()),base?core.encode(base):null]);if(localStorage.getItem(ownerKey)===uid&&revision===rev)cache(uid,{snapshot,base:packedBase,revision:rev})}
-async function conflict(remote,rev,local){pending={remote,rev,local};menu.open=true;await backup(local);await backup(remote);$('account-conflict').hidden=false;tell('Both devices have new progress. Choose which to use. Both copies are backed up in this browser.');controls()}
+// Cloud wins automatically when two devices have different unsynced changes.
+// apply() preserves the displaced browser copy in the existing local backups.
+async function conflict(remote,rev,local){await apply(remote);await acknowledge(remote,rev);tell('Cloud progress loaded.');}
 async function acknowledge(value,rev){base=value;revision=rev;await remember();tell('Saved to your Google account.');controls()}
 async function restore(next){const ticket=++epoch;busy=true;settling=true;pending=null;$('account-conflict').hidden=true;clearInterval(poll);poll=null;
 try{
@@ -28,7 +30,7 @@ try{
  // First sign-in imports guest progress only when this account has no cloud save.
  if(!data&&!saved&&owner===null){const packed=localStorage.getItem(guestKey),guest=packed?await core.decode(packed):{};await apply(guest);local=capture()}
  const choice=core.choose(base,local,remote);if(choice==='conflict'){await conflict(remote,rev,local);return}
- if(choice==='remote'){await apply(remote);await acknowledge(remote,rev)}else{base=remote;revision=rev;await remember();tell(choice==='equal'?'Saved to your Google account.':'Browser progress ready to save.')}
+ if(choice==='remote'){await apply(remote);await acknowledge(remote,rev)}else{base=remote;revision=rev;await remember();tell(choice==='equal'?'Saved to your Google account.':'Cloud save pending.')}
 }catch(error){tell(navigator.onLine?'Cloud save unavailable. Your browser progress is kept. Press Save to retry.':'Offline. Your browser progress is kept.');console.warn('Account sync:',error.code||error.message)}
 finally{if(ticket===epoch){busy=false;settling=false;controls();if(user){poll=setInterval(()=>flush(),30000);if(!pending)flush()}}}}
 async function flush(){if(!user||busy||pending||settling||!navigator.onLine||localStorage.getItem(ownerKey)!==user.uid)return;const uid=user.uid,ticket=epoch,local=capture();busy=true;controls();tell('Saving…');
@@ -45,18 +47,17 @@ try{
  if(ticket!==epoch)return;
  if(result.conflict){await conflict(result.remote,result.rev,capture());return}
  if(result.remote){if(!core.same(capture(),local)){await conflict(result.remote,result.rev,capture());return}await apply(result.remote);await acknowledge(result.remote,result.rev)}else await acknowledge(result.value,result.rev);
- if(!core.same(capture(),base))tell('New progress saved in this browser; cloud save pending.');
+ if(!core.same(capture(),base))tell('Cloud save pending.');
 }catch(error){try{await remember()}catch{}tell(navigator.onLine?'Cloud save failed. Your browser progress is kept. Press Save to retry.':'Offline. Your browser progress is kept.');console.warn('Account sync:',error.code||error.message)}finally{if(ticket===epoch){busy=false;controls()}}}
-async function setup(){if(ready)return ready;login.disabled=true;tell('');ready=(async()=>{core=await import('./cloud-state.mjs?v=36ec0dd45cb4');const url='https://www.gstatic.com/firebasejs/13.0.0/';const [app,a,f]=await Promise.all([import(url+'firebase-app.js'),import(url+'firebase-auth.js'),import(url+'firebase-firestore.js')]);api={...a,...f};const instance=app.initializeApp(cfg.firebase);auth=a.getAuth(instance);db=f.getFirestore(instance);a.beforeAuthStateChanged(auth,()=>window.dispatchEvent(new CustomEvent('danki-auth-clearing')));a.onAuthStateChanged(auth,next=>{window.dispatchEvent(new CustomEvent('danki-auth',{detail:next?.uid||null}));restore(next)});login.disabled=false;controls()})().catch(error=>{ready=null;tell('Google sign-in could not load. Reopen this menu to retry.');console.warn('Sign-in:',error.code||error.message)});return ready}
+async function setup(){if(ready)return ready;login.disabled=true;tell('');ready=(async()=>{core=await import('./cloud-state.mjs?v=7d5801b3e7cd');const url='https://www.gstatic.com/firebasejs/13.0.0/';const [app,a,f]=await Promise.all([import(url+'firebase-app.js'),import(url+'firebase-auth.js'),import(url+'firebase-firestore.js')]);api={...a,...f};const instance=app.initializeApp(cfg.firebase);auth=a.getAuth(instance);db=f.getFirestore(instance);a.beforeAuthStateChanged(auth,()=>window.dispatchEvent(new CustomEvent('danki-auth-clearing')));a.onAuthStateChanged(auth,next=>{window.dispatchEvent(new CustomEvent('danki-auth',{detail:next?.uid||null}));restore(next)});login.disabled=false;controls()})().catch(error=>{ready=null;tell('Google sign-in could not load. Reopen this menu to retry.');console.warn('Sign-in:',error.code||error.message)});return ready}
 menu.addEventListener('toggle',()=>{if(menu.open)setup()});
 login.addEventListener('click',async()=>{if(!api||busy)return;busy=true;controls();try{await api.signInWithPopup(auth,new api.GoogleAuthProvider())}catch(error){tell(error.code==='auth/popup-closed-by-user'?'Sign-in cancelled. Browser progress is unchanged.':'Sign-in failed. Please allow the Google popup and try again.')}finally{busy=false;controls()}});
 logout.addEventListener('click',async()=>{if(busy||settling)return;await flush();if(pending){tell('Choose which progress to keep before signing out.');return}try{await remember();await api.signOut(auth)}catch{tell('Could not sign out. Please try again.')}});
 sync.addEventListener('click',()=>flush());
-for(const [id,useCloud]of [['account-use-cloud',true],['account-use-browser',false]])$(id).addEventListener('click',async()=>{if(!pending)return;const p=pending;pending=null;settling=true;$('account-conflict').hidden=true;controls();try{if(useCloud){await apply(p.remote);await acknowledge(p.remote,p.rev)}else{base=p.remote;revision=p.rev;await remember();tell('Browser progress selected. Saving…')}}catch{pending=p;$('account-conflict').hidden=false;tell('Could not restore progress. Your backups are kept.')}finally{settling=false;controls();flush()}});
 addEventListener('online',()=>flush());
 addEventListener('storage',e=>{if(e.key===ownerKey&&localStorage.getItem(ownerKey)!==user?.uid)location.reload()});
 addEventListener('pagehide',()=>{remember().catch(()=>{})});
 document.addEventListener('visibilitychange',()=>{if(document.hidden){remember().catch(()=>{});flush()}else if(user)flush()});
-document.addEventListener('danki-progress',()=>{if(user&&!settling&&!busy)tell('Saved in this browser · cloud save pending.')});
+document.addEventListener('danki-progress',()=>{if(user&&!settling&&!busy)tell('Cloud save pending.')});
 try{localStorage.getItem(ownerKey);setup();}catch{tell('Enable browser storage to use account saves.');login.disabled=true}
 })();

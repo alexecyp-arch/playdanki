@@ -178,8 +178,6 @@ body:focus,#game:focus,#exercise:focus,.arithmetic-frame:focus{outline:none}
     <button id="account-sync" type="button" hidden>Save now</button>
     <button id="account-logout" type="button" hidden>Sign out</button>
     <div id="account-conflict" hidden>
-      <button id="account-use-cloud" type="button">Use cloud progress</button>
-      <button id="account-use-browser" type="button">Use this browser's progress</button>
     </div>
     <p id="account-privacy">Your game progress and notes are private. Progress is automatically saved every 30 seconds</p>
   </div>
@@ -370,7 +368,7 @@ for(const [section,key]of Object.entries(modeKeys))try{const preferred=localStor
 const startSection=location.hash.slice(1);practiceActive=!['arithmetic','programming','quant','digit-span'].includes(startSection);mode=preferredModes[startSection]||preferredModes.german;active=decks[mode];state=read(active);render();scheduleMidnight();
 })();</script>
 <script>(()=>{'use strict';
-const $=id=>document.getElementById(id),frame=$('arithmetic-frame'),menus=[...document.querySelectorAll('.games-menu')],subjects=new Set(['french','german','japanese','spanish','italian','greek','korean','economics','trivia','arithmetic','programming','quant','digit-span']),options=document.querySelectorAll('.navigation .game-option'),embedded={'digit-span':['digit-span/index.html?v=36ec0dd45cb4','Digit Span','Digit Span memory game'],arithmetic:['arithmetic.html?v=36ec0dd45cb4','Weekly arithmetic','Weekly arithmetic practice'],programming:['programming.html?v=36ec0dd45cb4','Programming','Programming learning cards'],quant:['quant.html?v=36ec0dd45cb4','QUANT','QUANT learning cards']};
+const $=id=>document.getElementById(id),frame=$('arithmetic-frame'),menus=[...document.querySelectorAll('.games-menu')],subjects=new Set(['french','german','japanese','spanish','italian','greek','korean','economics','trivia','arithmetic','programming','quant','digit-span']),options=document.querySelectorAll('.navigation .game-option'),embedded={'digit-span':['digit-span/index.html?v=7d5801b3e7cd','Digit Span','Digit Span memory game'],arithmetic:['arithmetic.html?v=7d5801b3e7cd','Weekly arithmetic','Weekly arithmetic practice'],programming:['programming.html?v=7d5801b3e7cd','Programming','Programming learning cards'],quant:['quant.html?v=7d5801b3e7cd','QUANT','QUANT learning cards']};
 const menuOpen=()=>menus.some(menu=>menu.open);
 let section='german';
 function focusArithmetic(){if(!embedded[section]||menuOpen())return;try{const input=section==='arithmetic'&&frame.contentDocument?.getElementById('answer');if(input)input.focus({preventScroll:true});else frame.contentWindow?.focus()}catch{frame.focus({preventScroll:true})}}
@@ -401,7 +399,7 @@ for(const link of links){
 }
 note.textContent=config.preview?'Preview — payment link not connected.':config.genericUrl?'Choose an amount, then enter it on Revolut.':'Choose an amount. Continue on Revolut to pay.';
 })();</script>
-<script defer src="notes-navigation.js?v=36ec0dd45cb4"></script>
-<script defer src="account.js?v=36ec0dd45cb4"></script>
-<script defer src="atlas-navigation.js?v=d024f35bc399"></script><script defer src="weight-navigation.js?v=36ec0dd45cb4"></script><script defer src="/analytics.js?v=991ff9331cb8"></script></body>
+<script defer src="notes-navigation.js?v=7d5801b3e7cd"></script>
+<script defer src="account.js?v=7d5801b3e7cd"></script>
+<script defer src="atlas-navigation.js?v=d024f35bc399"></script><script defer src="weight-navigation.js?v=7d5801b3e7cd"></script><script defer src="/analytics.js?v=991ff9331cb8"></script></body>
 </html>

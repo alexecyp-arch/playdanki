@@ -21,10 +21,20 @@ backend.setFail(true);storage.setItem(key,JSON.stringify({...guest,cursor:13}));
 backend.setFail(false);elements['account-sync'].click();await wait(()=>elements['account-status'].textContent.startsWith('Saved'));
 // Another device changes the cloud while this device also has new work.
 const cloud=backend.docs.get('users/alice/progress/main');backend.docs.set('users/alice/progress/main',{...cloud,value:await encode({[key]:JSON.stringify({...guest,cursor:20})}),revision:cloud.revision+1});
-storage.setItem(key,JSON.stringify({...guest,cursor:14}));elements['account-sync'].click();await wait(()=>!elements['account-conflict'].hidden);
-assert.equal(JSON.parse(storage.getItem(key)).cursor,14,'No automatic overwrite during a conflict');
-elements['account-use-cloud'].click();await wait(()=>elements['account-status'].textContent.startsWith('Saved'));assert.equal(JSON.parse(storage.getItem(key)).cursor,20);
+elements['account-menu'].open=false;
+storage.setItem(key,JSON.stringify({...guest,cursor:14}));elements['account-sync'].click();await wait(()=>!elements['account-sync'].disabled&&JSON.parse(storage.getItem(key)).cursor===20);
+assert(elements['account-conflict'].hidden,'No progress choice is required');assert.equal(elements['account-menu'].open,false,'Sync must not force the account menu open');
+assert([...storage.map.keys()].filter(k=>k.startsWith('danki:backup:v1:')).some(k=>storage.getItem(k).startsWith('g:')||storage.getItem(k).startsWith('j:')),'Displaced browser progress is backed up');
+// A returning device also restores the cloud automatically when both copies changed.
+const nextCloud=backend.docs.get('users/alice/progress/main');backend.docs.set('users/alice/progress/main',{...nextCloud,value:await encode({[key]:JSON.stringify({...guest,cursor:30})}),revision:nextCloud.revision+1});
+storage.setItem(key,JSON.stringify({...guest,cursor:21}));await backend.become({uid:'alice',email:'alice@example.test'});await wait(()=>!elements['account-sync'].disabled&&JSON.parse(storage.getItem(key)).cursor===30);
+assert(elements['account-conflict'].hidden);assert.equal(elements['account-menu'].open,false);
+// Normal practice still saves automatically, without a button press.
+storage.setItem(key,JSON.stringify({...guest,cursor:31}));await interval();await wait(()=>!elements['account-sync'].disabled);
+assert.equal(JSON.parse((await decode(backend.docs.get('users/alice/progress/main').value))[key]).cursor,31,'The automatic save interval uploads new practice');
+// An idle device picks up newer cloud progress on its normal sync interval.
+const idleCloud=backend.docs.get('users/alice/progress/main');backend.docs.set('users/alice/progress/main',{...idleCloud,value:await encode({[key]:JSON.stringify({...guest,cursor:40})}),revision:idleCloud.revision+1});await interval();await wait(()=>!elements['account-sync'].disabled&&JSON.parse(storage.getItem(key)).cursor===40);
 elements['account-logout'].click();await wait(()=>!elements['account-login'].hidden&&!elements['account-login'].disabled);assert.equal(JSON.parse(storage.getItem(key)).cursor,7,'Sign out restores original guest data');
 await backend.become({uid:'bob',email:'bob@example.test'});await wait(()=>!elements['account-sync'].disabled);assert.notEqual(JSON.parse(storage.getItem(key)||'{}').cursor,20,'Bob never imports Alice progress');
 assert([...storage.map.keys()].some(k=>k.startsWith('danki:backup:v1:')));
-console.log('Account checks passed: guest import, save, offline retry, conflict, restore and account separation.');
+console.log('Account checks passed: guest import, automatic cloud conflict/returning-device restore, automatic interval save/refresh, offline retry and account separation.');
