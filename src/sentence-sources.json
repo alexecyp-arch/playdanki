@@ -1,7 +1,7 @@
 {
   "source": "https://github.com/orgtre/top-open-subtitles-sentences/blob/main/bld/top_sentences/de_top_sentences.csv",
   "corpus": "OpenSubtitles2018",
-  "selection": "1,000 unique short German sentences and everyday expressions, ordered by exact cleaned subtitle occurrence count; names, noises, bare noun fragments and malformed lines filtered out. English translations and contrasting wrong choices authored for this trainer.",
+  "selection": "The original 1,000 corpus-selected sentences remain unchanged and in their original order, followed by 750 original everyday German sentences with authored English translations. Supplemental cards are not frequency-ranked.",
   "cards": [
     {
       "german": "Ich weiß.",
@@ -5003,5 +5003,14 @@
       "source_rank": 1613,
       "count": 787
     }
-  ]
+  ],
+  "supplement": {
+    "count": 750,
+    "file": "german-sentences-extra.tsv",
+    "kind": "Original educational content",
+    "selection": "Everyday home, shopping, food, transport, travel, health, work, study, technology, family, appointments, weather, money and leisure situations.",
+    "frequency": null,
+    "duplicateCheck": "German and English normalized with NFKC, lowercased, and stripped of punctuation and whitespace; zero collisions with the original set or within the supplement.",
+    "originalCardsSHA256": "37a32a56e00514c3d80158a9726049ef5a06a0879b963423e5e00b782aece34c"
+  }
 }

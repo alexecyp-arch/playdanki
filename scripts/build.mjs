@@ -3,6 +3,7 @@ import {gzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
 import {atlasVersion} from './build-atlas.mjs';
 import './build-economics.mjs';
+import './build-german-sentences.mjs';
 import './build-programming.mjs';
 import './build-quant.mjs';
 import {triviaInfo} from './build-trivia.mjs';
@@ -34,8 +35,8 @@ if(entries.length!==5000||new Set(entries.map(w=>w[0].toLocaleLowerCase('de-DE')
 const sentences=await fs.readFile(new URL('src/sentences.json',root),'utf8');
 const sentenceEntries=JSON.parse(sentences);
 const sentenceKey=s=>s.toLocaleLowerCase('de-DE').replace(/[^\p{L}\p{N}\s]/gu,'').trim();
-if(sentenceEntries.length!==1000||new Set(sentenceEntries.map(s=>sentenceKey(s[0]))).size!==1000)throw new Error('The sentence deck must contain exactly 1000 distinct German sentences');
-if(sentenceEntries.some((s,i)=>s.length!==4||!s.slice(0,3).every(t=>typeof t==='string'&&t.trim())||sentenceKey(s[1])===sentenceKey(s[2])||!Number.isInteger(s[3])||s[3]<1||(i&&sentenceEntries[i-1][3]<s[3])))throw new Error('Each sentence needs two different choices and descending corpus frequency');
+if(sentenceEntries.length!==1750||new Set(sentenceEntries.map(s=>sentenceKey(s[0]))).size!==1750)throw new Error('The sentence deck must contain exactly 1750 distinct German sentences');
+if(sentenceEntries.some((s,i)=>s.length!==4||!s.slice(0,3).every(t=>typeof t==='string'&&t.trim())||sentenceKey(s[1])===sentenceKey(s[2])||!Number.isInteger(s[3])||(i<1000?s[3]<1:s[3]!==0)||(i&&sentenceEntries[i-1][3]<s[3])))throw new Error('Each sentence needs two different choices; original corpus frequencies descend and unranked additions use zero');
 const kana=await fs.readFile(new URL('src/kana.json',root),'utf8'),kanaEntries=JSON.parse(kana);
 const hiragana='あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん';
 const katakana='アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';

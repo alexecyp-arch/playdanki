@@ -8,7 +8,7 @@ const decks={
   frenchWords:{key:'francais5000:v1',title:'Français 5000',unit:'words',section:'french',lang:'fr',limit:5000,...remoteCards('french-word')},
   frenchSentences:{key:'francais1000sentences:v1',title:'French Sentences 1000',unit:'sentences',section:'french',lang:'fr',limit:1000,fixedChoices:true,...remoteCards('french-sentence')},
   words:{key:'deutsch5000:v1',title:'Deutsch 5000',unit:'words',section:'german',lang:'de',limit:5000,cards:JSON.parse($('word-data').textContent)},
-  sentences:{key:'deutsch1000sentences:v1',title:'Sentences 1000',unit:'sentences',section:'german',lang:'de',limit:1000,...remoteCards('sentence')},
+  sentences:{key:'deutsch1000sentences:v1',title:'Sentences 1750',unit:'sentences',section:'german',lang:'de',limit:1750,...remoteCards('sentence')},
   kana:{key:'japanese:kana:v1',title:'Hiragana + Katakana',unit:'Kana answers',section:'japanese',lang:'ja',limit:500,daily:true,cards:JSON.parse($('kana-data').textContent)},
   kanji:{key:'japanese:kanji:v1',title:'Kanji 2136',unit:'Kanji',section:'japanese',lang:'ja',limit:2136,...remoteCards('kanji')},
   spanishWords:languageDeck('spanish-words','spanish5000:v1','Spanish 5000','spanish','es','words'),
