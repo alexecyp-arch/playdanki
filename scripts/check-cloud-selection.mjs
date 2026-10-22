@@ -11,6 +11,9 @@ const emptyDesktop=make(alice,'alice',storage());async function settle(){for(let
 await settle();assert(!docs.has('users/alice/progress/note-selection'),'Fresh Windows browser must not erase an older phone pin');const phone=make(alice,'alice',phoneStorage);await settle();assert.equal(JSON.parse(docs.get('users/alice/progress/note-selection').value).id,id);
 const windows=make(alice,'alice',windowsStorage);await settle();assert.equal(windows.get(),id,'Pin migrates from phone to fresh Windows browser');
 windows.set(other);await settle();assert.equal(phone.get(),other);assert.equal(windows.get(),other);
+let echoes=0;const unsubscribe=windows.subscribe(()=>echoes++);const selectionRef='users/alice/progress/note-selection',currentDoc={...docs.get(selectionRef)};
+for(const fn of watchers.get(selectionRef)||[]){fn({exists:()=>true,data:()=>({...currentDoc,revision:currentDoc.revision-1,value:JSON.stringify({id})}),metadata:{fromCache:false,hasPendingWrites:false}});fn(snap(selectionRef));}
+assert.equal(windows.get(),other,'Delayed older snapshots cannot move the pin back');assert.equal(echoes,0,'Unchanged server echoes do not rerender the pin');unsubscribe();
 phone.set(null);await settle();assert.equal(windows.get(),null,'Unpin reaches other device');
 windows.dispose();windowsStorage.setItem('danki:note-selection:v1:alice',id);const returning=make(alice,'alice',windowsStorage);await settle();assert.equal(returning.get(),null,'A stale browser does not restore a cloud-unpinned note');
 phone.set(id);phone.set(other);phone.set(id);await settle();assert.equal(returning.get(),id,'Last tap wins across queued saves');

@@ -36,3 +36,6 @@
 @media(max-width:480px){.note-heading{padding:11px 12px;gap:9px;min-height:44px}.note .number{font-size:18px;min-width:21px}.note-footer{padding:4px 8px 4px 12px;gap:5px}.note .note-time-buttons{gap:4px}.note .note-time-buttons button{min-width:34px;padding:0 5px;font-size:9px}.note .expiry{font-size:11px}.note .note-body p{font-size:14px}}
 
 .composer form,#eternal-panel,.auth-gate p{background:#242529;border-color:#606169}.time-buttons button,.send,.reset,.eternal-days button,.eternal-actions button,.eternal-row button,#eternal-toggle,.danki-return,.auth-gate button,.eternal-close{background:#303136;border-color:#696a73}.time-buttons button:hover,.send:hover,.eternal-actions button:hover,.eternal-row button:hover{background:#42434b}.eternal-days button[aria-pressed=true]{background:#494052;border-color:#b58aff;color:#fff}
+
+/* Keep pin selection stable without moving the text or clipping its border. */
+.notes-area{overflow-anchor:none;scroll-behavior:auto}.note{position:relative}.note-pin{display:flex;flex:0 0 15px;visibility:hidden}.note.selected .note-pin{visibility:visible}.note.selected{box-shadow:none;border-color:#b58aff}.note.selected::after{content:"";position:absolute;inset:0;border:1px solid #b58aff;pointer-events:none;z-index:2}.note-heading{cursor:pointer}.note .expiry{text-transform:uppercase}

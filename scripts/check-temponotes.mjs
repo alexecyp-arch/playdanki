@@ -37,6 +37,12 @@ assert.equal((await schedule('POST',{id:eternalId,body:'retry',days:[3]})).statu
 let schedules=(await (await store.request('/api/notes')).json()).eternalNotes;
 assert.equal(schedules.length,1);assert.equal(schedules[0].body,'150 PUSHUPS');
 assert.equal((await schedule('PATCH',{id:eternalId,body:'160 PUSHUPS',days:[1,3,5]})).status,200);
+const date=new Date(clock),today=date.getDay();await schedule('PATCH',{id:eternalId,body:'160 PUSHUPS',days:[today]});
+const occurrenceId='eternal:'+eternalId+':'+date.getFullYear()+'-'+String(date.getMonth()+1).padStart(2,'0')+'-'+String(date.getDate()).padStart(2,'0');
+const baseEnd=new Date(date.getFullYear(),date.getMonth(),date.getDate()+1).getTime();
+for(const minutes of [-30,60,360])assert.equal((await schedule('PATCH',{id:eternalId,occurrenceId,minutes})).status,200);
+assert.equal((await (await store.request('/api/notes')).json()).eternalAdjustments[occurrenceId],baseEnd+390*60000,'All three controls change the current eternal occurrence exactly');
+await schedule('PATCH',{id:eternalId,body:'160 PUSHUPS',days:[1,3,5]});
 assert.equal((await schedule('PATCH',{id:eternalId,dismiss:true})).status,200);
 schedules=(await (await store.request('/api/notes')).json()).eternalNotes;
 assert.equal(schedules[0].body,'160 PUSHUPS');assert(schedules[0].dismissedOn);assert.deepEqual(schedules[0].days,[1,3,5]);
@@ -55,7 +61,7 @@ await assert.rejects(createNotesStore({auth,db:{},sdk,uid:'alice'}),'A different
 auth.currentUser={uid:'alice'};
 const abort=new AbortController();
 const waiting=createNotesStore({auth,db:{},sdk:{...sdk,setDoc:()=>new Promise(()=>{})},uid:'alice',signal:abort.signal});
-assert.equal(watchers.size,2);abort.abort();
+assert.equal(watchers.size,3);abort.abort();
 await assert.rejects(waiting,/Account changed/,'An account change cancels even a stalled first clock sync');
 assert.equal(watchers.size,0,'Pending stores drop both listeners immediately');
 const initial=new Map();let ready=false;
