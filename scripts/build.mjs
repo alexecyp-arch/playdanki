@@ -10,11 +10,12 @@ import {triviaInfo} from './build-trivia.mjs';
 import {frenchWords,frenchSentences} from './build-french.mjs';
 import {languageInfo} from './build-languages.mjs';
 const root=new URL('../',import.meta.url);
-const runtimeFiles=['theme.js','theme.css','analytics.js','analytics-config.json','digit-span/best-score.mjs','digit-span/index.html','digit-span/style.css','digit-span/game.js','digit-span/model.mjs','account.js','notes-navigation.js','weight-navigation.js','app.js','card-navigation.js','sections.js','programming.js','quant.js','study.css',...['bootstrap.js','ui.js','notes-store.mjs','eternal-ui.js','eternal.mjs','note-order.mjs','selection.mjs','cloud-selection.mjs','daily-background.js'].map(f=>'temponotes/'+f),...['bootstrap.js','store.mjs','model.mjs','chart.mjs','style.css','index.html'].map(f=>'weight-tracker/'+f)];
+const runtimeFiles=['german-voice.js','theme.js','theme.css','analytics.js','analytics-config.json','digit-span/best-score.mjs','digit-span/index.html','digit-span/style.css','digit-span/game.js','digit-span/model.mjs','account.js','notes-navigation.js','weight-navigation.js','app.js','card-navigation.js','sections.js','programming.js','quant.js','study.css',...['bootstrap.js','ui.js','notes-store.mjs','eternal-ui.js','eternal.mjs','note-order.mjs','selection.mjs','cloud-selection.mjs','daily-background.js'].map(f=>'temponotes/'+f),...['bootstrap.js','store.mjs','model.mjs','chart.mjs','style.css','index.html'].map(f=>'weight-tracker/'+f)];
 const runtimeVersion=createHash('sha256').update((await Promise.all(runtimeFiles.map(f=>fs.readFile(new URL('src/'+f,root),'utf8')))).join('\n')+atlasVersion).digest('hex').slice(0,12);
 let html=await fs.readFile(new URL('src/index.html',root),'utf8');
 const css=await fs.readFile(new URL('src/style.css',root),'utf8');
 const js=await fs.readFile(new URL('src/app.js',root),'utf8');
+const germanVoice=await fs.readFile(new URL('src/german-voice.js',root),'utf8');
 const cardNavigation=await fs.readFile(new URL('src/card-navigation.js',root),'utf8');
 const sections=(await fs.readFile(new URL('src/sections.js',root),'utf8')).replaceAll("'digit-span/index.html'","'digit-span/index.html?v="+runtimeVersion+"'").replace(/'(arithmetic|programming|quant)\.html'/g,"'$1.html?v="+runtimeVersion+"'");
 const cursorCss=await fs.readFile(new URL('src/cursor.css',root),'utf8');
@@ -53,7 +54,7 @@ for(const [id,data,url] of [['french-word',frenchWords,'french/words.json'],['fr
  await fs.writeFile(new URL('dist/'+url,root),data);
 }
 html=html.replace('<script defer src="card-navigation.js"></script>',()=>'<script>'+cardNavigation+'</script>').replace('<link rel="stylesheet" href="style.css">','<style>'+css.trim()+'\n'+cursorCss.trim()+'\n'+studyCss.trim()+'\n'+supportCss.trim()+'\n'+accountCss.trim()+'</style>')
- .replace('<script defer src="app.js"></script>','')
+ .replace('<script defer src="app.js"></script>','').replace('<script defer src="german-voice.js"></script>','')
  .replace('CORE_DECK_INFO',()=>JSON.stringify(coreDeckInfo))
  .replace('FRENCH_WORD_DATA','[]')
  .replace('FRENCH_SENTENCE_DATA','[]')
@@ -66,7 +67,7 @@ html=html.replace('<script defer src="card-navigation.js"></script>',()=>'<scrip
  .replace('LANGUAGE_INFO',JSON.stringify(languageInfo))
  .replace('SUPPORT_CONFIG',()=>JSON.stringify(supportConfig).replace(/</g,'\\u003c'))
  .replace('AUTH_CONFIG',()=>JSON.stringify(authConfig).replace(/</g,'\\u003c'))
- .replace('</body>',()=>'<script>'+schedule.trim()+'</script>\n<script>'+js.trim()+'</script>\n<script>'+sections.trim()+'</script>\n<script>'+supportJs.trim()+'</script>\n<script defer src="notes-navigation.js"></script>\n<script defer src="account.js"></script>\n</body>');
+ .replace('</body>',()=>'<script>'+germanVoice.trim()+'</script>\n<script>'+schedule.trim()+'</script>\n<script>'+js.trim()+'</script>\n<script>'+sections.trim()+'</script>\n<script>'+supportJs.trim()+'</script>\n<script defer src="notes-navigation.js"></script>\n<script defer src="account.js"></script>\n</body>');
 await fs.mkdir(new URL('dist/',root),{recursive:true});
 await fs.rm(new URL('dist/arithmetic-aim.html',root),{force:true});
 html=html.replace('src="notes-navigation.js"','src="notes-navigation.js?v='+runtimeVersion+'"').replace('src="account.js"','src="account.js?v='+runtimeVersion+'"');

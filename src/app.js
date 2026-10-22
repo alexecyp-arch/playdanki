@@ -65,6 +65,7 @@ function centerAnswer(){
   game.style.minHeight=Math.max(innerHeight,center+h/2+144)+'px';
 }
 window.addEventListener('resize',centerAnswer);questionImage.addEventListener('load',centerAnswer);
+function cardVoice(text=''){document.dispatchEvent(new CustomEvent('danki-card-voice',{detail:{id:mode+':'+shownRound+':'+shownCursor,text}}));}
 function render(){
   if(!practiceActive)return;
   screenVersion++;locked=false;shownCursor=reviewCursor??state.cursor;shownRound=state.round;shownDay=dayKey();feedback.textContent='';$('answer-box').hidden=true;game.style.minHeight='';
@@ -73,12 +74,12 @@ function render(){
   for(const [name,b]of Object.entries(modeButtons)){b.classList.toggle('active',name===mode);b.setAttribute('aria-pressed',String(name===mode))}
   $('retry').hidden=true;$('question-image').hidden=true;$('question-image').removeAttribute('src');score();
   const total=active.limit,complete=shownCursor===total;again.hidden=!complete;position.textContent=(complete?total:shownCursor+1)+' / '+total;$('previous-card').disabled=shownCursor===0;
-  if(complete){word.textContent='Complete';feedback.textContent=active.daily?'Daily goal reached.':'All '+total+' '+active.unit+' practiced.';word.lang='en';return}
+  if(complete){cardVoice();word.textContent='Complete';feedback.textContent=active.daily?'Daily goal reached.':'All '+total+' '+active.unit+' practiced.';word.lang='en';return}
   shownCard=cardIndex();const current=active.cards[shownCard];
-  if(active.remote&&!current){locked=true;word.textContent='';const deck=active,view=screenVersion;loadLanguage(deck).then(()=>{if(active===deck&&screenVersion===view)render()}).catch(()=>{if(active===deck&&screenVersion===view){word.textContent='Unable to load cards';feedback.textContent='Check your connection and retry.';$('retry').hidden=false}});return}
-  if(active===decks.trivia&&!current){locked=true;word.textContent='';const view=screenVersion;loadTrivia(shownCard).then(()=>{if(active===decks.trivia&&screenVersion===view)render()}).catch(()=>{if(active===decks.trivia&&screenVersion===view){word.textContent='Unable to load questions';feedback.textContent='Check your connection and retry.';$('retry').hidden=false}});return}
+  if(active.remote&&!current){cardVoice();locked=true;word.textContent='';const deck=active,view=screenVersion;loadLanguage(deck).then(()=>{if(active===deck&&screenVersion===view)render()}).catch(()=>{if(active===deck&&screenVersion===view){word.textContent='Unable to load cards';feedback.textContent='Check your connection and retry.';$('retry').hidden=false}});return}
+  if(active===decks.trivia&&!current){cardVoice();locked=true;word.textContent='';const view=screenVersion;loadTrivia(shownCard).then(()=>{if(active===decks.trivia&&screenVersion===view)render()}).catch(()=>{if(active===decks.trivia&&screenVersion===view){word.textContent='Unable to load questions';feedback.textContent='Check your connection and retry.';$('retry').hidden=false}});return}
   if(active===decks.trivia){if(current[5]){const img=$('question-image');img.src=current[5];img.hidden=false}const next=shownCard+200;if(next<active.limit&&Math.floor(next/triviaInfo.chunkSize)!==Math.floor(shownCard/triviaInfo.chunkSize))loadTrivia(next).catch(()=>{})}
-  const language=active.lang!=='en';word.textContent=current[language?1:0];translation.textContent=current[language?0:1];$('answer-box').hidden=false;centerAnswer();
+  const language=active.lang!=='en';word.textContent=current[language?1:0];translation.textContent=current[language?0:1];$('answer-box').hidden=false;centerAnswer();cardVoice(active===decks.words||active===decks.sentences?current[0]:'');
 }
 function previousCard(){if(!practiceActive||menuOpen()||!history.hidden||locked||shownCursor<=0)return;reviewCursor=shownCursor-1;render();}
 function nextCard(){
@@ -108,7 +109,7 @@ StudyNavigation.install({next:nextCard,previous:previousCard,enabled:()=>practic
 function closeHistory(){history.hidden=true;today.setAttribute('aria-expanded','false')}
 function switchMode(name){reviewCursor=null;if(mode===name){state=read(active);render();return}mode=name;active=decks[name];preferredModes[active.section]=name;state=read(active);if(storageOK&&modeKeys[active.section]){try{localStorage.setItem(modeKeys[active.section],name)}catch{storageOK=false;warn()}}closeHistory();render()}
 for(const [name,b]of Object.entries(modeButtons))b.addEventListener('click',()=>switchMode(name));
-document.addEventListener('practice-section',e=>{reviewCursor=null;practiceActive=!e.detail.startsWith('arithmetic')&&!['programming','quant','digit-span'].includes(e.detail);closeHistory();if(practiceActive){const next=preferredModes[e.detail];if(mode===next){state=read(active);render()}else switchMode(next)}});
+document.addEventListener('practice-section',e=>{if(e.detail!=='german')cardVoice();reviewCursor=null;practiceActive=!e.detail.startsWith('arithmetic')&&!['programming','quant','digit-span'].includes(e.detail);closeHistory();if(practiceActive){const next=preferredModes[e.detail];if(mode===next){state=read(active);render()}else switchMode(next)}});
 function skipKey(e){if(!practiceActive||(document.body.classList.contains('atlas-open')||document.body.classList.contains('weight-open'))||menuOpen()||e.ctrlKey||e.altKey||e.metaKey||e.isComposing)return;const next=e.code==='Space'||e.key===' '||e.key==='Enter';if(!next)return;const control=e.target.closest?.('input,textarea,select,[contenteditable="true"],summary,a,button');if(control&&control!==again)return;e.preventDefault();if(!e.repeat)nextCard()}
 document.addEventListener('keydown',skipKey);
 document.addEventListener('keydown',e=>{if(!practiceActive||menuOpen())return;if(e.key==='Escape'){closeHistory();today.focus({preventScroll:true})}});

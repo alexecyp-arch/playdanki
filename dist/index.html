@@ -111,7 +111,9 @@ body:focus,#game:focus,#exercise:focus,.arithmetic-frame:focus{outline:none}
 @media(max-width:600px){#account-bar{left:.75rem;max-width:calc(50vw - 3.5rem);flex-wrap:wrap}#account-menu>summary{font-size:.6875rem;padding:.5rem}#account-panel{left:0;width:min(18rem,calc(100vw - 1.5rem))}}
 #account-bar{flex-direction:column;align-items:flex-start}
 #account-bar>.atlas-link,#account-bar>.weight-link,#account-menu>summary{display:flex;align-items:center;justify-content:center;align-self:auto;width:7.75rem;height:2rem;padding:.5rem .6rem;border:1px solid var(--danki-border,#45618e);border-radius:.35rem;background:var(--danki-bg,#071e48);color:#fff;font:700 .75rem/1.2 Arial,Helvetica,sans-serif;white-space:nowrap;text-decoration:none}
-@media(max-width:600px){#account-bar>.atlas-link,#account-bar>.weight-link,#account-menu>summary{font-size:.6875rem}#account-bar{transform:scale(.65);transform-origin:bottom left}}</style>
+@media(max-width:600px){#account-bar>.atlas-link,#account-bar>.weight-link,#account-menu>summary{font-size:.6875rem}#account-bar{transform:scale(.65);transform-origin:bottom left}}
+
+#voice-toggle{display:flex;align-items:center;justify-content:space-between;width:7.75rem;height:1.7rem;padding:.3rem .6rem;border:1px solid var(--danki-border,#45618e);border-radius:.35rem;background:var(--danki-bg,#071e48);color:#fff;font:700 .65rem/1.2 Arial,Helvetica,sans-serif;cursor:pointer}#voice-toggle span{min-width:2.2rem;padding:.12rem .3rem;background:var(--danki-raised,#173766);border-radius:.2rem;text-align:center}#voice-toggle[aria-checked="true"] span{background:#fff;color:var(--danki-bg,#071e48)}#voice-toggle:disabled{opacity:.5;cursor:default}#voice-toggle:focus-visible{outline:2px solid #fff;outline-offset:3px}</style>
 <script>(()=>{'use strict';
  const controls='button,a,input,textarea,select,summary,[contenteditable="true"],.games-menu,.navigation,#account-bar,.tracker,#tracker,#history,#stats,[role="dialog"]';
  function canTap(event){return !event.defaultPrevented&&!event.ctrlKey&&!event.metaKey&&!event.altKey&&!event.shiftKey&&event.button===0&&matchMedia('(pointer:coarse),(max-width:600px)').matches&&!event.target.closest?.(controls)&&!window.getSelection()?.toString();}
@@ -156,6 +158,7 @@ body:focus,#game:focus,#exercise:focus,.arithmetic-frame:focus{outline:none}
 </header>
 <div id="account-bar">
 <div id="theme-switcher" role="group" aria-label="Background colour"><button type="button" data-theme-choice="indigo" aria-label="Indigo background" aria-pressed="true" title="INDIGO"></button><button type="button" data-theme-choice="charcoal" aria-label="Charcoal background" aria-pressed="false" title="CHARCOAL"></button></div>
+<button id="voice-toggle" type="button" role="switch" aria-checked="false" aria-label="German voice">VOICE <span>OFF</span></button>
 <a class="weight-link" href="weight-tracker/">WEIGHT TRACKER</a>
 <a class="atlas-link" href="data-atlas/">DATA ATLAS</a>
 <details id="support-menu" class="games-menu" hidden>
@@ -233,6 +236,37 @@ body:focus,#game:focus,#exercise:focus,.arithmetic-frame:focus{outline:none}
 <script id="greek-sentences-data" type="application/json">[]</script>
 <script id="korean-hangul-data" type="application/json">[]</script>
 <script id="korean-words-data" type="application/json">[]</script>
+<script>// German card speech uses only public deck text, never notes or account data.
+(()=>{'use strict';
+const button=document.getElementById('voice-toggle'),synth=window.speechSynthesis,key='danki:voice:v1';if(!button)return;
+let enabled=false,unlocked=false,current=null,last='',voice=null,frame=0,token=0,activeUtterance=null;
+try{enabled=localStorage.getItem(key)==='on';}catch{}
+const supported=!!synth&&typeof window.SpeechSynthesisUtterance==='function';
+function available(){return supported?synth.getVoices().filter(v=>/^de(?:[-_]|$)/i.test(v.lang)):[];}
+function bestVoice(){return available().sort((a,b)=>rank(b)-rank(a))[0]||null;}
+function rank(v){const name=v.name||'';return (/neural|natural|premium|enhanced/i.test(name)?1000:0)+(/google.*(deutsch|german)|google/i.test(name)?800:0)+(!v.localService?100:0)+(/^de[-_]DE$/i.test(v.lang)?30:0)+(v.default?5:0);}
+function sync(){button.disabled=!supported;button.setAttribute('aria-checked',String(enabled));button.querySelector('span').textContent=enabled?'ON':'OFF';button.dataset.voice=voice?.name||'';button.title=!supported?'Voice is unavailable in this browser':voice?'German voice: '+voice.name:'Waiting for a German voice';}
+function visible(){return current?.text&&!document.hidden&&!document.getElementById('game').hidden&&!['notes-open','atlas-open','weight-open'].some(c=>document.body.classList.contains(c));}
+function stop(){token++;if(frame)cancelAnimationFrame(frame);frame=0;last='';activeUtterance=null;button.dataset.speaking='false';if(supported)synth.cancel();}
+function play(){frame=0;if(!enabled||!unlocked||!visible()){stop();return;}voice=bestVoice();sync();if(!voice){stop();return;}const id=current.id+'|'+current.text;if(last===id)return;const ticket=++token;synth.cancel();const utterance=new SpeechSynthesisUtterance(current.text);utterance.voice=voice;utterance.lang=voice.lang;utterance.rate=.96;utterance.pitch=1;utterance.volume=1;activeUtterance=utterance;last=id;
+ utterance.onstart=()=>{if(ticket===token){button.dataset.speaking='true';delete button.dataset.error;}};
+ utterance.onend=()=>{if(ticket===token){button.dataset.speaking='false';activeUtterance=null;}};
+ utterance.onerror=event=>{if(ticket!==token)return;activeUtterance=null;button.dataset.speaking='false';if(!['canceled','interrupted'].includes(event.error)){last='';button.dataset.error=event.error||'unavailable';button.title='Voice could not play. Tap VOICE OFF, then ON to retry.';}};
+ try{if(synth.paused)synth.resume();synth.speak(utterance);}catch{last='';button.dataset.error='unavailable';}
+}
+function schedule(){if(frame)cancelAnimationFrame(frame);frame=requestAnimationFrame(play);}
+button.addEventListener('click',()=>{if(!supported)return;unlocked=true;enabled=!enabled;try{localStorage.setItem(key,enabled?'on':'off');}catch{}sync();if(enabled)play();else stop();});
+document.addEventListener('danki-card-voice',event=>{const next=event.detail;if(!next||typeof next.text!=='string'||!next.text.trim()){current=null;stop();return;}if(current?.id!==next.id||current.text!==next.text)stop();current={id:String(next.id),text:next.text};schedule();});
+// Browsers require a real tap/key after a page is opened before speaking.
+function unlock(event){if(!event.isTrusted)return;unlocked=true;if(enabled)schedule();}
+document.addEventListener('pointerdown',unlock,{passive:true});document.addEventListener('keydown',unlock,{passive:true});
+document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});
+window.addEventListener('pagehide',stop);window.addEventListener('danki-auth-clearing',()=>{current=null;stop();});
+window.addEventListener('storage',event=>{if(event.key!==key&&event.key!==null)return;try{enabled=localStorage.getItem(key)==='on';}catch{enabled=false;}sync();if(!enabled)stop();});
+new MutationObserver(()=>{if(!visible())stop();}).observe(document.body,{attributes:true,attributeFilter:['class']});
+if(supported){synth.addEventListener('voiceschanged',()=>{voice=bestVoice();sync();if(enabled&&unlocked&&current)schedule();});voice=bestVoice();}
+sync();
+})();</script>
 <script>(()=>{'use strict';
 let cachedDay='',cachedOrder;
 function randomFor(day){let seed=2166136261;for(const c of day)seed=Math.imul(seed^c.charCodeAt(0),16777619);return ()=>{seed+=0x6D2B79F5;let n=Math.imul(seed^seed>>>15,1|seed);n^=n+Math.imul(n^n>>>7,61|n);return ((n^n>>>14)>>>0)/4294967296}}
@@ -309,6 +343,7 @@ function centerAnswer(){
   game.style.minHeight=Math.max(innerHeight,center+h/2+144)+'px';
 }
 window.addEventListener('resize',centerAnswer);questionImage.addEventListener('load',centerAnswer);
+function cardVoice(text=''){document.dispatchEvent(new CustomEvent('danki-card-voice',{detail:{id:mode+':'+shownRound+':'+shownCursor,text}}));}
 function render(){
   if(!practiceActive)return;
   screenVersion++;locked=false;shownCursor=reviewCursor??state.cursor;shownRound=state.round;shownDay=dayKey();feedback.textContent='';$('answer-box').hidden=true;game.style.minHeight='';
@@ -317,12 +352,12 @@ function render(){
   for(const [name,b]of Object.entries(modeButtons)){b.classList.toggle('active',name===mode);b.setAttribute('aria-pressed',String(name===mode))}
   $('retry').hidden=true;$('question-image').hidden=true;$('question-image').removeAttribute('src');score();
   const total=active.limit,complete=shownCursor===total;again.hidden=!complete;position.textContent=(complete?total:shownCursor+1)+' / '+total;$('previous-card').disabled=shownCursor===0;
-  if(complete){word.textContent='Complete';feedback.textContent=active.daily?'Daily goal reached.':'All '+total+' '+active.unit+' practiced.';word.lang='en';return}
+  if(complete){cardVoice();word.textContent='Complete';feedback.textContent=active.daily?'Daily goal reached.':'All '+total+' '+active.unit+' practiced.';word.lang='en';return}
   shownCard=cardIndex();const current=active.cards[shownCard];
-  if(active.remote&&!current){locked=true;word.textContent='';const deck=active,view=screenVersion;loadLanguage(deck).then(()=>{if(active===deck&&screenVersion===view)render()}).catch(()=>{if(active===deck&&screenVersion===view){word.textContent='Unable to load cards';feedback.textContent='Check your connection and retry.';$('retry').hidden=false}});return}
-  if(active===decks.trivia&&!current){locked=true;word.textContent='';const view=screenVersion;loadTrivia(shownCard).then(()=>{if(active===decks.trivia&&screenVersion===view)render()}).catch(()=>{if(active===decks.trivia&&screenVersion===view){word.textContent='Unable to load questions';feedback.textContent='Check your connection and retry.';$('retry').hidden=false}});return}
+  if(active.remote&&!current){cardVoice();locked=true;word.textContent='';const deck=active,view=screenVersion;loadLanguage(deck).then(()=>{if(active===deck&&screenVersion===view)render()}).catch(()=>{if(active===deck&&screenVersion===view){word.textContent='Unable to load cards';feedback.textContent='Check your connection and retry.';$('retry').hidden=false}});return}
+  if(active===decks.trivia&&!current){cardVoice();locked=true;word.textContent='';const view=screenVersion;loadTrivia(shownCard).then(()=>{if(active===decks.trivia&&screenVersion===view)render()}).catch(()=>{if(active===decks.trivia&&screenVersion===view){word.textContent='Unable to load questions';feedback.textContent='Check your connection and retry.';$('retry').hidden=false}});return}
   if(active===decks.trivia){if(current[5]){const img=$('question-image');img.src=current[5];img.hidden=false}const next=shownCard+200;if(next<active.limit&&Math.floor(next/triviaInfo.chunkSize)!==Math.floor(shownCard/triviaInfo.chunkSize))loadTrivia(next).catch(()=>{})}
-  const language=active.lang!=='en';word.textContent=current[language?1:0];translation.textContent=current[language?0:1];$('answer-box').hidden=false;centerAnswer();
+  const language=active.lang!=='en';word.textContent=current[language?1:0];translation.textContent=current[language?0:1];$('answer-box').hidden=false;centerAnswer();cardVoice(active===decks.words||active===decks.sentences?current[0]:'');
 }
 function previousCard(){if(!practiceActive||menuOpen()||!history.hidden||locked||shownCursor<=0)return;reviewCursor=shownCursor-1;render();}
 function nextCard(){
@@ -352,7 +387,7 @@ StudyNavigation.install({next:nextCard,previous:previousCard,enabled:()=>practic
 function closeHistory(){history.hidden=true;today.setAttribute('aria-expanded','false')}
 function switchMode(name){reviewCursor=null;if(mode===name){state=read(active);render();return}mode=name;active=decks[name];preferredModes[active.section]=name;state=read(active);if(storageOK&&modeKeys[active.section]){try{localStorage.setItem(modeKeys[active.section],name)}catch{storageOK=false;warn()}}closeHistory();render()}
 for(const [name,b]of Object.entries(modeButtons))b.addEventListener('click',()=>switchMode(name));
-document.addEventListener('practice-section',e=>{reviewCursor=null;practiceActive=!e.detail.startsWith('arithmetic')&&!['programming','quant','digit-span'].includes(e.detail);closeHistory();if(practiceActive){const next=preferredModes[e.detail];if(mode===next){state=read(active);render()}else switchMode(next)}});
+document.addEventListener('practice-section',e=>{if(e.detail!=='german')cardVoice();reviewCursor=null;practiceActive=!e.detail.startsWith('arithmetic')&&!['programming','quant','digit-span'].includes(e.detail);closeHistory();if(practiceActive){const next=preferredModes[e.detail];if(mode===next){state=read(active);render()}else switchMode(next)}});
 function skipKey(e){if(!practiceActive||(document.body.classList.contains('atlas-open')||document.body.classList.contains('weight-open'))||menuOpen()||e.ctrlKey||e.altKey||e.metaKey||e.isComposing)return;const next=e.code==='Space'||e.key===' '||e.key==='Enter';if(!next)return;const control=e.target.closest?.('input,textarea,select,[contenteditable="true"],summary,a,button');if(control&&control!==again)return;e.preventDefault();if(!e.repeat)nextCard()}
 document.addEventListener('keydown',skipKey);
 document.addEventListener('keydown',e=>{if(!practiceActive||menuOpen())return;if(e.key==='Escape'){closeHistory();today.focus({preventScroll:true})}});
@@ -368,7 +403,7 @@ for(const [section,key]of Object.entries(modeKeys))try{const preferred=localStor
 const startSection=location.hash.slice(1);practiceActive=!['arithmetic','programming','quant','digit-span'].includes(startSection);mode=preferredModes[startSection]||preferredModes.german;active=decks[mode];state=read(active);render();scheduleMidnight();
 })();</script>
 <script>(()=>{'use strict';
-const $=id=>document.getElementById(id),frame=$('arithmetic-frame'),menus=[...document.querySelectorAll('.games-menu')],subjects=new Set(['french','german','japanese','spanish','italian','greek','korean','economics','trivia','arithmetic','programming','quant','digit-span']),options=document.querySelectorAll('.navigation .game-option'),embedded={'digit-span':['digit-span/index.html?v=7d5801b3e7cd','Digit Span','Digit Span memory game'],arithmetic:['arithmetic.html?v=7d5801b3e7cd','Weekly arithmetic','Weekly arithmetic practice'],programming:['programming.html?v=7d5801b3e7cd','Programming','Programming learning cards'],quant:['quant.html?v=7d5801b3e7cd','QUANT','QUANT learning cards']};
+const $=id=>document.getElementById(id),frame=$('arithmetic-frame'),menus=[...document.querySelectorAll('.games-menu')],subjects=new Set(['french','german','japanese','spanish','italian','greek','korean','economics','trivia','arithmetic','programming','quant','digit-span']),options=document.querySelectorAll('.navigation .game-option'),embedded={'digit-span':['digit-span/index.html?v=eafdebbfd8af','Digit Span','Digit Span memory game'],arithmetic:['arithmetic.html?v=eafdebbfd8af','Weekly arithmetic','Weekly arithmetic practice'],programming:['programming.html?v=eafdebbfd8af','Programming','Programming learning cards'],quant:['quant.html?v=eafdebbfd8af','QUANT','QUANT learning cards']};
 const menuOpen=()=>menus.some(menu=>menu.open);
 let section='german';
 function focusArithmetic(){if(!embedded[section]||menuOpen())return;try{const input=section==='arithmetic'&&frame.contentDocument?.getElementById('answer');if(input)input.focus({preventScroll:true});else frame.contentWindow?.focus()}catch{frame.focus({preventScroll:true})}}
@@ -399,7 +434,7 @@ for(const link of links){
 }
 note.textContent=config.preview?'Preview — payment link not connected.':config.genericUrl?'Choose an amount, then enter it on Revolut.':'Choose an amount. Continue on Revolut to pay.';
 })();</script>
-<script defer src="notes-navigation.js?v=7d5801b3e7cd"></script>
-<script defer src="account.js?v=7d5801b3e7cd"></script>
-<script defer src="atlas-navigation.js?v=d024f35bc399"></script><script defer src="weight-navigation.js?v=7d5801b3e7cd"></script><script defer src="/analytics.js?v=991ff9331cb8"></script></body>
+<script defer src="notes-navigation.js?v=eafdebbfd8af"></script>
+<script defer src="account.js?v=eafdebbfd8af"></script>
+<script defer src="atlas-navigation.js?v=d024f35bc399"></script><script defer src="weight-navigation.js?v=eafdebbfd8af"></script><script defer src="/analytics.js?v=991ff9331cb8"></script></body>
 </html>
