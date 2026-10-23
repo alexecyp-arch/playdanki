@@ -17,6 +17,23 @@ assert.equal(windows.get(),other,'Delayed older snapshots cannot move the pin ba
 phone.set(null);await settle();assert.equal(windows.get(),null,'Unpin reaches other device');
 windows.dispose();windowsStorage.setItem('danki:note-selection:v1:alice',id);const returning=make(alice,'alice',windowsStorage);await settle();assert.equal(returning.get(),null,'A stale browser does not restore a cloud-unpinned note');
 phone.set(id);phone.set(other);phone.set(id);await settle();assert.equal(returning.get(),id,'Last tap wins across queued saves');
+// A committed write may resolve before its snapshot arrives. getDoc may still
+// return the preceding cached revision; it must never undo a fresh local tap.
+const raceDocs=new Map(),raceWatchers=new Set();let heldSnapshot=null,staleReads=0;
+const raceRef='users/race/progress/note-selection';raceDocs.set(raceRef,{value:JSON.stringify({id}),revision:1});
+const raceSnap=(value)=>({exists:()=>!!value,data:()=>value,metadata:{fromCache:false,hasPendingWrites:false}});
+const staleDoc={...raceDocs.get(raceRef)};
+const raceSdk={doc:()=>raceRef,serverTimestamp:()=>0,getDoc:async()=>{staleReads++;return raceSnap(staleDoc)},onSnapshot(ref,options,fn){raceWatchers.add(fn);queueMicrotask(()=>fn(raceSnap(staleDoc)));return()=>raceWatchers.delete(fn);},async runTransaction(db,fn){const result=await fn({get:async()=>raceSnap(raceDocs.get(raceRef)),set(ref,value){raceDocs.set(ref,value);heldSnapshot=value;}});return result;}};
+const race=createCloudSelection({auth:{currentUser:{uid:'race'}},db:{},sdk:raceSdk,uid:'race',storage:storage()});await settle();
+const raceChanges=[];race.subscribe(v=>raceChanges.push(v));race.set(null);await settle();
+assert.equal(race.get(),null,'A stale cached read after a successful unpin must not repin the note');
+assert.deepEqual(raceChanges,[null],'One tap emits exactly one pin change before the server echo');
+for(const fn of raceWatchers)fn(raceSnap(heldSnapshot));assert.equal(race.get(),null);
+for(const fn of raceWatchers)fn(raceSnap(staleDoc));assert.equal(race.get(),null,'Older server snapshot after commit cannot repin');
+assert.equal(staleReads,0,'Pin writes never read back from the stale cache');
+race.set(id);race.set(null);race.set(id);race.set(null);await settle();assert.equal(race.get(),null,'Rapid alternating taps keep the last choice');
+for(const fn of raceWatchers)fn(raceSnap(heldSnapshot));assert.equal(race.get(),null);
+const remote={value:JSON.stringify({id:other}),revision:heldSnapshot.revision+1};for(const fn of raceWatchers)fn(raceSnap(remote));assert.equal(race.get(),other,'A genuinely newer change from another device still syncs');race.dispose();
 const bobAuth={currentUser:{uid:'bob'}},bob=make(bobAuth,'bob',storage());await settle();assert.equal(bob.get(),null);bob.set(other);await settle();assert.equal(phone.get(),id,'Another account cannot change Alice selection');
 alice.currentUser={uid:'bob'};assert.equal(phone.get(),null);phone.set(other);await settle();assert.equal(JSON.parse(docs.get('users/alice/progress/note-selection').value).id,id);phone.dispose();returning.dispose();emptyDesktop.dispose();bob.dispose();assert.equal(errors,0);
 console.log('Cloud pin checks passed: legacy migration, two-device updates/unpin, stale browser protection, last tap wins, account isolation and disposal.');
