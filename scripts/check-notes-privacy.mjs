@@ -24,6 +24,10 @@ for(const owner of ['alice','bob']){
  }
  await allowed(owner,normal+'?updateMask.fieldPaths=expiresAt','PATCH',{expiresAt:now+5400000});
  await allowed(owner,eternal+'?updateMask.fieldPaths=dismissedOn','PATCH',{dismissedOn:'2026-10-19'});
+ await allowed(owner,eternal+'?updateMask.fieldPaths=days','PATCH',{days:[]});
+ const dormant=await call(owner,eternal);assert.equal(dormant.status,200);assert.equal(dormant.body.fields.days.arrayValue.values?.length||0,0,'Zero weekdays remain saved in private storage');checks++;
+ for(const intruder of [null,owner==='alice'?'bob':'alice']){await denied(intruder,eternal);await denied(intruder,eternal+'?updateMask.fieldPaths=days','PATCH',{days:[3]});}
+ await allowed(owner,eternal+'?updateMask.fieldPaths=days','PATCH',{days:[3]});
  for(const intruder of [null,owner==='alice'?'bob':'alice']){
   await denied(intruder,`users/${owner}/temponotes/00000000-0000-4000-a000-000000000002`,'PATCH',{body:'forged note',createdAt:Date.now(),expiresAt:Date.now()+3600000});
   await denied(intruder,`users/${owner}/eternalNotes/00000000-0000-4000-a000-000000000002`,'PATCH',{body:'forged recurring',days:[1],createdAt:Date.now(),dismissedOn:''});

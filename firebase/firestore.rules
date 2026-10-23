@@ -18,7 +18,7 @@ service cloud.firestore {
           && request.resource.data.body is string
           && request.resource.data.body.size() > 0 && request.resource.data.body.size() <= 10000
           && request.resource.data.days is list
-          && request.resource.data.days.size() >= 1 && request.resource.data.days.size() <= 7
+          && request.resource.data.days.size() >= 0 && request.resource.data.days.size() <= 7
           && request.resource.data.days.hasOnly([0, 1, 2, 3, 4, 5, 6])
           && request.resource.data.days.toSet().size() == request.resource.data.days.size()
           && request.resource.data.createdAt is int

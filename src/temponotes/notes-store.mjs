@@ -59,7 +59,7 @@ export async function createNotesStore({auth,db,sdk,uid,now=Date.now,signal}){
           await runTransaction(db,async tx=>{check();const r=permanent(id),s=await tx.get(r);check();if(!s.exists())throw Error('This note was removed.');tx.update(r,{dismissedOn});});
           check();const old=eternal.get(id);if(old)eternal.set(id,{...old,dismissedOn});return Response.json({ok:true});
         }
-        if(!['POST','PATCH'].includes(method)||!validSchedule(body,days))throw Error('Write a note and choose at least one day.');
+        if(!['POST','PATCH'].includes(method)||!validSchedule(body,days))throw Error('Invalid note or weekdays.');
         const saved=await runTransaction(db,async tx=>{
           check();const r=permanent(id),s=await tx.get(r);check();
           if(method==='POST'&&s.exists())return {id,...s.data()};
