@@ -1,0 +1,25 @@
+import assert from 'node:assert/strict';
+import {createLock,emptyLockedNotes,sealNotes,unlockNotes,validPassword,parseEnvelope} from '../src/temponotes/locked-crypto.mjs';
+import {createLockedStore} from '../src/temponotes/locked-store.mjs';
+assert(validPassword('a'),'One-character passwords are allowed');assert(validPassword(' '));assert(!validPassword(''));assert(!validPassword('a'.repeat(1025)));
+const uid='alice',data=emptyLockedNotes();data.tabs[0].text='TOP SECRET FIRST SECTION\nSecond line Ελληνικά';data.tabs.push({id:crypto.randomUUID(),text:'Separate section 2'});
+const lock=await createLock('a'),envelope=await sealNotes(data,lock,uid),again=await sealNotes(data,lock,uid);
+assert.notEqual(envelope.iv,again.iv,'Every save gets a fresh nonce');assert(!JSON.stringify(envelope).includes('TOP SECRET'));assert(!JSON.stringify(envelope).includes('Separate section'));
+assert.deepEqual((await unlockNotes(envelope,'a',uid)).data,data,'One-letter password unlocks every section exactly');
+await assert.rejects(unlockNotes(envelope,'b',uid),/WRONG PASSWORD/);await assert.rejects(unlockNotes(envelope,'a','bob'),/WRONG PASSWORD/,'Cipher is bound to its Google account');
+const corrupt=structuredClone(envelope),cipher=Buffer.from(corrupt.ciphertext,'base64');cipher[0]^=1;corrupt.ciphertext=cipher.toString('base64');await assert.rejects(unlockNotes(corrupt,'a',uid),/WRONG PASSWORD/,'Tampered ciphertext fails authentication');
+const nextLock=await createLock('z'),changed=await sealNotes(data,nextLock,uid);assert.notEqual(changed.salt,envelope.salt);assert.deepEqual((await unlockNotes(changed,'z',uid)).data,data);await assert.rejects(unlockNotes(changed,'a',uid),/WRONG PASSWORD/,'Old password fails after re-encryption');
+assert.throws(()=>parseEnvelope({...envelope,iterations:1}));await assert.rejects(sealNotes({tabs:[{id:crypto.randomUUID(),text:'x'.repeat(400001)}]},lock,uid));
+
+let rows=new Map(),watchers=[],queue=Promise.resolve();const auth={currentUser:{uid}},db={};
+const snapshot=ref=>({exists:()=>rows.has(ref),data:()=>rows.get(ref),metadata:{fromCache:false,hasPendingWrites:false}});
+const sdk={doc:(_, ...parts)=>parts.join('/'),serverTimestamp:()=>Date.now(),onSnapshot(ref,options,fn){const w={ref,fn};watchers.push(w);queueMicrotask(()=>fn(snapshot(ref)));return()=>{watchers=watchers.filter(v=>v!==w);};},runTransaction(db,fn){const work=queue.then(async()=>{const writes=[];await fn({get:async ref=>snapshot(ref),set:(ref,value)=>writes.push([ref,value])});for(const [ref,value]of writes)rows.set(ref,value);for(const w of watchers)w.fn(snapshot(w.ref));});queue=work.catch(()=>{});return work;}};
+const phone=createLockedStore({auth,db,sdk,uid}),desktop=createLockedStore({auth,db,sdk,uid});let remote;desktop.subscribe(s=>remote=s);await Promise.resolve();
+assert.equal(await phone.save(envelope,0),1);assert.equal(remote.revision,1);assert.deepEqual((await unlockNotes(remote.value,'a',uid)).data,data,'Cipher syncs across devices');
+await assert.rejects(desktop.save(changed,0),/NOTES CHANGED/,'An old device cannot overwrite newer notes');assert.equal(rows.get('users/alice/progress/locked-notes').revision,1);
+assert.equal(await desktop.save(changed,1),2);assert.deepEqual((await unlockNotes(remote.value,'z',uid)).data,data,'Changed password and all tabs sync together');
+const plaintext=JSON.stringify([...rows.values()]);assert(!plaintext.includes('TOP SECRET'));assert(!plaintext.includes('Separate section'));
+auth.currentUser={uid:'bob'};await assert.rejects(phone.save(envelope,2),/SIGN IN/);phone.dispose();desktop.dispose();assert.equal(watchers.length,0);
+assert.throws(()=>createLockedStore({auth,db,sdk,uid:'alice'}),/SIGN IN/);
+auth.currentUser={uid};const restored=createLockedStore({auth,db,sdk,uid});let saved;restored.subscribe(s=>saved=s);await Promise.resolve();assert.deepEqual((await unlockNotes(saved.value,'z',uid)).data,data,'Reload restores encrypted tabs');restored.dispose();
+console.log('Locked notes checks passed: one-character passwords, authenticated encryption, unique nonces, wrong password, tamper and wrong-account rejection, multiple sections, password rotation, cloud sync, stale-write protection, reload and cleanup.');

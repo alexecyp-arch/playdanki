@@ -63,7 +63,7 @@
 .timebox-header .timebox-add{width:32px;height:32px;font-size:23px;line-height:18px;padding:0;background:#242529}
 .timebox-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));justify-content:end;gap:12px;align-items:start;max-width:504px;margin-left:auto}
 .timebox-card{position:relative;aspect-ratio:1;min-width:0;border:2px solid var(--box-color);background:var(--box-color);color:var(--box-text)}
-.timebox-card.running{border-color:#fff;box-shadow:0 0 0 1px #fff}
+.timebox-card.running{border-color:#050607;background:#050607;box-shadow:none}
 .timebox-card .timebox-run{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;width:100%;height:100%;background:var(--box-color);color:var(--box-text);border:0;padding:30px 10px 12px;text-align:center}
 .timebox-name{text-transform:uppercase;font-size:14px;line-height:1.3;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .timebox-run time{font-size:20px;font-variant-numeric:tabular-nums;white-space:nowrap}
@@ -101,8 +101,28 @@
 /* A quiet stone finish over an opaque base; no transparency through the cards. */
 .temponote-workspace{--stone-finish:radial-gradient(ellipse 170% 95% at -12% -35%,transparent 62%,#ffffff0c 63%,#00000012 64%,transparent 65.5%),radial-gradient(ellipse 180% 110% at 115% 130%,transparent 55%,#ffffff09 56%,transparent 57%,#00000012 58%,transparent 60%),linear-gradient(122deg,transparent 29%,#ffffff06 30%,transparent 31.5% 69%,#00000012 70%,#ffffff08 71%,transparent 72.5%),linear-gradient(145deg,#ffffff08,#00000012)}
 .note,.note.selected,.note-footer,.note.selected .note-footer,.composer-wrap>form,.timebox-card .timebox-run{background-image:var(--stone-finish)}
-.note,.note.selected,.composer-wrap>form{background-image:linear-gradient(#0c0f1666,#0c0f1666),url('./note-sparkles-blue-v2.jpg');background-size:cover;background-position:center 55%}
+.note,.note.selected,.composer-wrap>form{background-image:linear-gradient(#0c0f1666,#0c0f1666),url('./note-sparkles-black-v3.jpg');background-size:cover;background-position:center 55%}
 .note-footer,.note.selected .note-footer{background-image:none}
+.timebox-card.running .timebox-run,.timebox-card.running .timebox-move,.timebox-card.running .timebox-edit{background:#050607;color:#fff;background-image:none}
+.timebox-card:not(.running) .timebox-run{background-color:#080a0e;background-image:linear-gradient(#0005,#0005),url('./note-sparkles-black-v3.jpg');background-size:cover;background-position:center 55%;color:#fff}
+.timebox-card .timebox-move,.timebox-card .timebox-edit{background:#080a0e;color:#fff}
 @media(min-width:761px) and (max-width:1000px){.temponote-workspace{grid-template-columns:minmax(0,1fr)}.temponote-workspace .app{height:75dvh;min-height:460px;width:100%}.timebox-side{width:min(100%,536px);margin-left:auto;height:auto;min-height:25dvh;padding-top:20px}}
 @media(max-width:760px){.timebox-card .timebox-run{gap:6px;padding:24px 6px 7px}.timebox-name{font-size:11px;-webkit-line-clamp:2}.timebox-run time{font-size:clamp(12px,4vw,16px)}.timebox-state{font-size:10px}}
 @media(max-width:760px){.temponote-workspace{grid-template-columns:minmax(0,1fr)}.temponote-workspace .app{height:75dvh;min-height:460px;width:100%}.timebox-side{width:min(100%,536px);margin-left:auto;height:auto;min-height:25dvh;padding:20px 16px 70px}.timebox-header{max-width:none}.temponote-workspace .header{height:70px;padding:0 16px}.temponote-workspace .notes-wrap{padding:10px 16px 16px}.temponote-workspace .composer{padding:12px 16px 16px}.composer-top{padding-right:130px}.composer-top #eternal-toggle{font-size:9px;padding:0 7px}.timebox-chart-area{right:16px}.timebox-chart-row{grid-template-columns:80px minmax(0,1fr) 61px;gap:7px;font-size:10px}.timebox-chart-axis{margin-left:87px;margin-right:68px}}
+
+.composer-top{padding-right:0}.note-tools{position:absolute;right:0;bottom:13px;display:flex;align-items:center;gap:6px;z-index:25}
+.composer-top .note-tools .eternal-area{position:relative;right:auto;bottom:auto}.locked-area{position:relative}
+#locked-toggle{height:30px;padding:0 10px;background:#303136;border:1px solid #696a73;color:#edf0f2;font-size:10px;letter-spacing:.5px}
+#locked-panel{position:absolute;right:0;bottom:40px;width:min(700px,calc(100vw - 32px));max-height:calc(100dvh - 150px);overflow:auto;padding:14px;background:#242529;border:1px solid #696a73;box-shadow:0 8px 28px #0006;color:#f4f4f5;text-align:left}
+#locked-panel header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;font-size:11px;letter-spacing:1px}
+#locked-panel button{border:1px solid #696a73;background:#303136;color:white;padding:6px 10px;font-size:10px}
+#locked-panel .locked-close{border:0;background:transparent;padding:0 3px;font-size:24px;line-height:20px}
+.composer #locked-panel form{display:flex;flex-wrap:wrap;gap:8px;align-items:center;box-shadow:none;border:0;padding:0;background:none}
+#locked-panel input{font:700 13px Arial,Helvetica,sans-serif;min-width:0;flex:1;padding:9px 10px;background:#1e1f23;color:#fff;border:1px solid #696a73;border-radius:0}
+.locked-tabs-row{display:flex;align-items:center;gap:7px;margin-bottom:8px}.locked-tabs{display:flex;overflow-x:auto;gap:5px;flex:1;scrollbar-width:thin}
+#locked-panel .locked-tabs button{min-width:32px;font-size:11px;flex-shrink:0}.locked-tabs [aria-selected=true]{border-color:#b58aff!important;background:#494052!important}
+#locked-panel .locked-add{width:32px;height:30px;font-size:20px;line-height:16px;padding:0;flex-shrink:0}
+#locked-text{display:block;resize:vertical;width:100%;height:320px;min-height:180px;max-height:55dvh;padding:12px;background:#141519;border:1px solid #606169;color:#fff;font:700 14px/1.6 Arial,Helvetica,sans-serif;letter-spacing:0;overflow:auto}
+#locked-panel .locked-password-toggle{margin-top:10px}.composer #locked-panel .locked-change-form{margin-top:10px}
+.locked-status{font-size:10px;line-height:1.4;min-height:14px;margin:9px 0 0;color:#d5d5dc;letter-spacing:.3px}
+@media(max-width:760px){#locked-toggle{padding:0 7px;font-size:9px}.composer-top{padding-right:0}#locked-panel{padding:12px;max-height:max(200px,calc(75dvh - 180px))}#locked-panel input{flex-basis:150px}#locked-text{height:300px;max-height:45dvh}}
