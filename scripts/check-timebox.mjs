@@ -28,6 +28,13 @@ state=change(state,{type:'edit',id:a,name:'Deutsch',color:'#ffffff'},midnight+18
 assert.equal(duration(3723000),'01:02:03');assert.equal(dayKey(new Date(start)),'2026-10-24');
 assert.throws(()=>change(state,{type:'edit',id:a,name:' ',color:'#000000'},start));
 assert.throws(()=>decode('{"tasks":[{}]}'));
+const originalTasks=structuredClone(state.tasks);
+state=change(state,{type:'move',id:b,beforeId:a},midnight+1800000);
+assert.deepEqual(state.tasks.map(t=>t.id),[b,a]);
+for(const task of state.tasks)assert.deepEqual(task,originalTasks.find(t=>t.id===task.id),'Moving preserves names, colours, history and running timers');
+state=change(state,{type:'move',id:b,beforeId:null},midnight+1800000);assert.deepEqual(state.tasks.map(t=>t.id),[a,b],'Move to last position');
+assert.deepEqual(change(state,{type:'move',id:a,beforeId:a},start),state,'Moving before itself is harmless');
+assert.throws(()=>change(state,{type:'move',id:a,beforeId:'removed-target'},start),/POSITION CHANGED/);
 
 // Two real store instances share a transaction-backed fake cloud, not browser storage.
 let rows=new Map(),watchers=[],transactionQueue=Promise.resolve(),clock=start;
@@ -45,8 +52,10 @@ await Promise.all([phone.act({type:'running',id:a,running:true}),desktop.act({ty
 await phone.act({type:'running',id:a,running:false});assert.equal(timeFor(desktopState.state.tasks[0],clock),1800000);assert.notEqual(desktopState.state.tasks[1].runningSince,null);
 await desktop.act({type:'edit',id:a,name:'GERMAN PRACTICE',color:'#ffffff'});assert.equal(phoneState.state.tasks[0].name,'GERMAN PRACTICE');
 const privateRef='users/alice/progress/timebox';assert(rows.has(privateRef));assert.equal(rows.get(privateRef).revision,6);
+await Promise.all([phone.act({type:'move',id:b,beforeId:a}),desktop.act({type:'edit',id:a,name:'GERMAN PRACTICE',color:'#ffffff'})]);
+assert.deepEqual(phoneState.state.tasks.map(t=>t.id),[b,a],'Cloud order survives a concurrent edit');assert.deepEqual(phoneState,desktopState,'Both devices receive the new order');assert.equal(timeFor(phoneState.state.tasks[1],clock),1800000,'Reordering does not change recorded time');
 const stale={exists:()=>true,data:()=>({value:'{"tasks":[]}',revision:1}),metadata:{fromCache:false,hasPendingWrites:false}};for(const w of watchers)w.callback(stale);assert.equal(phoneState.state.tasks.length,2,'Old snapshots cannot overwrite newer saved timers');
 auth.currentUser={uid:'bob'};await assert.rejects(phone.act({type:'remove',id:a}),/SIGN IN/);assert(!rows.has('users/bob/progress/timebox'));
 phone.dispose();desktop.dispose();assert.equal(watchers.length,0,'Sign-out removes subscriptions');
-auth.currentUser={uid:'alice'};const restored=createTimeboxStore(options);let restoredState;restored.subscribe(s=>restoredState=s);await Promise.resolve();assert.equal(restoredState.state.tasks.length,2);await restored.act({type:'remove',id:a});assert.equal(restoredState.state.tasks.length,1);assert.equal(restoredState.state.tasks[0].id,b);restored.dispose();
+auth.currentUser={uid:'alice'};const restored=createTimeboxStore(options);let restoredState;restored.subscribe(s=>restoredState=s);await Promise.resolve();assert.equal(restoredState.state.tasks.length,2);assert.deepEqual(restoredState.state.tasks.map(t=>t.id),[b,a],'Reordered positions survive reload');await restored.act({type:'remove',id:a});assert.equal(restoredState.state.tasks.length,1);assert.equal(restoredState.state.tasks[0].id,b);restored.dispose();
 console.log('TIMEBOX checks passed: parallel timers, pause/resume/retry, midnight, DST, seven-day averages, reload, cloud concurrency, stale snapshots, rename/colour, delete, and account isolation.');

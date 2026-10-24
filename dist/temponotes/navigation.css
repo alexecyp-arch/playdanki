@@ -43,7 +43,7 @@
 .note.eternal .delete{margin-left:0}
 
 /* Notes on the left, independent daily timers on the right. */
-.temponote-workspace{display:grid;grid-template-columns:minmax(0,1fr) 200px;min-height:100dvh;background:var(--daily-background,none) center/cover fixed no-repeat}
+.temponote-workspace{display:grid;grid-template-columns:minmax(0,1fr) 536px;min-height:100dvh;background:var(--daily-background,none) center/cover fixed no-repeat}
 .temponote-workspace .app{background:none;min-width:0;width:min(100%,808px);height:100dvh}
 .temponote-workspace .header{padding:0 24px}
 .temponote-workspace .notes-wrap,.temponote-workspace .composer-wrap{max-width:none;margin:0}
@@ -61,7 +61,7 @@
 .timebox-side button:focus-visible,.timebox-side input:focus-visible{outline:2px solid #b58aff;outline-offset:3px}
 .timebox-side button:disabled{opacity:.55;cursor:default}
 .timebox-header .timebox-add{width:32px;height:32px;font-size:23px;line-height:18px;padding:0;background:#242529}
-.timebox-grid{display:grid;grid-template-columns:minmax(0,160px);justify-content:end;gap:12px;align-items:start}
+.timebox-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));justify-content:end;gap:12px;align-items:start;max-width:504px;margin-left:auto}
 .timebox-card{position:relative;aspect-ratio:1;min-width:0;border:2px solid var(--box-color);background:var(--box-color);color:var(--box-text)}
 .timebox-card.running{border-color:#fff;box-shadow:0 0 0 1px #fff}
 .timebox-card .timebox-run{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;width:100%;height:100%;background:var(--box-color);color:var(--box-text);border:0;padding:30px 10px 12px;text-align:center}
@@ -69,6 +69,8 @@
 .timebox-run time{font-size:20px;font-variant-numeric:tabular-nums;white-space:nowrap}
 .timebox-state{font-size:12px;line-height:1}
 .timebox-card .timebox-edit{position:absolute;right:3px;top:3px;padding:0 4px;min-width:27px;height:23px;font-size:20px;line-height:15px;color:var(--box-text);border:0;background:var(--box-color)}
+.timebox-card .timebox-move{position:absolute;left:3px;top:3px;padding:0;width:27px;height:23px;font-size:20px;line-height:20px;color:var(--box-text);border:0;background:var(--box-color);z-index:1;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none}
+.timebox-card.dragging{opacity:.65;outline:2px solid #b58aff;outline-offset:2px}.timebox-card.dragging .timebox-move{cursor:grabbing}
 .timebox-editor{max-width:676px;display:flex;align-items:center;flex-wrap:wrap;gap:10px;padding:12px;margin-bottom:16px;background:#242529;border:1px solid #696a73}
 .timebox-editor input:not([type=color]){min-width:120px;width:100%;padding:9px 10px;border:1px solid #696a73;background:#1e1f23;color:white;text-transform:uppercase;font-size:13px}
 .timebox-color-label{display:flex;align-items:center;gap:9px;font-size:10px}
@@ -94,6 +96,8 @@
 /* A quiet stone finish over an opaque base; no transparency through the cards. */
 .temponote-workspace{--stone-finish:radial-gradient(ellipse 170% 95% at -12% -35%,transparent 62%,#ffffff0c 63%,#00000012 64%,transparent 65.5%),radial-gradient(ellipse 180% 110% at 115% 130%,transparent 55%,#ffffff09 56%,transparent 57%,#00000012 58%,transparent 60%),linear-gradient(122deg,transparent 29%,#ffffff06 30%,transparent 31.5% 69%,#00000012 70%,#ffffff08 71%,transparent 72.5%),linear-gradient(145deg,#ffffff08,#00000012)}
 .note,.note.selected,.note-footer,.note.selected .note-footer,.composer-wrap>form,.timebox-card .timebox-run{background-image:var(--stone-finish)}
-.note,.note.selected,.composer-wrap>form{background-image:linear-gradient(#0c0f1666,#0c0f1666),url('./note-sparkles.jpg');background-size:cover;background-position:center 55%}
+.note,.note.selected,.composer-wrap>form{background-image:linear-gradient(#0c0f1666,#0c0f1666),url('./note-sparkles-blue-v2.jpg');background-size:cover;background-position:center 55%}
 .note-footer,.note.selected .note-footer{background-image:none}
-@media(max-width:760px){.temponote-workspace{grid-template-columns:minmax(0,1fr)}.temponote-workspace .app{height:75dvh;min-height:460px;width:100%}.timebox-side{width:200px;margin-left:auto;height:auto;min-height:25dvh;padding:20px 16px 70px 24px}.timebox-header{max-width:none}.temponote-workspace .header{height:70px;padding:0 16px}.temponote-workspace .notes-wrap{padding:10px 16px 16px}.temponote-workspace .composer{padding:12px 16px 16px}.composer-top{padding-right:130px}.composer-top #eternal-toggle{font-size:9px;padding:0 7px}.timebox-chart-area{right:16px}.timebox-chart-row{grid-template-columns:80px minmax(0,1fr) 61px;gap:7px;font-size:10px}.timebox-chart-axis{margin-left:87px;margin-right:68px}}
+@media(min-width:761px) and (max-width:1000px){.temponote-workspace{grid-template-columns:minmax(0,1fr)}.temponote-workspace .app{height:75dvh;min-height:460px;width:100%}.timebox-side{width:min(100%,536px);margin-left:auto;height:auto;min-height:25dvh;padding-top:20px}}
+@media(max-width:760px){.timebox-card .timebox-run{gap:6px;padding:24px 6px 7px}.timebox-name{font-size:11px;-webkit-line-clamp:2}.timebox-run time{font-size:clamp(12px,4vw,16px)}.timebox-state{font-size:10px}}
+@media(max-width:760px){.temponote-workspace{grid-template-columns:minmax(0,1fr)}.temponote-workspace .app{height:75dvh;min-height:460px;width:100%}.timebox-side{width:min(100%,536px);margin-left:auto;height:auto;min-height:25dvh;padding:20px 16px 70px}.timebox-header{max-width:none}.temponote-workspace .header{height:70px;padding:0 16px}.temponote-workspace .notes-wrap{padding:10px 16px 16px}.temponote-workspace .composer{padding:12px 16px 16px}.composer-top{padding-right:130px}.composer-top #eternal-toggle{font-size:9px;padding:0 7px}.timebox-chart-area{right:16px}.timebox-chart-row{grid-template-columns:80px minmax(0,1fr) 61px;gap:7px;font-size:10px}.timebox-chart-axis{margin-left:87px;margin-right:68px}}

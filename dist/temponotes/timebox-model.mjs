@@ -19,7 +19,12 @@ export function change(state,action,now){
   const task={id:action.id,name:action.name?.trim(),color:action.color,createdAt:now,days:{},runningSince:null};if(!validTask(task))throw Error('CHECK NAME AND COLOUR');tasks.push(task);
  }else{
   if(index<0)throw Error('BOX WAS REMOVED');const task=tasks[index];
-  if(action.type==='remove')tasks.splice(index,1);
+  if(action.type==='move'){
+   if(action.beforeId===action.id)return {tasks};
+   const [moved]=tasks.splice(index,1),destination=action.beforeId===null?tasks.length:tasks.findIndex(t=>t.id===action.beforeId);
+   if(destination<0)throw Error('POSITION CHANGED. TRY AGAIN');tasks.splice(destination,0,moved);
+  }
+  else if(action.type==='remove')tasks.splice(index,1);
   else if(action.type==='edit'){task.name=action.name?.trim();task.color=action.color;if(!validTask(task))throw Error('CHECK NAME AND COLOUR');}
   else if(action.type==='running'){
    if(action.running&&task.runningSince===null)task.runningSince=now;
