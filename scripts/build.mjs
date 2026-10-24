@@ -95,7 +95,7 @@ for(const name of await fs.readdir(new URL('dist/temponotes/backgrounds/',root))
 const backgroundScript=(await fs.readFile(new URL('src/temponotes/daily-background.js',root),'utf8')).replace('BACKGROUND_DATA',()=>JSON.stringify(backgrounds));
 await fs.writeFile(new URL('dist/temponotes/index.html',root),notesHtml.replace('DAILY_BACKGROUND_SCRIPT',()=>backgroundScript).replace('AUTH_CONFIG',()=>JSON.stringify(authConfig).replace(/</g,'\\u003c')));
 await fs.writeFile(new URL('dist/arithmetic.html',root),arithmetic.replace('</style>',arithmeticTheme.trim()+'\n'+cursorCss.trim()+'\n'+studyCss.trim()+'\n</style>'));
-await fs.copyFile(new URL('src/credits.txt',root),new URL('dist/credits.txt',root));
+await fs.rm(new URL('dist/credits.txt',root),{force:true});
 console.log(JSON.stringify({words:entries.length,sentences:sentenceEntries.length,frenchWords:5000,frenchSentences:1000,kana:kanaEntries.length,kanji:kanjiEntries.length,economics:economicsEntries.length,htmlBytes:Buffer.byteLength(html),compressedBytes:gzipSync(html).length}));
 
 const {buildShared}=await import('./build-shared.mjs');await buildShared(root);

@@ -27,7 +27,7 @@ if(!quant.includes(quantMarker))throw Error('Offline QUANT marker missing');
 quant=quant.replace(quantMarker,'<script id="quant-data" type="application/json">'+quantData.replace(/</g,'\\u003c')+'</script>');
 await fs.writeFile(path.join(target,'quant.html'),quant);
 await fs.cp(new URL('dist/quant/',root),path.join(target,'quant'),{recursive:true});
-await fs.copyFile(new URL('dist/credits.txt',root),path.join(target,'credits.txt'));
+await fs.rm(path.join(target,'credits.txt'),{force:true});
 await fs.cp(new URL('dist/licenses/',root),path.join(target,'licenses'),{recursive:true});
 await fs.mkdir(path.join(target,'trivia'),{recursive:true});
 for(const name of ['sources.json','summary.json'])await fs.copyFile(new URL('dist/trivia/'+name,root),path.join(target,'trivia',name));
