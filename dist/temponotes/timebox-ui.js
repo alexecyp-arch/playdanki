@@ -1,4 +1,4 @@
-import {timeFor,duration} from './timebox-model.mjs?v=6eb6f0c59e71';
+import {timeFor,duration} from './timebox-model.mjs?v=f5fee32c8bd8';
 export function mountTimebox(root,store){
  const side=root.querySelector('.timebox-side');
  side.innerHTML=`<header class="timebox-header"><h2>TIMEBOX</h2><button type="button" class="timebox-add" aria-label="Create timebox">+</button></header><form class="timebox-editor" hidden><label class="sr-only" for="timebox-name">Task name</label><input id="timebox-name" maxlength="60" placeholder="TASK NAME" required><label class="timebox-color-label">COLOUR<input type="color" value="#7652a3" aria-label="Box colour"></label><div class="timebox-editor-actions"><button type="button" class="timebox-remove" hidden>REMOVE</button><button type="button" class="timebox-cancel">CANCEL</button><button type="submit">SAVE</button></div></form><p class="timebox-error" role="alert" hidden></p><div class="timebox-grid" aria-label="Task timers"></div><aside class="timebox-chart-area"><button type="button" id="timebox-chart-toggle" aria-expanded="false" aria-controls="timebox-chart">TIME SPENT ⌃</button><section id="timebox-chart" aria-label="Time spent by task" hidden><header><div role="group" aria-label="Chart period"><button type="button" data-period="today" aria-pressed="true">TODAY</button><button type="button" data-period="week" aria-pressed="false">WEEK</button></div><button type="button" class="timebox-chart-close" aria-label="Close time chart">×</button></header><div class="timebox-chart-caption"></div><div class="timebox-chart-axis"><span>0</span><span class="timebox-chart-middle"></span><span class="timebox-chart-max"></span></div><div class="timebox-bars"></div></section></aside>`;
@@ -31,12 +31,12 @@ export function mountTimebox(root,store){
  async function commitMove(id){
   const index=tasks.findIndex(t=>t.id===id);if(index<0)return;
   const beforeId=tasks[index+1]?.id||null;moving=true;pending.add(id);controls();showError();
-  try{await store.act({type:'move',id,beforeId});}catch(e){if(!disposed)showError(e.message);}finally{moving=false;pending.delete(id);if(!disposed){tasks=confirmedTasks;render();}}
+  try{await store.act({type:'move',id,beforeId});}catch(e){if(!disposed)showError(e.message);}finally{moving=false;pending.delete(id);if(!disposed){tasks=confirmedTasks;render();if(document.activeElement===document.body)nodes.get(id)?.querySelector('.timebox-move').focus({preventScroll:true});}}
  }
  grid.addEventListener('pointerdown',event=>{
   const handle=event.target.closest('.timebox-move');if(!handle||!ready||moving||drag||event.button!==0||event.isPrimary===false)return;
   const id=handle.closest('.timebox-card').dataset.id;if(pending.has(id))return;
-  event.preventDefault();handle.focus({preventScroll:true});handle.setPointerCapture(event.pointerId);
+  event.preventDefault();handle.focus({preventScroll:true});grid.setPointerCapture(event.pointerId);
   drag={id,pointerId:event.pointerId,handle,x:event.clientX,y:event.clientY,moved:false,original:tasks.map(t=>t.id).join(',')};render();
  });
  grid.addEventListener('pointermove',event=>{
@@ -46,7 +46,7 @@ export function mountTimebox(root,store){
   if(target&&grid.contains(target)){const index=tasks.findIndex(t=>t.id===target.dataset.id);if(index>=0)moveLocal(drag.id,index);}
   const bounds=side.getBoundingClientRect();if(event.clientY>bounds.bottom-45)side.scrollTop+=14;else if(event.clientY<bounds.top+45)side.scrollTop-=14;
  });
- function endDrag(cancel=false){if(!drag)return;const current=drag;drag=null;if(current.handle.hasPointerCapture(current.pointerId))current.handle.releasePointerCapture(current.pointerId);
+ function endDrag(cancel=false){if(!drag)return;const current=drag;drag=null;if(grid.hasPointerCapture(current.pointerId))grid.releasePointerCapture(current.pointerId);
   if(!cancel&&current.moved&&current.original!==tasks.map(t=>t.id).join(','))commitMove(current.id);else {tasks=confirmedTasks;render();}
  }
  grid.addEventListener('pointerup',event=>{if(drag?.pointerId===event.pointerId)endDrag();});
