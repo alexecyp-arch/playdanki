@@ -77,6 +77,11 @@
 .timebox-editor input[type=color]{width:33px;height:28px;padding:0;border:1px solid #696a73;background:#1e1f23;cursor:pointer}
 .timebox-editor-actions{display:flex;justify-content:flex-end;flex-wrap:wrap;gap:6px;flex:1}
 .timebox-editor-actions button{font-size:10px}
+.timebox-adjust{width:100%;padding-top:10px;border-top:1px solid #696a73;display:grid;grid-template-columns:auto 90px;align-items:center;gap:8px;font-size:10px}
+.timebox-adjust-total{grid-column:1/-1;display:flex;justify-content:space-between;font-variant-numeric:tabular-nums}
+.timebox-adjust>div:last-child{grid-column:1/-1;display:flex;gap:7px}
+.timebox-adjust>div:last-child button{flex:1;font-size:10px}
+.timebox-editor #timebox-minutes{width:90px;min-width:0;text-align:center}
 .timebox-error{max-width:676px;padding:10px;background:#482b2c;color:#ffcbc4;margin-bottom:12px;font-size:11px}
 .timebox-chart-area{position:fixed;right:20px;bottom:max(14px,env(safe-area-inset-bottom));z-index:26}
 #timebox-chart-toggle{height:30px;padding:0 10px;font-size:10px;letter-spacing:.5px;background:#303136}

@@ -26,6 +26,11 @@ export function change(state,action,now){
   }
   else if(action.type==='remove')tasks.splice(index,1);
   else if(action.type==='edit'){task.name=action.name?.trim();task.color=action.color;if(!validTask(task))throw Error('CHECK NAME AND COLOUR');}
+  else if(action.type==='adjust'){
+   if(!Number.isInteger(action.minutes)||action.minutes===0||Math.abs(action.minutes)>1440)throw Error('ENTER 1–1440 MINUTES');
+   const today=dayKey(new Date(now));if(action.day!==today)throw Error('DAY CHANGED. TRY AGAIN');
+   const adjusted=settle(task,now);adjusted.days[today]=Math.max(0,(adjusted.days[today]||0)+action.minutes*60000);tasks[index]=adjusted;
+  }
   else if(action.type==='running'){
    if(action.running&&task.runningSince===null)task.runningSince=now;
    else if(!action.running&&task.runningSince!==null)tasks[index]={...settle(task,now),runningSince:null};

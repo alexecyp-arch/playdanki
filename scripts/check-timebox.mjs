@@ -35,6 +35,20 @@ for(const task of state.tasks)assert.deepEqual(task,originalTasks.find(t=>t.id==
 state=change(state,{type:'move',id:b,beforeId:null},midnight+1800000);assert.deepEqual(state.tasks.map(t=>t.id),[a,b],'Move to last position');
 assert.deepEqual(change(state,{type:'move',id:a,beforeId:a},start),state,'Moving before itself is harmless');
 assert.throws(()=>change(state,{type:'move',id:a,beforeId:'removed-target'},start),/POSITION CHANGED/);
+const adjustmentTime=midnight+1800000,today='2026-10-25';
+let adjusted=change(state,{type:'adjust',id:a,minutes:30,day:today},adjustmentTime);
+assert.equal(timeFor(adjusted.tasks[0],adjustmentTime),3000000,'Add thirty minutes to the live daily total');
+assert.equal(adjusted.tasks[0].days['2026-10-24'],1800000,'Earlier days stay unchanged');
+assert.equal(adjusted.tasks[0].runningSince,adjustmentTime,'Running timer continues from the adjustment');
+assert.equal(timeFor(adjusted.tasks[0],adjustmentTime+60000),3060000,'Running time continues exactly once');
+adjusted=change(adjusted,{type:'adjust',id:a,minutes:-15,day:today},adjustmentTime+60000);
+assert.equal(timeFor(adjusted.tasks[0],adjustmentTime+60000),2160000,'Subtract fifteen minutes');
+assert.equal(timeFor(adjusted.tasks[0],adjustmentTime+60000,true),(1800000+2160000)/7,'Week chart includes the correction');
+adjusted=change(adjusted,{type:'adjust',id:a,minutes:-1440,day:today},adjustmentTime+60000);
+assert.equal(timeFor(adjusted.tasks[0],adjustmentTime+60000),0,'Subtraction cannot produce negative time');
+assert.equal(timeFor(adjusted.tasks[0],adjustmentTime+120000),60000,'A zeroed active timer keeps counting');
+for(const minutes of [0,1.5,NaN,Infinity,1441,-1441,'30'])assert.throws(()=>change(state,{type:'adjust',id:a,minutes,day:today},adjustmentTime));
+assert.throws(()=>change(state,{type:'adjust',id:a,minutes:30,day:'2026-10-24'},adjustmentTime),/DAY CHANGED/);
 
 // Two real store instances share a transaction-backed fake cloud, not browser storage.
 let rows=new Map(),watchers=[],transactionQueue=Promise.resolve(),clock=start;
@@ -54,8 +68,10 @@ await desktop.act({type:'edit',id:a,name:'GERMAN PRACTICE',color:'#ffffff'});ass
 const privateRef='users/alice/progress/timebox';assert(rows.has(privateRef));assert.equal(rows.get(privateRef).revision,6);
 await Promise.all([phone.act({type:'move',id:b,beforeId:a}),desktop.act({type:'edit',id:a,name:'GERMAN PRACTICE',color:'#ffffff'})]);
 assert.deepEqual(phoneState.state.tasks.map(t=>t.id),[b,a],'Cloud order survives a concurrent edit');assert.deepEqual(phoneState,desktopState,'Both devices receive the new order');assert.equal(timeFor(phoneState.state.tasks[1],clock),1800000,'Reordering does not change recorded time');
+await Promise.all([phone.act({type:'adjust',id:a,minutes:30,day:today}),desktop.act({type:'adjust',id:a,minutes:-10,day:today})]);
+assert.equal(timeFor(phoneState.state.tasks[1],clock),3000000,'Concurrent manual corrections both apply');assert.deepEqual(phoneState,desktopState,'Manual time syncs to both devices');assert.equal(phoneState.state.tasks[1].runningSince,null,'Paused timers stay paused after manual correction');
 const stale={exists:()=>true,data:()=>({value:'{"tasks":[]}',revision:1}),metadata:{fromCache:false,hasPendingWrites:false}};for(const w of watchers)w.callback(stale);assert.equal(phoneState.state.tasks.length,2,'Old snapshots cannot overwrite newer saved timers');
 auth.currentUser={uid:'bob'};await assert.rejects(phone.act({type:'remove',id:a}),/SIGN IN/);assert(!rows.has('users/bob/progress/timebox'));
 phone.dispose();desktop.dispose();assert.equal(watchers.length,0,'Sign-out removes subscriptions');
 auth.currentUser={uid:'alice'};const restored=createTimeboxStore(options);let restoredState;restored.subscribe(s=>restoredState=s);await Promise.resolve();assert.equal(restoredState.state.tasks.length,2);assert.deepEqual(restoredState.state.tasks.map(t=>t.id),[b,a],'Reordered positions survive reload');await restored.act({type:'remove',id:a});assert.equal(restoredState.state.tasks.length,1);assert.equal(restoredState.state.tasks[0].id,b);restored.dispose();
-console.log('TIMEBOX checks passed: parallel timers, pause/resume/retry, midnight, DST, seven-day averages, reload, cloud concurrency, stale snapshots, rename/colour, delete, and account isolation.');
+console.log('TIMEBOX checks passed: manual time additions/subtractions, zero floor, running/paused state, midnight, previous-day preservation, seven-day averages, cloud concurrency, reorder, reload and account isolation.');
