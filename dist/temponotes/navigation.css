@@ -41,3 +41,57 @@
 .notes-area{overflow-anchor:none;scroll-behavior:auto}.note{position:relative}.note-pin{display:flex;flex:0 0 15px;visibility:hidden}.note.selected .note-pin{visibility:visible}.note.selected{box-shadow:none;border-color:#b58aff}.note.selected::after{content:"";position:absolute;inset:0;border:1px solid #b58aff;pointer-events:none;z-index:2}.note-heading{cursor:pointer}.note .expiry{text-transform:uppercase}
 
 .note.eternal .delete{margin-left:0}
+
+/* Notes on the left, independent daily timers on the right. */
+.temponote-workspace{display:grid;grid-template-columns:minmax(0,1fr) 200px;min-height:100dvh;background:var(--daily-background,none) center/cover fixed no-repeat}
+.temponote-workspace .app{background:none;min-width:0;width:min(100%,808px);height:100dvh}
+.temponote-workspace .header{padding:0 24px}
+.temponote-workspace .notes-wrap,.temponote-workspace .composer-wrap{max-width:none;margin:0}
+.temponote-workspace .notes-wrap{padding:16px 24px 24px}
+.temponote-workspace .composer{padding:16px 24px max(20px,env(safe-area-inset-bottom))}
+.composer-top{position:relative;padding-right:145px;min-height:78px}
+.composer-top .eternal-area{position:absolute;right:0;bottom:13px;z-index:25}
+.composer-top #eternal-panel{bottom:40px;max-height:calc(100dvh - 190px)}
+.composer #eternal-panel form{display:block;box-shadow:none}
+.timebox-side{min-width:0;height:100dvh;overflow:auto;padding:80px 20px 70px 12px;color:#f4f4f5;font:700 12px Arial,Helvetica,sans-serif;scrollbar-width:thin}
+.timebox-side *{box-sizing:border-box;border-radius:0;font-weight:700}
+.timebox-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;max-width:676px;text-shadow:0 1px 4px #000}
+.timebox-header h2{font-size:16px;letter-spacing:2px}
+.timebox-side button{color:#f4f4f5;background:#303136;border:1px solid #696a73;padding:7px 10px;cursor:pointer}
+.timebox-side button:focus-visible,.timebox-side input:focus-visible{outline:2px solid #b58aff;outline-offset:3px}
+.timebox-side button:disabled{opacity:.55;cursor:default}
+.timebox-header .timebox-add{width:32px;height:32px;font-size:23px;line-height:18px;padding:0;background:#242529}
+.timebox-grid{display:grid;grid-template-columns:minmax(0,160px);justify-content:end;gap:12px;align-items:start}
+.timebox-card{position:relative;aspect-ratio:1;min-width:0;border:2px solid var(--box-color);background:var(--box-color);color:var(--box-text)}
+.timebox-card.running{border-color:#fff;box-shadow:0 0 0 1px #fff}
+.timebox-card .timebox-run{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;width:100%;height:100%;background:var(--box-color);color:var(--box-text);border:0;padding:30px 10px 12px;text-align:center}
+.timebox-name{text-transform:uppercase;font-size:14px;line-height:1.3;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.timebox-run time{font-size:20px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.timebox-state{font-size:12px;line-height:1}
+.timebox-card .timebox-edit{position:absolute;right:3px;top:3px;padding:0 4px;min-width:27px;height:23px;font-size:20px;line-height:15px;color:var(--box-text);border:0;background:var(--box-color)}
+.timebox-editor{max-width:676px;display:flex;align-items:center;flex-wrap:wrap;gap:10px;padding:12px;margin-bottom:16px;background:#242529;border:1px solid #696a73}
+.timebox-editor input:not([type=color]){min-width:120px;width:100%;padding:9px 10px;border:1px solid #696a73;background:#1e1f23;color:white;text-transform:uppercase;font-size:13px}
+.timebox-color-label{display:flex;align-items:center;gap:9px;font-size:10px}
+.timebox-editor input[type=color]{width:33px;height:28px;padding:0;border:1px solid #696a73;background:#1e1f23;cursor:pointer}
+.timebox-editor-actions{display:flex;justify-content:flex-end;flex-wrap:wrap;gap:6px;flex:1}
+.timebox-editor-actions button{font-size:10px}
+.timebox-error{max-width:676px;padding:10px;background:#482b2c;color:#ffcbc4;margin-bottom:12px;font-size:11px}
+.timebox-chart-area{position:fixed;right:20px;bottom:max(14px,env(safe-area-inset-bottom));z-index:26}
+#timebox-chart-toggle{height:30px;padding:0 10px;font-size:10px;letter-spacing:.5px;background:#303136}
+#timebox-chart{position:absolute;bottom:40px;right:0;width:min(540px,calc(100vw - 32px));max-height:calc(100dvh - 100px);overflow:auto;padding:16px;background:#242529;border:1px solid #696a73;box-shadow:0 8px 28px #0006}
+#timebox-chart header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+#timebox-chart header [role=group]{display:flex;gap:6px}
+#timebox-chart [data-period]{font-size:10px}
+#timebox-chart [aria-pressed=true]{border-color:#b58aff;background:#494052}
+#timebox-chart .timebox-chart-close{border:0;font-size:24px;line-height:20px;padding:0 4px;background:transparent}
+.timebox-chart-caption{font-size:10px;color:#d1d1d8;letter-spacing:1px;margin-bottom:10px}
+.timebox-chart-axis{display:flex;justify-content:space-between;margin:0 72px 10px 120px;font-size:9px;color:#c4c4cb;font-variant-numeric:tabular-nums;gap:8px}
+.timebox-chart-row{display:grid;grid-template-columns:110px minmax(0,1fr) 66px;align-items:center;gap:10px;min-height:38px;font-size:11px}
+.timebox-chart-row>span:first-child{text-transform:uppercase;overflow-wrap:anywhere}
+.timebox-chart-row>span:last-child{text-align:right;font-variant-numeric:tabular-nums}
+.timebox-chart-track{height:18px;background:#1e1f23}
+.timebox-chart-bar{height:100%;min-width:0}
+/* A quiet stone finish over an opaque base; no transparency through the cards. */
+.temponote-workspace{--stone-finish:radial-gradient(ellipse 170% 95% at -12% -35%,transparent 62%,#ffffff0c 63%,#00000012 64%,transparent 65.5%),radial-gradient(ellipse 180% 110% at 115% 130%,transparent 55%,#ffffff09 56%,transparent 57%,#00000012 58%,transparent 60%),linear-gradient(122deg,transparent 29%,#ffffff06 30%,transparent 31.5% 69%,#00000012 70%,#ffffff08 71%,transparent 72.5%),linear-gradient(145deg,#ffffff08,#00000012)}
+.note,.note.selected,.note-footer,.note.selected .note-footer,.composer-wrap>form,.timebox-card .timebox-run{background-image:var(--stone-finish)}
+@media(max-width:760px){.temponote-workspace{grid-template-columns:minmax(0,1fr)}.temponote-workspace .app{height:75dvh;min-height:460px;width:100%}.timebox-side{width:200px;margin-left:auto;height:auto;min-height:25dvh;padding:20px 16px 70px 24px}.timebox-header{max-width:none}.temponote-workspace .header{height:70px;padding:0 16px}.temponote-workspace .notes-wrap{padding:10px 16px 16px}.temponote-workspace .composer{padding:12px 16px 16px}.composer-top{padding-right:130px}.composer-top #eternal-toggle{font-size:9px;padding:0 7px}.timebox-chart-area{right:16px}.timebox-chart-row{grid-template-columns:80px minmax(0,1fr) 61px;gap:7px;font-size:10px}.timebox-chart-axis{margin-left:87px;margin-right:68px}}

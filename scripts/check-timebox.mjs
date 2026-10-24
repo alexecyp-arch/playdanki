@@ -1,0 +1,52 @@
+import assert from 'node:assert/strict';
+import {dayKey,splitTime,change,timeFor,decode,duration} from '../src/temponotes/timebox-model.mjs';
+import {createTimeboxStore} from '../src/temponotes/timebox-store.mjs';
+process.env.TZ='Asia/Nicosia';
+const a='00000000-0000-4000-a000-000000000001',b='00000000-0000-4000-a000-000000000002';
+const start=new Date(2026,9,24,23,30).getTime(),midnight=new Date(2026,9,25).getTime();
+let state=change({tasks:[]},{type:'create',id:a,name:'German',color:'#7652a3'},start);
+state=change(state,{type:'create',id:b,name:'Reading',color:'#65bc98'},start);
+state=change(state,{type:'running',id:a,running:true},start);
+state=change(state,{type:'running',id:b,running:true},start+600000);
+assert.equal(timeFor(state.tasks[0],midnight-1),1799999);
+assert.equal(timeFor(state.tasks[0],midnight+600000),600000,'Daily counter restarts at local midnight');
+assert.equal(timeFor(state.tasks[1],midnight+600000),600000,'Independent simultaneous timers');
+state=change(state,{type:'running',id:a,running:false},midnight+600000);
+assert.equal(state.tasks[0].days['2026-10-24'],1800000);
+assert.equal(state.tasks[0].days['2026-10-25'],600000);
+assert.equal(timeFor(state.tasks[0],midnight+1200000),600000,'Paused time is fixed');
+state=change(state,{type:'running',id:a,running:false},midnight+1200000);
+assert.equal(timeFor(state.tasks[0],midnight+1200000),600000,'Retrying pause does not double-count');
+state=change(state,{type:'running',id:a,running:true},midnight+1200000);
+state=change(state,{type:'running',id:a,running:true},midnight+1500000);
+assert.equal(timeFor(state.tasks[0],midnight+1800000),1200000,'Retrying start does not lose time');
+state=decode(JSON.stringify(state));assert.equal(timeFor(state.tasks[0],midnight+1800000),1200000,'Reload keeps active timestamps');
+assert.equal(timeFor(state.tasks[0],midnight+1800000,true),(1800000+1200000)/7,'Week divides all seven days, including zero days');
+const fallEnd=new Date(2026,9,26).getTime();assert.equal(splitTime(midnight,fallEnd)['2026-10-25'],25*3600000,'DST day has 25 actual hours');
+const spring=new Date(2026,2,29).getTime(),springEnd=new Date(2026,2,30).getTime();assert.equal(splitTime(spring,springEnd)['2026-03-29'],23*3600000);
+state=change(state,{type:'edit',id:a,name:'Deutsch',color:'#ffffff'},midnight+1800000);assert.equal(state.tasks[0].runningSince,midnight+1200000);assert.equal(state.tasks[0].days['2026-10-24'],1800000);
+assert.equal(duration(3723000),'01:02:03');assert.equal(dayKey(new Date(start)),'2026-10-24');
+assert.throws(()=>change(state,{type:'edit',id:a,name:' ',color:'#000000'},start));
+assert.throws(()=>decode('{"tasks":[{}]}'));
+
+// Two real store instances share a transaction-backed fake cloud, not browser storage.
+let rows=new Map(),watchers=[],transactionQueue=Promise.resolve(),clock=start;
+const snapshot=ref=>({exists:()=>rows.has(ref),data:()=>rows.get(ref),metadata:{fromCache:false,hasPendingWrites:false}});
+const broadcast=()=>watchers.forEach(w=>w.callback(snapshot(w.ref)));
+const sdk={doc:(_, ...parts)=>parts.join('/'),serverTimestamp:()=>clock,
+ onSnapshot(ref,options,callback){const w={ref,callback};watchers.push(w);queueMicrotask(()=>callback(snapshot(ref)));return()=>{watchers=watchers.filter(x=>x!==w);};},
+ runTransaction(db,fn){const task=transactionQueue.then(async()=>{const writes=[];await fn({get:async ref=>snapshot(ref),set:(ref,value)=>writes.push([ref,value])});for(const [ref,value]of writes)rows.set(ref,value);broadcast();});transactionQueue=task.catch(()=>{});return task;}};
+const auth={currentUser:{uid:'alice'}},options={auth,db:{},sdk,uid:'alice',now:()=>clock};
+const phone=createTimeboxStore(options),desktop=createTimeboxStore(options);let phoneState,desktopState;
+phone.subscribe(s=>phoneState=s);desktop.subscribe(s=>desktopState=s);await Promise.resolve();
+await Promise.all([phone.act({type:'create',id:a,name:'German',color:'#7652a3'}),desktop.act({type:'create',id:b,name:'Reading',color:'#65bc98'})]);
+assert.equal(phoneState.state.tasks.length,2,'Concurrent devices preserve both tasks');assert.deepEqual(phoneState,desktopState);
+await Promise.all([phone.act({type:'running',id:a,running:true}),desktop.act({type:'running',id:b,running:true})]);clock+=3600000;
+await phone.act({type:'running',id:a,running:false});assert.equal(timeFor(desktopState.state.tasks[0],clock),1800000);assert.notEqual(desktopState.state.tasks[1].runningSince,null);
+await desktop.act({type:'edit',id:a,name:'GERMAN PRACTICE',color:'#ffffff'});assert.equal(phoneState.state.tasks[0].name,'GERMAN PRACTICE');
+const privateRef='users/alice/progress/timebox';assert(rows.has(privateRef));assert.equal(rows.get(privateRef).revision,6);
+const stale={exists:()=>true,data:()=>({value:'{"tasks":[]}',revision:1}),metadata:{fromCache:false,hasPendingWrites:false}};for(const w of watchers)w.callback(stale);assert.equal(phoneState.state.tasks.length,2,'Old snapshots cannot overwrite newer saved timers');
+auth.currentUser={uid:'bob'};await assert.rejects(phone.act({type:'remove',id:a}),/SIGN IN/);assert(!rows.has('users/bob/progress/timebox'));
+phone.dispose();desktop.dispose();assert.equal(watchers.length,0,'Sign-out removes subscriptions');
+auth.currentUser={uid:'alice'};const restored=createTimeboxStore(options);let restoredState;restored.subscribe(s=>restoredState=s);await Promise.resolve();assert.equal(restoredState.state.tasks.length,2);await restored.act({type:'remove',id:a});assert.equal(restoredState.state.tasks.length,1);assert.equal(restoredState.state.tasks[0].id,b);restored.dispose();
+console.log('TIMEBOX checks passed: parallel timers, pause/resume/retry, midnight, DST, seven-day averages, reload, cloud concurrency, stale snapshots, rename/colour, delete, and account isolation.');

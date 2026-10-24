@@ -1,9 +1,9 @@
 import {initializeApp} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js';
 import {getAuth,onAuthStateChanged,beforeAuthStateChanged,GoogleAuthProvider,signInWithPopup} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js';
 import * as sdk from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js';
-import {createWeightStore} from './store.mjs?v=f68eb102f734';
-import {draw} from './chart.mjs?v=f68eb102f734';
-import {kilograms,weight,weeklyChange} from './model.mjs?v=f68eb102f734';
+import {createWeightStore} from './store.mjs?v=d6b344f5cd3a';
+import {draw} from './chart.mjs?v=d6b344f5cd3a';
+import {kilograms,weight,weeklyChange} from './model.mjs?v=d6b344f5cd3a';
 const $=id=>document.getElementById(id),app=initializeApp(JSON.parse($('auth-config').textContent).firebase),auth=getAuth(app),db=sdk.getFirestore(app);
 let store=null,entries=[],unit='KG',ready=false,saving=false,generation=0,selectedId=null;
 function controls(){const disabled=!ready||saving||!navigator.onLine;$('add').disabled=disabled;$('remove').disabled=disabled||!selectedId;}

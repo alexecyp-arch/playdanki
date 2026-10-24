@@ -43,4 +43,13 @@ for(const uid of [null,'alice','bob']){
   assert.equal(r.status,403,'Collection-group reads must not enumerate everybody\'s notes');checks++;
  }
 }
-console.log(`Privacy rules passed ${checks} checks: Alice/Bob own access, cross-account and signed-out reads/lists/writes/deletes denied, global note queries denied.`);
+// TIMEBOX uses the same private progress document rules, including server time and revisions.
+for(const owner of ['alice','bob']){
+ const path=`users/${owner}/progress/timebox`,name=`projects/${project}/databases/(default)/documents/${path}`;
+ const write=async(uid,revision)=>fetch(base+':commit',{method:'POST',headers:{'Content-Type':'application/json',...(uid?{Authorization:'Bearer '+token(uid)}:{})},body:JSON.stringify({writes:[{update:{name,fields:fields({value:JSON.stringify({tasks:[]}),version:1,revision})},updateTransforms:[{fieldPath:'updatedAt',setToServerValue:'REQUEST_TIME'}]}]})});
+ let result=await write(owner,1);assert.equal(result.status,200,await result.text());checks++;await allowed(owner,path);
+ for(const intruder of [null,owner==='alice'?'bob':'alice']){await denied(intruder,path);await denied(intruder,path,'DELETE');result=await write(intruder,2);assert.equal(result.status,403);checks++;}
+ result=await write(owner,1);assert.equal(result.status,403,'Stale revisions cannot overwrite timers');checks++;
+ result=await write(owner,2);assert.equal(result.status,200,await result.text());checks++;await allowed(owner,path,'DELETE');
+}
+console.log(`Privacy rules passed ${checks} checks: owner access, cross-account and signed-out reads/lists/writes/deletes denied, global note queries denied, and TIMEBOX cloud writes and revisions checked.`);
