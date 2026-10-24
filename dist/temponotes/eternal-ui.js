@@ -1,4 +1,4 @@
-import {weekdays,validSchedule} from './eternal.mjs?v=d6b344f5cd3a';
+import {weekdays,validSchedule} from './eternal.mjs?v=7684598a24b6';
 export function mountEternal(root,request,{getSchedules,onChange}){
  const wrapper=document.createElement('aside');wrapper.className='eternal-area';
  wrapper.innerHTML=`<button id="eternal-toggle" type="button" aria-expanded="false" aria-controls="eternal-panel">ETERNAL NOTES ⌃</button><section id="eternal-panel" aria-label="Eternal notes" hidden><header><strong>ETERNAL NOTES</strong><button class="eternal-close" type="button" aria-label="Close eternal notes">×</button></header><div class="eternal-list"></div><form><label class="sr-only" for="eternal-body">Permanent note</label><textarea id="eternal-body" rows="2" maxlength="10000" placeholder="Write a permanent note…"></textarea><div class="eternal-days" role="group" aria-label="Days to appear"></div><div class="eternal-actions"><button type="button" class="eternal-cancel" hidden>Cancel</button><button class="eternal-save" type="submit">Save</button></div></form><p class="error" role="alert" hidden></p></section>`;(root.querySelector('.composer-top')||root).append(wrapper);
