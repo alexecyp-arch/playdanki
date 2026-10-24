@@ -9,15 +9,24 @@ assert.deepEqual((await unlockNotes(envelope,'a',uid)).data,data,'One-letter pas
 await assert.rejects(unlockNotes(envelope,'b',uid),/WRONG PASSWORD/);await assert.rejects(unlockNotes(envelope,'a','bob'),/WRONG PASSWORD/,'Cipher is bound to its Google account');
 const corrupt=structuredClone(envelope),cipher=Buffer.from(corrupt.ciphertext,'base64');cipher[0]^=1;corrupt.ciphertext=cipher.toString('base64');await assert.rejects(unlockNotes(corrupt,'a',uid),/WRONG PASSWORD/,'Tampered ciphertext fails authentication');
 const nextLock=await createLock('z'),changed=await sealNotes(data,nextLock,uid);assert.notEqual(changed.salt,envelope.salt);assert.deepEqual((await unlockNotes(changed,'z',uid)).data,data);await assert.rejects(unlockNotes(changed,'a',uid),/WRONG PASSWORD/,'Old password fails after re-encryption');
-assert.throws(()=>parseEnvelope({...envelope,iterations:1}));await assert.rejects(sealNotes({tabs:[{id:crypto.randomUUID(),text:'x'.repeat(400001)}]},lock,uid));
+assert.throws(()=>parseEnvelope({...envelope,iterations:1}));await assert.rejects(sealNotes({tabs:[{id:crypto.randomUUID(),text:'x'.repeat(4000001)}]},lock,uid));
 
 let rows=new Map(),watchers=[],queue=Promise.resolve();const auth={currentUser:{uid}},db={};
 const snapshot=ref=>({exists:()=>rows.has(ref),data:()=>rows.get(ref),metadata:{fromCache:false,hasPendingWrites:false}});
-const sdk={doc:(_, ...parts)=>parts.join('/'),serverTimestamp:()=>Date.now(),onSnapshot(ref,options,fn){const w={ref,fn};watchers.push(w);queueMicrotask(()=>fn(snapshot(ref)));return()=>{watchers=watchers.filter(v=>v!==w);};},runTransaction(db,fn){const work=queue.then(async()=>{const writes=[];await fn({get:async ref=>snapshot(ref),set:(ref,value)=>writes.push([ref,value])});for(const [ref,value]of writes)rows.set(ref,value);for(const w of watchers)w.fn(snapshot(w.ref));});queue=work.catch(()=>{});return work;}};
+const sdk={doc:(_, ...parts)=>parts.join('/'),serverTimestamp:()=>Date.now(),onSnapshot(ref,options,fn){const w={ref,fn};watchers.push(w);queueMicrotask(()=>fn(snapshot(ref)));return()=>{watchers=watchers.filter(v=>v!==w);};},runTransaction(db,fn){const work=queue.then(async()=>{const writes=[];const result=await fn({get:async ref=>snapshot(ref),set:(ref,value)=>writes.push([ref,value]),delete:ref=>writes.push([ref,null])});for(const [ref,value]of writes)value===null?rows.delete(ref):rows.set(ref,value);if(writes.length)for(const w of watchers)if(writes.some(([ref])=>ref===w.ref))w.fn(snapshot(w.ref));return result;});queue=work.catch(()=>{});return work;}};
 const phone=createLockedStore({auth,db,sdk,uid}),desktop=createLockedStore({auth,db,sdk,uid});let remote;desktop.subscribe(s=>remote=s);await Promise.resolve();
 assert.equal(await phone.save(envelope,0),1);assert.equal(remote.revision,1);assert.deepEqual((await unlockNotes(remote.value,'a',uid)).data,data,'Cipher syncs across devices');
 await assert.rejects(desktop.save(changed,0),/NOTES CHANGED/,'An old device cannot overwrite newer notes');assert.equal(rows.get('users/alice/progress/locked-notes').revision,1);
 assert.equal(await desktop.save(changed,1),2);assert.deepEqual((await unlockNotes(remote.value,'z',uid)).data,data,'Changed password and all tabs sync together');
+const library=emptyLockedNotes();library.tabs[0].text=Array.from({length:1500},(_,i)=>(i+1)+'. BOOK TITLE — AUTHOR — '+('Reading notes. '.repeat(50))).join('\n');
+const libraryEnvelope=await sealNotes(library,nextLock,uid);assert(libraryEnvelope.ciphertext.length>650000,'Exercise storage beyond the old limit');
+assert.equal(await desktop.save(libraryEnvelope,2),3);
+await new Promise(resolve=>setTimeout(resolve,20));
+assert.deepEqual((await unlockNotes(remote.value,'z',uid)).data,library,'1500 long book rows sync without loss');
+const libraryReload=createLockedStore({auth,db,sdk,uid});let reloaded;libraryReload.subscribe(s=>reloaded=s);await new Promise(resolve=>setTimeout(resolve,20));
+assert(reloaded.ready);assert.deepEqual((await unlockNotes(reloaded.value,'z',uid)).data,library,'Large encrypted library restores after reload');libraryReload.dispose();
+assert([...rows.values()].every(r=>r.value.length<700000),'Every cloud part fits the private document limit');
+assert.equal(await desktop.save(changed,3),4);assert.equal(rows.size,1,'Shrinking a notebook removes old encrypted parts');
 const plaintext=JSON.stringify([...rows.values()]);assert(!plaintext.includes('TOP SECRET'));assert(!plaintext.includes('Separate section'));
 auth.currentUser={uid:'bob'};await assert.rejects(phone.save(envelope,2),/SIGN IN/);phone.dispose();desktop.dispose();assert.equal(watchers.length,0);
 assert.throws(()=>createLockedStore({auth,db,sdk,uid:'alice'}),/SIGN IN/);
