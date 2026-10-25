@@ -182,3 +182,18 @@
 }
 
 #note::placeholder{color:#fff;opacity:1}
+
+/* Stronger note outlines, with duration beside the +6H control. */
+.note,.composer-wrap>form{border-width:2px;border-color:#b4b5bd}
+.note.selected{border-color:#b58aff}
+.composer-top{display:flex;align-items:flex-end;min-height:64px}
+.composer-top .time-buttons{display:flex;align-items:center;gap:8px;flex-wrap:wrap;max-width:calc(100% - 250px)}
+.time-buttons .timer-row{height:auto;min-height:30px;margin:0;gap:6px}
+.time-buttons .timer-label{white-space:nowrap}
+@media(max-width:760px){
+ .composer-top{padding-top:38px;min-height:78px}
+ .composer-top .note-tools{top:0;bottom:auto}
+ .composer-top .time-buttons{max-width:100%;width:100%}
+ .time-buttons .timer-label{font-size:9px;letter-spacing:.3px}
+ .time-buttons .timer-label strong{font-size:11px;margin-left:4px}
+}

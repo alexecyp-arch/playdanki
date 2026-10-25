@@ -9,6 +9,7 @@ export function mount(root,request,{visible=true,selection,timebox,locked}={}){
  const $=s=>root.querySelector(s),input=$('textarea'),list=$('ol'),error=$('.error'),sendButton=$('.send'),sendIcon=sendButton.innerHTML,nodes=new Map(),extending=new Set();
  let notes=[],schedules=[],adjustments={},minutes=60,busy=false,draft=null,offset=0,disposed=false,lastSync=0,loaded=false,selected=selection?.get()||null;
  const tools=document.createElement('div');tools.className='note-tools';$('.composer-top').append(tools);
+ $('.time-buttons').append($('.timer-row'));
  const eternal=mountEternal(root,request,{getSchedules:()=>schedules,onChange:load});
  const stopTimebox=timebox?mountTimebox(root,timebox):()=>{};
  const stopLocked=locked?mountLocked(root,locked):()=>{};
