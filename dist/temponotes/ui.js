@@ -1,8 +1,8 @@
-import {occurrences} from './eternal.mjs?v=65f95331763c';
-import {mountEternal} from './eternal-ui.js?v=65f95331763c';
-import {orderNotes} from './note-order.mjs?v=65f95331763c';
-import {mountTimebox} from './timebox-ui.js?v=65f95331763c';
-import {mountLocked} from './locked-ui.js?v=65f95331763c';
+import {occurrences} from './eternal.mjs?v=1d50dcd054ed';
+import {mountEternal} from './eternal-ui.js?v=1d50dcd054ed';
+import {orderNotes} from './note-order.mjs?v=1d50dcd054ed';
+import {mountTimebox} from './timebox-ui.js?v=1d50dcd054ed';
+import {mountLocked} from './locked-ui.js?v=1d50dcd054ed';
 // The original Temponote layout, rendered with browser APIs instead of React.
 export function mount(root,request,{visible=true,selection,timebox,locked}={}){
  root.innerHTML=`<div class="temponote-workspace"><main class="app"><header class="header"><div class="brand"><span class="brand-icon" aria-hidden="true">◷</span><h1>TEMPONOTE</h1><time class="current-time" aria-label="Current time"></time></div></header><section class="notes-area" id="note-list" aria-label="Your notes"><div class="notes-wrap"><ol></ol></div></section><footer class="composer"><div class="composer-wrap"><div class="composer-top"><div class="timer-row"><span class="timer-label">KEEP FOR <strong aria-live="polite"></strong> · <time></time></span><button class="reset" hidden>Reset</button></div><div class="time-buttons"><button data-add="60">+1H</button><button data-add="360">+6H</button></div></div><form><label class="sr-only" for="note">Write a note</label><textarea id="note" maxlength="10000" placeholder="Write a note…" rows="2"></textarea><button class="send" type="submit" disabled aria-label="Send note"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m5 12 7-7 7 7M12 5v15"/></svg></button></form><p class="error" role="alert" hidden></p></div></footer></main><aside class="timebox-side" aria-label="Timebox"></aside></div>`;

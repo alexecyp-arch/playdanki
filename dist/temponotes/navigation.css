@@ -197,3 +197,7 @@
  .time-buttons .timer-label{font-size:9px;letter-spacing:.3px}
  .time-buttons .timer-label strong{font-size:11px;margin-left:4px}
 }
+
+.composer .time-buttons>button,#eternal-toggle,#locked-toggle{border-width:2px;border-color:#b4b5bd}
+
+.danki-return{border-width:2px;border-color:#b4b5bd}
