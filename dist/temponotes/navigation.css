@@ -168,3 +168,15 @@
 }
 
 .timebox-card .timebox-run:disabled{opacity:1}
+
+/* Anchor TIME SPENT to the viewport while only the phone workspace scrolls. */
+.timebox-chart-area{font:700 12px Arial,Helvetica,sans-serif;color:#f4f4f5}
+.timebox-chart-area *{box-sizing:border-box;border-radius:0;font-weight:700}
+.timebox-chart-area button{color:#f4f4f5;background:#303136;border:1px solid #696a73;padding:7px 10px;cursor:pointer}
+.timebox-chart-area button:focus-visible{outline:2px solid #fff;outline-offset:3px}
+@media(max-width:760px){
+ html,body{height:100%;overflow:hidden}
+ #root{height:100%}
+ .temponote-workspace{height:100dvh;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior-y:contain}
+ .timebox-chart-area{position:fixed;inset:auto 12px max(8px,env(safe-area-inset-bottom)) auto;margin:0;transform:none;z-index:26}
+}

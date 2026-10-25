@@ -1,5 +1,5 @@
-import {createRun,percentileLabel} from './model.mjs?v=e3f532abd869';
-import {BEST_KEY,readBest,recordBest} from './best-score.mjs?v=e3f532abd869';
+import {createRun,percentileLabel} from './model.mjs?v=d8e0113de1c0';
+import {BEST_KEY,readBest,recordBest} from './best-score.mjs?v=d8e0113de1c0';
 const $=id=>document.getElementById(id);
 let best=0;function bestStorage(){try{return localStorage;}catch{return null;}}
 function showBest(){best=readBest(bestStorage());$('best').textContent='BEST: '+best+' DIGITS';}
