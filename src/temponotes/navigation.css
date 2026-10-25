@@ -141,3 +141,30 @@
 .timebox-side button:focus-visible{outline:2px solid #fff;outline-offset:3px}
 #locked-text{white-space:pre-wrap;overflow-wrap:break-word;overflow-y:scroll;scrollbar-width:auto;overscroll-behavior:contain;height:420px;max-height:55dvh}
 @media(max-width:760px){.timebox-card .timebox-name{font-size:16px;left:5px;right:5px;-webkit-line-clamp:3}.timebox-card .timebox-run time{font-size:13px;bottom:16px}.timebox-card .timebox-state{bottom:4px;font-size:8px}#locked-text{height:360px;max-height:45dvh}}
+
+/* Full-screen notebook, with the writing area taking all remaining space. */
+.note-tools:has(#locked-panel:not([hidden])){z-index:100}
+#locked-panel{position:fixed;inset:0;width:100vw;height:100dvh;max-height:none;padding:16px;z-index:100;display:flex;flex-direction:column;overflow:auto}
+#locked-panel header,.locked-tabs-row,.locked-password-toggle,.locked-change-form,.locked-status,.locked-login{flex-shrink:0}
+.locked-content{display:flex;flex-direction:column;flex:1;min-height:0}
+#locked-text{flex:1;height:auto;min-height:100px;max-height:none;resize:none}
+.timebox-card,.timebox-card.running{transition:transform .035s ease-out,box-shadow .035s ease-out}
+@media(max-width:760px){
+ .temponote-workspace .app{height:max(100svh,780px);min-height:780px}
+ .temponote-workspace .header{height:50px}
+ .temponote-workspace .notes-area{min-height:480px}
+ .temponote-workspace .notes-wrap{padding:8px 12px 10px;margin:0}
+ .note{margin-bottom:6px}
+ .note-heading{padding:7px 10px;gap:7px;min-height:36px}
+ .note .note-body p{font-size:13px;line-height:1.4}
+ .note .number{font-size:16px;min-width:19px}
+ .note-footer{min-height:27px;padding:3px 6px 3px 10px}
+ .note .note-time-buttons button,.note .delete{height:21px;line-height:19px}
+ .temponote-workspace .composer{padding:8px 12px 12px}
+ .composer-top{min-height:65px}
+ .timebox-side{padding-top:24px}
+ #locked-panel{padding:10px;height:100dvh;max-height:none}
+ #locked-text{height:auto;max-height:none;min-height:100px}
+}
+
+.timebox-card .timebox-run:disabled{opacity:1}

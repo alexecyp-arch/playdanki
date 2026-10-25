@@ -44,7 +44,7 @@ for(const uid of [null,'alice','bob']){
  }
 }
 // Timers and encrypted notebooks use owner-only progress rules with server time and revisions.
-for(const owner of ['alice','bob'])for(const key of ['timebox','locked-notes','locked-notes-part-0']){
+for(const owner of ['alice','bob'])for(const key of ['timebox','locked-notes','locked-notes-part-0','weight-target']){
  const path=`users/${owner}/progress/${key}`,name=`projects/${project}/databases/(default)/documents/${path}`;
  const write=async(uid,revision)=>fetch(base+':commit',{method:'POST',headers:{'Content-Type':'application/json',...(uid?{Authorization:'Bearer '+token(uid)}:{})},body:JSON.stringify({writes:[{update:{name,fields:fields({value:JSON.stringify({tasks:[]}),version:1,revision})},updateTransforms:[{fieldPath:'updatedAt',setToServerValue:'REQUEST_TIME'}]}]})});
  let result=await write(owner,1);assert.equal(result.status,200,await result.text());checks++;await allowed(owner,path);
