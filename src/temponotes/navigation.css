@@ -101,7 +101,7 @@
 /* A quiet stone finish over an opaque base; no transparency through the cards. */
 .temponote-workspace{--stone-finish:radial-gradient(ellipse 170% 95% at -12% -35%,transparent 62%,#ffffff0c 63%,#00000012 64%,transparent 65.5%),radial-gradient(ellipse 180% 110% at 115% 130%,transparent 55%,#ffffff09 56%,transparent 57%,#00000012 58%,transparent 60%),linear-gradient(122deg,transparent 29%,#ffffff06 30%,transparent 31.5% 69%,#00000012 70%,#ffffff08 71%,transparent 72.5%),linear-gradient(145deg,#ffffff08,#00000012)}
 .note,.note.selected,.note-footer,.note.selected .note-footer,.composer-wrap>form,.timebox-card .timebox-run{background-image:var(--stone-finish)}
-.note,.note.selected,.composer-wrap>form{background-image:linear-gradient(#0c0f1666,#0c0f1666),url('./note-sparkles-black-v3.jpg');background-size:cover;background-position:center 55%}
+.note,.note.selected,.composer-wrap>form{background-image:linear-gradient(#000000b3,#000000b3),url('./note-sparkles-black-v3.jpg');background-size:cover;background-position:center 55%}
 .note-footer,.note.selected .note-footer{background-image:none}
 .timebox-card.running .timebox-run,.timebox-card.running .timebox-move,.timebox-card.running .timebox-edit{background:#050607;color:#fff;background-image:none}
 .timebox-card:not(.running) .timebox-run{background-color:#080a0e;background-image:linear-gradient(#0005,#0005),url('./note-sparkles-black-v3.jpg');background-size:cover;background-position:center 55%;color:#fff}
@@ -180,3 +180,5 @@
  .temponote-workspace{height:100dvh;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior-y:contain}
  .timebox-chart-area{position:fixed;inset:auto 12px max(8px,env(safe-area-inset-bottom)) auto;margin:0;transform:none;z-index:26}
 }
+
+#note::placeholder{color:#fff;opacity:1}
