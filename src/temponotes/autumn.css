@@ -9,5 +9,5 @@ html,body{background:#18191c!important}
 @keyframes autumn-fall{0%{opacity:0;transform:translate3d(0,-20px,0) rotate(-20deg)}10%{opacity:.68}50%{transform:translate3d(10px,50dvh,0) rotate(35deg)}88%{opacity:.5}100%{opacity:0;transform:translate3d(-6px,calc(100dvh + 110px),0) rotate(95deg)}}
 @keyframes autumn-sway{from{transform:translateX(-7px) rotate(-12deg)}to{transform:translateX(7px) rotate(12deg)}}
 .autumn-leaves.paused .autumn-leaf,.autumn-leaves.paused img{animation-play-state:paused}
-@media(max-width:760px){.autumn-leaf{width:calc(var(--size)*.65)}.autumn-leaf:nth-child(1){left:0}.autumn-leaf:nth-child(2){left:2%}.autumn-leaf:nth-child(3){left:94%}.autumn-leaf:nth-child(4){left:97%}}
+@media(max-width:760px){.autumn-leaf{width:calc(var(--size)*.65)}.autumn-leaf:nth-child(1){left:0}.autumn-leaf:nth-child(2){left:2%}.autumn-leaf:nth-child(3){left:94%}.autumn-leaf:nth-child(4){left:97%}.autumn-leaf:nth-child(5){left:1%}.autumn-leaf:nth-child(6){left:96%}}
 @media(prefers-reduced-motion:reduce){.autumn-leaf,.autumn-leaf img{animation:none;will-change:auto}.autumn-leaf{top:var(--rest);opacity:.45;transform:rotate(25deg)}}
