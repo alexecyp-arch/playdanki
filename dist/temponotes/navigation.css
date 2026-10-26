@@ -240,3 +240,7 @@
 @media(max-width:600px){.page-switch{right:12px;top:59px;width:62px;height:25px;font-size:8px}}
 
 @media(max-width:600px){.notes-only .header{height:88px;align-items:flex-start;padding-top:18px}}
+
+/* Let the footer divider meet both card edges; draw pins without adding an inset. */
+.note,.note.selected{border-width:0}
+.note.selected::after{border-width:2px}
