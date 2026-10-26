@@ -1,5 +1,5 @@
-import {confirmDelete} from './confirm-delete.js?v=af7da9fe98e5';
-import {createLock,emptyLockedNotes,sealNotes,unlockNotes,validPassword} from './locked-crypto.mjs?v=af7da9fe98e5';
+import {confirmDelete} from './confirm-delete.js?v=e44c62e47e13';
+import {createLock,emptyLockedNotes,sealNotes,unlockNotes,validPassword} from './locked-crypto.mjs?v=e44c62e47e13';
 export function mountLocked(root,store){
  const confirmController=new AbortController();
  const wrapper=document.createElement('aside');wrapper.className='locked-area';

@@ -255,3 +255,6 @@
 .timebox-card .timebox-name{font-size:25px}
 .timebox-card .timebox-move,.timebox-card .timebox-edit{width:20px;min-width:20px;height:18px;padding:0;font-size:15px;line-height:16px}
 @media(max-width:760px){.timebox-card .timebox-name{font-size:20px}.timebox-card .timebox-move,.timebox-card .timebox-edit{width:16px;min-width:16px;height:15px;font-size:12px;line-height:13px}}
+
+/* A near-black green strip for the remaining time. */
+.note .note-footer,.note.selected .note-footer{background:#091a13;background-image:none;border-top-color:#244034}
