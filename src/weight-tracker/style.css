@@ -6,3 +6,11 @@
 #change-rate{display:block;margin:12px 0 0;text-align:center;font-size:12px}
 
 #target-form{margin-top:10px}#target-weight{width:170px}#target-unit{font-size:11px}.weight-target-label{fill:#92e0b1}
+
+#target-controls{position:fixed;left:12px;bottom:max(12px,env(safe-area-inset-bottom));z-index:10;font-size:11px}
+#target-controls summary{display:block;width:max-content;border:2px solid #b4b5bd;background:#222326;padding:6px 9px;cursor:pointer;list-style:none}
+#target-controls summary::-webkit-details-marker{display:none}
+#target-controls summary:focus-visible{outline:2px solid #fff;outline-offset:3px}
+#target-form{position:absolute;left:0;bottom:calc(100% + 6px);margin:0;padding:10px;display:flex;flex-wrap:nowrap;gap:6px;width:max-content;max-width:calc(100vw - 24px);border:2px solid #b4b5bd;background:#222326;box-shadow:0 4px 16px #0006}
+#target-weight{width:120px;font-size:12px;padding:7px}
+#target-form button{font-size:10px;height:32px;padding:5px 8px;white-space:nowrap}

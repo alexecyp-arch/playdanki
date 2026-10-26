@@ -1,16 +1,16 @@
 import {initializeApp} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js';
 import {getAuth,onAuthStateChanged,beforeAuthStateChanged,GoogleAuthProvider,signInWithPopup} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js';
 import * as sdk from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js';
-import {createWeightStore} from './store.mjs?v=426ed1f53061';
-import {draw} from './chart.mjs?v=426ed1f53061';
-import {kilograms,weight,weeklyChange} from './model.mjs?v=426ed1f53061';
+import {createWeightStore} from './store.mjs?v=db7dba44bc4d';
+import {draw} from './chart.mjs?v=db7dba44bc4d';
+import {kilograms,weight,weeklyChange} from './model.mjs?v=db7dba44bc4d';
 const $=id=>document.getElementById(id),app=initializeApp(JSON.parse($('auth-config').textContent).firebase),auth=getAuth(app),db=sdk.getFirestore(app);
 let store=null,entries=[],unit='KG',ready=false,saving=false,generation=0,selectedId=null,targetKg=null,targetReady=false;
 function controls(){const disabled=!ready||saving||!navigator.onLine;$('add').disabled=disabled;$('remove').disabled=disabled||!selectedId;$('set-target').disabled=!targetReady||saving||!navigator.onLine;}
 function render(){const selected=entries.find(p=>p.id===selectedId);if(!selected)selectedId=null;$('selected-entry').hidden=!selected;$('selected-value').textContent=selected?Number(weight(selected.kg,unit).toFixed(2)).toLocaleString()+' '+unit+' · '+new Date(selected.time).toLocaleString().toUpperCase():'';const rate=weeklyChange(entries,selectedId,unit);$('change-rate').hidden=!selected;$('change-rate').textContent='E. RATE OF CHANGE: '+(rate===null?'—':Number(Math.abs(rate).toFixed(2)).toLocaleString()+' '+unit+'/WEEK'+(rate<0?' LOSS':rate>0?' GAIN':''));draw($('chart'),entries,unit,{selectedId,targetKg,onSelect:id=>{if(saving)return;selectedId=id;render();}});controls();}
-function clear(){generation++;store?.dispose();store=null;entries=[];selectedId=null;targetKg=null;targetReady=false;ready=false;saving=false;$('weight').value=$('target-weight').value='';$('weight-form').hidden=$('target-form').hidden=true;$('auth-gate').hidden=false;$('status').textContent='';render();controls();}
+function clear(){generation++;store?.dispose();store=null;entries=[];selectedId=null;targetKg=null;targetReady=false;ready=false;saving=false;$('weight').value=$('target-weight').value='';$('weight-form').hidden=$('target-controls').hidden=true;$('target-controls').open=false;$('auth-gate').hidden=false;$('status').textContent='';render();controls();}
 beforeAuthStateChanged(auth,clear);window.addEventListener('pagehide',clear);window.addEventListener('pageshow',e=>{if(e.persisted)location.reload();});
-onAuthStateChanged(auth,user=>{clear();if(!user)return;const current=generation;$('auth-gate').hidden=true;$('weight-form').hidden=$('target-form').hidden=false;
+onAuthStateChanged(auth,user=>{clear();if(!user)return;const current=generation;$('auth-gate').hidden=true;$('weight-form').hidden=$('target-controls').hidden=false;
  store=createWeightStore({auth,db,sdk,uid:user.uid,onTarget:(kg,online)=>{if(current!==generation)return;targetKg=kg;targetReady=online;if(document.activeElement!==$('target-weight'))$('target-weight').value=kg===null?'':Number(weight(kg,unit).toFixed(4));render();},onChange:rows=>{if(current!==generation)return;entries=rows;render();},onStatus:(text,online)=>{if(current!==generation)return;ready=online;if(!saving)$('status').textContent=text;controls();}});
 });
 for(const next of ['KG','LB'])$(next.toLowerCase()).addEventListener('click',()=>{const kg=kilograms($('weight').value,unit),target=kilograms($('target-weight').value,unit);unit=next;if(kg!==null)$('weight').value=Number(weight(kg,unit).toFixed(4));if(target!==null)$('target-weight').value=Number(weight(target,unit).toFixed(4));for(const id of ['weight','target-weight'])$(id).max=unit==='KG'?'1000':'2204.6226';$('target-unit').textContent=unit;$('kg').setAttribute('aria-pressed',String(unit==='KG'));$('lb').setAttribute('aria-pressed',String(unit==='LB'));render();});
