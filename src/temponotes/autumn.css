@@ -1,0 +1,13 @@
+/* A quiet, solid backdrop. The note cards keep their existing finish. */
+html,body{background:#18191c!important}
+.temponote-workspace,.temponote-workspace .app,.auth-gate{background:transparent!important;background-image:none!important}
+#root,.auth-gate{position:relative;z-index:1}
+.autumn-leaves{position:fixed;inset:0;overflow:hidden;pointer-events:none;user-select:none;z-index:0;contain:strict}
+.autumn-leaf{position:absolute;top:-90px;left:var(--left);width:var(--size);opacity:0;animation:autumn-fall var(--duration) linear infinite;animation-delay:var(--delay);will-change:transform}
+.autumn-leaf img{display:block;width:100%;height:auto;animation:autumn-sway 7s ease-in-out infinite alternate;animation-delay:var(--delay)}
+.autumn-leaf:nth-child(even) img{filter:hue-rotate(-14deg);animation-direction:alternate-reverse}
+@keyframes autumn-fall{0%{opacity:0;transform:translate3d(0,-20px,0) rotate(-20deg)}10%{opacity:.68}50%{transform:translate3d(10px,50dvh,0) rotate(35deg)}88%{opacity:.5}100%{opacity:0;transform:translate3d(-6px,calc(100dvh + 110px),0) rotate(95deg)}}
+@keyframes autumn-sway{from{transform:translateX(-7px) rotate(-12deg)}to{transform:translateX(7px) rotate(12deg)}}
+.autumn-leaves.paused .autumn-leaf,.autumn-leaves.paused img{animation-play-state:paused}
+@media(max-width:760px){.autumn-leaf{width:calc(var(--size)*.65)}.autumn-leaf:nth-child(1){left:0}.autumn-leaf:nth-child(2){left:2%}.autumn-leaf:nth-child(3){left:94%}.autumn-leaf:nth-child(4){left:97%}}
+@media(prefers-reduced-motion:reduce){.autumn-leaf,.autumn-leaf img{animation:none;will-change:auto}.autumn-leaf{top:var(--rest);opacity:.45;transform:rotate(25deg)}}

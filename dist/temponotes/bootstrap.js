@@ -1,10 +1,10 @@
 import {initializeApp} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js';
 import {getAuth,onAuthStateChanged,beforeAuthStateChanged,GoogleAuthProvider,signInWithPopup} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js';
 import * as sdk from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js';
-import {mount} from './ui.js?v=165ba0f69598';
-import {createNotesStore} from './notes-store.mjs?v=165ba0f69598';
-import {createCloudSelection} from './cloud-selection.mjs?v=165ba0f69598';
-import {createLockedStore} from './locked-store.mjs?v=165ba0f69598';
+import {mount} from './ui.js?v=3232ab7dd585';
+import {createNotesStore} from './notes-store.mjs?v=3232ab7dd585';
+import {createCloudSelection} from './cloud-selection.mjs?v=3232ab7dd585';
+import {createLockedStore} from './locked-store.mjs?v=3232ab7dd585';
 const config=JSON.parse(document.getElementById('auth-config').textContent);
 const app=initializeApp(config.firebase),auth=getAuth(app),db=sdk.getFirestore(app);
 const root=document.getElementById('root'),gate=document.getElementById('auth-gate'),status=document.getElementById('auth-status'),button=document.getElementById('sign-in');
