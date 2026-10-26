@@ -244,3 +244,9 @@
 /* Let the footer divider meet both card edges; draw pins without adding an inset. */
 .note,.note.selected{border-width:0}
 .note.selected::after{border-width:2px}
+
+/* One-minute controls sit clear of the central timer and play/pause mark. */
+.timebox-side .timebox-card .timebox-minute{position:absolute;bottom:3px;width:18px;height:18px;padding:0;border:0;background:var(--box-color);color:var(--box-text);font:700 15px/18px Arial,Helvetica,sans-serif;text-align:center;z-index:2;touch-action:manipulation}
+.timebox-card .timebox-minus{left:3px}
+.timebox-card .timebox-plus{right:3px}
+.timebox-side .timebox-card .timebox-minute:active{transform:translateY(1px)}

@@ -39,6 +39,12 @@ state=change(state,{type:'move',id:b,beforeId:null},midnight+1800000);assert.dee
 assert.deepEqual(change(state,{type:'move',id:a,beforeId:a},start),state,'Moving before itself is harmless');
 assert.throws(()=>change(state,{type:'move',id:a,beforeId:'removed-target'},start),/POSITION CHANGED/);
 const adjustmentTime=midnight+1800000,today='2026-10-25';
+let oneMinute=change(state,{type:'adjust',id:a,minutes:1,day:today},adjustmentTime);
+assert.equal(timeFor(oneMinute.tasks[0],adjustmentTime),timeFor(state.tasks[0],adjustmentTime)+60000,'Quick plus adds exactly one minute today');
+assert.equal(oneMinute.tasks[0].runningSince,adjustmentTime,'Quick plus preserves a running timer');
+oneMinute=change(oneMinute,{type:'adjust',id:a,minutes:-1,day:today},adjustmentTime);
+assert.equal(timeFor(oneMinute.tasks[0],adjustmentTime),timeFor(state.tasks[0],adjustmentTime),'Quick minus removes exactly one minute today');
+assert.deepEqual(oneMinute.tasks[0].days['2026-10-24'],state.tasks[0].days['2026-10-24'],'Quick controls leave earlier days alone');
 let adjusted=change(state,{type:'adjust',id:a,minutes:30,day:today},adjustmentTime);
 assert.equal(timeFor(adjusted.tasks[0],adjustmentTime),3000000,'Add thirty minutes to the live daily total');
 assert.equal(adjusted.tasks[0].days['2026-10-24'],1800000,'Earlier days stay unchanged');
