@@ -1,5 +1,5 @@
-import {confirmDelete} from './confirm-delete.js?v=4a4c81938ebe';
-import {timeFor,duration,dayKey,change} from './timebox-model.mjs?v=4a4c81938ebe';
+import {confirmDelete} from './confirm-delete.js?v=e1d9f1be5a95';
+import {timeFor,duration,dayKey,change} from './timebox-model.mjs?v=e1d9f1be5a95';
 export function mountTimebox(root,store,{visible:initialVisible=true}={}){
  const confirmController=new AbortController();
  const side=root.querySelector('.timebox-side');

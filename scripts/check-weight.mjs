@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {kilograms,weight,chartData,weeklyChange} from '../src/weight-tracker/model.mjs';
+import {kilograms,weight,chartData,weeklyChange,estimatedTargetTime} from '../src/weight-tracker/model.mjs';
 import {createWeightStore} from '../src/weight-tracker/store.mjs';
 assert.equal(kilograms(100,'KG'),100);assert.equal(kilograms(100,'LB'),45.359237);assert(Math.abs(weight(45.359237,'LB')-100)<1e-10);
 for(const value of ['',0,-1,Infinity,NaN,'bad',1001])assert.equal(kilograms(value,'KG'),null);
@@ -32,3 +32,15 @@ assert.equal(weeklyChange(weights,'latest'),null);assert.equal(weeklyChange(weig
 assert.equal(weeklyChange([{id:'a',kg:80,time:0},{id:'b',kg:73,time:0}],'a'),null);
 assert(Math.abs(weeklyChange(weights,'old','LB')-weight(-7,'LB'))<1e-10);
 console.log('Weekly rate checks passed.');
+
+assert.equal(estimatedTargetTime(weights,'old',66),week*2,'80 to 73 in seven days reaches 66 seven days after latest');
+assert.equal(estimatedTargetTime(weights,'old',70),week+3*86400000,'Projection starts from the latest recorded time');
+assert.equal(estimatedTargetTime(weights,'old',73),week,'Already exactly at the target');
+assert.equal(estimatedTargetTime(weights,'old',85),null,'Moving away from a higher target');
+assert.equal(estimatedTargetTime(weights,'latest',66),null,'The latest point alone supplies no time interval');
+assert.equal(estimatedTargetTime(weights,'missing',66),null);
+assert.equal(estimatedTargetTime(weights,'old',null),null,'A target must be set');
+assert.equal(estimatedTargetTime([{id:'a',kg:70,time:0},{id:'b',kg:70,time:week}],'a',65),null,'Flat weight cannot predict a date');
+assert.equal(estimatedTargetTime([{id:'a',kg:60,time:0},{id:'b',kg:62,time:week}],'a',64),week*2,'Gain targets use the same calculation');
+assert.equal(estimatedTargetTime([{id:'a',kg:80,time:0},{id:'b',kg:73,time:0}],'a',66),null,'Same-time readings supply no rate');
+console.log('Target-date checks passed: selected-to-latest projection, loss/gain, missing target, zero rate, same timestamps and latest-point selection.');

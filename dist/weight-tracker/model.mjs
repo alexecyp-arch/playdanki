@@ -16,3 +16,13 @@ export function weeklyChange(entries,selectedId,unit='KG'){
  if(!selected||!latest||latest.time<=selected.time)return null;
  return weight(latest.kg-selected.kg,unit)*604800000/(latest.time-selected.time);
 }
+
+export function estimatedTargetTime(entries,selectedId,targetKg){
+ if(!Number.isFinite(targetKg)||targetKg<=0)return null;
+ const points=entries.filter(p=>Number.isFinite(p.kg)&&p.kg>0&&Number.isFinite(p.time)),selected=points.find(p=>p.id===selectedId),latest=points.reduce((last,p)=>!last||p.time>last.time?p:last,null);
+ if(!selected||!latest||latest.time<=selected.time)return null;
+ const remaining=targetKg-latest.kg;if(remaining===0)return latest.time;
+ const rate=(latest.kg-selected.kg)/(latest.time-selected.time),delay=remaining/rate;
+ if(!Number.isFinite(delay)||delay<0)return null;
+ const estimate=latest.time+delay;return Number.isFinite(estimate)&&Math.abs(estimate)<=8640000000000000?estimate:null;
+}
