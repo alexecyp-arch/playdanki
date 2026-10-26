@@ -224,3 +224,19 @@
 .notes-only .app{width:min(100%,808px);margin-inline:auto}
 .notes-only .notes-wrap,.notes-only .composer-wrap{width:100%;margin-inline:auto}
 @media(max-width:760px){.notes-only .composer{padding-bottom:12px}}
+
+/* Keep the original spacing; remove only the white outer outlines. */
+.note:not(.selected),.composer-wrap>form{border-color:transparent}
+.delete-confirm{position:fixed;inset:0;margin:auto;width:min(340px,calc(100vw - 32px));max-height:calc(100dvh - 32px);padding:20px;background:#242529;color:#fff;border:2px solid #696a73;box-shadow:0 12px 40px #0008;font:700 12px/1.5 Arial,Helvetica,sans-serif;z-index:200}
+.delete-confirm::backdrop{background:#0009}
+.delete-confirm h2{font:700 13px Arial,Helvetica,sans-serif;letter-spacing:1px;margin:0 0 12px}
+.delete-confirm p{margin:0 0 18px}
+.delete-confirm>div{display:flex;justify-content:flex-end;gap:8px}
+.delete-confirm button{border:1px solid #8e8f99;padding:7px 12px;background:#303136;color:#fff;font:700 11px Arial,Helvetica,sans-serif;cursor:pointer}
+.delete-confirm [data-delete]{background:#58343b;border-color:#ae7883}
+.delete-confirm button:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.page-switch{position:fixed;right:20px;top:76px;z-index:20;display:flex;align-items:center;justify-content:center;width:7.9rem;height:30px;border:2px solid #b4b5bd;background:#303136;color:#fff;text-decoration:none;font:700 11px Arial,Helvetica,sans-serif}
+.page-switch:focus-visible{outline:2px solid #fff;outline-offset:3px}
+@media(max-width:600px){.page-switch{right:12px;top:59px;width:62px;height:25px;font-size:8px}}
+
+@media(max-width:600px){.notes-only .header{height:88px;align-items:flex-start;padding-top:18px}}

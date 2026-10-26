@@ -14,6 +14,7 @@ beforeAuthStateChanged(auth,clear);
 window.addEventListener('pagehide',clear);
 window.addEventListener('pageshow',event=>{if(event.persisted)location.reload();});
 if(window.parent!==window){
+ document.querySelector('.page-switch').addEventListener('click',event=>{if(event.button||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;event.preventDefault();parent.postMessage({type:'danki-notes-open-timebox'},location.origin);});
  document.querySelector('.danki-return').addEventListener('click',event=>{if(event.button||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;event.preventDefault();window.parent.postMessage({type:'danki-notes-return'},location.origin);});
  window.addEventListener('message',event=>{if(event.origin===location.origin&&event.source===window.parent&&event.data?.type==='danki-notes-visibility')window.dispatchEvent(new CustomEvent('temponotes-visibility',{detail:!!event.data.visible}));});
 }

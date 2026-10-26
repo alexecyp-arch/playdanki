@@ -1,10 +1,10 @@
 import {initializeApp} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js';
 import {getAuth,onAuthStateChanged,beforeAuthStateChanged,GoogleAuthProvider,signInWithPopup} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js';
 import * as sdk from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js';
-import {mount} from './ui.js?v=76243f3cd08c';
-import {createNotesStore} from './notes-store.mjs?v=76243f3cd08c';
-import {createCloudSelection} from './cloud-selection.mjs?v=76243f3cd08c';
-import {createLockedStore} from './locked-store.mjs?v=76243f3cd08c';
+import {mount} from './ui.js?v=549acd680369';
+import {createNotesStore} from './notes-store.mjs?v=549acd680369';
+import {createCloudSelection} from './cloud-selection.mjs?v=549acd680369';
+import {createLockedStore} from './locked-store.mjs?v=549acd680369';
 const config=JSON.parse(document.getElementById('auth-config').textContent);
 const app=initializeApp(config.firebase),auth=getAuth(app),db=sdk.getFirestore(app);
 const root=document.getElementById('root'),gate=document.getElementById('auth-gate'),status=document.getElementById('auth-status'),button=document.getElementById('sign-in');
@@ -14,6 +14,7 @@ beforeAuthStateChanged(auth,clear);
 window.addEventListener('pagehide',clear);
 window.addEventListener('pageshow',event=>{if(event.persisted)location.reload();});
 if(window.parent!==window){
+ document.querySelector('.page-switch').addEventListener('click',event=>{if(event.button||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;event.preventDefault();parent.postMessage({type:'danki-notes-open-timebox'},location.origin);});
  document.querySelector('.danki-return').addEventListener('click',event=>{if(event.button||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;event.preventDefault();window.parent.postMessage({type:'danki-notes-return'},location.origin);});
  window.addEventListener('message',event=>{if(event.origin===location.origin&&event.source===window.parent&&event.data?.type==='danki-notes-visibility')window.dispatchEvent(new CustomEvent('temponotes-visibility',{detail:!!event.data.visible}));});
 }

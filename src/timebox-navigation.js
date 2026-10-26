@@ -16,8 +16,11 @@ link.addEventListener('click',event=>{
  if(event.button!==0||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey||!uid)return;
  event.preventDefault();returnUrl=location.pathname+location.search+location.hash;gameTitle=document.title;prepare();history.pushState({privateTimebox:true},'','/timebox/');display(true);
 });
+window.addEventListener('danki-private-open',event=>{if(event.detail?.view!=='timebox'||!uid)return;returnUrl=event.detail.returnUrl;gameTitle=event.detail.gameTitle;prepare();history.pushState(null,'','/timebox/');display(true);});
 window.addEventListener('message',event=>{
- if(event.origin!==location.origin||event.source!==frame?.contentWindow||event.data?.type!=='danki-timebox-return')return;
+ if(event.origin!==location.origin||event.source!==frame?.contentWindow)return;
+ if(event.data?.type==='danki-timebox-open-notes'){if(uid&&shown)window.dispatchEvent(new CustomEvent('danki-private-open',{detail:{view:'notes',returnUrl,gameTitle}}));return;}
+ if(event.data?.type!=='danki-timebox-return')return;
  if(shown){history.replaceState(null,'',returnUrl);display(false);}
 });
 window.addEventListener('danki-view-opening',event=>{if(event.detail==='timebox')return;shown=false;document.body.classList.remove('timebox-open');visibility();});
