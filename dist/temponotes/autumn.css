@@ -9,3 +9,6 @@ html,body{background:#18191c!important}
 @keyframes autumn-sway{from{transform:translateX(calc(0px - var(--sway))) rotate(-12deg)}to{transform:translateX(var(--sway)) rotate(14deg)}}
 .autumn-leaves.paused .autumn-leaf,.autumn-leaves.paused img{animation-play-state:paused}
 @media(max-width:760px){.autumn-leaf{width:calc(var(--size)*.7);left:var(--mobileLeft)}}
+
+/* The fullscreen notebook must sit above the page navigation. */
+#root:has(#locked-panel:not([hidden])){z-index:100}

@@ -1,15 +1,17 @@
+import {initStandaloneNavigation} from './private-page-navigation.js?v=4a4c81938ebe';
+initStandaloneNavigation();
 import {initializeApp} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js';
 import {getAuth,onAuthStateChanged,beforeAuthStateChanged,GoogleAuthProvider,signInWithPopup} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js';
 import * as sdk from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js';
-import {mount} from './ui.js?v=e44c62e47e13';
-import {createNotesStore} from './notes-store.mjs?v=e44c62e47e13';
-import {createCloudSelection} from './cloud-selection.mjs?v=e44c62e47e13';
-import {createLockedStore} from './locked-store.mjs?v=e44c62e47e13';
+import {mount} from './ui.js?v=4a4c81938ebe';
+import {createNotesStore} from './notes-store.mjs?v=4a4c81938ebe';
+import {createCloudSelection} from './cloud-selection.mjs?v=4a4c81938ebe';
+import {createLockedStore} from './locked-store.mjs?v=4a4c81938ebe';
 const config=JSON.parse(document.getElementById('auth-config').textContent);
 const app=initializeApp(config.firebase),auth=getAuth(app),db=sdk.getFirestore(app);
 const root=document.getElementById('root'),gate=document.getElementById('auth-gate'),status=document.getElementById('auth-status'),button=document.getElementById('sign-in');
 let generation=0,dispose=()=>{},unmount=()=>{},loading,selectionStore,lockedStore;
-function clear(){selectionStore?.dispose();selectionStore=null;lockedStore?.dispose();lockedStore=null;++generation;loading?.abort();unmount();dispose();unmount=dispose=()=>{};root.replaceChildren();gate.hidden=false;}
+function clear(){window.dispatchEvent(new Event('danki-private-auth-clearing'));selectionStore?.dispose();selectionStore=null;lockedStore?.dispose();lockedStore=null;++generation;loading?.abort();unmount();dispose();unmount=dispose=()=>{};root.replaceChildren();gate.hidden=false;}
 beforeAuthStateChanged(auth,clear);
 window.addEventListener('pagehide',clear);
 window.addEventListener('pageshow',event=>{if(event.persisted)location.reload();});
@@ -22,7 +24,7 @@ button.addEventListener('click',async()=>{button.disabled=true;try{await signInW
 onAuthStateChanged(auth,async user=>{
   clear();const current=generation;loading=new AbortController();
   button.hidden=!!user;status.textContent=user?'':'Sign in to use your private notes.';status.hidden=!!user;
-  if(!user)return;
+  window.dispatchEvent(new CustomEvent('danki-private-auth',{detail:user?.uid||null}));if(!user)return;
   try{
     const pending=createNotesStore({auth,db,sdk,uid:user.uid,signal:loading.signal});
     let storage;try{storage=localStorage;}catch{}
