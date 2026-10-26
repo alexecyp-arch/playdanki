@@ -11,7 +11,7 @@ function app({stored='off',voices=[robot,google],supported=true}={}){const event
 const a=app();a.card('der Baum');a.tick();assert.equal(a.spoken.length,0);a.click();a.tick();assert.equal(a.spoken.length,0,'Turning voice on does not replay the displayed card');
 a.card('das Haus','words:1:1');a.tick();assert.equal(a.spoken.length,1);assert.equal(a.spoken[0].voice,google);assert.equal(a.values.get('danki:voice:v1'),'on');
 a.card('das Haus','words:1:1');a.tick();assert.equal(a.spoken.length,1,'Same-card refresh stays silent');
-for(const overlay of ['notes-open','atlas-open','weight-open']){
+for(const overlay of ['notes-open','atlas-open','weight-open','timebox-open']){
  a.classes.add(overlay);a.bodyChanged();a.card('');a.tick();
  a.classes.clear();a.bodyChanged();a.event('pointerdown',{isTrusted:true});a.card('das Haus','words:1:1');a.tick();
  assert.equal(a.spoken.length,1,'Returning from '+overlay+' never repeats the unchanged card, even after a blank render');

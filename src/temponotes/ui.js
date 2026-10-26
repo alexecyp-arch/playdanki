@@ -1,17 +1,15 @@
 import {occurrences} from './eternal.mjs';
 import {mountEternal} from './eternal-ui.js';
 import {orderNotes} from './note-order.mjs';
-import {mountTimebox} from './timebox-ui.js';
 import {mountLocked} from './locked-ui.js';
 // The original Temponote layout, rendered with browser APIs instead of React.
-export function mount(root,request,{visible=true,selection,timebox,locked}={}){
- root.innerHTML=`<div class="temponote-workspace"><main class="app"><header class="header"><div class="brand"><span class="brand-icon" aria-hidden="true">◷</span><h1>TEMPONOTE</h1><time class="current-time" aria-label="Current time"></time></div></header><section class="notes-area" id="note-list" aria-label="Your notes"><div class="notes-wrap"><ol></ol></div></section><footer class="composer"><div class="composer-wrap"><div class="composer-top"><div class="timer-row"><span class="timer-label">KEEP FOR <strong aria-live="polite"></strong> · <time></time></span><button class="reset" hidden>Reset</button></div><div class="time-buttons"><button data-add="60">+1H</button><button data-add="360">+6H</button></div></div><form><label class="sr-only" for="note">Write a note</label><textarea id="note" maxlength="10000" placeholder="Write a note…" rows="2"></textarea><button class="send" type="submit" disabled aria-label="Send note"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m5 12 7-7 7 7M12 5v15"/></svg></button></form><p class="error" role="alert" hidden></p></div></footer></main><aside class="timebox-side" aria-label="Timebox"></aside></div>`;
+export function mount(root,request,{visible=true,selection,locked}={}){
+ root.innerHTML=`<div class="temponote-workspace notes-only"><main class="app"><header class="header"><div class="brand"><span class="brand-icon" aria-hidden="true">◷</span><h1>TEMPONOTE</h1><time class="current-time" aria-label="Current time"></time></div></header><section class="notes-area" id="note-list" aria-label="Your notes"><div class="notes-wrap"><ol></ol></div></section><footer class="composer"><div class="composer-wrap"><div class="composer-top"><div class="timer-row"><span class="timer-label">KEEP FOR <strong aria-live="polite"></strong> · <time></time></span><button class="reset" hidden>Reset</button></div><div class="time-buttons"><button data-add="60">+1H</button><button data-add="360">+6H</button></div></div><form><label class="sr-only" for="note">Write a note</label><textarea id="note" maxlength="10000" placeholder="Write a note…" rows="2"></textarea><button class="send" type="submit" disabled aria-label="Send note"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m5 12 7-7 7 7M12 5v15"/></svg></button></form><p class="error" role="alert" hidden></p></div></footer></main></div>`;
  const $=s=>root.querySelector(s),input=$('textarea'),list=$('ol'),error=$('.error'),sendButton=$('.send'),sendIcon=sendButton.innerHTML,nodes=new Map(),extending=new Set();
  let notes=[],schedules=[],adjustments={},minutes=60,busy=false,draft=null,offset=0,disposed=false,lastSync=0,loaded=false,selected=selection?.get()||null;
  const tools=document.createElement('div');tools.className='note-tools';$('.composer-top').append(tools);
  $('.time-buttons').append($('.timer-row'));
  const eternal=mountEternal(root,request,{getSchedules:()=>schedules,onChange:load});
- const stopTimebox=timebox?mountTimebox(root,timebox):()=>{};
  const stopLocked=locked?mountLocked(root,locked):()=>{};
  const duration=m=>[Math.floor(m/60)?Math.floor(m/60)+'H':'',m%60?m%60+'M':''].filter(Boolean).join(' ');
  const format=t=>new Date(t).toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit',hour12:true});
@@ -35,5 +33,5 @@ export function mount(root,request,{visible=true,selection,timebox,locked}={}){
  const stopSelection=selection?.subscribe?.(id=>{if(selected===id)return;selected=id;render();});
  list.addEventListener('click',selectNote);list.addEventListener('keydown',selectNote);
  const refresh=()=>{if(visible&&!document.hidden)load();},visibility=event=>{visible=event.detail;if(visible){render();load();}};document.addEventListener('visibilitychange',refresh);window.addEventListener('focus',refresh);window.addEventListener('temponotes-visibility',visibility);const sync=setInterval(refresh,10000),clock=setInterval(render,1000);render();load();
- return ()=>{disposed=true;stopSelection?.();eternal.dispose();stopTimebox();stopLocked();clearInterval(sync);clearInterval(clock);document.removeEventListener('visibilitychange',refresh);window.removeEventListener('focus',refresh);window.removeEventListener('temponotes-visibility',visibility);root.replaceChildren();nodes.clear();notes=[];schedules=[];};
+ return ()=>{disposed=true;stopSelection?.();eternal.dispose();stopLocked();clearInterval(sync);clearInterval(clock);document.removeEventListener('visibilitychange',refresh);window.removeEventListener('focus',refresh);window.removeEventListener('temponotes-visibility',visibility);root.replaceChildren();nodes.clear();notes=[];schedules=[];};
 }

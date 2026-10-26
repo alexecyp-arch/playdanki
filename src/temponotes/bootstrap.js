@@ -4,13 +4,12 @@ import * as sdk from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-firesto
 import {mount} from './ui.js';
 import {createNotesStore} from './notes-store.mjs';
 import {createCloudSelection} from './cloud-selection.mjs';
-import {createTimeboxStore} from './timebox-store.mjs';
 import {createLockedStore} from './locked-store.mjs';
 const config=JSON.parse(document.getElementById('auth-config').textContent);
 const app=initializeApp(config.firebase),auth=getAuth(app),db=sdk.getFirestore(app);
 const root=document.getElementById('root'),gate=document.getElementById('auth-gate'),status=document.getElementById('auth-status'),button=document.getElementById('sign-in');
-let generation=0,dispose=()=>{},unmount=()=>{},loading,selectionStore,timeboxStore,lockedStore;
-function clear(){selectionStore?.dispose();selectionStore=null;timeboxStore?.dispose();timeboxStore=null;lockedStore?.dispose();lockedStore=null;++generation;loading?.abort();unmount();dispose();unmount=dispose=()=>{};root.replaceChildren();gate.hidden=false;}
+let generation=0,dispose=()=>{},unmount=()=>{},loading,selectionStore,lockedStore;
+function clear(){selectionStore?.dispose();selectionStore=null;lockedStore?.dispose();lockedStore=null;++generation;loading?.abort();unmount();dispose();unmount=dispose=()=>{};root.replaceChildren();gate.hidden=false;}
 beforeAuthStateChanged(auth,clear);
 window.addEventListener('pagehide',clear);
 window.addEventListener('pageshow',event=>{if(event.persisted)location.reload();});
@@ -27,11 +26,10 @@ onAuthStateChanged(auth,async user=>{
     const pending=createNotesStore({auth,db,sdk,uid:user.uid,signal:loading.signal});
     let storage;try{storage=localStorage;}catch{}
     const selection=selectionStore=createCloudSelection({auth,db,sdk,uid:user.uid,storage,onError:()=>{if(current===generation){status.hidden=false;status.textContent='Could not sync the pin. Tap the note to retry.';}}});
-    timeboxStore=createTimeboxStore({auth,db,sdk,uid:user.uid});
     lockedStore=createLockedStore({auth,db,sdk,uid:user.uid});
-    gate.hidden=true;unmount=mount(root,async(...args)=>(await pending).request(...args),{visible:window.parent===window||!window.frameElement?.hidden,selection,timebox:timeboxStore,locked:lockedStore});
+    gate.hidden=true;unmount=mount(root,async(...args)=>(await pending).request(...args),{visible:window.parent===window||!window.frameElement?.hidden,selection,locked:lockedStore});
     const store=await pending;
     if(current!==generation){store.dispose();return;}
     dispose=store.dispose;
-  }catch(error){if(current!==generation)return;unmount();timeboxStore?.dispose();timeboxStore=null;lockedStore?.dispose();lockedStore=null;gate.hidden=false;status.hidden=false;status.textContent='Could not load your notes. Refresh to try again.';}
+  }catch(error){if(current!==generation)return;unmount();lockedStore?.dispose();lockedStore=null;gate.hidden=false;status.hidden=false;status.textContent='Could not load your notes. Refresh to try again.';}
 });

@@ -21,7 +21,7 @@ window.addEventListener('message',event=>{
  if(shown){history.replaceState(null,'',returnUrl);display(false);}
 });
 window.addEventListener('danki-view-opening',event=>{if(event.detail==='weight')return;shown=false;document.body.classList.remove('weight-open');visibility();});
-window.addEventListener('popstate',()=>{if(location.pathname.startsWith('/data-atlas/')||location.pathname.startsWith('/temponotes/'))return;const open=location.pathname==='/weight-tracker/';if(open)prepare();display(open);});
+window.addEventListener('popstate',()=>{if(location.pathname.startsWith('/timebox/')||location.pathname.startsWith('/data-atlas/')||location.pathname.startsWith('/temponotes/'))return;const open=location.pathname==='/weight-tracker/';if(open)prepare();display(open);});
 // A restored document must revalidate its owner before displaying any note memory.
 window.addEventListener('pagehide',()=>{frame?.remove();frame=null;});
 window.addEventListener('pageshow',event=>{if(event.persisted){location.reload();}});

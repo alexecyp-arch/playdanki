@@ -10,7 +10,7 @@ function available(){const lang=current?.lang||'de';return supported?synth.getVo
 function bestVoice(){return available().sort((a,b)=>rank(b)-rank(a))[0]||null;}
 function rank(v){const name=v.name||'';return (/neural|natural|premium|enhanced/i.test(name)?1000:0)+(/google/i.test(name)?800:0)+(!v.localService?100:0)+(v.lang?.replace('_','-').toLowerCase()===languages[current?.lang||'de'][1].toLowerCase()?30:0)+(v.default?5:0);}
 function sync(){button.disabled=!supported;button.setAttribute('aria-checked',String(enabled));button.querySelector('span').textContent=enabled?'ON':'OFF';button.dataset.voice=voice?.name||'';button.title=!supported?'Voice is unavailable in this browser':voice?languages[current?.lang||'de'][0]+' voice: '+voice.name:'Waiting for a '+languages[current?.lang||'de'][0]+' voice';}
-function visible(){return current?.text&&!document.hidden&&!document.getElementById('game').hidden&&!['notes-open','atlas-open','weight-open'].some(c=>document.body.classList.contains(c));}
+function visible(){return current?.text&&!document.hidden&&!document.getElementById('game').hidden&&!['notes-open','atlas-open','weight-open','timebox-open'].some(c=>document.body.classList.contains(c));}
 function stop(){token++;pending='';if(frame)cancelAnimationFrame(frame);frame=0;activeUtterance=null;button.dataset.speaking='false';if(supported)synth.cancel();}
 function play(){
  frame=0;if(!pending||pending!==identity(current))return;if(!enabled||!unlocked||!visible()){stop();return;}voice=bestVoice();sync();if(!voice)return;

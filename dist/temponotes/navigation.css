@@ -218,3 +218,9 @@
 }
 
 @media(max-width:760px){.temponote-workspace .composer{padding-bottom:48px}}
+
+/* Notes have their own centred page again. */
+.temponote-workspace.notes-only{display:block}
+.notes-only .app{width:min(100%,808px);margin-inline:auto}
+.notes-only .notes-wrap,.notes-only .composer-wrap{width:100%;margin-inline:auto}
+@media(max-width:760px){.notes-only .composer{padding-bottom:12px}}

@@ -24,7 +24,7 @@ body:focus,#game:focus,#exercise:focus,.arithmetic-frame:focus{outline:none}
  function install({next,previous,enabled}){document.getElementById('previous-card').addEventListener('click',previous);document.addEventListener('click',event=>{if(enabled()&&canTap(event))next();},true);}
  window.StudyNavigation={canTap,install};
 })();
-</script><script id="danki-shared-theme" src="/theme.js?v=991ff9331cb8"></script><link rel="stylesheet" href="/theme.css?v=991ff9331cb8"></head>
+</script><script id="danki-shared-theme" src="/theme.js?v=9c5676af44ad"></script><link rel="stylesheet" href="/theme.css?v=9c5676af44ad"></head>
 <body><main class="course-main">
 <header><strong>QUANT</strong><div class="progress"><span id="card">CARD 1/5000</span></div></header>
 <section id="study" aria-label="QUANT card" hidden><div id="subject" class="metadata"></div><h1 id="question"></h1><div id="answer" class="answer"></div></section>
@@ -79,4 +79,4 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('stats').hidden)
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!busy)refresh().catch(()=>notice('Progress could not refresh. Please reload.'))});window.addEventListener('storage',e=>{reviewId=null;if((e.key===KEY||e.key===null)&&!busy)refresh().catch(()=>notice('Progress could not refresh. Please reload.'))});state=read();memory=state;load();
 })();
 </script>
-<script defer src="/analytics.js?v=991ff9331cb8"></script></body></html>
+<script defer src="/analytics.js?v=9c5676af44ad"></script></body></html>
