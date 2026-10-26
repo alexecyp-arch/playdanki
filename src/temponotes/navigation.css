@@ -250,3 +250,8 @@
 .timebox-card .timebox-minus{left:3px}
 .timebox-card .timebox-plus{right:3px}
 .timebox-side .timebox-card .timebox-minute:active{transform:translateY(1px)}
+
+/* Give task names more space while keeping the top corner controls discreet. */
+.timebox-card .timebox-name{font-size:25px}
+.timebox-card .timebox-move,.timebox-card .timebox-edit{width:20px;min-width:20px;height:18px;padding:0;font-size:15px;line-height:16px}
+@media(max-width:760px){.timebox-card .timebox-name{font-size:20px}.timebox-card .timebox-move,.timebox-card .timebox-edit{width:16px;min-width:16px;height:15px;font-size:12px;line-height:13px}}
