@@ -205,3 +205,16 @@
 /* Match the main-page TEMPONOTES button's desktop and phone dimensions. */
 .danki-return{box-sizing:border-box;width:7.9rem;height:2.668rem;padding:0;font-size:.85rem;line-height:1.2;letter-spacing:0}
 @media(max-width:600px){.danki-return{width:5.9rem;height:2.43rem;font-size:.65rem;transform:scale(.65);transform-origin:top right}}
+
+/* Compact notebook actions leave the writing area wide open. */
+.locked-actions{display:flex;gap:8px;flex-shrink:0;margin-top:8px}
+#locked-panel .locked-actions button{width:auto;align-self:flex-start;margin:0;padding:5px 8px;font-size:9px}
+.composer #locked-panel .locked-change-form{width:min(420px,100%);align-self:flex-start;gap:6px}
+#locked-panel .locked-change-form input{width:140px;flex:1 1 120px;padding:6px 8px;font-size:11px}
+#locked-panel .locked-change-form button{padding:5px 8px;font-size:9px}
+@media(max-width:760px){
+ .temponote-workspace{position:relative}
+ .timebox-chart-area{position:absolute;inset:calc(100svh - 38px) 12px auto auto;margin:0;transform:none}
+}
+
+@media(max-width:760px){.temponote-workspace .composer{padding-bottom:48px}}
