@@ -9,6 +9,6 @@ export function initStandaloneNavigation(){'use strict';if(parent!==window)retur
  window.addEventListener('danki-private-auth-clearing',()=>{frame?.remove();frame=null;uid=null;if(shown){history.replaceState(null,'',ownPath);display(false);}});
  window.addEventListener('danki-private-auth',event=>{const next=event.detail||null;if(next===uid&&frame)return;frame?.remove();frame=null;uid=next;prepare();});
  link.addEventListener('click',event=>{if(event.button||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey||!uid)return;event.preventDefault();prepare();history.pushState(null,'',peerPath);display(true);});
- window.addEventListener('message',event=>{if(event.origin!==location.origin||event.source!==frame?.contentWindow||!uid)return;if(event.data?.type==='danki-'+peer+'-open-'+view){history.pushState(null,'',ownPath);display(false);}else if(event.data?.type==='danki-'+peer+'-return'){location.assign('/');}});
+ window.addEventListener('message',event=>{if(event.origin!==location.origin||event.source!==frame?.contentWindow||!uid)return;if(event.data?.type==='danki-notes-open-weight'){location.assign('/weight-tracker/');return;}if(event.data?.type==='danki-'+peer+'-open-'+view){history.pushState(null,'',ownPath);display(false);}else if(event.data?.type==='danki-'+peer+'-return'){location.assign('/');}});
  window.addEventListener('popstate',()=>{const open=location.pathname.startsWith(peerPath);if(open)prepare();display(open);});window.addEventListener('pagehide',()=>{frame?.remove();frame=null;});
 }

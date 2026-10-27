@@ -9,5 +9,5 @@
  }
  document.body.append(layer);let visible=parent===window||!window.frameElement?.hidden;
  const pause=()=>layer.classList.toggle('paused',!visible||document.hidden);
- document.addEventListener('visibilitychange',pause);window.addEventListener('temponotes-visibility',event=>{visible=!!event.detail;pause();});window.addEventListener('message',event=>{if(event.origin===location.origin&&event.source===parent&&event.data?.type==='danki-notes-visibility'){visible=!!event.data.visible;pause();}});pause();
+ document.addEventListener('visibilitychange',pause);window.addEventListener('temponotes-visibility',event=>{visible=!!event.detail;pause();});window.addEventListener('message',event=>{if(event.origin===location.origin&&event.source===parent&&['danki-notes-visibility','danki-timebox-visibility'].includes(event.data?.type)){visible=!!event.data.visible;pause();}});pause();
 })();

@@ -1,12 +1,12 @@
-import {initStandaloneNavigation} from './private-page-navigation.js?v=e1d9f1be5a95';
+import {initStandaloneNavigation} from './private-page-navigation.js?v=3271791762a0';
 initStandaloneNavigation();
 import {initializeApp} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js';
 import {getAuth,onAuthStateChanged,beforeAuthStateChanged,GoogleAuthProvider,signInWithPopup} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js';
 import * as sdk from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js';
-import {mount} from './ui.js?v=e1d9f1be5a95';
-import {createNotesStore} from './notes-store.mjs?v=e1d9f1be5a95';
-import {createCloudSelection} from './cloud-selection.mjs?v=e1d9f1be5a95';
-import {createLockedStore} from './locked-store.mjs?v=e1d9f1be5a95';
+import {mount} from './ui.js?v=3271791762a0';
+import {createNotesStore} from './notes-store.mjs?v=3271791762a0';
+import {createCloudSelection} from './cloud-selection.mjs?v=3271791762a0';
+import {createLockedStore} from './locked-store.mjs?v=3271791762a0';
 const config=JSON.parse(document.getElementById('auth-config').textContent);
 const app=initializeApp(config.firebase),auth=getAuth(app),db=sdk.getFirestore(app);
 const root=document.getElementById('root'),gate=document.getElementById('auth-gate'),status=document.getElementById('auth-status'),button=document.getElementById('sign-in');
@@ -16,6 +16,7 @@ beforeAuthStateChanged(auth,clear);
 window.addEventListener('pagehide',clear);
 window.addEventListener('pageshow',event=>{if(event.persisted)location.reload();});
 if(window.parent!==window){
+ document.querySelector('.notes-weight-link').addEventListener('click',event=>{if(event.button||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;event.preventDefault();parent.postMessage({type:'danki-notes-open-weight'},location.origin);});
  document.querySelector('.page-switch').addEventListener('click',event=>{if(event.button||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;event.preventDefault();parent.postMessage({type:'danki-notes-open-timebox'},location.origin);});
  document.querySelector('.danki-return').addEventListener('click',event=>{if(event.button||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;event.preventDefault();window.parent.postMessage({type:'danki-notes-return'},location.origin);});
  window.addEventListener('message',event=>{if(event.origin===location.origin&&event.source===window.parent&&event.data?.type==='danki-notes-visibility')window.dispatchEvent(new CustomEvent('temponotes-visibility',{detail:!!event.data.visible}));});

@@ -258,3 +258,16 @@
 
 /* A near-black green strip for the remaining time. */
 .note .note-footer,.note.selected .note-footer{background:#091a13;background-image:none;border-top-color:#244034}
+
+/* A one-pixel underline, without changing card sizes or pin positions. */
+.note::before{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:#fff;pointer-events:none;z-index:3}
+.notes-weight-link{top:114px;font-size:10px;white-space:nowrap}
+/* Keep sign-in in view even when the empty phone root has full height. */
+#auth-gate{position:fixed;inset:0;width:100%;height:100dvh;overflow:auto;z-index:2;padding:135px 16px 24px}
+@media(max-width:600px){.notes-weight-link{top:94px;font-size:6.5px}.notes-only .header{height:122px}}
+@media(max-width:760px){
+ .composer-top #eternal-panel{position:fixed;left:12px;right:12px;top:auto;bottom:max(12px,calc(100dvh - var(--eternal-vtop,0px) - var(--eternal-vheight,100dvh) + 12px));width:auto;max-height:calc(var(--eternal-vheight,100dvh) - 24px);display:flex;flex-direction:column;overflow:hidden;z-index:100}
+ #eternal-panel header,#eternal-panel form,#eternal-panel .error{flex-shrink:0}
+ #eternal-panel .eternal-list{flex:1 1 auto;min-height:0;overflow:auto;overscroll-behavior:contain}
+ #root:has(#eternal-panel:not([hidden])){z-index:100}
+}
