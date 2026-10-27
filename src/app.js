@@ -79,7 +79,7 @@ function render(){
   if(active.remote&&!current){cardVoice();locked=true;word.textContent='';const deck=active,view=screenVersion;loadLanguage(deck).then(()=>{if(active===deck&&screenVersion===view)render()}).catch(()=>{if(active===deck&&screenVersion===view){word.textContent='Unable to load cards';feedback.textContent='Check your connection and retry.';$('retry').hidden=false}});return}
   if(active===decks.trivia&&!current){cardVoice();locked=true;word.textContent='';const view=screenVersion;loadTrivia(shownCard).then(()=>{if(active===decks.trivia&&screenVersion===view)render()}).catch(()=>{if(active===decks.trivia&&screenVersion===view){word.textContent='Unable to load questions';feedback.textContent='Check your connection and retry.';$('retry').hidden=false}});return}
   if(active===decks.trivia){if(current[5]){const img=$('question-image');img.src=current[5];img.hidden=false}const next=shownCard+200;if(next<active.limit&&Math.floor(next/triviaInfo.chunkSize)!==Math.floor(shownCard/triviaInfo.chunkSize))loadTrivia(next).catch(()=>{})}
-  const language=active.lang!=='en';word.textContent=current[language?1:0];translation.textContent=current[language?0:1];$('answer-box').hidden=false;centerAnswer();cardVoice(language?current[0]:'');
+  const language=active.lang!=='en';word.textContent=current[language?1:0];translation.textContent=current[language?0:1];$('answer-box').hidden=false;centerAnswer();cardVoice(language?current[0]:current[1]);
 }
 function previousCard(){if(!practiceActive||menuOpen()||!history.hidden||locked||shownCursor<=0)return;reviewCursor=shownCursor-1;render();}
 function nextCard(){

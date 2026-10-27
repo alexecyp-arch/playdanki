@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="Arithmetic practice. 2,000 correct answers each Monday–Sunday week.">
@@ -9,6 +10,8 @@
 *{box-sizing:border-box}body{margin:0;background:#fff;color:#181818;font:14px/1.5 system-ui,sans-serif}main{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;padding:24px 28px}#exercise{flex:1;display:flex;align-items:center;align-content:center;justify-content:center;flex-wrap:wrap;gap:20px;padding:48px 0;font:135px/1.25 ui-monospace,monospace}#problem{white-space:nowrap;font-size:var(--problem-size,135px)}#answer{width:4ch;max-width:100%;font:inherit;border:0;border-bottom:2px solid #aaa;border-radius:0;padding:5px 2px;text-align:center;background:#fff;color:#181818}#answer:focus{outline:0;border-bottom-color:#181818}#bottom{width:100%;max-width:580px;margin:0 auto;color:#626262}h1{font-size:14px;font-weight:400;margin:0 0 4px}#stats{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 18px}#total{font-size:16px;color:#333;font-variant-numeric:tabular-nums}#remaining{font-size:13px;margin:2px 0 10px}p{margin:8px 0}small{font-size:13px}details{border-top:1px solid #eee;padding:9px 0}summary{cursor:pointer;width:fit-content}input,button{font:inherit}input[type=number]{width:66px;padding:4px;border:1px solid #aaa;border-radius:0}input[type=checkbox]{accent-color:#222}button{background:white;color:#181818;border:1px solid #999;padding:6px 14px;cursor:pointer}.ops{display:flex;flex-wrap:wrap;gap:12px;margin:14px 0}fieldset{border:0;padding:0;margin:16px 0}legend{margin-bottom:5px}.range{display:flex;align-items:center;flex-wrap:wrap;gap:7px}table{width:100%;border-collapse:collapse;margin-top:12px;font-size:14px}th,td{text-align:left;padding:7px 0;border-bottom:1px solid #eee}th:last-child,td:last-child{text-align:right}#warning,#error{color:#9c250e;font-size:14px}@media(max-width:600px){main{padding:18px}#exercise{font-size:72px;gap:18px;padding:36px 0}#problem{font-size:min(72px,var(--problem-size,72px))}#stats{gap:2px 14px}input[type=number]{width:60px}}
 #bottom{position:absolute;top:12px;right:16px;width:580px;max-width:calc((100vw - 32px)/.3);margin:0;transform:scale(.3);transform-origin:top right;background:white;z-index:1}main{position:relative;padding-top:90px}#credit-note{font-size:14px}#credit-form{border-top:1px solid #eee;padding-top:10px;margin-top:14px}#credit-form input{width:100px}
 </style>
+</head>
+<body>
 <main>
 <div id="exercise"><label id="problem" for="answer"></label><input id="answer" type="text" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="Answer" autofocus></div>
 <section id="bottom" aria-label="Weekly progress and settings">
@@ -30,6 +33,7 @@
 <script>
 (()=>{'use strict';
 const $=id=>document.getElementById(id),prefix='weekly-arithmetic-v1:',tab=crypto.randomUUID?crypto.randomUUID():Date.now()+'-'+Math.random(),memory=new Map();
+let speechId=0;
 let storage=true,expected,current='',totals={},cfg={ops:[0,1,2,3],a:[2,100,2,100],m:[2,12,2,100]};
 function warn(){storage=false;$('warning').hidden=false;$('warning').textContent='Browser storage is unavailable. You can practice, but new progress will be lost when this page closes.'}
 function get(k){if(!storage)return memory.get(k)||null;try{const v=localStorage.getItem(k);if(v!==null)memory.set(k,v);return v}catch(e){warn();return memory.get(k)||null}}
@@ -51,7 +55,7 @@ function next(){const op=cfg.ops[rand(0,cfg.ops.length-1)],r=cfg[op<2?'a':'m'],a
 if(op===0){text=a+' + '+b;expected=a+b}if(op===1){text=(a+b)+' − '+a;expected=b}if(op===2){text=a+' × '+b;expected=a*b}if(op===3){text=(a*b)+' ÷ '+a;expected=b}
 $('problem').textContent=text+' =';$('answer').value=''}
 function menuOpen(){try{return parent!==window&&!!parent.document.querySelector('.games-menu[open]')}catch{return false}}
-function checkAnswer(e){if(document.hidden||menuOpen()||$('settings').open||$('history').open||e.isComposing||!/^\d+$/.test($('answer').value.trim())||Number($('answer').value)!==expected)return;current=monday();const k=prefix+'count:'+current+':'+tab;put(k,(Number(get(k))||0)+1);next();refresh()}
+function checkAnswer(e){if(document.hidden||menuOpen()||$('settings').open||$('history').open||e.isComposing||!/^\d+$/.test($('answer').value.trim())||Number($('answer').value)!==expected)return;window.DankiAnswerVoice?.('arithmetic',++speechId,String(expected),true);current=monday();const k=prefix+'count:'+current+':'+tab;put(k,(Number(get(k))||0)+1);next();refresh()}
 $('answer').addEventListener('input',checkAnswer);$('answer').addEventListener('compositionend',checkAnswer);
 document.addEventListener('keydown',e=>{if(e.isComposing||e.ctrlKey||e.altKey||e.metaKey||!(e.key==='Enter'||e.key===' '||e.code==='Space'))return;if(e.target!==$('answer')&&e.target.closest?.('input,textarea,select,[contenteditable="true"],summary,a,button'))return;e.preventDefault();if(!menuOpen()&&!$('settings').open&&!$('history').open)$('answer').focus({preventScroll:true})});
 $('options').addEventListener('submit',e=>{e.preventDefault();const c={ops:[...document.querySelectorAll('[name=op]:checked')].map(el=>+el.value)};for(const k of ['a','m'])c[k]=[0,1,2,3].map(i=>Number($('options').elements[k+i].value));if(!valid(c)){$('error').textContent='Choose at least one operation. Use whole numbers from 1 to 999, with each minimum no greater than its maximum.';return}cfg=c;put(prefix+'settings',JSON.stringify(cfg));$('error').textContent='';$('settings').open=false;next();$('answer').focus({preventScroll:true})});
@@ -64,4 +68,5 @@ if(document.modelContext?.registerTool)try{Promise.resolve(document.modelContext
 refresh();next();$('answer').focus({preventScroll:true});
 })();
 </script>
+</body>
 </html>

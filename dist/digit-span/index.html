@@ -1,5 +1,11 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#071e48"><title>DIGIT SPAN</title><link rel="stylesheet" href="style.css?v=f2ffc96d448f"><script id="danki-shared-theme" src="/theme.js?v=f2ffc96d448f"></script><link rel="stylesheet" href="/theme.css?v=f2ffc96d448f"></head>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#071e48"><title>DIGIT SPAN</title><link rel="stylesheet" href="style.css?v=f7dc4bb8f86e"><script>// Only public game answers cross into the same-origin main voice controller.
+(()=>{'use strict';
+function host(){try{return parent!==window&&parent.document.getElementById('arithmetic-frame')?.contentDocument===document?parent:null;}catch{return null;}}
+window.DankiAnswerVoice=(scope,id,text,announce=false)=>{const h=host();if(!h)return;h.document.dispatchEvent(new h.CustomEvent('danki-card-voice',{detail:{scope:'embedded:'+scope,id:String(id),text:String(text),lang:'en',announce,sourceDocument:document}}));};
+for(const type of ['pointerdown','keydown'])document.addEventListener(type,event=>{const h=host();if(h&&event.isTrusted)h.document.dispatchEvent(new h.CustomEvent('danki-voice-gesture',{detail:{sourceDocument:document,trusted:true}}));},{capture:true,passive:true});
+})();
+</script><script id="danki-shared-theme" src="/theme.js?v=f7dc4bb8f86e"></script><link rel="stylesheet" href="/theme.css?v=f7dc4bb8f86e"></head>
 <body><main>
 <h1>DIGIT SPAN</h1>
 <p id="level">5 DIGITS</p>
@@ -13,4 +19,4 @@
 </section>
 <section id="result" hidden aria-live="polite"><h2 id="score"></h2><p id="percentile"></p>
 <details><summary>PERCENTILE INFO</summary><p>ROUGH STUDY COMPARISON, NOT A MEASURED RANK FOR THIS GAME. 7 DIGITS = ESTIMATED 50TH PERCENTILE.</p><p>WOODS ET AL. (2011): 763 ADULTS, AGES 18–65. LONGEST FORWARD SPAN: MEDIAN 7, STANDARD DEVIATION 1.03. ESTIMATE USES A NORMAL CURVE CENTRED ON THAT MEDIAN.</p><p>THE STUDY USED SPOKEN DIGITS AND 14 TRIALS. THIS GAME USES VISUAL DIGITS AND ENDS AFTER ONE WRONG ANSWER. AGE, PRACTICE AND TEST RULES CAN CHANGE THE COMPARISON.</p></details></section>
-</main><script type="module" src="game.js?v=4ab09d247dde"></script><script defer src="/analytics.js?v=f2ffc96d448f"></script></body></html>
+</main><script type="module" src="game.js?v=463d8e992cb8"></script><script defer src="/analytics.js?v=f7dc4bb8f86e"></script></body></html>

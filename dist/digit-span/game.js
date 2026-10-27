@@ -1,13 +1,14 @@
-import {createRun,percentileLabel} from './model.mjs?v=4ab09d247dde';
-import {BEST_KEY,readBest,recordBest} from './best-score.mjs?v=4ab09d247dde';
+import {createRun,percentileLabel} from './model.mjs?v=463d8e992cb8';
+import {BEST_KEY,readBest,recordBest} from './best-score.mjs?v=463d8e992cb8';
 const $=id=>document.getElementById(id);
 let best=0;function bestStorage(){try{return localStorage;}catch{return null;}}
 function showBest(){best=readBest(bestStorage());$('best').textContent='BEST: '+best+' DIGITS';}
 showBest();window.addEventListener('storage',event=>{if(event.key===null||event.key===BEST_KEY){run.pause();showBest();}});
 if(parent!==window)parent.addEventListener('danki-auth-clearing',()=>{run.pause();best=0;$('best').textContent='BEST: 0 DIGITS';});
-let phase='idle';
+let phase='idle',speechRun=0;
 function render(s){
- const previous=phase;phase=s.phase;
+ const previous=phase;phase=s.phase;if(phase==='showing'&&previous!=='showing')speechRun++;
+ if(phase==='over'&&previous!=='over')window.DankiAnswerVoice?.('digit-span',speechRun,'The sequence was '+[...(s.solution||'')].join(', ')+'. '+(s.achieved?s.achieved+' digits achieved.':'Fewer than five digits achieved.'),true);
  if(phase==='correct'){try{best=recordBest(bestStorage(),s.achieved);$('best').textContent='BEST: '+best+' DIGITS';(parent===window?document:parent.document).dispatchEvent(new Event('danki-progress'));}catch{}}
  $('level').textContent=s.length+' DIGITS';$('digit').textContent=s.digit;
  $('recall').hidden=!['recall','checking'].includes(phase);$('answer').disabled=phase!=='recall';$('answer').maxLength=s.length;

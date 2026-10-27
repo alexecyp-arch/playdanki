@@ -1,0 +1,1 @@
+export function moveLockedTab(tabs,id,to){const from=tabs.findIndex(tab=>tab.id===id);if(from<0||!Number.isInteger(to)||to<0||to>=tabs.length||from===to)return false;const [tab]=tabs.splice(from,1);tabs.splice(to,0,tab);return true;}

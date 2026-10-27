@@ -26,7 +26,13 @@ body:focus,#game:focus,#exercise:focus,.arithmetic-frame:focus{outline:none}
  function install({next,previous,enabled}){document.getElementById('previous-card').addEventListener('click',previous);document.addEventListener('click',event=>{if(enabled()&&canTap(event))next();},true);}
  window.StudyNavigation={canTap,install};
 })();
-</script><script id="danki-shared-theme" src="/theme.js?v=f2ffc96d448f"></script><link rel="stylesheet" href="/theme.css?v=f2ffc96d448f"></head>
+</script><script>// Only public game answers cross into the same-origin main voice controller.
+(()=>{'use strict';
+function host(){try{return parent!==window&&parent.document.getElementById('arithmetic-frame')?.contentDocument===document?parent:null;}catch{return null;}}
+window.DankiAnswerVoice=(scope,id,text,announce=false)=>{const h=host();if(!h)return;h.document.dispatchEvent(new h.CustomEvent('danki-card-voice',{detail:{scope:'embedded:'+scope,id:String(id),text:String(text),lang:'en',announce,sourceDocument:document}}));};
+for(const type of ['pointerdown','keydown'])document.addEventListener(type,event=>{const h=host();if(h&&event.isTrusted)h.document.dispatchEvent(new h.CustomEvent('danki-voice-gesture',{detail:{sourceDocument:document,trusted:true}}));},{capture:true,passive:true});
+})();
+</script><script id="danki-shared-theme" src="/theme.js?v=f7dc4bb8f86e"></script><link rel="stylesheet" href="/theme.css?v=f7dc4bb8f86e"></head>
 <body><main class="course-main">
 <header><strong>PROGRAMMING</strong><div class="progress"><span id="card">CARD 1/5000</span></div></header>
 <section id="study" aria-label="Programming card" hidden><div id="review-label" class="metadata"></div><h1 id="question">What is a computer?</h1><pre id="code" aria-label="Code example" hidden></pre><div id="answer" class="answer"></div></section>
@@ -157,7 +163,7 @@ function render(){
  const s=C.stats(state,info);$('total-progress').textContent='TOTAL PROGRESS: '+percentage(s.totalProgress,2);$('completed-mini').textContent=s.completed.toLocaleString()+' / 5000 completed';
  $('study').hidden=true;$('complete').hidden=true;$('retry').hidden=!loadError;
  if(loadError){shownToken=null;$('card').textContent='CARD —/5000';return}
- if(state.current||reviewId!==null){const current=state.current||{id:5001},card=deck[(reviewId??current.id)-1];shownToken=reviewId===null?current.token:null;$('study').hidden=false;$('card').textContent='CARD '+card.id+'/5000';$('review-label').textContent=card.subject;$('question').textContent=card.question;$('code').textContent=card.code||'';$('code').hidden=!card.code;$('answer').textContent=card.answer}
+ if(state.current||reviewId!==null){const current=state.current||{id:5001},card=deck[(reviewId??current.id)-1];shownToken=reviewId===null?current.token:null;$('study').hidden=false;$('card').textContent='CARD '+card.id+'/5000';$('review-label').textContent=card.subject;$('question').textContent=card.question;$('code').textContent=card.code||'';$('code').hidden=!card.code;$('answer').textContent=card.answer;window.DankiAnswerVoice?.('programming',card.id,card.answer)}
  else{shownToken=null;$('complete').hidden=false;$('card').textContent='CARD 5000/5000'}
  if(!$('stats').hidden)renderStats();setControls();
 }
@@ -188,4 +194,4 @@ window.addEventListener('storage',e=>{reviewId=null;if((e.key===KEY||e.key===nul
 state=read();memory=state;load();
 })();
 </script>
-<script defer src="/analytics.js?v=f2ffc96d448f"></script></body></html>
+<script defer src="/analytics.js?v=f7dc4bb8f86e"></script></body></html>

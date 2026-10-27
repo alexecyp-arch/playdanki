@@ -23,7 +23,7 @@ function render(){
  const s=C.stats(state,info);$('total-progress').textContent='TOTAL PROGRESS: '+percentage(s.totalProgress,2);$('completed-mini').textContent=s.completed.toLocaleString()+' / 5000 completed';
  $('study').hidden=true;$('complete').hidden=true;$('retry').hidden=!loadError;
  if(loadError){shownToken=null;$('card').textContent='CARD —/5000';return}
- if(state.current||reviewId!==null){const current=state.current||{id:5001},card=deck[(reviewId??current.id)-1];shownToken=reviewId===null?current.token:null;$('study').hidden=false;$('card').textContent='CARD '+card.id+'/5000';$('review-label').textContent=card.subject;$('question').textContent=card.question;$('code').textContent=card.code||'';$('code').hidden=!card.code;$('answer').textContent=card.answer}
+ if(state.current||reviewId!==null){const current=state.current||{id:5001},card=deck[(reviewId??current.id)-1];shownToken=reviewId===null?current.token:null;$('study').hidden=false;$('card').textContent='CARD '+card.id+'/5000';$('review-label').textContent=card.subject;$('question').textContent=card.question;$('code').textContent=card.code||'';$('code').hidden=!card.code;$('answer').textContent=card.answer;window.DankiAnswerVoice?.('programming',card.id,card.answer)}
  else{shownToken=null;$('complete').hidden=false;$('card').textContent='CARD 5000/5000'}
  if(!$('stats').hidden)renderStats();setControls();
 }

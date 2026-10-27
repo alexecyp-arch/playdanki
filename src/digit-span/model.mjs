@@ -14,7 +14,7 @@ export function percentileLabel(span){const p=estimatedPercentile(span);if(p===n
 export function randomSequence(length,random=()=>{const b=new Uint8Array(1);do{crypto.getRandomValues(b);}while(b[0]>=250);return b[0]%10;}){return Array.from({length},()=>String(random())).join('');}
 export function createRun({schedule=setTimeout,cancel=clearTimeout,sequence=randomSequence,onChange=()=>{}}={}){
  let timer=null,epoch=0,state={phase:'idle',length:START_LENGTH,achieved:0,digit:'',answer:''},target='';
- const emit=()=>onChange({...state});
+ const emit=()=>onChange({...state,...(state.phase==='over'?{solution:target}:{})});
  const stop=()=>{epoch++;if(timer!==null)cancel(timer);timer=null;};
  const later=(fn,ms)=>{const current=epoch;timer=schedule(()=>{timer=null;if(current===epoch)fn();},ms);};
  function round(){stop();target=sequence(state.length);state={...state,phase:'showing',digit:'',answer:''};emit();let index=0;function show(){state.digit=target[index++];emit();later(()=>{state.digit='';if(index===target.length){state.phase='recall';emit();}else{emit();later(show,GAP_MS);}},DIGIT_MS);}later(show,GAP_MS);}

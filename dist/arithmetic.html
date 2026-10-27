@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="Arithmetic practice. 2,000 correct answers each Monday–Sunday week.">
@@ -41,6 +42,14 @@ body:focus,#game:focus,#exercise:focus,.arithmetic-frame:focus{outline:none}
 /* Scale the phone controls, including the practice counter, to 65%. */
 @media(max-width:600px){.tracker,#tracker{transform:scale(.65);transform-origin:bottom right}#previous-card{transform:translateX(-50%) scale(.65);transform-origin:center bottom}.again,#again,#retry,.stats-head button{transform:scale(.65)}}
 </style>
+<script>// Only public game answers cross into the same-origin main voice controller.
+(()=>{'use strict';
+function host(){try{return parent!==window&&parent.document.getElementById('arithmetic-frame')?.contentDocument===document?parent:null;}catch{return null;}}
+window.DankiAnswerVoice=(scope,id,text,announce=false)=>{const h=host();if(!h)return;h.document.dispatchEvent(new h.CustomEvent('danki-card-voice',{detail:{scope:'embedded:'+scope,id:String(id),text:String(text),lang:'en',announce,sourceDocument:document}}));};
+for(const type of ['pointerdown','keydown'])document.addEventListener(type,event=>{const h=host();if(h&&event.isTrusted)h.document.dispatchEvent(new h.CustomEvent('danki-voice-gesture',{detail:{sourceDocument:document,trusted:true}}));},{capture:true,passive:true});
+})();
+</script><script id="danki-shared-theme" src="/theme.js?v=f7dc4bb8f86e"></script><link rel="stylesheet" href="/theme.css?v=f7dc4bb8f86e"></head>
+<body>
 <main>
 <div id="exercise"><label id="problem" for="answer"></label><input id="answer" type="text" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="Answer" autofocus></div>
 <section id="bottom" aria-label="Weekly progress and settings">
@@ -62,6 +71,7 @@ body:focus,#game:focus,#exercise:focus,.arithmetic-frame:focus{outline:none}
 <script>
 (()=>{'use strict';
 const $=id=>document.getElementById(id),prefix='weekly-arithmetic-v1:',tab=crypto.randomUUID?crypto.randomUUID():Date.now()+'-'+Math.random(),memory=new Map();
+let speechId=0;
 let storage=true,expected,current='',totals={},cfg={ops:[0,1,2,3],a:[2,100,2,100],m:[2,12,2,100]};
 function warn(){storage=false;$('warning').hidden=false;$('warning').textContent='Browser storage is unavailable. You can practice, but new progress will be lost when this page closes.'}
 function get(k){if(!storage)return memory.get(k)||null;try{const v=localStorage.getItem(k);if(v!==null)memory.set(k,v);return v}catch(e){warn();return memory.get(k)||null}}
@@ -83,7 +93,7 @@ function next(){const op=cfg.ops[rand(0,cfg.ops.length-1)],r=cfg[op<2?'a':'m'],a
 if(op===0){text=a+' + '+b;expected=a+b}if(op===1){text=(a+b)+' − '+a;expected=b}if(op===2){text=a+' × '+b;expected=a*b}if(op===3){text=(a*b)+' ÷ '+a;expected=b}
 $('problem').textContent=text+' =';$('answer').value=''}
 function menuOpen(){try{return parent!==window&&!!parent.document.querySelector('.games-menu[open]')}catch{return false}}
-function checkAnswer(e){if(document.hidden||menuOpen()||$('settings').open||$('history').open||e.isComposing||!/^\d+$/.test($('answer').value.trim())||Number($('answer').value)!==expected)return;current=monday();const k=prefix+'count:'+current+':'+tab;put(k,(Number(get(k))||0)+1);next();refresh()}
+function checkAnswer(e){if(document.hidden||menuOpen()||$('settings').open||$('history').open||e.isComposing||!/^\d+$/.test($('answer').value.trim())||Number($('answer').value)!==expected)return;window.DankiAnswerVoice?.('arithmetic',++speechId,String(expected),true);current=monday();const k=prefix+'count:'+current+':'+tab;put(k,(Number(get(k))||0)+1);next();refresh()}
 $('answer').addEventListener('input',checkAnswer);$('answer').addEventListener('compositionend',checkAnswer);
 document.addEventListener('keydown',e=>{if(e.isComposing||e.ctrlKey||e.altKey||e.metaKey||!(e.key==='Enter'||e.key===' '||e.code==='Space'))return;if(e.target!==$('answer')&&e.target.closest?.('input,textarea,select,[contenteditable="true"],summary,a,button'))return;e.preventDefault();if(!menuOpen()&&!$('settings').open&&!$('history').open)$('answer').focus({preventScroll:true})});
 $('options').addEventListener('submit',e=>{e.preventDefault();const c={ops:[...document.querySelectorAll('[name=op]:checked')].map(el=>+el.value)};for(const k of ['a','m'])c[k]=[0,1,2,3].map(i=>Number($('options').elements[k+i].value));if(!valid(c)){$('error').textContent='Choose at least one operation. Use whole numbers from 1 to 999, with each minimum no greater than its maximum.';return}cfg=c;put(prefix+'settings',JSON.stringify(cfg));$('error').textContent='';$('settings').open=false;next();$('answer').focus({preventScroll:true})});
@@ -96,4 +106,5 @@ if(document.modelContext?.registerTool)try{Promise.resolve(document.modelContext
 refresh();next();$('answer').focus({preventScroll:true});
 })();
 </script>
+<script defer src="/analytics.js?v=f7dc4bb8f86e"></script></body>
 </html>

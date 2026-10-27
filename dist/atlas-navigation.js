@@ -5,10 +5,10 @@ const routes=new Set(['/data-atlas/','/data-atlas/index.html','/data-atlas/europ
 let frame=null,shown=false,readyPath='/data-atlas/',atlasTitle='Data Atlas',returnUrl=location.pathname+location.search+location.hash,gameTitle=document.title;
 const style=document.createElement('style');style.textContent='#data-atlas-frame{position:fixed;inset:0;width:100%;height:100dvh;border:0;z-index:1001;background:#071e48}#data-atlas-frame[hidden]{display:none}body.atlas-open{overflow:hidden}';document.head.append(style);
 function prepare(path='/data-atlas/'){
- if(frame)return;frame=document.createElement('iframe');frame.id='data-atlas-frame';frame.title='Data Atlas';frame.hidden=true;frame.src=path+'?v=61941527549c';document.body.append(frame);
+ if(frame)return;frame=document.createElement('iframe');frame.id='data-atlas-frame';frame.title='Data Atlas';frame.hidden=true;frame.src=path+'?v=eabcc509699d';document.body.append(frame);
 }
 function display(open){shown=open;frame.hidden=!open;document.body.classList.toggle('atlas-open',open);if(open){window.dispatchEvent(new CustomEvent('danki-view-opening',{detail:'atlas'}));window.dispatchEvent(new Event('danki-atlas-opening'));document.title=atlasTitle;frame.contentWindow?.focus();}else{document.title=document.body.classList.contains('notes-open')?'Temponote':gameTitle;link.focus({preventScroll:true});}}
-function navigate(path){frame.contentWindow.location.replace(path+'?v=61941527549c');}
+function navigate(path){frame.contentWindow.location.replace(path+'?v=eabcc509699d');}
 link.addEventListener('click',event=>{
  if(event.button!==0||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;
  event.preventDefault();returnUrl=location.pathname+location.search+location.hash;gameTitle=document.title;prepare();history.pushState({atlas:true},'',readyPath);display(true);

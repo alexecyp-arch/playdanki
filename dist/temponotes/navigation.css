@@ -271,3 +271,9 @@
  #eternal-panel .eternal-list{flex:1 1 auto;min-height:0;overflow:auto;overscroll-behavior:contain}
  #root:has(#eternal-panel:not([hidden])){z-index:100}
 }
+
+/* Notebook tabs scroll sideways only; leave room for their raised edges. */
+.locked-tabs{min-width:0;overflow-x:auto;overflow-y:hidden;align-items:center;padding-block:2px 5px;overscroll-behavior-x:contain;touch-action:pan-x}
+#locked-panel .locked-tabs button{touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab}
+#locked-panel .locked-tabs .locked-tab-dragging{opacity:.55;cursor:grabbing}
+#locked-panel .locked-tabs .locked-tab-target{outline:2px solid #b58aff;outline-offset:-2px}
