@@ -18,7 +18,9 @@ link.addEventListener('click',event=>{
 });
 window.addEventListener('danki-private-open',event=>{if(event.detail?.view!=='weight'||!uid)return;returnUrl=event.detail.returnUrl;gameTitle=event.detail.gameTitle;prepare();history.pushState(null,'','/weight-tracker/');display(true);});
 window.addEventListener('message',event=>{
- if(event.origin!==location.origin||event.source!==frame?.contentWindow||event.data?.type!=='danki-weight-return')return;
+ if(event.origin!==location.origin||event.source!==frame?.contentWindow)return;
+ if(event.data?.type==='danki-weight-open-notes'){if(uid&&shown)window.dispatchEvent(new CustomEvent('danki-private-open',{detail:{view:'notes',returnUrl,gameTitle}}));return;}
+ if(event.data?.type!=='danki-weight-return')return;
  if(shown){history.replaceState(null,'',returnUrl);display(false);}
 });
 window.addEventListener('danki-view-opening',event=>{if(event.detail==='weight')return;shown=false;document.body.classList.remove('weight-open');visibility();});

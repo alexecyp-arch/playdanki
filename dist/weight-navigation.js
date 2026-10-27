@@ -4,7 +4,7 @@ const link=document.querySelector('.weight-link');if(!link)return;
 let uid=null,frame=null,shown=false,returnUrl=location.pathname+location.search+location.hash,gameTitle=document.title;
 const style=document.createElement('style');style.textContent='#private-weight-frame{position:fixed;inset:0;width:100%;height:100dvh;border:0;z-index:1000;background:#071e48}#private-weight-frame[hidden]{display:none}body.weight-open{overflow:hidden}';document.head.append(style);
 function visibility(){if(!frame)return;frame.hidden=!shown;frame.contentWindow?.postMessage({type:'danki-weight-visibility',visible:shown},location.origin);}
-function prepare(){if(frame)return;frame=document.createElement('iframe');frame.id='private-weight-frame';frame.title='Your private weight tracker';frame.hidden=true;frame.src='/weight-tracker/?v=3271791762a0';frame.addEventListener('load',visibility);document.body.append(frame);visibility();}
+function prepare(){if(frame)return;frame=document.createElement('iframe');frame.id='private-weight-frame';frame.title='Your private weight tracker';frame.hidden=true;frame.src='/weight-tracker/?v=1c69cac1ca76';frame.addEventListener('load',visibility);document.body.append(frame);visibility();}
 function display(open){if(open)window.dispatchEvent(new CustomEvent('danki-view-opening',{detail:'weight'}));shown=open;document.body.classList.toggle('weight-open',open);document.title=open?'WEIGHT TRACKER':gameTitle;visibility();if(open)frame?.contentWindow?.focus();else link.focus({preventScroll:true});}
 window.addEventListener('danki-auth-clearing',()=>{frame?.remove();frame=null;uid=null;});
 window.addEventListener('danki-auth',event=>{
@@ -18,7 +18,9 @@ link.addEventListener('click',event=>{
 });
 window.addEventListener('danki-private-open',event=>{if(event.detail?.view!=='weight'||!uid)return;returnUrl=event.detail.returnUrl;gameTitle=event.detail.gameTitle;prepare();history.pushState(null,'','/weight-tracker/');display(true);});
 window.addEventListener('message',event=>{
- if(event.origin!==location.origin||event.source!==frame?.contentWindow||event.data?.type!=='danki-weight-return')return;
+ if(event.origin!==location.origin||event.source!==frame?.contentWindow)return;
+ if(event.data?.type==='danki-weight-open-notes'){if(uid&&shown)window.dispatchEvent(new CustomEvent('danki-private-open',{detail:{view:'notes',returnUrl,gameTitle}}));return;}
+ if(event.data?.type!=='danki-weight-return')return;
  if(shown){history.replaceState(null,'',returnUrl);display(false);}
 });
 window.addEventListener('danki-view-opening',event=>{if(event.detail==='weight')return;shown=false;document.body.classList.remove('weight-open');visibility();});

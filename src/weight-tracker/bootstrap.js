@@ -21,3 +21,5 @@ $('sign-in').addEventListener('click',async()=>{$('sign-in').disabled=true;try{a
 for(const type of ['online','offline'])window.addEventListener(type,()=>{if(!navigator.onLine)$('status').textContent='OFFLINE';else if(ready)$('status').textContent='';controls();});
 new ResizeObserver(render).observe($('chart'));window.addEventListener('resize',render);render();
 if(parent!==window)document.querySelector('.danki-return').addEventListener('click',event=>{if(event.button||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;event.preventDefault();parent.postMessage({type:'danki-weight-return'},location.origin);});
+
+if(parent!==window)document.querySelector('.temponote-link').addEventListener('click',event=>{if(event.button||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;event.preventDefault();parent.postMessage({type:'danki-weight-open-notes'},location.origin);});

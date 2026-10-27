@@ -1,9 +1,9 @@
 import {initializeApp} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js';
 import {getAuth,onAuthStateChanged,beforeAuthStateChanged,GoogleAuthProvider,signInWithPopup} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js';
 import * as sdk from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js';
-import {createWeightStore} from './store.mjs?v=3271791762a0';
-import {draw} from './chart.mjs?v=3271791762a0';
-import {kilograms,weight,estimatedTargetTime} from './model.mjs?v=3271791762a0';
+import {createWeightStore} from './store.mjs?v=1c69cac1ca76';
+import {draw} from './chart.mjs?v=1c69cac1ca76';
+import {kilograms,weight,estimatedTargetTime} from './model.mjs?v=1c69cac1ca76';
 const $=id=>document.getElementById(id),app=initializeApp(JSON.parse($('auth-config').textContent).firebase),auth=getAuth(app),db=sdk.getFirestore(app);
 let store=null,entries=[],unit='KG',ready=false,saving=false,generation=0,selectedId=null,targetKg=null,targetReady=false;
 function controls(){const disabled=!ready||saving||!navigator.onLine;$('add').disabled=disabled;$('remove').disabled=disabled||!selectedId;$('set-target').disabled=!targetReady||saving||!navigator.onLine;}
@@ -21,3 +21,5 @@ $('sign-in').addEventListener('click',async()=>{$('sign-in').disabled=true;try{a
 for(const type of ['online','offline'])window.addEventListener(type,()=>{if(!navigator.onLine)$('status').textContent='OFFLINE';else if(ready)$('status').textContent='';controls();});
 new ResizeObserver(render).observe($('chart'));window.addEventListener('resize',render);render();
 if(parent!==window)document.querySelector('.danki-return').addEventListener('click',event=>{if(event.button||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;event.preventDefault();parent.postMessage({type:'danki-weight-return'},location.origin);});
+
+if(parent!==window)document.querySelector('.temponote-link').addEventListener('click',event=>{if(event.button||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;event.preventDefault();parent.postMessage({type:'danki-weight-open-notes'},location.origin);});

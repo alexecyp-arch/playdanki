@@ -14,3 +14,6 @@
 #target-form{position:absolute;left:0;bottom:calc(100% + 6px);margin:0;padding:10px;display:flex;flex-wrap:nowrap;gap:6px;width:max-content;max-width:calc(100vw - 24px);border:2px solid #b4b5bd;background:#222326;box-shadow:0 4px 16px #0006}
 #target-weight{width:120px;font-size:12px;padding:7px}
 #target-form button{font-size:10px;height:32px;padding:5px 8px;white-space:nowrap}
+
+.page-links{display:flex;gap:8px;flex-shrink:0}.page-links a{display:flex;align-items:center;justify-content:center;min-height:31px}
+@media(max-width:600px){.page-links{gap:5px}.page-links a{font-size:9px;padding:6px 8px}}
