@@ -10,7 +10,7 @@ window.addEventListener('danki-auth-clearing',()=>{frame?.remove();frame=null;ui
 window.addEventListener('danki-auth',event=>{
  const next=event.detail||null;if(next===uid&&frame)return;
  // Remove the entire old document, listeners and timebox memory before changing owners.
- frame?.remove();frame=null;uid=next;if(uid||shown)prepare();
+ frame?.remove();frame=null;uid=next;if(shown)prepare();else if(uid){if(window.requestIdleCallback)window.requestIdleCallback(()=>{if(uid===next)prepare();},{timeout:2500});else prepare();}
 });
 link.addEventListener('click',event=>{
  if(event.button!==0||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey||!uid)return;

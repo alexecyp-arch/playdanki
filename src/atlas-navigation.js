@@ -26,6 +26,5 @@ window.addEventListener('popstate',()=>{
  const path=location.pathname;if(routes.has(path)){prepare(path);if(readyPath!==path)navigate(path);display(true);}
  else if(shown)display(false);
 });
-window.addEventListener('danki-view-opening',event=>{if(event.detail==='atlas')return;shown=false;frame.hidden=true;document.body.classList.remove('atlas-open');});
-prepare();
+window.addEventListener('danki-view-opening',event=>{if(event.detail==='atlas')return;shown=false;if(frame)frame.hidden=true;document.body.classList.remove('atlas-open');});
 })();

@@ -10,7 +10,7 @@ import {triviaInfo} from './build-trivia.mjs';
 import {frenchWords,frenchSentences} from './build-french.mjs';
 import {languageInfo} from './build-languages.mjs';
 const root=new URL('../',import.meta.url);
-const runtimeFiles=['temponotes/style.css','temponotes/navigation.css','german-voice.js','answer-voice.js','theme.js','theme.css','autumn-main.css','analytics.js','analytics-config.json','digit-span/best-score.mjs','digit-span/index.html','digit-span/style.css','digit-span/game.js','digit-span/model.mjs','account.js','notes-navigation.js','weight-navigation.js','timebox-navigation.js','timebox/index.html','timebox/bootstrap.js','timebox/style.css','app.js','arithmetic.html','arithmetic-theme.css','card-navigation.js','sections.js','programming.js','quant.js','study.css',...['bootstrap.js','confirm-delete.js','locked-crypto.mjs','locked-store.mjs','locked-ui.js','locked-order.mjs','timebox-model.mjs','timebox-store.mjs','timebox-ui.js','ui.js','notes-store.mjs','eternal-ui.js','eternal.mjs','note-order.mjs','selection.mjs','cloud-selection.mjs','private-page-navigation.js','autumn.js','autumn.css','autumn-leaf.svg','autumn-oak.svg','autumn-birch.svg'].map(f=>'temponotes/'+f),...['bootstrap.js','store.mjs','model.mjs','chart.mjs','style.css','index.html'].map(f=>'weight-tracker/'+f)];
+const runtimeFiles=['temponotes/runtime.js','atlas-navigation.js','cursor.css','temponotes/style.css','temponotes/navigation.css','german-voice.js','answer-voice.js','theme.js','theme.css','autumn-main.css','analytics.js','analytics-config.json','digit-span/best-score.mjs','digit-span/index.html','digit-span/style.css','digit-span/game.js','digit-span/model.mjs','account.js','notes-navigation.js','weight-navigation.js','timebox-navigation.js','timebox/index.html','timebox/bootstrap.js','timebox/style.css','app.js','arithmetic.html','arithmetic-theme.css','card-navigation.js','sections.js','programming.js','quant.js','study.css',...['bootstrap.js','confirm-delete.js','locked-crypto.mjs','locked-store.mjs','locked-ui.js','locked-order.mjs','timebox-model.mjs','timebox-store.mjs','timebox-ui.js','ui.js','notes-store.mjs','eternal-ui.js','eternal.mjs','note-order.mjs','selection.mjs','cloud-selection.mjs','private-page-navigation.js','autumn.js','autumn.css','autumn-leaf.svg','autumn-oak.svg','autumn-birch.svg'].map(f=>'temponotes/'+f),...['bootstrap.js','store.mjs','model.mjs','chart.mjs','style.css','index.html'].map(f=>'weight-tracker/'+f)];
 const runtimeVersion=createHash('sha256').update((await Promise.all(runtimeFiles.map(f=>fs.readFile(new URL('src/'+f,root),'utf8')))).join('\n')+atlasVersion).digest('hex').slice(0,12);
 let html=await fs.readFile(new URL('src/index.html',root),'utf8');
 const css=await fs.readFile(new URL('src/style.css',root),'utf8');
@@ -49,7 +49,8 @@ if(economicsEntries.length!==3500||new Set(economicsEntries.map(c=>economicsKey(
 if(kanjiEntries.length!==2136||new Set(kanjiEntries.map(c=>c[0])).size!==2136||kanjiEntries.some((c,i)=>[...c[0]].length!==1||!c[1]||!Array.isArray(c[3])||!c[3].includes(c[1])||![1,2,3,4,5,6,8].includes(c[4])||!Number.isInteger(c[2])||(i&&kanjiEntries[i-1][2]>c[2])))throw new Error('Expected 2136 unique Jōyō Kanji with valid English meanings in frequency order');
 const coreDeckInfo={};
 await fs.mkdir(new URL('dist/decks/',root),{recursive:true});
-for(const [id,data,url] of [['french-word',frenchWords,'french/words.json'],['french-sentence',frenchSentences,'french/sentences.json'],['sentence',sentences,'decks/sentences.json'],['kanji',kanji,'decks/kanji.json'],['economics',economics,'decks/economics.json']]){
+await fs.mkdir(new URL('dist/german/',root),{recursive:true});
+for(const [id,data,url] of [['german-word',words,'german/words.json'],['french-word',frenchWords,'french/words.json'],['french-sentence',frenchSentences,'french/sentences.json'],['sentence',sentences,'decks/sentences.json'],['kanji',kanji,'decks/kanji.json'],['economics',economics,'decks/economics.json']]){
  coreDeckInfo[id]={count:JSON.parse(data).length,url,version:createHash('sha256').update(data).digest('hex').slice(0,16)};
  await fs.writeFile(new URL('dist/'+url,root),data);
 }
@@ -58,7 +59,7 @@ html=html.replace('<script defer src="card-navigation.js"></script>',()=>'<scrip
  .replace('CORE_DECK_INFO',()=>JSON.stringify(coreDeckInfo))
  .replace('FRENCH_WORD_DATA','[]')
  .replace('FRENCH_SENTENCE_DATA','[]')
- .replace('WORD_DATA',words.replace(/</g,'\\u003c'))
+ .replace('WORD_DATA',JSON.stringify(entries.slice(0,32)).replace(/</g,'\\u003c'))
  .replace('SENTENCE_DATA','[]')
  .replace('KANA_DATA',kana.replace(/</g,'\\u003c'))
  .replace('KANJI_DATA','[]')
@@ -72,7 +73,7 @@ await fs.mkdir(new URL('dist/',root),{recursive:true});
 await fs.rm(new URL('dist/arithmetic-aim.html',root),{force:true});
 html=html.replace('</head>','<style>'+await fs.readFile(new URL('src/autumn-main.css',root),'utf8')+'</style></head>').replace('</body>','<script defer data-danki-main src="temponotes/autumn.js?v='+runtimeVersion+'"></script></body>');
 html=html.replace('src="notes-navigation.js"','src="notes-navigation.js?v='+runtimeVersion+'"').replace('src="account.js"','src="account.js?v='+runtimeVersion+'"');
-html=html.replace('</body>','<script defer src="atlas-navigation.js?v='+atlasVersion+'"></script></body>');
+html=html.replace('</body>','<script defer src="atlas-navigation.js?v='+runtimeVersion+'"></script></body>');
 await fs.writeFile(new URL('dist/atlas-navigation.js',root),(await fs.readFile(new URL('src/atlas-navigation.js',root),'utf8')).replaceAll('ATLAS_RELEASE',atlasVersion));
 html=html.replace('</body>','<script defer src="weight-navigation.js?v='+runtimeVersion+'"></script></body>');
 await fs.writeFile(new URL('dist/weight-navigation.js',root),(await fs.readFile(new URL('src/weight-navigation.js',root),'utf8')).replaceAll('WEIGHT_RELEASE',runtimeVersion));
@@ -104,3 +105,5 @@ await fs.rm(new URL('dist/credits.txt',root),{force:true});
 console.log(JSON.stringify({words:entries.length,sentences:sentenceEntries.length,frenchWords:5000,frenchSentences:1000,kana:kanaEntries.length,kanji:kanjiEntries.length,economics:economicsEntries.length,htmlBytes:Buffer.byteLength(html),compressedBytes:gzipSync(html).length}));
 
 const {buildShared}=await import('./build-shared.mjs');await buildShared(root);
+
+const {buildSecurity}=await import('./build-security.mjs');await buildSecurity(root);

@@ -59,5 +59,5 @@ addEventListener('storage',e=>{if(e.key===ownerKey&&localStorage.getItem(ownerKe
 addEventListener('pagehide',()=>{remember().catch(()=>{})});
 document.addEventListener('visibilitychange',()=>{if(document.hidden){remember().catch(()=>{});flush()}else if(user)flush()});
 document.addEventListener('danki-progress',()=>{if(user&&!settling&&!busy)tell('Cloud save pending.')});
-try{localStorage.getItem(ownerKey);setup();}catch{tell('Enable browser storage to use account saves.');login.disabled=true}
+try{localStorage.getItem(ownerKey);if(window.requestAnimationFrame)window.requestAnimationFrame(()=>window.requestAnimationFrame(()=>setup()));else setup();}catch{tell('Enable browser storage to use account saves.');login.disabled=true}
 })();

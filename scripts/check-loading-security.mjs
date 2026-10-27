@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';import fs from 'node:fs/promises';import vm from 'node:vm';import {createHash} from 'node:crypto';import {forecastTargetTime} from '../src/weight-tracker/model.mjs';
+const day=86400000,now=new Date(2026,9,28,12).getTime(),points=[{kg:80,time:now-7*day},{kg:73,time:now}];
+assert.equal(forecastTargetTime(points,66,now),new Date(2026,10,4).getTime());
+assert.equal(forecastTargetTime(points,85,now),null);assert.equal(forecastTargetTime([{kg:73,time:now},{kg:73,time:now-day}],66,now),null);
+assert.equal(forecastTargetTime([{kg:60,time:now-7*day},{kg:62,time:now}],64,now),new Date(2026,10,4).getTime());
+assert.equal(forecastTargetTime([{kg:100,time:now-30*day},...points],66,now),forecastTargetTime(points,66,now),'Ignore entries older than 25 days');
+assert.equal(forecastTargetTime([...points,{kg:72,time:now-1000},{kg:74,time:now-2000}],66,now),forecastTargetTime(points,66,now),'Same-day average prevents logging frequency bias');
+assert.equal(forecastTargetTime([{kg:80,time:now}],66,now),null);assert.equal(forecastTargetTime(points,null,now),null);
+const slowing=[{kg:80,time:now-3*day},{kg:79,time:now-2*day},{kg:78,time:now-day},{kg:78,time:now}];assert(forecastTargetTime(slowing,70,now)>now+8*day,'Recent plateau slows prediction');
+const wordSource=await fs.readFile('src/words.json','utf8'),wordAsset=await fs.readFile('dist/german/words.json','utf8');assert.equal(wordSource,wordAsset,'All 5000 original words preserved byte for byte');
+const home=await fs.readFile('dist/index.html','utf8');assert.equal(JSON.parse(home.match(/id="word-data"[^>]*>([\s\S]*?)<\/script>/)[1]).length,32);
+const atlas=await fs.readFile('src/atlas-navigation.js','utf8');assert(!atlas.includes('requestIdleCallback'),'Atlas only loads on demand');
+let count=0;async function walk(dir){for(const entry of await fs.readdir(dir,{withFileTypes:true})){const p=dir+'/'+entry.name;if(entry.isDirectory())await walk(p);else if(p.endsWith('.html')){const html=await fs.readFile(p,'utf8');const policy=html.match(/http-equiv="Content-Security-Policy" content="([^"]+)"/)[1];assert(!policy.match(/script-src[^;]*unsafe/));assert(policy.includes("object-src 'none'"));for(const script of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)){if(/\bsrc\s*=|type="application\/json"/.test(script[1]))continue;assert(policy.includes("'sha256-"+createHash('sha256').update(script[2]).digest('base64')+"'"),p+' exact inline hash');}count++;}}}await walk('dist');
+console.log('Forecast/loading/security checks passed: 25-day filter, EMA trend, loss/gain, same-day means, missing/flat data, original 5000 words, lazy Atlas and exact script hashes on '+count+' pages.');
