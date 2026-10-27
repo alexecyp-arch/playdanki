@@ -4,7 +4,7 @@ export function initStandaloneNavigation(){'use strict';if(parent!==window)retur
  const title=notes?'Temponote':'TIMEBOX',peerTitle=notes?'TIMEBOX':'Temponote';let uid=null,frame=null,shown=false;
  const style=document.createElement('style');style.textContent='#private-peer-frame{position:fixed;inset:0;width:100%;height:100dvh;border:0;z-index:1000;background:#18191c}#private-peer-frame[hidden]{display:none}';document.head.append(style);
  function visibility(){window.dispatchEvent(new CustomEvent('temponotes-visibility',{detail:!shown}));frame?.contentWindow?.postMessage({type:'danki-'+peer+'-visibility',visible:shown},location.origin);}
- function prepare(){if(frame||!uid)return;frame=document.createElement('iframe');frame.id='private-peer-frame';frame.title=peerTitle;frame.hidden=true;frame.src=peerPath+'?v=87277263d61c';frame.addEventListener('load',visibility);document.body.append(frame);}
+ function prepare(){if(frame||!uid)return;frame=document.createElement('iframe');frame.id='private-peer-frame';frame.title=peerTitle;frame.hidden=true;frame.src=peerPath+'?v=36b4886b36d3';frame.addEventListener('load',visibility);document.body.append(frame);}
  function display(open){shown=open;if(frame)frame.hidden=!open;document.title=open?peerTitle:title;visibility();if(open)frame?.contentWindow?.focus();else link.focus({preventScroll:true});}
  window.addEventListener('danki-private-auth-clearing',()=>{frame?.remove();frame=null;uid=null;if(shown){history.replaceState(null,'',ownPath);display(false);}});
  window.addEventListener('danki-private-auth',event=>{const next=event.detail||null;if(next===uid&&frame)return;frame?.remove();frame=null;uid=next;prepare();});
