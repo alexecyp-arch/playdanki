@@ -136,7 +136,7 @@ body:focus,#game:focus,#exercise:focus,.arithmetic-frame:focus{outline:none}
 
 
 body>.autumn-leaves{z-index:1}body>.autumn-leaves[hidden]{display:none}
-</style><script id="danki-shared-theme" src="/theme.js?v=f7dc4bb8f86e"></script><link rel="stylesheet" href="/theme.css?v=f7dc4bb8f86e"></head>
+</style><script id="danki-shared-theme" src="/theme.js?v=bac9331781a6"></script><link rel="stylesheet" href="/theme.css?v=bac9331781a6"></head>
 <body>
 <a class="temponotes-link" href="temponotes/">TEMPONOTES</a>
 <header class="navigation">
@@ -172,7 +172,7 @@ body>.autumn-leaves{z-index:1}body>.autumn-leaves[hidden]{display:none}
   </details>
 </header>
 <div id="account-bar">
-<div id="theme-switcher" role="group" aria-label="Background colour"><button type="button" data-theme-choice="indigo" aria-label="Indigo background" aria-pressed="true" title="INDIGO"></button><button type="button" data-theme-choice="charcoal" aria-label="Charcoal background" aria-pressed="false" title="CHARCOAL"></button></div>
+<div id="theme-switcher" role="group" aria-label="Background colour"><button type="button" data-theme-choice="indigo" aria-label="Indigo background" aria-pressed="true" title="INDIGO"></button><button type="button" data-theme-choice="charcoal" aria-label="Charcoal background" aria-pressed="false" title="CHARCOAL"></button><button id="leaves-toggle" type="button" aria-label="Falling leaves" aria-pressed="true" title="LEAVES ON"><svg aria-hidden="true" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 3C9 2 3 6 4 13c1 8 12 9 15 0 1-3 1-7 1-10Z"/><path d="M3 22 16 9"/></svg></button></div>
 <button id="voice-toggle" type="button" role="switch" aria-checked="false" aria-label="Card voice">VOICE <span>OFF</span></button>
 <a class="timebox-link" href="timebox/">TIMEBOX</a>
 <a class="weight-link" href="weight-tracker/">WEIGHT TRACKER</a>
@@ -442,7 +442,7 @@ for(const [section,key]of Object.entries(modeKeys))try{const preferred=localStor
 const startSection=location.hash.slice(1);practiceActive=!['arithmetic','programming','quant','digit-span'].includes(startSection);mode=preferredModes[startSection]||preferredModes.german;active=decks[mode];state=read(active);render();scheduleMidnight();
 })();</script>
 <script>(()=>{'use strict';
-const $=id=>document.getElementById(id),frame=$('arithmetic-frame'),menus=[...document.querySelectorAll('.games-menu')],subjects=new Set(['french','german','japanese','spanish','italian','greek','korean','economics','trivia','arithmetic','programming','quant','digit-span']),options=document.querySelectorAll('.navigation .game-option'),embedded={'digit-span':['digit-span/index.html?v=d44a3f1b68cf','Digit Span','Digit Span memory game'],arithmetic:['arithmetic.html?v=d44a3f1b68cf','Weekly arithmetic','Weekly arithmetic practice'],programming:['programming.html?v=d44a3f1b68cf','Programming','Programming learning cards'],quant:['quant.html?v=d44a3f1b68cf','QUANT','QUANT learning cards']};
+const $=id=>document.getElementById(id),frame=$('arithmetic-frame'),menus=[...document.querySelectorAll('.games-menu')],subjects=new Set(['french','german','japanese','spanish','italian','greek','korean','economics','trivia','arithmetic','programming','quant','digit-span']),options=document.querySelectorAll('.navigation .game-option'),embedded={'digit-span':['digit-span/index.html?v=3490e0381441','Digit Span','Digit Span memory game'],arithmetic:['arithmetic.html?v=3490e0381441','Weekly arithmetic','Weekly arithmetic practice'],programming:['programming.html?v=3490e0381441','Programming','Programming learning cards'],quant:['quant.html?v=3490e0381441','QUANT','QUANT learning cards']};
 const menuOpen=()=>menus.some(menu=>menu.open);
 let section='german';
 function focusArithmetic(){if(!embedded[section]||menuOpen())return;try{const input=section==='arithmetic'&&frame.contentDocument?.getElementById('answer');if(input)input.focus({preventScroll:true});else frame.contentWindow?.focus()}catch{frame.focus({preventScroll:true})}}
@@ -473,7 +473,7 @@ for(const link of links){
 }
 note.textContent=config.preview?'Preview — payment link not connected.':config.genericUrl?'Choose an amount, then enter it on Revolut.':'Choose an amount. Continue on Revolut to pay.';
 })();</script>
-<script defer src="notes-navigation.js?v=d44a3f1b68cf"></script>
-<script defer src="account.js?v=d44a3f1b68cf"></script>
-<script defer data-danki-main src="temponotes/autumn.js?v=d44a3f1b68cf"></script><script defer src="atlas-navigation.js?v=eabcc509699d"></script><script defer src="weight-navigation.js?v=d44a3f1b68cf"></script><script defer src="timebox-navigation.js?v=d44a3f1b68cf"></script><script defer src="/analytics.js?v=f7dc4bb8f86e"></script></body>
+<script defer src="notes-navigation.js?v=3490e0381441"></script>
+<script defer src="account.js?v=3490e0381441"></script>
+<script defer data-danki-main src="temponotes/autumn.js?v=3490e0381441"></script><script defer src="atlas-navigation.js?v=885b9814059f"></script><script defer src="weight-navigation.js?v=3490e0381441"></script><script defer src="timebox-navigation.js?v=3490e0381441"></script><script defer src="/analytics.js?v=bac9331781a6"></script></body>
 </html>

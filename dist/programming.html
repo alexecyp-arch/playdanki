@@ -32,7 +32,7 @@ function host(){try{return parent!==window&&parent.document.getElementById('arit
 window.DankiAnswerVoice=(scope,id,text,announce=false)=>{const h=host();if(!h)return;h.document.dispatchEvent(new h.CustomEvent('danki-card-voice',{detail:{scope:'embedded:'+scope,id:String(id),text:String(text),lang:'en',announce,sourceDocument:document}}));};
 for(const type of ['pointerdown','keydown'])document.addEventListener(type,event=>{const h=host();if(h&&event.isTrusted)h.document.dispatchEvent(new h.CustomEvent('danki-voice-gesture',{detail:{sourceDocument:document,trusted:true}}));},{capture:true,passive:true});
 })();
-</script><script id="danki-shared-theme" src="/theme.js?v=f7dc4bb8f86e"></script><link rel="stylesheet" href="/theme.css?v=f7dc4bb8f86e"></head>
+</script><script id="danki-shared-theme" src="/theme.js?v=bac9331781a6"></script><link rel="stylesheet" href="/theme.css?v=bac9331781a6"></head>
 <body><main class="course-main">
 <header><strong>PROGRAMMING</strong><div class="progress"><span id="card">CARD 1/5000</span></div></header>
 <section id="study" aria-label="Programming card" hidden><div id="review-label" class="metadata"></div><h1 id="question">What is a computer?</h1><pre id="code" aria-label="Code example" hidden></pre><div id="answer" class="answer"></div></section>
@@ -194,4 +194,4 @@ window.addEventListener('storage',e=>{reviewId=null;if((e.key===KEY||e.key===nul
 state=read();memory=state;load();
 })();
 </script>
-<script defer src="/analytics.js?v=f7dc4bb8f86e"></script></body></html>
+<script defer src="/analytics.js?v=bac9331781a6"></script></body></html>

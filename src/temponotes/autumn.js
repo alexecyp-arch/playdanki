@@ -8,7 +8,7 @@
   const img=document.createElement('img');img.src=new URL(shapes[Math.floor(range(0,shapes.length))],base).href;img.alt='';img.width=96;img.height=128;img.decoding='async';leaf.append(img);layer.append(leaf);
  }
  document.body.append(layer);let visible=parent===window||!window.frameElement?.hidden;
- const pause=()=>{const covered=main&&['notes-open','timebox-open','weight-open','atlas-open'].some(c=>document.body.classList.contains(c));if(main)layer.hidden=covered;layer.classList.toggle('paused',!visible||document.hidden||covered);};
+ const pause=()=>{const covered=main&&['notes-open','timebox-open','weight-open','atlas-open'].some(c=>document.body.classList.contains(c));const off=document.documentElement.dataset.dankiLeaves==='off';layer.hidden=covered||off;layer.classList.toggle('paused',!visible||document.hidden||covered||off);};
  if(main)new MutationObserver(pause).observe(document.body,{attributes:true,attributeFilter:['class']});
- document.addEventListener('visibilitychange',pause);window.addEventListener('temponotes-visibility',event=>{visible=!!event.detail;pause();});window.addEventListener('message',event=>{if(event.origin===location.origin&&event.source===parent&&['danki-notes-visibility','danki-timebox-visibility'].includes(event.data?.type)){visible=!!event.data.visible;pause();}});pause();
+ document.addEventListener('danki-leaves-change',pause);document.addEventListener('visibilitychange',pause);window.addEventListener('temponotes-visibility',event=>{visible=!!event.detail;pause();});window.addEventListener('message',event=>{if(event.origin===location.origin&&event.source===parent&&['danki-notes-visibility','danki-timebox-visibility'].includes(event.data?.type)){visible=!!event.data.visible;pause();}});pause();
 })();
