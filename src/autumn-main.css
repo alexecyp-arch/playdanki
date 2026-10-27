@@ -1,0 +1,11 @@
+/* Edge leaves on DANKI; the selected page colour stays unchanged. */
+.autumn-leaves{position:fixed;inset:0;overflow:hidden;pointer-events:none;user-select:none;z-index:0;contain:strict}
+.autumn-leaf{position:absolute;top:-90px;left:var(--left);width:var(--size);opacity:0;animation:autumn-fall var(--duration) linear infinite;animation-delay:var(--delay);will-change:transform}
+.autumn-leaf img{display:block;width:100%;height:auto;filter:hue-rotate(var(--hue));animation:autumn-sway var(--swayTime) ease-in-out infinite alternate;animation-delay:var(--delay)}
+@keyframes autumn-fall{0%{opacity:0;transform:translate3d(0,-20px,0) rotate(var(--start))}8%{opacity:var(--alpha)}32%{transform:translate3d(var(--drift1),32dvh,0) rotate(calc(var(--start) + var(--spin)*.3))}66%{transform:translate3d(var(--drift2),66dvh,0) rotate(calc(var(--start) + var(--spin)*.65))}90%{opacity:var(--alpha)}100%{opacity:0;transform:translate3d(var(--drift3),calc(100dvh + 110px),0) rotate(calc(var(--start) + var(--spin)))}}
+@keyframes autumn-sway{from{transform:translateX(calc(0px - var(--sway))) rotate(-12deg)}to{transform:translateX(var(--sway)) rotate(14deg)}}
+.autumn-leaves.paused .autumn-leaf,.autumn-leaves.paused img{animation-play-state:paused}
+@media(max-width:760px){.autumn-leaf{width:calc(var(--size)*.7);left:var(--mobileLeft)}}
+
+
+body>.autumn-leaves{z-index:1}body>.autumn-leaves[hidden]{display:none}

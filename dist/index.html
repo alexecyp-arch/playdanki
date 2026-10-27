@@ -125,7 +125,18 @@ body:focus,#game:focus,#exercise:focus,.arithmetic-frame:focus{outline:none}
  window.StudyNavigation={canTap,install};
 })();
 </script>
-<script id="danki-shared-theme" src="/theme.js?v=f7dc4bb8f86e"></script><link rel="stylesheet" href="/theme.css?v=f7dc4bb8f86e"></head>
+<style>/* Edge leaves on DANKI; the selected page colour stays unchanged. */
+.autumn-leaves{position:fixed;inset:0;overflow:hidden;pointer-events:none;user-select:none;z-index:0;contain:strict}
+.autumn-leaf{position:absolute;top:-90px;left:var(--left);width:var(--size);opacity:0;animation:autumn-fall var(--duration) linear infinite;animation-delay:var(--delay);will-change:transform}
+.autumn-leaf img{display:block;width:100%;height:auto;filter:hue-rotate(var(--hue));animation:autumn-sway var(--swayTime) ease-in-out infinite alternate;animation-delay:var(--delay)}
+@keyframes autumn-fall{0%{opacity:0;transform:translate3d(0,-20px,0) rotate(var(--start))}8%{opacity:var(--alpha)}32%{transform:translate3d(var(--drift1),32dvh,0) rotate(calc(var(--start) + var(--spin)*.3))}66%{transform:translate3d(var(--drift2),66dvh,0) rotate(calc(var(--start) + var(--spin)*.65))}90%{opacity:var(--alpha)}100%{opacity:0;transform:translate3d(var(--drift3),calc(100dvh + 110px),0) rotate(calc(var(--start) + var(--spin)))}}
+@keyframes autumn-sway{from{transform:translateX(calc(0px - var(--sway))) rotate(-12deg)}to{transform:translateX(var(--sway)) rotate(14deg)}}
+.autumn-leaves.paused .autumn-leaf,.autumn-leaves.paused img{animation-play-state:paused}
+@media(max-width:760px){.autumn-leaf{width:calc(var(--size)*.7);left:var(--mobileLeft)}}
+
+
+body>.autumn-leaves{z-index:1}body>.autumn-leaves[hidden]{display:none}
+</style><script id="danki-shared-theme" src="/theme.js?v=f7dc4bb8f86e"></script><link rel="stylesheet" href="/theme.css?v=f7dc4bb8f86e"></head>
 <body>
 <a class="temponotes-link" href="temponotes/">TEMPONOTES</a>
 <header class="navigation">
@@ -431,7 +442,7 @@ for(const [section,key]of Object.entries(modeKeys))try{const preferred=localStor
 const startSection=location.hash.slice(1);practiceActive=!['arithmetic','programming','quant','digit-span'].includes(startSection);mode=preferredModes[startSection]||preferredModes.german;active=decks[mode];state=read(active);render();scheduleMidnight();
 })();</script>
 <script>(()=>{'use strict';
-const $=id=>document.getElementById(id),frame=$('arithmetic-frame'),menus=[...document.querySelectorAll('.games-menu')],subjects=new Set(['french','german','japanese','spanish','italian','greek','korean','economics','trivia','arithmetic','programming','quant','digit-span']),options=document.querySelectorAll('.navigation .game-option'),embedded={'digit-span':['digit-span/index.html?v=463d8e992cb8','Digit Span','Digit Span memory game'],arithmetic:['arithmetic.html?v=463d8e992cb8','Weekly arithmetic','Weekly arithmetic practice'],programming:['programming.html?v=463d8e992cb8','Programming','Programming learning cards'],quant:['quant.html?v=463d8e992cb8','QUANT','QUANT learning cards']};
+const $=id=>document.getElementById(id),frame=$('arithmetic-frame'),menus=[...document.querySelectorAll('.games-menu')],subjects=new Set(['french','german','japanese','spanish','italian','greek','korean','economics','trivia','arithmetic','programming','quant','digit-span']),options=document.querySelectorAll('.navigation .game-option'),embedded={'digit-span':['digit-span/index.html?v=d44a3f1b68cf','Digit Span','Digit Span memory game'],arithmetic:['arithmetic.html?v=d44a3f1b68cf','Weekly arithmetic','Weekly arithmetic practice'],programming:['programming.html?v=d44a3f1b68cf','Programming','Programming learning cards'],quant:['quant.html?v=d44a3f1b68cf','QUANT','QUANT learning cards']};
 const menuOpen=()=>menus.some(menu=>menu.open);
 let section='german';
 function focusArithmetic(){if(!embedded[section]||menuOpen())return;try{const input=section==='arithmetic'&&frame.contentDocument?.getElementById('answer');if(input)input.focus({preventScroll:true});else frame.contentWindow?.focus()}catch{frame.focus({preventScroll:true})}}
@@ -462,7 +473,7 @@ for(const link of links){
 }
 note.textContent=config.preview?'Preview — payment link not connected.':config.genericUrl?'Choose an amount, then enter it on Revolut.':'Choose an amount. Continue on Revolut to pay.';
 })();</script>
-<script defer src="notes-navigation.js?v=463d8e992cb8"></script>
-<script defer src="account.js?v=463d8e992cb8"></script>
-<script defer src="atlas-navigation.js?v=eabcc509699d"></script><script defer src="weight-navigation.js?v=463d8e992cb8"></script><script defer src="timebox-navigation.js?v=463d8e992cb8"></script><script defer src="/analytics.js?v=f7dc4bb8f86e"></script></body>
+<script defer src="notes-navigation.js?v=d44a3f1b68cf"></script>
+<script defer src="account.js?v=d44a3f1b68cf"></script>
+<script defer data-danki-main src="temponotes/autumn.js?v=d44a3f1b68cf"></script><script defer src="atlas-navigation.js?v=eabcc509699d"></script><script defer src="weight-navigation.js?v=d44a3f1b68cf"></script><script defer src="timebox-navigation.js?v=d44a3f1b68cf"></script><script defer src="/analytics.js?v=f7dc4bb8f86e"></script></body>
 </html>
