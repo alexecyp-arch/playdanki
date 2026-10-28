@@ -1,0 +1,12 @@
+import fs from 'node:fs/promises';import vm from 'node:vm';import assert from 'node:assert/strict';
+const html=await fs.readFile('src/temponotes/index.html','utf8');assert(/<button id="sign-in"[^>]*\bhidden\b/.test(html));
+class Element{hidden=false;disabled=false;textContent='';children=[];addEventListener(){}replaceChildren(){this.children=[]}}
+const elements=Object.fromEntries(['root','auth-gate','auth-status','sign-in','auth-config'].map(id=>[id,new Element()]));elements['auth-config'].textContent=JSON.stringify({firebase:{}});elements['sign-in'].hidden=true;elements['sign-in'].disabled=true;elements['auth-status'].textContent='LOADING';
+let changed,clearing;const win=new EventTarget();win.parent=win;const context=vm.createContext({window:win,parent:win,document:{getElementById:id=>elements[id]},Event,CustomEvent,AbortController,localStorage:{},location:{reload(){}}});
+const exports={initStandaloneNavigation(){},initializeApp:()=>({}),getAuth:()=>({}),onAuthStateChanged:(auth,cb)=>changed=cb,beforeAuthStateChanged:(auth,cb)=>clearing=cb,GoogleAuthProvider:class{},signInWithPopup:async()=>{},getFirestore:()=>({}),mount:root=>{root.children=[{}];return()=>root.replaceChildren()},createNotesStore:async()=>({request(){},dispose(){}}),createCloudSelection:()=>({dispose(){}}),createLockedStore:()=>({dispose(){}})};
+const modules=new Map();const module=new vm.SourceTextModule(await fs.readFile('src/temponotes/runtime.js','utf8'),{context});await module.link(spec=>{if(!modules.has(spec))modules.set(spec,new vm.SyntheticModule(Object.keys(exports),function(){for(const [key,value]of Object.entries(exports))this.setExport(key,value)},{context}));return modules.get(spec)});await module.evaluate();
+assert(elements['sign-in'].hidden,'No sign-in prompt while restoring auth');assert.equal(elements['auth-status'].textContent,'LOADING');
+await changed({uid:'alice'});assert(elements['sign-in'].hidden);assert(elements['auth-gate'].hidden);assert.equal(elements.root.children.length,1);
+clearing();assert(elements['sign-in'].hidden);assert.equal(elements.root.children.length,0,'Clear previous private content before account change');assert.equal(elements['auth-status'].textContent,'LOADING');
+await changed(null);assert(!elements['sign-in'].hidden,'Real signed-out visitor can still sign in');assert(!elements['auth-gate'].hidden);assert.equal(elements.root.children.length,0);
+console.log('Auth gate passed: hidden before login restore, no returning-user sign-in flash, genuine signed-out login retained and account-change content cleared.');

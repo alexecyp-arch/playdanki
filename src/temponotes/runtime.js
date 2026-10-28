@@ -11,7 +11,7 @@ const config=JSON.parse(document.getElementById('auth-config').textContent);
 const app=initializeApp(config.firebase),auth=getAuth(app),db=sdk.getFirestore(app);
 const root=document.getElementById('root'),gate=document.getElementById('auth-gate'),status=document.getElementById('auth-status'),button=document.getElementById('sign-in');
 let generation=0,dispose=()=>{},unmount=()=>{},loading,selectionStore,lockedStore;
-function clear(){window.dispatchEvent(new Event('danki-private-auth-clearing'));selectionStore?.dispose();selectionStore=null;lockedStore?.dispose();lockedStore=null;++generation;loading?.abort();unmount();dispose();unmount=dispose=()=>{};root.replaceChildren();gate.hidden=false;}
+function clear(){window.dispatchEvent(new Event('danki-private-auth-clearing'));selectionStore?.dispose();selectionStore=null;lockedStore?.dispose();lockedStore=null;++generation;loading?.abort();unmount();dispose();unmount=dispose=()=>{};root.replaceChildren();button.hidden=true;status.hidden=false;status.textContent='LOADING';gate.hidden=false;}
 beforeAuthStateChanged(auth,clear);
 window.addEventListener('pagehide',clear);
 window.addEventListener('pageshow',event=>{if(event.persisted)location.reload();});

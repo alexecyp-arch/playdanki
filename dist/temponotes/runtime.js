@@ -1,17 +1,17 @@
-import {initStandaloneNavigation} from './private-page-navigation.js?v=c7f8e75db0ac';
+import {initStandaloneNavigation} from './private-page-navigation.js?v=0633010615e4';
 initStandaloneNavigation();
 import {initializeApp} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js';
 import {getAuth,onAuthStateChanged,beforeAuthStateChanged,GoogleAuthProvider,signInWithPopup} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js';
 import * as sdk from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js';
-import {mount} from './ui.js?v=c7f8e75db0ac';
-import {createNotesStore} from './notes-store.mjs?v=c7f8e75db0ac';
-import {createCloudSelection} from './cloud-selection.mjs?v=c7f8e75db0ac';
-import {createLockedStore} from './locked-store.mjs?v=c7f8e75db0ac';
+import {mount} from './ui.js?v=0633010615e4';
+import {createNotesStore} from './notes-store.mjs?v=0633010615e4';
+import {createCloudSelection} from './cloud-selection.mjs?v=0633010615e4';
+import {createLockedStore} from './locked-store.mjs?v=0633010615e4';
 const config=JSON.parse(document.getElementById('auth-config').textContent);
 const app=initializeApp(config.firebase),auth=getAuth(app),db=sdk.getFirestore(app);
 const root=document.getElementById('root'),gate=document.getElementById('auth-gate'),status=document.getElementById('auth-status'),button=document.getElementById('sign-in');
 let generation=0,dispose=()=>{},unmount=()=>{},loading,selectionStore,lockedStore;
-function clear(){window.dispatchEvent(new Event('danki-private-auth-clearing'));selectionStore?.dispose();selectionStore=null;lockedStore?.dispose();lockedStore=null;++generation;loading?.abort();unmount();dispose();unmount=dispose=()=>{};root.replaceChildren();gate.hidden=false;}
+function clear(){window.dispatchEvent(new Event('danki-private-auth-clearing'));selectionStore?.dispose();selectionStore=null;lockedStore?.dispose();lockedStore=null;++generation;loading?.abort();unmount();dispose();unmount=dispose=()=>{};root.replaceChildren();button.hidden=true;status.hidden=false;status.textContent='LOADING';gate.hidden=false;}
 beforeAuthStateChanged(auth,clear);
 window.addEventListener('pagehide',clear);
 window.addEventListener('pageshow',event=>{if(event.persisted)location.reload();});
