@@ -7,6 +7,9 @@ assert.equal(forecastTargetTime([{kg:100,time:now-30*day},...points],66,now),for
 assert.equal(forecastTargetTime([...points,{kg:72,time:now-1000},{kg:74,time:now-2000}],66,now),forecastTargetTime(points,66,now),'Same-day average prevents logging frequency bias');
 assert.equal(forecastTargetTime([{kg:80,time:now}],66,now),null);assert.equal(forecastTargetTime(points,null,now),null);
 const slowing=[{kg:80,time:now-3*day},{kg:79,time:now-2*day},{kg:78,time:now-day},{kg:78,time:now}];assert(forecastTargetTime(slowing,70,now)>now+8*day,'Recent plateau slows prediction');
+const midnight=new Date(2026,9,28).getTime();
+assert.equal(forecastTargetTime(slowing,70,now),midnight+8/.9*day,'Newest flat day gets 10% weight; earlier -1 kg/day trend keeps 90%');
+assert.equal(forecastTargetTime([{kg:80,time:now-2*day},{kg:79,time:now-day},{kg:77,time:now}],66,now),midnight+10*day,'Newest -2 kg/day change gets more weight: 10% of -2 plus 90% of -1 = -1.1 kg/day');
 const wordSource=await fs.readFile('src/words.json','utf8'),wordAsset=await fs.readFile('dist/german/words.json','utf8');assert.equal(wordSource,wordAsset,'All 5000 original words preserved byte for byte');
 const home=await fs.readFile('dist/index.html','utf8');assert.equal(JSON.parse(home.match(/id="word-data"[^>]*>([\s\S]*?)<\/script>/)[1]).length,32);
 const atlas=await fs.readFile('src/atlas-navigation.js','utf8');assert(!atlas.includes('requestIdleCallback'),'Atlas only loads on demand');
