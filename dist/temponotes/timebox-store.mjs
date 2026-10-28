@@ -1,7 +1,7 @@
-import {decode,change} from './timebox-model.mjs?v=0633010615e4';
+import {decode,change} from './timebox-model.mjs?v=12ea72ef2077';
 // Uses the existing owner-only, revision-checked cloud progress rules.
-export function createTimeboxStore({auth,db,sdk,uid,now=Date.now}){
- const ref=sdk.doc(db,'users',uid,'progress','timebox'),listeners=new Set();
+export function createTimeboxStore({auth,db,sdk,uid,now=Date.now,key='timebox'}){
+ const ref=sdk.doc(db,'users',uid,'progress',key),listeners=new Set();
  let active=true,ready=false,state={tasks:[]},revision=-1,error='',queue=Promise.resolve();
  const check=()=>{if(!active||auth.currentUser?.uid!==uid)throw Error('SIGN IN');};
  const emit=()=>{if(active&&auth.currentUser?.uid===uid)for(const fn of listeners)fn({state,ready,error});};
@@ -22,5 +22,15 @@ export function createTimeboxStore({auth,db,sdk,uid,now=Date.now}){
    });queue=task.catch(()=>{});return task;
   },
   dispose(){active=false;ready=false;stop();listeners.clear();state={tasks:[]};}
+ };
+}
+
+// Keep new repetition records separate so an older timer-only tab cannot erase them.
+export function createBoxStore(options){
+ const time=createTimeboxStore(options),reps=createTimeboxStore({...options,key:'repbox'});
+ return {
+  subscribe(fn){let t={state:{tasks:[]},ready:false,error:''},r={state:{repTasks:[]},ready:false,error:''};const emit=()=>fn({state:{tasks:t.state.tasks,repTasks:r.state.repTasks||[]},ready:t.ready&&r.ready,error:t.error||r.error});const a=time.subscribe(v=>{t=v;emit()}),b=reps.subscribe(v=>{r=v;emit()});return()=>{a();b()};},
+  act(action){return(action.kind==='reps'?reps:time).act(action);},
+  dispose(){time.dispose();reps.dispose();}
  };
 }

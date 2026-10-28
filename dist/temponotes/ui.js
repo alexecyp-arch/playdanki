@@ -1,12 +1,13 @@
-import {confirmDelete} from './confirm-delete.js?v=0633010615e4';
-import {occurrences} from './eternal.mjs?v=0633010615e4';
-import {mountEternal} from './eternal-ui.js?v=0633010615e4';
-import {orderNotes} from './note-order.mjs?v=0633010615e4';
-import {mountLocked} from './locked-ui.js?v=0633010615e4';
+import {calendarLabel} from './calendar.mjs?v=12ea72ef2077';
+import {confirmDelete} from './confirm-delete.js?v=12ea72ef2077';
+import {occurrences} from './eternal.mjs?v=12ea72ef2077';
+import {mountEternal} from './eternal-ui.js?v=12ea72ef2077';
+import {orderNotes} from './note-order.mjs?v=12ea72ef2077';
+import {mountLocked} from './locked-ui.js?v=12ea72ef2077';
 // The original Temponote layout, rendered with browser APIs instead of React.
 export function mount(root,request,{visible=true,selection,locked}={}){
  const confirmController=new AbortController();
- root.innerHTML=`<div class="temponote-workspace notes-only"><main class="app"><header class="header"><div class="brand"><span class="brand-icon" aria-hidden="true">◷</span><h1>TEMPONOTE</h1><time class="current-time" aria-label="Current time"></time></div></header><section class="notes-area" id="note-list" aria-label="Your notes"><div class="notes-wrap"><ol></ol></div></section><footer class="composer"><div class="composer-wrap"><div class="composer-top"><div class="timer-row"><span class="timer-label">KEEP FOR <strong aria-live="polite"></strong> · <time></time></span><button class="reset" hidden>Reset</button></div><div class="time-buttons"><button data-add="60">+1H</button><button data-add="360">+6H</button></div></div><form><label class="sr-only" for="note">Write a note</label><textarea id="note" maxlength="10000" placeholder="Write a note…" rows="2"></textarea><button class="send" type="submit" disabled aria-label="Send note"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m5 12 7-7 7 7M12 5v15"/></svg></button></form><p class="error" role="alert" hidden></p></div></footer></main></div>`;
+ root.innerHTML=`<div class="temponote-workspace notes-only"><main class="app"><header class="header"><div class="brand"><span class="brand-icon" aria-hidden="true">◷</span><h1>TEMPONOTE</h1><time class="current-time" aria-label="Current time"></time><span class="current-calendar" aria-label="Day date and season"></span></div></header><section class="notes-area" id="note-list" aria-label="Your notes"><div class="notes-wrap"><ol></ol></div></section><footer class="composer"><div class="composer-wrap"><div class="composer-top"><div class="timer-row"><span class="timer-label">KEEP FOR <strong aria-live="polite"></strong> · <time></time></span><button class="reset" hidden>Reset</button></div><div class="time-buttons"><button data-add="60">+1H</button><button data-add="360">+6H</button></div></div><form><label class="sr-only" for="note">Write a note</label><textarea id="note" maxlength="10000" placeholder="Write a note…" rows="2"></textarea><button class="send" type="submit" disabled aria-label="Send note"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m5 12 7-7 7 7M12 5v15"/></svg></button></form><p class="error" role="alert" hidden></p></div></footer></main></div>`;
  const $=s=>root.querySelector(s),input=$('textarea'),list=$('ol'),error=$('.error'),sendButton=$('.send'),sendIcon=sendButton.innerHTML,nodes=new Map(),extending=new Set();
  let notes=[],schedules=[],adjustments={},minutes=60,busy=false,draft=null,offset=0,disposed=false,lastSync=0,loaded=false,selected=selection?.get()||null;
  const tools=document.createElement('div');tools.className='note-tools';$('.composer-top').append(tools);
@@ -18,7 +19,7 @@ export function mount(root,request,{visible=true,selection,locked}={}){
  function showError(message=''){if(disposed)return;error.textContent=message;error.hidden=!message;}
  function controls(){input.disabled=busy;sendButton.disabled=busy||!input.value.trim();sendButton.innerHTML=busy?'…':sendIcon;for(const b of root.querySelectorAll('[data-add]'))b.disabled=busy||minutes+Number(b.dataset.add)>525600;$('.reset').disabled=busy;}
  function render(){
-  if(disposed||!visible)return;const t=Date.now()+offset,time=$('.current-time'),future=$('.timer-label time');time.textContent=format(t);time.dateTime=new Date(t).toISOString();future.textContent=format(t+minutes*60000);future.dateTime=new Date(t+minutes*60000).toISOString();future.title=new Date(t+minutes*60000).toLocaleString();$('.timer-label strong').textContent=duration(minutes);$('.reset').hidden=minutes<=60;
+  if(disposed||!visible)return;const t=Date.now()+offset,time=$('.current-time'),future=$('.timer-label time');time.textContent=format(t);$('.current-calendar').textContent=calendarLabel(t);time.dateTime=new Date(t).toISOString();future.textContent=format(t+minutes*60000);future.dateTime=new Date(t+minutes*60000).toISOString();future.title=new Date(t+minutes*60000).toLocaleString();$('.timer-label strong').textContent=duration(minutes);$('.reset').hidden=minutes<=60;
   const active=orderNotes([...notes.filter(n=>n.expiresAt>t),...occurrences(schedules,t,adjustments)],selected),ids=new Set(active.map(n=>n.id));/* Keep an unseen pin until the notes snapshot arrives; another device may pin before its note loads. */
   for(const [id,li]of nodes)if(!ids.has(id)){li.remove();nodes.delete(id);}
   active.forEach((n,i)=>{

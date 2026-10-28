@@ -4,7 +4,8 @@ const frameGuard="(()=>{'use strict';if(window.top===window)return;let same=fals
 export async function buildSecurity(root){
  let pages=0;
  async function walk(dir){for(const entry of await fs.readdir(dir,{withFileTypes:true})){const path=new URL(entry.name,dir);if(entry.isDirectory())await walk(new URL(entry.name+'/',dir));else if(entry.name.endsWith('.html')){
-  let html=await fs.readFile(path,'utf8');html=html.replace(/<head([^>]*)>/i,'<head$1><script>'+frameGuard+'</script>');
+  // HTML parsers normalize CRLF before checking CSP hashes. Hash those same bytes.
+  let html=(await fs.readFile(path,'utf8')).replace(/\r\n?/g,'\n');html=html.replace(/<head([^>]*)>/i,'<head$1><script>'+frameGuard+'</script>');
   const hashes=[...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)].filter(m=>!(/\bsrc\s*=/i.test(m[1]))&&!(/\btype\s*=\s*["']application\/json/i.test(m[1]))).map(m=>"'sha256-"+createHash('sha256').update(m[2]).digest('base64')+"'");
   const policy=["default-src 'self'","script-src 'self' "+[...new Set(hashes)].join(' ')+" https://www.gstatic.com https://apis.google.com https://static.cloudflareinsights.com","style-src 'self' 'unsafe-inline'","img-src 'self' data: https:","font-src 'self' data:","connect-src 'self' https://*.googleapis.com https://www.gstatic.com https://apis.google.com https://*.firebaseapp.com https://*.firebaseio.com wss://*.firebaseio.com https://cloudflareinsights.com https://*.cloudflareinsights.com","frame-src 'self' https://playdanki.com https://www.playdanki.com https://*.firebaseapp.com https://accounts.google.com https://www.google.com","worker-src 'self' blob:","media-src 'self' blob:","object-src 'none'","base-uri 'self'","form-action 'self'"].join('; ');
   // Place the policy before every script, so unapproved inline code stays blocked.

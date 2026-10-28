@@ -1,0 +1,1 @@
+export function calendarLabel(time){const d=new Date(time),month=d.getMonth(),season=month>=2&&month<=4?'SPRING':month>=5&&month<=7?'SUMMER':month>=8&&month<=10?'AUTUMN':'WINTER';return d.toLocaleDateString('en-GB',{weekday:'long'}).toUpperCase()+' - '+d.getDate()+' '+d.toLocaleDateString('en-GB',{month:'long'}).toUpperCase()+' - '+season;}
