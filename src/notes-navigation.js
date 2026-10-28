@@ -19,6 +19,7 @@ link.addEventListener('click',event=>{
 window.addEventListener('danki-private-open',event=>{if(event.detail?.view!=='notes'||!uid)return;returnUrl=event.detail.returnUrl;gameTitle=event.detail.gameTitle;prepare();history.pushState(null,'','/temponotes/');display(true);});
 window.addEventListener('message',event=>{
  if(event.origin!==location.origin||event.source!==frame?.contentWindow)return;
+ if(event.data?.type==='danki-frame-blocked'){frame.dataset.frameBlocked='true';return;}
  if(event.data?.type==='danki-notes-open-weight'){if(uid&&shown)window.dispatchEvent(new CustomEvent('danki-private-open',{detail:{view:'weight',returnUrl,gameTitle}}));return;}
  if(event.data?.type==='danki-notes-open-timebox'){if(uid&&shown)window.dispatchEvent(new CustomEvent('danki-private-open',{detail:{view:'timebox',returnUrl,gameTitle}}));return;}
  if(event.data?.type!=='danki-notes-return')return;
