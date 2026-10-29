@@ -20,3 +20,5 @@
 @media(max-width:900px){.reps-section .timebox-header{padding-right:0}}
 
 .task-chart header [role=group]{flex-wrap:wrap}.chart-date-label{display:flex;align-items:center;gap:8px;margin-bottom:12px;font-size:10px}.chart-date{min-width:0;max-width:100%;padding:6px 8px;border:1px solid #696a73;background:#18191c;color:white;font:700 12px Arial;color-scheme:dark}
+
+@media(max-width:900px){.private-page-links + #root .timebox-workspace.split-boxes{padding-top:12px}}
