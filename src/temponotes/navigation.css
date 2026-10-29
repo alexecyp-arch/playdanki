@@ -1,4 +1,4 @@
-.danki-return{position:fixed;right:20px;top:24px;z-index:20;display:inline-flex;align-items:center;justify-content:center;height:30px;padding:0 12px;border:1px solid #46515d;border-radius:5px;background:#1b2026f7;color:#edf0f2;text-decoration:none;font:600 11px Arial,Helvetica,sans-serif;letter-spacing:1px}.danki-return:focus-visible{outline:2px solid white;outline-offset:3px}.auth-gate{height:100dvh;background:#17212a var(--daily-background,none) center/cover;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px}.auth-gate[hidden]{display:none}.auth-gate p{max-width:90%;text-align:center;padding:10px;border-radius:5px;background:#1b2026f7;color:#edf0f2;font:14px Arial,Helvetica,sans-serif}.auth-gate button{border:1px solid #46515d;border-radius:5px;background:#1b2026f7;padding:12px 18px;color:#edf0f2;cursor:pointer;font:600 14px Arial,Helvetica,sans-serif}@media(max-width:480px){.danki-return{right:12px;top:24px;height:27px;padding:0 7px;font-size:10px}.header{padding-right:77px}.brand{gap:7px}.brand h1{font-size:13px;letter-spacing:1px}.brand .current-time{font-size:11px}}
+.danki-return{position:absolute;right:20px;top:24px;z-index:20;display:inline-flex;align-items:center;justify-content:center;height:30px;padding:0 12px;border:1px solid #46515d;border-radius:5px;background:#1b2026f7;color:#edf0f2;text-decoration:none;font:600 11px Arial,Helvetica,sans-serif;letter-spacing:1px}.danki-return:focus-visible{outline:2px solid white;outline-offset:3px}.auth-gate{height:100dvh;background:#17212a var(--daily-background,none) center/cover;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px}.auth-gate[hidden]{display:none}.auth-gate p{max-width:90%;text-align:center;padding:10px;border-radius:5px;background:#1b2026f7;color:#edf0f2;font:14px Arial,Helvetica,sans-serif}.auth-gate button{border:1px solid #46515d;border-radius:5px;background:#1b2026f7;padding:12px 18px;color:#edf0f2;cursor:pointer;font:600 14px Arial,Helvetica,sans-serif}@media(max-width:480px){.danki-return{right:12px;top:24px;height:27px;padding:0 7px;font-size:10px}.header{padding-right:77px}.brand{gap:7px}.brand h1{font-size:13px;letter-spacing:1px}.brand .current-time{font-size:11px}}
 
 .brand{color:#fff;text-shadow:0 1px 3px #000,0 0 8px #0008}
 
@@ -169,15 +169,15 @@
 
 .timebox-card .timebox-run:disabled{opacity:1}
 
-/* Anchor TIME SPENT to the viewport while only the phone workspace scrolls. */
+/* Phone pages scroll as documents, including every TIMEBOX and REPBOX row. */
 .timebox-chart-area{font:700 12px Arial,Helvetica,sans-serif;color:#f4f4f5}
 .timebox-chart-area *{box-sizing:border-box;border-radius:0;font-weight:700}
 .timebox-chart-area button{color:#f4f4f5;background:#303136;border:1px solid #696a73;padding:7px 10px;cursor:pointer}
 .timebox-chart-area button:focus-visible{outline:2px solid #fff;outline-offset:3px}
 @media(max-width:760px){
- html,body{height:100%;overflow:hidden}
- #root{height:100%}
- .temponote-workspace{height:100dvh;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior-y:contain}
+ html,body{height:auto;min-height:100%;overflow-x:hidden;overflow-y:auto}
+ #root{height:auto;min-height:100dvh}
+ .temponote-workspace{height:auto;min-height:100dvh;overflow:visible}
  .timebox-chart-area{position:fixed;inset:auto 12px max(8px,env(safe-area-inset-bottom)) auto;margin:0;transform:none;z-index:26}
 }
 
@@ -235,7 +235,7 @@
 .delete-confirm button{border:1px solid #8e8f99;padding:7px 12px;background:#303136;color:#fff;font:700 11px Arial,Helvetica,sans-serif;cursor:pointer}
 .delete-confirm [data-delete]{background:#58343b;border-color:#ae7883}
 .delete-confirm button:focus-visible{outline:2px solid #fff;outline-offset:3px}
-.page-switch{position:fixed;right:20px;top:76px;z-index:20;display:flex;align-items:center;justify-content:center;width:7.9rem;height:30px;border:2px solid #b4b5bd;background:#303136;color:#fff;text-decoration:none;font:700 11px Arial,Helvetica,sans-serif}
+.page-switch{position:absolute;right:20px;top:76px;z-index:20;display:flex;align-items:center;justify-content:center;width:7.9rem;height:30px;border:2px solid #b4b5bd;background:#303136;color:#fff;text-decoration:none;font:700 11px Arial,Helvetica,sans-serif}
 .page-switch:focus-visible{outline:2px solid #fff;outline-offset:3px}
 @media(max-width:600px){.page-switch{right:12px;top:59px;width:62px;height:25px;font-size:8px}}
 
