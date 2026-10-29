@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-<head><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-WyLwGL+atUliNI71RePT1vcgwPrTpR3ulbfsHqfIq+g=' 'sha256-fUs4FU007kOkfg7Bc2MbU75c6wZXQtDA4pGMvMZ78O4=' 'sha256-vWHjjhPJF0QGZQyEhnLoQmaI1+ufDS82ec5fHJQJCKA=' 'sha256-0De4gA5W92fhl3RnFExtxNd6g3pFmZ+/ZOrUI8kBlHM=' 'sha256-PZOFqZKNt0z0BfNr+CJqJVFdDRtBcsM4g6GOH8xrHcQ=' 'sha256-u3L/5I5CsZ/V4rQrYNe03rdmqXecPoJCxlvPrqs8/fM=' 'sha256-2OyyqJoUT9xy40ftmlTh6tsc0ZfdmG6wRumvh/K38mg=' https://www.gstatic.com https://apis.google.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://*.googleapis.com https://www.gstatic.com https://apis.google.com https://*.firebaseapp.com https://*.firebaseio.com wss://*.firebaseio.com https://cloudflareinsights.com https://*.cloudflareinsights.com; frame-src 'self' https://playdanki.com https://www.playdanki.com https://*.firebaseapp.com https://accounts.google.com https://www.google.com; worker-src 'self' blob:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'"><meta name="referrer" content="same-origin"><script>(()=>{'use strict';if(window.top===window)return;let same=false;try{same=window.top.location.origin===location.origin;}catch{}if(!same&&location.ancestorOrigins?.length)same=Array.from(location.ancestorOrigins).every(origin=>origin===location.origin);if(same)return;try{parent.postMessage({type:'danki-frame-blocked'},location.origin);}catch{}document.documentElement.style.display='none';window.stop();throw Error('Open PlayDanki directly.');})();</script>
+<head><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-WyLwGL+atUliNI71RePT1vcgwPrTpR3ulbfsHqfIq+g=' 'sha256-fUs4FU007kOkfg7Bc2MbU75c6wZXQtDA4pGMvMZ78O4=' 'sha256-vWHjjhPJF0QGZQyEhnLoQmaI1+ufDS82ec5fHJQJCKA=' 'sha256-0De4gA5W92fhl3RnFExtxNd6g3pFmZ+/ZOrUI8kBlHM=' 'sha256-PZOFqZKNt0z0BfNr+CJqJVFdDRtBcsM4g6GOH8xrHcQ=' 'sha256-jT+tcx2gAJr3YxN7QilM3nEh9aIU/8Ak7xJGlbEG0vA=' 'sha256-2OyyqJoUT9xy40ftmlTh6tsc0ZfdmG6wRumvh/K38mg=' https://www.gstatic.com https://apis.google.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://*.googleapis.com https://www.gstatic.com https://apis.google.com https://*.firebaseapp.com https://*.firebaseio.com wss://*.firebaseio.com https://cloudflareinsights.com https://*.cloudflareinsights.com; frame-src 'self' https://playdanki.com https://www.playdanki.com https://*.firebaseapp.com https://accounts.google.com https://www.google.com; worker-src 'self' blob:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'"><meta name="referrer" content="same-origin"><script>(()=>{'use strict';if(window.top===window)return;let same=false;try{same=window.top.location.origin===location.origin;}catch{}if(!same&&location.ancestorOrigins?.length)same=Array.from(location.ancestorOrigins).every(origin=>origin===location.origin);if(same)return;try{parent.postMessage({type:'danki-frame-blocked'},location.origin);}catch{}document.documentElement.style.display='none';window.stop();throw Error('Open PlayDanki directly.');})();</script>
 <meta charset="utf-8">
 <base href="/">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -80,12 +80,12 @@ body:focus,#game:focus,#exercise:focus,.arithmetic-frame:focus{outline:none}
 #answer-box{min-width:0}
 #study .answer{max-width:100%}
 #exercise #problem,#exercise #answer{max-width:100%;white-space:normal;overflow-wrap:anywhere}
-#previous-card{display:block;position:fixed;left:50%;bottom:calc(.5rem + env(safe-area-inset-bottom,0px));transform:translateX(-50%) scale(1.4);transform-origin:center bottom;z-index:4;min-height:1.2rem;min-width:0;border:0;border-radius:0;background:var(--danki-bg,#071e48);box-shadow:none;color:#fff;padding:.1rem .3rem;font:700 .55rem/1.2 Arial,Helvetica,sans-serif;white-space:nowrap;touch-action:manipulation}
-@media(hover:none) and (pointer:coarse) and (max-width:600px),(hover:none) and (pointer:coarse) and (max-height:600px){#previous-card{display:block;min-height:2rem;min-width:5rem;padding:.35rem .65rem;font-size:.75rem}.tracker,#tracker{bottom:calc(3rem + env(safe-area-inset-bottom,0px))}.course-main{padding-bottom:8rem}}
+:is(#previous-card,#embedded-previous-card){display:block;position:fixed;left:50%;bottom:calc(.5rem + env(safe-area-inset-bottom,0px));transform:translateX(-50%) scale(1.4);transform-origin:center bottom;z-index:4;min-height:1.2rem;min-width:0;border:0;border-radius:0;background:var(--danki-bg,#071e48);box-shadow:none;color:#fff;padding:.1rem .3rem;font:700 .55rem/1.2 Arial,Helvetica,sans-serif;white-space:nowrap;touch-action:manipulation}
+@media(hover:none) and (pointer:coarse) and (max-width:600px),(hover:none) and (pointer:coarse) and (max-height:600px){:is(#previous-card,#embedded-previous-card){display:block;min-height:2rem;min-width:5rem;padding:.35rem .65rem;font-size:.75rem}.tracker,#tracker{bottom:calc(3rem + env(safe-area-inset-bottom,0px))}.course-main{padding-bottom:8rem}}
 
-@media(max-width:600px){#previous-card{min-height:2rem;min-width:5rem;padding:.35rem .65rem;font-size:.75rem}.tracker,#tracker{bottom:calc(3rem + env(safe-area-inset-bottom,0px))}}
+@media(max-width:600px){:is(#previous-card,#embedded-previous-card){min-height:2rem;min-width:5rem;padding:.35rem .65rem;font-size:.75rem}.tracker,#tracker{bottom:calc(3rem + env(safe-area-inset-bottom,0px))}}
 /* Keep the phone counter at 65%; Previous Card is 40% larger than its former 65% scale. */
-@media(max-width:600px){.tracker,#tracker{transform:scale(.65);transform-origin:bottom right}#previous-card{transform:translateX(-50%) scale(.91);transform-origin:center bottom}.again,#again,#retry,.stats-head button{transform:scale(.65)}}
+@media(max-width:600px){.tracker,#tracker{transform:scale(.65);transform-origin:bottom right}:is(#previous-card,#embedded-previous-card){transform:translateX(-50%) scale(.91);transform-origin:center bottom}.again,#again,#retry,.stats-head button{transform:scale(.65)}}
 #support-menu{position:fixed;left:1rem;bottom:calc(.75rem + env(safe-area-inset-bottom,0px));z-index:7}
 #support-menu[hidden]{display:none}
 #support-menu>summary{font-size:.75rem;line-height:1.2;gap:.4rem;padding:.5rem .6rem;border-color:var(--danki-border,#45618e);background:var(--danki-bg,#071e48)}
@@ -117,7 +117,13 @@ body:focus,#game:focus,#exercise:focus,.arithmetic-frame:focus{outline:none}
 #account-bar>.atlas-link,#account-bar>.weight-link,#account-bar>.timebox-link,#account-menu>summary{display:flex;align-items:center;justify-content:center;align-self:auto;width:7.75rem;height:2rem;padding:.5rem .6rem;border:1px solid var(--danki-border,#45618e);border-radius:.35rem;background:var(--danki-bg,#071e48);color:#fff;font:700 .75rem/1.2 Arial,Helvetica,sans-serif;white-space:nowrap;text-decoration:none}
 @media(max-width:600px){#account-bar>.atlas-link,#account-bar>.weight-link,#account-bar>.timebox-link,#account-menu>summary{font-size:.6875rem}#account-bar{transform:scale(.65);transform-origin:bottom left}}
 
-#voice-toggle{display:flex;align-items:center;justify-content:space-between;width:7.75rem;height:1.7rem;padding:.3rem .6rem;border:1px solid var(--danki-border,#45618e);border-radius:.35rem;background:var(--danki-bg,#071e48);color:#fff;font:700 .65rem/1.2 Arial,Helvetica,sans-serif;cursor:pointer}#voice-toggle span{min-width:2.2rem;padding:.12rem .3rem;background:var(--danki-raised,#173766);border-radius:.2rem;text-align:center}#voice-toggle[aria-checked="true"] span{background:#fff;color:var(--danki-bg,#071e48)}#voice-toggle:disabled{opacity:.5;cursor:default}#voice-toggle:focus-visible{outline:2px solid #fff;outline-offset:3px}</style>
+#voice-toggle{display:flex;align-items:center;justify-content:space-between;width:7.75rem;height:1.7rem;padding:.3rem .6rem;border:1px solid var(--danki-border,#45618e);border-radius:.35rem;background:var(--danki-bg,#071e48);color:#fff;font:700 .65rem/1.2 Arial,Helvetica,sans-serif;cursor:pointer}#voice-toggle span{min-width:2.2rem;padding:.12rem .3rem;background:var(--danki-raised,#173766);border-radius:.2rem;text-align:center}#voice-toggle[aria-checked="true"] span{background:#fff;color:var(--danki-bg,#071e48)}#voice-toggle:disabled{opacity:.5;cursor:default}#voice-toggle:focus-visible{outline:2px solid #fff;outline-offset:3px}
+
+/* Previous Card belongs to the Account row, not a floating overlay. */
+#account-actions{display:flex;align-items:center;gap:.6rem;flex-shrink:0}
+#account-actions [hidden]{display:none!important}
+#account-actions :is(#previous-card,#embedded-previous-card){position:static;inset:auto;transform:none;transform-origin:initial;min-width:0;min-height:1.68rem;padding:.14rem .42rem;font-size:.77rem;line-height:1.2;margin:0;flex:0 0 auto}
+@media(max-width:600px){#account-bar{position:absolute}#account-actions :is(#previous-card,#embedded-previous-card){min-height:2.8rem;min-width:7rem;padding:.49rem .91rem;font-size:1.05rem}}</style>
 <script>(()=>{'use strict';
  const controls='button,a,input,textarea,select,summary,[contenteditable="true"],.games-menu,.navigation,#account-bar,.tracker,#tracker,#history,#stats,[role="dialog"]';
  function canTap(event){return !event.defaultPrevented&&!event.ctrlKey&&!event.metaKey&&!event.altKey&&!event.shiftKey&&event.button===0&&matchMedia('(pointer:coarse),(max-width:600px)').matches&&!event.target.closest?.(controls)&&!window.getSelection()?.toString();}
@@ -191,6 +197,7 @@ body>.autumn-leaves{z-index:1}body>.autumn-leaves[hidden]{display:none}
     <p id="support-note" role="status"></p>
   </div>
 </details>
+<div id="account-actions">
 <details id="account-menu" class="games-menu" hidden>
   <summary aria-expanded="false" aria-controls="account-panel"><span id="account-label">Google sign in</span></summary>
   <div id="account-panel">
@@ -204,6 +211,9 @@ body>.autumn-leaves{z-index:1}body>.autumn-leaves[hidden]{display:none}
     <p id="account-privacy">Your game progress and notes are private. Progress is automatically saved every 30 seconds</p>
   </div>
 </details>
+<button id="previous-card" type="button" aria-label="Previous card">Previous Card</button>
+<button id="embedded-previous-card" type="button" aria-label="Previous card" hidden disabled>Previous Card</button>
+</div>
 </div>
 <main id="game" aria-label="German practice" tabindex="-1">
   <section class="practice">
@@ -217,7 +227,6 @@ body>.autumn-leaves{z-index:1}body>.autumn-leaves[hidden]{display:none}
     <button id="retry" class="again" type="button" hidden>Retry</button>
     <div id="feedback" class="feedback" role="status" aria-live="polite"></div>
   </section>
-  <button id="previous-card" type="button" aria-label="Previous card">Previous Card</button>
 </main>
 <aside id="german-tracker" class="tracker">
   <section id="history" class="history" aria-label="Daily practice history" hidden>
@@ -445,12 +454,20 @@ for(const [section,key]of Object.entries(modeKeys))try{const preferred=localStor
 const startSection=location.hash.slice(1);practiceActive=!['arithmetic','programming','quant','digit-span'].includes(startSection);mode=preferredModes[startSection]||preferredModes.german;active=decks[mode];state=read(active);render();scheduleMidnight();
 })();</script>
 <script>(()=>{'use strict';
-const $=id=>document.getElementById(id),frame=$('arithmetic-frame'),menus=[...document.querySelectorAll('.games-menu')],subjects=new Set(['french','german','japanese','spanish','italian','greek','korean','economics','trivia','arithmetic','programming','quant','digit-span']),options=document.querySelectorAll('.navigation .game-option'),embedded={'digit-span':['digit-span/index.html?v=ebc3920b58bd','Digit Span','Digit Span memory game'],arithmetic:['arithmetic.html?v=ebc3920b58bd','Weekly arithmetic','Weekly arithmetic practice'],programming:['programming.html?v=ebc3920b58bd','Programming','Programming learning cards'],quant:['quant.html?v=ebc3920b58bd','QUANT','QUANT learning cards']};
+const $=id=>document.getElementById(id),frame=$('arithmetic-frame'),menus=[...document.querySelectorAll('.games-menu')],subjects=new Set(['french','german','japanese','spanish','italian','greek','korean','economics','trivia','arithmetic','programming','quant','digit-span']),options=document.querySelectorAll('.navigation .game-option'),embedded={'digit-span':['digit-span/index.html?v=ef88c48ce5f7','Digit Span','Digit Span memory game'],arithmetic:['arithmetic.html?v=ef88c48ce5f7','Weekly arithmetic','Weekly arithmetic practice'],programming:['programming.html?v=ef88c48ce5f7','Programming','Programming learning cards'],quant:['quant.html?v=ef88c48ce5f7','QUANT','QUANT learning cards']};
 const menuOpen=()=>menus.some(menu=>menu.open);
 let section='german';
+const previous=$('previous-card'),embeddedPrevious=$('embedded-previous-card');let previousObserver=null;
+function trackPrevious(){
+ previousObserver?.disconnect();previousObserver=null;embeddedPrevious.hidden=true;
+ if(!['programming','quant'].includes(section))return;
+ try{const child=frame.contentDocument?.getElementById('previous-card');if(!child)return;child.style.display='none';const sync=()=>{embeddedPrevious.disabled=child.disabled;};sync();embeddedPrevious.hidden=false;previousObserver=new MutationObserver(sync);previousObserver.observe(child,{attributes:true,attributeFilter:['disabled']});}catch{}
+}
+embeddedPrevious.addEventListener('click',()=>{if(menuOpen()||!['programming','quant'].includes(section))return;try{frame.contentDocument?.getElementById('previous-card')?.click();}catch{}});
+frame.addEventListener('load',trackPrevious);
 function focusArithmetic(){if(!embedded[section]||menuOpen())return;try{const input=section==='arithmetic'&&frame.contentDocument?.getElementById('answer');if(input)input.focus({preventScroll:true});else frame.contentWindow?.focus()}catch{frame.focus({preventScroll:true})}}
 function closeMenu(focus=false){const current=menus.find(menu=>menu.open);for(const menu of menus){menu.open=false;menu.querySelector('summary').setAttribute('aria-expanded','false')}if(focus&&current)current.querySelector('summary').focus({preventScroll:true})}
-function show(){const hash=location.hash.slice(1);section=subjects.has(hash)?hash:'german';const math=!!embedded[section];document.body.classList.toggle('economics-page',section==='economics'||section==='trivia');$('game').hidden=math;$('german-tracker').hidden=math;frame.hidden=!math;document.title=math?embedded[section][1]:section[0].toUpperCase()+section.slice(1)+' practice';document.dispatchEvent(new CustomEvent('practice-section',{detail:section}));for(const button of options){const active=button.dataset.section===section&&(!button.classList.contains('mode')||button.classList.contains('active'));button.classList.toggle('active',active);button.setAttribute('aria-pressed',String(active))}if(math){const [src,,title]=embedded[section];frame.title=title;if(frame.getAttribute('src')!==src)frame.src=src;else focusArithmetic()}}
+function show(){const hash=location.hash.slice(1);section=subjects.has(hash)?hash:'german';const math=!!embedded[section];previous.hidden=math;previousObserver?.disconnect();previousObserver=null;embeddedPrevious.hidden=true;document.body.classList.toggle('economics-page',section==='economics'||section==='trivia');$('game').hidden=math;$('german-tracker').hidden=math;frame.hidden=!math;document.title=math?embedded[section][1]:section[0].toUpperCase()+section.slice(1)+' practice';document.dispatchEvent(new CustomEvent('practice-section',{detail:section}));for(const button of options){const active=button.dataset.section===section&&(!button.classList.contains('mode')||button.classList.contains('active'));button.classList.toggle('active',active);button.setAttribute('aria-pressed',String(active))}if(math){const [src,,title]=embedded[section];frame.title=title;if(frame.getAttribute('src')!==src)frame.src=src;else{focusArithmetic();trackPrevious()}}}
 function select(name){closeMenu();const hash=name==='german'?'':'#'+name;if(location.hash!==hash)location.hash=hash;show();if(embedded[section])focusArithmetic();else $('game').focus({preventScroll:true})}
 for(const button of options)button.addEventListener('click',()=>select(button.dataset.section));
 for(const menu of menus){menu.querySelector('summary').addEventListener('click',()=>{for(const other of menus)if(other!==menu){other.open=false;other.querySelector('summary').setAttribute('aria-expanded','false')}});menu.addEventListener('toggle',()=>menu.querySelector('summary').setAttribute('aria-expanded',String(menu.open)))}
@@ -476,7 +493,7 @@ for(const link of links){
 }
 note.textContent=config.preview?'Preview — payment link not connected.':config.genericUrl?'Choose an amount, then enter it on Revolut.':'Choose an amount. Continue on Revolut to pay.';
 })();</script>
-<script defer src="notes-navigation.js?v=ebc3920b58bd"></script>
-<script defer src="account.js?v=ebc3920b58bd"></script>
-<script defer data-danki-main src="temponotes/autumn.js?v=ebc3920b58bd"></script><script defer src="atlas-navigation.js?v=ebc3920b58bd"></script><script defer src="weight-navigation.js?v=ebc3920b58bd"></script><script defer src="timebox-navigation.js?v=ebc3920b58bd"></script><script defer src="/analytics.js?v=60c3dede10bc"></script></body>
+<script defer src="notes-navigation.js?v=ef88c48ce5f7"></script>
+<script defer src="account.js?v=ef88c48ce5f7"></script>
+<script defer data-danki-main src="temponotes/autumn.js?v=ef88c48ce5f7"></script><script defer src="atlas-navigation.js?v=ef88c48ce5f7"></script><script defer src="weight-navigation.js?v=ef88c48ce5f7"></script><script defer src="timebox-navigation.js?v=ef88c48ce5f7"></script><script defer src="/analytics.js?v=60c3dede10bc"></script></body>
 </html>

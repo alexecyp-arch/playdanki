@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';import fs from 'node:fs/promises';import vm from 'node:vm';
+const source=await fs.readFile('src/sections.js','utf8'),track=source.match(/function trackPrevious\(\)\{[\s\S]*?\n\}/)[0],click=source.split('\n').find(line=>line.startsWith("embeddedPrevious.addEventListener('click'"));
+let callback,handler,disconnected=0,clicked=0,blocked=false;
+const child={disabled:true,style:{},click(){if(!this.disabled)clicked++;}},button={hidden:false,disabled:false,addEventListener(type,fn){handler=fn;}};
+const c=vm.createContext({frame:{contentDocument:{getElementById:()=>child}},embeddedPrevious:button,MutationObserver:class{constructor(fn){callback=fn;}observe(){}disconnect(){disconnected++;}},menuOpen:()=>blocked});
+vm.runInContext("let section='programming',previousObserver=null;"+track+'\n'+click+'\ntrackPrevious();',c);
+assert.equal(button.hidden,false);assert.equal(button.disabled,true);assert.equal(child.style.display,'none');handler();assert.equal(clicked,0);
+child.disabled=false;callback();assert.equal(button.disabled,false);handler();assert.equal(clicked,1);
+blocked=true;handler();assert.equal(clicked,1,'An open menu cannot trigger Previous');blocked=false;
+vm.runInContext("section='quant';trackPrevious();",c);handler();assert.equal(clicked,2);assert.equal(disconnected,1,'Changing game disconnects its previous observer');
+vm.runInContext("section='arithmetic';trackPrevious();",c);assert.equal(button.hidden,true);handler();assert.equal(clicked,2,'Typed arithmetic has no Previous action');
+vm.runInContext("section='digit-span';trackPrevious();",c);assert.equal(button.hidden,true);handler();assert.equal(clicked,2);
+const html=await fs.readFile('src/index.html','utf8');assert.equal((html.match(/id="previous-card"/g)||[]).length,1);assert(html.indexOf('id="previous-card"')<html.indexOf('<main id="game"'),'Language Previous remains outside the game that is hidden for embedded courses');
+console.log('Previous/Account passed: language control placement, embedded course routing, disabled state, menu exclusion, old observer cleanup and unsupported games.');

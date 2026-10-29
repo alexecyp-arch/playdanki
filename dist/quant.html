@@ -12,12 +12,12 @@ body:focus,#game:focus,#exercise:focus,.arithmetic-frame:focus{outline:none}
 #answer-box{min-width:0}
 #study .answer{max-width:100%}
 #exercise #problem,#exercise #answer{max-width:100%;white-space:normal;overflow-wrap:anywhere}
-#previous-card{display:block;position:fixed;left:50%;bottom:calc(.5rem + env(safe-area-inset-bottom,0px));transform:translateX(-50%) scale(1.4);transform-origin:center bottom;z-index:4;min-height:1.2rem;min-width:0;border:0;border-radius:0;background:var(--danki-bg,#071e48);box-shadow:none;color:#fff;padding:.1rem .3rem;font:700 .55rem/1.2 Arial,Helvetica,sans-serif;white-space:nowrap;touch-action:manipulation}
-@media(hover:none) and (pointer:coarse) and (max-width:600px),(hover:none) and (pointer:coarse) and (max-height:600px){#previous-card{display:block;min-height:2rem;min-width:5rem;padding:.35rem .65rem;font-size:.75rem}.tracker,#tracker{bottom:calc(3rem + env(safe-area-inset-bottom,0px))}.course-main{padding-bottom:8rem}}
+:is(#previous-card,#embedded-previous-card){display:block;position:fixed;left:50%;bottom:calc(.5rem + env(safe-area-inset-bottom,0px));transform:translateX(-50%) scale(1.4);transform-origin:center bottom;z-index:4;min-height:1.2rem;min-width:0;border:0;border-radius:0;background:var(--danki-bg,#071e48);box-shadow:none;color:#fff;padding:.1rem .3rem;font:700 .55rem/1.2 Arial,Helvetica,sans-serif;white-space:nowrap;touch-action:manipulation}
+@media(hover:none) and (pointer:coarse) and (max-width:600px),(hover:none) and (pointer:coarse) and (max-height:600px){:is(#previous-card,#embedded-previous-card){display:block;min-height:2rem;min-width:5rem;padding:.35rem .65rem;font-size:.75rem}.tracker,#tracker{bottom:calc(3rem + env(safe-area-inset-bottom,0px))}.course-main{padding-bottom:8rem}}
 
-@media(max-width:600px){#previous-card{min-height:2rem;min-width:5rem;padding:.35rem .65rem;font-size:.75rem}.tracker,#tracker{bottom:calc(3rem + env(safe-area-inset-bottom,0px))}}
+@media(max-width:600px){:is(#previous-card,#embedded-previous-card){min-height:2rem;min-width:5rem;padding:.35rem .65rem;font-size:.75rem}.tracker,#tracker{bottom:calc(3rem + env(safe-area-inset-bottom,0px))}}
 /* Keep the phone counter at 65%; Previous Card is 40% larger than its former 65% scale. */
-@media(max-width:600px){.tracker,#tracker{transform:scale(.65);transform-origin:bottom right}#previous-card{transform:translateX(-50%) scale(.91);transform-origin:center bottom}.again,#again,#retry,.stats-head button{transform:scale(.65)}}
+@media(max-width:600px){.tracker,#tracker{transform:scale(.65);transform-origin:bottom right}:is(#previous-card,#embedded-previous-card){transform:translateX(-50%) scale(.91);transform-origin:center bottom}.again,#again,#retry,.stats-head button{transform:scale(.65)}}
 </style><script>(()=>{'use strict';
  const controls='button,a,input,textarea,select,summary,[contenteditable="true"],.games-menu,.navigation,#account-bar,.tracker,#tracker,#history,#stats,[role="dialog"]';
  function canTap(event){return !event.defaultPrevented&&!event.ctrlKey&&!event.metaKey&&!event.altKey&&!event.shiftKey&&event.button===0&&matchMedia('(pointer:coarse),(max-width:600px)').matches&&!event.target.closest?.(controls)&&!window.getSelection()?.toString();}

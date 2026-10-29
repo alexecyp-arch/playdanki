@@ -62,6 +62,7 @@
     <p id="support-note" role="status"></p>
   </div>
 </details>
+<div id="account-actions">
 <details id="account-menu" class="games-menu" hidden>
   <summary aria-expanded="false" aria-controls="account-panel"><span id="account-label">Google sign in</span></summary>
   <div id="account-panel">
@@ -75,6 +76,9 @@
     <p id="account-privacy">Your game progress and notes are private. Progress is automatically saved every 30 seconds</p>
   </div>
 </details>
+<button id="previous-card" type="button" aria-label="Previous card">Previous Card</button>
+<button id="embedded-previous-card" type="button" aria-label="Previous card" hidden disabled>Previous Card</button>
+</div>
 </div>
 <main id="game" aria-label="German practice" tabindex="-1">
   <section class="practice">
@@ -88,7 +92,6 @@
     <button id="retry" class="again" type="button" hidden>Retry</button>
     <div id="feedback" class="feedback" role="status" aria-live="polite"></div>
   </section>
-  <button id="previous-card" type="button" aria-label="Previous card">Previous Card</button>
 </main>
 <aside id="german-tracker" class="tracker">
   <section id="history" class="history" aria-label="Daily practice history" hidden>
