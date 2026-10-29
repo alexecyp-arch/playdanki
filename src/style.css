@@ -10,7 +10,7 @@ button:focus-visible{outline:3px solid #fff;outline-offset:5px}
 .games-menu summary::-webkit-details-marker{display:none}
 .games-menu summary:focus-visible{outline:3px solid #fff;outline-offset:4px}
 .games-menu summary span{font-size:.9rem}
-#games-menu .games-list{left:auto;right:0}
+#games-menu .games-list{left:0;right:auto}
 .games-list{position:absolute;left:0;top:calc(100% + .5rem);width:min(18rem,calc(100vw - 3rem));max-height:calc(100svh - 6rem);overflow:auto;overscroll-behavior:contain;background:#102c59;border:1px solid #49628b;border-radius:.65rem;padding:.5rem;box-shadow:0 12px 35px #0005;scrollbar-width:thin}
 .game-option{display:block;width:100%;border:0;border-radius:.35rem;padding:.5rem .6rem;text-align:left;background:transparent;font-size:.9375rem;cursor:pointer}
 .game-option.active,.game-option:hover{background:#244576}

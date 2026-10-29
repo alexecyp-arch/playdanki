@@ -1,12 +1,12 @@
-import {initStandaloneNavigation} from './private-page-navigation.js?v=777de26bb8b3';
+import {initStandaloneNavigation} from './private-page-navigation.js?v=ebc3920b58bd';
 initStandaloneNavigation();
 import {initializeApp} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js';
 import {getAuth,onAuthStateChanged,beforeAuthStateChanged,GoogleAuthProvider,signInWithPopup} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js';
 import * as sdk from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js';
-import {mount} from './ui.js?v=777de26bb8b3';
-import {createNotesStore} from './notes-store.mjs?v=777de26bb8b3';
-import {createCloudSelection} from './cloud-selection.mjs?v=777de26bb8b3';
-import {createLockedStore} from './locked-store.mjs?v=777de26bb8b3';
+import {mount} from './ui.js?v=ebc3920b58bd';
+import {createNotesStore} from './notes-store.mjs?v=ebc3920b58bd';
+import {createCloudSelection} from './cloud-selection.mjs?v=ebc3920b58bd';
+import {createLockedStore} from './locked-store.mjs?v=ebc3920b58bd';
 const config=JSON.parse(document.getElementById('auth-config').textContent);
 const app=initializeApp(config.firebase),auth=getAuth(app),db=sdk.getFirestore(app);
 const root=document.getElementById('root'),gate=document.getElementById('auth-gate'),status=document.getElementById('auth-status'),button=document.getElementById('sign-in');
