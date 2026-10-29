@@ -9,3 +9,6 @@
 
 
 body>.autumn-leaves{z-index:1}body>.autumn-leaves[hidden]{display:none}
+
+/* Tiny, faint seasonal accents reuse the same animation and particle budget. */
+.seasonal-snow img{animation:none}.seasonal-flower img{filter:hue-rotate(var(--hue)) saturate(.7)}
