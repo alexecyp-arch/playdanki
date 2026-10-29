@@ -119,11 +119,13 @@ body:focus,#game:focus,#exercise:focus,.arithmetic-frame:focus{outline:none}
 
 #voice-toggle{display:flex;align-items:center;justify-content:space-between;width:7.75rem;height:1.7rem;padding:.3rem .6rem;border:1px solid var(--danki-border,#45618e);border-radius:.35rem;background:var(--danki-bg,#071e48);color:#fff;font:700 .65rem/1.2 Arial,Helvetica,sans-serif;cursor:pointer}#voice-toggle span{min-width:2.2rem;padding:.12rem .3rem;background:var(--danki-raised,#173766);border-radius:.2rem;text-align:center}#voice-toggle[aria-checked="true"] span{background:#fff;color:var(--danki-bg,#071e48)}#voice-toggle:disabled{opacity:.5;cursor:default}#voice-toggle:focus-visible{outline:2px solid #fff;outline-offset:3px}
 
-/* Previous Card belongs to the Account row, not a floating overlay. */
+/* Previous Card stays above Voice in the sidebar, not a floating overlay. */
 #account-actions{display:flex;align-items:center;gap:.6rem;flex-shrink:0}
-#account-actions [hidden]{display:none!important}
-#account-actions :is(#previous-card,#embedded-previous-card){position:static;inset:auto;transform:none;transform-origin:initial;min-width:0;min-height:1.68rem;padding:.14rem .42rem;font-size:.77rem;line-height:1.2;margin:0;flex:0 0 auto}
-@media(max-width:600px){#account-bar{position:absolute}#account-actions :is(#previous-card,#embedded-previous-card){min-height:2.8rem;min-width:7rem;padding:.49rem .91rem;font-size:1.05rem}}</style>
+#account-actions [hidden],#previous-controls [hidden]{display:none!important}
+#previous-controls :is(#previous-card,#embedded-previous-card){position:static;inset:auto;transform:none;transform-origin:initial;min-width:0;min-height:1.68rem;padding:.14rem .42rem;font-size:.77rem;line-height:1.2;margin:0;flex:0 0 auto}
+@media(max-width:600px){#account-bar{position:absolute}#previous-controls :is(#previous-card,#embedded-previous-card){min-height:2.8rem;min-width:7rem;padding:.49rem .91rem;font-size:1.05rem}}
+
+#previous-controls{display:flex;align-items:center;flex-shrink:0}</style>
 <script>(()=>{'use strict';
  const controls='button,a,input,textarea,select,summary,[contenteditable="true"],.games-menu,.navigation,#account-bar,.tracker,#tracker,#history,#stats,[role="dialog"]';
  function canTap(event){return !event.defaultPrevented&&!event.ctrlKey&&!event.metaKey&&!event.altKey&&!event.shiftKey&&event.button===0&&matchMedia('(pointer:coarse),(max-width:600px)').matches&&!event.target.closest?.(controls)&&!window.getSelection()?.toString();}
@@ -182,6 +184,10 @@ body>.autumn-leaves{z-index:1}body>.autumn-leaves[hidden]{display:none}
 </header>
 <div id="account-bar">
 <div id="theme-switcher" role="group" aria-label="Background colour"><button type="button" data-theme-choice="indigo" aria-label="Indigo background" aria-pressed="true" title="INDIGO"></button><button type="button" data-theme-choice="charcoal" aria-label="Charcoal background" aria-pressed="false" title="CHARCOAL"></button><button id="leaves-toggle" type="button" aria-label="Falling leaves" aria-pressed="true" title="LEAVES ON"><svg aria-hidden="true" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 3C9 2 3 6 4 13c1 8 12 9 15 0 1-3 1-7 1-10Z"/><path d="M3 22 16 9"/></svg></button></div>
+<div id="previous-controls">
+<button id="previous-card" type="button" aria-label="Previous card">Previous Card</button>
+<button id="embedded-previous-card" type="button" aria-label="Previous card" hidden disabled>Previous Card</button>
+</div>
 <button id="voice-toggle" type="button" role="switch" aria-checked="false" aria-label="Card voice">VOICE <span>OFF</span></button>
 <a class="timebox-link" href="timebox/">TIMEBOX</a>
 <a class="weight-link" href="weight-tracker/">WEIGHT TRACKER</a>
@@ -211,8 +217,6 @@ body>.autumn-leaves{z-index:1}body>.autumn-leaves[hidden]{display:none}
     <p id="account-privacy">Your game progress and notes are private. Progress is automatically saved every 30 seconds</p>
   </div>
 </details>
-<button id="previous-card" type="button" aria-label="Previous card">Previous Card</button>
-<button id="embedded-previous-card" type="button" aria-label="Previous card" hidden disabled>Previous Card</button>
 </div>
 </div>
 <main id="game" aria-label="German practice" tabindex="-1">
