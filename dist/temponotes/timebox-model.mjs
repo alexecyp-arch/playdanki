@@ -74,3 +74,6 @@ export function chartValue(task,now,period='today',selectedDay=dayKey(new Date(n
  if(period==='ytd'){const first=today.slice(0,4)+'-01-01';return Object.entries(days).reduce((sum,[key,value])=>sum+(key>=first&&key<=today?value:0),0);}
  return kind==='reps'?repsFor(task,now,period):timeFor(task,now,period);
 }
+
+// Move calendar days at local noon so clock changes do not skip a date.
+export function shiftChartDay(value,step,today=dayKey(new Date())){const date=new Date(value+'T12:00:00');if(!Number.isFinite(date.getTime())||dayKey(date).padStart(10,'0')!==value||![-1,1].includes(step))return today;date.setDate(date.getDate()+step);const next=String(date.getFullYear()).padStart(4,'0')+'-'+String(date.getMonth()+1).padStart(2,'0')+'-'+String(date.getDate()).padStart(2,'0');return next<'0001-01-01'?'0001-01-01':next>today?today:next;}

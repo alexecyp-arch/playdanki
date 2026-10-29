@@ -1,8 +1,17 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
-import {chartValue} from '../src/temponotes/timebox-model.mjs';
+import {chartValue,shiftChartDay} from '../src/temponotes/timebox-model.mjs';
 import {calendarLabel} from '../src/temponotes/calendar.mjs';
 process.env.TZ='Asia/Nicosia';
+assert.equal(shiftChartDay('2026-10-29',-1,'2026-10-29'),'2026-10-28');
+assert.equal(shiftChartDay('2026-10-28',-1,'2026-10-29'),'2026-10-27');
+assert.equal(shiftChartDay('2026-10-28',1,'2026-10-29'),'2026-10-29');
+assert.equal(shiftChartDay('2026-10-29',1,'2026-10-29'),'2026-10-29','Cannot move beyond today');
+assert.equal(shiftChartDay('2026-01-01',-1,'2026-10-29'),'2025-12-31');
+assert.equal(shiftChartDay('2024-03-01',-1,'2026-10-29'),'2024-02-29');
+assert.equal(shiftChartDay('2026-03-29',-1,'2026-10-29'),'2026-03-28','Spring clock change');
+assert.equal(shiftChartDay('2026-10-25',-1,'2026-10-29'),'2026-10-24','Autumn clock change');
+assert.equal(shiftChartDay('0001-01-01',-1,'2026-10-29'),'0001-01-01');
 const now=new Date(2026,9,29,12).getTime(),task={days:{'2025-12-31':500,'2026-01-01':100,'2026-10-28':200,'2026-10-29':300,'2026-10-30':999},runningSince:null};
 for(const kind of ['time','reps']){
  assert.equal(chartValue(task,now,'day','2026-10-28',kind),200);

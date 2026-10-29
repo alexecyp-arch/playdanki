@@ -22,3 +22,5 @@
 .task-chart header [role=group]{flex-wrap:wrap}.chart-date-label{display:flex;align-items:center;gap:8px;margin-bottom:12px;font-size:10px}.chart-date{min-width:0;max-width:100%;padding:6px 8px;border:1px solid #696a73;background:#18191c;color:white;font:700 12px Arial;color-scheme:dark}
 
 @media(max-width:900px){.private-page-links + #root .timebox-workspace.split-boxes{padding-top:12px}}
+
+.task-chart .chart-day-step{flex:0 0 24px;width:24px;height:27px;padding:0;font:700 18px/1 Arial,Helvetica,sans-serif;text-align:center}.task-chart .chart-day-step:disabled{opacity:.35;cursor:default}.chart-date-label{gap:6px}
