@@ -1,4 +1,6 @@
-// Selection changes display order only; it never changes expiry or note data.
-export function orderNotes(notes,selected){
- return [...notes].sort((a,b)=>Number(b.id===selected)-Number(a.id===selected)||a.expiresAt-b.expiresAt||b.createdAt-a.createdAt||b.id.localeCompare(a.id));
+import {orderKey} from './daily-notes.mjs';
+// Explicit ordering changes display order only, never expiry or note text.
+export function orderNotes(notes,order=[]){
+ const ranks=new Map((Array.isArray(order)?order:[]).map((id,i)=>[id,i]));
+ return [...notes].sort((a,b)=>(ranks.get(orderKey(a.id))??Infinity)-(ranks.get(orderKey(b.id))??Infinity)||a.expiresAt-b.expiresAt||b.createdAt-a.createdAt||b.id.localeCompare(a.id));
 }

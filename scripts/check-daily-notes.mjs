@@ -1,0 +1,38 @@
+import assert from 'node:assert/strict';
+import {createNotesStore} from '../src/temponotes/notes-store.mjs';
+import {endOfDay,nextDay,dayDeadline,finishOrder,orderKey} from '../src/temponotes/daily-notes.mjs';
+import {orderNotes} from '../src/temponotes/note-order.mjs';
+import {occurrences} from '../src/temponotes/eternal.mjs';
+process.env.TZ='Europe/Zurich';
+let clock=new Date(2026,9,30,23,59).getTime(),rows=new Map(),watchers=new Map(),queue=Promise.resolve();
+const auth={currentUser:{uid:'alice'}},snapshot=r=>({exists:()=>rows.has(r),data:()=>rows.get(r),metadata:{fromCache:false}});
+function emit(){for(const [path,fn]of watchers){if(/\/(temponotes|eternalNotes)$/.test(path))fn({docs:[...rows].filter(([r])=>r.startsWith(path+'/')).map(([r,value])=>({id:r.split('/').at(-1),data:()=>value})),metadata:{fromCache:false}});else fn(snapshot(path));}}
+const sdk={doc:(_, ...p)=>p.join('/'),collection:(_, ...p)=>p.join('/'),serverTimestamp:()=>({toMillis:()=>clock}),setDoc:async(r,v)=>{rows.set(r,v);emit();},getDoc:async r=>snapshot(r),deleteDoc:async r=>{rows.delete(r);emit();},onSnapshot:(path,options,fn)=>{watchers.set(path,fn);emit();return()=>watchers.delete(path);},runTransaction:(_,fn)=>{const task=queue.then(async()=>{const writes=[],result=await fn({get:async r=>snapshot(r),set:(r,v)=>writes.push(()=>rows.set(r,v)),update:(r,v)=>writes.push(()=>rows.set(r,{...rows.get(r),...v})),delete:r=>writes.push(()=>rows.delete(r))});writes.forEach(f=>f());emit();return result;});queue=task.catch(()=>{});return task;}};
+const id=n=>'00000000-0000-4000-a000-'+String(n).padStart(12,'0');
+let store=await createNotesStore({auth,db:{},sdk,uid:'alice',now:()=>clock});
+const call=(path,method,data)=>store.request(path,{method,body:JSON.stringify(data)}),get=async()=>await(await store.request('/api/notes')).json();
+assert.equal((await call('/api/notes','POST',{id:id(1),body:'late note'})).status,200);
+assert.equal((await get()).notes[0].expiresAt-clock,60000,'A note made at 23:59 lasts until midnight');
+await call('/api/notes','POST',{id:id(1),body:'retry'});assert.equal((await get()).notes[0].body,'late note','Retries do not overwrite');
+assert.equal((await call('/api/notes','PATCH',{id:id(1),minutes:60})).status,400,'Hour controls removed');
+await Promise.all([call('/api/notes','PATCH',{id:id(1),days:1}),call('/api/notes','PATCH',{id:id(1),days:1})]);
+assert.equal((await get()).notes[0].expiresAt,nextDay(nextDay(endOfDay(clock))),'Two concurrent carry actions add two calendar days');
+rows.set('users/alice/temponotes/'+id(2),{body:'existing note',createdAt:clock-1000,expiresAt:clock+3600000});emit();
+assert.equal((await get()).notes.find(n=>n.id===id(2)).expiresAt,dayDeadline(clock+3600000),'Existing notes keep their text and expiry day, ending at midnight');
+await call('/api/notes','POST',{id:id(3),body:'third note'});
+assert.equal((await call('/api/note-order','POST',{ids:[id(3),id(1),id(2)]})).status,200);
+assert.deepEqual(orderNotes((await get()).notes,(await get()).noteOrder).map(n=>n.id),[id(3),id(1),id(2)]);
+assert.deepEqual(finishOrder([id(3)],[id(1),id(2),id(3)]),[id(3),id(1),id(2)],'Unclicked notes retain relative order');
+assert.equal((await call('/api/note-order','POST',{ids:[id(1),id(1)]})).status,400);
+store.dispose();assert.equal(watchers.size,0);
+store=await createNotesStore({auth,db:{},sdk,uid:'alice',now:()=>clock});assert.deepEqual((await get()).noteOrder,[id(3),id(1),id(2)],'Ordering survives reload');
+const schedule={id:id(4),body:'daily',days:[new Date(clock).getDay(),new Date(endOfDay(clock)).getDay()],createdAt:clock,dismissedOn:''};
+await call('/api/eternal','POST',schedule);
+let data=await get(),occ=occurrences(data.eternalNotes,clock)[0];assert.equal(orderKey(occ.id),'eternal:'+id(4));
+await call('/api/eternal','PATCH',{id:id(4),occurrenceId:occ.id,days:1});clock=endOfDay(clock)+1000;data=await get();
+let active=occurrences(data.eternalNotes,clock,data.eternalAdjustments);assert.equal(active.length,1,'Carry does not duplicate tomorrow recurring note');assert.equal(active[0].id,occ.id);
+await call('/api/eternal','PATCH',{id:id(4),dismiss:true});data=await get();assert.equal(occurrences(data.eternalNotes,clock,data.eternalAdjustments).length,0,'Carried recurring note can be dismissed');
+for(const [date,hours]of [[new Date(2026,2,28,12),23],[new Date(2026,9,24,12),25]]){const end=endOfDay(date.getTime());assert.equal((nextDay(end)-end)/3600000,hours,'Calendar day observes clock changes');}
+clock=nextDay(nextDay(endOfDay(clock)));assert.equal((await get()).notes.length,0,'Uncarried notes disappear at midnight');
+await queue;auth.currentUser={uid:'bob'};assert.equal((await store.request('/api/notes')).status,400);assert.equal((await call('/api/note-order','POST',{ids:[]})).status,400,'Order cannot cross accounts');store.dispose();assert.equal(watchers.size,0);
+console.log('Daily notes passed: midnight, last-minute creation, concurrent +1DAY, legacy preservation, ordering and reload, recurring carry/dismissal, 23/25-hour days and account isolation.');

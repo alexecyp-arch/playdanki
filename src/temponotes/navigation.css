@@ -291,3 +291,6 @@
  .private-page-links .notes-weight-link{font-size:6.5px}
  .notes-only .header{padding-right:16px;padding-top:12px;min-height:82px}
 }
+
+/* Ordering is temporary; ordinary clicks no longer pin notes. */
+.note .note-body{cursor:default}.note.selected .note-body{cursor:pointer}.order-status{margin:6px 0;color:#e0ccff;font:700 10px/1.4 Arial,Helvetica,sans-serif}.composer-top .time-buttons{max-width:100%}.note .order-notes{min-width:43px}

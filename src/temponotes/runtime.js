@@ -5,13 +5,12 @@ import {getAuth,onAuthStateChanged,beforeAuthStateChanged,GoogleAuthProvider,sig
 import * as sdk from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js';
 import {mount} from './ui.js';
 import {createNotesStore} from './notes-store.mjs';
-import {createCloudSelection} from './cloud-selection.mjs';
 import {createLockedStore} from './locked-store.mjs';
 const config=JSON.parse(document.getElementById('auth-config').textContent);
 const app=initializeApp(config.firebase),auth=getAuth(app),db=sdk.getFirestore(app);
 const root=document.getElementById('root'),gate=document.getElementById('auth-gate'),status=document.getElementById('auth-status'),button=document.getElementById('sign-in');
-let generation=0,dispose=()=>{},unmount=()=>{},loading,selectionStore,lockedStore;
-function clear(){window.dispatchEvent(new Event('danki-private-auth-clearing'));selectionStore?.dispose();selectionStore=null;lockedStore?.dispose();lockedStore=null;++generation;loading?.abort();unmount();dispose();unmount=dispose=()=>{};root.replaceChildren();button.hidden=true;status.hidden=false;status.textContent='LOADING';gate.hidden=false;}
+let generation=0,dispose=()=>{},unmount=()=>{},loading,lockedStore;
+function clear(){window.dispatchEvent(new Event('danki-private-auth-clearing'));lockedStore?.dispose();lockedStore=null;++generation;loading?.abort();unmount();dispose();unmount=dispose=()=>{};root.replaceChildren();button.hidden=true;status.hidden=false;status.textContent='LOADING';gate.hidden=false;}
 beforeAuthStateChanged(auth,clear);
 window.addEventListener('pagehide',clear);
 window.addEventListener('pageshow',event=>{if(event.persisted)location.reload();});
@@ -29,10 +28,8 @@ onAuthStateChanged(auth,async user=>{
   window.dispatchEvent(new CustomEvent('danki-private-auth',{detail:user?.uid||null}));if(!user)return;
   try{
     const pending=createNotesStore({auth,db,sdk,uid:user.uid,signal:loading.signal});
-    let storage;try{storage=localStorage;}catch{}
-    const selection=selectionStore=createCloudSelection({auth,db,sdk,uid:user.uid,storage,onError:()=>{if(current===generation){status.hidden=false;status.textContent='Could not sync the pin. Tap the note to retry.';}}});
     lockedStore=createLockedStore({auth,db,sdk,uid:user.uid});
-    gate.hidden=true;unmount=mount(root,async(...args)=>(await pending).request(...args),{visible:window.parent===window||!window.frameElement?.hidden,selection,locked:lockedStore});
+    gate.hidden=true;unmount=mount(root,async(...args)=>(await pending).request(...args),{visible:window.parent===window||!window.frameElement?.hidden,locked:lockedStore});
     const store=await pending;
     if(current!==generation){store.dispose();return;}
     dispose=store.dispose;

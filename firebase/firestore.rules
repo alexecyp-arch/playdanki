@@ -38,7 +38,8 @@ service cloud.firestore {
       allow create: if owns(uid)
         && id.matches('^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$')
         && request.resource.data.keys().hasAll(['body', 'createdAt', 'expiresAt'])
-        && request.resource.data.keys().hasOnly(['body', 'createdAt', 'expiresAt'])
+        && request.resource.data.keys().hasOnly(['body', 'createdAt', 'expiresAt', 'daily'])
+        && (!('daily' in request.resource.data) || request.resource.data.daily == true)
         && request.resource.data.body is string
         && request.resource.data.body.size() > 0
         && request.resource.data.body.size() <= 10000
@@ -46,16 +47,17 @@ service cloud.firestore {
         && request.resource.data.expiresAt is int
         && request.resource.data.createdAt >= request.time.toMillis() - 120000
         && request.resource.data.createdAt <= request.time.toMillis() + 120000
-        && request.resource.data.expiresAt - request.resource.data.createdAt >= 3600000
+        && request.resource.data.expiresAt > request.resource.data.createdAt
         && request.resource.data.expiresAt - request.resource.data.createdAt <= 31536000000
-        && (request.resource.data.expiresAt - request.resource.data.createdAt) % 1800000 == 0
         && request.resource.data.expiresAt > request.time.toMillis()
         && request.resource.data.expiresAt <= request.time.toMillis() + 31536000000;
       allow update: if owns(uid)
-        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['expiresAt'])
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['expiresAt', 'daily'])
+        && (!('daily' in request.resource.data) || request.resource.data.daily == true)
         && request.resource.data.expiresAt is int
         && resource.data.expiresAt > request.time.toMillis()
-        && request.resource.data.expiresAt - resource.data.expiresAt in [-1800000, 1800000, 3600000, 21600000]
+        && request.resource.data.expiresAt >= resource.data.expiresAt
+        && request.resource.data.expiresAt - resource.data.expiresAt <= 176400000
         && request.resource.data.expiresAt <= request.time.toMillis() + 31536000000;
     }
     match /users/{uid}/temponotesMeta/clock {
