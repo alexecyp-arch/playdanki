@@ -5,4 +5,4 @@
 #digit,#recall #answer,#score{text-shadow:0 .025em 0 #0009,0 .05em 0 #0008,0 .075em 0 #0006,0 .1em .055em #0008}
 
 html body #recall #answer{color:rgb(254,205,205)}
-#digit,#recall{position:relative;top:24px}@media(max-width:600px){#digit,#recall{top:16px}}
+#digit,#recall{position:relative;top:40px}@media(max-width:600px){#digit,#recall{top:28px}}
