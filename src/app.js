@@ -60,7 +60,8 @@ function cardIndex(){if(active===decks.hangul)return active.cards[0]?hangulPract
 function centerAnswer(){
   if(!practiceActive||game.hidden||answerBox.hidden)return;
   const h=answerBox.getBoundingClientRect().height,topEnd=Math.max(word.getBoundingClientRect().bottom,questionImage.hidden?0:questionImage.getBoundingClientRect().bottom)+scrollY;
-  const center=Math.max(innerHeight/2,topEnd+24+h/2);
+  const offset=parseFloat(getComputedStyle(game).getPropertyValue('--card-offset'))||0;
+  const center=Math.max(innerHeight/2+offset,topEnd+24+h/2);
   answerBox.style.top=center+'px';
   game.style.minHeight=Math.max(innerHeight,center+h/2+144)+'px';
 }
