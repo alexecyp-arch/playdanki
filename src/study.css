@@ -1,4 +1,6 @@
 :root{--study-size:3.5rem;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+/* Crisp extrusion gives central card text depth without changing its colour. */
+#word,#translation,#question,#exercise #problem,#exercise #answer,#study #answer,#study #code{text-shadow:0 .025em 0 #0009,0 .05em 0 #0008,0 .075em 0 #0006,0 .1em .055em #0008}
 @media(max-width:600px){:root{--study-size:2rem}}
 #word,#translation,#question,#exercise #problem,#exercise #answer,#study #answer,#study #code{font-size:var(--study-size);line-height:1.25}
 #answer-box,#exercise #answer,#study .answer,#study pre{border:0;border-radius:0;background:transparent;box-shadow:none;padding:0}
@@ -11,3 +13,5 @@
 @media(max-width:600px){:is(#previous-card,#embedded-previous-card){min-height:2rem;min-width:5rem;padding:.35rem .65rem;font-size:.75rem}.tracker,#tracker{bottom:calc(3rem + env(safe-area-inset-bottom,0px))}}
 /* Keep the phone counter at 65%; Previous Card is 40% larger than its former 65% scale. */
 @media(max-width:600px){.tracker,#tracker{transform:scale(.65);transform-origin:bottom right}:is(#previous-card,#embedded-previous-card){transform:translateX(-50%) scale(.91);transform-origin:center bottom}.again,#again,#retry,.stats-head button{transform:scale(.65)}}
+
+html body #translation,html body #exercise #answer,html body #study #answer{color:rgb(254,205,205)}

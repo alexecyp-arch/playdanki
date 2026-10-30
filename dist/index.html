@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="en">
-<head><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-WyLwGL+atUliNI71RePT1vcgwPrTpR3ulbfsHqfIq+g=' 'sha256-fUs4FU007kOkfg7Bc2MbU75c6wZXQtDA4pGMvMZ78O4=' 'sha256-vWHjjhPJF0QGZQyEhnLoQmaI1+ufDS82ec5fHJQJCKA=' 'sha256-0De4gA5W92fhl3RnFExtxNd6g3pFmZ+/ZOrUI8kBlHM=' 'sha256-PZOFqZKNt0z0BfNr+CJqJVFdDRtBcsM4g6GOH8xrHcQ=' 'sha256-Mes9idSDC0iPVwmqwNV8II8jkEEIN0QmxLHzX95qLvY=' 'sha256-2OyyqJoUT9xy40ftmlTh6tsc0ZfdmG6wRumvh/K38mg=' https://www.gstatic.com https://apis.google.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://*.googleapis.com https://www.gstatic.com https://apis.google.com https://*.firebaseapp.com https://*.firebaseio.com wss://*.firebaseio.com https://cloudflareinsights.com https://*.cloudflareinsights.com; frame-src 'self' https://playdanki.com https://www.playdanki.com https://*.firebaseapp.com https://accounts.google.com https://www.google.com; worker-src 'self' blob:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'"><meta name="referrer" content="same-origin"><script>(()=>{'use strict';if(window.top===window)return;let same=false;try{same=window.top.location.origin===location.origin;}catch{}if(!same&&location.ancestorOrigins?.length)same=Array.from(location.ancestorOrigins).every(origin=>origin===location.origin);if(same)return;try{parent.postMessage({type:'danki-frame-blocked'},location.origin);}catch{}document.documentElement.style.display='none';window.stop();throw Error('Open PlayDanki directly.');})();</script>
+<head><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-WyLwGL+atUliNI71RePT1vcgwPrTpR3ulbfsHqfIq+g=' 'sha256-fUs4FU007kOkfg7Bc2MbU75c6wZXQtDA4pGMvMZ78O4=' 'sha256-vWHjjhPJF0QGZQyEhnLoQmaI1+ufDS82ec5fHJQJCKA=' 'sha256-0De4gA5W92fhl3RnFExtxNd6g3pFmZ+/ZOrUI8kBlHM=' 'sha256-PZOFqZKNt0z0BfNr+CJqJVFdDRtBcsM4g6GOH8xrHcQ=' 'sha256-r9M6qX/JgHbPqD2raaQyJ5L1TCzGceSB3siZ4Jrh/xg=' 'sha256-2OyyqJoUT9xy40ftmlTh6tsc0ZfdmG6wRumvh/K38mg=' https://www.gstatic.com https://apis.google.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://*.googleapis.com https://www.gstatic.com https://apis.google.com https://*.firebaseapp.com https://*.firebaseio.com wss://*.firebaseio.com https://cloudflareinsights.com https://*.cloudflareinsights.com; frame-src 'self' https://playdanki.com https://www.playdanki.com https://*.firebaseapp.com https://accounts.google.com https://www.google.com; worker-src 'self' blob:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'"><meta name="referrer" content="same-origin"><script>(()=>{'use strict';if(window.top===window)return;let same=false;try{same=window.top.location.origin===location.origin;}catch{}if(!same&&location.ancestorOrigins?.length)same=Array.from(location.ancestorOrigins).every(origin=>origin===location.origin);if(same)return;try{parent.postMessage({type:'danki-frame-blocked'},location.origin);}catch{}document.documentElement.style.display='none';window.stop();throw Error('Open PlayDanki directly.');})();</script>
 <meta charset="utf-8">
 <base href="/">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#071e48">
 <meta name="description" content="Practice languages and learning games with simple cards and saved progress.">
 <title>German practice</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23071e48'/%3E%3Ctext x='16' y='24' text-anchor='middle' font-family='Arial' font-size='24' font-weight='bold' fill='white'%3ED%3C/text%3E%3C/svg%3E">
+
 <style>:root{color-scheme:dark;font-family:Arial,Helvetica,sans-serif;background:var(--danki-bg,#071e48);color:#fff;font-weight:700;font-synthesis:none}
 .atlas-link{display:inline-flex;align-items:center;align-self:center;border:1px solid var(--danki-border,#45618e);border-radius:.4rem;background:var(--danki-panel,#102c59);color:#fff;text-decoration:none;font:700 .68rem/1.2 Arial,Helvetica,sans-serif;padding:.65rem .55rem;white-space:nowrap}.atlas-link:focus-visible{outline:3px solid white;outline-offset:4px}
 *{box-sizing:border-box}
@@ -74,6 +74,8 @@ html body :is(.games-menu summary,.games-list,.temponotes-link,#account-bar>.atl
 *,*::before,*::after{cursor:var(--game-cursor)!important}
 body:focus,#game:focus,#exercise:focus,.arithmetic-frame:focus{outline:none}
 :root{--study-size:3.5rem;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+/* Crisp extrusion gives central card text depth without changing its colour. */
+#word,#translation,#question,#exercise #problem,#exercise #answer,#study #answer,#study #code{text-shadow:0 .025em 0 #0009,0 .05em 0 #0008,0 .075em 0 #0006,0 .1em .055em #0008}
 @media(max-width:600px){:root{--study-size:2rem}}
 #word,#translation,#question,#exercise #problem,#exercise #answer,#study #answer,#study #code{font-size:var(--study-size);line-height:1.25}
 #answer-box,#exercise #answer,#study .answer,#study pre{border:0;border-radius:0;background:transparent;box-shadow:none;padding:0}
@@ -86,6 +88,8 @@ body:focus,#game:focus,#exercise:focus,.arithmetic-frame:focus{outline:none}
 @media(max-width:600px){:is(#previous-card,#embedded-previous-card){min-height:2rem;min-width:5rem;padding:.35rem .65rem;font-size:.75rem}.tracker,#tracker{bottom:calc(3rem + env(safe-area-inset-bottom,0px))}}
 /* Keep the phone counter at 65%; Previous Card is 40% larger than its former 65% scale. */
 @media(max-width:600px){.tracker,#tracker{transform:scale(.65);transform-origin:bottom right}:is(#previous-card,#embedded-previous-card){transform:translateX(-50%) scale(.91);transform-origin:center bottom}.again,#again,#retry,.stats-head button{transform:scale(.65)}}
+
+html body #translation,html body #exercise #answer,html body #study #answer{color:rgb(254,205,205)}
 #support-menu{position:fixed;left:1rem;bottom:calc(.75rem + env(safe-area-inset-bottom,0px));z-index:7}
 #support-menu[hidden]{display:none}
 #support-menu>summary{font-size:.75rem;line-height:1.2;gap:.4rem;padding:.5rem .6rem;border-color:var(--danki-border,#45618e);background:var(--danki-bg,#071e48)}
@@ -147,7 +151,7 @@ body>.autumn-leaves{z-index:1}body>.autumn-leaves[hidden]{display:none}
 
 /* Tiny, faint seasonal accents reuse the same animation and particle budget. */
 .seasonal-snow img{animation:none}.seasonal-flower img{filter:hue-rotate(var(--hue)) saturate(.7)}
-</style><script id="danki-shared-theme" src="/theme.js?v=60c3dede10bc"></script><link rel="stylesheet" href="/theme.css?v=60c3dede10bc"></head>
+</style><link rel="icon" type="image/x-icon" sizes="32x32" href="/favicon.ico?v=ef99aa5d3677"><link rel="icon" type="image/svg+xml" href="/favicon.svg?v=ef99aa5d3677"><script id="danki-shared-theme" src="/theme.js?v=60c3dede10bc"></script><link rel="stylesheet" href="/theme.css?v=60c3dede10bc"></head>
 <body>
 <a class="temponotes-link" href="temponotes/">TEMPONOTES</a>
 <header class="navigation">
@@ -458,7 +462,7 @@ for(const [section,key]of Object.entries(modeKeys))try{const preferred=localStor
 const startSection=location.hash.slice(1);practiceActive=!['arithmetic','programming','quant','digit-span'].includes(startSection);mode=preferredModes[startSection]||preferredModes.german;active=decks[mode];state=read(active);render();scheduleMidnight();
 })();</script>
 <script>(()=>{'use strict';
-const $=id=>document.getElementById(id),frame=$('arithmetic-frame'),menus=[...document.querySelectorAll('.games-menu')],subjects=new Set(['french','german','japanese','spanish','italian','greek','korean','economics','trivia','arithmetic','programming','quant','digit-span']),options=document.querySelectorAll('.navigation .game-option'),embedded={'digit-span':['digit-span/index.html?v=e671eca99264','Digit Span','Digit Span memory game'],arithmetic:['arithmetic.html?v=e671eca99264','Weekly arithmetic','Weekly arithmetic practice'],programming:['programming.html?v=e671eca99264','Programming','Programming learning cards'],quant:['quant.html?v=e671eca99264','QUANT','QUANT learning cards']};
+const $=id=>document.getElementById(id),frame=$('arithmetic-frame'),menus=[...document.querySelectorAll('.games-menu')],subjects=new Set(['french','german','japanese','spanish','italian','greek','korean','economics','trivia','arithmetic','programming','quant','digit-span']),options=document.querySelectorAll('.navigation .game-option'),embedded={'digit-span':['digit-span/index.html?v=fb7300120057','Digit Span','Digit Span memory game'],arithmetic:['arithmetic.html?v=fb7300120057','Weekly arithmetic','Weekly arithmetic practice'],programming:['programming.html?v=fb7300120057','Programming','Programming learning cards'],quant:['quant.html?v=fb7300120057','QUANT','QUANT learning cards']};
 const menuOpen=()=>menus.some(menu=>menu.open);
 let section='german';
 const previous=$('previous-card'),embeddedPrevious=$('embedded-previous-card');let previousObserver=null;
@@ -497,7 +501,7 @@ for(const link of links){
 }
 note.textContent=config.preview?'Preview — payment link not connected.':config.genericUrl?'Choose an amount, then enter it on Revolut.':'Choose an amount. Continue on Revolut to pay.';
 })();</script>
-<script defer src="notes-navigation.js?v=e671eca99264"></script>
-<script defer src="account.js?v=e671eca99264"></script>
-<script defer data-danki-main src="temponotes/autumn.js?v=e671eca99264"></script><script defer src="atlas-navigation.js?v=e671eca99264"></script><script defer src="weight-navigation.js?v=e671eca99264"></script><script defer src="timebox-navigation.js?v=e671eca99264"></script><script defer src="/analytics.js?v=60c3dede10bc"></script></body>
+<script defer src="notes-navigation.js?v=fb7300120057"></script>
+<script defer src="account.js?v=fb7300120057"></script>
+<script defer data-danki-main src="temponotes/autumn.js?v=fb7300120057"></script><script defer src="atlas-navigation.js?v=fb7300120057"></script><script defer src="weight-navigation.js?v=fb7300120057"></script><script defer src="timebox-navigation.js?v=fb7300120057"></script><script defer src="/analytics.js?v=60c3dede10bc"></script></body>
 </html>

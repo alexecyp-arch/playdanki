@@ -6,6 +6,8 @@
 body:focus,#game:focus,#exercise:focus,.arithmetic-frame:focus{outline:none}
 
 :root{--study-size:3.5rem;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+/* Crisp extrusion gives central card text depth without changing its colour. */
+#word,#translation,#question,#exercise #problem,#exercise #answer,#study #answer,#study #code{text-shadow:0 .025em 0 #0009,0 .05em 0 #0008,0 .075em 0 #0006,0 .1em .055em #0008}
 @media(max-width:600px){:root{--study-size:2rem}}
 #word,#translation,#question,#exercise #problem,#exercise #answer,#study #answer,#study #code{font-size:var(--study-size);line-height:1.25}
 #answer-box,#exercise #answer,#study .answer,#study pre{border:0;border-radius:0;background:transparent;box-shadow:none;padding:0}
@@ -18,13 +20,15 @@ body:focus,#game:focus,#exercise:focus,.arithmetic-frame:focus{outline:none}
 @media(max-width:600px){:is(#previous-card,#embedded-previous-card){min-height:2rem;min-width:5rem;padding:.35rem .65rem;font-size:.75rem}.tracker,#tracker{bottom:calc(3rem + env(safe-area-inset-bottom,0px))}}
 /* Keep the phone counter at 65%; Previous Card is 40% larger than its former 65% scale. */
 @media(max-width:600px){.tracker,#tracker{transform:scale(.65);transform-origin:bottom right}:is(#previous-card,#embedded-previous-card){transform:translateX(-50%) scale(.91);transform-origin:center bottom}.again,#again,#retry,.stats-head button{transform:scale(.65)}}
+
+html body #translation,html body #exercise #answer,html body #study #answer{color:rgb(254,205,205)}
 </style><script>(()=>{'use strict';
  const controls='button,a,input,textarea,select,summary,[contenteditable="true"],.games-menu,.navigation,#account-bar,.tracker,#tracker,#history,#stats,[role="dialog"]';
  function canTap(event){return !event.defaultPrevented&&!event.ctrlKey&&!event.metaKey&&!event.altKey&&!event.shiftKey&&event.button===0&&matchMedia('(pointer:coarse),(max-width:600px)').matches&&!event.target.closest?.(controls)&&!window.getSelection()?.toString();}
  function install({next,previous,enabled}){document.getElementById('previous-card').addEventListener('click',previous);document.addEventListener('click',event=>{if(enabled()&&canTap(event))next();},true);}
  window.StudyNavigation={canTap,install};
 })();
-</script><script>// Only public game answers cross into the same-origin main voice controller.
+</script><link rel="icon" type="image/x-icon" sizes="32x32" href="/favicon.ico?v=ef99aa5d3677"><link rel="icon" type="image/svg+xml" href="/favicon.svg?v=ef99aa5d3677"><script>// Only public game answers cross into the same-origin main voice controller.
 (()=>{'use strict';
 function host(){try{return parent!==window&&parent.document.getElementById('arithmetic-frame')?.contentDocument===document?parent:null;}catch{return null;}}
 window.DankiAnswerVoice=(scope,id,text,announce=false)=>{const h=host();if(!h)return;h.document.dispatchEvent(new h.CustomEvent('danki-card-voice',{detail:{scope:'embedded:'+scope,id:String(id),text:String(text),lang:'en',announce,sourceDocument:document}}));};
