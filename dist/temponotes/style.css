@@ -4,7 +4,7 @@
 
 .current-time{font-size:14px;font-weight:500;letter-spacing:0;white-space:nowrap;font-variant-numeric:tabular-nums;margin-left:5px}@media(max-width:480px){.current-time{font-size:12px;margin-left:2px}.brand{gap:9px}}
 
-.note.urgent .note-body,.note.urgent .expiry,.note.urgent .number{color:#ff8585}
+
 
 .note-time-buttons{display:flex;flex-direction:column;flex-shrink:0;gap:2px;margin-left:auto}.note-time-buttons button{background:#252d35;border:1px solid #53606c;border-radius:4px;color:#edf0f2;font-size:9px;letter-spacing:0;width:42px;height:18px;padding:0;line-height:16px}.note-time-buttons button:hover{background:#394754}
 

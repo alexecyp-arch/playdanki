@@ -1,4 +1,4 @@
-import {kilograms} from './model.mjs?v=840f2d616e55';
+import {kilograms} from './model.mjs?v=0d9f11cf122e';
 export function createWeightStore({auth,db,sdk,uid,onChange,onStatus,onTarget=()=>{}}){
  let active=true,ready=false,targetReady=false;
  const check=()=>{if(!active||auth.currentUser?.uid!==uid)throw Error('SIGN IN');};
