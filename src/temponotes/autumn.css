@@ -15,3 +15,5 @@ html,body{background:#18191c!important}
 
 /* Tiny, faint seasonal accents reuse the same animation and particle budget. */
 .seasonal-snow img{animation:none}.seasonal-flower img{filter:hue-rotate(var(--hue)) saturate(.7)}
+
+.seasonal-accent{animation-iteration-count:1}.seasonal-accent img{filter:saturate(.75);animation:none}

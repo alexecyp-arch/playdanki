@@ -1,14 +1,18 @@
-import {endOfDay,dayDeadline,nextDay,validOrder} from './daily-notes.mjs?v=ee8206a776d2';
-import {validSchedule,localDay,occurrences} from './eternal.mjs?v=ee8206a776d2';
+import {endOfDay,dayDeadline,nextDay,validOrder} from './daily-notes.mjs?v=169a0b0f98d3';
+import {validSchedule,localDay,occurrences,noteColors} from './eternal.mjs?v=169a0b0f98d3';
 // Private, account-scoped adapter for the original Temponote interface.
 export async function createNotesStore({auth,db,sdk,uid,now=Date.now,signal}){
   const {doc,collection,setDoc,getDoc,serverTimestamp,onSnapshot,runTransaction,deleteDoc}=sdk;
-  let disposed=false,offset=0,notes=new Map(),eternal=new Map(),syncError=null,eternalError=null,adjustments={},noteOrder=[];
+  let disposed=false,offset=0,notes=new Map(),eternal=new Map(),syncError=null,eternalError=null,adjustments={},noteOrder=[],colors={};
   const check=()=>{if(disposed||auth.currentUser?.uid!==uid)throw Error('Please sign in again.');};
   const time=()=>now()+offset;
   const reference=id=>doc(db,'users',uid,'temponotes',id);
   const permanent=id=>doc(db,'users',uid,'eternalNotes',id);
   check();
+  const colorRef=doc(db,'users',uid,'progress','eternal-note-colors');
+  const readColors=s=>{try{const v=JSON.parse(s.data().value);return Object.fromEntries(Object.entries(v).filter(([id,c])=>validId(id)&&Object.hasOwn(noteColors,c)));}catch{return {};}};
+  const stopColors=onSnapshot(colorRef,{includeMetadataChanges:true},s=>{if(!disposed&&auth.currentUser?.uid===uid)colors=readColors(s);},()=>{});
+  const firstColors=getDoc(colorRef).then(s=>{check();colors=readColors(s);});
   const orderRef=doc(db,'users',uid,'progress','note-order');
   const readOrder=s=>{try{const ids=JSON.parse(s.data().value).ids;return validOrder(ids)?ids:[];}catch{return [];}};
   const stopOrder=onSnapshot(orderRef,{includeMetadataChanges:true},s=>{if(!disposed&&auth.currentUser?.uid===uid)noteOrder=readOrder(s);},()=>{});
@@ -39,9 +43,9 @@ export async function createNotesStore({auth,db,sdk,uid,now=Date.now,signal}){
     if(disposed||auth.currentUser?.uid!==uid)return;eternal=new Map(snapshot.docs.map(d=>[d.id,{id:d.id,...d.data()}]));eternalError=null;if(snapshot.metadata?.fromCache!==true)eternalResolve();
   },error=>{eternalError=error;eternalReject(error);});
   let abortReject;const aborted=new Promise((resolve,reject)=>{abortReject=reject;});
-  const cancel=()=>{disposed=true;stop();stopEternal();stopAdjustments();stopOrder();notes.clear();eternal.clear();abortReject(Error('Account changed.'));};
+  const cancel=()=>{disposed=true;stop();stopEternal();stopAdjustments();stopOrder();stopColors();notes.clear();eternal.clear();abortReject(Error('Account changed.'));};
   signal?.addEventListener('abort',cancel,{once:true});if(signal?.aborted)cancel();
-  try{await Promise.race([Promise.all([first,firstEternal,syncClock,firstAdjustments,firstOrder]),aborted]);check();}catch(error){stop();stopEternal();stopAdjustments();stopOrder();signal?.removeEventListener('abort',cancel);throw error;}
+  try{await Promise.race([Promise.all([first,firstEternal,syncClock,firstAdjustments,firstOrder,firstColors]),aborted]);check();}catch(error){stop();stopEternal();stopAdjustments();stopOrder();stopColors();signal?.removeEventListener('abort',cancel);throw error;}
   const cleaning=new Set();
   async function request(url,options={}){
     try{
@@ -58,7 +62,7 @@ export async function createNotesStore({auth,db,sdk,uid,now=Date.now,signal}){
           const id=route.searchParams.get('id');if(!validId(id))throw Error('Invalid note.');
           await deleteDoc(permanent(id));check();eternal.delete(id);return Response.json({ok:true});
         }
-        const {id,body,days,dismiss,occurrenceId}=JSON.parse(options.body||'{}');
+        const {id,body,days,dismiss,occurrenceId,color}=JSON.parse(options.body||'{}');
         if(!validId(id))throw Error('Invalid note.');
         if(method==='PATCH'&&days===1){
           const expected='eternal:'+id+':';if(typeof occurrenceId!=='string'||!occurrenceId.startsWith(expected))throw Error('Invalid note.');
@@ -69,14 +73,14 @@ export async function createNotesStore({auth,db,sdk,uid,now=Date.now,signal}){
           await runTransaction(db,async tx=>{check();const r=permanent(id),s=await tx.get(r),state=await tx.get(adjustmentsRef);check();if(!s.exists())throw Error('This note was removed.');const times=readAdjustments(state);for(const key of Object.keys(times))if(key.startsWith('eternal:'+id+':')&&times[key]>time())times[key]=0;tx.update(r,{dismissedOn});tx.set(adjustmentsRef,{value:JSON.stringify(times),version:1,revision:(state.exists()?state.data().revision:0)+1,updatedAt:serverTimestamp()});adjustments=times;});
           check();const old=eternal.get(id);if(old)eternal.set(id,{...old,dismissedOn});return Response.json({ok:true});
         }
-        if(!['POST','PATCH'].includes(method)||!validSchedule(body,days))throw Error('Invalid note or weekdays.');
+        if(!['POST','PATCH'].includes(method)||!validSchedule(body,days)||(color!==undefined&&!Object.hasOwn(noteColors,color)))throw Error('Invalid note or weekdays.');
         const saved=await runTransaction(db,async tx=>{
-          check();const r=permanent(id),s=await tx.get(r);check();
+          check();const r=permanent(id),s=await tx.get(r),colorState=await tx.get(colorRef);check();
           if(method==='POST'&&s.exists())return {id,...s.data()};
           if(method==='PATCH'&&!s.exists())throw Error('This note was removed.');
           const value=s.exists()?{...s.data(),body:body.trim(),days:[...days].sort(),dismissedOn:''}:{body:body.trim(),days:[...days].sort(),createdAt:time(),dismissedOn:''};
-          tx.set(r,value);return {id,...value};
-        });check();eternal.set(id,saved);return Response.json({ok:true});
+          tx.set(r,value);if(color!==undefined){const nextColors=readColors(colorState);nextColors[id]=color;tx.set(colorRef,{value:JSON.stringify(nextColors),version:1,revision:(colorState.exists()?colorState.data().revision:0)+1,updatedAt:serverTimestamp()});}return {id,...value};
+        });check();if(color!==undefined)colors={...colors,[id]:color};eternal.set(id,saved);return Response.json({ok:true});
       }
       if(method==='GET'){
         // Keep existing active notes, aligning old hour-based deadlines to midnight.
@@ -89,7 +93,7 @@ export async function createNotesStore({auth,db,sdk,uid,now=Date.now,signal}){
             .catch(()=>{}).finally(()=>cleaning.delete(n.id));
         }
         notes=new Map([...notes].map(([id,n])=>[id,n.expiresAt>t?{...n,expiresAt:n.daily===true?n.expiresAt:dayDeadline(n.expiresAt),daily:true}:n]));
-        return Response.json({noteOrder,notes:[...notes.values()].filter(n=>n.expiresAt>t),eternalNotes:[...eternal.values()],eternalAdjustments:adjustments,serverNow:t});
+        return Response.json({noteOrder,notes:[...notes.values()].filter(n=>n.expiresAt>t),eternalNotes:[...eternal.values()].map(n=>({...n,color:colors[n.id]||'green'})),eternalAdjustments:adjustments,serverNow:t});
       }
       if(method==='DELETE'){
         const id=new URL(url,'https://playdanki.com').searchParams.get('id');
@@ -125,6 +129,6 @@ export async function createNotesStore({auth,db,sdk,uid,now=Date.now,signal}){
       throw Error('Invalid request.');
     }catch(error){return Response.json({error:error.message||'Could not sync notes.'},{status:400});}
   }
-  return {request,dispose(){disposed=true;stop();stopEternal();stopAdjustments();stopOrder();signal?.removeEventListener('abort',cancel);notes.clear();eternal.clear();}};
+  return {request,dispose(){disposed=true;stop();stopEternal();stopAdjustments();stopOrder();stopColors();signal?.removeEventListener('abort',cancel);notes.clear();eternal.clear();}};
 }
 function validId(id){return typeof id==='string'&&/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);}

@@ -1,0 +1,18 @@
+import assert from 'node:assert/strict';
+import {forecastTargetTime as forecast} from '../src/weight-tracker/model.mjs';
+const now=new Date(2026,10,2,12).getTime(),day=86400000;
+const line=(rate,start=80,n=14)=>Array.from({length:n},(_,i)=>({time:now-(n-1-i)*day,kg:start+i*rate}));
+const falling=line(-.2),rising=line(.2,60);
+assert(Math.abs((forecast(falling,75,now)-now)/day-12)<.0001);
+assert(Math.abs((forecast(rising,65,now)-now)/day-12)<.0001);
+assert.equal(forecast(falling,85,now),null);assert.equal(forecast(line(0),75,now),null);
+assert.equal(forecast(falling.slice(-2),75,now),null,'Do not invent a date from two readings');
+assert.equal(forecast(falling,null,now),null);
+assert.equal(forecast([...falling,{time:now-30*day,kg:200}],75,now),forecast(falling,75,now));
+const spike=falling.map((p,i)=>({...p,kg:p.kg+(i===12?5:0)}));
+assert(Math.abs((forecast(spike,75,now)-forecast(falling,75,now))/day)<2,'One high reading must not swing the forecast by weeks');
+const sameDay=[...falling,{time:now-1000,kg:falling.at(-1).kg},{time:now-2000,kg:falling.at(-1).kg}];assert.equal(forecast(sameDay,75,now),forecast(falling,75,now),'Repeated same-day weighing is not extra trend evidence');
+const slowing=Array.from({length:14},(_,i)=>({time:now-(13-i)*day,kg:90-Math.min(i,6)*.5-Math.max(0,i-6)*.1}));
+assert(Math.abs((forecast(slowing,75,now)-now)/day-113)<.0001,'Latest consistent weekly rate replaces the older faster rate');
+assert.equal(forecast(falling.map(p=>({...p,time:p.time-20*day})),75,now),null,'Stale history produces no date');
+console.log('Forecast passed: recent weekly rate, sparse fallback, outlier resistance, repeated readings, slowing trend, gains/losses, flat and missing data.');

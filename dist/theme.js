@@ -10,3 +10,5 @@ document.addEventListener('click',event=>{if(!event.target.closest?.('#leaves-to
 document.addEventListener('click',event=>{const button=event.target.closest?.('[data-theme-choice]');if(!button)return;const theme=valid(button.dataset.themeChoice);try{localStorage.setItem(key,theme);}catch{}apply(theme);});
 window.addEventListener('storage',event=>{if(event.key===key||event.key===null)apply(read());if(event.key===leavesKey||event.key===null)applyLeaves();});
 })();
+
+(()=>{const title=document.querySelector?.("title");if(!title)return;const caps=()=>{const text=title.textContent,upper=text.toUpperCase();if(text!==upper)title.textContent=upper;};caps();new MutationObserver(caps).observe(title,{childList:true,characterData:true,subtree:true});})();

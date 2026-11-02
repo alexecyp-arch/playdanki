@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import {proteinDay,proteinDays,proteinAverage,adjustProtein,decodeProtein,createProteinStore} from '../src/weight-tracker/protein.mjs';
+const now=new Date(2026,10,2,12).getTime(),days=proteinDays(now),history=Object.fromEntries(proteinDays(now,-1).map(d=>[d.key,100]));
+assert.equal(days.length,7);assert.equal(days.at(-1).key,proteinDay(now));assert.equal(days.at(-1).label,'TODAY');
+assert.equal(proteinAverage({...history,[proteinDay(now)]:10000},now),100,'Average excludes all of today');
+assert.equal(proteinAverage({},now),0);let value=adjustProtein({},25,now);value=adjustProtein(value,12.5,now);assert.equal(value[proteinDay(now)],37.5);assert.equal(adjustProtein(value,-100,now)[proteinDay(now)],0);
+assert.throws(()=>adjustProtein({},10001,now));assert.deepEqual(decodeProtein('{"bad":2,"2026-11-02":-1}'),{});
+const auth={currentUser:{uid:'alice'}},db={},rows=new Map();let next,queue=Promise.resolve(),current;
+const sdk={doc:(_, ...p)=>p.join('/'),serverTimestamp:()=>1,onSnapshot:(ref,options,fn)=>{next=fn;fn({exists:()=>rows.has(ref),data:()=>rows.get(ref),metadata:{fromCache:false}});return()=>{next=null;};},runTransaction:(_,fn)=>{const work=queue.then(async()=>{const pending=[];await fn({get:async ref=>({exists:()=>rows.has(ref),data:()=>rows.get(ref)}),set:(ref,value)=>pending.push(()=>{rows.set(ref,value);next?.({exists:()=>true,data:()=>value,metadata:{fromCache:false}});})});pending.forEach(f=>f());});queue=work.catch(()=>{});return work;}};
+const store=createProteinStore({auth,db,sdk,uid:'alice',now:()=>now,onChange:data=>current=data});await Promise.all([store.adjust(20),store.adjust(30)]);assert.equal(current[proteinDay(now)],50,'Concurrent additions both persist');assert.equal(rows.get('users/alice/progress/daily-protein').revision,2);
+auth.currentUser={uid:'bob'};await assert.rejects(store.adjust(5),/SIGN IN/);store.dispose();assert.equal(next,null);
+console.log('Protein passed: seven visible days, seven completed-day average, decimal additions/subtractions, zero floor, cloud concurrency and account isolation.');

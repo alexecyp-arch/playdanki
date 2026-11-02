@@ -1,0 +1,11 @@
+export function proteinDay(time=Date.now()){const d=new Date(time);return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+export function proteinDays(now=Date.now(),offset=0){return Array.from({length:7},(_,i)=>{const d=new Date(now);d.setDate(d.getDate()-6+i+offset);return {key:proteinDay(d),label:i===6&&offset===0?'TODAY':d.toLocaleDateString('en-GB',{day:'numeric',month:'short'}).toUpperCase()};});}
+export function decodeProtein(value){try{const data=JSON.parse(value);return Object.fromEntries(Object.entries(data).filter(([key,n])=>/^\d{4}-\d{2}-\d{2}$/.test(key)&&Number.isFinite(n)&&n>=0&&n<=10000));}catch{return {};}}
+export function adjustProtein(days,amount,now=Date.now()){if(!Number.isFinite(amount)||amount===0||Math.abs(amount)>10000)throw Error('PROTEIN GRAMS');const key=proteinDay(now),value=Math.max(0,Math.round(((days[key]||0)+amount)*10)/10);if(value>10000)throw Error('PROTEIN GRAMS');return {...days,[key]:value};}
+export function proteinAverage(days,now=Date.now()){return proteinDays(now,-1).reduce((sum,d)=>sum+(days[d.key]||0),0)/7;}
+export function createProteinStore({auth,db,sdk,uid,onChange=()=>{},now=Date.now}){
+ const ref=sdk.doc(db,'users',uid,'progress','daily-protein');let active=true,ready=false,queue=Promise.resolve();
+ const check=()=>{if(!active||auth.currentUser?.uid!==uid)throw Error('SIGN IN');};check();
+ const stop=sdk.onSnapshot(ref,{includeMetadataChanges:true},s=>{if(!active||auth.currentUser?.uid!==uid||s.metadata?.hasPendingWrites)return;ready=!s.metadata?.fromCache;onChange(decodeProtein(s.exists()?s.data().value:undefined),ready);},()=>{if(active){ready=false;onChange({},false);}});
+ return {adjust(amount){const pending=queue.then(async()=>{check();if(!ready)throw Error('WAIT FOR CLOUD SYNC');await sdk.runTransaction(db,async tx=>{check();const s=await tx.get(ref);check();const data=adjustProtein(decodeProtein(s.exists()?s.data().value:undefined),amount,now());tx.set(ref,{value:JSON.stringify(data),version:1,revision:(s.exists()?s.data().revision:0)+1,updatedAt:sdk.serverTimestamp()});});check();});queue=pending.catch(()=>{});return pending;},dispose(){active=ready=false;stop();}};
+}
