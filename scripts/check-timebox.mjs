@@ -28,7 +28,7 @@ assert.equal(timeFor(monthTask,midnight+1800000,'week'),4200000/7,'Week remains 
 const fallEnd=new Date(2026,9,26).getTime();assert.equal(splitTime(midnight,fallEnd)['2026-10-25'],25*3600000,'DST day has 25 actual hours');
 const spring=new Date(2026,2,29).getTime(),springEnd=new Date(2026,2,30).getTime();assert.equal(splitTime(spring,springEnd)['2026-03-29'],23*3600000);
 state=change(state,{type:'edit',id:a,name:'Deutsch',color:'#ffffff'},midnight+1800000);assert.equal(state.tasks[0].runningSince,midnight+1200000);assert.equal(state.tasks[0].days['2026-10-24'],1800000);
-assert.equal(duration(3723000),'01:02:03');assert.equal(dayKey(new Date(start)),'2026-10-24');
+assert.equal(duration(3723000),'1H 2 MINUTES');assert.equal(duration(2160000),'36 MINUTES');assert.equal(duration(5760000),'1H 36 MINUTES');assert.equal(duration(3600000),'1H');assert.equal(duration(60000),'1 MINUTE');assert.equal(duration(59000),'0 MINUTES');assert.equal(duration(-1),'0 MINUTES');assert.equal(dayKey(new Date(start)),'2026-10-24');
 assert.throws(()=>change(state,{type:'edit',id:a,name:' ',color:'#000000'},start));
 assert.throws(()=>decode('{"tasks":[{}]}'));
 const originalTasks=structuredClone(state.tasks);
