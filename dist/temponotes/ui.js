@@ -1,10 +1,10 @@
-import {orderKey,finishOrder} from './daily-notes.mjs?v=bea4041d16bd';
-import {calendarLabel} from './calendar.mjs?v=bea4041d16bd';
-import {confirmDelete} from './confirm-delete.js?v=bea4041d16bd';
-import {noteColors,occurrences} from './eternal.mjs?v=bea4041d16bd';
-import {mountEternal} from './eternal-ui.js?v=bea4041d16bd';
-import {orderNotes} from './note-order.mjs?v=bea4041d16bd';
-import {mountLocked} from './locked-ui.js?v=bea4041d16bd';
+import {orderKey,finishOrder} from './daily-notes.mjs?v=5d0180295339';
+import {calendarLabel} from './calendar.mjs?v=5d0180295339';
+import {confirmDelete} from './confirm-delete.js?v=5d0180295339';
+import {noteColors,occurrences} from './eternal.mjs?v=5d0180295339';
+import {mountEternal} from './eternal-ui.js?v=5d0180295339';
+import {orderNotes} from './note-order.mjs?v=5d0180295339';
+import {mountLocked} from './locked-ui.js?v=5d0180295339';
 // The original Temponote layout, rendered with browser APIs instead of React.
 export function mount(root,request,{visible=true,locked}={}){
  const confirmController=new AbortController();
