@@ -1,10 +1,10 @@
-import {initStandaloneNavigation} from '../temponotes/private-page-navigation.js?v=0d9f11cf122e';
+import {initStandaloneNavigation} from '../temponotes/private-page-navigation.js?v=bea4041d16bd';
 initStandaloneNavigation();
 import {initializeApp} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js';
 import {getAuth,onAuthStateChanged,beforeAuthStateChanged,GoogleAuthProvider,signInWithPopup} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js';
 import * as sdk from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js';
-import {createTimeboxStore} from '../temponotes/timebox-store.mjs?v=0d9f11cf122e';
-import {mountTimeboxHub} from './hub-ui.js?v=0d9f11cf122e';
+import {createTimeboxStore} from '../temponotes/timebox-store.mjs?v=bea4041d16bd';
+import {mountTimeboxHub} from './hub-ui.js?v=bea4041d16bd';
 const $=id=>document.getElementById(id),app=initializeApp(JSON.parse($('auth-config').textContent).firebase),auth=getAuth(app),db=sdk.getFirestore(app);
 let store=null,unmount=()=>{};
 function clear(){window.dispatchEvent(new Event('danki-private-auth-clearing'));unmount();unmount=()=>{};store?.dispose();store=null;$('root').replaceChildren();$('auth-gate').hidden=false;}

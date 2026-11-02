@@ -1,10 +1,10 @@
-import {createProteinStore,proteinDays,proteinAverage,proteinDay} from './protein.mjs?v=0d9f11cf122e';
+import {createProteinStore,proteinDays,proteinAverage,proteinDay} from './protein.mjs?v=bea4041d16bd';
 import {initializeApp} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js';
 import {getAuth,onAuthStateChanged,beforeAuthStateChanged,GoogleAuthProvider,signInWithPopup} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js';
 import * as sdk from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js';
-import {createWeightStore} from './store.mjs?v=0d9f11cf122e';
-import {draw} from './chart.mjs?v=0d9f11cf122e';
-import {kilograms,weight,forecastTargetTime} from './model.mjs?v=0d9f11cf122e';
+import {createWeightStore} from './store.mjs?v=bea4041d16bd';
+import {draw} from './chart.mjs?v=bea4041d16bd';
+import {kilograms,weight,forecastTargetTime} from './model.mjs?v=bea4041d16bd';
 const $=id=>document.getElementById(id),app=initializeApp(JSON.parse($('auth-config').textContent).firebase),auth=getAuth(app),db=sdk.getFirestore(app);
 let proteinStore=null,protein={},proteinReady=false,shownProteinDay='';
 let store=null,entries=[],unit='KG',ready=false,saving=false,generation=0,selectedId=null,targetKg=null,targetReady=false;
