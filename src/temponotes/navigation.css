@@ -260,7 +260,7 @@
 .note .note-footer,.note.selected .note-footer{background:#091a13;background-image:none;border-top-color:#244034}
 
 /* A one-pixel underline, without changing card sizes or pin positions. */
-.note .note-body p{text-decoration-line:underline;text-decoration-color:#fff;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-skip-ink:auto}
+.note .note-body p{text-decoration:none}
 .notes-weight-link{top:114px;font-size:10px;white-space:nowrap}
 /* Keep sign-in in view even when the empty phone root has full height. */
 #auth-gate{position:fixed;inset:0;width:100%;height:100dvh;overflow:auto;z-index:2;padding:135px 16px 24px}
@@ -295,5 +295,5 @@
 /* Ordering is temporary; ordinary clicks no longer pin notes. */
 .note .note-body{cursor:default}.note.selected .note-body{cursor:pointer}.order-status{margin:6px 0;color:#e0ccff;font:700 10px/1.4 Arial,Helvetica,sans-serif}.composer-top .time-buttons{max-width:100%}.note .order-notes{min-width:43px}
 
-/* One shared ordering control, next to the left-aligned eternal notes. */
-.composer-top{min-height:48px;padding-top:0}.composer-top .note-tools{position:relative;inset:auto;justify-content:flex-start;flex-wrap:wrap}.note-tools>.order-notes{height:30px;padding:0 10px;background:#303136;color:#fff;border:2px solid #141417;box-shadow:inset 0 2px #ffffff26,0 3px #101113;font:700 10px Arial}.note-tools>.order-notes:active{transform:translateY(2px)}.eternal-colors{display:flex;gap:7px;margin:10px 0}.eternal-colors button{width:24px;height:22px;border:2px solid #686a74;background:var(--note-choice)}.eternal-colors button[aria-pressed=true]{border-color:#fff;box-shadow:0 0 0 1px #fff}.eternal-row .eternal-color-chip{display:inline-block;width:12px;height:12px;margin-right:6px;border:1px solid #777}
+/* One shared ordering control, centred beside eternal and locked notes. */
+.composer-top{min-height:48px;padding-top:0}.composer-top .note-tools{position:relative;inset:auto;width:100%;justify-content:center;flex-wrap:wrap;top:-6px}.note-tools>.order-notes{height:30px;padding:0 10px;background:#303136;color:#fff;border:2px solid #141417;box-shadow:inset 0 2px #ffffff26,0 3px #101113;font:700 10px Arial}.note-tools>.order-notes:active{transform:translateY(2px)}.eternal-colors{display:flex;gap:7px;margin:10px 0}.eternal-colors button{width:24px;height:22px;border:2px solid #686a74;background:var(--note-choice)}.eternal-colors button[aria-pressed=true]{border-color:#fff;box-shadow:0 0 0 1px #fff}.eternal-row .eternal-color-chip{display:inline-block;width:12px;height:12px;margin-right:6px;border:1px solid #777}
