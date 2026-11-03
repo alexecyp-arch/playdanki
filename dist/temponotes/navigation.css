@@ -308,3 +308,6 @@
 /* Extend the footer one pixel past the card's one-pixel side borders. */
 .note{overflow:visible}
 .note > .note-footer{margin-inline:-2px}
+
+.note .note-footer > .expiry{margin-inline-start:auto}
+.note .note-footer > .note-time-buttons{margin-left:0}
