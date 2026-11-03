@@ -304,3 +304,7 @@
 .note .note-footer>.expiry,.note .note-footer>.note-time-buttons,.note .note-footer>.delete{position:relative;top:-2px}
 
 .note .note-footer>.note-time-buttons,.note .note-footer>.delete{top:-4px}
+
+/* Extend the footer one pixel past the card's one-pixel side borders. */
+.note{overflow:visible}
+.note > .note-footer{margin-inline:-2px}
