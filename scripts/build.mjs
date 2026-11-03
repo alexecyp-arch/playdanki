@@ -106,4 +106,6 @@ console.log(JSON.stringify({words:entries.length,sentences:sentenceEntries.lengt
 
 const {buildShared}=await import('./build-shared.mjs');await buildShared(root);
 
+const {buildPageWarmup}=await import('./build-page-warmup.mjs');await buildPageWarmup(root,runtimeVersion,atlasVersion);
+
 const {buildSecurity}=await import('./build-security.mjs');await buildSecurity(root);
