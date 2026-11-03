@@ -27,21 +27,21 @@ export function estimatedTargetTime(entries,selectedId,targetKg){
  const estimate=latest.time+delay;return Number.isFinite(estimate)&&Math.abs(estimate)<=8640000000000000?estimate:null;
 }
 
-// Recent, outlier-resistant regression. Each calendar day has one vote;
-// Prefer the last week; allow fourteen days only when recent logging is sparse.
+// Use every recorded day, giving newer days more weight and limiting outliers.
 export function forecastTargetTime(entries,targetKg,now=Date.now()){
  if(!Number.isFinite(targetKg)||targetKg<=0)return null;
  const dayNumber=t=>{const d=new Date(t);return Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/86400000;},today=dayNumber(now),groups=new Map();
- for(const p of entries){if(!Number.isFinite(p.kg)||p.kg<=0||!Number.isFinite(p.time)||p.time>now)continue;const age=today-dayNumber(p.time);if(age<0||age>13)continue;const values=groups.get(age)||[];values.push(p.kg);groups.set(age,values);}
+ for(const p of entries){if(!Number.isFinite(p.kg)||p.kg<=0||!Number.isFinite(p.time)||p.time>now)continue;const age=today-dayNumber(p.time);if(age<0||!Number.isFinite(age))continue;const values=groups.get(age)||[];values.push(p.kg);groups.set(age,values);}
  const median=v=>{const a=[...v].sort((a,b)=>a-b),m=a.length>>1;return a.length%2?a[m]:(a[m-1]+a[m])/2;};
- let points=[...groups].map(([age,v])=>({x:-age,y:median(v),w:Math.pow(2,-age/3.5)})).sort((a,b)=>a.x-b.x);
- const recent=points.filter(p=>p.x>=-6);if(recent.length>=3&&recent.at(-1).x-recent[0].x>=4)points=recent;
+ const points=[...groups].map(([age,values])=>({x:-age,y:median(values)})).sort((a,b)=>a.x-b.x);
  if(points.length<3||points.at(-1).x-points[0].x<4||points.at(-1).x < -7)return null;
- const slopes=[];for(let i=0;i<points.length;i++)for(let j=i+1;j<points.length;j++)slopes.push((points[j].y-points[i].y)/(points[j].x-points[i].x));
- let slope=median(slopes),intercept=median(points.map(p=>p.y-slope*p.x));
- for(let pass=0;pass<4;pass++){
+ // Scale the half-life for long histories so older days still contribute.
+ const halfLife=Math.max(14,-points[0].x/8);
+ for(const point of points)point.w=2**(point.x/halfLife);
+ let slope=0,intercept=0;
+ for(let pass=0;pass<5;pass++){
   const residuals=points.map(p=>p.y-(intercept+slope*p.x)),centre=median(residuals),scale=Math.max(.05,1.4826*median(residuals.map(r=>Math.abs(r-centre))));
-  const weights=points.map((p,i)=>p.w*Math.min(1,1.5*scale/Math.max(.000001,Math.abs(residuals[i]-centre)))),total=weights.reduce((a,b)=>a+b,0),mx=points.reduce((v,p,i)=>v+weights[i]*p.x,0)/total,my=points.reduce((v,p,i)=>v+weights[i]*p.y,0)/total;
+  const weights=points.map((p,i)=>pass===0?p.w:p.w*Math.min(1,1.5*scale/Math.max(.000001,Math.abs(residuals[i]-centre)))),total=weights.reduce((a,b)=>a+b,0),mx=points.reduce((v,p,i)=>v+weights[i]*p.x,0)/total,my=points.reduce((v,p,i)=>v+weights[i]*p.y,0)/total;
   const variance=points.reduce((v,p,i)=>v+weights[i]*(p.x-mx)**2,0);if(variance<.000001)return null;
   slope=points.reduce((v,p,i)=>v+weights[i]*(p.x-mx)*(p.y-my),0)/variance;intercept=my-slope*mx;
  }

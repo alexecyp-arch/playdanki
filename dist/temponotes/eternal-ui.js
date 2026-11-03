@@ -1,5 +1,5 @@
-import {confirmDelete} from './confirm-delete.js?v=4b0d18180bee';
-import {weekdays,validSchedule,noteColors} from './eternal.mjs?v=4b0d18180bee';
+import {confirmDelete} from './confirm-delete.js?v=c3629ebf1c2a';
+import {weekdays,validSchedule,noteColors} from './eternal.mjs?v=c3629ebf1c2a';
 export function mountEternal(root,request,{getSchedules,onChange}){
  const confirmController=new AbortController();
  const wrapper=document.createElement('aside');wrapper.className='eternal-area';
