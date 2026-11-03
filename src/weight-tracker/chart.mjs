@@ -10,13 +10,13 @@ export function draw(svg,entries,unit,{selectedId=null,onSelect=()=>{},targetKg=
  add('line',{x1:left,x2:left,y1:top,y2:bottom,stroke:'#a9bddc'});add('line',{x1:left,x2:right,y1:bottom,y2:bottom,stroke:'#a9bddc'});
  if(data.target!==null){const py=y(data.target);add('line',{x1:left,x2:right,y1:py,y2:py,stroke:'#92e0b1','stroke-width':1.5,'stroke-opacity':.48,'stroke-dasharray':'5 5',class:'weight-target-line'});add('text',{x:right-5,y:py-8,'text-anchor':'end',class:'weight-target-label'},'TARGET '+number(data.target)+' '+unit);}
  const span=data.x[1]-data.x[0],ticks=width<500?2:4;
- for(let i=0;i<=ticks;i++){const time=data.x[0]+span*i/ticks,px=x(time),date=new Date(time);const label=span<86400000?date.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit',hour12:false}):date.toLocaleDateString(undefined,{day:'2-digit',month:'short',...(span>31536000000?{year:'numeric'}:{})}).toUpperCase();add('text',{x:px,y:bottom+21,'text-anchor':i===0?'start':i===ticks?'end':'middle'},label);}
+ for(let i=0;i<=ticks;i++){const time=data.x[0]+span*i/ticks,px=x(time),date=new Date(time);const label=span<86400000?date.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit',hour12:false}):date.toLocaleDateString('en-GB',{day:'2-digit',month:'short',...(span>31536000000?{year:'numeric'}:{})}).toUpperCase();add('text',{x:px,y:bottom+21,'text-anchor':i===0?'start':i===ticks?'end':'middle'},label);}
  add('text',{x:(left+right)/2,y:height-8,'text-anchor':'middle'},'TIME');
  add('text',{transform:`translate(14 ${(top+bottom)/2}) rotate(-90)`,'text-anchor':'middle'},'WEIGHT ('+unit+')');
  if(data.points.length>1)add('polyline',{points:data.points.map(p=>x(p.time)+','+y(p.value)).join(' '),fill:'none',stroke:'#fff','stroke-width':2,'stroke-linejoin':'round'});
  const latest=data.points.at(-1);
  for(const p of data.points){
-  const label=number(p.value)+' '+unit+' · '+new Date(p.time).toLocaleString().toUpperCase(),selected=p.id===selectedId;
+  const label=number(p.value)+' '+unit+' · '+new Date(p.time).toLocaleString('en-GB'),selected=p.id===selectedId;
   const group=add('g',{role:'button',tabindex:0,'aria-label':label,'aria-pressed':String(selected),'data-entry':p.id,class:'weight-point'});
   for(const attrs of [{cx:x(p.time),cy:y(p.value),r:14,fill:'transparent'},{cx:x(p.time),cy:y(p.value),r:p===latest?(selected?8:7):selected?5:3,fill:selected?'#a9c7ff':p===latest?'#92e0b1':'#fff',...(p===latest?{stroke:'var(--danki-bg, #071e48)','stroke-width':2}:{})}]){const circle=document.createElementNS(namespace,'circle');for(const [k,v]of Object.entries(attrs))circle.setAttribute(k,v);group.append(circle);}
   const title=document.createElementNS(namespace,'title');title.textContent=label;group.append(title);
