@@ -48,5 +48,5 @@
 .timebox-toggle[aria-checked=true] .timebox-toggle-thumb{translate:30px 0}
 .timebox-toggle[aria-checked=true] .timebox-toggle-label{inset:0 20px 0 2px}
 .timebox-card .timebox-toggle:active:not(:disabled){margin-top:1px;box-shadow:inset 0 2px #0004,0 2px #141516}
-@media(max-width:760px){.timebox-card .timebox-toggle{top:5px;width:52px;height:22px;font-size:9px;line-height:18px}.timebox-toggle-thumb{width:16px;height:14px}.timebox-toggle[aria-checked=true] .timebox-toggle-thumb{translate:26px 0}}
+@media(max-width:760px){.timebox-card .timebox-toggle{top:5px;width:52px;height:22px;font-size:9px;line-height:18px;transform:translateX(-50%) scale(.67);transform-origin:top center}.timebox-toggle-thumb{width:16px;height:14px}.timebox-toggle[aria-checked=true] .timebox-toggle-thumb{translate:26px 0}}
 @media(prefers-reduced-motion:reduce){.timebox-toggle-thumb{transition:none}}
