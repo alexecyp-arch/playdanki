@@ -311,3 +311,5 @@
 
 .note .note-footer > .expiry{margin-inline-start:auto}
 .note .note-footer > .note-time-buttons{margin-left:0}
+
+#notes-navigation[hidden]{display:none}

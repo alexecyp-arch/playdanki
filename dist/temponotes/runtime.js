@@ -1,16 +1,16 @@
-import {initStandaloneNavigation} from './private-page-navigation.js?v=2ac2d957a1cb';
+import {initStandaloneNavigation} from './private-page-navigation.js?v=a605f4b1d8fd';
 initStandaloneNavigation();
 import {initializeApp} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js';
 import {getAuth,onAuthStateChanged,beforeAuthStateChanged,GoogleAuthProvider,signInWithPopup} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js';
 import * as sdk from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js';
-import {mount} from './ui.js?v=2ac2d957a1cb';
-import {createNotesStore} from './notes-store.mjs?v=2ac2d957a1cb';
-import {createLockedStore} from './locked-store.mjs?v=2ac2d957a1cb';
+import {mount} from './ui.js?v=a605f4b1d8fd';
+import {createNotesStore} from './notes-store.mjs?v=a605f4b1d8fd';
+import {createLockedStore} from './locked-store.mjs?v=a605f4b1d8fd';
 const config=JSON.parse(document.getElementById('auth-config').textContent);
 const app=initializeApp(config.firebase),auth=getAuth(app),db=sdk.getFirestore(app);
-const root=document.getElementById('root'),gate=document.getElementById('auth-gate'),status=document.getElementById('auth-status'),button=document.getElementById('sign-in');
+const root=document.getElementById('root'),gate=document.getElementById('auth-gate'),status=document.getElementById('auth-status'),button=document.getElementById('sign-in'),navigation=document.getElementById('notes-navigation');
 let generation=0,dispose=()=>{},unmount=()=>{},loading,lockedStore;
-function clear(){window.dispatchEvent(new Event('danki-private-auth-clearing'));lockedStore?.dispose();lockedStore=null;++generation;loading?.abort();unmount();dispose();unmount=dispose=()=>{};root.replaceChildren();button.hidden=true;status.hidden=false;status.textContent='LOADING';gate.hidden=false;}
+function clear(){window.dispatchEvent(new Event('danki-private-auth-clearing'));lockedStore?.dispose();lockedStore=null;++generation;loading?.abort();unmount();dispose();unmount=dispose=()=>{};root.replaceChildren();button.hidden=true;status.hidden=true;status.textContent='';gate.hidden=true;navigation.hidden=true;}
 beforeAuthStateChanged(auth,clear);
 window.addEventListener('pagehide',clear);
 window.addEventListener('pageshow',event=>{if(event.persisted)location.reload();});
@@ -25,13 +25,14 @@ button.addEventListener('click',async()=>{button.disabled=true;try{await signInW
 onAuthStateChanged(auth,async user=>{
   clear();const current=generation;loading=new AbortController();
   button.hidden=!!user;status.textContent=user?'':'Sign in to use your private notes.';status.hidden=!!user;
-  window.dispatchEvent(new CustomEvent('danki-private-auth',{detail:user?.uid||null}));if(!user)return;
+  window.dispatchEvent(new CustomEvent('danki-private-auth',{detail:user?.uid||null}));if(!user){gate.hidden=false;navigation.hidden=false;return;}
   try{
     const pending=createNotesStore({auth,db,sdk,uid:user.uid,signal:loading.signal});
     lockedStore=createLockedStore({auth,db,sdk,uid:user.uid});
-    gate.hidden=true;unmount=mount(root,async(...args)=>(await pending).request(...args),{visible:window.parent===window||!window.frameElement?.hidden,locked:lockedStore});
     const store=await pending;
     if(current!==generation){store.dispose();return;}
     dispose=store.dispose;
-  }catch(error){if(current!==generation)return;unmount();lockedStore?.dispose();lockedStore=null;gate.hidden=false;status.hidden=false;status.textContent='Could not load your notes. Refresh to try again.';}
+    unmount=mount(root,store.request,{visible:window.parent===window||!window.frameElement?.hidden,locked:lockedStore});
+    navigation.hidden=false;
+  }catch(error){if(current!==generation)return;unmount();lockedStore?.dispose();lockedStore=null;dispose();dispose=()=>{};gate.hidden=false;navigation.hidden=false;status.hidden=false;status.textContent='Could not load your notes. Refresh to try again.';}
 });

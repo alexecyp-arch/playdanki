@@ -1,5 +1,5 @@
-import {confirmDelete} from './confirm-delete.js?v=2ac2d957a1cb';
-import {timeFor,repsFor,duration,change,chartValue,dayKey,shiftChartDay} from './timebox-model.mjs?v=2ac2d957a1cb';
+import {confirmDelete} from './confirm-delete.js?v=a605f4b1d8fd';
+import {timeFor,repsFor,duration,change,chartValue,dayKey,shiftChartDay} from './timebox-model.mjs?v=a605f4b1d8fd';
 export function mountTimebox(root,store,{visible:initialVisible=true,kind='time',side:targetSide}={}){
  const confirmController=new AbortController();
  const reps=kind==='reps',prefix=reps?'repbox':'timebox',valueFor=reps?repsFor:timeFor,format=reps?(n=>Number(n.toFixed(2)).toLocaleString()):duration;
