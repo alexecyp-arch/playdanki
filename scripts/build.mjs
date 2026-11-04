@@ -50,7 +50,7 @@ if(kanjiEntries.length!==2136||new Set(kanjiEntries.map(c=>c[0])).size!==2136||k
 const coreDeckInfo={};
 await fs.mkdir(new URL('dist/decks/',root),{recursive:true});
 await fs.mkdir(new URL('dist/german/',root),{recursive:true});
-for(const [id,data,url] of [['german-word',words,'german/words.json'],['french-word',frenchWords,'french/words.json'],['french-sentence',frenchSentences,'french/sentences.json'],['sentence',sentences,'decks/sentences.json'],['kanji',kanji,'decks/kanji.json'],['economics',economics,'decks/economics.json']]){
+for(const [id,data,url] of [['german-word',JSON.stringify(entries.slice(0,3000)),'german/words.json'],['french-word',frenchWords,'french/words.json'],['french-sentence',frenchSentences,'french/sentences.json'],['sentence',JSON.stringify(sentenceEntries.slice(0,750)),'decks/sentences.json'],['kanji',kanji,'decks/kanji.json'],['economics',economics,'decks/economics.json']]){
  coreDeckInfo[id]={count:JSON.parse(data).length,url,version:createHash('sha256').update(data).digest('hex').slice(0,16)};
  await fs.writeFile(new URL('dist/'+url,root),data);
 }
@@ -102,7 +102,7 @@ const backgroundScript=(await fs.readFile(new URL('src/temponotes/daily-backgrou
 await fs.writeFile(new URL('dist/temponotes/index.html',root),notesHtml.replace('DAILY_BACKGROUND_SCRIPT',()=>backgroundScript).replace('AUTH_CONFIG',()=>JSON.stringify(authConfig).replace(/</g,'\\u003c')));
 await fs.writeFile(new URL('dist/arithmetic.html',root),arithmetic.replace('</style>',arithmeticTheme.trim()+'\n'+cursorCss.trim()+'\n'+studyCss.trim()+'\n</style>'));
 await fs.rm(new URL('dist/credits.txt',root),{force:true});
-console.log(JSON.stringify({words:entries.length,sentences:sentenceEntries.length,frenchWords:5000,frenchSentences:1000,kana:kanaEntries.length,kanji:kanjiEntries.length,economics:economicsEntries.length,htmlBytes:Buffer.byteLength(html),compressedBytes:gzipSync(html).length}));
+console.log(JSON.stringify({words:coreDeckInfo["german-word"].count,sentences:coreDeckInfo.sentence.count,frenchWords:coreDeckInfo["french-word"].count,frenchSentences:coreDeckInfo["french-sentence"].count,kana:kanaEntries.length,kanji:kanjiEntries.length,economics:economicsEntries.length,htmlBytes:Buffer.byteLength(html),compressedBytes:gzipSync(html).length}));
 
 const {buildShared}=await import('./build-shared.mjs');await buildShared(root);
 

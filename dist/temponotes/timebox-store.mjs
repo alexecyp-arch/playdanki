@@ -1,4 +1,4 @@
-import {decode,change} from './timebox-model.mjs?v=f57bb21a142e';
+import {decode,change} from './timebox-model.mjs?v=2ac2d957a1cb';
 // Uses the existing owner-only, revision-checked cloud progress rules.
 export function createTimeboxStore({auth,db,sdk,uid,now=Date.now,key='timebox'}){
  const ref=sdk.doc(db,'users',uid,'progress',key),listeners=new Set();

@@ -5,24 +5,30 @@ function languageDeck(file,key,title,section,lang,unit,options={}){const info=la
 const coreDeckInfo=JSON.parse($('core-deck-info').textContent);
 const remoteCards=id=>{const cards=new Array(coreDeckInfo[id].count);if(id==='german-word')JSON.parse($('word-data').textContent).forEach((card,i)=>cards[i]=card);return {cards,remote:id,...coreDeckInfo[id]};};
 const decks={
-  frenchWords:{key:'francais5000:v1',title:'Français 5000',unit:'words',section:'french',lang:'fr',limit:5000,...remoteCards('french-word')},
-  frenchSentences:{key:'francais1000sentences:v1',title:'French Sentences 1000',unit:'sentences',section:'french',lang:'fr',limit:1000,fixedChoices:true,...remoteCards('french-sentence')},
-  words:{key:'deutsch5000:v1',title:'Deutsch 5000',unit:'words',section:'german',lang:'de',limit:5000,...remoteCards('german-word')},
-  sentences:{key:'deutsch1000sentences:v1',title:'Sentences 1750',unit:'sentences',section:'german',lang:'de',limit:1750,...remoteCards('sentence')},
+  frenchWords:{key:'francais5000:v1',title:'Français',unit:'words',section:'french',lang:'fr',...remoteCards('french-word')},
+  frenchSentences:{key:'francais1000sentences:v1',title:'French Sentences',unit:'sentences',section:'french',lang:'fr',fixedChoices:true,...remoteCards('french-sentence')},
+  words:{key:'deutsch5000:v1',title:'Deutsch',unit:'words',section:'german',lang:'de',...remoteCards('german-word')},
+  sentences:{key:'deutsch1000sentences:v1',title:'Sentences',unit:'sentences',section:'german',lang:'de',...remoteCards('sentence')},
   kana:{key:'japanese:kana:v1',title:'Hiragana + Katakana',unit:'Kana answers',section:'japanese',lang:'ja',limit:500,daily:true,cards:JSON.parse($('kana-data').textContent)},
   kanji:{key:'japanese:kanji:v1',title:'Kanji 2136',unit:'Kanji',section:'japanese',lang:'ja',limit:2136,...remoteCards('kanji')},
-  spanishWords:languageDeck('spanish-words','spanish5000:v1','Spanish 5000','spanish','es','words'),
-  spanishSentences:languageDeck('spanish-sentences','spanish1000sentences:v1','Spanish Sentences 1000','spanish','es','sentences'),
-  italianWords:languageDeck('italian-words','italian5000:v1','Italian 5000','italian','it','words'),
-  italianSentences:languageDeck('italian-sentences','italian1000sentences:v1','Italian Sentences 1000','italian','it','sentences'),
-  greekWords:languageDeck('greek-words','greek5000:v1','Greek 5000','greek','el','words'),
-  greekSentences:languageDeck('greek-sentences','greek1000sentences:v1','Greek Sentences 1000','greek','el','sentences'),
+  spanishWords:languageDeck('spanish-words','spanish5000:v1','Spanish','spanish','es','words'),
+  spanishSentences:languageDeck('spanish-sentences','spanish1000sentences:v1','Spanish Sentences','spanish','es','sentences'),
+  italianWords:languageDeck('italian-words','italian5000:v1','Italian','italian','it','words'),
+  italianSentences:languageDeck('italian-sentences','italian1000sentences:v1','Italian Sentences','italian','it','sentences'),
+  greekWords:languageDeck('greek-words','greek5000:v1','Greek','greek','el','words'),
+  greekSentences:languageDeck('greek-sentences','greek1000sentences:v1','Greek Sentences','greek','el','sentences'),
   hangul:languageDeck('korean-hangul','korean:hangul:v1','Korean Hangul','korean','ko','symbols',{daily:true}),
-  koreanWords:languageDeck('korean-words','korean5000:v1','Korean 5000','korean','ko','words'),
+  koreanWords:languageDeck('korean-words','korean5000:v1','Korean','korean','ko','words'),
   economics:{key:'economics3500:v1',title:'Economics 3500',unit:'items',section:'economics',lang:'en',fixedChoices:true,weekly:true,...remoteCards('economics')},
   trivia:{key:'trivia20000:v1',title:'Trivia 20000',unit:'questions',section:'trivia',lang:'en',fixedChoices:true,cumulative:true,limit:triviaInfo.total,cards:new Array(triviaInfo.total)}
 };
 decks.economics.limit=decks.economics.cards.length;
+for(const deck of Object.values(decks)){
+  if(deck.unit==='words'||deck.unit==='sentences'){
+    deck.limit=deck.cards.length;
+    deck.title+=' '+deck.limit;
+  }
+}
 const word=$('word'),position=$('position'),translation=$('translation'),feedback=$('feedback'),history=$('history'),today=$('today'),again=$('again'),practice=document.querySelector('.practice');
 const modeButtons={frenchWords:$('french-words-mode'),frenchSentences:$('french-sentences-mode'),words:$('words-mode'),sentences:$('sentences-mode'),kana:$('kana-mode'),kanji:$('kanji-mode'),spanishWords:$('spanish-words-mode'),spanishSentences:$('spanish-sentences-mode'),italianWords:$('italian-words-mode'),italianSentences:$('italian-sentences-mode'),greekWords:$('greek-words-mode'),greekSentences:$('greek-sentences-mode'),hangul:$('hangul-mode'),koreanWords:$('korean-words-mode'),economics:$('economics-mode'),trivia:$('trivia-mode')},preferredModes={french:'frenchWords',german:'words',japanese:'kana',spanish:'spanishWords',italian:'italianWords',greek:'greekWords',korean:'hangul',economics:'economics',trivia:'trivia'};
 const game=$('game'),answerBox=$('answer-box'),questionImage=$('question-image');
@@ -37,9 +43,10 @@ const emptyRow=()=>({correct:0,wrong:0,misses:0,skipped:0});
 const validRow=row=>row&&Number.isSafeInteger(row.correct)&&Number.isSafeInteger(row.wrong)&&row.correct>=0&&row.wrong>=0;
 const copyRow=row=>({correct:row.correct,wrong:row.wrong,misses:Number.isSafeInteger(row.misses)&&row.misses>=0?row.misses:0,skipped:Number.isSafeInteger(row.skipped)&&row.skipped>=0?row.skipped:0});
 function clean(raw,deck){
-  if(!raw||raw.v!==1||!Number.isInteger(raw.cursor)||raw.cursor<0||raw.cursor>deck.limit||!Number.isInteger(raw.round)||raw.round<1||!raw.days||typeof raw.days!=='object')return blank(deck);
+  const shortened=deck.unit==='words'||deck.unit==='sentences';
+  if(!raw||raw.v!==1||!Number.isInteger(raw.cursor)||raw.cursor<0||(!shortened&&raw.cursor>deck.limit)||!Number.isInteger(raw.round)||raw.round<1||!raw.days||typeof raw.days!=='object')return blank(deck);
   const days={};for(const [date,row]of Object.entries(raw.days))if(/^\d{4}-\d{2}-\d{2}$/.test(date)&&validRow(row))days[date]=copyRow(row);
-  const value={v:1,cursor:raw.cursor,round:raw.round,days};
+  const value={v:1,cursor:Math.min(raw.cursor,deck.limit),round:raw.round,days};
   if(deck.daily){value.day=dayKey();if(raw.day!==value.day){value.cursor=0;value.round++}}
   if(deck.cumulative){if(!validRow(raw.run)||practiced(copyRow(raw.run))!==value.cursor)return blank(deck);value.run=copyRow(raw.run)}
   if(deck.weekly){
