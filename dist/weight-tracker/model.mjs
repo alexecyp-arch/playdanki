@@ -36,7 +36,7 @@ export function forecastTargetTime(entries,targetKg,now=Date.now()){
  const points=[...groups].map(([age,values])=>({x:-age,y:median(values)})).sort((a,b)=>a.x-b.x);
  if(points.length<3||points.at(-1).x-points[0].x<4||points.at(-1).x < -7)return null;
  // Scale the half-life for long histories so older days still contribute.
- const halfLife=Math.max(14,-points[0].x/8);
+ const halfLife=Math.max(28,-points[0].x/4);
  for(const point of points)point.w=2**(point.x/halfLife);
  let slope=0,intercept=0;
  for(let pass=0;pass<5;pass++){
