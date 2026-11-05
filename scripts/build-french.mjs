@@ -6,8 +6,8 @@ if(words.length!==5000||new Set(words.map(c=>wordKey(c[0]))).size!==5000||words.
 if(sentences.length!==1000||new Set(sentences.map(c=>key(c[0]))).size!==1000||sentences.some((c,i)=>c.length!==4||!c.slice(0,3).every(s=>typeof s==='string'&&s.trim())||key(c[1])===key(c[2])||!Number.isInteger(c[3])||c[3]<1||(i&&sentences[i-1][3]<c[3])||c.slice(0,3).some(s=>s.includes('\ufffd'))))throw Error('Expected 1000 unique French sentences with distinct English choices and descending subtitle occurrence counts');
 await fs.mkdir(new URL('dist/french/',root),{recursive:true});
 await fs.copyFile(new URL('src/french-sentence-sources.json',root),new URL('dist/french/sentence-sources.json',root));
-export const frenchWords=JSON.stringify(words.slice(0,3000));
-export const frenchSentences=JSON.stringify(sentences.slice(0,750));
+export const frenchWords=JSON.stringify(words.slice(0,1000));
+export const frenchSentences=JSON.stringify(sentences.slice(0,500));
 await fs.writeFile(new URL('dist/french/words.json',root),frenchWords);
 await fs.writeFile(new URL('dist/french/sentences.json',root),frenchSentences);
 await fs.copyFile(new URL('src/french-source-manifest.json',root),new URL('dist/french/source-manifest.json',root));

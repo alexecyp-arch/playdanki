@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-<head><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-WyLwGL+atUliNI71RePT1vcgwPrTpR3ulbfsHqfIq+g=' 'sha256-fUs4FU007kOkfg7Bc2MbU75c6wZXQtDA4pGMvMZ78O4=' 'sha256-vWHjjhPJF0QGZQyEhnLoQmaI1+ufDS82ec5fHJQJCKA=' 'sha256-0De4gA5W92fhl3RnFExtxNd6g3pFmZ+/ZOrUI8kBlHM=' 'sha256-82/Ft5OnzE4hLY0+m7ZCnf6viI1uHqDimz+g/rv9yT4=' 'sha256-UwhOE6sKZQPWVl9SVwsCzj6g8fV47iu6wcM3+SeEHcY=' 'sha256-2OyyqJoUT9xy40ftmlTh6tsc0ZfdmG6wRumvh/K38mg=' https://www.gstatic.com https://apis.google.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://*.googleapis.com https://www.gstatic.com https://apis.google.com https://*.firebaseapp.com https://*.firebaseio.com wss://*.firebaseio.com https://cloudflareinsights.com https://*.cloudflareinsights.com; frame-src 'self' https://playdanki.com https://www.playdanki.com https://*.firebaseapp.com https://accounts.google.com https://www.google.com; worker-src 'self' blob:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'"><meta name="referrer" content="same-origin"><script>(()=>{'use strict';if(window.top===window)return;let same=false;try{same=window.top.location.origin===location.origin;}catch{}if(!same&&location.ancestorOrigins?.length)same=Array.from(location.ancestorOrigins).every(origin=>origin===location.origin);if(same)return;try{parent.postMessage({type:'danki-frame-blocked'},location.origin);}catch{}document.documentElement.style.display='none';window.stop();throw Error('Open PlayDanki directly.');})();</script>
+<head><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-WyLwGL+atUliNI71RePT1vcgwPrTpR3ulbfsHqfIq+g=' 'sha256-fUs4FU007kOkfg7Bc2MbU75c6wZXQtDA4pGMvMZ78O4=' 'sha256-vWHjjhPJF0QGZQyEhnLoQmaI1+ufDS82ec5fHJQJCKA=' 'sha256-0De4gA5W92fhl3RnFExtxNd6g3pFmZ+/ZOrUI8kBlHM=' 'sha256-WIyXv7vY5s6sClSPbb7kD5OJwqwXv0s0ahBF2Bgw3BQ=' 'sha256-eefMGVpO0dMnNRIy0XLYc9k4/RFPYyxKxjt2zrTpdt0=' 'sha256-2OyyqJoUT9xy40ftmlTh6tsc0ZfdmG6wRumvh/K38mg=' https://www.gstatic.com https://apis.google.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://*.googleapis.com https://www.gstatic.com https://apis.google.com https://*.firebaseapp.com https://*.firebaseio.com wss://*.firebaseio.com https://cloudflareinsights.com https://*.cloudflareinsights.com; frame-src 'self' https://playdanki.com https://www.playdanki.com https://*.firebaseapp.com https://accounts.google.com https://www.google.com; worker-src 'self' blob:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'"><meta name="referrer" content="same-origin"><script>(()=>{'use strict';if(window.top===window)return;let same=false;try{same=window.top.location.origin===location.origin;}catch{}if(!same&&location.ancestorOrigins?.length)same=Array.from(location.ancestorOrigins).every(origin=>origin===location.origin);if(same)return;try{parent.postMessage({type:'danki-frame-blocked'},location.origin);}catch{}document.documentElement.style.display='none';window.stop();throw Error('Open PlayDanki directly.');})();</script>
 <meta charset="utf-8">
 <base href="/">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -93,6 +93,19 @@ body:focus,#game:focus,#exercise:focus,.arithmetic-frame:focus{outline:none}
 @media(max-width:600px){.tracker,#tracker{transform:scale(.65);transform-origin:bottom right}:is(#previous-card,#embedded-previous-card){transform:translateX(-50%) scale(.91);transform-origin:center bottom}.again,#again,#retry,.stats-head button{transform:scale(.65)}}
 
 html body #translation,html body #exercise #answer,html body #study #answer{color:rgb(254,205,205)}
+
+.word-accuracy{font-size:.875rem;line-height:1.4;font-variant-numeric:tabular-nums;color:#fff;margin-bottom:.4rem}
+.word-mode #answer-box{width:min(32rem,calc(100vw - 4rem));max-width:100%}
+.word-mode :is(#again,#retry){position:relative;margin-top:calc(var(--card-offset) + 1.5rem)}
+#word-choices{display:grid;gap:14px}
+#word-choices[hidden],#word-accuracy[hidden],#translation[hidden]{display:none}
+.word-choice{width:100%;min-height:64px;padding:12px 20px;border:2px solid #141417;border-radius:0;background:#2a2d32;color:rgb(254,205,205);font-size:clamp(1.4rem,3vw,2.2rem);font-weight:700;line-height:1.25;overflow-wrap:anywhere;text-shadow:0 1px 0 #0009,0 2px 0 #0006;box-shadow:inset 0 2px 0 #ffffff26,inset 0 -2px 0 #0003,0 4px 0 #101113,0 6px 5px #0004;transition:background-color 40ms,box-shadow 35ms,translate 35ms;cursor:pointer}
+.word-choice:active{translate:0 3px;box-shadow:inset 0 2px 0 #0004,0 1px 0 #101113}
+.word-choice.word-wrong{background:#852c34;color:#fff}
+.word-choice.word-correct{background:#226c43;color:#fff}
+.word-choice:disabled{cursor:default;opacity:1}
+@media(max-width:600px){.word-accuracy{font-size:.75rem}.word-mode #answer-box{width:calc(100vw - 2.4rem)}.word-choice{min-height:56px;padding:10px 14px;font-size:1.6rem}#word-choices{gap:12px}}
+@media(prefers-reduced-motion:reduce){.word-choice{transition:none}}
 #support-menu{position:fixed;left:1rem;bottom:calc(.75rem + env(safe-area-inset-bottom,0px));z-index:7}
 #support-menu[hidden]{display:none}
 #support-menu>summary{font-size:.75rem;line-height:1.2;gap:.4rem;padding:.5rem .6rem;border-color:var(--danki-border,#45618e);background:var(--danki-bg,#071e48)}
@@ -230,12 +243,13 @@ body>.autumn-leaves{z-index:1}body>.autumn-leaves[hidden]{display:none}
 </div>
 <main id="game" aria-label="German practice" tabindex="-1">
   <section class="practice">
-    <div id="position" class="position">1 / 3000</div>
+    <div id="word-accuracy" class="word-accuracy" hidden></div>
+    <div id="position" class="position">1 / 1000</div>
     <div class="prompt-heading">
       <h1 id="word" lang="en">the</h1>
     </div>
     <img id="question-image" class="question-image" alt="Flag to identify" hidden>
-    <div id="answer-box" class="answer-box"><span id="translation" class="translation" lang="de">der</span></div>
+    <div id="answer-box" class="answer-box"><span id="translation" class="translation" lang="de">der</span><div id="word-choices" role="group" aria-label="Choose the translation" hidden></div></div>
     <button id="again" class="again" type="button" hidden>REPLAY</button>
     <button id="retry" class="again" type="button" hidden>Retry</button>
     <div id="feedback" class="feedback" role="status" aria-live="polite"></div>
@@ -243,7 +257,7 @@ body>.autumn-leaves{z-index:1}body>.autumn-leaves[hidden]{display:none}
 </main>
 <aside id="german-tracker" class="tracker">
   <section id="history" class="history" aria-label="Daily practice history" hidden>
-    <div class="history-head"><strong id="history-title">Previous days · Deutsch 3000</strong><button id="close-history" type="button" aria-label="Close daily history">×</button></div>
+    <div class="history-head"><strong id="history-title">Previous days · Deutsch 1000</strong><button id="close-history" type="button" aria-label="Close daily history">×</button></div>
     <div id="history-rows"><p class="empty-history">Your practice days will appear here.</p></div>
   </section>
   <button id="today" type="button" aria-expanded="false" aria-controls="history">
@@ -255,7 +269,7 @@ body>.autumn-leaves{z-index:1}body>.autumn-leaves[hidden]{display:none}
 </aside>
 <iframe id="arithmetic-frame" class="arithmetic-frame" title="Weekly arithmetic practice" hidden></iframe>
 <script id="word-data" type="application/json">[["der","the","article",["which","who"]],["ich","I","pron",["self"]],["sein","be","v",["being","exist","existence","have"]],["du","you","pron",[]],["sie","she","pron",["you"]],["haben","have","v",["contain","credit","feel","must"]],["ein","a","article",["on","one"]],["nicht","not","adv",[]],["es","it","pron",[]],["und","and","conjunction",[]],["wir","we","",[]],["er","he","pron",["er","it","or"]],["was","what","",["something","that","which"]],["mein","my","",["mine"]],["werden","become","v",["be","get","grow","must","will"]],["zu","to","prep",["at","closed"]],["in","in","preposition",[]],["können","can","v",["know","May"]],["ja","yes","particle",[]],["mit","with","preposition",["against","by"]],["wie","how","adv",["like"]],["dass","that","conjunction",["except","instead of","so"]],["auf","on","preposition",["at","in","open","to"]],["ihr","you","pron",["your"]],["aber","but","conjunction",["again","however"]],["gut","good","adj",["property","well"]],["wollen","want","v",["wish"]],["wissen","know","v",["knowledge"]],["so","so","adv",["as","if","such","then"]],["hier","here","adv",[]],["sagen","say","v",["saying","tell"]],["für","for","preposition",["to"]]]</script>
-<script id="core-deck-info" type="application/json">{"german-word":{"count":3000,"url":"german/words.json","version":"34984512bc846687"},"french-word":{"count":3000,"url":"french/words.json","version":"31ed2c34340e9262"},"french-sentence":{"count":750,"url":"french/sentences.json","version":"e7793e5d43c6c6a4"},"sentence":{"count":750,"url":"decks/sentences.json","version":"0e3d9eb55b04fc4d"},"kanji":{"count":2136,"url":"decks/kanji.json","version":"04f152020db930ba"},"economics":{"count":3500,"url":"decks/economics.json","version":"102272ff9bb71f51"}}</script>
+<script id="core-deck-info" type="application/json">{"german-word":{"count":1000,"url":"german/words.json","version":"328d2bd2f0f5a532"},"french-word":{"count":1000,"url":"french/words.json","version":"21350a8591f3b21c"},"french-sentence":{"count":500,"url":"french/sentences.json","version":"cc3f49c788a7d05e"},"sentence":{"count":500,"url":"decks/sentences.json","version":"9533962af55bf18b"},"kanji":{"count":2136,"url":"decks/kanji.json","version":"04f152020db930ba"},"economics":{"count":3500,"url":"decks/economics.json","version":"102272ff9bb71f51"}}</script>
 <script id="sentence-data" type="application/json">[]</script>
 <script id="french-word-data" type="application/json">[]</script>
 <script id="french-sentence-data" type="application/json">[]</script>
@@ -265,7 +279,7 @@ body>.autumn-leaves{z-index:1}body>.autumn-leaves[hidden]{display:none}
 <script id="economics-data" type="application/json">[]</script>
 <script id="trivia-info" type="application/json">{"total":20000,"chunkSize":2000,"version":"bbc3853c830f"}</script>
 <script id="trivia-data" type="application/json">[]</script>
-<script id="language-info" type="application/json">{"spanish-words":{"count":3000,"limit":3000,"version":"6c177e00df6d1709"},"spanish-sentences":{"count":750,"limit":750,"version":"053b88d60c0067d1"},"italian-words":{"count":3000,"limit":3000,"version":"97fce6d14398ddd1"},"italian-sentences":{"count":750,"limit":750,"version":"9e247ff1788c5218"},"greek-words":{"count":3000,"limit":3000,"version":"63490fbf2ef4f7d4"},"greek-sentences":{"count":750,"limit":750,"version":"696cecf9070cec8f"},"korean-hangul":{"count":40,"limit":500,"version":"e0257a2285b69fad"},"korean-words":{"count":3000,"limit":3000,"version":"cf40e19d1416ecb0"}}</script>
+<script id="language-info" type="application/json">{"spanish-words":{"count":1000,"limit":1000,"version":"adf5aee36b09531d"},"spanish-sentences":{"count":500,"limit":500,"version":"7f8fdb263d2dea11"},"italian-words":{"count":1000,"limit":1000,"version":"f365fef30f57bf59"},"italian-sentences":{"count":500,"limit":500,"version":"7a1c091f9f9bd050"},"greek-words":{"count":1000,"limit":1000,"version":"a9eca38fdfc1711c"},"greek-sentences":{"count":500,"limit":500,"version":"c29a94057ff09d2b"},"korean-hangul":{"count":40,"limit":500,"version":"e0257a2285b69fad"},"korean-words":{"count":1000,"limit":1000,"version":"5847ae361b512766"}}</script>
 <script id="support-config" type="application/json">{"enabled":false,"currency":"USD","genericUrl":"","amountUrls":{"2":"","5":"","10":"","100":""}}</script>
 <script id="auth-config" type="application/json">{"enabled":true,"firebase":{"apiKey":"AIzaSyB8ud_IxBFHMRia0cTG_o_17-H9YRguDsU","authDomain":"playdanki-ad7f6.firebaseapp.com","projectId":"playdanki-ad7f6","appId":"1:882147925198:web:380c092cc4b8db8387c49f"}}</script>
 <script id="spanish-words-data" type="application/json">[]</script>
@@ -403,8 +417,16 @@ function read(deck=active){if(!storageOK)return clean(memory.get(deck.key),deck)
 function save(deck,value){memory.set(deck.key,value);if(!storageOK)return;try{localStorage.setItem(deck.key,JSON.stringify(value));document.dispatchEvent(new Event('danki-progress'))}catch{storageOK=false;warn()}}
 const practiced=row=>row.correct+row.wrong+(row.skipped||0);
 const accuracy=row=>{const graded=row.correct+row.wrong+(row.misses||0);return graded?Math.round(row.correct/graded*1000)/10:null};
-function score(){const row=active.cumulative?state.run:((active.weekly?state.weeks[weekKey()]:state.days[dayKey()])||emptyRow());$('tracker-period').textContent='All time';$('today-count').textContent='Practiced '+Object.values(state.days).reduce((sum,item)=>sum+practiced(item),0).toLocaleString();$('today-score').hidden=true;if(!history.hidden)renderHistory()}
-function renderHistory(){const holder=$('history-rows');$('history-title').textContent=(active.weekly?'Previous weeks · ':'Previous days · ')+active.title;holder.replaceChildren();const current=document.createElement('div');current.className='history-row';const label=document.createElement('div');label.className='history-date';label.textContent='Today';const count=document.createElement('div');count.className='history-count';count.textContent='Practiced '+practiced(state.days[dayKey()]||emptyRow()).toLocaleString();current.append(label,count);holder.append(current);const rows=active.weekly?state.weeks:state.days,period=active.weekly?weekKey():dayKey(),dates=Object.keys(rows).filter(d=>d!==period).sort().reverse();if(!dates.length){const p=document.createElement('p');p.className='empty-history';p.textContent=active.weekly?'No previous practice weeks yet.':'No previous practice days yet.';holder.append(p);return}const fragment=document.createDocumentFragment();for(const date of dates){const row=rows[date],box=document.createElement('div'),label=document.createElement('div'),count=document.createElement('div'),result=document.createElement('div');box.className='history-row';label.className='history-date';const [y,m,d]=date.split('-').map(Number);label.textContent=new Date(y,m-1,d).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});if(active.weekly){const end=new Date(y,m-1,d+6);label.textContent+=' – '+end.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})}count.className='history-count';count.textContent='Practiced '+practiced(row)+'/'+active.limit;result.className='history-score';const previous=accuracy(row);result.hidden=previous===null;result.textContent=previous===null?'':'Earlier accuracy = '+previous+'%';box.append(label,count,result);fragment.append(box)}holder.append(fragment)}
+const accuracyLabel=row=>{const value=accuracy(row);return (value===null?'—':value+'%')+' CORRECT';};
+function score(){
+  const total=emptyRow();for(const row of Object.values(state.days)){total.correct+=row.correct;total.wrong+=row.wrong;total.misses+=row.misses||0;total.skipped+=row.skipped||0;}
+  const quiz=active.unit==='words';
+  $('tracker-period').textContent='All time';$('today-count').textContent='Practiced '+practiced(total).toLocaleString();
+  $('today-score').hidden=!quiz;$('today-score').textContent=accuracyLabel(total);
+  $('word-accuracy').hidden=!quiz;$('word-accuracy').textContent=accuracyLabel(total);
+  if(!history.hidden)renderHistory();
+}
+function renderHistory(){const holder=$('history-rows');$('history-title').textContent=(active.weekly?'Previous weeks · ':'Previous days · ')+active.title;holder.replaceChildren();const current=document.createElement('div');current.className='history-row';const label=document.createElement('div');label.className='history-date';label.textContent='Today';const count=document.createElement('div');count.className='history-count';count.textContent='Practiced '+practiced(state.days[dayKey()]||emptyRow()).toLocaleString();current.append(label,count);if(active.unit==='words'){const result=document.createElement('div');result.className='history-score';result.textContent=accuracyLabel(state.days[dayKey()]||emptyRow());current.append(result);}holder.append(current);const rows=active.weekly?state.weeks:state.days,period=active.weekly?weekKey():dayKey(),dates=Object.keys(rows).filter(d=>d!==period).sort().reverse();if(!dates.length){const p=document.createElement('p');p.className='empty-history';p.textContent=active.weekly?'No previous practice weeks yet.':'No previous practice days yet.';holder.append(p);return}const fragment=document.createDocumentFragment();for(const date of dates){const row=rows[date],box=document.createElement('div'),label=document.createElement('div'),count=document.createElement('div'),result=document.createElement('div');box.className='history-row';label.className='history-date';const [y,m,d]=date.split('-').map(Number);label.textContent=new Date(y,m-1,d).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});if(active.weekly){const end=new Date(y,m-1,d+6);label.textContent+=' – '+end.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})}count.className='history-count';count.textContent='Practiced '+practiced(row)+'/'+active.limit;result.className='history-score';const previous=accuracy(row);result.hidden=previous===null;result.textContent=previous===null?'':active.unit==='words'?accuracyLabel(row):'Earlier accuracy = '+previous+'%';box.append(label,count,result);fragment.append(box)}holder.append(fragment)}
 function cardIndex(){if(active===decks.hangul)return active.cards[0]?hangulPracticeOrder(active.cards,dayKey())[shownCursor]:0;if(!active.daily)return shownCursor;const done=practiced(state.days[dayKey()]||{correct:0,wrong:0})+shownCursor-state.cursor,order=kanaPracticeOrder(active.cards,dayKey());return order[done<92?done:92+(done-92)%408]}
 function centerAnswer(){
   if(!practiceActive||game.hidden||answerBox.hidden)return;
@@ -415,25 +437,77 @@ function centerAnswer(){
   game.style.minHeight=Math.max(innerHeight,center+h/2+144)+'px';
 }
 window.addEventListener('resize',centerAnswer);questionImage.addEventListener('load',centerAnswer);
-function cardVoice(text=''){document.dispatchEvent(new CustomEvent('danki-card-voice',{detail:{id:mode+':'+shownRound+':'+shownCursor,text,lang:active.lang}}));}
+function cardVoice(text='',announce=false){document.dispatchEvent(new CustomEvent('danki-card-voice',{detail:{id:mode+':'+shownRound+':'+shownCursor,text,lang:active.lang,announce}}));}
+function wordMeanings(card){
+  const labels=[card[1],...(Array.isArray(card[3])?card[3]:[])];
+  return new Set(labels.flatMap(text=>text.toLowerCase().replace(/\([^)]*\)/g,'').split(/\s*[\/;]\s*/)).map(text=>text.trim().replace(/^to /,'').replace(/^an$/,'a')).filter(Boolean));
+}
+function wordChoices(cards,index){
+  const current=cards[index],meanings=wordMeanings(current);
+  const candidates=cards.filter(card=>card!==current&&!Array.from(wordMeanings(card)).some(meaning=>meanings.has(meaning)));
+  for(let i=candidates.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[candidates[i],candidates[j]]=[candidates[j],candidates[i]];}
+  if(candidates.length<2)throw Error('Not enough distinct word choices');
+  const choices=[current,...candidates.slice(0,2)];
+  for(let i=choices.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[choices[i],choices[j]]=[choices[j],choices[i]];}
+  return choices.map(card=>({text:card[0],correct:card===current}));
+}
+async function answerWord(button,correct,view){
+  if(view!==screenVersion||locked||!practiceActive||active.unit!=='words'||menuOpen()||!history.hidden||button.disabled||['notes-open','atlas-open','weight-open','timebox-open'].some(name=>document.body.classList.contains(name)))return;
+  locked=true;
+  const deck=active,cursor=shownCursor,round=shownRound,date=shownDay,review=reviewCursor!==null;
+  try{
+    let accepted=review;
+    const record=()=>{
+      const fresh=read(deck);
+      if(fresh.cursor===cursor&&fresh.round===round&&date===dayKey()){
+        const row=fresh.days[date]||(fresh.days[date]=emptyRow());
+        if(correct){row.correct++;fresh.cursor++;}else row.misses++;
+        save(deck,fresh);accepted=true;
+      }
+      if(active===deck)state=fresh;
+    };
+    if(!review){if(navigator.locks?.request)await navigator.locks.request(deck.key,record);else record();}
+    if(view!==screenVersion||active!==deck)return;
+    if(!accepted){render();return;}
+    button.classList.add(correct?'word-correct':'word-wrong');button.disabled=true;score();
+    if(correct){
+      for(const choice of $('word-choices').children)choice.disabled=true;
+      cardVoice(deck.cards[cursor][0],true);
+      setTimeout(()=>{if(view!==screenVersion||active!==deck||!practiceActive)return;locked=false;if(review)nextCard();else render();},160);
+    }else locked=false;
+  }catch{
+    if(view===screenVersion){locked=false;feedback.textContent='Could not record answer. Try again.';}
+  }
+}
 function render(){
   if(!practiceActive)return;
   screenVersion++;locked=false;shownCursor=reviewCursor??state.cursor;shownRound=state.round;shownDay=dayKey();feedback.textContent='';$('answer-box').hidden=true;game.style.minHeight='';
-  practice.classList.toggle('sentence-mode',active.unit==='sentences'||active.fixedChoices);practice.classList.toggle('japanese-mode',active.section==='japanese'||active.section==='korean');
+  const quiz=active.unit==='words';
+  practice.classList.toggle('word-mode',quiz);practice.classList.toggle('sentence-mode',active.unit==='sentences'||active.fixedChoices);practice.classList.toggle('japanese-mode',active.section==='japanese'||active.section==='korean');
+  translation.hidden=quiz;$('word-choices').hidden=!quiz;$('word-choices').replaceChildren();
   $('game').setAttribute('aria-label',active.section[0].toUpperCase()+active.section.slice(1)+' flashcards');word.lang='en';translation.lang=active.lang;$('kanji-credit').hidden=active!==decks.kanji;
   for(const [name,b]of Object.entries(modeButtons)){b.classList.toggle('active',name===mode);b.setAttribute('aria-pressed',String(name===mode))}
   $('retry').hidden=true;$('question-image').hidden=true;$('question-image').removeAttribute('src');score();
   const total=active.limit,complete=shownCursor===total;again.hidden=!complete;position.textContent=(complete?total:shownCursor+1)+' / '+total;$('previous-card').disabled=shownCursor===0;
-  if(complete){cardVoice();word.textContent='Complete';feedback.textContent=active.daily?'Daily goal reached.':'All '+total+' '+active.unit+' practiced.';word.lang='en';return}
+  if(complete){if(!quiz)cardVoice();word.textContent='Complete';feedback.textContent=active.daily?'Daily goal reached.':'All '+total+' '+active.unit+' practiced.';word.lang='en';return}
   shownCard=cardIndex();const current=active.cards[shownCard];
-  if(active.remote&&!current){cardVoice();locked=true;word.textContent='';const deck=active,view=screenVersion;loadLanguage(deck).then(()=>{if(active===deck&&screenVersion===view)render()}).catch(()=>{if(active===deck&&screenVersion===view){word.textContent='Unable to load cards';feedback.textContent='Check your connection and retry.';$('retry').hidden=false}});return}
+  if(active.remote&&(!current||(quiz&&active.cards.filter(Boolean).length!==total))){cardVoice();locked=true;word.textContent='';const deck=active,view=screenVersion;loadLanguage(deck).then(()=>{if(active===deck&&screenVersion===view)render()}).catch(()=>{if(active===deck&&screenVersion===view){word.textContent='Unable to load cards';feedback.textContent='Check your connection and retry.';$('retry').hidden=false}});return}
   if(active===decks.trivia&&!current){cardVoice();locked=true;word.textContent='';const view=screenVersion;loadTrivia(shownCard).then(()=>{if(active===decks.trivia&&screenVersion===view)render()}).catch(()=>{if(active===decks.trivia&&screenVersion===view){word.textContent='Unable to load questions';feedback.textContent='Check your connection and retry.';$('retry').hidden=false}});return}
   if(active===decks.trivia){if(current[5]){const img=$('question-image');img.src=current[5];img.hidden=false}const next=shownCard+200;if(next<active.limit&&Math.floor(next/triviaInfo.chunkSize)!==Math.floor(shownCard/triviaInfo.chunkSize))loadTrivia(next).catch(()=>{})}
-  const language=active.lang!=='en';word.textContent=current[language?1:0];translation.textContent=current[language?0:1];$('answer-box').hidden=false;centerAnswer();cardVoice(language?current[0]:current[1]);
+  const language=active.lang!=='en';word.textContent=current[language?1:0];translation.textContent=quiz?'':current[language?0:1];
+  if(quiz){
+    const view=screenVersion;
+    for(const choice of wordChoices(active.cards,shownCard)){
+      const button=document.createElement('button');button.type='button';button.className='word-choice';button.textContent=choice.text;button.lang=active.lang;
+      button.addEventListener('click',()=>answerWord(button,choice.correct,view));$('word-choices').append(button);
+    }
+  }else cardVoice(language?current[0]:current[1]);
+  $('answer-box').hidden=false;centerAnswer();
 }
 function previousCard(){if(!practiceActive||menuOpen()||!history.hidden||locked||shownCursor<=0)return;reviewCursor=shownCursor-1;render();}
 function nextCard(){
   if(!practiceActive||menuOpen()||!history.hidden||locked)return;
+  if(active.unit==='words'&&reviewCursor===null&&state.cursor!==active.limit)return;
   if(reviewCursor!==null){reviewCursor++;if(reviewCursor>=state.cursor)reviewCursor=null;render();return}
   if(state.cursor===active.limit){again.click();return}
   if(shownDay!==dayKey()){state=read(active);render();return}
@@ -457,7 +531,7 @@ function loadLanguage(deck){if(languageLoads.has(deck.remote))return languageLoa
 $('retry').addEventListener('click',()=>render());
 StudyNavigation.install({next:nextCard,previous:previousCard,enabled:()=>practiceActive&&!menuOpen()&&history.hidden&&!(document.body.classList.contains('notes-open')||(document.body.classList.contains('atlas-open')||(document.body.classList.contains('weight-open')||document.body.classList.contains('timebox-open'))))});
 function closeHistory(){history.hidden=true;today.setAttribute('aria-expanded','false')}
-function switchMode(name){reviewCursor=null;if(mode===name){state=read(active);render();return}mode=name;active=decks[name];preferredModes[active.section]=name;state=read(active);if(storageOK&&modeKeys[active.section]){try{localStorage.setItem(modeKeys[active.section],name)}catch{storageOK=false;warn()}}closeHistory();render()}
+function switchMode(name){reviewCursor=null;if(mode!==name)cardVoice();if(mode===name){state=read(active);render();return}mode=name;active=decks[name];preferredModes[active.section]=name;state=read(active);if(storageOK&&modeKeys[active.section]){try{localStorage.setItem(modeKeys[active.section],name)}catch{storageOK=false;warn()}}closeHistory();render()}
 for(const [name,b]of Object.entries(modeButtons))b.addEventListener('click',()=>switchMode(name));
 document.addEventListener('practice-section',e=>{if(e.detail!==active.section)cardVoice();reviewCursor=null;practiceActive=!e.detail.startsWith('arithmetic')&&!['programming','quant','digit-span'].includes(e.detail);closeHistory();if(practiceActive){const next=preferredModes[e.detail];if(mode===next){state=read(active);render()}else switchMode(next)}});
 function skipKey(e){if(!practiceActive||(document.body.classList.contains('atlas-open')||(document.body.classList.contains('weight-open')||document.body.classList.contains('timebox-open')))||menuOpen()||e.ctrlKey||e.altKey||e.metaKey||e.isComposing)return;const next=e.code==='Space'||e.key===' '||e.key==='Enter';if(!next)return;const control=e.target.closest?.('input,textarea,select,[contenteditable="true"],summary,a,button');if(control&&control!==again)return;e.preventDefault();if(!e.repeat)nextCard()}
@@ -475,7 +549,7 @@ for(const [section,key]of Object.entries(modeKeys))try{const preferred=localStor
 const startSection=location.hash.slice(1);practiceActive=!['arithmetic','programming','quant','digit-span'].includes(startSection);mode=preferredModes[startSection]||preferredModes.german;active=decks[mode];state=read(active);render();scheduleMidnight();
 })();</script>
 <script>(()=>{'use strict';
-const $=id=>document.getElementById(id),frame=$('arithmetic-frame'),menus=[...document.querySelectorAll('.games-menu')],subjects=new Set(['french','german','japanese','spanish','italian','greek','korean','economics','trivia','arithmetic','programming','quant','digit-span']),options=document.querySelectorAll('.navigation .game-option'),embedded={'digit-span':['digit-span/index.html?v=a605f4b1d8fd','Digit Span','Digit Span memory game'],arithmetic:['arithmetic.html?v=a605f4b1d8fd','Weekly arithmetic','Weekly arithmetic practice'],programming:['programming.html?v=a605f4b1d8fd','Programming','Programming learning cards'],quant:['quant.html?v=a605f4b1d8fd','QUANT','QUANT learning cards']};
+const $=id=>document.getElementById(id),frame=$('arithmetic-frame'),menus=[...document.querySelectorAll('.games-menu')],subjects=new Set(['french','german','japanese','spanish','italian','greek','korean','economics','trivia','arithmetic','programming','quant','digit-span']),options=document.querySelectorAll('.navigation .game-option'),embedded={'digit-span':['digit-span/index.html?v=9798e1945d2f','Digit Span','Digit Span memory game'],arithmetic:['arithmetic.html?v=9798e1945d2f','Weekly arithmetic','Weekly arithmetic practice'],programming:['programming.html?v=9798e1945d2f','Programming','Programming learning cards'],quant:['quant.html?v=9798e1945d2f','QUANT','QUANT learning cards']};
 const menuOpen=()=>menus.some(menu=>menu.open);
 let section='german';
 const previous=$('previous-card'),embeddedPrevious=$('embedded-previous-card');let previousObserver=null;
@@ -514,7 +588,7 @@ for(const link of links){
 }
 note.textContent=config.preview?'Preview — payment link not connected.':config.genericUrl?'Choose an amount, then enter it on Revolut.':'Choose an amount. Continue on Revolut to pay.';
 })();</script>
-<script defer src="notes-navigation.js?v=a605f4b1d8fd"></script>
-<script defer src="account.js?v=a605f4b1d8fd"></script>
-<script defer data-danki-main src="temponotes/autumn.js?v=a605f4b1d8fd"></script><script defer src="atlas-navigation.js?v=a605f4b1d8fd"></script><script defer src="weight-navigation.js?v=a605f4b1d8fd"></script><script defer src="timebox-navigation.js?v=a605f4b1d8fd"></script><script defer src="/analytics.js?v=1921c945b29d"></script><script defer src="/page-warmup.js?v=f4097497ad43"></script></body>
+<script defer src="notes-navigation.js?v=9798e1945d2f"></script>
+<script defer src="account.js?v=9798e1945d2f"></script>
+<script defer data-danki-main src="temponotes/autumn.js?v=9798e1945d2f"></script><script defer src="atlas-navigation.js?v=9798e1945d2f"></script><script defer src="weight-navigation.js?v=9798e1945d2f"></script><script defer src="timebox-navigation.js?v=9798e1945d2f"></script><script defer src="/analytics.js?v=1921c945b29d"></script><script defer src="/page-warmup.js?v=36d696222454"></script></body>
 </html>

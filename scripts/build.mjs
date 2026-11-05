@@ -50,7 +50,7 @@ if(kanjiEntries.length!==2136||new Set(kanjiEntries.map(c=>c[0])).size!==2136||k
 const coreDeckInfo={};
 await fs.mkdir(new URL('dist/decks/',root),{recursive:true});
 await fs.mkdir(new URL('dist/german/',root),{recursive:true});
-for(const [id,data,url] of [['german-word',JSON.stringify(entries.slice(0,3000)),'german/words.json'],['french-word',frenchWords,'french/words.json'],['french-sentence',frenchSentences,'french/sentences.json'],['sentence',JSON.stringify(sentenceEntries.slice(0,750)),'decks/sentences.json'],['kanji',kanji,'decks/kanji.json'],['economics',economics,'decks/economics.json']]){
+for(const [id,data,url] of [['german-word',JSON.stringify(entries.slice(0,1000)),'german/words.json'],['french-word',frenchWords,'french/words.json'],['french-sentence',frenchSentences,'french/sentences.json'],['sentence',JSON.stringify(sentenceEntries.slice(0,500)),'decks/sentences.json'],['kanji',kanji,'decks/kanji.json'],['economics',economics,'decks/economics.json']]){
  coreDeckInfo[id]={count:JSON.parse(data).length,url,version:createHash('sha256').update(data).digest('hex').slice(0,16)};
  await fs.writeFile(new URL('dist/'+url,root),data);
 }

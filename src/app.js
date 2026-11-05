@@ -61,8 +61,16 @@ function read(deck=active){if(!storageOK)return clean(memory.get(deck.key),deck)
 function save(deck,value){memory.set(deck.key,value);if(!storageOK)return;try{localStorage.setItem(deck.key,JSON.stringify(value));document.dispatchEvent(new Event('danki-progress'))}catch{storageOK=false;warn()}}
 const practiced=row=>row.correct+row.wrong+(row.skipped||0);
 const accuracy=row=>{const graded=row.correct+row.wrong+(row.misses||0);return graded?Math.round(row.correct/graded*1000)/10:null};
-function score(){const row=active.cumulative?state.run:((active.weekly?state.weeks[weekKey()]:state.days[dayKey()])||emptyRow());$('tracker-period').textContent='All time';$('today-count').textContent='Practiced '+Object.values(state.days).reduce((sum,item)=>sum+practiced(item),0).toLocaleString();$('today-score').hidden=true;if(!history.hidden)renderHistory()}
-function renderHistory(){const holder=$('history-rows');$('history-title').textContent=(active.weekly?'Previous weeks · ':'Previous days · ')+active.title;holder.replaceChildren();const current=document.createElement('div');current.className='history-row';const label=document.createElement('div');label.className='history-date';label.textContent='Today';const count=document.createElement('div');count.className='history-count';count.textContent='Practiced '+practiced(state.days[dayKey()]||emptyRow()).toLocaleString();current.append(label,count);holder.append(current);const rows=active.weekly?state.weeks:state.days,period=active.weekly?weekKey():dayKey(),dates=Object.keys(rows).filter(d=>d!==period).sort().reverse();if(!dates.length){const p=document.createElement('p');p.className='empty-history';p.textContent=active.weekly?'No previous practice weeks yet.':'No previous practice days yet.';holder.append(p);return}const fragment=document.createDocumentFragment();for(const date of dates){const row=rows[date],box=document.createElement('div'),label=document.createElement('div'),count=document.createElement('div'),result=document.createElement('div');box.className='history-row';label.className='history-date';const [y,m,d]=date.split('-').map(Number);label.textContent=new Date(y,m-1,d).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});if(active.weekly){const end=new Date(y,m-1,d+6);label.textContent+=' – '+end.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})}count.className='history-count';count.textContent='Practiced '+practiced(row)+'/'+active.limit;result.className='history-score';const previous=accuracy(row);result.hidden=previous===null;result.textContent=previous===null?'':'Earlier accuracy = '+previous+'%';box.append(label,count,result);fragment.append(box)}holder.append(fragment)}
+const accuracyLabel=row=>{const value=accuracy(row);return (value===null?'—':value+'%')+' CORRECT';};
+function score(){
+  const total=emptyRow();for(const row of Object.values(state.days)){total.correct+=row.correct;total.wrong+=row.wrong;total.misses+=row.misses||0;total.skipped+=row.skipped||0;}
+  const quiz=active.unit==='words';
+  $('tracker-period').textContent='All time';$('today-count').textContent='Practiced '+practiced(total).toLocaleString();
+  $('today-score').hidden=!quiz;$('today-score').textContent=accuracyLabel(total);
+  $('word-accuracy').hidden=!quiz;$('word-accuracy').textContent=accuracyLabel(total);
+  if(!history.hidden)renderHistory();
+}
+function renderHistory(){const holder=$('history-rows');$('history-title').textContent=(active.weekly?'Previous weeks · ':'Previous days · ')+active.title;holder.replaceChildren();const current=document.createElement('div');current.className='history-row';const label=document.createElement('div');label.className='history-date';label.textContent='Today';const count=document.createElement('div');count.className='history-count';count.textContent='Practiced '+practiced(state.days[dayKey()]||emptyRow()).toLocaleString();current.append(label,count);if(active.unit==='words'){const result=document.createElement('div');result.className='history-score';result.textContent=accuracyLabel(state.days[dayKey()]||emptyRow());current.append(result);}holder.append(current);const rows=active.weekly?state.weeks:state.days,period=active.weekly?weekKey():dayKey(),dates=Object.keys(rows).filter(d=>d!==period).sort().reverse();if(!dates.length){const p=document.createElement('p');p.className='empty-history';p.textContent=active.weekly?'No previous practice weeks yet.':'No previous practice days yet.';holder.append(p);return}const fragment=document.createDocumentFragment();for(const date of dates){const row=rows[date],box=document.createElement('div'),label=document.createElement('div'),count=document.createElement('div'),result=document.createElement('div');box.className='history-row';label.className='history-date';const [y,m,d]=date.split('-').map(Number);label.textContent=new Date(y,m-1,d).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});if(active.weekly){const end=new Date(y,m-1,d+6);label.textContent+=' – '+end.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})}count.className='history-count';count.textContent='Practiced '+practiced(row)+'/'+active.limit;result.className='history-score';const previous=accuracy(row);result.hidden=previous===null;result.textContent=previous===null?'':active.unit==='words'?accuracyLabel(row):'Earlier accuracy = '+previous+'%';box.append(label,count,result);fragment.append(box)}holder.append(fragment)}
 function cardIndex(){if(active===decks.hangul)return active.cards[0]?hangulPracticeOrder(active.cards,dayKey())[shownCursor]:0;if(!active.daily)return shownCursor;const done=practiced(state.days[dayKey()]||{correct:0,wrong:0})+shownCursor-state.cursor,order=kanaPracticeOrder(active.cards,dayKey());return order[done<92?done:92+(done-92)%408]}
 function centerAnswer(){
   if(!practiceActive||game.hidden||answerBox.hidden)return;
@@ -73,25 +81,77 @@ function centerAnswer(){
   game.style.minHeight=Math.max(innerHeight,center+h/2+144)+'px';
 }
 window.addEventListener('resize',centerAnswer);questionImage.addEventListener('load',centerAnswer);
-function cardVoice(text=''){document.dispatchEvent(new CustomEvent('danki-card-voice',{detail:{id:mode+':'+shownRound+':'+shownCursor,text,lang:active.lang}}));}
+function cardVoice(text='',announce=false){document.dispatchEvent(new CustomEvent('danki-card-voice',{detail:{id:mode+':'+shownRound+':'+shownCursor,text,lang:active.lang,announce}}));}
+function wordMeanings(card){
+  const labels=[card[1],...(Array.isArray(card[3])?card[3]:[])];
+  return new Set(labels.flatMap(text=>text.toLowerCase().replace(/\([^)]*\)/g,'').split(/\s*[\/;]\s*/)).map(text=>text.trim().replace(/^to /,'').replace(/^an$/,'a')).filter(Boolean));
+}
+function wordChoices(cards,index){
+  const current=cards[index],meanings=wordMeanings(current);
+  const candidates=cards.filter(card=>card!==current&&!Array.from(wordMeanings(card)).some(meaning=>meanings.has(meaning)));
+  for(let i=candidates.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[candidates[i],candidates[j]]=[candidates[j],candidates[i]];}
+  if(candidates.length<2)throw Error('Not enough distinct word choices');
+  const choices=[current,...candidates.slice(0,2)];
+  for(let i=choices.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[choices[i],choices[j]]=[choices[j],choices[i]];}
+  return choices.map(card=>({text:card[0],correct:card===current}));
+}
+async function answerWord(button,correct,view){
+  if(view!==screenVersion||locked||!practiceActive||active.unit!=='words'||menuOpen()||!history.hidden||button.disabled||['notes-open','atlas-open','weight-open','timebox-open'].some(name=>document.body.classList.contains(name)))return;
+  locked=true;
+  const deck=active,cursor=shownCursor,round=shownRound,date=shownDay,review=reviewCursor!==null;
+  try{
+    let accepted=review;
+    const record=()=>{
+      const fresh=read(deck);
+      if(fresh.cursor===cursor&&fresh.round===round&&date===dayKey()){
+        const row=fresh.days[date]||(fresh.days[date]=emptyRow());
+        if(correct){row.correct++;fresh.cursor++;}else row.misses++;
+        save(deck,fresh);accepted=true;
+      }
+      if(active===deck)state=fresh;
+    };
+    if(!review){if(navigator.locks?.request)await navigator.locks.request(deck.key,record);else record();}
+    if(view!==screenVersion||active!==deck)return;
+    if(!accepted){render();return;}
+    button.classList.add(correct?'word-correct':'word-wrong');button.disabled=true;score();
+    if(correct){
+      for(const choice of $('word-choices').children)choice.disabled=true;
+      cardVoice(deck.cards[cursor][0],true);
+      setTimeout(()=>{if(view!==screenVersion||active!==deck||!practiceActive)return;locked=false;if(review)nextCard();else render();},160);
+    }else locked=false;
+  }catch{
+    if(view===screenVersion){locked=false;feedback.textContent='Could not record answer. Try again.';}
+  }
+}
 function render(){
   if(!practiceActive)return;
   screenVersion++;locked=false;shownCursor=reviewCursor??state.cursor;shownRound=state.round;shownDay=dayKey();feedback.textContent='';$('answer-box').hidden=true;game.style.minHeight='';
-  practice.classList.toggle('sentence-mode',active.unit==='sentences'||active.fixedChoices);practice.classList.toggle('japanese-mode',active.section==='japanese'||active.section==='korean');
+  const quiz=active.unit==='words';
+  practice.classList.toggle('word-mode',quiz);practice.classList.toggle('sentence-mode',active.unit==='sentences'||active.fixedChoices);practice.classList.toggle('japanese-mode',active.section==='japanese'||active.section==='korean');
+  translation.hidden=quiz;$('word-choices').hidden=!quiz;$('word-choices').replaceChildren();
   $('game').setAttribute('aria-label',active.section[0].toUpperCase()+active.section.slice(1)+' flashcards');word.lang='en';translation.lang=active.lang;$('kanji-credit').hidden=active!==decks.kanji;
   for(const [name,b]of Object.entries(modeButtons)){b.classList.toggle('active',name===mode);b.setAttribute('aria-pressed',String(name===mode))}
   $('retry').hidden=true;$('question-image').hidden=true;$('question-image').removeAttribute('src');score();
   const total=active.limit,complete=shownCursor===total;again.hidden=!complete;position.textContent=(complete?total:shownCursor+1)+' / '+total;$('previous-card').disabled=shownCursor===0;
-  if(complete){cardVoice();word.textContent='Complete';feedback.textContent=active.daily?'Daily goal reached.':'All '+total+' '+active.unit+' practiced.';word.lang='en';return}
+  if(complete){if(!quiz)cardVoice();word.textContent='Complete';feedback.textContent=active.daily?'Daily goal reached.':'All '+total+' '+active.unit+' practiced.';word.lang='en';return}
   shownCard=cardIndex();const current=active.cards[shownCard];
-  if(active.remote&&!current){cardVoice();locked=true;word.textContent='';const deck=active,view=screenVersion;loadLanguage(deck).then(()=>{if(active===deck&&screenVersion===view)render()}).catch(()=>{if(active===deck&&screenVersion===view){word.textContent='Unable to load cards';feedback.textContent='Check your connection and retry.';$('retry').hidden=false}});return}
+  if(active.remote&&(!current||(quiz&&active.cards.filter(Boolean).length!==total))){cardVoice();locked=true;word.textContent='';const deck=active,view=screenVersion;loadLanguage(deck).then(()=>{if(active===deck&&screenVersion===view)render()}).catch(()=>{if(active===deck&&screenVersion===view){word.textContent='Unable to load cards';feedback.textContent='Check your connection and retry.';$('retry').hidden=false}});return}
   if(active===decks.trivia&&!current){cardVoice();locked=true;word.textContent='';const view=screenVersion;loadTrivia(shownCard).then(()=>{if(active===decks.trivia&&screenVersion===view)render()}).catch(()=>{if(active===decks.trivia&&screenVersion===view){word.textContent='Unable to load questions';feedback.textContent='Check your connection and retry.';$('retry').hidden=false}});return}
   if(active===decks.trivia){if(current[5]){const img=$('question-image');img.src=current[5];img.hidden=false}const next=shownCard+200;if(next<active.limit&&Math.floor(next/triviaInfo.chunkSize)!==Math.floor(shownCard/triviaInfo.chunkSize))loadTrivia(next).catch(()=>{})}
-  const language=active.lang!=='en';word.textContent=current[language?1:0];translation.textContent=current[language?0:1];$('answer-box').hidden=false;centerAnswer();cardVoice(language?current[0]:current[1]);
+  const language=active.lang!=='en';word.textContent=current[language?1:0];translation.textContent=quiz?'':current[language?0:1];
+  if(quiz){
+    const view=screenVersion;
+    for(const choice of wordChoices(active.cards,shownCard)){
+      const button=document.createElement('button');button.type='button';button.className='word-choice';button.textContent=choice.text;button.lang=active.lang;
+      button.addEventListener('click',()=>answerWord(button,choice.correct,view));$('word-choices').append(button);
+    }
+  }else cardVoice(language?current[0]:current[1]);
+  $('answer-box').hidden=false;centerAnswer();
 }
 function previousCard(){if(!practiceActive||menuOpen()||!history.hidden||locked||shownCursor<=0)return;reviewCursor=shownCursor-1;render();}
 function nextCard(){
   if(!practiceActive||menuOpen()||!history.hidden||locked)return;
+  if(active.unit==='words'&&reviewCursor===null&&state.cursor!==active.limit)return;
   if(reviewCursor!==null){reviewCursor++;if(reviewCursor>=state.cursor)reviewCursor=null;render();return}
   if(state.cursor===active.limit){again.click();return}
   if(shownDay!==dayKey()){state=read(active);render();return}
@@ -115,7 +175,7 @@ function loadLanguage(deck){if(languageLoads.has(deck.remote))return languageLoa
 $('retry').addEventListener('click',()=>render());
 StudyNavigation.install({next:nextCard,previous:previousCard,enabled:()=>practiceActive&&!menuOpen()&&history.hidden&&!(document.body.classList.contains('notes-open')||(document.body.classList.contains('atlas-open')||(document.body.classList.contains('weight-open')||document.body.classList.contains('timebox-open'))))});
 function closeHistory(){history.hidden=true;today.setAttribute('aria-expanded','false')}
-function switchMode(name){reviewCursor=null;if(mode===name){state=read(active);render();return}mode=name;active=decks[name];preferredModes[active.section]=name;state=read(active);if(storageOK&&modeKeys[active.section]){try{localStorage.setItem(modeKeys[active.section],name)}catch{storageOK=false;warn()}}closeHistory();render()}
+function switchMode(name){reviewCursor=null;if(mode!==name)cardVoice();if(mode===name){state=read(active);render();return}mode=name;active=decks[name];preferredModes[active.section]=name;state=read(active);if(storageOK&&modeKeys[active.section]){try{localStorage.setItem(modeKeys[active.section],name)}catch{storageOK=false;warn()}}closeHistory();render()}
 for(const [name,b]of Object.entries(modeButtons))b.addEventListener('click',()=>switchMode(name));
 document.addEventListener('practice-section',e=>{if(e.detail!==active.section)cardVoice();reviewCursor=null;practiceActive=!e.detail.startsWith('arithmetic')&&!['programming','quant','digit-span'].includes(e.detail);closeHistory();if(practiceActive){const next=preferredModes[e.detail];if(mode===next){state=read(active);render()}else switchMode(next)}});
 function skipKey(e){if(!practiceActive||(document.body.classList.contains('atlas-open')||(document.body.classList.contains('weight-open')||document.body.classList.contains('timebox-open')))||menuOpen()||e.ctrlKey||e.altKey||e.metaKey||e.isComposing)return;const next=e.code==='Space'||e.key===' '||e.key==='Enter';if(!next)return;const control=e.target.closest?.('input,textarea,select,[contenteditable="true"],summary,a,button');if(control&&control!==again)return;e.preventDefault();if(!e.repeat)nextCard()}
