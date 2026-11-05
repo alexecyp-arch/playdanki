@@ -59,6 +59,7 @@ html body #translation,html body #exercise #answer,html body #study #answer{colo
 .word-choice.word-wrong{background:#852c34;color:#fff}
 .word-choice.word-correct{background:#226c43;color:#fff}
 .word-choice:disabled{cursor:default;opacity:1}
+@media(min-width:601px){.word-mode #answer-box{width:min(40rem,calc(100vw - 4rem))}.word-choice{min-height:80px;padding:16px 24px}}
 @media(max-width:600px){.word-accuracy{font-size:.75rem}.word-mode #answer-box{width:calc(100vw - 2.4rem)}.word-choice{min-height:56px;padding:10px 14px;font-size:1.6rem}#word-choices{gap:12px}}
 @media(prefers-reduced-motion:reduce){.word-choice{transition:none}}
 </style>
@@ -126,5 +127,5 @@ if(document.modelContext?.registerTool)try{Promise.resolve(document.modelContext
 refresh();next();$('answer').focus({preventScroll:true});
 })();
 </script>
-<script defer src="/analytics.js?v=1921c945b29d"></script><script defer src="/page-warmup.js?v=0a21276eabdb"></script></body>
+<script defer src="/analytics.js?v=1921c945b29d"></script><script defer src="/page-warmup.js?v=ee00b6225de5"></script></body>
 </html>
