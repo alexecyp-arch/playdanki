@@ -24,8 +24,8 @@ html body #translation,html body #exercise #answer,html body #study #answer{colo
 .word-mode :is(#again,#retry){position:relative;margin-top:calc(var(--card-offset) + 1.5rem)}
 #word-choices,.quiz-choices{display:grid;gap:14px}
 #word-choices[hidden],#word-accuracy[hidden],#translation[hidden]{display:none}
-.word-choice{width:100%;min-height:64px;padding:12px 20px;border:2px solid #141417;border-radius:0;background:#2a2d32;color:#fff;font-size:clamp(1.4rem,3vw,2.2rem);font-weight:700;line-height:1.25;overflow-wrap:anywhere;text-shadow:0 1px 0 #0009,0 2px 0 #0006;box-shadow:inset 0 2px 0 #ffffff26,inset 0 -2px 0 #0003,0 4px 0 #101113,0 6px 5px #0004;transition:background-color 40ms,box-shadow 35ms,translate 35ms;cursor:pointer}
-.word-choice:active{translate:0 3px;box-shadow:inset 0 2px 0 #0004,0 1px 0 #101113}
+.word-choice{width:100%;min-height:64px;padding:12px 20px;border:2px solid #141417;border-radius:0;background:#2a2d32;color:#fff;font-size:clamp(1.4rem,3vw,2.2rem);font-weight:700;line-height:1.25;overflow-wrap:anywhere;text-shadow:0 1px 0 #0009,0 2px 0 #0006;box-shadow:inset 0 2px 0 #ffffff26,inset 0 -2px 0 #0003,0 4px 0 var(--danki-button-edge,#101113),0 6px 5px #0004;transition:background-color 40ms,box-shadow 35ms,translate 35ms;cursor:pointer}
+.word-choice:active{translate:0 3px;box-shadow:inset 0 2px 0 #0004,0 1px 0 var(--danki-button-edge,#101113)}
 .word-choice.word-wrong{background:#852c34;color:#fff}
 .word-choice.word-correct{background:#226c43;color:#fff}
 .word-choice:disabled{cursor:default;opacity:1}

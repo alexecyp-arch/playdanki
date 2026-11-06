@@ -45,9 +45,13 @@ try{
  }
  await p.goto(url+'#german');await p.locator('.word-choice').first().waitFor();await p.mouse.move(0,0);
  assert.equal(await p.locator('.word-choice').first().evaluate(e=>getComputedStyle(e).backgroundColor),'rgb(26, 11, 16)');
+ for(const theme of ['charcoal','indigo']){await p.evaluate(theme=>document.documentElement.dataset.dankiTheme=theme,theme);for(const state of ['normal','hover']){if(state==='hover')await p.locator('#today').hover();const style=await p.locator('#today').evaluate(e=>({bg:getComputedStyle(e).backgroundColor,shadow:getComputedStyle(e).boxShadow}));assert.equal(style.bg,'rgba(0, 0, 0, 0)');assert.equal(style.shadow,'none');}assert.equal(await p.locator('#today .chevron').count(),0);}
+ await p.mouse.move(0,0);await p.evaluate(()=>document.documentElement.dataset.dankiTheme='charcoal');await p.waitForTimeout(80);
+ for(const selector of ['.word-choice','#games-toggle'])assert.match(await p.locator(selector).first().evaluate(e=>getComputedStyle(e).boxShadow),/rgb\(18, 5, 9\)/);
+ console.log('PASS practice counter transparent in both themes and on hover; no arrow; burgundy lower 3D layers');
  await p.locator('.word-choice').first().evaluate(e=>e.classList.add('word-correct'));await p.waitForTimeout(80);assert.equal(await p.locator('.word-choice').first().evaluate(e=>getComputedStyle(e).backgroundColor),'rgb(34, 108, 67)');
  await p.locator('.word-choice').first().evaluate(e=>{e.classList.remove('word-correct');e.classList.add('word-wrong')});await p.waitForTimeout(80);assert.equal(await p.locator('.word-choice').first().evaluate(e=>getComputedStyle(e).backgroundColor),'rgb(133, 44, 52)');
- await p.locator('.word-choice').first().evaluate(e=>e.classList.remove('word-wrong'));
+ await p.locator('.word-choice').first().evaluate(e=>e.classList.remove('word-wrong'));await p.waitForTimeout(80);
  await p.screenshot({path:'../qa/burgundy-buttons-desktop.png',fullPage:true});await p.setViewportSize({width:390,height:844});await p.screenshot({path:'../qa/burgundy-buttons-phone.png',fullPage:true});
  await p.evaluate(()=>document.documentElement.dataset.dankiTheme='indigo');await p.waitForTimeout(80);assert.equal(await p.locator('.word-choice').first().evaluate(e=>getComputedStyle(e).backgroundColor),'rgb(42, 45, 50)');
  console.log('PASS answer feedback stays green/red; blue theme stays unchanged');await c.close();
