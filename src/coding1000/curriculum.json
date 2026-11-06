@@ -1,0 +1,1206 @@
+{
+  "total": 1000,
+  "intro": 10,
+  "lessonCount": 198,
+  "viewsPerLesson": 5,
+  "selection": "Editorial practical core, not a measured frequency ranking. Each micro-lesson covers definition, use, code reading, common mistake and repair. Original existing course material is reused deliberately.",
+  "quota": {
+    "Tools": 12,
+    "Fundamentals": 10,
+    "HTML": 45,
+    "CSS": 40,
+    "JavaScript": 81,
+    "APIs": 10
+  },
+  "lessons": [
+    {
+      "subject": "Tools",
+      "term": "code editor",
+      "start": 200,
+      "difficulty": 1
+    },
+    {
+      "subject": "Tools",
+      "term": "working folder",
+      "start": 210,
+      "difficulty": 1
+    },
+    {
+      "subject": "HTML",
+      "term": "browser",
+      "start": 220,
+      "difficulty": 1
+    },
+    {
+      "subject": "HTML",
+      "term": "web page",
+      "start": 230,
+      "difficulty": 1
+    },
+    {
+      "subject": "HTML",
+      "term": "website",
+      "start": 240,
+      "difficulty": 1
+    },
+    {
+      "subject": "HTML",
+      "term": "HTML",
+      "start": 250,
+      "difficulty": 1
+    },
+    {
+      "subject": "HTML",
+      "term": "HTML tag",
+      "start": 260,
+      "difficulty": 1
+    },
+    {
+      "subject": "HTML",
+      "term": "HTML element",
+      "start": 270,
+      "difficulty": 1
+    },
+    {
+      "subject": "HTML",
+      "term": "opening and closing tags",
+      "start": 280,
+      "difficulty": 1
+    },
+    {
+      "subject": "HTML",
+      "term": "HTML attribute",
+      "start": 290,
+      "difficulty": 1
+    },
+    {
+      "subject": "HTML",
+      "term": "HTML doctype",
+      "start": 300,
+      "difficulty": 1
+    },
+    {
+      "subject": "HTML",
+      "term": "html root element",
+      "start": 310,
+      "difficulty": 1
+    },
+    {
+      "subject": "HTML",
+      "term": "head element",
+      "start": 320,
+      "difficulty": 1
+    },
+    {
+      "subject": "HTML",
+      "term": "body element",
+      "start": 330,
+      "difficulty": 1
+    },
+    {
+      "subject": "HTML",
+      "term": "HTML heading",
+      "start": 340,
+      "difficulty": 1
+    },
+    {
+      "subject": "HTML",
+      "term": "HTML paragraph",
+      "start": 350,
+      "difficulty": 1
+    },
+    {
+      "subject": "CSS",
+      "term": "CSS",
+      "start": 360,
+      "difficulty": 1
+    },
+    {
+      "subject": "CSS",
+      "term": "stylesheet",
+      "start": 370,
+      "difficulty": 1
+    },
+    {
+      "subject": "CSS",
+      "term": "CSS rule",
+      "start": 380,
+      "difficulty": 1
+    },
+    {
+      "subject": "CSS",
+      "term": "CSS selector",
+      "start": 390,
+      "difficulty": 1
+    },
+    {
+      "subject": "CSS",
+      "term": "CSS declaration",
+      "start": 400,
+      "difficulty": 1
+    },
+    {
+      "subject": "CSS",
+      "term": "text color",
+      "start": 410,
+      "difficulty": 1
+    },
+    {
+      "subject": "CSS",
+      "term": "background color",
+      "start": 420,
+      "difficulty": 1
+    },
+    {
+      "subject": "CSS",
+      "term": "font size",
+      "start": 430,
+      "difficulty": 1
+    },
+    {
+      "subject": "CSS",
+      "term": "padding",
+      "start": 440,
+      "difficulty": 1
+    },
+    {
+      "subject": "JavaScript",
+      "term": "JavaScript",
+      "start": 450,
+      "difficulty": 1
+    },
+    {
+      "subject": "JavaScript",
+      "term": "JavaScript variable",
+      "start": 460,
+      "difficulty": 1
+    },
+    {
+      "subject": "JavaScript",
+      "term": "JavaScript number",
+      "start": 470,
+      "difficulty": 1
+    },
+    {
+      "subject": "JavaScript",
+      "term": "JavaScript string",
+      "start": 480,
+      "difficulty": 1
+    },
+    {
+      "subject": "JavaScript",
+      "term": "console.log",
+      "start": 490,
+      "difficulty": 1
+    },
+    {
+      "subject": "Fundamentals",
+      "term": "Boolean value",
+      "start": 500,
+      "difficulty": 2
+    },
+    {
+      "subject": "Fundamentals",
+      "term": "comparison",
+      "start": 510,
+      "difficulty": 2
+    },
+    {
+      "subject": "Fundamentals",
+      "term": "condition",
+      "start": 540,
+      "difficulty": 2
+    },
+    {
+      "subject": "Fundamentals",
+      "term": "iteration",
+      "start": 550,
+      "difficulty": 2
+    },
+    {
+      "subject": "Fundamentals",
+      "term": "algorithm",
+      "start": 560,
+      "difficulty": 2
+    },
+    {
+      "subject": "Fundamentals",
+      "term": "bug",
+      "start": 570,
+      "difficulty": 2
+    },
+    {
+      "subject": "Fundamentals",
+      "term": "error message",
+      "start": 580,
+      "difficulty": 2
+    },
+    {
+      "subject": "Fundamentals",
+      "term": "debugging",
+      "start": 590,
+      "difficulty": 2
+    },
+    {
+      "subject": "HTML",
+      "term": "anchor link",
+      "start": 600,
+      "difficulty": 2
+    },
+    {
+      "subject": "HTML",
+      "term": "URL",
+      "start": 610,
+      "difficulty": 2
+    },
+    {
+      "subject": "HTML",
+      "term": "relative URL",
+      "start": 620,
+      "difficulty": 2
+    },
+    {
+      "subject": "HTML",
+      "term": "image element",
+      "start": 630,
+      "difficulty": 2
+    },
+    {
+      "subject": "HTML",
+      "term": "alternative image text",
+      "start": 640,
+      "difficulty": 2
+    },
+    {
+      "subject": "HTML",
+      "term": "unordered list",
+      "start": 650,
+      "difficulty": 2
+    },
+    {
+      "subject": "HTML",
+      "term": "ordered list",
+      "start": 660,
+      "difficulty": 2
+    },
+    {
+      "subject": "HTML",
+      "term": "div container",
+      "start": 670,
+      "difficulty": 2
+    },
+    {
+      "subject": "HTML",
+      "term": "span container",
+      "start": 680,
+      "difficulty": 2
+    },
+    {
+      "subject": "HTML",
+      "term": "HTML button",
+      "start": 690,
+      "difficulty": 2
+    },
+    {
+      "subject": "HTML",
+      "term": "input element",
+      "start": 700,
+      "difficulty": 2
+    },
+    {
+      "subject": "HTML",
+      "term": "input label",
+      "start": 710,
+      "difficulty": 2
+    },
+    {
+      "subject": "HTML",
+      "term": "HTML form",
+      "start": 720,
+      "difficulty": 2
+    },
+    {
+      "subject": "CSS",
+      "term": "margin",
+      "start": 730,
+      "difficulty": 2
+    },
+    {
+      "subject": "CSS",
+      "term": "CSS border",
+      "start": 740,
+      "difficulty": 2
+    },
+    {
+      "subject": "CSS",
+      "term": "CSS width",
+      "start": 750,
+      "difficulty": 2
+    },
+    {
+      "subject": "CSS",
+      "term": "CSS height",
+      "start": 760,
+      "difficulty": 2
+    },
+    {
+      "subject": "CSS",
+      "term": "class selector",
+      "start": 770,
+      "difficulty": 2
+    },
+    {
+      "subject": "CSS",
+      "term": "id selector",
+      "start": 780,
+      "difficulty": 2
+    },
+    {
+      "subject": "CSS",
+      "term": "CSS inheritance",
+      "start": 790,
+      "difficulty": 2
+    },
+    {
+      "subject": "CSS",
+      "term": "CSS box model",
+      "start": 800,
+      "difficulty": 2
+    },
+    {
+      "subject": "CSS",
+      "term": "border-box sizing",
+      "start": 810,
+      "difficulty": 2
+    },
+    {
+      "subject": "CSS",
+      "term": "CSS display",
+      "start": 820,
+      "difficulty": 2
+    },
+    {
+      "subject": "CSS",
+      "term": "flex layout",
+      "start": 830,
+      "difficulty": 2
+    },
+    {
+      "subject": "CSS",
+      "term": "layout gap",
+      "start": 840,
+      "difficulty": 2
+    },
+    {
+      "subject": "CSS",
+      "term": "flex alignment",
+      "start": 850,
+      "difficulty": 2
+    },
+    {
+      "subject": "JavaScript",
+      "term": "let and const",
+      "start": 860,
+      "difficulty": 2
+    },
+    {
+      "subject": "JavaScript",
+      "term": "const declaration",
+      "start": 870,
+      "difficulty": 2
+    },
+    {
+      "subject": "JavaScript",
+      "term": "variable reassignment",
+      "start": 880,
+      "difficulty": 2
+    },
+    {
+      "subject": "JavaScript",
+      "term": "JavaScript addition",
+      "start": 890,
+      "difficulty": 2
+    },
+    {
+      "subject": "JavaScript",
+      "term": "JavaScript subtraction",
+      "start": 900,
+      "difficulty": 2
+    },
+    {
+      "subject": "JavaScript",
+      "term": "JavaScript multiplication",
+      "start": 910,
+      "difficulty": 2
+    },
+    {
+      "subject": "JavaScript",
+      "term": "JavaScript division",
+      "start": 920,
+      "difficulty": 2
+    },
+    {
+      "subject": "JavaScript",
+      "term": "remainder operator",
+      "start": 930,
+      "difficulty": 2
+    },
+    {
+      "subject": "JavaScript",
+      "term": "strict equality",
+      "start": 940,
+      "difficulty": 2
+    },
+    {
+      "subject": "JavaScript",
+      "term": "if statement",
+      "start": 950,
+      "difficulty": 2
+    },
+    {
+      "subject": "JavaScript",
+      "term": "if and else",
+      "start": 960,
+      "difficulty": 2
+    },
+    {
+      "subject": "JavaScript",
+      "term": "function definition",
+      "start": 970,
+      "difficulty": 2
+    },
+    {
+      "subject": "JavaScript",
+      "term": "function call",
+      "start": 980,
+      "difficulty": 2
+    },
+    {
+      "subject": "Tools",
+      "term": "browser developer tools",
+      "start": 990,
+      "difficulty": 2
+    },
+    {
+      "subject": "Fundamentals",
+      "term": "scope",
+      "start": 1000,
+      "difficulty": 3
+    },
+    {
+      "subject": "Fundamentals",
+      "term": "mutation",
+      "start": 1010,
+      "difficulty": 3
+    },
+    {
+      "subject": "HTML",
+      "term": "input name attribute",
+      "start": 1020,
+      "difficulty": 3
+    },
+    {
+      "subject": "HTML",
+      "term": "placeholder text",
+      "start": 1030,
+      "difficulty": 3
+    },
+    {
+      "subject": "HTML",
+      "term": "number input",
+      "start": 1040,
+      "difficulty": 3
+    },
+    {
+      "subject": "HTML",
+      "term": "checkbox input",
+      "start": 1050,
+      "difficulty": 3
+    },
+    {
+      "subject": "HTML",
+      "term": "select control",
+      "start": 1060,
+      "difficulty": 3
+    },
+    {
+      "subject": "HTML",
+      "term": "textarea control",
+      "start": 1070,
+      "difficulty": 3
+    },
+    {
+      "subject": "HTML",
+      "term": "required control",
+      "start": 1080,
+      "difficulty": 3
+    },
+    {
+      "subject": "HTML",
+      "term": "main landmark",
+      "start": 1090,
+      "difficulty": 3
+    },
+    {
+      "subject": "HTML",
+      "term": "submit button",
+      "start": 1100,
+      "difficulty": 3
+    },
+    {
+      "subject": "CSS",
+      "term": "grid layout",
+      "start": 1110,
+      "difficulty": 3
+    },
+    {
+      "subject": "CSS",
+      "term": "flex direction",
+      "start": 1120,
+      "difficulty": 3
+    },
+    {
+      "subject": "CSS",
+      "term": "flex wrapping",
+      "start": 1130,
+      "difficulty": 3
+    },
+    {
+      "subject": "CSS",
+      "term": "maximum width",
+      "start": 1140,
+      "difficulty": 3
+    },
+    {
+      "subject": "CSS",
+      "term": "media query",
+      "start": 1150,
+      "difficulty": 3
+    },
+    {
+      "subject": "CSS",
+      "term": "rem unit",
+      "start": 1160,
+      "difficulty": 3
+    },
+    {
+      "subject": "CSS",
+      "term": "visible focus indicator",
+      "start": 1170,
+      "difficulty": 3
+    },
+    {
+      "subject": "JavaScript",
+      "term": "less-than comparison",
+      "start": 1180,
+      "difficulty": 3
+    },
+    {
+      "subject": "JavaScript",
+      "term": "logical AND",
+      "start": 1190,
+      "difficulty": 3
+    },
+    {
+      "subject": "JavaScript",
+      "term": "logical OR",
+      "start": 1200,
+      "difficulty": 3
+    },
+    {
+      "subject": "JavaScript",
+      "term": "logical NOT",
+      "start": 1210,
+      "difficulty": 3
+    },
+    {
+      "subject": "JavaScript",
+      "term": "while loop",
+      "start": 1220,
+      "difficulty": 3
+    },
+    {
+      "subject": "JavaScript",
+      "term": "for loop",
+      "start": 1230,
+      "difficulty": 3
+    },
+    {
+      "subject": "JavaScript",
+      "term": "increment operator",
+      "start": 1240,
+      "difficulty": 3
+    },
+    {
+      "subject": "JavaScript",
+      "term": "break statement",
+      "start": 1250,
+      "difficulty": 3
+    },
+    {
+      "subject": "JavaScript",
+      "term": "function parameter",
+      "start": 1260,
+      "difficulty": 3
+    },
+    {
+      "subject": "JavaScript",
+      "term": "return value",
+      "start": 1270,
+      "difficulty": 3
+    },
+    {
+      "subject": "JavaScript",
+      "term": "function-local variable",
+      "start": 1280,
+      "difficulty": 3
+    },
+    {
+      "subject": "JavaScript",
+      "term": "JavaScript array",
+      "start": 1290,
+      "difficulty": 3
+    },
+    {
+      "subject": "JavaScript",
+      "term": "array index",
+      "start": 1300,
+      "difficulty": 3
+    },
+    {
+      "subject": "JavaScript",
+      "term": "array length",
+      "start": 1310,
+      "difficulty": 3
+    },
+    {
+      "subject": "JavaScript",
+      "term": "array push",
+      "start": 1320,
+      "difficulty": 3
+    },
+    {
+      "subject": "JavaScript",
+      "term": "for-of loop",
+      "start": 1330,
+      "difficulty": 3
+    },
+    {
+      "subject": "JavaScript",
+      "term": "JavaScript object",
+      "start": 1340,
+      "difficulty": 3
+    },
+    {
+      "subject": "JavaScript",
+      "term": "object property access",
+      "start": 1350,
+      "difficulty": 3
+    },
+    {
+      "subject": "JavaScript",
+      "term": "DOM",
+      "start": 1360,
+      "difficulty": 3
+    },
+    {
+      "subject": "JavaScript",
+      "term": "querySelector",
+      "start": 1370,
+      "difficulty": 3
+    },
+    {
+      "subject": "JavaScript",
+      "term": "textContent",
+      "start": 1380,
+      "difficulty": 3
+    },
+    {
+      "subject": "JavaScript",
+      "term": "classList",
+      "start": 1390,
+      "difficulty": 3
+    },
+    {
+      "subject": "JavaScript",
+      "term": "addEventListener",
+      "start": 1400,
+      "difficulty": 3
+    },
+    {
+      "subject": "JavaScript",
+      "term": "click handler",
+      "start": 1410,
+      "difficulty": 3
+    },
+    {
+      "subject": "JavaScript",
+      "term": "event object",
+      "start": 1420,
+      "difficulty": 3
+    },
+    {
+      "subject": "JavaScript",
+      "term": "input value property",
+      "start": 1430,
+      "difficulty": 3
+    },
+    {
+      "subject": "JavaScript",
+      "term": "Number conversion",
+      "start": 1440,
+      "difficulty": 3
+    },
+    {
+      "subject": "JavaScript",
+      "term": "preventDefault",
+      "start": 1450,
+      "difficulty": 3
+    },
+    {
+      "subject": "JavaScript",
+      "term": "null element guard",
+      "start": 1460,
+      "difficulty": 3
+    },
+    {
+      "subject": "JavaScript",
+      "term": "pure helper function",
+      "start": 1470,
+      "difficulty": 3
+    },
+    {
+      "subject": "Tools",
+      "term": "breakpoint",
+      "start": 1480,
+      "difficulty": 3
+    },
+    {
+      "subject": "Tools",
+      "term": "Elements panel",
+      "start": 1490,
+      "difficulty": 3
+    },
+    {
+      "subject": "HTML",
+      "term": "script element",
+      "start": 1520,
+      "difficulty": 4
+    },
+    {
+      "subject": "HTML",
+      "term": "defer script loading",
+      "start": 1530,
+      "difficulty": 4
+    },
+    {
+      "subject": "HTML",
+      "term": "accessible control name",
+      "start": 1540,
+      "difficulty": 4
+    },
+    {
+      "subject": "HTML",
+      "term": "document language",
+      "start": 1550,
+      "difficulty": 4
+    },
+    {
+      "subject": "HTML",
+      "term": "fieldset grouping",
+      "start": 1560,
+      "difficulty": 4
+    },
+    {
+      "subject": "CSS",
+      "term": "CSS custom property",
+      "start": 1570,
+      "difficulty": 4
+    },
+    {
+      "subject": "CSS",
+      "term": "text wrapping",
+      "start": 1580,
+      "difficulty": 4
+    },
+    {
+      "subject": "CSS",
+      "term": "overflow handling",
+      "start": 1590,
+      "difficulty": 4
+    },
+    {
+      "subject": "CSS",
+      "term": "relative positioning",
+      "start": 1600,
+      "difficulty": 4
+    },
+    {
+      "subject": "CSS",
+      "term": "absolute positioning",
+      "start": 1610,
+      "difficulty": 4
+    },
+    {
+      "subject": "JavaScript",
+      "term": "template literal",
+      "start": 1620,
+      "difficulty": 4
+    },
+    {
+      "subject": "JavaScript",
+      "term": "undefined value",
+      "start": 1630,
+      "difficulty": 4
+    },
+    {
+      "subject": "JavaScript",
+      "term": "null value",
+      "start": 1640,
+      "difficulty": 4
+    },
+    {
+      "subject": "JavaScript",
+      "term": "typeof operator",
+      "start": 1650,
+      "difficulty": 4
+    },
+    {
+      "subject": "JavaScript",
+      "term": "truthy and falsy values",
+      "start": 1660,
+      "difficulty": 4
+    },
+    {
+      "subject": "JavaScript",
+      "term": "NaN",
+      "start": 1670,
+      "difficulty": 4
+    },
+    {
+      "subject": "JavaScript",
+      "term": "Number.isFinite",
+      "start": 1680,
+      "difficulty": 4
+    },
+    {
+      "subject": "JavaScript",
+      "term": "optional chaining",
+      "start": 1690,
+      "difficulty": 4
+    },
+    {
+      "subject": "JavaScript",
+      "term": "nullish coalescing",
+      "start": 1700,
+      "difficulty": 4
+    },
+    {
+      "subject": "JavaScript",
+      "term": "object destructuring",
+      "start": 1710,
+      "difficulty": 4
+    },
+    {
+      "subject": "JavaScript",
+      "term": "array destructuring",
+      "start": 1720,
+      "difficulty": 4
+    },
+    {
+      "subject": "JavaScript",
+      "term": "object spread",
+      "start": 1730,
+      "difficulty": 4
+    },
+    {
+      "subject": "JavaScript",
+      "term": "array spread",
+      "start": 1740,
+      "difficulty": 4
+    },
+    {
+      "subject": "JavaScript",
+      "term": "arrow function",
+      "start": 1750,
+      "difficulty": 4
+    },
+    {
+      "subject": "JavaScript",
+      "term": "array map",
+      "start": 1760,
+      "difficulty": 4
+    },
+    {
+      "subject": "JavaScript",
+      "term": "array filter",
+      "start": 1770,
+      "difficulty": 4
+    },
+    {
+      "subject": "JavaScript",
+      "term": "array find",
+      "start": 1780,
+      "difficulty": 4
+    },
+    {
+      "subject": "JavaScript",
+      "term": "array some",
+      "start": 1790,
+      "difficulty": 4
+    },
+    {
+      "subject": "JavaScript",
+      "term": "array every",
+      "start": 1800,
+      "difficulty": 4
+    },
+    {
+      "subject": "JavaScript",
+      "term": "array reduce",
+      "start": 1810,
+      "difficulty": 4
+    },
+    {
+      "subject": "JavaScript",
+      "term": "numeric array sorting",
+      "start": 1820,
+      "difficulty": 4
+    },
+    {
+      "subject": "JavaScript",
+      "term": "array slice",
+      "start": 1830,
+      "difficulty": 4
+    },
+    {
+      "subject": "APIs",
+      "term": "JSON format",
+      "start": 1840,
+      "difficulty": 4
+    },
+    {
+      "subject": "JavaScript",
+      "term": "JSON.stringify",
+      "start": 1850,
+      "difficulty": 4
+    },
+    {
+      "subject": "JavaScript",
+      "term": "JSON.parse",
+      "start": 1860,
+      "difficulty": 4
+    },
+    {
+      "subject": "JavaScript",
+      "term": "localStorage usage",
+      "start": 1870,
+      "difficulty": 4
+    },
+    {
+      "subject": "APIs",
+      "term": "client and server",
+      "start": 1880,
+      "difficulty": 4
+    },
+    {
+      "subject": "APIs",
+      "term": "HTTP",
+      "start": 1890,
+      "difficulty": 4
+    },
+    {
+      "subject": "APIs",
+      "term": "HTTP request",
+      "start": 1900,
+      "difficulty": 4
+    },
+    {
+      "subject": "APIs",
+      "term": "HTTP response",
+      "start": 1910,
+      "difficulty": 4
+    },
+    {
+      "subject": "Tools",
+      "term": "terminal",
+      "start": 1980,
+      "difficulty": 4
+    },
+    {
+      "subject": "Tools",
+      "term": "file path",
+      "start": 1990,
+      "difficulty": 4
+    },
+    {
+      "subject": "HTML",
+      "term": "status live region",
+      "start": 2020,
+      "difficulty": 5
+    },
+    {
+      "subject": "HTML",
+      "term": "disabled control",
+      "start": 2030,
+      "difficulty": 5
+    },
+    {
+      "subject": "HTML",
+      "term": "range input",
+      "start": 2040,
+      "difficulty": 5
+    },
+    {
+      "subject": "HTML",
+      "term": "output element",
+      "start": 2050,
+      "difficulty": 5
+    },
+    {
+      "subject": "CSS",
+      "term": "visually hidden content",
+      "start": 2060,
+      "difficulty": 5
+    },
+    {
+      "subject": "CSS",
+      "term": "text contrast",
+      "start": 2070,
+      "difficulty": 5
+    },
+    {
+      "subject": "CSS",
+      "term": "stacking order",
+      "start": 2080,
+      "difficulty": 5
+    },
+    {
+      "subject": "CSS",
+      "term": "pointer-events control",
+      "start": 2090,
+      "difficulty": 5
+    },
+    {
+      "subject": "APIs",
+      "term": "HTTP GET",
+      "start": 2100,
+      "difficulty": 5
+    },
+    {
+      "subject": "APIs",
+      "term": "HTTP POST",
+      "start": 2110,
+      "difficulty": 5
+    },
+    {
+      "subject": "APIs",
+      "term": "HTTP status code",
+      "start": 2120,
+      "difficulty": 5
+    },
+    {
+      "subject": "APIs",
+      "term": "CORS",
+      "start": 2130,
+      "difficulty": 5
+    },
+    {
+      "subject": "APIs",
+      "term": "API key",
+      "start": 2140,
+      "difficulty": 5
+    },
+    {
+      "subject": "JavaScript",
+      "term": "try and catch",
+      "start": 2170,
+      "difficulty": 5
+    },
+    {
+      "subject": "JavaScript",
+      "term": "throw statement",
+      "start": 2180,
+      "difficulty": 5
+    },
+    {
+      "subject": "JavaScript",
+      "term": "Error message property",
+      "start": 2190,
+      "difficulty": 5
+    },
+    {
+      "subject": "JavaScript",
+      "term": "Promise",
+      "start": 2200,
+      "difficulty": 5
+    },
+    {
+      "subject": "JavaScript",
+      "term": "promise handlers",
+      "start": 2210,
+      "difficulty": 5
+    },
+    {
+      "subject": "JavaScript",
+      "term": "async function",
+      "start": 2220,
+      "difficulty": 5
+    },
+    {
+      "subject": "JavaScript",
+      "term": "await expression",
+      "start": 2230,
+      "difficulty": 5
+    },
+    {
+      "subject": "JavaScript",
+      "term": "Promise.all",
+      "start": 2240,
+      "difficulty": 5
+    },
+    {
+      "subject": "Tools",
+      "term": "software dependency",
+      "start": 2490,
+      "difficulty": 5
+    },
+    {
+      "subject": "CSS",
+      "term": "tabular numerals",
+      "start": 2540,
+      "difficulty": 6
+    },
+    {
+      "subject": "CSS",
+      "term": "sticky table heading",
+      "start": 2550,
+      "difficulty": 6
+    },
+    {
+      "subject": "Tools",
+      "term": "dependency lock or pinned version",
+      "start": 3490,
+      "difficulty": 7
+    },
+    {
+      "subject": "Tools",
+      "term": "Git repository",
+      "start": 3980,
+      "difficulty": 8
+    },
+    {
+      "subject": "Tools",
+      "term": "Git diff",
+      "start": 3990,
+      "difficulty": 8
+    },
+    {
+      "subject": "Tools",
+      "term": "Git ignore rule",
+      "start": 4490,
+      "difficulty": 9
+    }
+  ],
+  "contentHash": "dbfba22d739656aa1a722fc033c82b2621c27a2157402aeef2c87ece76939140"
+}

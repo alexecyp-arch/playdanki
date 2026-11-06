@@ -70,6 +70,8 @@ html body #translation,html body #exercise #answer,html body #study #answer{colo
 .quiz-course .word-choice.word-wrong{background:#852c34}
 .quiz-course .word-choice.word-correct{background:#226c43}
 @media(max-width:600px){.quiz-mode #answer-box{width:calc(100vw - 2.4rem)}.quiz-prose .word-choice{font-size:1.1rem}.quiz-course .word-choice{min-height:56px}.quiz-course .course-main{padding-bottom:14rem}}
+
+.coding-mode #word{font-size:clamp(1.15rem,2.5vw,2rem);white-space:pre-wrap;line-height:1.35;letter-spacing:0}
 </style>
 <link rel="icon" type="image/x-icon" sizes="32x32" href="/favicon.ico?v=6e0920c0c0ab"><link rel="icon" type="image/svg+xml" href="/favicon.svg?v=6e0920c0c0ab"><script>// Only public game answers cross into the same-origin main voice controller.
 (()=>{'use strict';
@@ -135,5 +137,5 @@ if(document.modelContext?.registerTool)try{Promise.resolve(document.modelContext
 refresh();next();$('answer').focus({preventScroll:true});
 })();
 </script>
-<script defer src="/analytics.js?v=bddc8e721af9"></script><script defer src="/page-warmup.js?v=fe2f14c2c920"></script></body>
+<script defer src="/analytics.js?v=bddc8e721af9"></script><script defer src="/page-warmup.js?v=b840618f1aa0"></script></body>
 </html>

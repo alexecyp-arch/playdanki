@@ -20,6 +20,7 @@ const decks={
   greekSentences:languageDeck('greek-sentences','greek1000sentences:v1','Greek Sentences','greek','el','sentences'),
   hangul:languageDeck('korean-hangul','korean:hangul:v1','Korean Hangul','korean','ko','symbols',{daily:true}),
   koreanWords:languageDeck('korean-words','korean5000:v1','Korean','korean','ko','words'),
+  coding:{key:'coding1000:v1',title:'Coding 1000',unit:'cards',section:'coding',lang:'en',fixedChoices:true,limit:1000,...remoteCards('coding')},
   economics:{key:'economics3500:v1',title:'Economics 3500',unit:'items',section:'economics',lang:'en',fixedChoices:true,weekly:true,...remoteCards('economics')},
   trivia:{key:'trivia20000:v1',title:'Trivia 20000',unit:'questions',section:'trivia',lang:'en',fixedChoices:true,cumulative:true,limit:triviaInfo.total,cards:new Array(triviaInfo.total)}
 };
@@ -31,7 +32,7 @@ for(const deck of Object.values(decks)){
   }
 }
 const word=$('word'),position=$('position'),translation=$('translation'),feedback=$('feedback'),history=$('history'),today=$('today'),again=$('again'),practice=document.querySelector('.practice');
-const modeButtons={frenchWords:$('french-words-mode'),frenchSentences:$('french-sentences-mode'),words:$('words-mode'),sentences:$('sentences-mode'),kana:$('kana-mode'),kanji:$('kanji-mode'),spanishWords:$('spanish-words-mode'),spanishSentences:$('spanish-sentences-mode'),italianWords:$('italian-words-mode'),italianSentences:$('italian-sentences-mode'),greekWords:$('greek-words-mode'),greekSentences:$('greek-sentences-mode'),hangul:$('hangul-mode'),koreanWords:$('korean-words-mode'),economics:$('economics-mode'),trivia:$('trivia-mode')},preferredModes={french:'frenchWords',german:'words',japanese:'kana',spanish:'spanishWords',italian:'italianWords',greek:'greekWords',korean:'hangul',economics:'economics',trivia:'trivia'};
+const modeButtons={frenchWords:$('french-words-mode'),frenchSentences:$('french-sentences-mode'),words:$('words-mode'),sentences:$('sentences-mode'),kana:$('kana-mode'),kanji:$('kanji-mode'),spanishWords:$('spanish-words-mode'),spanishSentences:$('spanish-sentences-mode'),italianWords:$('italian-words-mode'),italianSentences:$('italian-sentences-mode'),greekWords:$('greek-words-mode'),greekSentences:$('greek-sentences-mode'),hangul:$('hangul-mode'),koreanWords:$('korean-words-mode'),coding:$('coding-mode'),economics:$('economics-mode'),trivia:$('trivia-mode')},preferredModes={french:'frenchWords',german:'words',japanese:'kana',spanish:'spanishWords',italian:'italianWords',greek:'greekWords',korean:'hangul',coding:'coding',economics:'economics',trivia:'trivia'};
 const game=$('game'),answerBox=$('answer-box'),questionImage=$('question-image');
 const memory=new Map();
 let storageOK=true,warning,mode='words',active=decks.words,state,locked=false,shownCursor=0,shownRound=1,shownCard=0,shownDay='',screenVersion=0,midnightTimer,practiceActive=true,reviewCursor=null;
@@ -130,7 +131,7 @@ function render(){
   if(!practiceActive)return;
   screenVersion++;locked=false;shownCursor=reviewCursor??state.cursor;shownRound=state.round;shownDay=dayKey();feedback.textContent='';$('answer-box').hidden=true;game.style.minHeight='';
   const quiz=isQuiz();
-  practice.classList.toggle('word-mode',active.unit==='words');practice.classList.toggle('quiz-mode',quiz);practice.classList.toggle('sentence-mode',active.unit==='sentences'||active.fixedChoices);practice.classList.toggle('japanese-mode',active.section==='japanese'||active.section==='korean');
+  practice.classList.toggle('coding-mode',active.section==='coding');practice.classList.toggle('word-mode',active.unit==='words');practice.classList.toggle('quiz-mode',quiz);practice.classList.toggle('sentence-mode',active.unit==='sentences'||active.fixedChoices);practice.classList.toggle('japanese-mode',active.section==='japanese'||active.section==='korean');
   translation.hidden=quiz;$('word-choices').hidden=!quiz;$('word-choices').replaceChildren();
   $('game').setAttribute('aria-label',active.section[0].toUpperCase()+active.section.slice(1)+' flashcards');word.lang='en';translation.lang=active.lang;$('kanji-credit').hidden=active!==decks.kanji;
   for(const [name,b]of Object.entries(modeButtons)){b.classList.toggle('active',name===mode);b.setAttribute('aria-pressed',String(name===mode))}

@@ -49,6 +49,8 @@ html body #translation,html body #exercise #answer,html body #study #answer{colo
 .quiz-course .word-choice.word-wrong{background:#852c34}
 .quiz-course .word-choice.word-correct{background:#226c43}
 @media(max-width:600px){.quiz-mode #answer-box{width:calc(100vw - 2.4rem)}.quiz-prose .word-choice{font-size:1.1rem}.quiz-course .word-choice{min-height:56px}.quiz-course .course-main{padding-bottom:14rem}}
+
+.coding-mode #word{font-size:clamp(1.15rem,2.5vw,2rem);white-space:pre-wrap;line-height:1.35;letter-spacing:0}
 </style><script>(()=>{'use strict';
  const controls='button,a,input,textarea,select,summary,[contenteditable="true"],.games-menu,.navigation,#account-bar,.tracker,#tracker,#history,#stats,[role="dialog"]';
  function canTap(event){return !event.defaultPrevented&&!event.ctrlKey&&!event.metaKey&&!event.altKey&&!event.shiftKey&&event.button===0&&matchMedia('(pointer:coarse),(max-width:600px)').matches&&!event.target.closest?.(controls)&&!window.getSelection()?.toString();}
@@ -273,4 +275,4 @@ window.addEventListener('storage',e=>{reviewId=null;if((e.key===KEY||e.key===nul
 state=read();memory=state;load();
 })();
 </script>
-<script defer src="/analytics.js?v=bddc8e721af9"></script><script defer src="/page-warmup.js?v=fe2f14c2c920"></script></body></html>
+<script defer src="/analytics.js?v=bddc8e721af9"></script><script defer src="/page-warmup.js?v=b840618f1aa0"></script></body></html>
