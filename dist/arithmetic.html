@@ -77,7 +77,7 @@ function host(){try{return parent!==window&&parent.document.getElementById('arit
 window.DankiAnswerVoice=(scope,id,text,announce=false)=>{const h=host();if(!h)return;h.document.dispatchEvent(new h.CustomEvent('danki-card-voice',{detail:{scope:'embedded:'+scope,id:String(id),text:String(text),lang:'en',announce,sourceDocument:document}}));};
 for(const type of ['pointerdown','keydown'])document.addEventListener(type,event=>{const h=host();if(h&&event.isTrusted)h.document.dispatchEvent(new h.CustomEvent('danki-voice-gesture',{detail:{sourceDocument:document,trusted:true}}));},{capture:true,passive:true});
 })();
-</script><script id="danki-shared-theme" src="/theme.js?v=1921c945b29d"></script><link rel="stylesheet" href="/theme.css?v=1921c945b29d"></head>
+</script><script id="danki-shared-theme" src="/theme.js?v=aed55c4beabf"></script><link rel="stylesheet" href="/theme.css?v=aed55c4beabf"></head>
 <body>
 <main>
 <div id="exercise"><label id="problem" for="answer"></label><input id="answer" type="text" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="Answer" autofocus></div>
@@ -135,5 +135,5 @@ if(document.modelContext?.registerTool)try{Promise.resolve(document.modelContext
 refresh();next();$('answer').focus({preventScroll:true});
 })();
 </script>
-<script defer src="/analytics.js?v=1921c945b29d"></script><script defer src="/page-warmup.js?v=6c094e84feec"></script></body>
+<script defer src="/analytics.js?v=aed55c4beabf"></script><script defer src="/page-warmup.js?v=18221570a6c6"></script></body>
 </html>
