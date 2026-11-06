@@ -1,3 +1,4 @@
+import {selectGermanWords} from './select-german-words.mjs';
 import {codingCards} from './build-coding1000.mjs';
 import fs from 'node:fs/promises';
 import {sentenceQuiz,factQuiz} from './quiz-distractors.mjs';
@@ -52,7 +53,7 @@ if(kanjiEntries.length!==2136||new Set(kanjiEntries.map(c=>c[0])).size!==2136||k
 const coreDeckInfo={};
 await fs.mkdir(new URL('dist/decks/',root),{recursive:true});
 await fs.mkdir(new URL('dist/german/',root),{recursive:true});
-for(const [id,data,url] of [['german-word',JSON.stringify(entries.slice(0,1000)),'german/words.json'],['french-word',frenchWords,'french/words.json'],['french-sentence',frenchSentences,'french/sentences.json'],['sentence',JSON.stringify(sentenceQuiz(sentenceEntries.slice(0,500))),'decks/sentences.json'],['kanji',kanji,'decks/kanji.json'],['economics',JSON.stringify(factQuiz(economicsEntries)),'decks/economics.json'],['coding',JSON.stringify(codingCards),'coding1000/cards.json']]){
+for(const [id,data,url] of [['german-word',JSON.stringify(selectGermanWords(entries)),'german/words.json'],['french-word',frenchWords,'french/words.json'],['french-sentence',frenchSentences,'french/sentences.json'],['sentence',JSON.stringify(sentenceQuiz(sentenceEntries.slice(0,500))),'decks/sentences.json'],['kanji',kanji,'decks/kanji.json'],['economics',JSON.stringify(factQuiz(economicsEntries)),'decks/economics.json'],['coding',JSON.stringify(codingCards),'coding1000/cards.json']]){
  coreDeckInfo[id]={count:JSON.parse(data).length,url,version:createHash('sha256').update(data).digest('hex').slice(0,16)};
  await fs.writeFile(new URL('dist/'+url,root),data);
 }

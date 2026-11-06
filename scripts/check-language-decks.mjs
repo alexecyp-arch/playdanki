@@ -1,3 +1,4 @@
+import {selectGermanWords} from './select-german-words.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import vm from 'node:vm';
@@ -20,12 +21,12 @@ let checked=0;
 for(const [name,path,count] of configs){
   const full=await read('src/'+name+'.json'),cards=await read('dist/'+path+'.json');
   assert.equal(cards.length,count,name);
-  assert.deepEqual(cards.map(card=>card.at(-1)?.wrongAnswers?card.slice(0,-1):card),full.slice(0,count).map(card=>path.startsWith('languages/')?card.slice(0,2):card),name+' highest ranked prefix');
+  assert.deepEqual(cards.map(card=>card.at(-1)?.wrongAnswers?card.slice(0,-1):card),(name==='words'?selectGermanWords(full):full.slice(0,count)).map(card=>path.startsWith('languages/')?card.slice(0,2):card),name+' highest ranked prefix');
   assert.equal(new Set(cards.map(card=>norm(card[0]))).size,count,name+' duplicates');
   assert(cards.every(card=>card.slice(0,2).every(text=>typeof text==='string'&&text.trim()&&!/[\u0000-\u001f\ufffd]/.test(text))),name+' text');
   if(count===1000){
     for(let i=0;i<count;i++){
-      const choices=quiz.wordChoices(full.slice(0,count),i);
+      const choices=quiz.wordChoices(name==='words'?selectGermanWords(full):full.slice(0,count),i);
       assert.equal(choices.length,3);
       assert.equal(new Set(choices.map(choice=>norm(choice.text))).size,3);
       assert.equal(choices.filter(choice=>choice.correct).length,1);

@@ -1,0 +1,77 @@
+{
+  "reason": "Remove personal names, a place name and name-like entries from the active common-word game without shifting other card positions. Replacement words follow the existing frequency-ordered source after position 1000; proper names are skipped.",
+  "rows": [
+    {
+      "word": "frank",
+      "replacement": "rauchen",
+      "originalPosition": 658,
+      "sourcePosition": 1001
+    },
+    {
+      "word": "Michael",
+      "replacement": "Vogel",
+      "originalPosition": 695,
+      "sourcePosition": 1002
+    },
+    {
+      "word": "Charlie",
+      "replacement": "namens",
+      "originalPosition": 698,
+      "sourcePosition": 1003
+    },
+    {
+      "word": "Peter",
+      "replacement": "Gespräch",
+      "originalPosition": 727,
+      "sourcePosition": 1004
+    },
+    {
+      "word": "David",
+      "replacement": "beeilen",
+      "originalPosition": 784,
+      "sourcePosition": 1005
+    },
+    {
+      "word": "Max",
+      "replacement": "auftauchen",
+      "originalPosition": 808,
+      "sourcePosition": 1007
+    },
+    {
+      "word": "Paris",
+      "replacement": "Hose",
+      "originalPosition": 809,
+      "sourcePosition": 1008
+    },
+    {
+      "word": "Paul",
+      "replacement": "geheim",
+      "originalPosition": 821,
+      "sourcePosition": 1009
+    },
+    {
+      "word": "Alex",
+      "replacement": "vergeben",
+      "originalPosition": 830,
+      "sourcePosition": 1010
+    },
+    {
+      "word": "Harry",
+      "replacement": "überrascht",
+      "originalPosition": 837,
+      "sourcePosition": 1011
+    },
+    {
+      "word": "Mark",
+      "replacement": "rund",
+      "originalPosition": 873,
+      "sourcePosition": 1012
+    },
+    {
+      "word": "Henry",
+      "replacement": "befinden",
+      "originalPosition": 952,
+      "sourcePosition": 1013
+    }
+  ]
+}
