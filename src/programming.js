@@ -69,7 +69,7 @@ function previous(){if(busy||loadError||!$('stats').hidden||menuOpen())return;co
 StudyNavigation.install({next:advance,previous,enabled:()=>!busy&&!loadError&&$('stats').hidden&&!menuOpen()});
 function stats(open){$('stats').hidden=!open;$('stats-toggle').setAttribute('aria-expanded',String(open));if(open)renderStats()}
 $('stats-toggle').addEventListener('click',()=>stats($('stats').hidden));$('stats-close').addEventListener('click',()=>stats(false));$('retry').addEventListener('click',load);
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('stats').hidden){stats(false);$('stats-toggle').focus();return}if(e.isComposing||e.ctrlKey||e.altKey||e.metaKey||!(e.key==='Enter'||e.key===' '||e.code==='Space'))return;const control=e.target.closest?.('input,textarea,select,[contenteditable="true"],summary,a,button');if(control&&control!==$('again'))return;e.preventDefault();if(!e.repeat)advance()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('stats').hidden){stats(false);$('stats-toggle').focus();return}if($('stats').hidden&&!menuOpen()&&DankiQuiz.selectKey(e,$('answer')))return;if(e.isComposing||e.ctrlKey||e.altKey||e.metaKey||!(e.key==='Enter'||e.key===' '||e.code==='Space'))return;const control=e.target.closest?.('input,textarea,select,[contenteditable="true"],summary,a,button');if(control&&control!==$('again'))return;e.preventDefault();if(!e.repeat)advance()});
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!busy)refresh().catch(()=>notice('Progress could not refresh. Please reload.'))});
 window.addEventListener('storage',e=>{reviewId=null;if((e.key===KEY||e.key===null)&&!busy)refresh().catch(()=>notice('Progress could not refresh. Please reload.'))});
 state=read();memory=state;load();

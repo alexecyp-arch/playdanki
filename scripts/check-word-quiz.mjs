@@ -36,6 +36,18 @@ const saved=(page,key)=>page.evaluate(key=>JSON.parse(localStorage.getItem(key))
 async function choose(page,id){await page.locator('#languages-toggle').click();await page.locator('#'+id).click();await page.locator('#answer-box').waitFor({state:'visible'});}
 async function correct(page,text){await page.locator('.word-choice').filter({hasText:new RegExp('^'+text.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'$')}).click();}
 try{
+  const keys=await context(),kp=await keys.newPage();
+  for(const digit of ['1','2','3']){
+    await kp.goto(url+'#german');await kp.locator('.word-choice').first().waitFor();
+    await kp.evaluate(()=>localStorage.removeItem('deutsch5000:v1'));await kp.reload();await kp.locator('.word-choice').first().waitFor();
+    const texts=await kp.locator('.word-choice').allTextContents(),word=JSON.parse(await fs.readFile(path.join(root,'german/words.json'),'utf8'))[0][0],index=Number(digit)-1;
+    await kp.locator('#game').focus();await kp.keyboard.press('Shift+'+digit);assert.equal(await saved(kp,'deutsch5000:v1'),null);
+    await kp.evaluate(()=>{const input=document.createElement('input');input.id='keyboard-test';document.body.append(input);input.focus();});await kp.keyboard.press(digit);assert.equal(await saved(kp,'deutsch5000:v1'),null);await kp.locator('#keyboard-test').evaluate(e=>e.remove());
+    await kp.locator('#game').focus();await kp.keyboard.press(digit);
+    await kp.waitForFunction(()=>!!localStorage.getItem('deutsch5000:v1'));const state=await saved(kp,'deutsch5000:v1'),row=Object.values(state.days)[0];
+    assert.equal(texts[index]===word?row.correct:row.misses,1,'number key selects its visual row');
+  }
+  await keys.close();console.log('PASS keys 1, 2 and 3 select top/middle/bottom; typing and modified keys do not answer');
   const desktop=await context(),page=await desktop.newPage();
   for(const [language,id,key,file] of decks){
     const cards=JSON.parse(await fs.readFile(path.join(root,file),'utf8'));
@@ -96,7 +108,7 @@ try{
     await ep.goto(url+'#'+section);if(mode)await choose(ep,mode);await ep.locator('.word-choice').first().waitFor();
     const choices=ep.locator('.word-choice');assert.equal(await choices.count(),3);
     const texts=await choices.allTextContents(),wrong=texts.find(text=>text!==answer);
-    await ep.getByRole('button',{name:wrong,exact:true}).click();await ep.locator('.word-wrong').waitFor();
+    await ep.locator('#game').focus();await ep.keyboard.press(String(texts.indexOf(wrong)+1));await ep.locator('.word-wrong').waitFor();
     assert.equal(await ep.locator('#word-accuracy').textContent(),'0% CORRECT');
     await correct(ep,answer);await ep.waitForFunction(()=>document.getElementById('position').textContent.startsWith('2 / '));
     assert.equal(await ep.locator('#word-accuracy').textContent(),'50% CORRECT');
@@ -113,11 +125,11 @@ try{
     await ep.waitForFunction(course=>{const frame=document.getElementById('arithmetic-frame')?.contentDocument;return frame?.location.pathname.endsWith('/'+course+'.html')&&frame.body?.getAttribute('aria-busy')==='false'&&frame.querySelectorAll('.word-choice').length===3;},course);
     await frame.locator('.word-choice').first().waitFor();assert.equal(await frame.locator('.word-choice').count(),3);
     const answer=cards[0].answer,texts=await frame.locator('.word-choice').allTextContents(),wrong=texts.find(text=>text!==answer);
-    await frame.getByRole('button',{name:wrong,exact:true}).click();await frame.locator('.word-wrong').waitFor();
+    await ep.locator('#games-toggle').focus();await ep.keyboard.press(String(texts.indexOf(wrong)+1));await frame.locator('.word-wrong').waitFor();
     assert.equal(await frame.locator('#quiz-accuracy').textContent(),'0% CORRECT');
     const key=course+'5000:v1',before=await saved(ep,key);
     await frame.locator('#study').click({position:{x:5,y:5}});assert.deepEqual((await saved(ep,key)).quiz,before.quiz);
-    await frame.getByRole('button',{name:answer,exact:true}).click();await frame.locator('#card').filter({hasText:'CARD 2/5000'}).waitFor();
+    await frame.locator('.word-choice').first().focus();await ep.keyboard.press(String(texts.indexOf(answer)+1));await frame.locator('#card').filter({hasText:'CARD 2/5000'}).waitFor();
     assert.equal(await frame.locator('#quiz-accuracy').textContent(),'50% CORRECT');
     await ep.reload();await frame.locator('.word-choice').first().waitFor();assert.equal(await frame.locator('#quiz-accuracy').textContent(),'50% CORRECT');
     const stored=await saved(ep,key);assert.deepEqual(stored.quiz,{correct:1,wrong:1});
