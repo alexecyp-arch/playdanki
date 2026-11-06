@@ -72,6 +72,7 @@ export function chartValue(task,now,period='today',selectedDay=dayKey(new Date(n
  const days=kind==='reps'?task.days:totals(task,now),today=dayKey(new Date(now));
  if(period==='day')return selectedDay<=today?(days[selectedDay]||0):0;
  if(period==='ytd'){const first=today.slice(0,4)+'-01-01';return Object.entries(days).reduce((sum,[key,value])=>sum+(key>=first&&key<=today?value:0),0);}
+ if(period==='week'&&kind==='time')return recentDays(now,8).slice(1).reduce((sum,key)=>sum+(days[key]||0),0)/7;
  return kind==='reps'?repsFor(task,now,period):timeFor(task,now,period);
 }
 

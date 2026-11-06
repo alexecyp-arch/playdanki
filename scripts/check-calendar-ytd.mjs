@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
-import {chartValue,shiftChartDay} from '../src/temponotes/timebox-model.mjs';
+import {chartValue,shiftChartDay,recentDays,dayStart,timeFor,periodTotal} from '../src/temponotes/timebox-model.mjs';
 import {calendarLabel} from '../src/temponotes/calendar.mjs';
 process.env.TZ='Asia/Nicosia';
 assert.equal(shiftChartDay('2026-10-29',-1,'2026-10-29'),'2026-10-28');
@@ -26,3 +26,15 @@ assert.equal(calendarLabel(now),'THURSDAY - 29 OCTOBER - AUTUMN');
 for(const [month,season]of [[0,'WINTER'],[2,'SPRING'],[5,'SUMMER'],[8,'AUTUMN'],[11,'WINTER']])assert(calendarLabel(new Date(2026,month,1)).endsWith(season));
 for(const file of ['dist/programming.html','dist/quant.html'])assert(!(await fs.readFile(file,'utf8')).includes('\r'),'Browser CSP hash input must use normalized line endings');
 console.log('Calendar/YTD passed: selected day, empty/future dates, year boundary, live timers, both task types, seasons and browser line-ending normalization.');
+
+for(const date of [new Date(2026,10,6,12),new Date(2026,0,3,12),new Date(2026,2,30,12),new Date(2026,9,26,12)]){
+ const now=date.getTime(),keys=recentDays(now,9),days=Object.fromEntries(keys.map((key,i)=>[key,i===0||i===8?999999999:i*60000])),task={days,runningSince:null};
+ assert.equal(chartValue(task,now,'week'),4*60000,'Seven completed calendar days, excluding today and day eight');
+ assert.equal(chartValue({...task,runningSince:now-600000},now,'week'),4*60000,'Live time today does not enter the average');
+ assert.equal(chartValue({...task,runningSince:dayStart(now)-1800000},now,'week'),4*60000+1800000/7,'A running timer contributes only its completed-day portion');
+ assert.equal(chartValue({days:{[keys[1]]:7*60000},runningSince:null},now,'week'),60000,'Missing days still count as zero in the seven-day average');
+ assert.equal(chartValue(task,now,'today'),days[keys[0]],'Today view stays unchanged');
+ assert.equal(chartValue(task,now,'month'),timeFor(task,now,'month'),'Month view stays unchanged');
+ assert.equal(periodTotal(task,now,'week'),timeFor(task,now,'week')*7,'Manual adjustment windows stay unchanged');
+}
+console.log('TIMERECORD week passed: excludes today, includes day seven, zero days, live midnight splitting, month/year and DST boundaries.');
