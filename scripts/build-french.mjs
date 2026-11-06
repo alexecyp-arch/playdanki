@@ -1,4 +1,5 @@
 import fs from 'node:fs/promises';
+import {sentenceQuiz} from './quiz-distractors.mjs';
 const root=new URL('../',import.meta.url),key=s=>s.normalize('NFC').toLocaleLowerCase('fr-FR').replace(/[^\p{L}\p{N}\s]/gu,'').trim(),wordKey=s=>s.normalize('NFC').toLocaleLowerCase('fr-FR').replace(/’/g,"'").trim();
 const frenchWordSource=await fs.readFile(new URL('src/french-words.json',root),'utf8'),frenchSentenceSource=await fs.readFile(new URL('src/french-sentences.json',root),'utf8');
 const words=JSON.parse(frenchWordSource),sentences=JSON.parse(frenchSentenceSource);
@@ -7,7 +8,7 @@ if(sentences.length!==1000||new Set(sentences.map(c=>key(c[0]))).size!==1000||se
 await fs.mkdir(new URL('dist/french/',root),{recursive:true});
 await fs.copyFile(new URL('src/french-sentence-sources.json',root),new URL('dist/french/sentence-sources.json',root));
 export const frenchWords=JSON.stringify(words.slice(0,1000));
-export const frenchSentences=JSON.stringify(sentences.slice(0,500));
+export const frenchSentences=JSON.stringify(sentenceQuiz(sentences.slice(0,500)));
 await fs.writeFile(new URL('dist/french/words.json',root),frenchWords);
 await fs.writeFile(new URL('dist/french/sentences.json',root),frenchSentences);
 await fs.copyFile(new URL('src/french-source-manifest.json',root),new URL('dist/french/source-manifest.json',root));

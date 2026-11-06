@@ -1,4 +1,5 @@
 import fs from 'node:fs/promises';
+import {sentenceQuiz,factQuiz} from './quiz-distractors.mjs';
 import {gzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
 import {atlasVersion} from './build-atlas.mjs';
@@ -10,11 +11,11 @@ import {triviaInfo} from './build-trivia.mjs';
 import {frenchWords,frenchSentences} from './build-french.mjs';
 import {languageInfo} from './build-languages.mjs';
 const root=new URL('../',import.meta.url);
-const runtimeFiles=['temponotes/runtime.js','atlas-navigation.js','cursor.css','temponotes/style.css','temponotes/navigation.css','german-voice.js','answer-voice.js','theme.js','theme.css','autumn-main.css','analytics.js','analytics-config.json','digit-span/best-score.mjs','digit-span/index.html','digit-span/style.css','digit-span/game.js','digit-span/model.mjs','account.js','notes-navigation.js','weight-navigation.js','timebox-navigation.js','timebox/hub-ui.js','timebox/index.html','timebox/bootstrap.js','timebox/style.css','app.js','arithmetic.html','arithmetic-theme.css','card-navigation.js','sections.js','programming.js','quant.js','study.css',...['daily-notes.mjs','calendar.mjs','bootstrap.js','confirm-delete.js','locked-crypto.mjs','locked-store.mjs','locked-ui.js','locked-order.mjs','timebox-model.mjs','timebox-store.mjs','timebox-ui.js','ui.js','notes-store.mjs','eternal-ui.js','eternal.mjs','note-order.mjs','selection.mjs','cloud-selection.mjs','private-page-navigation.js','autumn.js','autumn.css','autumn-leaf.svg','autumn-oak.svg','autumn-birch.svg','season-snow.svg','season-flower.svg'].map(f=>'temponotes/'+f),...['protein.mjs','bootstrap.js','store.mjs','model.mjs','chart.mjs','style.css','index.html'].map(f=>'weight-tracker/'+f)];
+const runtimeFiles=['quiz.js','temponotes/runtime.js','atlas-navigation.js','cursor.css','temponotes/style.css','temponotes/navigation.css','german-voice.js','answer-voice.js','theme.js','theme.css','autumn-main.css','analytics.js','analytics-config.json','digit-span/best-score.mjs','digit-span/index.html','digit-span/style.css','digit-span/game.js','digit-span/model.mjs','account.js','notes-navigation.js','weight-navigation.js','timebox-navigation.js','timebox/hub-ui.js','timebox/index.html','timebox/bootstrap.js','timebox/style.css','app.js','arithmetic.html','arithmetic-theme.css','card-navigation.js','sections.js','programming.js','quant.js','study.css',...['daily-notes.mjs','calendar.mjs','bootstrap.js','confirm-delete.js','locked-crypto.mjs','locked-store.mjs','locked-ui.js','locked-order.mjs','timebox-model.mjs','timebox-store.mjs','timebox-ui.js','ui.js','notes-store.mjs','eternal-ui.js','eternal.mjs','note-order.mjs','selection.mjs','cloud-selection.mjs','private-page-navigation.js','autumn.js','autumn.css','autumn-leaf.svg','autumn-oak.svg','autumn-birch.svg','season-snow.svg','season-flower.svg'].map(f=>'temponotes/'+f),...['protein.mjs','bootstrap.js','store.mjs','model.mjs','chart.mjs','style.css','index.html'].map(f=>'weight-tracker/'+f)];
 const runtimeVersion=createHash('sha256').update((await Promise.all(runtimeFiles.map(f=>fs.readFile(new URL('src/'+f,root),'utf8')))).join('\n')+atlasVersion).digest('hex').slice(0,12);
 let html=await fs.readFile(new URL('src/index.html',root),'utf8');
 const css=await fs.readFile(new URL('src/style.css',root),'utf8');
-const js=await fs.readFile(new URL('src/app.js',root),'utf8');
+const js=await fs.readFile(new URL('src/quiz.js',root),'utf8')+'\n'+await fs.readFile(new URL('src/app.js',root),'utf8');
 const germanVoice=await fs.readFile(new URL('src/german-voice.js',root),'utf8');
 const cardNavigation=await fs.readFile(new URL('src/card-navigation.js',root),'utf8');
 const sections=(await fs.readFile(new URL('src/sections.js',root),'utf8')).replaceAll("'digit-span/index.html'","'digit-span/index.html?v="+runtimeVersion+"'").replace(/'(arithmetic|programming|quant)\.html'/g,"'$1.html?v="+runtimeVersion+"'");
@@ -50,7 +51,7 @@ if(kanjiEntries.length!==2136||new Set(kanjiEntries.map(c=>c[0])).size!==2136||k
 const coreDeckInfo={};
 await fs.mkdir(new URL('dist/decks/',root),{recursive:true});
 await fs.mkdir(new URL('dist/german/',root),{recursive:true});
-for(const [id,data,url] of [['german-word',JSON.stringify(entries.slice(0,1000)),'german/words.json'],['french-word',frenchWords,'french/words.json'],['french-sentence',frenchSentences,'french/sentences.json'],['sentence',JSON.stringify(sentenceEntries.slice(0,500)),'decks/sentences.json'],['kanji',kanji,'decks/kanji.json'],['economics',economics,'decks/economics.json']]){
+for(const [id,data,url] of [['german-word',JSON.stringify(entries.slice(0,1000)),'german/words.json'],['french-word',frenchWords,'french/words.json'],['french-sentence',frenchSentences,'french/sentences.json'],['sentence',JSON.stringify(sentenceQuiz(sentenceEntries.slice(0,500))),'decks/sentences.json'],['kanji',kanji,'decks/kanji.json'],['economics',JSON.stringify(factQuiz(economicsEntries)),'decks/economics.json']]){
  coreDeckInfo[id]={count:JSON.parse(data).length,url,version:createHash('sha256').update(data).digest('hex').slice(0,16)};
  await fs.writeFile(new URL('dist/'+url,root),data);
 }

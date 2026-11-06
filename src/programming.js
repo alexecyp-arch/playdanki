@@ -1,6 +1,6 @@
 (()=>{'use strict';
 const C=ProgramCourse,$=id=>document.getElementById(id),KEY='programming5000:v1',info=JSON.parse($('programming-info').textContent);
-let deck=[],state=C.create(),memory=state,storageOK=true,storageNotice='',busy=false,shownToken=null,loadError=false,operation=Promise.resolve(),reviewId=null;
+let deck=[],state=C.create(),memory=state,storageOK=true,storageNotice='',busy=false,shownToken=null,loadError=false,operation=Promise.resolve(),reviewId=null,choiceKey='';
 const percentage=(value,digits=1)=>value.toFixed(digits).replace(/\.?0+$/,'')+'%';
 const token=()=>globalThis.crypto?.randomUUID?.()||Date.now().toString(36)+'-'+Math.random().toString(36).slice(2);
 function notice(message){$('notice').textContent=[...new Set([message,storageNotice].filter(Boolean))].join(' ')}
@@ -11,7 +11,7 @@ function setControls(){document.body.setAttribute('aria-busy',String(busy));$('p
 function statLine(container,label,value){const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=label;dd.textContent=value;container.append(dt,dd)}
 function renderStats(){
  const s=C.stats(state,info),values=$('stats-values');values.replaceChildren();
- for(const [label,value]of [['Cards completed',s.completed.toLocaleString()],['Cards remaining',s.remaining.toLocaleString()],['Total progress',percentage(s.totalProgress,2)]])statLine(values,label,value);
+ for(const [label,value]of [['% Correct',DankiQuiz.label(state)],['Cards completed',s.completed.toLocaleString()],['Cards remaining',s.remaining.toLocaleString()],['Total progress',percentage(s.totalProgress,2)]])statLine(values,label,value);
  if(s.accuracy!==null){statLine(values,'Earlier accuracy',percentage(s.accuracy));statLine(values,'Earlier mastered',s.mastered.toLocaleString());statLine(values,'Earlier weak',s.weak.toLocaleString())}
  const history=$('weeks-history');history.replaceChildren();
  const days=Object.entries(state.studyDays||{}).sort(([a],[b])=>b.localeCompare(a));
@@ -20,12 +20,33 @@ function renderStats(){
  if(!history.childElementCount){const p=document.createElement('p');p.textContent='Your practice history will appear here.';history.append(p)}
 }
 function render(){
- const s=C.stats(state,info);$('total-progress').textContent='TOTAL PROGRESS: '+percentage(s.totalProgress,2);$('completed-mini').textContent=s.completed.toLocaleString()+' / 5000 completed';
+ $('quiz-accuracy').textContent=DankiQuiz.label(state);const s=C.stats(state,info);$('total-progress').textContent='TOTAL PROGRESS: '+percentage(s.totalProgress,2);$('completed-mini').textContent=s.completed.toLocaleString()+' / 5000 completed';
  $('study').hidden=true;$('complete').hidden=true;$('retry').hidden=!loadError;
  if(loadError){shownToken=null;$('card').textContent='CARD —/5000';return}
- if(state.current||reviewId!==null){const current=state.current||{id:5001},card=deck[(reviewId??current.id)-1];shownToken=reviewId===null?current.token:null;$('study').hidden=false;$('card').textContent='CARD '+card.id+'/5000';$('review-label').textContent=card.subject;$('question').textContent=card.question;$('code').textContent=card.code||'';$('code').hidden=!card.code;$('answer').textContent=card.answer;window.DankiAnswerVoice?.('programming',card.id,card.answer)}
+ if(state.current||reviewId!==null){const current=state.current||{id:5001},card=deck[(reviewId??current.id)-1];shownToken=reviewId===null?current.token:null;$('study').hidden=false;$('card').textContent='CARD '+card.id+'/5000';$('review-label').textContent=card.subject;$('question').textContent=card.question;$('code').textContent=card.code||'';$('code').hidden=!card.code;renderChoices(card)}
  else{shownToken=null;$('complete').hidden=false;$('card').textContent='CARD 5000/5000'}
  if(!$('stats').hidden)renderStats();setControls();
+}
+function renderChoices(card){
+ const identity=(reviewId===null?state.current?.token:'review:'+reviewId);if(choiceKey===identity&&$('answer').childElementCount)return;choiceKey=identity;
+ DankiQuiz.render($('answer'),DankiQuiz.options(card.answer,card.wrongAnswers),'en',(button,correct)=>answerChoice(button,correct,card,identity));
+}
+async function answerChoice(button,correct,card,identity){
+ if(busy||loadError||menuOpen()||!$('stats').hidden||button.disabled||identity!==choiceKey)return;
+ busy=true;setControls();const review=reviewId!==null,attempt=shownToken;
+ try{
+  const accepted=review||await change(next=>{
+   if(next.current?.token!==attempt||next.current.id!==card.id)return false;
+   DankiQuiz.record(next,correct);if(correct){C.skipStudy(next,attempt,Date.now(),info);C.presentStudy(next,deck,info,Date.now(),token);}return true;
+  });
+  if(!accepted){busy=false;await refresh();return;}
+  button.disabled=true;button.classList.add(correct?'word-correct':'word-wrong');$('quiz-accuracy').textContent=DankiQuiz.label(state);
+  if(correct){
+   for(const choice of $('answer').children)choice.disabled=true;
+   window.DankiAnswerVoice?.('programming',card.id,card.answer,true);
+   setTimeout(()=>{busy=false;if(review)advance();else refresh().catch(()=>notice('Progress could not refresh. Please reload.'));setControls();},160);
+  }else{busy=false;setControls();}
+ }catch{busy=false;notice('Progress could not be saved. Please try again.');setControls();}
 }
 async function refresh(){if(!deck.length||loadError)return;await change(s=>C.presentStudy(s,deck,info,Date.now(),token));render()}
 async function load(){
@@ -38,7 +59,7 @@ async function load(){
 }
 function menuOpen(){try{return parent!==window&&!!parent.document.querySelector('.games-menu[open]')}catch{return false}}
 async function advance(){
- if(busy||loadError||!deck.length||!$('stats').hidden||menuOpen()||document.hidden)return;if(reviewId!==null){reviewId++;if(reviewId>=(state.current?.id??5001))reviewId=null;render();return;}busy=true;setControls();const attempt=shownToken;
+ if(busy||loadError||!deck.length||!$('stats').hidden||menuOpen()||document.hidden)return;if(state.current&&reviewId===null)return;if(reviewId!==null){reviewId++;if(reviewId>=(state.current?.id??5001))reviewId=null;render();return;}busy=true;setControls();const attempt=shownToken;
  try{await change(s=>{if(attempt)C.skipStudy(s,attempt,Date.now(),info);else C.startStudyReplay(s);C.presentStudy(s,deck,info,Date.now(),token)});render()}
  catch{notice('Progress could not be saved. Please try again.')}
  finally{busy=false;setControls()}

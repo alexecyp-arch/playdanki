@@ -78,9 +78,64 @@ try{
   await page.waitForFunction(()=>document.getElementById('position').textContent==='2 / 1000');
   assert.equal(Object.values((await saved(page,'deutsch5000:v1')).days).reduce((sum,row)=>sum+row.correct,0),8,'two tabs cannot double grade one word');
   console.log('PASS shorter decks preserve old history and replay; simultaneous tabs grade once');
-  await choose(page,'sentences-mode');assert.equal(await page.locator('#position').textContent(),'1 / 500');assert.equal(await page.locator('.word-choice').count(),0);assert.equal(await page.locator('#translation').isVisible(),true);
-  await page.locator('#game').focus();await page.keyboard.press('Space');await page.waitForFunction(()=>document.getElementById('position').textContent==='2 / 500');
-  console.log('PASS sentence cards retain their controls with the new 500-card limit');
+  await choose(page,'sentences-mode');assert.equal(await page.locator('#position').textContent(),'1 / 500');assert.equal(await page.locator('.word-choice').count(),3);assert.equal(await page.locator('#translation').isVisible(),false);
+  const sentence=JSON.parse(await fs.readFile(path.join(root,'decks/sentences.json'),'utf8'))[0];await correct(page,sentence[0]);await page.waitForFunction(()=>document.getElementById('position').textContent==='2 / 500');
+  console.log('PASS sentence cards use three choices with the 500-card limit');
+  const extended=await context(),ep=await extended.newPage();
+  const expanded=[
+    ['german','sentences-mode','deutsch1000sentences:v1','decks/sentences.json'],
+    ['french','french-sentences-mode','francais1000sentences:v1','french/sentences.json'],
+    ['spanish','spanish-sentences-mode','spanish1000sentences:v1','languages/spanish-sentences.json'],
+    ['italian','italian-sentences-mode','italian1000sentences:v1','languages/italian-sentences.json'],
+    ['greek','greek-sentences-mode','greek1000sentences:v1','languages/greek-sentences.json'],
+    ['economics',null,'economics3500:v1','decks/economics.json'],
+    ['trivia',null,'trivia20000:v1','trivia/0.json']
+  ];
+  for(const [section,mode,key,file] of expanded){
+    const cards=JSON.parse(await fs.readFile(path.join(root,file),'utf8')),answer=cards[0][mode?0:1];
+    await ep.goto(url+'#'+section);if(mode)await choose(ep,mode);await ep.locator('.word-choice').first().waitFor();
+    const choices=ep.locator('.word-choice');assert.equal(await choices.count(),3);
+    const texts=await choices.allTextContents(),wrong=texts.find(text=>text!==answer);
+    await ep.getByRole('button',{name:wrong,exact:true}).click();await ep.locator('.word-wrong').waitFor();
+    assert.equal(await ep.locator('#word-accuracy').textContent(),'0% CORRECT');
+    await correct(ep,answer);await ep.waitForFunction(()=>document.getElementById('position').textContent.startsWith('2 / '));
+    assert.equal(await ep.locator('#word-accuracy').textContent(),'50% CORRECT');
+    await ep.reload();await ep.locator('.word-choice').first().waitFor();
+    assert((await ep.locator('#position').textContent()).startsWith('2 / '));assert.equal(await ep.locator('#word-accuracy').textContent(),'50% CORRECT');
+    assert.equal((await saved(ep,key)).cursor,1);
+    if(section==='trivia'){assert.equal((await saved(ep,key)).run.correct,1);assert.equal((await saved(ep,key)).run.misses,1);assert.equal(await ep.locator('#question-image').isVisible(),false);}
+    if(section==='economics')assert.equal(Object.values((await saved(ep,key)).weeks)[0].correct,1);
+    console.log('PASS '+section+(mode?' sentences':'')+': graded choices, saved 50% accuracy, reload and progress');
+  }
+  for(const course of ['programming','quant']){
+    const cards=JSON.parse(await fs.readFile(path.join(root,course+'/cards.json'),'utf8'));
+    await ep.goto(url+'#'+course);const frame=ep.frameLocator('#arithmetic-frame');
+    await ep.waitForFunction(course=>{const frame=document.getElementById('arithmetic-frame')?.contentDocument;return frame?.location.pathname.endsWith('/'+course+'.html')&&frame.body?.getAttribute('aria-busy')==='false'&&frame.querySelectorAll('.word-choice').length===3;},course);
+    await frame.locator('.word-choice').first().waitFor();assert.equal(await frame.locator('.word-choice').count(),3);
+    const answer=cards[0].answer,texts=await frame.locator('.word-choice').allTextContents(),wrong=texts.find(text=>text!==answer);
+    await frame.getByRole('button',{name:wrong,exact:true}).click();await frame.locator('.word-wrong').waitFor();
+    assert.equal(await frame.locator('#quiz-accuracy').textContent(),'0% CORRECT');
+    const key=course+'5000:v1',before=await saved(ep,key);
+    await frame.locator('#study').click({position:{x:5,y:5}});assert.deepEqual((await saved(ep,key)).quiz,before.quiz);
+    await frame.getByRole('button',{name:answer,exact:true}).click();await frame.locator('#card').filter({hasText:'CARD 2/5000'}).waitFor();
+    assert.equal(await frame.locator('#quiz-accuracy').textContent(),'50% CORRECT');
+    await ep.reload();await frame.locator('.word-choice').first().waitFor();assert.equal(await frame.locator('#quiz-accuracy').textContent(),'50% CORRECT');
+    const stored=await saved(ep,key);assert.deepEqual(stored.quiz,{correct:1,wrong:1});
+    if(course==='programming')assert.equal(stored.nextId,2);else assert.equal(stored.cursor,1);
+    await frame.locator('#stats-toggle').click();assert.match(await frame.locator('#stats-values').textContent(),/50% CORRECT/);await frame.locator('#stats-close').click();
+    await ep.screenshot({path:fileURLToPath(new URL('../../qa/'+course+'-quiz-desktop.png',import.meta.url)),fullPage:true});
+    console.log('PASS '+course+': meaningful choices, graded attempts, saved progress, statistics and no tap bypass');
+  }
+  await ep.goto(url+'#trivia');await ep.locator('.word-choice').first().waitFor();
+  const trivia=JSON.parse(await fs.readFile(path.join(root,'trivia/0.json'),'utf8')),flag=trivia.findIndex(card=>typeof card[5]==='string');
+  const seedTrivia=async cursor=>{
+    await ep.evaluate(cursor=>{localStorage.setItem('trivia20000:v1',JSON.stringify({v:1,cursor,round:1,days:{'2026-11-05':{correct:0,wrong:0,skipped:cursor}},run:{correct:0,wrong:0,skipped:cursor}}));dispatchEvent(new StorageEvent('storage',{key:'trivia20000:v1'}));},cursor);
+    await ep.waitForFunction(cursor=>document.getElementById('position').textContent===(cursor+1)+' / 20000',cursor);await ep.locator('.word-choice').first().waitFor();
+  };
+  await seedTrivia(flag);await ep.waitForFunction(()=>{const image=document.getElementById('question-image');return !image.hidden&&image.naturalWidth>0;});await correct(ep,trivia[flag][1]);await ep.waitForFunction(position=>document.getElementById('position').textContent===position,flag+2+' / 20000');
+  await seedTrivia(1999);await correct(ep,trivia[1999][1]);await ep.waitForFunction(()=>document.getElementById('position').textContent==='2001 / 20000'&&document.querySelectorAll('.word-choice').length===3);
+  assert.equal((await saved(ep,'trivia20000:v1')).cursor,2000);console.log('PASS flag questions and loading the next 2000-question chunk preserve the quiz and progress');
+  await extended.close();
   const phone=await context({viewport:{width:390,height:844},hasTouch:true,isMobile:true,deviceScaleFactor:2}),mobile=await phone.newPage();
   await mobile.goto(url+'#german');await mobile.locator('.word-choice').first().waitFor();
   for(const width of [320,390]){
@@ -90,6 +145,13 @@ try{
   }
   await mobile.locator('.word-choice').filter({hasText:new RegExp('^'+firstWord+'$')}).tap();await mobile.waitForFunction(()=>document.getElementById('position').textContent==='2 / 1000');
   await mobile.screenshot({path:fileURLToPath(new URL('../../qa/word-quiz-phone.png',import.meta.url)),fullPage:true});
+  for(const course of ['programming','quant']){
+    await mobile.goto(url+'#'+course);await mobile.waitForFunction(course=>{const doc=document.getElementById('arithmetic-frame')?.contentDocument;return doc?.location.pathname.endsWith('/'+course+'.html')&&doc.body?.getAttribute('aria-busy')==='false'&&doc.querySelectorAll('.word-choice').length===3;},course);
+    const frame=mobile.frameLocator('#arithmetic-frame'),cards=JSON.parse(await fs.readFile(path.join(root,course+'/cards.json'),'utf8'));
+    assert.equal(await frame.locator('html').evaluate(element=>element.scrollWidth>innerWidth),false);
+    await frame.getByRole('button',{name:cards[0].answer,exact:true}).tap();await frame.locator('#card').filter({hasText:'CARD 2/5000'}).waitFor();
+    await mobile.screenshot({path:fileURLToPath(new URL('../../qa/'+course+'-quiz-phone.png',import.meta.url)),fullPage:true});
+  }
   await choose(page,'words-mode');await page.screenshot({path:fileURLToPath(new URL('../../qa/word-quiz-desktop.png',import.meta.url)),fullPage:true});
   console.log('PASS 320px/390px phone layouts, stacked touch targets and touch grading');
   await phone.close();await desktop.close();assert.deepEqual(errors,[]);console.log('PASS no page errors');

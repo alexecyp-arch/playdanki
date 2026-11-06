@@ -52,16 +52,24 @@ html body #translation,html body #exercise #answer,html body #study #answer{colo
 .word-accuracy{font-size:.875rem;line-height:1.4;font-variant-numeric:tabular-nums;color:#fff;margin-bottom:.4rem}
 .word-mode #answer-box{width:min(32rem,calc(100vw - 4rem));max-width:100%}
 .word-mode :is(#again,#retry){position:relative;margin-top:calc(var(--card-offset) + 1.5rem)}
-#word-choices{display:grid;gap:14px}
+#word-choices,.quiz-choices{display:grid;gap:14px}
 #word-choices[hidden],#word-accuracy[hidden],#translation[hidden]{display:none}
 .word-choice{width:100%;min-height:64px;padding:12px 20px;border:2px solid #141417;border-radius:0;background:#2a2d32;color:#fff;font-size:clamp(1.4rem,3vw,2.2rem);font-weight:700;line-height:1.25;overflow-wrap:anywhere;text-shadow:0 1px 0 #0009,0 2px 0 #0006;box-shadow:inset 0 2px 0 #ffffff26,inset 0 -2px 0 #0003,0 4px 0 #101113,0 6px 5px #0004;transition:background-color 40ms,box-shadow 35ms,translate 35ms;cursor:pointer}
 .word-choice:active{translate:0 3px;box-shadow:inset 0 2px 0 #0004,0 1px 0 #101113}
 .word-choice.word-wrong{background:#852c34;color:#fff}
 .word-choice.word-correct{background:#226c43;color:#fff}
 .word-choice:disabled{cursor:default;opacity:1}
-@media(min-width:601px){.word-mode #answer-box{width:min(40rem,calc(100vw - 4rem))}.word-choice{min-height:80px;padding:16px 24px}}
+@media(min-width:601px){.quiz-mode #answer-box{width:min(48rem,calc(100vw - 4rem))}.word-choice{min-height:104px;padding:20px 28px;font-size:3rem}}
 @media(max-width:600px){.word-accuracy{font-size:.75rem}.word-mode #answer-box{width:calc(100vw - 2.4rem)}.word-choice{min-height:56px;padding:10px 14px;font-size:1.6rem}#word-choices{gap:12px}}
 @media(prefers-reduced-motion:reduce){.word-choice{transition:none}}
+.quiz-mode :is(#again,#retry){position:relative;margin-top:calc(var(--card-offset) + 1.5rem)}
+.quiz-prose .word-choice{font-size:clamp(1.2rem,2.1vw,1.9rem);line-height:1.4;white-space:pre-wrap;text-align:left}
+.quiz-course #answer{width:min(48rem,100%);max-width:100%;padding:0;background:transparent;border:0;white-space:normal}
+.quiz-course #study{padding-bottom:2rem}
+.quiz-course .word-choice:hover{background:#34383e}
+.quiz-course .word-choice.word-wrong{background:#852c34}
+.quiz-course .word-choice.word-correct{background:#226c43}
+@media(max-width:600px){.quiz-mode #answer-box{width:calc(100vw - 2.4rem)}.quiz-prose .word-choice{font-size:1.1rem}.quiz-course .word-choice{min-height:56px}.quiz-course .course-main{padding-bottom:14rem}}
 </style>
 <link rel="icon" type="image/x-icon" sizes="32x32" href="/favicon.ico?v=6e0920c0c0ab"><link rel="icon" type="image/svg+xml" href="/favicon.svg?v=6e0920c0c0ab"><script>// Only public game answers cross into the same-origin main voice controller.
 (()=>{'use strict';
@@ -127,5 +135,5 @@ if(document.modelContext?.registerTool)try{Promise.resolve(document.modelContext
 refresh();next();$('answer').focus({preventScroll:true});
 })();
 </script>
-<script defer src="/analytics.js?v=1921c945b29d"></script><script defer src="/page-warmup.js?v=ee00b6225de5"></script></body>
+<script defer src="/analytics.js?v=1921c945b29d"></script><script defer src="/page-warmup.js?v=09af891e91c5"></script></body>
 </html>

@@ -56,10 +56,10 @@
       "percentage": 2
     }
   },
-  "contentHash": "9ec1c72a94717d727cd78ee608d58ba4e542d22eec565f5781a2f71821dfa27c",
-  "style": "simultaneous ungraded flashcards",
+  "contentHash": "81ffd7ef4b06c7865996c41d41b742cecb749246a76661a199bc6714eb5dd5f7",
+  "style": "three-choice quizzes",
   "reset": "none",
   "practiceStorage": "browser-local",
-  "accuracy": "not rated",
+  "accuracy": "per-attempt",
   "mastery": "not rated"
 }

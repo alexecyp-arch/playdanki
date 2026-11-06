@@ -1,5 +1,6 @@
 (()=>{'use strict';
 const $=id=>document.getElementById(id),modeKeys={french:'french:mode:v1',german:'german:mode:v1',japanese:'japanese:mode:v1',spanish:'spanish:mode:v1',italian:'italian:mode:v1',greek:'greek:mode:v1',korean:'korean:mode:v1'},triviaInfo=JSON.parse($('trivia-info').textContent),triviaLoads=new Map(),languageInfo=JSON.parse($('language-info').textContent),languageLoads=new Map();
+const isQuiz=()=>active.unit==='words'||active.unit==='sentences'||active.fixedChoices;
 const menuOpen=()=>!!document.querySelector('.games-menu[open]');
 function languageDeck(file,key,title,section,lang,unit,options={}){const info=languageInfo[file];return {key,title,section,lang,unit,limit:info.limit,cards:new Array(info.count),remote:file,...options}}
 const coreDeckInfo=JSON.parse($('core-deck-info').textContent);
@@ -64,13 +65,13 @@ const accuracy=row=>{const graded=row.correct+row.wrong+(row.misses||0);return g
 const accuracyLabel=row=>{const value=accuracy(row);return (value===null?'—':value+'%')+' CORRECT';};
 function score(){
   const total=emptyRow();for(const row of Object.values(state.days)){total.correct+=row.correct;total.wrong+=row.wrong;total.misses+=row.misses||0;total.skipped+=row.skipped||0;}
-  const quiz=active.unit==='words';
+  const quiz=isQuiz();
   $('tracker-period').textContent='All time';$('today-count').textContent='Practiced '+practiced(total).toLocaleString();
   $('today-score').hidden=!quiz;$('today-score').textContent=accuracyLabel(total);
   $('word-accuracy').hidden=!quiz;$('word-accuracy').textContent=accuracyLabel(total);
   if(!history.hidden)renderHistory();
 }
-function renderHistory(){const holder=$('history-rows');$('history-title').textContent=(active.weekly?'Previous weeks · ':'Previous days · ')+active.title;holder.replaceChildren();const current=document.createElement('div');current.className='history-row';const label=document.createElement('div');label.className='history-date';label.textContent='Today';const count=document.createElement('div');count.className='history-count';count.textContent='Practiced '+practiced(state.days[dayKey()]||emptyRow()).toLocaleString();current.append(label,count);if(active.unit==='words'){const result=document.createElement('div');result.className='history-score';result.textContent=accuracyLabel(state.days[dayKey()]||emptyRow());current.append(result);}holder.append(current);const rows=active.weekly?state.weeks:state.days,period=active.weekly?weekKey():dayKey(),dates=Object.keys(rows).filter(d=>d!==period).sort().reverse();if(!dates.length){const p=document.createElement('p');p.className='empty-history';p.textContent=active.weekly?'No previous practice weeks yet.':'No previous practice days yet.';holder.append(p);return}const fragment=document.createDocumentFragment();for(const date of dates){const row=rows[date],box=document.createElement('div'),label=document.createElement('div'),count=document.createElement('div'),result=document.createElement('div');box.className='history-row';label.className='history-date';const [y,m,d]=date.split('-').map(Number);label.textContent=new Date(y,m-1,d).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});if(active.weekly){const end=new Date(y,m-1,d+6);label.textContent+=' – '+end.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})}count.className='history-count';count.textContent='Practiced '+practiced(row)+'/'+active.limit;result.className='history-score';const previous=accuracy(row);result.hidden=previous===null;result.textContent=previous===null?'':active.unit==='words'?accuracyLabel(row):'Earlier accuracy = '+previous+'%';box.append(label,count,result);fragment.append(box)}holder.append(fragment)}
+function renderHistory(){const holder=$('history-rows');$('history-title').textContent=(active.weekly?'Previous weeks · ':'Previous days · ')+active.title;holder.replaceChildren();const current=document.createElement('div');current.className='history-row';const label=document.createElement('div');label.className='history-date';label.textContent='Today';const count=document.createElement('div');count.className='history-count';count.textContent='Practiced '+practiced(state.days[dayKey()]||emptyRow()).toLocaleString();current.append(label,count);if(isQuiz()){const result=document.createElement('div');result.className='history-score';result.textContent=accuracyLabel(state.days[dayKey()]||emptyRow());current.append(result);}holder.append(current);const rows=active.weekly?state.weeks:state.days,period=active.weekly?weekKey():dayKey(),dates=Object.keys(rows).filter(d=>d!==period).sort().reverse();if(!dates.length){const p=document.createElement('p');p.className='empty-history';p.textContent=active.weekly?'No previous practice weeks yet.':'No previous practice days yet.';holder.append(p);return}const fragment=document.createDocumentFragment();for(const date of dates){const row=rows[date],box=document.createElement('div'),label=document.createElement('div'),count=document.createElement('div'),result=document.createElement('div');box.className='history-row';label.className='history-date';const [y,m,d]=date.split('-').map(Number);label.textContent=new Date(y,m-1,d).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});if(active.weekly){const end=new Date(y,m-1,d+6);label.textContent+=' – '+end.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})}count.className='history-count';count.textContent='Practiced '+practiced(row)+'/'+active.limit;result.className='history-score';const previous=accuracy(row);result.hidden=previous===null;result.textContent=previous===null?'':isQuiz()?accuracyLabel(row):'Earlier accuracy = '+previous+'%';box.append(label,count,result);fragment.append(box)}holder.append(fragment)}
 function cardIndex(){if(active===decks.hangul)return active.cards[0]?hangulPracticeOrder(active.cards,dayKey())[shownCursor]:0;if(!active.daily)return shownCursor;const done=practiced(state.days[dayKey()]||{correct:0,wrong:0})+shownCursor-state.cursor,order=kanaPracticeOrder(active.cards,dayKey());return order[done<92?done:92+(done-92)%408]}
 function centerAnswer(){
   if(!practiceActive||game.hidden||answerBox.hidden)return;
@@ -78,7 +79,7 @@ function centerAnswer(){
   const offset=parseFloat(getComputedStyle(game).getPropertyValue('--card-offset'))||0;
   const center=Math.max(innerHeight/2+offset,topEnd+24+h/2);
   answerBox.style.top=center+'px';
-  game.style.minHeight=Math.max(innerHeight,center+h/2+144)+'px';
+  game.style.minHeight=Math.max(innerHeight,center+h/2+(innerWidth<=600&&isQuiz()?224:144))+'px';
 }
 window.addEventListener('resize',centerAnswer);questionImage.addEventListener('load',centerAnswer);
 function cardVoice(text='',announce=false){document.dispatchEvent(new CustomEvent('danki-card-voice',{detail:{id:mode+':'+shownRound+':'+shownCursor,text,lang:active.lang,announce}}));}
@@ -96,7 +97,7 @@ function wordChoices(cards,index){
   return choices.map(card=>({text:card[0],correct:card===current}));
 }
 async function answerWord(button,correct,view){
-  if(view!==screenVersion||locked||!practiceActive||active.unit!=='words'||menuOpen()||!history.hidden||button.disabled||['notes-open','atlas-open','weight-open','timebox-open'].some(name=>document.body.classList.contains(name)))return;
+  if(view!==screenVersion||locked||!practiceActive||!isQuiz()||menuOpen()||!history.hidden||button.disabled||['notes-open','atlas-open','weight-open','timebox-open'].some(name=>document.body.classList.contains(name)))return;
   locked=true;
   const deck=active,cursor=shownCursor,round=shownRound,date=shownDay,review=reviewCursor!==null;
   try{
@@ -106,6 +107,8 @@ async function answerWord(button,correct,view){
       if(fresh.cursor===cursor&&fresh.round===round&&date===dayKey()){
         const row=fresh.days[date]||(fresh.days[date]=emptyRow());
         if(correct){row.correct++;fresh.cursor++;}else row.misses++;
+        if(deck.cumulative){if(correct)fresh.run.correct++;else fresh.run.misses=(fresh.run.misses||0)+1;}
+        if(deck.weekly){const week=fresh.weeks[weekKey()]||(fresh.weeks[weekKey()]=emptyRow());if(correct)week.correct++;else week.misses=(week.misses||0)+1;}
         save(deck,fresh);accepted=true;
       }
       if(active===deck)state=fresh;
@@ -116,7 +119,7 @@ async function answerWord(button,correct,view){
     button.classList.add(correct?'word-correct':'word-wrong');button.disabled=true;score();
     if(correct){
       for(const choice of $('word-choices').children)choice.disabled=true;
-      cardVoice(deck.cards[cursor][0],true);
+      cardVoice(deck.cards[cursor][deck.lang==='en'?1:0],true);
       setTimeout(()=>{if(view!==screenVersion||active!==deck||!practiceActive)return;locked=false;if(review)nextCard();else render();},160);
     }else locked=false;
   }catch{
@@ -126,8 +129,8 @@ async function answerWord(button,correct,view){
 function render(){
   if(!practiceActive)return;
   screenVersion++;locked=false;shownCursor=reviewCursor??state.cursor;shownRound=state.round;shownDay=dayKey();feedback.textContent='';$('answer-box').hidden=true;game.style.minHeight='';
-  const quiz=active.unit==='words';
-  practice.classList.toggle('word-mode',quiz);practice.classList.toggle('sentence-mode',active.unit==='sentences'||active.fixedChoices);practice.classList.toggle('japanese-mode',active.section==='japanese'||active.section==='korean');
+  const quiz=isQuiz();
+  practice.classList.toggle('word-mode',active.unit==='words');practice.classList.toggle('quiz-mode',quiz);practice.classList.toggle('sentence-mode',active.unit==='sentences'||active.fixedChoices);practice.classList.toggle('japanese-mode',active.section==='japanese'||active.section==='korean');
   translation.hidden=quiz;$('word-choices').hidden=!quiz;$('word-choices').replaceChildren();
   $('game').setAttribute('aria-label',active.section[0].toUpperCase()+active.section.slice(1)+' flashcards');word.lang='en';translation.lang=active.lang;$('kanji-credit').hidden=active!==decks.kanji;
   for(const [name,b]of Object.entries(modeButtons)){b.classList.toggle('active',name===mode);b.setAttribute('aria-pressed',String(name===mode))}
@@ -135,23 +138,21 @@ function render(){
   const total=active.limit,complete=shownCursor===total;again.hidden=!complete;position.textContent=(complete?total:shownCursor+1)+' / '+total;$('previous-card').disabled=shownCursor===0;
   if(complete){if(!quiz)cardVoice();word.textContent='Complete';feedback.textContent=active.daily?'Daily goal reached.':'All '+total+' '+active.unit+' practiced.';word.lang='en';return}
   shownCard=cardIndex();const current=active.cards[shownCard];
-  if(active.remote&&(!current||(quiz&&active.cards.filter(Boolean).length!==total))){cardVoice();locked=true;word.textContent='';const deck=active,view=screenVersion;loadLanguage(deck).then(()=>{if(active===deck&&screenVersion===view)render()}).catch(()=>{if(active===deck&&screenVersion===view){word.textContent='Unable to load cards';feedback.textContent='Check your connection and retry.';$('retry').hidden=false}});return}
+  if(active.remote&&(!current||(active.unit==='words'&&active.cards.filter(Boolean).length!==total))){cardVoice();locked=true;word.textContent='';const deck=active,view=screenVersion;loadLanguage(deck).then(()=>{if(active===deck&&screenVersion===view)render()}).catch(()=>{if(active===deck&&screenVersion===view){word.textContent='Unable to load cards';feedback.textContent='Check your connection and retry.';$('retry').hidden=false}});return}
   if(active===decks.trivia&&!current){cardVoice();locked=true;word.textContent='';const view=screenVersion;loadTrivia(shownCard).then(()=>{if(active===decks.trivia&&screenVersion===view)render()}).catch(()=>{if(active===decks.trivia&&screenVersion===view){word.textContent='Unable to load questions';feedback.textContent='Check your connection and retry.';$('retry').hidden=false}});return}
-  if(active===decks.trivia){if(current[5]){const img=$('question-image');img.src=current[5];img.hidden=false}const next=shownCard+200;if(next<active.limit&&Math.floor(next/triviaInfo.chunkSize)!==Math.floor(shownCard/triviaInfo.chunkSize))loadTrivia(next).catch(()=>{})}
+  if(active===decks.trivia){if(typeof current[5]==='string'){const img=$('question-image');img.src=current[5];img.hidden=false}const next=shownCard+200;if(next<active.limit&&Math.floor(next/triviaInfo.chunkSize)!==Math.floor(shownCard/triviaInfo.chunkSize))loadTrivia(next).catch(()=>{})}
   const language=active.lang!=='en';word.textContent=current[language?1:0];translation.textContent=quiz?'':current[language?0:1];
   if(quiz){
     const view=screenVersion;
-    for(const choice of wordChoices(active.cards,shownCard)){
-      const button=document.createElement('button');button.type='button';button.className='word-choice';button.textContent=choice.text;button.lang=active.lang;
-      button.addEventListener('click',()=>answerWord(button,choice.correct,view));$('word-choices').append(button);
-    }
+    const choices=active.unit==='words'?wordChoices(active.cards,shownCard):DankiQuiz.options(current[language?0:1],current.at(-1).wrongAnswers);
+    DankiQuiz.render($('word-choices'),choices,active.lang,(button,correct)=>answerWord(button,correct,view));
   }else cardVoice(language?current[0]:current[1]);
   $('answer-box').hidden=false;centerAnswer();
 }
 function previousCard(){if(!practiceActive||menuOpen()||!history.hidden||locked||shownCursor<=0)return;reviewCursor=shownCursor-1;render();}
 function nextCard(){
   if(!practiceActive||menuOpen()||!history.hidden||locked)return;
-  if(active.unit==='words'&&reviewCursor===null&&state.cursor!==active.limit)return;
+  if(isQuiz()&&reviewCursor===null&&state.cursor!==active.limit)return;
   if(reviewCursor!==null){reviewCursor++;if(reviewCursor>=state.cursor)reviewCursor=null;render();return}
   if(state.cursor===active.limit){again.click();return}
   if(shownDay!==dayKey()){state=read(active);render();return}

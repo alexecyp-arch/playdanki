@@ -4,6 +4,7 @@ function create(){return{version:1,cursor:0,completed:0,round:1,current:null,car
 function normalize(raw){
  if(!raw||typeof raw!=='object'||Array.isArray(raw)||raw.version!==1)throw Error('Invalid saved course');
  const s=create();s.cursor=num(raw.cursor,TOTAL);s.completed=Math.max(s.cursor,num(raw.completed,TOTAL));s.round=Math.max(1,num(raw.round));
+ if(raw.quiz)s.quiz={correct:num(raw.quiz.correct),wrong:num(raw.quiz.wrong)};
  if(raw.current&&raw.current.id===s.cursor+1&&typeof raw.current.token==='string'&&raw.current.token&&s.cursor<TOTAL)s.current={id:raw.current.id,token:raw.current.token};
  for(const [key,r]of Object.entries(raw.cards||{})){if(!/^\d+$/.test(key)||+key<1||+key>TOTAL||!r||typeof r!=='object')continue;s.cards[key]={timesSeen:num(r.timesSeen),timesCorrect:0,timesWrong:0,masteryState:'unrated',lastReviewed:Number.isFinite(r.lastReviewed)&&r.lastReviewed>=0?r.lastReviewed:null,nextReview:null}}
  for(const [day,n]of Object.entries(raw.practiceDays||{}))if(/^\d{4}-\d{2}-\d{2}$/.test(day)&&num(n))s.practiceDays[day]=num(n);

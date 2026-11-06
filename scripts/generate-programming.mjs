@@ -1,5 +1,6 @@
 import fs from 'node:fs/promises';
 import {createHash} from 'node:crypto';
+import {courseWrongAnswers} from './quiz-distractors.mjs';
 const root=new URL('../',import.meta.url),directory=new URL('src/programming/',root),plan=JSON.parse(await fs.readFile(new URL('curriculum-plan.json',directory),'utf8')),cards=[],lessons=[];
 const overrides=JSON.parse(await fs.readFile(new URL('card-overrides.json',directory),'utf8')),appliedOverrides=new Set();
 const weeks=[];let start=1;for(let i=1;i<=52;i++){const count=i<=8?97:96;weeks.push({week:i,start,end:start+count-1,count});start+=count}
@@ -27,4 +28,5 @@ lessons.push({start:base,end:base+9,subject,term,difficultyLevel:band.difficulty
 for(const [subject,count]of Object.entries(band.lessons))if(bandCounts[subject]!==count)throw Error('Band '+band.difficulty+' '+subject+': expected '+count+' lessons, got '+bandCounts[subject]);for(const subject of Object.keys(bandCounts))if(!(subject in band.lessons))throw Error('Unexpected subject '+subject+' in band '+band.difficulty);
 }
 if(cards.length!==5000)throw Error('Expected exactly 5000 cards.');for(const [subject,count]of Object.entries(plan.subjects))if(counts[subject]!==count)throw Error(subject+' weighting differs.');for(const [term,items]of Object.entries(overrides))for(const n of Object.keys(items))if(!appliedOverrides.has(term+':'+n))throw Error('Unmatched authored override '+term+':'+n);
+for(const card of cards)card.wrongAnswers=courseWrongAnswers(card,cards);
 const content=JSON.stringify(cards);await fs.writeFile(new URL('cards.json',directory),content);await fs.writeFile(new URL('summary.json',directory),JSON.stringify({version:1,total:cards.length,weeks,subjects:counts,lessons,contentHash:createHash('sha256').update(content).digest('hex')},null,2));console.log(JSON.stringify({programming:cards.length,lessons:lessons.length,weeks:weeks.length,subjects:counts,bytes:Buffer.byteLength(content)}));

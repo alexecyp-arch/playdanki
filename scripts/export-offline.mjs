@@ -5,7 +5,7 @@ await fs.mkdir(target,{recursive:true});
 let html=await fs.readFile(new URL('dist/index.html',root),'utf8');
 const marker='<script id="trivia-data" type="application/json">[]</script>';
 if(!html.includes(marker))throw Error('Offline Trivia marker missing');
-const data=await fs.readFile(new URL('src/trivia.json',root),'utf8');
+const data=JSON.stringify((await Promise.all(Array.from({length:10},(_,i)=>fs.readFile(new URL('dist/trivia/'+i+'.json',root),'utf8').then(JSON.parse)))).flat());
 html=html.replace(marker,'<script id="trivia-data" type="application/json">'+data.replace(/</g,'\\u003c')+'</script>');
 for(const name of ['spanish-words','spanish-sentences','italian-words','italian-sentences','greek-words','greek-sentences','korean-hangul','korean-words']){
  const marker='<script id="'+name+'-data" type="application/json">[]</script>',cards=await fs.readFile(new URL('dist/languages/'+name+'.json',root),'utf8');
