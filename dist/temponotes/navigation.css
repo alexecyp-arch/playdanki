@@ -332,17 +332,20 @@
 .fortuna-toggle { width:100%; }
 
 .fortuna-panel {
+  --fortuna-room:min(74dvh, var(--fortuna-space, 74dvh));
+  --fortuna-padding:clamp(10px, 2vw, 24px);
+  --fortuna-result-height:clamp(72px, 11dvh, 104px);
   position:absolute;
   bottom:calc(100% + 8px);
   left:50%;
   transform:translateX(-50%);
   width:min(50vw, 860px);
-  max-height:min(74dvh, var(--fortuna-space, 74dvh));
+  max-height:var(--fortuna-room);
   overflow:auto;
   overscroll-behavior:contain;
-  padding:clamp(10px, 2vw, 24px);
-  background:radial-gradient(ellipse at 50% 30%,#3a281b,#1c120d 78%);
-  border:2px solid #a9824d;
+  padding:var(--fortuna-padding);
+  background:radial-gradient(ellipse at 50% 30%,#32271f,#1a1410 78%);
+  border:2px solid #7f6748;
   box-shadow:inset 0 0 0 2px #392619,0 5px 0 #110a08,0 12px 28px #0009;
   z-index:30;
 }
@@ -351,7 +354,7 @@
 }
 .fortuna-rig {
   position:relative;
-  width:min(100%, 520px, max(100px, calc((min(74dvh, var(--fortuna-space, 74dvh)) - clamp(106px, 16dvh, 144px)) * .86)));
+  width:min(100%, 520px, max(100px, calc((var(--fortuna-room) - var(--fortuna-result-height) - 2 * var(--fortuna-padding) - 12px) * .86)));
   aspect-ratio:296 / 344;
   margin:0 auto;
 }
@@ -366,8 +369,8 @@
   aspect-ratio:1;
 }
 .fortuna-wheel svg { width:100%; height:100%; transform-origin:50% 50%; }
-.fortuna-plaque rect { fill:#3f2416; stroke:#d5ad6a; stroke-width:1.5; }
-.fortuna-picked rect { fill:#5b351d; stroke:#ffe3a0; stroke-width:2.5; }
+.fortuna-plaque rect { fill:#36291e; stroke:#927451; stroke-width:1.5; }
+.fortuna-picked rect { fill:#51402b; stroke:#d2b577; stroke-width:2.5; }
 .fortuna-label {
   display:-webkit-box;
   -webkit-box-orient:vertical;
@@ -386,24 +389,25 @@
   transform:translateX(-50%);
   width:7%;
   height:10%;
-  background:linear-gradient(90deg,#8f612f,#ffe4a5 50%,#9f703b);
-  clip-path:polygon(50% 0,100% 27%,50% 100%,0 27%);
+  background:linear-gradient(105deg,#49321f,#bd995d 49%,#8c6d43 62%,#563c24);
+  clip-path:polygon(47% 0,99% 27%,54% 93%,48% 100%,0 30%);
   pointer-events:none;
 }
 .fortuna-wheel[aria-disabled="true"] { cursor:default; }
 .fortuna-result {
   width:min(100%, 520px);
-  margin:0 auto;
+  height:var(--fortuna-result-height);
+  margin:8px auto 0;
+  padding:10px 12px;
+  overflow:auto;
+  overscroll-behavior:contain;
+  scrollbar-gutter:stable both-edges;
+  background:#2b2118;
+  border:1px solid #8b6d48;
+  box-shadow:inset 0 0 0 2px #403020;
   color:#f5deb5;
   font:700 clamp(15px, 2vw, 20px)/1.45 Georgia,serif;
   text-align:center;
   white-space:pre-wrap;
   overflow-wrap:anywhere;
-}
-.fortuna-result:not(:empty) {
-  margin-top:8px;
-  padding:12px;
-  background:#322116;
-  border:1px solid #b7894e;
-  box-shadow:inset 0 0 0 2px #4b3220;
 }
