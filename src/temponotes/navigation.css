@@ -336,45 +336,74 @@
   bottom:calc(100% + 8px);
   left:50%;
   transform:translateX(-50%);
-  width:min(290px, calc(100vw - 28px));
-  max-height:var(--fortuna-space, 62dvh);
+  width:min(50vw, 860px);
+  max-height:min(74dvh, var(--fortuna-space, 74dvh));
   overflow:auto;
   overscroll-behavior:contain;
-  padding:12px;
-  background:#211713;
+  padding:clamp(10px, 2vw, 24px);
+  background:radial-gradient(ellipse at 50% 30%,#3a281b,#1c120d 78%);
   border:2px solid #a9824d;
   box-shadow:inset 0 0 0 2px #392619,0 5px 0 #110a08,0 12px 28px #0009;
   z-index:30;
 }
+@media (max-width:760px) {
+  .fortuna-panel { width:calc(100vw - 24px); }
+}
+.fortuna-rig {
+  position:relative;
+  width:min(100%, 520px, max(100px, calc((min(74dvh, var(--fortuna-space, 74dvh)) - clamp(106px, 16dvh, 144px)) * .86)));
+  aspect-ratio:296 / 344;
+  margin:0 auto;
+}
+.fortuna-stand { position:absolute; inset:0; width:100%; height:100%; }
 .fortuna-wheel {
   position:relative;
   display:block;
-  width:min(100%, 240px);
-  margin:0 auto;
+  width:100%;
   background:transparent;
   border:0;
   padding:0;
   aspect-ratio:1;
 }
 .fortuna-wheel svg { width:100%; height:100%; transform-origin:50% 50%; }
+.fortuna-plaque rect { fill:#3f2416; stroke:#d5ad6a; stroke-width:1.5; }
+.fortuna-picked rect { fill:#5b351d; stroke:#ffe3a0; stroke-width:2.5; }
+.fortuna-label {
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+  overflow:hidden;
+  overflow-wrap:anywhere;
+  color:#f7e4bf;
+  font:700 10px/13px Georgia,serif;
+  text-align:center;
+}
 .fortuna-wheel::after {
   content:"";
   position:absolute;
   top:0;
   left:50%;
   transform:translateX(-50%);
-  width:20px;
-  height:26px;
+  width:7%;
+  height:10%;
   background:linear-gradient(90deg,#8f612f,#ffe4a5 50%,#9f703b);
   clip-path:polygon(50% 0,100% 27%,50% 100%,0 27%);
   pointer-events:none;
 }
 .fortuna-wheel[aria-disabled="true"] { cursor:default; }
 .fortuna-result {
+  width:min(100%, 520px);
+  margin:0 auto;
   color:#f5deb5;
-  font:700 15px/1.45 Georgia,serif;
+  font:700 clamp(15px, 2vw, 20px)/1.45 Georgia,serif;
   text-align:center;
   white-space:pre-wrap;
   overflow-wrap:anywhere;
 }
-.fortuna-result:not(:empty) { padding:10px 4px 2px; }
+.fortuna-result:not(:empty) {
+  margin-top:8px;
+  padding:12px;
+  background:#322116;
+  border:1px solid #b7894e;
+  box-shadow:inset 0 0 0 2px #4b3220;
+}
