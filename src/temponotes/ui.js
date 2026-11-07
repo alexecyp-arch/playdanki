@@ -5,6 +5,7 @@ import {noteColors,occurrences} from './eternal.mjs';
 import {mountEternal} from './eternal-ui.js';
 import {orderNotes} from './note-order.mjs';
 import {mountLocked} from './locked-ui.js';
+import {mountFortuna} from './fortuna.js';
 
 function noteWoodTexture(id){
  let seed=2166136261;
@@ -37,6 +38,7 @@ export function mount(root,request,{visible=true,locked}={}){
  const tools=document.createElement('div');tools.className='note-tools';$('.composer-top').append(tools);
  const eternal=mountEternal(root,request,{getSchedules:()=>schedules,onChange:load});
  const orderButton=document.createElement('button');orderButton.type='button';orderButton.className='order-notes';orderButton.textContent='ORDER';tools.append(orderButton);orderButton.addEventListener('click',beginOrder);
+ const fortuna=mountFortuna(tools,()=>activeNotes(Date.now()+offset));
  const stopLocked=locked?mountLocked(root,locked):()=>{};
  const duration=m=>[Math.floor(m/60)?Math.floor(m/60)+'H':'',m%60?m%60+'M':''].filter(Boolean).join(' ');
  const format=t=>new Date(t).toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit',hour12:true});
@@ -47,6 +49,7 @@ export function mount(root,request,{visible=true,locked}={}){
   if(disposed||!visible)return;const t=Date.now()+offset,time=$('.current-time');time.textContent=format(t);$('.current-calendar').textContent=calendarLabel(t);time.dateTime=new Date(t).toISOString();orderButton.disabled=!!orderUntil||savingOrder;
   const status=$('.order-status');status.hidden=!orderUntil&&!savingOrder;status.textContent=orderUntil?'ORDER · '+Math.max(1,Math.ceil((orderUntil-Date.now())/1000))+'S · CLICK NOTES IN ORDER':savingOrder?'SAVING ORDER…':'';
   const active=activeNotes(t),ids=new Set(active.map(n=>n.id));
+  fortuna.render(active);
   for(const [id,li]of nodes)if(!ids.has(id)){li.remove();nodes.delete(id);}
   active.forEach((n,i)=>{
    let li=nodes.get(n.id);if(!li){li=document.createElement('li');li.dataset.id=n.id;li.innerHTML=`<article class="note"><div class="note-heading"><span class="number"></span><div class="note-body"><p></p></div></div><div class="note-footer"><span class="expiry"></span><div class="note-time-buttons" role="group"><button data-day="1">+DAY</button></div><button class="delete" title="Delete note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7M14 10v7"/></svg></button></div></article>`;li.style.setProperty('--note-wood',noteWoodTexture(n.eternalId||n.id));nodes.set(n.id,li);}
@@ -62,6 +65,6 @@ export function mount(root,request,{visible=true,locked}={}){
  async function act(event){const button=event.target.closest('button'),li=button?.closest('li');if(!li)return;if(button.classList.contains('order-notes'))return beginOrder();const id=li.dataset.id;if(extending.has(id)||orderUntil||savingOrder)return;const extra=button.dataset.day==='1',scheduled=occurrences(schedules,Date.now()+offset,adjustments).find(n=>n.id===id);if(!button.classList.contains('delete')&&!extra)return;if(!extra&&!await confirmDelete(scheduled?'REMOVE THIS ETERNAL NOTE FOR TODAY?':'DELETE THIS NOTE?',confirmController.signal))return;if(disposed)return;extending.add(id);render();try{const r=await request(scheduled?'/api/eternal':extra?'/api/notes':'/api/notes?id='+encodeURIComponent(id),scheduled?{method:'PATCH',body:JSON.stringify(extra?{id:scheduled.eternalId,occurrenceId:id,days:1}:{id:scheduled.eternalId,dismiss:true})}:extra?{method:'PATCH',body:JSON.stringify({id,days:1})}:{method:'DELETE'});const result=await r.json();if(!r.ok)throw Error(result.error||'Could not save. Try again.');if(disposed)return;lastSync=Date.now();if(scheduled)await load();else if(extra){offset=result.serverNow-Date.now();notes=notes.map(n=>n.id===id?{...n,expiresAt:result.expiresAt}:n);}else notes=notes.filter(n=>n.id!==id);showError();}catch(e){showError(e.message);}finally{extending.delete(id);render();}}
  input.addEventListener('input',()=>{draft=null;controls();});input.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey&&!e.isComposing){e.preventDefault();send();}});$('.composer-wrap>form').addEventListener('submit',e=>{e.preventDefault();send();});list.addEventListener('click',act);
  list.addEventListener('click',selectNote);list.addEventListener('keydown',selectNote);
- let refreshPending=false;const refresh=()=>{if(visible&&!document.hidden&&!refreshPending){refreshPending=true;load().finally(()=>{refreshPending=false;});}},visibility=event=>{visible=event.detail;if(visible){render();refresh();}};document.addEventListener('visibilitychange',refresh);window.addEventListener('focus',refresh);window.addEventListener('temponotes-visibility',visibility);const sync=setInterval(refresh,10000),clock=setInterval(render,1000);render();load();
- return ()=>{disposed=true;confirmController.abort();clearTimeout(orderTimer);eternal.dispose();stopLocked();clearInterval(sync);clearInterval(clock);document.removeEventListener('visibilitychange',refresh);window.removeEventListener('focus',refresh);window.removeEventListener('temponotes-visibility',visibility);root.replaceChildren();nodes.clear();notes=[];schedules=[];};
+ let refreshPending=false;const refresh=()=>{if(visible&&!document.hidden&&!refreshPending){refreshPending=true;load().finally(()=>{refreshPending=false;});}},visibility=event=>{visible=event.detail;if(visible){render();refresh();}else fortuna.close();};document.addEventListener('visibilitychange',refresh);window.addEventListener('focus',refresh);window.addEventListener('temponotes-visibility',visibility);const sync=setInterval(refresh,10000),clock=setInterval(render,1000);render();load();
+ return ()=>{disposed=true;confirmController.abort();clearTimeout(orderTimer);eternal.dispose();fortuna.dispose();stopLocked();clearInterval(sync);clearInterval(clock);document.removeEventListener('visibilitychange',refresh);window.removeEventListener('focus',refresh);window.removeEventListener('temponotes-visibility',visibility);root.replaceChildren();nodes.clear();notes=[];schedules=[];};
 }
