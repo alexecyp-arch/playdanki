@@ -35,10 +35,18 @@
 .single-boxes .timebox-header .task-adjust-toggle{margin-left:0}
 .single-boxes .timebox-header #timebox-chart{position:absolute;top:calc(100% + 8px);bottom:auto;left:auto;right:0;max-height:calc(100dvh - 180px);text-shadow:none}
 .single-boxes .timebox-header .task-chart-toggle{height:30px;font-size:10px;padding:0 10px;white-space:nowrap}
-.single-boxes .timebox-card .timebox-run time{white-space:nowrap;line-height:1.15}
+.single-boxes .timebox-card .timebox-run{display:grid;grid-template-rows:minmax(20px,1fr) minmax(0,auto) minmax(min-content,1fr);gap:2px;padding:0 4px}
+.single-boxes .timebox-card .timebox-name{position:static;grid-row:2;transform:none}
+.single-boxes .timebox-card .timebox-run time{position:static;grid-row:3;align-self:end;margin-bottom:5px;font-size:24px;line-height:1;white-space:normal;overflow-wrap:anywhere;text-wrap:balance}
 @media(max-width:760px){.single-boxes .timebox-header #timebox-chart{left:0;right:0;width:100%;max-height:calc(100dvh - 160px)}.single-boxes .timebox-header h2{font-size:14px;letter-spacing:1px}.single-boxes .timebox-header .task-chart-toggle{padding:0 7px}.single-boxes .timebox-header .timebox-chart-area{margin-right:6px}.single-boxes .timebox-header .task-adjust-toggle{margin-right:6px;padding:0 7px}}
 
-.single-boxes .timebox-chart-row{grid-template-columns:100px minmax(0,1fr) 105px}@media(max-width:760px){.single-boxes .timebox-card .timebox-run time{font-size:10px}.single-boxes .timebox-chart-row{grid-template-columns:70px minmax(0,1fr) 83px}}
+.single-boxes .timebox-chart-row{grid-template-columns:100px minmax(0,1fr) 105px}
+@media(max-width:760px){.single-boxes .timebox-card .timebox-run time{font-size:15px}.single-boxes .timebox-card .timebox-name{-webkit-line-clamp:2}.single-boxes .timebox-chart-row{grid-template-columns:70px minmax(0,1fr) 83px}}
+@media(max-width:360px){
+ .single-boxes .timebox-card .timebox-run{gap:1px}
+ .single-boxes .timebox-card .timebox-name{-webkit-line-clamp:1;line-height:.95}
+ .single-boxes .timebox-card .timebox-run time{line-height:.82;margin-bottom:1px}
+}
 
 /* Small raised rocker switches share the timer's existing saved running state. */
 .timebox-card .timebox-toggle{position:absolute;top:8px;left:50%;transform:translateX(-50%);z-index:2;width:58px;height:24px;padding:0;border:2px solid #17191b;border-radius:5px;background:var(--box-color);color:var(--box-text);box-shadow:inset 0 2px #ffffff30,inset 0 -2px #0005,0 3px #141516,0 4px 4px #0005;font:900 10px/20px Arial,Helvetica,sans-serif;cursor:pointer;text-shadow:0 1px 1px #0008}
