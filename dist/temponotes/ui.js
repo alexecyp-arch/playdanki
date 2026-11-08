@@ -1,32 +1,32 @@
-import {orderKey,finishOrder} from './daily-notes.mjs?v=6b0d81e61f10';
-import {calendarLabel} from './calendar.mjs?v=6b0d81e61f10';
-import {confirmDelete} from './confirm-delete.js?v=6b0d81e61f10';
-import {noteColors,occurrences} from './eternal.mjs?v=6b0d81e61f10';
-import {mountEternal} from './eternal-ui.js?v=6b0d81e61f10';
-import {orderNotes} from './note-order.mjs?v=6b0d81e61f10';
-import {mountLocked} from './locked-ui.js?v=6b0d81e61f10';
-import {mountFortuna} from './fortuna.js?v=6b0d81e61f10';
+import {orderKey,finishOrder} from './daily-notes.mjs?v=1a712fa7bca4';
+import {calendarLabel} from './calendar.mjs?v=1a712fa7bca4';
+import {confirmDelete} from './confirm-delete.js?v=1a712fa7bca4';
+import {noteColors,occurrences} from './eternal.mjs?v=1a712fa7bca4';
+import {mountEternal} from './eternal-ui.js?v=1a712fa7bca4';
+import {orderNotes} from './note-order.mjs?v=1a712fa7bca4';
+import {mountLocked} from './locked-ui.js?v=1a712fa7bca4';
+import {mountFortuna} from './fortuna.js?v=1a712fa7bca4';
 
-function noteWoodTexture(id){
+function noteBrickTexture(id){
  let seed=2166136261;
  for(const letter of id)seed=Math.imul(seed^letter.charCodeAt(0),16777619);
- const noiseSeed=(seed>>>0)%2147483646+1;
  function pick(min,max){
   seed=(Math.imul(seed,1664525)+1013904223)>>>0;
   return min+seed%(max-min+1);
  }
- const knotX=pick(75,285),knotY=pick(12,32),knotWidth=pick(15,34);
- const lines=[];
- for(let y=4;y<48;y+=pick(4,8)){
-  const bend=pick(-10,10);
-  lines.push('M0 '+y+' C'+pick(45,100)+' '+y+' '+(knotX-44)+' '+(y+bend)+' '+knotX+' '+(y+bend)+' S'+pick(240,330)+' '+y+' 360 '+y);
+ const tileWidth=288,stones=[];
+ for(const [y,offset] of [[1,pick(-7,7)],[17,pick(-32,-22)]]){
+  const cuts=[0,56+pick(-7,7),112+pick(-7,7),171+pick(-7,7),229+pick(-7,7),tileWidth];
+  for(let i=1;i<cuts.length;i++){
+   const x=cuts[i-1]+offset,w=cuts[i]-cuts[i-1]-2,shade=pick(132,180);
+   const chips=Array.from({length:6},()=>`M${pick(6,w-9)} ${pick(4,10)}l${pick(1,4)} ${pick(-1,1)}`).join('');
+   const stone=`<path fill="rgb(${shade},${shade},${shade})" d="M4 0H${w-4}L${w} 3v7l-4 4H3l-3-3V3z"/><path fill="#eee" opacity=".72" d="M4 0H${w-4}l4 3H5l-5 8V3z"/><path fill="#151515" opacity=".6" d="M${w} 3v7l-4 4H3l-3-3h${w-7}z"/><path fill="none" stroke="#373737" stroke-opacity=".38" d="${chips}"/>`;
+   stones.push(`<g transform="translate(${x} ${y})">${stone}</g>`);
+   if(x<0)stones.push(`<g transform="translate(${x+tileWidth} ${y})">${stone}</g>`);
+   if(x+w>tileWidth)stones.push(`<g transform="translate(${x-tileWidth} ${y})">${stone}</g>`);
+  }
  }
- const svg='<svg xmlns="http://www.w3.org/2000/svg" width="360" height="48" viewBox="0 0 360 48">'
-  +'<filter id="g"><feTurbulence type="fractalNoise" baseFrequency=".018 .32" numOctaves="3" seed="'+noiseSeed+'" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>'
-  +'<rect width="360" height="48" filter="url(#g)" opacity=".65"/>'
-  +'<g fill="none" stroke="#151515" stroke-opacity=".55"><path d="'+lines.join(' ')+'"/>'
-  +'<ellipse cx="'+knotX+'" cy="'+knotY+'" rx="'+knotWidth+'" ry="4"/>'
-  +'<ellipse cx="'+knotX+'" cy="'+knotY+'" rx="'+Math.floor(knotWidth/2)+'" ry="2"/></g></svg>';
+ const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="${tileWidth}" height="32" viewBox="0 0 ${tileWidth} 32" preserveAspectRatio="none"><rect width="${tileWidth}" height="32" fill="#292929"/>${stones.join('')}</svg>`;
  return 'url("data:image/svg+xml,'+encodeURIComponent(svg)+'")';
 }
 // The original Temponote layout, rendered with browser APIs instead of React.
@@ -52,7 +52,7 @@ export function mount(root,request,{visible=true,locked}={}){
   fortuna.render(active);
   for(const [id,li]of nodes)if(!ids.has(id)){li.remove();nodes.delete(id);}
   active.forEach((n,i)=>{
-   let li=nodes.get(n.id);if(!li){li=document.createElement('li');li.dataset.id=n.id;li.innerHTML=`<article class="note"><div class="note-heading"><span class="number"></span><div class="note-body"><p></p></div></div><div class="note-footer"><span class="expiry"></span><div class="note-time-buttons" role="group"><button data-day="1">+DAY</button></div><button class="delete" title="Delete note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7M14 10v7"/></svg></button></div></article>`;li.style.setProperty('--note-wood',noteWoodTexture(n.eternalId||n.id));nodes.set(n.id,li);}
+   let li=nodes.get(n.id);if(!li){li=document.createElement('li');li.dataset.id=n.id;li.innerHTML=`<article class="note"><div class="note-heading"><span class="number"></span><div class="note-body"><p></p></div></div><div class="note-footer"><span class="expiry"></span><div class="note-time-buttons" role="group"><button data-day="1">+DAY</button></div><button class="delete" title="Delete note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7M14 10v7"/></svg></button></div></article>`;li.style.setProperty('--note-bricks',noteBrickTexture(n.eternalId||n.id));nodes.set(n.id,li);}
    li.querySelector('article').classList.toggle('eternal',!!n.eternalId);li.querySelector('article').classList.toggle('selected',!!orderUntil&&chosen.includes(orderKey(n.id)));const body=li.querySelector('.note-body');body.tabIndex=orderUntil?0:-1;if(orderUntil){body.setAttribute('role','button');body.setAttribute('aria-pressed',String(chosen.includes(orderKey(n.id))));}else{body.removeAttribute('role');body.removeAttribute('aria-pressed');}body.setAttribute('aria-label',(orderUntil?'Choose order for note: ':'Note: ')+n.body);li.querySelector('.number').textContent=orderUntil?(chosen.includes(orderKey(n.id))?(chosen.indexOf(orderKey(n.id))+1)+'.':'·'):(i+1)+'.';if(li.querySelector('p').textContent!==n.body)li.querySelector('p').textContent=n.body;
    const footer=li.querySelector('.note-footer'),barColor=noteColors[n.color]||noteColors.green;footer.style.backgroundColor=footer.style.borderTopColor=barColor;const expiry=li.querySelector('.expiry'),seconds=Math.ceil((n.expiresAt-t)/1000);expiry.textContent=(seconds<60?seconds+'S':duration(Math.ceil(seconds/60)))+' LEFT';expiry.title='Expires '+new Date(n.expiresAt).toLocaleString();li.querySelector('[role=group]').setAttribute('aria-label','Note actions '+(i+1));li.querySelector('.delete').setAttribute('aria-label','Delete note '+(i+1));for(const b of li.querySelectorAll('button'))b.disabled=extending.has(n.id)||!!orderUntil||savingOrder;if(list.children[i]!==li)list.insertBefore(li,list.children[i]||null);
   });
