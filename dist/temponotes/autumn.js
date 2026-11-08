@@ -25,6 +25,15 @@
   const type=types[i],extra=i>=21,leftSide=extra?i%2===1:i<10,duration=type==='snow'?range(26,46):range(19,37),leaf=document.createElement('span');leaf.className='autumn-leaf seasonal-'+type;
   const values={left:(extra?(leftSide?range(.2,5):range(95,99.8)):(leftSide?range(.2,17):range(82,98)))+'%',mobileLeft:(extra?(leftSide?range(-.5,2):range(97,100)):(leftSide?range(-1,5):range(94,99)))+'%',size:(type==='snow'?range(5,10):type==='flower'?range(12,19):range(19,37))+'px',duration:duration+'s',delay:-range(0,duration)+'s',start:range(-180,180)+'deg',spin:range(-220,220)+'deg',drift1:range(-20,24)+'px',drift2:range(-28,28)+'px',drift3:range(-18,24)+'px',sway:range(3,9)+'px',swayTime:range(4,9)+'s',alpha:type==='snow'?range(.15,.30):type==='flower'?range(.16,.30):range(.25,.45),hue:(type==='leaf'?(greenFlags[leafIndex++]?range(70,100):range(-18,18)):type==='flower'?range(-22,28):0)+'deg'};
   if(center)values.left=range(45,55)+'%';
+  if(type==='leaf'&&leafIndex%5<2){
+   leaf.setAttribute('data-gust','');
+   values['gust-distance']=range(4,8)+'vw';
+  }
+  if(type==='leaf'&&leafIndex%4===2){
+   leaf.setAttribute('data-tumble','');
+   values['tumble-time']=range(8,15)+'s';
+   values['tumble-turn']=Math.random()<.5?'1turn':'-1turn';
+  }
   for(const [name,value]of Object.entries(values))leaf.style.setProperty('--'+name,value);
   const img=document.createElement('img');img.src=new URL(type==='snow'?'season-snow.svg':type==='flower'?'season-flower.svg':shapes[Math.floor(range(0,shapes.length))],base).href;img.alt='';img.width=type==='leaf'?96:32;img.height=type==='leaf'?128:32;img.decoding='async';leaf.append(img);layer.append(leaf);
  }

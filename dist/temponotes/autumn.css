@@ -8,6 +8,21 @@ html,body{background:#18191c!important}
 @keyframes autumn-fall{0%{opacity:0;transform:translate3d(0,-20px,0) rotate(var(--start))}8%{opacity:var(--alpha)}32%{transform:translate3d(var(--drift1),32dvh,0) rotate(calc(var(--start) + var(--spin)*.3))}66%{transform:translate3d(var(--drift2),66dvh,0) rotate(calc(var(--start) + var(--spin)*.65))}90%{opacity:var(--alpha)}100%{opacity:0;transform:translate3d(var(--drift3),calc(100dvh + 110px),0) rotate(calc(var(--start) + var(--spin)))}}
 @keyframes autumn-sway{from{transform:translateX(calc(0px - var(--sway))) rotate(-12deg)}to{transform:translateX(var(--sway)) rotate(14deg)}}
 .autumn-leaves.paused .autumn-leaf,.autumn-leaves.paused img{animation-play-state:paused}
+@media(prefers-reduced-motion:no-preference){
+ .autumn-leaf[data-gust]{animation-name:autumn-fall,autumn-gust;animation-duration:var(--duration),36s;animation-timing-function:linear,ease-in-out;animation-delay:var(--delay),0s}
+ .autumn-leaf[data-tumble] img{animation-name:autumn-tumble;animation-duration:var(--tumble-time);animation-direction:normal}
+}
+@keyframes autumn-gust{
+ 0%,6%,39%,54%,88%,100%{translate:0}
+ 18%{translate:min(var(--gust-distance),112px)}
+ 66%{translate:max(calc(0px - var(--gust-distance)),-112px)}
+}
+@keyframes autumn-tumble{
+ 0%{transform:translateX(calc(0px - var(--sway))) perspective(180px) rotateY(0turn) rotateX(-12deg) rotateZ(-12deg)}
+ 28%{transform:translateX(var(--sway)) perspective(180px) rotateY(calc(var(--tumble-turn)*.13)) rotateX(20deg) rotateZ(14deg)}
+ 68%{transform:translateX(calc(var(--sway)*.4)) perspective(180px) rotateY(calc(var(--tumble-turn)*.88)) rotateX(-25deg) rotateZ(-4deg)}
+ 92%,100%{transform:translateX(calc(0px - var(--sway))) perspective(180px) rotateY(var(--tumble-turn)) rotateX(-12deg) rotateZ(-12deg)}
+}
 @media(max-width:760px){.autumn-leaf{width:calc(var(--size)*.7);left:var(--mobileLeft)}}
 
 /* The fullscreen notebook must sit above the page navigation. */
