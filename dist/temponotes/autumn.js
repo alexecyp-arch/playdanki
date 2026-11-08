@@ -23,14 +23,26 @@
  if(key===seasonKey)return;seasonKey=key;
  const fraction=(day-1-segment*10)/(segment===2?new Date(Number(parts.find(p=>p.type==='year').value),month+1,0).getDate()-20:10),next=segment<2?seasons[month][segment+1]:seasons[(month+1)%12][0],[snow,flowers,green]=seasons[month][segment].map((v,i)=>v+(next[i]-v)*fraction);
  const particleCount=mobile.matches?16:32,edgeStart=mobile.matches?10:21,leftSplit=mobile.matches?5:10;
+ const windDirection=Math.random()<.5?-1:1;
  const snowCount=Math.round(particleCount*snow),flowerCount=Math.round(particleCount*flowers),types=Array.from({length:particleCount},(_,i)=>i<snowCount?'snow':i<snowCount+flowerCount?'flower':'leaf');for(let i=types.length-1;i>0;i--){const j=Math.floor(range(0,i+1));[types[i],types[j]]=[types[j],types[i]];}layer.replaceChildren();accents=[];const greenFlags=Array.from({length:particleCount-snowCount-flowerCount},(_,i)=>i<Math.round((particleCount-snowCount-flowerCount)*green));for(let i=greenFlags.length-1;i>0;i--){const j=Math.floor(range(0,i+1));[greenFlags[i],greenFlags[j]]=[greenFlags[j],greenFlags[i]];}let leafIndex=0;
  for(let i=0;i<types.length;i++){
   const type=types[i],extra=i>=edgeStart,leftSide=extra?i%2===1:i<leftSplit,duration=type==='snow'?range(26,46):range(19,37),leaf=document.createElement('span');leaf.className='autumn-leaf seasonal-'+type;
   const values={left:(extra?(leftSide?range(.2,5):range(95,99.8)):(leftSide?range(.2,17):range(82,98)))+'%',mobileLeft:(extra?(leftSide?range(-.5,2):range(97,100)):(leftSide?range(-1,5):range(94,99)))+'%',size:(type==='snow'?range(5,10):type==='flower'?range(12,19):range(19,37))+'px',duration:duration+'s',delay:-range(0,duration)+'s',start:range(-180,180)+'deg',spin:range(-220,220)+'deg',drift1:range(-20,24)+'px',drift2:range(-28,28)+'px',drift3:range(-18,24)+'px',sway:range(3,9)+'px',swayTime:range(4,9)+'s',alpha:type==='snow'?range(.15,.30):type==='flower'?range(.16,.30):range(.25,.45),hue:(type==='leaf'?(greenFlags[leafIndex++]?range(70,100):range(-18,18)):type==='flower'?range(-22,28):0)+'deg'};
   if(center)values.left=range(45,55)+'%';
-  if(type==='leaf'&&leafIndex%5<2){
-   leaf.setAttribute('data-gust','');
-   values['gust-distance']=range(4,8)+'vw';
+  if(type==='leaf'){
+   const windCount=Math.round(leafIndex*.65);
+   if(windCount>Math.round((leafIndex-1)*.65)){
+    const drift=windDirection*(mobile.matches?range(22,36):range(35,65));
+    // Center the drift on the original position so edge leaves stay visible.
+    values.left='calc('+values.left+' + '+(-drift/2)+'px)';
+    values.mobileLeft='calc('+values.mobileLeft+' + '+(-drift/2)+'px)';
+    values.drift1=(drift*.32)+'px';
+    values.drift2=(drift*.66)+'px';
+    values.drift3=drift+'px';
+   }else if((leafIndex-windCount)%5<2){
+    leaf.setAttribute('data-gust','');
+    values['gust-distance']=range(4,8)+'vw';
+   }
   }
   const tumbles=type==='leaf'&&leafIndex%5===3;
   if(tumbles){
