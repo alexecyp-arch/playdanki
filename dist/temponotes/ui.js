@@ -1,32 +1,43 @@
-import {orderKey,finishOrder} from './daily-notes.mjs?v=1a712fa7bca4';
-import {calendarLabel} from './calendar.mjs?v=1a712fa7bca4';
-import {confirmDelete} from './confirm-delete.js?v=1a712fa7bca4';
-import {noteColors,occurrences} from './eternal.mjs?v=1a712fa7bca4';
-import {mountEternal} from './eternal-ui.js?v=1a712fa7bca4';
-import {orderNotes} from './note-order.mjs?v=1a712fa7bca4';
-import {mountLocked} from './locked-ui.js?v=1a712fa7bca4';
-import {mountFortuna} from './fortuna.js?v=1a712fa7bca4';
+import {orderKey,finishOrder} from './daily-notes.mjs?v=82595fd6c0ad';
+import {calendarLabel} from './calendar.mjs?v=82595fd6c0ad';
+import {confirmDelete} from './confirm-delete.js?v=82595fd6c0ad';
+import {noteColors,occurrences} from './eternal.mjs?v=82595fd6c0ad';
+import {mountEternal} from './eternal-ui.js?v=82595fd6c0ad';
+import {orderNotes} from './note-order.mjs?v=82595fd6c0ad';
+import {mountLocked} from './locked-ui.js?v=82595fd6c0ad';
+import {mountFortuna} from './fortuna.js?v=82595fd6c0ad';
 
 function noteBrickTexture(id){
  let seed=2166136261;
  for(const letter of id)seed=Math.imul(seed^letter.charCodeAt(0),16777619);
  function pick(min,max){
   seed=(Math.imul(seed,1664525)+1013904223)>>>0;
-  return min+seed%(max-min+1);
+  return min+Math.floor(seed/4294967296*(max-min+1));
  }
- const tileWidth=288,stones=[];
- for(const [y,offset] of [[1,pick(-7,7)],[17,pick(-32,-22)]]){
-  const cuts=[0,56+pick(-7,7),112+pick(-7,7),171+pick(-7,7),229+pick(-7,7),tileWidth];
-  for(let i=1;i<cuts.length;i++){
-   const x=cuts[i-1]+offset,w=cuts[i]-cuts[i-1]-2,shade=pick(132,180);
-   const chips=Array.from({length:6},()=>`M${pick(6,w-9)} ${pick(4,10)}l${pick(1,4)} ${pick(-1,1)}`).join('');
-   const stone=`<path fill="rgb(${shade},${shade},${shade})" d="M4 0H${w-4}L${w} 3v7l-4 4H3l-3-3V3z"/><path fill="#eee" opacity=".72" d="M4 0H${w-4}l4 3H5l-5 8V3z"/><path fill="#151515" opacity=".6" d="M${w} 3v7l-4 4H3l-3-3h${w-7}z"/><path fill="none" stroke="#373737" stroke-opacity=".38" d="${chips}"/>`;
-   stones.push(`<g transform="translate(${x} ${y})">${stone}</g>`);
-   if(x<0)stones.push(`<g transform="translate(${x+tileWidth} ${y})">${stone}</g>`);
-   if(x+w>tileWidth)stones.push(`<g transform="translate(${x-tileWidth} ${y})">${stone}</g>`);
-  }
+ const tileWidth=320,stones=[],offset=pick(-23,0),grainSeed=pick(1,999);
+ const cuts=[0,38+pick(-10,10),103+pick(-12,12),152+pick(-10,10),213+pick(-13,13),263+pick(-10,10),tileWidth];
+ const polygon=(points,fill)=>`<polygon points="${points.map(point=>point.join(',')).join(' ')}" fill="${fill}"/>`;
+ for(let i=1;i<cuts.length;i++){
+  const x=cuts[i-1]+offset,w=cuts[i]-cuts[i-1]-pick(3,6),top=pick(5,9),foot=pick(23,27),shade=pick(145,218);
+  const face=[[0,top+pick(4,7)],[pick(3,7),top+1],[Math.round(w*.45),top+pick(-2,2)],[w-pick(4,9),top+pick(0,3)],[w,top+pick(4,8)],[w-pick(1,5),foot-3],[w-pick(5,10),foot],[pick(4,9),foot+pick(-1,1)],[1,foot-pick(2,6)]];
+  const upper=face.slice(0,5),lower=face.slice(4);
+  const chippedTop=upper.map(([px,py],j)=>[px-pick(1,3),py-pick(j===0||j===4?1:3,5)]);
+  const depth=pick(3,5),side=lower.map(([px,py])=>[px+depth,py+depth]);
+  const crack=pick(0,3)===0?'':`<path d="M${pick(9,w-12)} ${pick(12,17)}l${pick(2,5)} ${pick(-2,2)} ${pick(-3,1)} ${pick(1,4)} ${pick(1,5)} ${pick(-2,2)}" fill="none" stroke="#363636" stroke-opacity=".6" stroke-width=".8"/>`;
+  const stone=polygon(face.map(([px,py])=>[px+depth+1,py+depth+1]),'#151515')
+   +polygon([...lower,...side.reverse()],'#4a4a4a')
+   +polygon([...chippedTop,...upper.reverse()],'#dedede')
+   +polygon(face,`rgb(${shade},${shade},${shade})`)
+   +polygon(face,'url(#light)')
+   +crack;
+  stones.push(`<g transform="translate(${x} 0)">${stone}</g>`);
+  if(x<depth)stones.push(`<g transform="translate(${x+tileWidth} 0)">${stone}</g>`);
+  if(x+w+depth+1>tileWidth)stones.push(`<g transform="translate(${x-tileWidth} 0)">${stone}</g>`);
  }
- const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="${tileWidth}" height="32" viewBox="0 0 ${tileWidth} 32" preserveAspectRatio="none"><rect width="${tileWidth}" height="32" fill="#292929"/>${stones.join('')}</svg>`;
+ const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="${tileWidth}" height="34" viewBox="0 0 ${tileWidth} 34" preserveAspectRatio="none">
+ <defs><linearGradient id="light" x2=".15" y2="1"><stop stop-color="#fff" stop-opacity=".28"/><stop offset=".38" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#151515" stop-opacity=".52"/></linearGradient>
+ <filter id="grit" filterUnits="userSpaceOnUse" x="0" y="0" width="${tileWidth}" height="34"><feTurbulence type="fractalNoise" baseFrequency=".19 .31" numOctaves="3" seed="${grainSeed}" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".6"/></feComponentTransfer><feComposite in2="SourceAlpha" operator="in"/><feBlend in2="SourceGraphic" mode="multiply"/></filter></defs>
+ <rect width="${tileWidth}" height="34" fill="#242424"/><g filter="url(#grit)">${stones.join('')}</g></svg>`;
  return 'url("data:image/svg+xml,'+encodeURIComponent(svg)+'")';
 }
 // The original Temponote layout, rendered with browser APIs instead of React.

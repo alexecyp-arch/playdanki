@@ -1,4 +1,4 @@
-import {parseEnvelope} from './locked-crypto.mjs?v=1a712fa7bca4';
+import {parseEnvelope} from './locked-crypto.mjs?v=82595fd6c0ad';
 const chunkSize=600000;
 export function createLockedStore({auth,db,sdk,uid}){
  const ref=sdk.doc(db,'users',uid,'progress','locked-notes'),listeners=new Set();let active=true,ready=false,value=null,revision=-1,error='',loadToken=0;
