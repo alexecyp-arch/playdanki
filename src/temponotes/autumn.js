@@ -34,16 +34,28 @@
   }
   const tumbles=type==='leaf'&&leafIndex%5===3;
   if(tumbles){
-   values['tumble-time']=range(8,15)+'s';
+   values['tumble-time']=range(4,8)+'s';
    values['tumble-turn']=Math.random()<.5?'1turn':'-1turn';
   }
   for(const [name,value]of Object.entries(values))leaf.style.setProperty('--'+name,value);
   const img=document.createElement('img');img.src=new URL(type==='snow'?'season-snow.svg':type==='flower'?'season-flower.svg':shapes[Math.floor(range(0,shapes.length))],base).href;img.alt='';img.width=type==='leaf'?96:32;img.height=type==='leaf'?128:32;img.decoding='async';
   if(tumbles){
-   const turn=document.createElement('span'),back=img.cloneNode();
+   const turn=document.createElement('span'),mesh=document.createElement('span');
    turn.className='leaf-turn';
-   back.className='leaf-back';
-   turn.append(img,back);
+   mesh.className='leaf-mesh';
+   mesh.style.setProperty('--leaf-art','url("'+img.src+'")');
+   // Two halves along the stem, each with five connected folds across the blade.
+   for(let half=0;half<2;half++){
+    const section=document.createElement('span');
+    section.className='leaf-half';
+    for(let fold=0;fold<5;fold++){
+     const panel=document.createElement('span');
+     panel.className='leaf-fold';
+     section.append(panel);
+    }
+    mesh.append(section);
+   }
+   turn.append(img,mesh);
    leaf.append(turn);
   }else leaf.append(img);
   layer.append(leaf);

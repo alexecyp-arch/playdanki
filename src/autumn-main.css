@@ -1,17 +1,28 @@
 /* Edge leaves on DANKI; the selected page colour stays unchanged. */
 .autumn-leaves{position:fixed;inset:0;overflow:hidden;pointer-events:none;user-select:none;z-index:0;contain:strict}
-.autumn-leaf{position:absolute;top:-90px;left:var(--left);width:var(--size);opacity:0;animation:autumn-fall var(--duration) linear infinite;animation-delay:var(--delay);will-change:transform}
+.autumn-leaf{--leaf-size:var(--size);position:absolute;top:-90px;left:var(--left);width:var(--leaf-size);opacity:0;animation:autumn-fall var(--duration) linear infinite;animation-delay:var(--delay);will-change:transform}
 .autumn-leaf img{display:block;width:100%;height:auto;filter:hue-rotate(var(--hue));animation:autumn-sway var(--swayTime) ease-in-out infinite alternate;animation-delay:var(--delay)}
 @keyframes autumn-fall{0%{opacity:0;transform:translate3d(0,-20px,0) rotate(var(--start))}8%{opacity:var(--alpha)}32%{transform:translate3d(var(--drift1),32dvh,0) rotate(calc(var(--start) + var(--spin)*.3))}66%{transform:translate3d(var(--drift2),66dvh,0) rotate(calc(var(--start) + var(--spin)*.65))}90%{opacity:var(--alpha)}100%{opacity:0;transform:translate3d(var(--drift3),calc(100dvh + 110px),0) rotate(calc(var(--start) + var(--spin)))}}
 @keyframes autumn-sway{from{transform:translateX(calc(0px - var(--sway))) rotate(-12deg)}to{transform:translateX(var(--sway)) rotate(14deg)}}
 .autumn-leaves.paused :is(.autumn-leaf,.leaf-turn,img){animation-play-state:paused}
 .leaf-turn{display:block;position:relative}
-.leaf-turn .leaf-back{display:none}
+.leaf-mesh{display:none}
 @media(prefers-reduced-motion:no-preference){
  .autumn-leaf[data-gust]{animation-name:autumn-fall,autumn-gust;animation-duration:var(--duration),36s;animation-timing-function:linear,ease-in-out;animation-delay:var(--delay),0s}
- .leaf-turn{transform-style:preserve-3d;animation:autumn-tumble var(--tumble-time) ease-in-out var(--delay) infinite}
- .leaf-turn img{animation:none;backface-visibility:hidden}
- .leaf-turn .leaf-back{display:block;position:absolute;inset:0;transform:rotateY(.5turn);filter:hue-rotate(var(--hue)) brightness(1.35) saturate(.65)}
+ .leaf-turn{font-size:var(--leaf-size);transform-style:preserve-3d;animation:autumn-tumble var(--tumble-time) ease-in-out var(--delay) infinite}
+ .leaf-turn img{visibility:hidden;animation:none}
+ .leaf-mesh,.leaf-half,.leaf-fold{position:absolute;transform-style:preserve-3d}
+ .leaf-mesh{display:block;inset:0}
+ .leaf-half{inset:0 0 50%;transform-origin:50% 100%;transform:rotateX(-25deg);--half-v:0%}
+ .leaf-half+.leaf-half{inset:50% 0 0;transform-origin:50% 0;transform:rotateX(18deg);--half-v:100%}
+ .leaf-fold{left:50%;width:20.4%;height:100%;transform:translate3d(calc(var(--fold-x) - .102em),0,var(--fold-z)) rotateY(var(--fold-y))}
+ .leaf-fold:nth-child(1){--fold-u:0%;--fold-x:-.333em;--fold-z:.172em;--fold-y:58deg;--fold-light:.72}
+ .leaf-fold:nth-child(2){--fold-u:25%;--fold-x:-.190em;--fold-z:.044em;--fold-y:26deg;--fold-light:.86}
+ .leaf-fold:nth-child(3){--fold-u:50%;--fold-x:0em;--fold-z:0em;--fold-y:0deg;--fold-light:1}
+ .leaf-fold:nth-child(4){--fold-u:75%;--fold-x:.191em;--fold-z:.041em;--fold-y:-24deg;--fold-light:1.14}
+ .leaf-fold:nth-child(5){--fold-u:100%;--fold-x:.340em;--fold-z:.163em;--fold-y:-55deg;--fold-light:1.26}
+ .leaf-fold::before,.leaf-fold::after{content:"";position:absolute;inset:0;background:var(--leaf-art) var(--fold-u) var(--half-v)/500% 200% no-repeat;backface-visibility:hidden;filter:hue-rotate(var(--hue)) brightness(var(--fold-light))}
+ .leaf-fold::after{transform:rotateY(.5turn) scaleX(-1);filter:hue-rotate(var(--hue)) brightness(calc(2.18 - var(--fold-light))) saturate(.66)}
 }
 @keyframes autumn-gust{
  0%,6%,39%,54%,88%,100%{translate:0}
@@ -19,13 +30,14 @@
  66%{translate:max(calc(0px - var(--gust-distance)),-112px)}
 }
 @keyframes autumn-tumble{
- 0%{transform:translateX(calc(0px - var(--sway))) perspective(180px) rotateY(0turn) rotateX(-12deg) rotateZ(-12deg)}
- 28%{transform:translateX(var(--sway)) perspective(180px) rotateY(calc(var(--tumble-turn)*.13)) rotateX(20deg) rotateZ(14deg)}
- 52%{transform:translateX(calc(var(--sway)*.7)) perspective(180px) rotateY(calc(var(--tumble-turn)*.5)) rotateX(12deg) rotateZ(4deg)}
- 76%{transform:translateX(calc(var(--sway)*.4)) perspective(180px) rotateY(calc(var(--tumble-turn)*.88)) rotateX(-25deg) rotateZ(-4deg)}
- 92%,100%{transform:translateX(calc(0px - var(--sway))) perspective(180px) rotateY(var(--tumble-turn)) rotateX(-12deg) rotateZ(-12deg)}
+ 0%{transform:perspective(125px) translate3d(calc(0px - var(--sway)),0,0) rotateY(0turn) rotateX(-18deg) rotateZ(-16deg)}
+ 22%{transform:perspective(125px) translate3d(var(--sway),0,10px) rotateY(calc(var(--tumble-turn)*.15)) rotateX(42deg) rotateZ(18deg)}
+ 38%{transform:perspective(125px) translate3d(calc(var(--sway)*.8),0,5px) rotateY(calc(var(--tumble-turn)*.28)) rotateX(57deg) rotateZ(23deg)}
+ 57%{transform:perspective(125px) translate3d(calc(var(--sway)*.3),0,-5px) rotateY(calc(var(--tumble-turn)*.51)) rotateX(-12deg) rotateZ(6deg)}
+ 78%{transform:perspective(125px) translate3d(calc(var(--sway)*-.6),0,-13px) rotateY(calc(var(--tumble-turn)*.77)) rotateX(-54deg) rotateZ(-26deg)}
+ 100%{transform:perspective(125px) translate3d(calc(0px - var(--sway)),0,0) rotateY(var(--tumble-turn)) rotateX(-18deg) rotateZ(-16deg)}
 }
-@media(max-width:760px){.autumn-leaf{width:calc(var(--size)*.7);left:var(--mobileLeft)}}
+@media(max-width:760px){.autumn-leaf{--leaf-size:calc(var(--size)*.7);left:var(--mobileLeft)}}
 
 
 body>.autumn-leaves{z-index:1}body>.autumn-leaves[hidden]{display:none}

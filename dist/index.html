@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-<head><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-WyLwGL+atUliNI71RePT1vcgwPrTpR3ulbfsHqfIq+g=' 'sha256-fUs4FU007kOkfg7Bc2MbU75c6wZXQtDA4pGMvMZ78O4=' 'sha256-vWHjjhPJF0QGZQyEhnLoQmaI1+ufDS82ec5fHJQJCKA=' 'sha256-0De4gA5W92fhl3RnFExtxNd6g3pFmZ+/ZOrUI8kBlHM=' 'sha256-fbt9/pJidAoio3dI4BF8WzPu8Y5UNpbYdgcs+mr9OWE=' 'sha256-y9BjBDrC+pSnl5rLGkgZWwF/bARDx+SFnlJfSZONURo=' 'sha256-2OyyqJoUT9xy40ftmlTh6tsc0ZfdmG6wRumvh/K38mg=' https://www.gstatic.com https://apis.google.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://*.googleapis.com https://www.gstatic.com https://apis.google.com https://*.firebaseapp.com https://*.firebaseio.com wss://*.firebaseio.com https://cloudflareinsights.com https://*.cloudflareinsights.com; frame-src 'self' https://playdanki.com https://www.playdanki.com https://*.firebaseapp.com https://accounts.google.com https://www.google.com; worker-src 'self' blob:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'"><meta name="referrer" content="same-origin"><script>(()=>{'use strict';if(window.top===window)return;let same=false;try{same=window.top.location.origin===location.origin;}catch{}if(!same&&location.ancestorOrigins?.length)same=Array.from(location.ancestorOrigins).every(origin=>origin===location.origin);if(same)return;try{parent.postMessage({type:'danki-frame-blocked'},location.origin);}catch{}document.documentElement.style.display='none';window.stop();throw Error('Open PlayDanki directly.');})();</script>
+<head><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-WyLwGL+atUliNI71RePT1vcgwPrTpR3ulbfsHqfIq+g=' 'sha256-fUs4FU007kOkfg7Bc2MbU75c6wZXQtDA4pGMvMZ78O4=' 'sha256-vWHjjhPJF0QGZQyEhnLoQmaI1+ufDS82ec5fHJQJCKA=' 'sha256-0De4gA5W92fhl3RnFExtxNd6g3pFmZ+/ZOrUI8kBlHM=' 'sha256-fbt9/pJidAoio3dI4BF8WzPu8Y5UNpbYdgcs+mr9OWE=' 'sha256-uJk6CKNEAbHGrfEmEk08rlfStM1R2ihcUm0Zv2BSPqI=' 'sha256-2OyyqJoUT9xy40ftmlTh6tsc0ZfdmG6wRumvh/K38mg=' https://www.gstatic.com https://apis.google.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://*.googleapis.com https://www.gstatic.com https://apis.google.com https://*.firebaseapp.com https://*.firebaseio.com wss://*.firebaseio.com https://cloudflareinsights.com https://*.cloudflareinsights.com; frame-src 'self' https://playdanki.com https://www.playdanki.com https://*.firebaseapp.com https://accounts.google.com https://www.google.com; worker-src 'self' blob:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'"><meta name="referrer" content="same-origin"><script>(()=>{'use strict';if(window.top===window)return;let same=false;try{same=window.top.location.origin===location.origin;}catch{}if(!same&&location.ancestorOrigins?.length)same=Array.from(location.ancestorOrigins).every(origin=>origin===location.origin);if(same)return;try{parent.postMessage({type:'danki-frame-blocked'},location.origin);}catch{}document.documentElement.style.display='none';window.stop();throw Error('Open PlayDanki directly.');})();</script>
 <meta charset="utf-8">
 <base href="/">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -166,18 +166,29 @@ html body #translation,html body #exercise #answer,html body #study #answer{colo
 </script>
 <style>/* Edge leaves on DANKI; the selected page colour stays unchanged. */
 .autumn-leaves{position:fixed;inset:0;overflow:hidden;pointer-events:none;user-select:none;z-index:0;contain:strict}
-.autumn-leaf{position:absolute;top:-90px;left:var(--left);width:var(--size);opacity:0;animation:autumn-fall var(--duration) linear infinite;animation-delay:var(--delay);will-change:transform}
+.autumn-leaf{--leaf-size:var(--size);position:absolute;top:-90px;left:var(--left);width:var(--leaf-size);opacity:0;animation:autumn-fall var(--duration) linear infinite;animation-delay:var(--delay);will-change:transform}
 .autumn-leaf img{display:block;width:100%;height:auto;filter:hue-rotate(var(--hue));animation:autumn-sway var(--swayTime) ease-in-out infinite alternate;animation-delay:var(--delay)}
 @keyframes autumn-fall{0%{opacity:0;transform:translate3d(0,-20px,0) rotate(var(--start))}8%{opacity:var(--alpha)}32%{transform:translate3d(var(--drift1),32dvh,0) rotate(calc(var(--start) + var(--spin)*.3))}66%{transform:translate3d(var(--drift2),66dvh,0) rotate(calc(var(--start) + var(--spin)*.65))}90%{opacity:var(--alpha)}100%{opacity:0;transform:translate3d(var(--drift3),calc(100dvh + 110px),0) rotate(calc(var(--start) + var(--spin)))}}
 @keyframes autumn-sway{from{transform:translateX(calc(0px - var(--sway))) rotate(-12deg)}to{transform:translateX(var(--sway)) rotate(14deg)}}
 .autumn-leaves.paused :is(.autumn-leaf,.leaf-turn,img){animation-play-state:paused}
 .leaf-turn{display:block;position:relative}
-.leaf-turn .leaf-back{display:none}
+.leaf-mesh{display:none}
 @media(prefers-reduced-motion:no-preference){
  .autumn-leaf[data-gust]{animation-name:autumn-fall,autumn-gust;animation-duration:var(--duration),36s;animation-timing-function:linear,ease-in-out;animation-delay:var(--delay),0s}
- .leaf-turn{transform-style:preserve-3d;animation:autumn-tumble var(--tumble-time) ease-in-out var(--delay) infinite}
- .leaf-turn img{animation:none;backface-visibility:hidden}
- .leaf-turn .leaf-back{display:block;position:absolute;inset:0;transform:rotateY(.5turn);filter:hue-rotate(var(--hue)) brightness(1.35) saturate(.65)}
+ .leaf-turn{font-size:var(--leaf-size);transform-style:preserve-3d;animation:autumn-tumble var(--tumble-time) ease-in-out var(--delay) infinite}
+ .leaf-turn img{visibility:hidden;animation:none}
+ .leaf-mesh,.leaf-half,.leaf-fold{position:absolute;transform-style:preserve-3d}
+ .leaf-mesh{display:block;inset:0}
+ .leaf-half{inset:0 0 50%;transform-origin:50% 100%;transform:rotateX(-25deg);--half-v:0%}
+ .leaf-half+.leaf-half{inset:50% 0 0;transform-origin:50% 0;transform:rotateX(18deg);--half-v:100%}
+ .leaf-fold{left:50%;width:20.4%;height:100%;transform:translate3d(calc(var(--fold-x) - .102em),0,var(--fold-z)) rotateY(var(--fold-y))}
+ .leaf-fold:nth-child(1){--fold-u:0%;--fold-x:-.333em;--fold-z:.172em;--fold-y:58deg;--fold-light:.72}
+ .leaf-fold:nth-child(2){--fold-u:25%;--fold-x:-.190em;--fold-z:.044em;--fold-y:26deg;--fold-light:.86}
+ .leaf-fold:nth-child(3){--fold-u:50%;--fold-x:0em;--fold-z:0em;--fold-y:0deg;--fold-light:1}
+ .leaf-fold:nth-child(4){--fold-u:75%;--fold-x:.191em;--fold-z:.041em;--fold-y:-24deg;--fold-light:1.14}
+ .leaf-fold:nth-child(5){--fold-u:100%;--fold-x:.340em;--fold-z:.163em;--fold-y:-55deg;--fold-light:1.26}
+ .leaf-fold::before,.leaf-fold::after{content:"";position:absolute;inset:0;background:var(--leaf-art) var(--fold-u) var(--half-v)/500% 200% no-repeat;backface-visibility:hidden;filter:hue-rotate(var(--hue)) brightness(var(--fold-light))}
+ .leaf-fold::after{transform:rotateY(.5turn) scaleX(-1);filter:hue-rotate(var(--hue)) brightness(calc(2.18 - var(--fold-light))) saturate(.66)}
 }
 @keyframes autumn-gust{
  0%,6%,39%,54%,88%,100%{translate:0}
@@ -185,13 +196,14 @@ html body #translation,html body #exercise #answer,html body #study #answer{colo
  66%{translate:max(calc(0px - var(--gust-distance)),-112px)}
 }
 @keyframes autumn-tumble{
- 0%{transform:translateX(calc(0px - var(--sway))) perspective(180px) rotateY(0turn) rotateX(-12deg) rotateZ(-12deg)}
- 28%{transform:translateX(var(--sway)) perspective(180px) rotateY(calc(var(--tumble-turn)*.13)) rotateX(20deg) rotateZ(14deg)}
- 52%{transform:translateX(calc(var(--sway)*.7)) perspective(180px) rotateY(calc(var(--tumble-turn)*.5)) rotateX(12deg) rotateZ(4deg)}
- 76%{transform:translateX(calc(var(--sway)*.4)) perspective(180px) rotateY(calc(var(--tumble-turn)*.88)) rotateX(-25deg) rotateZ(-4deg)}
- 92%,100%{transform:translateX(calc(0px - var(--sway))) perspective(180px) rotateY(var(--tumble-turn)) rotateX(-12deg) rotateZ(-12deg)}
+ 0%{transform:perspective(125px) translate3d(calc(0px - var(--sway)),0,0) rotateY(0turn) rotateX(-18deg) rotateZ(-16deg)}
+ 22%{transform:perspective(125px) translate3d(var(--sway),0,10px) rotateY(calc(var(--tumble-turn)*.15)) rotateX(42deg) rotateZ(18deg)}
+ 38%{transform:perspective(125px) translate3d(calc(var(--sway)*.8),0,5px) rotateY(calc(var(--tumble-turn)*.28)) rotateX(57deg) rotateZ(23deg)}
+ 57%{transform:perspective(125px) translate3d(calc(var(--sway)*.3),0,-5px) rotateY(calc(var(--tumble-turn)*.51)) rotateX(-12deg) rotateZ(6deg)}
+ 78%{transform:perspective(125px) translate3d(calc(var(--sway)*-.6),0,-13px) rotateY(calc(var(--tumble-turn)*.77)) rotateX(-54deg) rotateZ(-26deg)}
+ 100%{transform:perspective(125px) translate3d(calc(0px - var(--sway)),0,0) rotateY(var(--tumble-turn)) rotateX(-18deg) rotateZ(-16deg)}
 }
-@media(max-width:760px){.autumn-leaf{width:calc(var(--size)*.7);left:var(--mobileLeft)}}
+@media(max-width:760px){.autumn-leaf{--leaf-size:calc(var(--size)*.7);left:var(--mobileLeft)}}
 
 
 body>.autumn-leaves{z-index:1}body>.autumn-leaves[hidden]{display:none}
@@ -612,7 +624,7 @@ for(const [section,key]of Object.entries(modeKeys))try{const preferred=localStor
 const startSection=location.hash.slice(1);practiceActive=!['arithmetic','programming','quant','digit-span'].includes(startSection);mode=preferredModes[startSection]||preferredModes.german;active=decks[mode];state=read(active);render();scheduleMidnight();
 })();</script>
 <script>(()=>{'use strict';
-const $=id=>document.getElementById(id),frame=$('arithmetic-frame'),menus=[...document.querySelectorAll('.games-menu')],subjects=new Set(['french','german','japanese','spanish','italian','greek','korean','coding','economics','trivia','arithmetic','programming','quant','digit-span']),options=document.querySelectorAll('.navigation .game-option'),embedded={'digit-span':['digit-span/index.html?v=c13b3b3b54b8','Digit Span','Digit Span memory game'],arithmetic:['arithmetic.html?v=c13b3b3b54b8','Weekly arithmetic','Weekly arithmetic practice'],programming:['programming.html?v=c13b3b3b54b8','Programming','Programming learning cards'],quant:['quant.html?v=c13b3b3b54b8','QUANT','QUANT learning cards']};
+const $=id=>document.getElementById(id),frame=$('arithmetic-frame'),menus=[...document.querySelectorAll('.games-menu')],subjects=new Set(['french','german','japanese','spanish','italian','greek','korean','coding','economics','trivia','arithmetic','programming','quant','digit-span']),options=document.querySelectorAll('.navigation .game-option'),embedded={'digit-span':['digit-span/index.html?v=65d01201c302','Digit Span','Digit Span memory game'],arithmetic:['arithmetic.html?v=65d01201c302','Weekly arithmetic','Weekly arithmetic practice'],programming:['programming.html?v=65d01201c302','Programming','Programming learning cards'],quant:['quant.html?v=65d01201c302','QUANT','QUANT learning cards']};
 const menuOpen=()=>menus.some(menu=>menu.open);
 let section='german';
 const previous=$('previous-card'),embeddedPrevious=$('embedded-previous-card');let previousObserver=null;
@@ -652,7 +664,7 @@ for(const link of links){
 }
 note.textContent=config.preview?'Preview — payment link not connected.':config.genericUrl?'Choose an amount, then enter it on Revolut.':'Choose an amount. Continue on Revolut to pay.';
 })();</script>
-<script defer src="notes-navigation.js?v=c13b3b3b54b8"></script>
-<script defer src="account.js?v=c13b3b3b54b8"></script>
-<script defer data-danki-main src="temponotes/autumn.js?v=c13b3b3b54b8"></script><script defer src="atlas-navigation.js?v=c13b3b3b54b8"></script><script defer src="weight-navigation.js?v=c13b3b3b54b8"></script><script defer src="timebox-navigation.js?v=c13b3b3b54b8"></script><script defer src="/analytics.js?v=13306f78dd86"></script><script defer src="/page-warmup.js?v=f5349d0dbb9e"></script></body>
+<script defer src="notes-navigation.js?v=65d01201c302"></script>
+<script defer src="account.js?v=65d01201c302"></script>
+<script defer data-danki-main src="temponotes/autumn.js?v=65d01201c302"></script><script defer src="atlas-navigation.js?v=65d01201c302"></script><script defer src="weight-navigation.js?v=65d01201c302"></script><script defer src="timebox-navigation.js?v=65d01201c302"></script><script defer src="/analytics.js?v=13306f78dd86"></script><script defer src="/page-warmup.js?v=dc253426e340"></script></body>
 </html>
