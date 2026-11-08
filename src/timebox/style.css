@@ -28,7 +28,7 @@
 .timebox-workspace.single-boxes{display:flex!important;flex-direction:column;align-items:center;gap:20px;min-height:100dvh;padding:80px 20px 80px;height:auto}.single-boxes .timebox-side{position:static;inset:auto;width:min(100%,700px);max-width:700px;height:auto;min-height:0;margin:0;padding:0;overflow:visible}.single-boxes .timebox-grid{max-width:none;margin:0}.single-boxes .box-middle{display:block;padding:0;align-self:center}.single-boxes .task-adjust-toggle{position:static;width:100px}.single-boxes .timebox-chart-area{position:relative;inset:auto;margin-top:28px;align-self:flex-start;width:max-content}.single-boxes .task-chart{left:0;right:auto}.single-boxes .timebox-header{padding-right:0}@media(max-width:900px){.private-page-links+#root .single-boxes{padding-top:12px}}
 
 .single-boxes .timebox-header .task-adjust-toggle{position:static;width:auto;height:30px;padding:0 10px;margin-left:auto;margin-right:8px;font-size:10px}.single-boxes .timebox-header .timebox-add{flex-shrink:0}
-.single-boxes .timebox-grid{gap:36px 24px;margin-inline:-12px}
+.single-boxes .timebox-grid{gap:54px 36px;margin-inline:clamp(-24px,calc(354px - 50vw),-16px)}
 
 /* Timerecord opens downward from the header, beside the other controls. */
 .single-boxes .timebox-header{position:relative}
@@ -42,11 +42,16 @@
 @media(max-width:760px){.single-boxes .timebox-header #timebox-chart{left:0;right:0;width:100%;max-height:calc(100dvh - 160px)}.single-boxes .timebox-header h2{font-size:14px;letter-spacing:1px}.single-boxes .timebox-header .task-chart-toggle{padding:0 7px}.single-boxes .timebox-header .timebox-chart-area{margin-right:6px}.single-boxes .timebox-header .task-adjust-toggle{margin-right:6px;padding:0 7px}}
 
 .single-boxes .timebox-chart-row{grid-template-columns:100px minmax(0,1fr) 105px}
-@media(max-width:760px){.single-boxes .timebox-card .timebox-run time{font-size:15px}.single-boxes .timebox-card .timebox-name{-webkit-line-clamp:2}.single-boxes .timebox-chart-row{grid-template-columns:70px minmax(0,1fr) 83px}}
-@media(max-width:360px){
+@media(max-width:760px){
  .single-boxes .timebox-card .timebox-run{gap:1px}
- .single-boxes .timebox-card .timebox-name{-webkit-line-clamp:1;line-height:.95}
- .single-boxes .timebox-card .timebox-run time{line-height:.82;margin-bottom:1px}
+ .single-boxes .timebox-card .timebox-run time{font-size:15px;margin-bottom:2px}
+ .single-boxes .timebox-card .timebox-name{-webkit-line-clamp:2;line-height:1.05}
+ .single-boxes .timebox-chart-row{grid-template-columns:70px minmax(0,1fr) 83px}
+}
+@media(max-width:360px){
+ .single-boxes .timebox-card .timebox-run{padding-inline:0}
+ .single-boxes .timebox-card .timebox-name{-webkit-line-clamp:1;line-height:.85}
+ .single-boxes .timebox-card .timebox-run time{line-height:.75;margin-bottom:0}
 }
 
 /* Small raised rocker switches share the timer's existing saved running state. */
