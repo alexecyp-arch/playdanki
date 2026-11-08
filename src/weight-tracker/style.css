@@ -11,25 +11,30 @@
 #target-controls summary{display:block;width:max-content;border:2px solid #b4b5bd;background:#222326;padding:6px 9px;cursor:pointer;list-style:none}
 #target-controls summary::-webkit-details-marker{display:none}
 #target-controls summary:focus-visible{outline:2px solid #fff;outline-offset:3px}
-#target-form{position:absolute;left:0;bottom:calc(100% + 6px);margin:0;padding:10px;display:flex;flex-wrap:nowrap;gap:6px;width:max-content;max-width:calc(100vw - 24px);border:2px solid #b4b5bd;background:#222326;box-shadow:0 4px 16px #0006}
-#target-weight{width:120px;font-size:12px;padding:7px}
-#target-form button{font-size:10px;height:32px;padding:5px 8px;white-space:nowrap}
+.target-fields{position:absolute;left:0;bottom:calc(100% + 6px);display:grid;gap:8px;padding:10px;width:min(280px,calc(100vw - 24px));border:2px solid #b4b5bd;background:#222326;box-shadow:0 4px 16px #0006}
+.target-fields form{margin:0;display:flex;flex-wrap:nowrap;gap:6px}
+.target-fields input{flex:1;width:0;font-size:12px;padding:7px}
+.target-fields button{font-size:10px;height:32px;padding:5px 8px;white-space:nowrap}
 
 .page-links{display:flex;gap:8px;flex-shrink:0}.page-links a{display:flex;align-items:center;justify-content:center;min-height:31px}
 @media(max-width:600px){.page-links{gap:5px}.page-links a{font-size:9px;padding:6px 8px}}
 
 svg .weight-latest-label{fill:#b1efcb;font-size:13px;paint-order:stroke;stroke:var(--danki-bg,#071e48);stroke-width:4px;stroke-linejoin:round}
-#protein-panel{display:grid;justify-items:center;gap:14px;width:min(100%,620px);margin:32px auto 20px}
-.protein-divider{width:100%;border:0;border-top:1px solid #787d86;margin:0 0 6px}
-.protein-table-wrap{width:100%}
-#protein-table{border-collapse:collapse;table-layout:fixed;width:100%;font-size:10px;text-align:center}
-#protein-table caption{padding-bottom:8px}
-#protein-table th,#protein-table td{border:1px solid #4d5058;padding:9px 7px}
-#protein-table th{color:#bbc0c9}
-#protein-table td{color:#fff;background:#222428}
-.protein-controls{display:grid;justify-items:center;gap:8px}
-#protein-form{margin:0;gap:5px;flex-wrap:nowrap}
-#protein-form input{width:110px;font-size:12px}
-#protein-form button{height:32px;min-width:29px;padding:4px 8px}
-#protein-average{font-size:10px;text-align:center}
-@media(max-width:760px){#protein-table{font-size:8px}#protein-table th,#protein-table td{padding:8px 3px}}
+#calorie-panel{display:grid;justify-items:center;gap:14px;width:100%;margin:32px auto 20px}
+.calorie-divider{width:min(100%,620px);border:0;border-top:1px solid #787d86;margin:0 0 6px}
+.calorie-table-wrap{width:min(100%,620px)}
+#calorie-table{border-collapse:collapse;table-layout:fixed;width:100%;font-size:10px;text-align:center}
+#calorie-table caption{padding-bottom:8px}
+#calorie-table th,#calorie-table td{border:1px solid #4d5058;padding:9px 7px}
+#calorie-table th{color:#bbc0c9}
+#calorie-table td{color:#fff;background:#222428}
+.calorie-controls{display:grid;justify-items:center;gap:8px}
+#calorie-form{margin:0;gap:5px;flex-wrap:nowrap}
+#calorie-form input{width:110px;font-size:12px}
+#calorie-form button{height:32px;min-width:29px;padding:4px 8px}
+#calorie-average{font-size:10px;text-align:center}
+#calorie-status,#calorie-target-status{font-size:10px;text-align:center}
+#calorie-status:empty,#calorie-target-status:empty{display:none}
+svg .calorie-target-label{fill:#ff8990;paint-order:stroke;stroke:var(--danki-bg,#071e48);stroke-width:4px;stroke-linejoin:round}
+body:has(#calorie-panel:not([hidden])) main{padding-bottom:60px}
+@media(max-width:760px){#calorie-table{font-size:8px}#calorie-table th,#calorie-table td{padding:8px 3px}}
