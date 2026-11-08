@@ -7,37 +7,36 @@ import {orderNotes} from './note-order.mjs';
 import {mountLocked} from './locked-ui.js';
 import {mountFortuna} from './fortuna.js';
 
-function noteBrickTexture(id){
+function noteWoodTexture(id){
  let seed=2166136261;
  for(const letter of id)seed=Math.imul(seed^letter.charCodeAt(0),16777619);
  function pick(min,max){
   seed=(Math.imul(seed,1664525)+1013904223)>>>0;
   return min+Math.floor(seed/4294967296*(max-min+1));
  }
- const tileWidth=320,stones=[],offset=pick(-23,0),grainSeed=pick(1,999);
- const cuts=[0,38+pick(-10,10),103+pick(-12,12),152+pick(-10,10),213+pick(-13,13),263+pick(-10,10),tileWidth];
- const polygon=(points,fill)=>`<polygon points="${points.map(point=>point.join(',')).join(' ')}" fill="${fill}"/>`;
- for(let i=1;i<cuts.length;i++){
-  const x=cuts[i-1]+offset,w=cuts[i]-cuts[i-1]-pick(3,6),top=pick(5,9),foot=pick(23,27),shade=pick(145,218);
-  const face=[[0,top+pick(4,7)],[pick(3,7),top+1],[Math.round(w*.45),top+pick(-2,2)],[w-pick(4,9),top+pick(0,3)],[w,top+pick(4,8)],[w-pick(1,5),foot-3],[w-pick(5,10),foot],[pick(4,9),foot+pick(-1,1)],[1,foot-pick(2,6)]];
-  const upper=face.slice(0,5),lower=face.slice(4);
-  const chippedTop=upper.map(([px,py],j)=>[px-pick(1,3),py-pick(j===0||j===4?1:3,5)]);
-  const depth=pick(3,5),side=lower.map(([px,py])=>[px+depth,py+depth]);
-  const crack=pick(0,3)===0?'':`<path d="M${pick(9,w-12)} ${pick(12,17)}l${pick(2,5)} ${pick(-2,2)} ${pick(-3,1)} ${pick(1,4)} ${pick(1,5)} ${pick(-2,2)}" fill="none" stroke="#363636" stroke-opacity=".6" stroke-width=".8"/>`;
-  const stone=polygon(face.map(([px,py])=>[px+depth+1,py+depth+1]),'#151515')
-   +polygon([...lower,...side.reverse()],'#4a4a4a')
-   +polygon([...chippedTop,...upper.reverse()],'#dedede')
-   +polygon(face,`rgb(${shade},${shade},${shade})`)
-   +polygon(face,'url(#light)')
-   +crack;
-  stones.push(`<g transform="translate(${x} 0)">${stone}</g>`);
-  if(x<depth)stones.push(`<g transform="translate(${x+tileWidth} 0)">${stone}</g>`);
-  if(x+w+depth+1>tileWidth)stones.push(`<g transform="translate(${x-tileWidth} 0)">${stone}</g>`);
+ const width=420,height=36,knotX=pick(112,308),knotY=pick(12,24),knotWidth=pick(18,27),noiseSeed=pick(1,999);
+ const dark=[],light=[];
+ for(let y=-3;y<=height+3;y+=pick(2,4)){
+  const distance=y-knotY,bend=y+(distance<0?-1:1)*Math.max(0,8-Math.abs(distance)*.48);
+  const grain=`M0 ${y}C${pick(45,95)} ${y} ${knotX-48} ${bend} ${knotX} ${bend}S${width-42} ${y} ${width} ${y}`;
+  (pick(0,3)===0?light:dark).push(grain);
  }
- const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="${tileWidth}" height="34" viewBox="0 0 ${tileWidth} 34" preserveAspectRatio="none">
- <defs><linearGradient id="light" x2=".15" y2="1"><stop stop-color="#fff" stop-opacity=".28"/><stop offset=".38" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#151515" stop-opacity=".52"/></linearGradient>
- <filter id="grit" filterUnits="userSpaceOnUse" x="0" y="0" width="${tileWidth}" height="34"><feTurbulence type="fractalNoise" baseFrequency=".19 .31" numOctaves="3" seed="${grainSeed}" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".6"/></feComponentTransfer><feComposite in2="SourceAlpha" operator="in"/><feBlend in2="SourceGraphic" mode="multiply"/></filter></defs>
- <rect width="${tileWidth}" height="34" fill="#242424"/><g filter="url(#grit)">${stones.join('')}</g></svg>`;
+ const rings=[1,.72,.43].map(scale=>{
+  const x=knotWidth*scale,y=5*scale;
+  return `M${knotX-x} ${knotY}q${x} ${-2*y} ${2*x} 0q${-x} ${2*y} ${-2*x} 0z`;
+ }).join('');
+ const wear=Array.from({length:12},()=>{
+  const x=pick(10,width-64),y=pick(4,height-5),length=pick(8,54);
+  return `M${x} ${y}q${Math.round(length*.55)} ${pick(-2,2)} ${length} ${pick(-1,1)}`;
+ }).join('');
+ const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" preserveAspectRatio="none">
+ <defs><linearGradient id="patina"><stop stop-color="#888"/><stop offset=".26" stop-color="#626262"/><stop offset=".58" stop-color="#a3a3a3"/><stop offset=".82" stop-color="#777"/><stop offset="1" stop-color="#888"/></linearGradient>
+ <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".014 .36" numOctaves="2" seed="${noiseSeed}" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter></defs>
+ <rect width="${width}" height="${height}" fill="url(#patina)"/><rect width="${width}" height="${height}" filter="url(#grain)" opacity=".40"/>
+ <path d="${dark.join('')}" fill="none" stroke="#171717" stroke-opacity=".54" stroke-width=".95"/>
+ <path d="${light.join('')}" fill="none" stroke="#dedede" stroke-opacity=".46" stroke-width=".65"/>
+ <path d="${rings}" fill="none" stroke="#282828" stroke-opacity=".70" stroke-width="1.1"/>
+ <path d="${wear}" fill="none" stroke="#eee" stroke-opacity=".33" stroke-width=".6" stroke-linecap="round"/></svg>`;
  return 'url("data:image/svg+xml,'+encodeURIComponent(svg)+'")';
 }
 // The original Temponote layout, rendered with browser APIs instead of React.
@@ -63,7 +62,7 @@ export function mount(root,request,{visible=true,locked}={}){
   fortuna.render(active);
   for(const [id,li]of nodes)if(!ids.has(id)){li.remove();nodes.delete(id);}
   active.forEach((n,i)=>{
-   let li=nodes.get(n.id);if(!li){li=document.createElement('li');li.dataset.id=n.id;li.innerHTML=`<article class="note"><div class="note-heading"><span class="number"></span><div class="note-body"><p></p></div></div><div class="note-footer"><span class="expiry"></span><div class="note-time-buttons" role="group"><button data-day="1">+DAY</button></div><button class="delete" title="Delete note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7M14 10v7"/></svg></button></div></article>`;li.style.setProperty('--note-bricks',noteBrickTexture(n.eternalId||n.id));nodes.set(n.id,li);}
+   let li=nodes.get(n.id);if(!li){li=document.createElement('li');li.dataset.id=n.id;li.innerHTML=`<article class="note"><div class="note-heading"><span class="number"></span><div class="note-body"><p></p></div></div><div class="note-footer"><span class="expiry"></span><div class="note-time-buttons" role="group"><button data-day="1">+DAY</button></div><button class="delete" title="Delete note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7M14 10v7"/></svg></button></div></article>`;li.style.setProperty('--note-wood',noteWoodTexture(n.eternalId||n.id));nodes.set(n.id,li);}
    li.querySelector('article').classList.toggle('eternal',!!n.eternalId);li.querySelector('article').classList.toggle('selected',!!orderUntil&&chosen.includes(orderKey(n.id)));const body=li.querySelector('.note-body');body.tabIndex=orderUntil?0:-1;if(orderUntil){body.setAttribute('role','button');body.setAttribute('aria-pressed',String(chosen.includes(orderKey(n.id))));}else{body.removeAttribute('role');body.removeAttribute('aria-pressed');}body.setAttribute('aria-label',(orderUntil?'Choose order for note: ':'Note: ')+n.body);li.querySelector('.number').textContent=orderUntil?(chosen.includes(orderKey(n.id))?(chosen.indexOf(orderKey(n.id))+1)+'.':'·'):(i+1)+'.';if(li.querySelector('p').textContent!==n.body)li.querySelector('p').textContent=n.body;
    const footer=li.querySelector('.note-footer'),barColor=noteColors[n.color]||noteColors.green;footer.style.backgroundColor=footer.style.borderTopColor=barColor;const expiry=li.querySelector('.expiry'),seconds=Math.ceil((n.expiresAt-t)/1000);expiry.textContent=(seconds<60?seconds+'S':duration(Math.ceil(seconds/60)))+' LEFT';expiry.title='Expires '+new Date(n.expiresAt).toLocaleString();li.querySelector('[role=group]').setAttribute('aria-label','Note actions '+(i+1));li.querySelector('.delete').setAttribute('aria-label','Delete note '+(i+1));for(const b of li.querySelectorAll('button'))b.disabled=extending.has(n.id)||!!orderUntil||savingOrder;if(list.children[i]!==li)list.insertBefore(li,list.children[i]||null);
   });
