@@ -21,7 +21,25 @@ const p=page('2026-10-29T12:00:00Z',true,true);for(const n of p.layer.children)a
 const first=p.layer.children[0];p.advance('2026-10-29T14:00:00Z');assert.equal(p.layer.children[0],first,'Same Swiss day keeps existing objects');p.advance('2026-12-25T12:00:00Z');assert.equal(p.layer.children.length,32);assert.equal(count(p,'snow'),24);
 p.document.documentElement.dataset.dankiLeaves='off';p.events.get('danki-leaves-change')();assert.equal(p.layer.hidden,true);assert.equal(p.timers.length,2);assert.equal(p.timers[0].ms,3600000);
 assert((await fs.stat('src/temponotes/season-snow.svg')).size+(await fs.stat('src/temponotes/season-flower.svg')).size<1024);
-const accents=page('2026-10-29T12:00:00Z');const drop=accents.timers.find(t=>t.ms===7500);assert(drop,'One seasonal accent every 7.5 seconds');drop.fn();assert.equal(accents.layer.children.length,33);drop.fn();drop.fn();drop.fn();assert.equal(accents.layer.children.length,35,'Never more than three rare accents');assert(accents.layer.children.at(-1).children[0].src.startsWith('data:image/svg+xml,'));accents.document.documentElement.dataset.dankiLeaves='off';accents.events.get('danki-leaves-change')();const prior=accents.layer.children.length;drop.fn();assert.equal(accents.layer.children.length,prior,'No new accents while disabled');
+for(const [date,designs] of [['01-15',8],['04-15',14],['07-15',16],['09-15',10],['10-29',12],['11-07',12],['11-08',10],['12-15',12]]){
+ const accents=page('2026-'+date+'T12:00:00Z');
+ const drop=accents.timers.find(t=>t.ms===5000);
+ assert(drop,'One seasonal accent every five seconds on desktop');
+ const seen=new Set();let previous;
+ for(let i=0;i<=designs;i++){
+  drop.fn();
+  const image=accents.layer.children.at(-1).children[0].src;
+  assert(image.startsWith('data:image/svg+xml,'));
+  assert.notEqual(image,previous);
+  assert(i===designs?seen.has(image):!seen.has(image));
+  seen.add(image);previous=image;
+ }
+ assert.equal(seen.size,designs);
+ assert.equal(count(accents,'accent'),5,'Never more than five special items on desktop');
+ accents.document.documentElement.dataset.dankiLeaves='off';accents.events.get('danki-leaves-change')();
+ const latest=accents.layer.children.at(-1);drop.fn();
+ assert.equal(accents.layer.children.at(-1),latest,'No new accents while disabled');
+}
 const greens=day=>page(new Date(2026,9,day,12)).layer.children.filter(n=>n.className==='autumn-leaf seasonal-leaf'&&parseFloat(n.values['--hue'])>=70).length;assert(greens(1)>greens(21));assert(greens(29)>0,'Late October still includes green leaves');
 const phone=page('2026-10-29T12:00:00Z');phone.resize(true);
 assert.equal(phone.layer.children.length,16);
@@ -45,11 +63,13 @@ for(const turn of turns){
  assert.equal(mesh.values['--leaf-art'],'url("'+image.src+'")');
  assert.deepEqual(mesh.children.map(half=>half.children.length),[5,5]);
 }
-const phoneDrop=phone.timers.find(t=>t.ms===7500).fn;
+const phoneDrop=phone.timers.find(t=>t.ms===5000).fn;
 phoneDrop();assert.equal(count(phone,'accent'),0);
 phoneDrop();assert.equal(count(phone,'accent'),1);
 phoneDrop();assert.equal(count(phone,'accent'),1);
 phoneDrop();assert.equal(count(phone,'accent'),2);
+for(let i=0;i<6;i++)phoneDrop();
+assert.equal(count(phone,'accent'),3,'Never more than three special items on a phone');
 phone.resize(false);assert.equal(phone.layer.children.length,32);
 phoneDrop();assert.equal(count(phone,'accent'),1);
-console.log('Seasons passed: gradual daily transitions, mixed autumn greens, rare accents at 7.5 seconds, Swiss date boundary, snow ramp, spring flowers, 32 regular particles, transparency, edge/centre layouts, disabled state and no needless rebuilding. Snow and flower assets are under 1 KB total.');
+console.log('Seasons passed: daily transitions, 8–16 distinct seasonal accents per set, 5s desktop and 10s phone cadence, bounded density, mixed autumn greens, snow ramp, spring flowers, gentle wind, and edge/centre layouts.');
