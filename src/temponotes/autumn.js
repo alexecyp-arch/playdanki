@@ -16,26 +16,37 @@
   [[.12,0,.22],[.22,0,.14],[.34,0,.08]],
   [[.45,0,0],[.60,0,0],[.75,0,0]]
  ];
- let seasonKey='',accents=[];
+ const mobile=window.matchMedia('(max-width:760px), (max-height:500px) and (pointer:coarse)');
+ let seasonKey='',accents=[],mobileAccentTick=0;
  function refreshSeason(){
  const parts=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Zurich',year:'numeric',month:'numeric',day:'numeric'}).formatToParts(new Date()),month=Number(parts.find(p=>p.type==='month').value)-1,segment=Math.min(2,Math.floor((Number(parts.find(p=>p.type==='day').value)-1)/10)),day=Number(parts.find(p=>p.type==='day').value),key=month+':'+day;
  if(key===seasonKey)return;seasonKey=key;
- const fraction=(day-1-segment*10)/(segment===2?new Date(Number(parts.find(p=>p.type==='year').value),month+1,0).getDate()-20:10),next=segment<2?seasons[month][segment+1]:seasons[(month+1)%12][0],[snow,flowers,green]=seasons[month][segment].map((v,i)=>v+(next[i]-v)*fraction),snowCount=Math.round(32*snow),flowerCount=Math.round(32*flowers),types=Array.from({length:32},(_,i)=>i<snowCount?'snow':i<snowCount+flowerCount?'flower':'leaf');for(let i=31;i>0;i--){const j=Math.floor(range(0,i+1));[types[i],types[j]]=[types[j],types[i]];}layer.replaceChildren();accents=[];const greenFlags=Array.from({length:32-snowCount-flowerCount},(_,i)=>i<Math.round((32-snowCount-flowerCount)*green));for(let i=greenFlags.length-1;i>0;i--){const j=Math.floor(range(0,i+1));[greenFlags[i],greenFlags[j]]=[greenFlags[j],greenFlags[i]];}let leafIndex=0;
- for(let i=0;i<32;i++){
-  const type=types[i],extra=i>=21,leftSide=extra?i%2===1:i<10,duration=type==='snow'?range(26,46):range(19,37),leaf=document.createElement('span');leaf.className='autumn-leaf seasonal-'+type;
+ const fraction=(day-1-segment*10)/(segment===2?new Date(Number(parts.find(p=>p.type==='year').value),month+1,0).getDate()-20:10),next=segment<2?seasons[month][segment+1]:seasons[(month+1)%12][0],[snow,flowers,green]=seasons[month][segment].map((v,i)=>v+(next[i]-v)*fraction);
+ const particleCount=mobile.matches?16:32,edgeStart=mobile.matches?10:21,leftSplit=mobile.matches?5:10;
+ const snowCount=Math.round(particleCount*snow),flowerCount=Math.round(particleCount*flowers),types=Array.from({length:particleCount},(_,i)=>i<snowCount?'snow':i<snowCount+flowerCount?'flower':'leaf');for(let i=types.length-1;i>0;i--){const j=Math.floor(range(0,i+1));[types[i],types[j]]=[types[j],types[i]];}layer.replaceChildren();accents=[];const greenFlags=Array.from({length:particleCount-snowCount-flowerCount},(_,i)=>i<Math.round((particleCount-snowCount-flowerCount)*green));for(let i=greenFlags.length-1;i>0;i--){const j=Math.floor(range(0,i+1));[greenFlags[i],greenFlags[j]]=[greenFlags[j],greenFlags[i]];}let leafIndex=0;
+ for(let i=0;i<types.length;i++){
+  const type=types[i],extra=i>=edgeStart,leftSide=extra?i%2===1:i<leftSplit,duration=type==='snow'?range(26,46):range(19,37),leaf=document.createElement('span');leaf.className='autumn-leaf seasonal-'+type;
   const values={left:(extra?(leftSide?range(.2,5):range(95,99.8)):(leftSide?range(.2,17):range(82,98)))+'%',mobileLeft:(extra?(leftSide?range(-.5,2):range(97,100)):(leftSide?range(-1,5):range(94,99)))+'%',size:(type==='snow'?range(5,10):type==='flower'?range(12,19):range(19,37))+'px',duration:duration+'s',delay:-range(0,duration)+'s',start:range(-180,180)+'deg',spin:range(-220,220)+'deg',drift1:range(-20,24)+'px',drift2:range(-28,28)+'px',drift3:range(-18,24)+'px',sway:range(3,9)+'px',swayTime:range(4,9)+'s',alpha:type==='snow'?range(.15,.30):type==='flower'?range(.16,.30):range(.25,.45),hue:(type==='leaf'?(greenFlags[leafIndex++]?range(70,100):range(-18,18)):type==='flower'?range(-22,28):0)+'deg'};
   if(center)values.left=range(45,55)+'%';
   if(type==='leaf'&&leafIndex%5<2){
    leaf.setAttribute('data-gust','');
    values['gust-distance']=range(4,8)+'vw';
   }
-  if(type==='leaf'&&leafIndex%4===2){
-   leaf.setAttribute('data-tumble','');
+  const tumbles=type==='leaf'&&leafIndex%5===3;
+  if(tumbles){
    values['tumble-time']=range(8,15)+'s';
    values['tumble-turn']=Math.random()<.5?'1turn':'-1turn';
   }
   for(const [name,value]of Object.entries(values))leaf.style.setProperty('--'+name,value);
-  const img=document.createElement('img');img.src=new URL(type==='snow'?'season-snow.svg':type==='flower'?'season-flower.svg':shapes[Math.floor(range(0,shapes.length))],base).href;img.alt='';img.width=type==='leaf'?96:32;img.height=type==='leaf'?128:32;img.decoding='async';leaf.append(img);layer.append(leaf);
+  const img=document.createElement('img');img.src=new URL(type==='snow'?'season-snow.svg':type==='flower'?'season-flower.svg':shapes[Math.floor(range(0,shapes.length))],base).href;img.alt='';img.width=type==='leaf'?96:32;img.height=type==='leaf'?128:32;img.decoding='async';
+  if(tumbles){
+   const turn=document.createElement('span'),back=img.cloneNode();
+   turn.className='leaf-turn';
+   back.className='leaf-back';
+   turn.append(img,back);
+   leaf.append(turn);
+  }else leaf.append(img);
+  layer.append(leaf);
  }
  }
 
@@ -69,8 +80,13 @@
  }
 
  refreshSeason();setInterval(refreshSeason,3600000);
+ mobile.addEventListener('change',()=>{seasonKey='';mobileAccentTick=0;refreshSeason();});
  document.body.append(layer);let visible=parent===window||!window.frameElement?.hidden;
  const pause=()=>{const covered=main&&['notes-open','timebox-open','weight-open','atlas-open'].some(c=>document.body.classList.contains(c));const off=document.documentElement.dataset.dankiLeaves==='off';layer.hidden=covered||off;layer.classList.toggle('paused',!visible||document.hidden||covered||off);};
  if(main)new MutationObserver(pause).observe(document.body,{attributes:true,attributeFilter:['class']});
- document.addEventListener('danki-leaves-change',pause);document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshSeason();pause();});window.addEventListener('temponotes-visibility',event=>{visible=!!event.detail;pause();});window.addEventListener('message',event=>{if(event.origin===location.origin&&event.source===parent&&['danki-notes-visibility','danki-timebox-visibility'].includes(event.data?.type)){visible=!!event.data.visible;pause();}});setInterval(()=>{if(!layer.hidden&&!document.hidden&&visible)dropAccent();},7500);pause();
+ document.addEventListener('danki-leaves-change',pause);document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshSeason();pause();});window.addEventListener('temponotes-visibility',event=>{visible=!!event.detail;pause();});window.addEventListener('message',event=>{if(event.origin===location.origin&&event.source===parent&&['danki-notes-visibility','danki-timebox-visibility'].includes(event.data?.type)){visible=!!event.data.visible;pause();}});
+ setInterval(()=>{
+  if(!layer.hidden&&!document.hidden&&visible&&(!mobile.matches||++mobileAccentTick%2===0))dropAccent();
+ },7500);
+ pause();
 })();
