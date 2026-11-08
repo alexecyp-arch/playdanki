@@ -1,6 +1,12 @@
 export const KG_PER_LB=0.45359237;
 export function kilograms(value,unit){const n=Number(value),kg=unit==='LB'?n*KG_PER_LB:n;return Number.isFinite(kg)&&kg>0&&kg<=1000?kg:null;}
 export function weight(kg,unit){return unit==='LB'?kg/KG_PER_LB:kg;}
+export function formatForecastDate(time){
+ if(time===null)return '—';
+ const date=new Date(time),day=date.getDate();
+ const suffix=day>=11&&day<=13?'TH':({1:'ST',2:'ND',3:'RD'}[day%10]||'TH');
+ return day+suffix+' OF '+date.toLocaleDateString('en-GB',{month:'long'}).toUpperCase();
+}
 export function chartData(entries,unit='KG',targetKg=null){
  const points=entries.filter(p=>Number.isFinite(p.kg)&&p.kg>0&&Number.isFinite(p.time)).map(p=>({...p,value:weight(p.kg,unit)})).sort((a,b)=>a.time-b.time||String(a.id).localeCompare(String(b.id)));
  const target=Number.isFinite(targetKg)&&targetKg>0?weight(targetKg,unit):null;

@@ -1,5 +1,9 @@
 import assert from 'node:assert/strict';
-import {forecastTargetTime as forecast} from '../src/weight-tracker/model.mjs';
+import {forecastTargetTime as forecast,formatForecastDate} from '../src/weight-tracker/model.mjs';
+for(const [day,expected] of [[1,'1ST'],[2,'2ND'],[3,'3RD'],[10,'10TH'],[11,'11TH'],[12,'12TH'],[13,'13TH'],[21,'21ST'],[22,'22ND'],[23,'23RD'],[31,'31ST']]){
+ assert.equal(formatForecastDate(new Date(2027,2,day,12).getTime()),expected+' OF MARCH');
+}
+assert.equal(formatForecastDate(null),'—');
 const now=new Date(2026,10,2,12).getTime(),day=86400000;
 const line=(rate,start=80,n=14)=>Array.from({length:n},(_,i)=>({time:now-(n-1-i)*day,kg:start+i*rate}));
 const falling=line(-.2),rising=line(.2,60);
