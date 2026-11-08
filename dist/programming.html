@@ -3,7 +3,7 @@
 body{position:relative}h1{white-space:pre-line}header strong{display:block;overflow-wrap:anywhere}.summary-note{font-size:.8125rem}#weekly-summary dl{text-align:left;max-width:30rem;margin:1.3rem auto}#weekly-summary p{margin:1rem 0}
 #grades{flex-direction:column;align-items:center}#grades button{width:min(100%,16rem)}
 
-:root{--game-cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Ccircle cx='7' cy='7' r='4' fill='%2337ee45' stroke='%23000' stroke-width='1.5'/%3E%3C/svg%3E") 7 7,crosshair}
+:root{--game-cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Ccircle cx='7' cy='7' r='5' fill='%2337ee45' stroke='%23000' stroke-width='1.5'/%3E%3C/svg%3E") 7 7,crosshair}
 *,*::before,*::after{cursor:var(--game-cursor)!important}
 body:focus,#game:focus,#exercise:focus,.arithmetic-frame:focus{outline:none}
 
@@ -92,7 +92,7 @@ function host(){try{return parent!==window&&parent.document.getElementById('arit
 window.DankiAnswerVoice=(scope,id,text,announce=false)=>{const h=host();if(!h)return;h.document.dispatchEvent(new h.CustomEvent('danki-card-voice',{detail:{scope:'embedded:'+scope,id:String(id),text:String(text),lang:'en',announce,sourceDocument:document}}));};
 for(const type of ['pointerdown','keydown'])document.addEventListener(type,event=>{const h=host();if(h&&event.isTrusted)h.document.dispatchEvent(new h.CustomEvent('danki-voice-gesture',{detail:{sourceDocument:document,trusted:true}}));},{capture:true,passive:true});
 })();
-</script><script id="danki-shared-theme" src="/theme.js?v=65d8ab48c4b9"></script><link rel="stylesheet" href="/theme.css?v=65d8ab48c4b9"></head>
+</script><script id="danki-shared-theme" src="/theme.js?v=bdf001d22c55"></script><link rel="stylesheet" href="/theme.css?v=bdf001d22c55"></head>
 <body class="quiz-course"><main class="course-main">
 <header><strong>PROGRAMMING</strong><div id="quiz-accuracy" class="word-accuracy"></div><div class="progress"><span id="card">CARD 1/5000</span></div></header>
 <section id="study" aria-label="Programming card" hidden><div id="review-label" class="metadata"></div><h1 id="question">What is a computer?</h1><pre id="code" aria-label="Code example" hidden></pre><div id="answer" class="answer"></div></section>
@@ -275,4 +275,4 @@ window.addEventListener('storage',e=>{reviewId=null;if((e.key===KEY||e.key===nul
 state=read();memory=state;load();
 })();
 </script>
-<script defer src="/analytics.js?v=65d8ab48c4b9"></script><script defer src="/page-warmup.js?v=679252842f77"></script></body></html>
+<script defer src="/analytics.js?v=bdf001d22c55"></script><script defer src="/page-warmup.js?v=62a3aa92edb6"></script></body></html>
