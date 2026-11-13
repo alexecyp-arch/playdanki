@@ -1,4 +1,4 @@
-import {createSelection,validSelectionId} from './selection.mjs?v=af6f5e986e06';
+import {createSelection,validSelectionId} from './selection.mjs?v=2c45fb60ea6c';
 // Same private progress rules as game saves; this small document has its own revision.
 export function createCloudSelection({auth,db,sdk,uid,storage,onError=()=>{}}){
  const local=createSelection(storage,uid,()=>auth.currentUser?.uid),ref=sdk.doc(db,'users',uid,'progress','note-selection');

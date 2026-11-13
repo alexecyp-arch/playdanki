@@ -1,4 +1,4 @@
-import {createCalorieStore,calorieAverage,calorieDay,MAX_CALORIES} from './calories.mjs';
+import {createCalorieStore,calorieAverage,calorieDay,calorieLastDay,MAX_CALORIES} from './calories.mjs';
 import {initializeApp} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js';
 import {getAuth,onAuthStateChanged,beforeAuthStateChanged,GoogleAuthProvider,signInWithPopup} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js';
 import * as sdk from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js';
@@ -10,7 +10,7 @@ let calorieStore=null,calories={},calorieTarget=null,calorieReady=false,shownCal
 let store=null,entries=[],unit='KG',ready=false,saving=false,generation=0,selectedId=null,targetKg=null,targetReady=false;
 function controls(){const disabled=!ready||saving||!navigator.onLine;$('add').disabled=disabled;$('remove').disabled=disabled||!selectedId;$('calorie-add').disabled=$('calorie-remove').disabled=$('set-calorie-target').disabled=!calorieReady||saving||!navigator.onLine;$('set-target').disabled=!targetReady||saving||!navigator.onLine;}
 function renderCalories(){
- const now=Date.now(),today=calorieDay(now),date=$('calorie-date');if(!date.value||date.value===shownCalorieDay)date.value=today;date.max=today;shownCalorieDay=today;
+ const now=Date.now(),today=calorieDay(now),date=$('calorie-date');if(!date.value||date.value===shownCalorieDay)date.value=today;date.max=calorieLastDay(now);shownCalorieDay=today;
  if($('calorie-panel').hidden)return;
  const average=calorieAverage(calories,now);
  $('calorie-average').textContent='7-DAY AVERAGE: '+(average===null?'—':average.toLocaleString()+' KCAL');

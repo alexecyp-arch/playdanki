@@ -4,6 +4,9 @@ export function calorieDay(time=Date.now()){
  const d=new Date(time);
  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
 }
+export function calorieLastDay(now=Date.now()){
+ const date=new Date(now);date.setDate(date.getDate()+5);return calorieDay(date);
+}
 function validCalories(value){return Number.isInteger(value)&&value>=0&&value<=MAX_CALORIES;}
 function dayTime(key){
  const time=Date.parse(key+'T00:00:00Z');
@@ -59,7 +62,7 @@ export function createCalorieStore({auth,db,sdk,uid,onChange,now=Date.now}){
  return {
   adjust(amount,day=calorieDay(now())){
    return update(data=>{
-    if(!Number.isFinite(dayTime(day))||day>calorieDay(now()))throw Error('DATE');
+    if(!Number.isFinite(dayTime(day))||day>calorieLastDay(now()))throw Error('DATE');
     if(!Number.isInteger(amount)||amount===0||Math.abs(amount)>MAX_CALORIES)throw Error('CALORIES');
     const total=Math.max(0,(data.days[day]??0)+amount);
     if(!validCalories(total))throw Error('CALORIES');

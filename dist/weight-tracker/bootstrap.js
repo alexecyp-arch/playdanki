@@ -1,16 +1,16 @@
-import {createCalorieStore,calorieAverage,calorieDay,MAX_CALORIES} from './calories.mjs?v=af6f5e986e06';
+import {createCalorieStore,calorieAverage,calorieDay,calorieLastDay,MAX_CALORIES} from './calories.mjs?v=2c45fb60ea6c';
 import {initializeApp} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js';
 import {getAuth,onAuthStateChanged,beforeAuthStateChanged,GoogleAuthProvider,signInWithPopup} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js';
 import * as sdk from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js';
-import {createWeightStore} from './store.mjs?v=af6f5e986e06';
-import {draw,drawCalories} from './chart.mjs?v=af6f5e986e06';
-import {kilograms,weight,forecastTargetTime,formatForecastDate} from './model.mjs?v=af6f5e986e06';
+import {createWeightStore} from './store.mjs?v=2c45fb60ea6c';
+import {draw,drawCalories} from './chart.mjs?v=2c45fb60ea6c';
+import {kilograms,weight,forecastTargetTime,formatForecastDate} from './model.mjs?v=2c45fb60ea6c';
 const $=id=>document.getElementById(id),app=initializeApp(JSON.parse($('auth-config').textContent).firebase),auth=getAuth(app),db=sdk.getFirestore(app);
 let calorieStore=null,calories={},calorieTarget=null,calorieReady=false,shownCalorieDay='';
 let store=null,entries=[],unit='KG',ready=false,saving=false,generation=0,selectedId=null,targetKg=null,targetReady=false;
 function controls(){const disabled=!ready||saving||!navigator.onLine;$('add').disabled=disabled;$('remove').disabled=disabled||!selectedId;$('calorie-add').disabled=$('calorie-remove').disabled=$('set-calorie-target').disabled=!calorieReady||saving||!navigator.onLine;$('set-target').disabled=!targetReady||saving||!navigator.onLine;}
 function renderCalories(){
- const now=Date.now(),today=calorieDay(now),date=$('calorie-date');if(!date.value||date.value===shownCalorieDay)date.value=today;date.max=today;shownCalorieDay=today;
+ const now=Date.now(),today=calorieDay(now),date=$('calorie-date');if(!date.value||date.value===shownCalorieDay)date.value=today;date.max=calorieLastDay(now);shownCalorieDay=today;
  if($('calorie-panel').hidden)return;
  const average=calorieAverage(calories,now);
  $('calorie-average').textContent='7-DAY AVERAGE: '+(average===null?'—':average.toLocaleString()+' KCAL');

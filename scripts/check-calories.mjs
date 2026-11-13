@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {calorieDay,calorieDays,calorieAverage,calorieChartData,createCalorieStore} from '../src/weight-tracker/calories.mjs';
+import {calorieDay,calorieLastDay,calorieDays,calorieAverage,calorieChartData,createCalorieStore} from '../src/weight-tracker/calories.mjs';
 
 const now=new Date(2026,10,9,12).getTime(),today=calorieDay(now),yesterday=calorieDays(now,-1).at(-1).key;
 assert.equal(calorieAverage({[yesterday]:2200,[today]:9000},now),2200);
@@ -42,7 +42,17 @@ await store.adjust(1000,yesterday);
 await store.adjust(-200,yesterday);
 assert.equal(data.days[yesterday],800);assert.equal(data.days[today],0);
 await assert.rejects(store.adjust(100,'2026-02-30'),/DATE/);
-await assert.rejects(store.adjust(100,'2026-11-10'),/DATE/);
+await store.adjust(2000,'2026-11-10');
+await store.adjust(1800,'2026-11-14');
+await store.adjust(-300,'2026-11-14');
+assert.equal(data.days['2026-11-10'],2000);assert.equal(data.days['2026-11-14'],1500);assert.equal(data.days[today],0);
+assert.equal(calorieAverage(data.days,now),800,'Future plans stay out of the historical average');
+assert.equal(calorieChartData(data.days,null,now).points.at(-1).id,'2026-11-14');
+await assert.rejects(store.adjust(100,'2026-11-15'),/DATE/);
+assert.equal(calorieLastDay(new Date(2026,10,28,12)),'2026-12-03');
+assert.equal(calorieLastDay(new Date(2026,11,29,12)),'2027-01-03');
+assert.equal(calorieLastDay(new Date(2028,1,27,12)),'2028-03-03');
+assert.equal(calorieLastDay(new Date(2026,2,26,12)),'2026-03-31');
 auth.currentUser={uid:'bob'};
 await assert.rejects(store.adjust(200),/SIGN IN/);
 await assert.rejects(store.setTarget('2000'),/SIGN IN/);
