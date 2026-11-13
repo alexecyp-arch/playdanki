@@ -1,10 +1,10 @@
-import {createCalorieStore,calorieAverage,calorieDay,MAX_CALORIES} from './calories.mjs?v=811aee695db8';
+import {createCalorieStore,calorieAverage,calorieDay,MAX_CALORIES} from './calories.mjs?v=4d26ae4ed6fe';
 import {initializeApp} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js';
 import {getAuth,onAuthStateChanged,beforeAuthStateChanged,GoogleAuthProvider,signInWithPopup} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js';
 import * as sdk from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js';
-import {createWeightStore} from './store.mjs?v=811aee695db8';
-import {draw,drawCalories} from './chart.mjs?v=811aee695db8';
-import {kilograms,weight,forecastTargetTime,formatForecastDate} from './model.mjs?v=811aee695db8';
+import {createWeightStore} from './store.mjs?v=4d26ae4ed6fe';
+import {draw,drawCalories} from './chart.mjs?v=4d26ae4ed6fe';
+import {kilograms,weight,forecastTargetTime,formatForecastDate} from './model.mjs?v=4d26ae4ed6fe';
 const $=id=>document.getElementById(id),app=initializeApp(JSON.parse($('auth-config').textContent).firebase),auth=getAuth(app),db=sdk.getFirestore(app);
 let calorieStore=null,calories={},calorieTarget=null,calorieReady=false,shownCalorieDay='';
 let store=null,entries=[],unit='KG',ready=false,saving=false,generation=0,selectedId=null,targetKg=null,targetReady=false;

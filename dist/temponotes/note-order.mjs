@@ -1,4 +1,4 @@
-import {orderKey} from './daily-notes.mjs?v=811aee695db8';
+import {orderKey} from './daily-notes.mjs?v=4d26ae4ed6fe';
 // Explicit ordering changes display order only, never expiry or note text.
 export function orderNotes(notes,order=[]){
  const ranks=new Map((Array.isArray(order)?order:[]).map((id,i)=>[id,i]));
