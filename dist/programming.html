@@ -26,7 +26,7 @@ body:focus,#game:focus,#exercise:focus,.arithmetic-frame:focus{outline:none}
 /* Keep the phone counter at 65%; Previous Card is 40% larger than its former 65% scale. */
 @media(max-width:600px){.tracker,#tracker{transform:scale(.65);transform-origin:bottom right}:is(#previous-card,#embedded-previous-card){transform:translateX(-50%) scale(.91);transform-origin:center bottom}.again,#again,#retry,.stats-head button{transform:scale(.65)}}
 
-html body #translation,html body #exercise #answer,html body #study #answer{color:rgb(254,205,205)}
+html body #translation,html body #exercise #answer,html body #study #answer{color:#fff;font-weight:900;-webkit-text-stroke:.3px currentColor;text-shadow:0 .025em 0 #c3c3c3,0 .05em 0 #939393,0 .075em 0 #5e5e5e,0 .1em 0 #303033,0 .125em .06em #000b}
 
 .word-accuracy{font-size:.875rem;line-height:1.4;font-variant-numeric:tabular-nums;color:#fff;margin-bottom:.4rem}
 .word-mode #answer-box{width:min(32rem,calc(100vw - 4rem));max-width:100%}
@@ -261,4 +261,4 @@ window.addEventListener('storage',e=>{reviewId=null;if((e.key===KEY||e.key===nul
 state=read();memory=state;load();
 })();
 </script>
-<script defer src="/analytics.js?v=e33fe8c790be"></script><script defer src="/page-warmup.js?v=9929291d7ebc"></script></body></html>
+<script defer src="/analytics.js?v=e33fe8c790be"></script><script defer src="/page-warmup.js?v=311c849dea6b"></script></body></html>

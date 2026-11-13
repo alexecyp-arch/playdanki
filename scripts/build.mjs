@@ -1,4 +1,4 @@
-import {selectGermanWords} from './select-german-words.mjs';
+import {selectGermanWords,germanFrequencyAudit} from './select-german-words.mjs';
 import {codingCards} from './build-coding1000.mjs';
 import fs from 'node:fs/promises';
 import {sentenceQuiz,factQuiz} from './quiz-distractors.mjs';
@@ -57,12 +57,13 @@ for(const [id,data,url] of [['german-word',JSON.stringify(selectGermanWords(entr
  coreDeckInfo[id]={count:JSON.parse(data).length,url,version:createHash('sha256').update(data).digest('hex').slice(0,16)};
  await fs.writeFile(new URL('dist/'+url,root),data);
 }
+await fs.writeFile(new URL('dist/german/frequency-audit.json',root),JSON.stringify(germanFrequencyAudit(entries)));
 html=html.replace('<script defer src="card-navigation.js"></script>',()=>'<script>'+cardNavigation+'</script>').replace('<link rel="stylesheet" href="style.css">','<style>'+css.trim()+'\n'+cursorCss.trim()+'\n'+studyCss.trim()+'\n'+supportCss.trim()+'\n'+accountCss.trim()+'</style>')
  .replace('<script defer src="app.js"></script>','').replace('<script defer src="german-voice.js"></script>','')
  .replace('CORE_DECK_INFO',()=>JSON.stringify(coreDeckInfo))
  .replace('FRENCH_WORD_DATA','[]')
  .replace('FRENCH_SENTENCE_DATA','[]')
- .replace('WORD_DATA',JSON.stringify(entries.slice(0,32)).replace(/</g,'\\u003c'))
+ .replace('WORD_DATA',JSON.stringify(selectGermanWords(entries).slice(0,32)).replace(/</g,'\\u003c'))
  .replace('SENTENCE_DATA','[]')
  .replace('KANA_DATA',kana.replace(/</g,'\\u003c'))
  .replace('KANJI_DATA','[]')
