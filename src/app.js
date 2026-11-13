@@ -93,7 +93,7 @@ function render(){
   $('game').setAttribute('aria-label',active.section[0].toUpperCase()+active.section.slice(1)+' flashcards');word.lang='en';translation.lang=active.lang;$('kanji-credit').hidden=active!==decks.kanji;
   for(const [name,b]of Object.entries(modeButtons)){b.classList.toggle('active',name===mode);b.setAttribute('aria-pressed',String(name===mode))}
   $('retry').hidden=true;$('question-image').hidden=true;$('question-image').removeAttribute('src');score();
-  const total=active.limit,complete=shownCursor===total;again.hidden=!complete;position.textContent=(complete?total:shownCursor+1)+' / '+total;$('previous-card').disabled=shownCursor===0;
+  const total=active.limit,complete=shownCursor===total;practice.classList.toggle('complete-mode',complete);again.hidden=!complete;position.textContent=(complete?total:shownCursor+1)+' / '+total;$('previous-card').disabled=shownCursor===0;
   if(complete){if(!quiz)cardVoice();word.textContent='Complete';feedback.textContent=active.daily?'Daily goal reached.':'All '+total+' '+active.unit+' practiced.';word.lang='en';return}
   shownCard=cardIndex();const current=active.cards[shownCard];
   if(active.remote&&(!current||(active.unit==='words'&&active.cards.filter(Boolean).length!==total))){cardVoice();locked=true;word.textContent='';const deck=active,view=screenVersion;loadLanguage(deck).then(()=>{if(active===deck&&screenVersion===view)render()}).catch(()=>{if(active===deck&&screenVersion===view){word.textContent='Unable to load cards';feedback.textContent='Check your connection and retry.';$('retry').hidden=false}});return}
