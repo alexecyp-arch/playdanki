@@ -32,3 +32,6 @@ svg .weight-latest-label{fill:#b1efcb;font-size:13px;paint-order:stroke;stroke:v
 #calorie-status,#calorie-target-status{font-size:10px;text-align:center}
 #calorie-status:empty,#calorie-target-status:empty{display:none}
 svg .calorie-target-label{fill:#ff8990;paint-order:stroke;stroke:var(--danki-bg,#071e48);stroke-width:4px;stroke-linejoin:round}
+
+#calorie-form{display:grid;grid-template-columns:110px 32px 32px;justify-content:center;gap:8px}
+#calorie-form #calorie-date{grid-column:1/-1;width:100%;min-width:0;color-scheme:dark;font:700 14px Arial,sans-serif;padding:8px}

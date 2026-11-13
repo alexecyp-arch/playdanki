@@ -43,3 +43,15 @@ html[data-danki-theme="charcoal"] body .games-list{background:var(--danki-button
 
 /* Selected recurring days have a green face and matching pressed base. */
 html body #eternal-panel .eternal-days button[aria-pressed="true"]{background:#24653c!important;border-color:#103820!important;color:#fff!important;box-shadow:inset 0 2px 0 #ffffff20,inset 0 -1px 0 #143e25,0 1px 0 #103820;translate:0 2px}
+
+/* Page controls stay attached to their place in the document. */
+html body{position:relative}
+html body :is(#account-bar,#support-menu,.tracker,#tracker,.storage-warning,#previous-card,#embedded-previous-card){position:absolute}
+html body .task-adjust-toggle{position:relative;top:auto}
+html body .timebox-chart-area{position:relative;inset:auto}
+html body :is(.history,.stats){position:absolute}
+
+html body #previous-controls :is(#previous-card,#embedded-previous-card){position:static}
+html body #quiz-accuracy{display:none}
+html body .arithmetic-frame{position:relative;inset:auto;display:block;min-height:100svh}
+html body .arithmetic-frame[hidden]{display:none}

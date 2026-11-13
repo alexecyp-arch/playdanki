@@ -57,9 +57,9 @@ export function createCalorieStore({auth,db,sdk,uid,onChange,now=Date.now}){
   queue=pending.catch(()=>{});return pending;
  }
  return {
-  adjust(amount){
-   const day=calorieDay(now());
+  adjust(amount,day=calorieDay(now())){
    return update(data=>{
+    if(!Number.isFinite(dayTime(day))||day>calorieDay(now()))throw Error('DATE');
     if(!Number.isInteger(amount)||amount===0||Math.abs(amount)>MAX_CALORIES)throw Error('CALORIES');
     const total=Math.max(0,(data.days[day]??0)+amount);
     if(!validCalories(total))throw Error('CALORIES');

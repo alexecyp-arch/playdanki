@@ -1,6 +1,6 @@
 (()=>{'use strict';
 const $=id=>document.getElementById(id),modeKeys={french:'french:mode:v1',german:'german:mode:v1',japanese:'japanese:mode:v1',spanish:'spanish:mode:v1',italian:'italian:mode:v1',greek:'greek:mode:v1',korean:'korean:mode:v1'},triviaInfo=JSON.parse($('trivia-info').textContent),triviaLoads=new Map(),languageInfo=JSON.parse($('language-info').textContent),languageLoads=new Map();
-const isQuiz=()=>active.unit==='words'||active.unit==='sentences'||active.fixedChoices;
+const isQuiz=()=>false;
 const menuOpen=()=>!!document.querySelector('.games-menu[open]');
 function languageDeck(file,key,title,section,lang,unit,options={}){const info=languageInfo[file];return {key,title,section,lang,unit,limit:info.limit,cards:new Array(info.count),remote:file,...options}}
 const coreDeckInfo=JSON.parse($('core-deck-info').textContent);
@@ -84,49 +84,6 @@ function centerAnswer(){
 }
 window.addEventListener('resize',centerAnswer);questionImage.addEventListener('load',centerAnswer);
 function cardVoice(text='',announce=false){document.dispatchEvent(new CustomEvent('danki-card-voice',{detail:{id:mode+':'+shownRound+':'+shownCursor,text,lang:active.lang,announce}}));}
-function wordMeanings(card){
-  const labels=[card[1],...(Array.isArray(card[3])?card[3]:[])];
-  return new Set(labels.flatMap(text=>text.toLowerCase().replace(/\([^)]*\)/g,'').split(/\s*[\/;]\s*/)).map(text=>text.trim().replace(/^to /,'').replace(/^an$/,'a')).filter(Boolean));
-}
-function wordChoices(cards,index){
-  const current=cards[index],meanings=wordMeanings(current);
-  const candidates=cards.filter(card=>card!==current&&!Array.from(wordMeanings(card)).some(meaning=>meanings.has(meaning)));
-  for(let i=candidates.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[candidates[i],candidates[j]]=[candidates[j],candidates[i]];}
-  if(candidates.length<2)throw Error('Not enough distinct word choices');
-  const choices=[current,...candidates.slice(0,2)];
-  for(let i=choices.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[choices[i],choices[j]]=[choices[j],choices[i]];}
-  return choices.map(card=>({text:card[0],correct:card===current}));
-}
-async function answerWord(button,correct,view){
-  if(view!==screenVersion||locked||!practiceActive||!isQuiz()||menuOpen()||!history.hidden||button.disabled||['notes-open','atlas-open','weight-open','timebox-open'].some(name=>document.body.classList.contains(name)))return;
-  locked=true;
-  const deck=active,cursor=shownCursor,round=shownRound,date=shownDay,review=reviewCursor!==null;
-  try{
-    let accepted=review;
-    const record=()=>{
-      const fresh=read(deck);
-      if(fresh.cursor===cursor&&fresh.round===round&&date===dayKey()){
-        const row=fresh.days[date]||(fresh.days[date]=emptyRow());
-        if(correct){row.correct++;fresh.cursor++;}else row.misses++;
-        if(deck.cumulative){if(correct)fresh.run.correct++;else fresh.run.misses=(fresh.run.misses||0)+1;}
-        if(deck.weekly){const week=fresh.weeks[weekKey()]||(fresh.weeks[weekKey()]=emptyRow());if(correct)week.correct++;else week.misses=(week.misses||0)+1;}
-        save(deck,fresh);accepted=true;
-      }
-      if(active===deck)state=fresh;
-    };
-    if(!review){if(navigator.locks?.request)await navigator.locks.request(deck.key,record);else record();}
-    if(view!==screenVersion||active!==deck)return;
-    if(!accepted){render();return;}
-    button.classList.add(correct?'word-correct':'word-wrong');button.disabled=true;score();
-    if(correct){
-      for(const choice of $('word-choices').children)choice.disabled=true;
-      cardVoice(deck.cards[cursor][deck.lang==='en'?1:0],true);
-      setTimeout(()=>{if(view!==screenVersion||active!==deck||!practiceActive)return;locked=false;if(review)nextCard();else render();},160);
-    }else locked=false;
-  }catch{
-    if(view===screenVersion){locked=false;feedback.textContent='Could not record answer. Try again.';}
-  }
-}
 function render(){
   if(!practiceActive)return;
   screenVersion++;locked=false;shownCursor=reviewCursor??state.cursor;shownRound=state.round;shownDay=dayKey();feedback.textContent='';$('answer-box').hidden=true;game.style.minHeight='';

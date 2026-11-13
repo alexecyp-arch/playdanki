@@ -411,3 +411,7 @@
   white-space:pre-wrap;
   overflow-wrap:anywhere;
 }
+
+/* Notes and their controls share the page scroll instead of a separate panel. */
+.notes-only .app{height:auto;min-height:100dvh}
+.notes-only .notes-area{overflow:visible;flex:1 0 auto}

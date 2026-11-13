@@ -11,35 +11,19 @@ function line(container,label,value){const dt=document.createElement('dt'),dd=do
 function renderStats(){const s=C.stats(state,deck),v=$('stats-values');v.replaceChildren();for(const [l,n]of [['Cards completed',s.completed.toLocaleString()],['Cards remaining',s.remaining.toLocaleString()],['Cards practiced',s.totalReviewed.toLocaleString()],['Total progress',percent(s.totalProgress)],['% Correct',DankiQuiz.label(state)],['Mastery','Not rated']])line(v,l,n);const topics=$('topic-stats');topics.replaceChildren();for(const [subject,t]of Object.entries(s.subjects)){const row=document.createElement('div');row.className='history-row';row.textContent=info.subjectLabels[subject]+': '+t.completed+'/'+t.total+' · '+percent(100*t.completed/t.total);topics.append(row)}const h=$('practice-history');h.replaceChildren();for(const [day,n]of Object.entries(state.practiceDays).sort(([a],[b])=>b.localeCompare(a))){const row=document.createElement('div');row.className='history-row';row.textContent=day+' · Practiced '+n.toLocaleString();h.append(row)}if(!h.childElementCount)h.textContent='Your practice history will appear here.'}
 function render(){$('quiz-accuracy').textContent=DankiQuiz.label(state);const s=C.stats(state,deck);$('completed-mini').textContent=s.completed.toLocaleString()+' / 5000 completed';$('total-progress').textContent='TOTAL PROGRESS: '+percent(s.totalProgress);$('study').hidden=true;$('complete').hidden=true;$('retry').hidden=!loadError;if(loadError){shownToken=null;$('card').textContent='CARD —/5000';return}if(state.current||reviewId!==null){const c=deck[(reviewId??state.current.id)-1];shownToken=reviewId===null?state.current?.token:null;$('study').hidden=false;$('card').textContent='CARD '+c.id+'/5000';$('subject').textContent=info.subjectLabels[c.subject];$('question').textContent=c.question;renderChoices(c)}else{shownToken=null;$('complete').hidden=false;$('card').textContent='CARD 5000/5000'}if(!$('stats').hidden)renderStats();controls()}
 function renderChoices(card){
- const identity=(reviewId===null?state.current?.token:'review:'+reviewId);if(choiceKey===identity&&$('answer').childElementCount)return;choiceKey=identity;
- DankiQuiz.render($('answer'),DankiQuiz.options(card.answer,card.wrongAnswers),'en',(button,correct)=>answerChoice(button,correct,card,identity));
-}
-async function answerChoice(button,correct,card,identity){
- if(busy||loadError||menuOpen()||!$('stats').hidden||button.disabled||identity!==choiceKey)return;
- busy=true;controls();const review=reviewId!==null,attempt=shownToken;
- try{
-  const accepted=review||await change(next=>{
-   if(next.current?.token!==attempt||next.current.id!==card.id)return false;
-   DankiQuiz.record(next,correct);if(correct){C.advance(next,attempt,Date.now());C.present(next,token);}return true;
-  });
-  if(!accepted){busy=false;await refresh();return;}
-  button.disabled=true;button.classList.add(correct?'word-correct':'word-wrong');$('quiz-accuracy').textContent=DankiQuiz.label(state);
-  if(correct){
-   for(const choice of $('answer').children)choice.disabled=true;
-   window.DankiAnswerVoice?.('quant',card.id,card.answer,true);
-   setTimeout(()=>{busy=false;if(review)advance();else refresh().catch(()=>notice('Progress could not refresh. Please reload.'));controls();},160);
-  }else{busy=false;controls();}
- }catch{busy=false;notice('Progress could not be saved. Please try again.');controls();}
+ const identity=(reviewId===null?state.current?.token:'review:'+reviewId);if(choiceKey===identity&&$('answer').textContent)return;choiceKey=identity;
+ $('answer').replaceChildren();$('answer').classList.remove('quiz-choices','quiz-prose');$('answer').textContent=card.answer;
+ window.DankiAnswerVoice?.('quant',card.id,card.answer);
 }
 async function refresh(){if(!deck.length||loadError)return;await change(s=>C.present(s,token));render()}
 async function load(){busy=true;loadError=false;notice('');controls();try{const embedded=$('quant-data').textContent.trim();if(embedded&&embedded!=='[]')deck=JSON.parse(embedded);else{const r=await fetch('quant/cards.json?v='+info.contentHash);if(!r.ok)throw Error('Course download failed');deck=await r.json()}const fields=['question','answer','difficulty','subject','topic','subtopic','cardType','formula','timesSeen','timesCorrect','timesWrong','masteryState','lastReviewed','nextReview'];if(deck.length!==5000||deck.some((c,i)=>c.id!==i+1||fields.some(f=>!(f in c))||!c.question||!c.answer))throw Error('Invalid course');notice('');await refresh()}catch{loadError=true;notice('The course could not load. Your saved progress has been kept. Please try again.');render()}finally{busy=false;controls()}}
 function menuOpen(){try{return parent!==window&&!!parent.document.querySelector('.games-menu[open]')}catch{return false}}
-async function advance(){if(busy||loadError||!deck.length||!$('stats').hidden||menuOpen()||document.hidden)return;if(state.current&&reviewId===null)return;if(reviewId!==null){reviewId++;if(reviewId>=(state.current?.id??5001))reviewId=null;render();return;}busy=true;controls();const attempt=shownToken;try{await change(s=>{if(attempt)C.advance(s,attempt,Date.now());else C.replay(s);C.present(s,token)});render()}catch{notice('Progress could not be saved. Please try again.')}finally{busy=false;controls()}}
+async function advance(){if(busy||loadError||!deck.length||!$('stats').hidden||menuOpen()||document.hidden)return;if(reviewId!==null){reviewId++;if(reviewId>=(state.current?.id??5001))reviewId=null;render();return;}busy=true;controls();const attempt=shownToken;try{await change(s=>{if(attempt)C.advance(s,attempt,Date.now());else C.replay(s);C.present(s,token)});render()}catch{notice('Progress could not be saved. Please try again.')}finally{busy=false;controls()}}
 $('again').addEventListener('click',advance);document.addEventListener('study-next',advance);
 function previous(){if(busy||loadError||!$('stats').hidden||menuOpen())return;const id=reviewId??state.current?.id??5001;if(id<=1)return;reviewId=id-1;render();}
 StudyNavigation.install({next:advance,previous,enabled:()=>!busy&&!loadError&&$('stats').hidden&&!menuOpen()});
 function stats(open){$('stats').hidden=!open;$('stats-toggle').setAttribute('aria-expanded',String(open));if(open)renderStats()}
 $('stats-toggle').addEventListener('click',()=>stats($('stats').hidden));$('stats-close').addEventListener('click',()=>stats(false));$('retry').addEventListener('click',load);
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('stats').hidden){stats(false);$('stats-toggle').focus();return}if($('stats').hidden&&!menuOpen()&&DankiQuiz.selectKey(e,$('answer')))return;if(e.isComposing||e.ctrlKey||e.altKey||e.metaKey||!(e.key==='Enter'||e.key===' '||e.code==='Space'))return;const control=e.target.closest?.('input,textarea,select,[contenteditable="true"],summary,a,button');if(control&&control!==$('again'))return;e.preventDefault();if(!e.repeat)advance()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('stats').hidden){stats(false);$('stats-toggle').focus();return}if(e.isComposing||e.ctrlKey||e.altKey||e.metaKey||!(e.key==='Enter'||e.key===' '||e.code==='Space'))return;const control=e.target.closest?.('input,textarea,select,[contenteditable="true"],summary,a,button');if(control&&control!==$('again'))return;e.preventDefault();if(!e.repeat)advance()});
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!busy)refresh().catch(()=>notice('Progress could not refresh. Please reload.'))});window.addEventListener('storage',e=>{reviewId=null;if((e.key===KEY||e.key===null)&&!busy)refresh().catch(()=>notice('Progress could not refresh. Please reload.'))});state=read();memory=state;load();
 })();

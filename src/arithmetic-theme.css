@@ -14,3 +14,6 @@ body{background:#071e48;color:#fff;font-weight:700;color-scheme:dark}
 #exercise input#answer{width:6ch;min-width:0;flex-shrink:0;border:0;border-bottom:2px solid #a3b4d1;border-radius:0;padding:0;background:transparent;font-weight:700;text-align:left;caret-color:#fff;outline:0}
 #exercise input#answer:focus{border-bottom-color:#fff}
 @media(max-width:700px){#exercise{gap:8px}#exercise label#problem,#exercise input#answer{font-size:24px}}
+
+#bottom{position:relative;inset:auto;width:min(580px,100%);max-width:100%;margin:24px 0 16px auto;transform:none}
+@media(max-width:600px){main{padding-bottom:240px}#bottom{width:100%;font-size:12px}#exercise{min-height:45svh;padding-bottom:2rem}}

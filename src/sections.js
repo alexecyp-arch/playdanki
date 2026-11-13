@@ -9,7 +9,19 @@ function trackPrevious(){
  try{const child=frame.contentDocument?.getElementById('previous-card');if(!child)return;child.style.display='none';const sync=()=>{embeddedPrevious.disabled=child.disabled;};sync();embeddedPrevious.hidden=false;previousObserver=new MutationObserver(sync);previousObserver.observe(child,{attributes:true,attributeFilter:['disabled']});}catch{}
 }
 embeddedPrevious.addEventListener('click',()=>{if(menuOpen()||!['programming','quant'].includes(section))return;try{frame.contentDocument?.getElementById('previous-card')?.click();}catch{}});
-frame.addEventListener('load',trackPrevious);
+let sizeObserver=null;
+function fitEmbedded(){
+ sizeObserver?.disconnect();sizeObserver=null;
+ if(frame.hidden)return;
+ try{
+  const doc=frame.contentDocument,main=doc?.querySelector('main');if(!main)return;
+  doc.body.style.minHeight='0';main.style.minHeight=innerHeight+'px';
+  if(innerWidth<=600)main.style.paddingBottom='240px';
+  const fit=()=>{const height=Math.max(innerHeight,Math.ceil(doc.body.getBoundingClientRect().height));if(Math.abs(frame.getBoundingClientRect().height-height)>1)frame.style.height=height+'px';};
+  sizeObserver=new ResizeObserver(fit);sizeObserver.observe(doc.body);fit();
+ }catch{}
+}
+frame.addEventListener('load',()=>{trackPrevious();fitEmbedded();});window.addEventListener('resize',fitEmbedded);
 function focusArithmetic(){if(!embedded[section]||menuOpen())return;try{const input=section==='arithmetic'&&frame.contentDocument?.getElementById('answer');if(input)input.focus({preventScroll:true});else frame.contentWindow?.focus()}catch{frame.focus({preventScroll:true})}}
 function closeMenu(focus=false){const current=menus.find(menu=>menu.open);for(const menu of menus){menu.open=false;menu.querySelector('summary').setAttribute('aria-expanded','false')}if(focus&&current)current.querySelector('summary').focus({preventScroll:true})}
 function show(){const hash=location.hash.slice(1);section=subjects.has(hash)?hash:'german';const math=!!embedded[section];previous.hidden=math;previousObserver?.disconnect();previousObserver=null;embeddedPrevious.hidden=true;document.body.classList.toggle('economics-page',section==='economics'||section==='trivia');$('game').hidden=math;$('german-tracker').hidden=math;frame.hidden=!math;document.title=math?embedded[section][1]:section[0].toUpperCase()+section.slice(1)+' practice';document.dispatchEvent(new CustomEvent('practice-section',{detail:section}));for(const button of options){const active=button.dataset.section===section&&(!button.classList.contains('mode')||button.classList.contains('active'));button.classList.toggle('active',active);button.setAttribute('aria-pressed',String(active))}if(math){const [src,,title]=embedded[section];frame.title=title;if(frame.getAttribute('src')!==src)frame.src=src;else{focusArithmetic();trackPrevious()}}}

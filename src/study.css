@@ -42,3 +42,5 @@ html body #translation,html body #exercise #answer,html body #study #answer{colo
 @media(max-width:600px){.quiz-mode #answer-box{width:calc(100vw - 2.4rem)}.quiz-prose .word-choice{font-size:1.1rem}.quiz-course .word-choice{min-height:56px}.quiz-course .course-main{padding-bottom:14rem}}
 
 .coding-mode #word{font-size:clamp(1.15rem,2.5vw,2rem);white-space:pre-wrap;line-height:1.35;letter-spacing:0}
+
+.quiz-course #answer{white-space:pre-wrap;font-size:var(--study-size);line-height:1.4}

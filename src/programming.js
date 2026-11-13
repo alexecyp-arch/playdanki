@@ -28,25 +28,9 @@ function render(){
  if(!$('stats').hidden)renderStats();setControls();
 }
 function renderChoices(card){
- const identity=(reviewId===null?state.current?.token:'review:'+reviewId);if(choiceKey===identity&&$('answer').childElementCount)return;choiceKey=identity;
- DankiQuiz.render($('answer'),DankiQuiz.options(card.answer,card.wrongAnswers),'en',(button,correct)=>answerChoice(button,correct,card,identity));
-}
-async function answerChoice(button,correct,card,identity){
- if(busy||loadError||menuOpen()||!$('stats').hidden||button.disabled||identity!==choiceKey)return;
- busy=true;setControls();const review=reviewId!==null,attempt=shownToken;
- try{
-  const accepted=review||await change(next=>{
-   if(next.current?.token!==attempt||next.current.id!==card.id)return false;
-   DankiQuiz.record(next,correct);if(correct){C.skipStudy(next,attempt,Date.now(),info);C.presentStudy(next,deck,info,Date.now(),token);}return true;
-  });
-  if(!accepted){busy=false;await refresh();return;}
-  button.disabled=true;button.classList.add(correct?'word-correct':'word-wrong');$('quiz-accuracy').textContent=DankiQuiz.label(state);
-  if(correct){
-   for(const choice of $('answer').children)choice.disabled=true;
-   window.DankiAnswerVoice?.('programming',card.id,card.answer,true);
-   setTimeout(()=>{busy=false;if(review)advance();else refresh().catch(()=>notice('Progress could not refresh. Please reload.'));setControls();},160);
-  }else{busy=false;setControls();}
- }catch{busy=false;notice('Progress could not be saved. Please try again.');setControls();}
+ const identity=(reviewId===null?state.current?.token:'review:'+reviewId);if(choiceKey===identity&&$('answer').textContent)return;choiceKey=identity;
+ $('answer').replaceChildren();$('answer').classList.remove('quiz-choices','quiz-prose');$('answer').textContent=card.answer;
+ window.DankiAnswerVoice?.('programming',card.id,card.answer);
 }
 async function refresh(){if(!deck.length||loadError)return;await change(s=>C.presentStudy(s,deck,info,Date.now(),token));render()}
 async function load(){
@@ -59,7 +43,7 @@ async function load(){
 }
 function menuOpen(){try{return parent!==window&&!!parent.document.querySelector('.games-menu[open]')}catch{return false}}
 async function advance(){
- if(busy||loadError||!deck.length||!$('stats').hidden||menuOpen()||document.hidden)return;if(state.current&&reviewId===null)return;if(reviewId!==null){reviewId++;if(reviewId>=(state.current?.id??5001))reviewId=null;render();return;}busy=true;setControls();const attempt=shownToken;
+ if(busy||loadError||!deck.length||!$('stats').hidden||menuOpen()||document.hidden)return;if(reviewId!==null){reviewId++;if(reviewId>=(state.current?.id??5001))reviewId=null;render();return;}busy=true;setControls();const attempt=shownToken;
  try{await change(s=>{if(attempt)C.skipStudy(s,attempt,Date.now(),info);else C.startStudyReplay(s);C.presentStudy(s,deck,info,Date.now(),token)});render()}
  catch{notice('Progress could not be saved. Please try again.')}
  finally{busy=false;setControls()}
@@ -69,7 +53,7 @@ function previous(){if(busy||loadError||!$('stats').hidden||menuOpen())return;co
 StudyNavigation.install({next:advance,previous,enabled:()=>!busy&&!loadError&&$('stats').hidden&&!menuOpen()});
 function stats(open){$('stats').hidden=!open;$('stats-toggle').setAttribute('aria-expanded',String(open));if(open)renderStats()}
 $('stats-toggle').addEventListener('click',()=>stats($('stats').hidden));$('stats-close').addEventListener('click',()=>stats(false));$('retry').addEventListener('click',load);
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('stats').hidden){stats(false);$('stats-toggle').focus();return}if($('stats').hidden&&!menuOpen()&&DankiQuiz.selectKey(e,$('answer')))return;if(e.isComposing||e.ctrlKey||e.altKey||e.metaKey||!(e.key==='Enter'||e.key===' '||e.code==='Space'))return;const control=e.target.closest?.('input,textarea,select,[contenteditable="true"],summary,a,button');if(control&&control!==$('again'))return;e.preventDefault();if(!e.repeat)advance()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('stats').hidden){stats(false);$('stats-toggle').focus();return}if(e.isComposing||e.ctrlKey||e.altKey||e.metaKey||!(e.key==='Enter'||e.key===' '||e.code==='Space'))return;const control=e.target.closest?.('input,textarea,select,[contenteditable="true"],summary,a,button');if(control&&control!==$('again'))return;e.preventDefault();if(!e.repeat)advance()});
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!busy)refresh().catch(()=>notice('Progress could not refresh. Please reload.'))});
 window.addEventListener('storage',e=>{reviewId=null;if((e.key===KEY||e.key===null)&&!busy)refresh().catch(()=>notice('Progress could not refresh. Please reload.'))});
 state=read();memory=state;load();

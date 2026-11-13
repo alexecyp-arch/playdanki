@@ -1,6 +1,6 @@
 // Standalone notes/timebox pages keep one owner-scoped peer document warm.
 export function initStandaloneNavigation(){'use strict';if(parent!==window)return;
- const notes=location.pathname.startsWith('/temponotes/'),view=notes?'notes':'timebox',peer=notes?'timebox':'notes',ownPath=notes?'/temponotes/':'/timebox/',peerPath=notes?'/timebox/':'/temponotes/',link=document.querySelector('.page-switch');if(!link)return;
+ const notes=location.pathname.startsWith('/temponotes/'),view=notes?'notes':'timebox',peer=notes?'timebox':'notes',ownPath=notes?'/temponotes/':'/timebox/',peerPath=notes?'/timebox/':'/temponotes/',link=document.querySelector('.page-switch[href="'+peerPath+'"]');if(!link)return;
  const title=notes?'Temponote':'TIMEBOX',peerTitle=notes?'TIMEBOX':'Temponote';let uid=null,frame=null,shown=false;
  const style=document.createElement('style');style.textContent='#private-peer-frame{position:fixed;inset:0;width:100%;height:100dvh;border:0;z-index:1000;background:#18191c}#private-peer-frame[hidden]{display:none}';document.head.append(style);
  function visibility(){window.dispatchEvent(new CustomEvent('temponotes-visibility',{detail:!shown}));frame?.contentWindow?.postMessage({type:'danki-'+peer+'-visibility',visible:shown},location.origin);}
