@@ -1,5 +1,5 @@
-import {mountTimebox} from '../temponotes/timebox-ui.js?v=4d26ae4ed6fe';
-import {dayKey,duration,periodTotal} from '../temponotes/timebox-model.mjs?v=4d26ae4ed6fe';
+import {mountTimebox} from '../temponotes/timebox-ui.js?v=af6f5e986e06';
+import {dayKey,duration,periodTotal} from '../temponotes/timebox-model.mjs?v=af6f5e986e06';
 export function mountTimeboxHub(root,store,{visible=true}={}){
  root.innerHTML='<div class="temponote-workspace timebox-workspace single-boxes"><aside class="timebox-side time-section" aria-label="Timebox"></aside><div class="box-middle"><button type="button" class="task-adjust-toggle">ADJUST</button></div><dialog class="task-adjust-dialog" aria-label="Adjust time"><header><div class="adjust-periods" role="group" aria-label="Adjustment period"><button type="button" data-adjust-period="today" aria-pressed="true">DAILY</button><button type="button" data-adjust-period="week" aria-pressed="false">WEEKLY</button><button type="button" data-adjust-period="month" aria-pressed="false">MONTHLY</button></div><button type="button" class="adjust-close" aria-label="Close adjustments">×</button></header><p class="adjust-window-note">WEEKLY: LAST 7 DAYS · MONTHLY: LAST 30 DAYS</p><h3>TIMEBOX</h3><div class="adjust-time-rows"></div><p class="adjust-error" role="alert" hidden></p></dialog></div>';
  const $=s=>root.querySelector(s),dialog=$('.task-adjust-dialog'),toggle=$('.task-adjust-toggle'),error=$('.adjust-error'),rows=new Map();let state={tasks:[],repTasks:[]},ready=false,busy=false,disposed=false,period='today';
