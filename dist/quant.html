@@ -36,7 +36,7 @@ html body #translation,html body #exercise #answer,html body #study #answer{colo
 .word-choice.word-wrong{background:#852c34;color:#fff}
 .word-choice.word-correct{background:#226c43;color:#fff}
 .word-choice:disabled{cursor:default;opacity:1}
-@media(min-width:601px){.quiz-mode #answer-box{width:min(48rem,calc(100vw - 4rem))}.word-choice{min-height:104px;padding:20px 28px;font-size:3rem}}
+@media(min-width:601px){.word-mode #answer-box{width:min(56rem,calc(100vw - 4rem))}.quiz-mode #answer-box{width:min(48rem,calc(100vw - 4rem))}.word-choice{min-height:104px;padding:20px 28px;font-size:3rem}}
 @media(max-width:600px){.word-accuracy{font-size:.75rem}.word-mode #answer-box{width:calc(100vw - 2.4rem)}.word-choice{min-height:56px;padding:10px 14px;font-size:1.6rem}#word-choices{gap:12px}}
 @media(prefers-reduced-motion:reduce){.word-choice{transition:none}}
 .quiz-mode :is(#again,#retry){position:relative;margin-top:calc(var(--card-offset) + 1.5rem)}
@@ -157,4 +157,4 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('stats').hidden)
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!busy)refresh().catch(()=>notice('Progress could not refresh. Please reload.'))});window.addEventListener('storage',e=>{reviewId=null;if((e.key===KEY||e.key===null)&&!busy)refresh().catch(()=>notice('Progress could not refresh. Please reload.'))});state=read();memory=state;load();
 })();
 </script>
-<script defer src="/analytics.js?v=e33fe8c790be"></script><script defer src="/page-warmup.js?v=4c7f329c3572"></script></body></html>
+<script defer src="/analytics.js?v=e33fe8c790be"></script><script defer src="/page-warmup.js?v=98356022ed43"></script></body></html>
