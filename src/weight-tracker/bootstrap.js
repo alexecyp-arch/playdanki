@@ -9,8 +9,13 @@ const $=id=>document.getElementById(id),app=initializeApp(JSON.parse($('auth-con
 let calorieStore=null,calories={},calorieTarget=null,calorieReady=false,shownCalorieDay='';
 let store=null,entries=[],unit='KG',ready=false,saving=false,generation=0,selectedId=null,targetKg=null,targetReady=false;
 function controls(){const disabled=!ready||saving||!navigator.onLine;$('add').disabled=disabled;$('remove').disabled=disabled||!selectedId;$('calorie-add').disabled=$('calorie-remove').disabled=$('set-calorie-target').disabled=!calorieReady||saving||!navigator.onLine;$('set-target').disabled=!targetReady||saving||!navigator.onLine;}
+function syncCalorieArrows(){const date=$('calorie-date');$('calorie-day-next').disabled=!!date.max&&date.value>=date.max;}
+function stepCalorieDay(amount){const date=$('calorie-date');if(!date.value)date.value=calorieDay();const next=new Date(date.value+'T12:00:00');next.setDate(next.getDate()+amount);const day=calorieDay(next.getTime());if(day>calorieLastDay())return;date.value=day;syncCalorieArrows();}
+$('calorie-day-prev').addEventListener('click',()=>stepCalorieDay(-1));
+$('calorie-day-next').addEventListener('click',()=>stepCalorieDay(1));
+$('calorie-date').addEventListener('change',syncCalorieArrows);
 function renderCalories(){
- const now=Date.now(),today=calorieDay(now),date=$('calorie-date');if(!date.value||date.value===shownCalorieDay)date.value=today;date.max=calorieLastDay(now);shownCalorieDay=today;
+ const now=Date.now(),today=calorieDay(now),date=$('calorie-date');if(!date.value||date.value===shownCalorieDay)date.value=today;date.max=calorieLastDay(now);shownCalorieDay=today;syncCalorieArrows();
  if($('calorie-panel').hidden)return;
  const average=calorieAverage(calories,now);
  $('calorie-average').textContent='7-DAY AVERAGE: '+(average===null?'—':average.toLocaleString()+' KCAL');

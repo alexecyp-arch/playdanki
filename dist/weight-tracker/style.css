@@ -34,4 +34,7 @@ svg .weight-latest-label{fill:#b1efcb;font-size:13px;paint-order:stroke;stroke:v
 svg .calorie-target-label{fill:#ff8990;paint-order:stroke;stroke:var(--danki-bg,#071e48);stroke-width:4px;stroke-linejoin:round}
 
 #calorie-form{display:grid;grid-template-columns:110px 32px 32px;justify-content:center;gap:8px}
-#calorie-form #calorie-date{grid-column:1/-1;width:100%;min-width:0;color-scheme:dark;font:700 14px Arial,sans-serif;padding:8px}
+#calorie-form #calorie-date{width:100%;min-width:0;color-scheme:dark;font:700 14px Arial,sans-serif;padding:8px}
+
+.calorie-date-controls{grid-column:1/-1;display:grid;grid-template-columns:29px minmax(0,1fr) 29px;gap:6px;align-items:center}
+#calorie-form .calorie-date-controls button{padding:0;font-size:24px;font-weight:900}

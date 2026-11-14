@@ -1,13 +1,16 @@
-import {moveLockedTab} from './locked-order.mjs?v=2c45fb60ea6c';
-import {confirmDelete} from './confirm-delete.js?v=2c45fb60ea6c';
-import {createLock,emptyLockedNotes,sealNotes,unlockNotes,validPassword} from './locked-crypto.mjs?v=2c45fb60ea6c';
+import {moveLockedTab} from './locked-order.mjs?v=5f6d4221c68c';
+import {confirmDelete} from './confirm-delete.js?v=5f6d4221c68c';
+import {createLock,emptyLockedNotes,sealNotes,unlockNotes,validPassword} from './locked-crypto.mjs?v=5f6d4221c68c';
 export function mountLocked(root,store){
  const confirmController=new AbortController();
  const wrapper=document.createElement('aside');wrapper.className='locked-area';
- wrapper.innerHTML=`<button type="button" id="locked-toggle" aria-expanded="false" aria-controls="locked-panel">LOCKED NOTES</button><section id="locked-panel" aria-label="Locked notes" hidden><header><strong>LOCKED NOTES</strong><button type="button" class="locked-close" aria-label="Close and lock notes">×</button></header><form class="locked-login"><label class="sr-only" for="locked-password">Password</label><input id="locked-password" type="password" minlength="1" maxlength="1024" placeholder="PASSWORD" autocomplete="off" required><button type="submit" class="locked-open">OPEN</button></form><div class="locked-content" hidden><div class="locked-tabs-row"><div class="locked-tabs" role="tablist" aria-label="Note sections"></div><button type="button" class="locked-add" aria-label="Add section">+</button></div><textarea id="locked-text" spellcheck="false" aria-label="Locked notes section 1"></textarea><div class="locked-actions"><button type="button" class="locked-password-toggle" aria-expanded="false">CHANGE PASSWORD</button><button type="button" class="locked-delete">DELETE NOTE</button></div><form class="locked-change-form" hidden><label class="sr-only" for="locked-old-password">Old password</label><input id="locked-old-password" type="password" minlength="1" maxlength="1024" placeholder="OLD PASSWORD" autocomplete="off" required><label class="sr-only" for="locked-new-password">New password</label><input id="locked-new-password" type="password" minlength="1" maxlength="1024" placeholder="NEW PASSWORD" autocomplete="off" required><button type="submit">CHANGE</button></form></div><p class="locked-status" role="status"></p></section>`;
+ wrapper.innerHTML=`<button type="button" id="locked-toggle" aria-expanded="false" aria-controls="locked-panel">LOCKED NOTES</button><section id="locked-panel" aria-label="Locked notes" tabindex="-1" hidden><header><strong>LOCKED NOTES</strong><button type="button" class="locked-close" aria-label="Close and lock notes">×</button></header><form class="locked-login"><label class="sr-only" for="locked-password">Password</label><input id="locked-password" type="password" minlength="1" maxlength="1024" placeholder="PASSWORD" autocomplete="off" required><button type="submit" class="locked-open">OPEN</button></form><div class="locked-content" hidden><div class="locked-tabs-row"><div class="locked-tabs" role="tablist" aria-label="Note sections"></div><button type="button" class="locked-add" aria-label="Add section">+</button></div><textarea id="locked-text" spellcheck="false" aria-label="Locked notes section 1"></textarea><div class="locked-actions"><button type="button" class="locked-password-toggle" aria-expanded="false">CHANGE PASSWORD</button><button type="button" class="locked-delete">DELETE NOTE</button></div><form class="locked-change-form" hidden><label class="sr-only" for="locked-old-password">Old password</label><input id="locked-old-password" type="password" minlength="1" maxlength="1024" placeholder="OLD PASSWORD" autocomplete="off" required><label class="sr-only" for="locked-new-password">New password</label><input id="locked-new-password" type="password" minlength="1" maxlength="1024" placeholder="NEW PASSWORD" autocomplete="off" required><button type="submit">CHANGE</button></form></div><p class="locked-status" role="status"></p></section>`;
  (root.querySelector('.note-tools')||root).append(wrapper);
  const $=s=>wrapper.querySelector(s),toggle=$('#locked-toggle'),panel=$('#locked-panel'),login=$('.locked-login'),password=$('#locked-password'),content=$('.locked-content'),text=$('#locked-text'),tabs=$('.locked-tabs'),changeForm=$('.locked-change-form');
- let cloud={value:null,revision:-1,ready:false,error:''},data=null,lock=null,revision=-1,selected=null,dirty=0,saved=0,busy=false,closing=false,disposed=false,token=0,timer,pendingSave=null,autoTimer,autoAttempt=0,tabDrag=null,ignoreTabClick=false;
+ let cloud={value:null,revision:-1,ready:false,error:''},data=null,lock=null,revision=-1,selected=null,dirty=0,saved=0,busy=false,closing=false,disposed=false,token=0,timer,pendingSave=null,autoAttempt=0,autoQueue=[],autoActive=0,autoInput='',autoRevision=-1,heldPasswordKey=null,focusAfterRelease=false,tabDrag=null,ignoreTabClick=false;
+ const autoSeen=new Set();
+ function resetAuto(){++autoAttempt;autoQueue.length=0;autoInput='';autoRevision=-1;autoSeen.clear();}
+ function focusOpenedNotes(){if(heldPasswordKey){focusAfterRelease=true;startAtTop();panel.focus({preventScroll:true});}else startAtTop(true);}
  const status=message=>{if(!disposed)$('.locked-status').textContent=message;};
  function startAtTop(focus=false){
   const session=token,section=selected;
@@ -17,7 +20,7 @@ export function mountLocked(root,store){
  }
  function controls(){if(disposed)return;toggle.disabled=closing;password.disabled=busy||!cloud.ready;$('.locked-open').disabled=busy||!cloud.ready;$('.locked-open').textContent=cloud.value?'OPEN':'SET PASSWORD';text.disabled=busy||closing;$('.locked-add').disabled=busy||closing||!data||data.tabs.length>=100;for(const input of changeForm.querySelectorAll('input,button'))input.disabled=busy||closing;$('.locked-password-toggle').disabled=busy||closing;$('.locked-delete').disabled=busy||closing||!data;$('.locked-close').disabled=busy||closing;for(const b of tabs.children)b.disabled=busy||closing;}
  function renderTabs(){tabs.replaceChildren();if(!data)return;data.tabs.forEach((tab,index)=>{const b=document.createElement('button');b.type='button';b.role='tab';b.textContent=index+1;b.dataset.id=tab.id;b.id='locked-tab-'+tab.id;b.setAttribute('aria-selected',String(tab.id===selected));b.setAttribute('aria-controls','locked-text');b.setAttribute('aria-label','Section '+(index+1));b.title='DRAG TO MOVE';tabs.append(b);});const index=data.tabs.findIndex(t=>t.id===selected);text.setAttribute('aria-label','Locked notes section '+(index+1));text.setAttribute('aria-labelledby','locked-tab-'+selected);controls();}
- function wipe(){cancelTabDrag();++token;++autoAttempt;clearTimeout(autoTimer);clearTimeout(timer);data=lock=null;revision=-1;selected=null;dirty=saved=0;password.value=text.value=$('#locked-old-password').value=$('#locked-new-password').value='';tabs.replaceChildren();content.hidden=true;login.hidden=false;changeForm.hidden=true;$('.locked-password-toggle').setAttribute('aria-expanded','false');}
+ function wipe(){cancelTabDrag();++token;resetAuto();heldPasswordKey=null;focusAfterRelease=false;clearTimeout(timer);data=lock=null;revision=-1;selected=null;dirty=saved=0;password.value=text.value=$('#locked-old-password').value=$('#locked-new-password').value='';tabs.replaceChildren();content.hidden=true;login.hidden=false;changeForm.hidden=true;$('.locked-password-toggle').setAttribute('aria-expanded','false');}
  function changed(){dirty++;status('SAVING…');clearTimeout(timer);timer=setTimeout(()=>flush().catch(e=>status(e.message)),600);}
  function flush(){
   clearTimeout(timer);if(pendingSave)return pendingSave;if(!lock||!data||dirty===saved)return Promise.resolve();const session=token;
@@ -27,24 +30,38 @@ export function mountLocked(root,store){
  toggle.addEventListener('click',()=>{if(!panel.hidden){close();return;}panel.hidden=false;panel.scrollTop=0;toggle.setAttribute('aria-expanded','true');status(cloud.error||'');controls();password.focus({preventScroll:true});});
  $('.locked-close').addEventListener('click',close);
  login.addEventListener('submit',async event=>{
-  event.preventDefault();if(busy||!cloud.ready||!validPassword(password.value))return;++autoAttempt;clearTimeout(autoTimer);busy=true;controls();status('OPENING…');const session=token,existing=cloud.value,expected=cloud.revision,secret=password.value;password.value='';
+  event.preventDefault();if(busy||!cloud.ready||!validPassword(password.value))return;resetAuto();busy=true;controls();status('OPENING…');const session=token,existing=cloud.value,expected=cloud.revision,secret=password.value;password.value='';
   try{let result;if(existing)result=await unlockNotes(existing,secret,store.uid);else {const nextLock=await createLock(secret),nextData=emptyLockedNotes(),envelope=await sealNotes(nextData,nextLock,store.uid);if(disposed||session!==token)return;const next=await store.save(envelope,expected);result={lock:nextLock,data:nextData};revision=next;}
    if(disposed||session!==token)return;if(existing&&cloud.revision!==expected)throw Error('NOTES CHANGED. TRY AGAIN.');
    lock=result.lock;data=result.data;if(existing)revision=expected;selected=data.tabs[0].id;dirty=saved=0;login.hidden=true;content.hidden=false;text.value=data.tabs[0].text;renderTabs();status('SAVED');
   }catch(e){status(e.message);}finally{busy=false;controls();if(!disposed&&!panel.hidden){if(lock)startAtTop(true);else password.focus({preventScroll:true});}}
  });
+ function drainAuto(){
+  while(autoActive<2&&autoQueue.length&&!disposed&&!lock){
+   const job=autoQueue.shift();autoActive++;
+   (async()=>{
+    const {session,attempt,existing,expected,secret}=job;
+    try{const result=await unlockNotes(existing,secret,store.uid);
+     if(disposed||session!==token||attempt!==autoAttempt||panel.hidden||busy||closing||lock||!password.value.startsWith(secret)||cloud.revision!==expected)return;
+     lock=result.lock;data=result.data;revision=expected;selected=data.tabs[0].id;dirty=saved=0;resetAuto();password.value='';login.hidden=true;content.hidden=false;text.value=data.tabs[0].text;renderTabs();status('SAVED');focusOpenedNotes();
+    }catch{/* An unsuccessful candidate stays silent while typing continues. */}
+    finally{autoActive--;drainAuto();}
+   })();
+  }
+ }
  function autoOpen(){
-  clearTimeout(autoTimer);const attempt=++autoAttempt;
-  if(disposed||panel.hidden||busy||closing||lock||!cloud.ready||!cloud.value||!validPassword(password.value))return;
-  autoTimer=setTimeout(async()=>{
-   const session=token,existing=cloud.value,expected=cloud.revision,secret=password.value;
-   try{const result=await unlockNotes(existing,secret,store.uid);
-    if(disposed||session!==token||attempt!==autoAttempt||panel.hidden||busy||closing||lock||password.value!==secret||cloud.revision!==expected)return;
-    lock=result.lock;data=result.data;revision=expected;selected=data.tabs[0].id;dirty=saved=0;password.value='';login.hidden=true;content.hidden=false;text.value=data.tabs[0].text;renderTabs();status('SAVED');startAtTop(true);
-   }catch{/* Keep typing quietly until the full password matches. */}
-  },180);
+  const secret=password.value;
+  // Appending a repeated key must not cancel a password already entered.
+  // Deleting/replacing text or changing the cloud record cancels old checks.
+  if(!secret.startsWith(autoInput)||autoRevision!==cloud.revision)resetAuto();
+  autoInput=secret;autoRevision=cloud.revision;
+  if(disposed||panel.hidden||busy||closing||lock||!cloud.ready||!cloud.value||!validPassword(secret)||autoSeen.has(secret))return;
+  autoSeen.add(secret);autoQueue.push({session:token,attempt:autoAttempt,existing:cloud.value,expected:cloud.revision,secret});drainAuto();
  }
  password.addEventListener('input',autoOpen);
+ password.addEventListener('keydown',event=>{if(event.key.length===1&&!event.ctrlKey&&!event.metaKey)heldPasswordKey=event.code||event.key;});
+ const passwordReleased=event=>{if(heldPasswordKey!==(event.code||event.key))return;heldPasswordKey=null;if(focusAfterRelease){focusAfterRelease=false;if(lock&&!panel.hidden&&document.activeElement===panel)startAtTop(true);}};
+ document.addEventListener('keyup',passwordReleased);
  text.addEventListener('input',()=>{if(!data||!lock)return;const tab=data.tabs.find(t=>t.id===selected);if(tab){tab.text=text.value;changed();}});
  tabs.addEventListener('click',event=>{const button=event.target.closest('[data-id]');if(ignoreTabClick||!button||busy||closing||!data)return;selected=button.dataset.id;text.value=data.tabs.find(t=>t.id===selected).text;renderTabs();startAtTop(true);});
  function moveTab(id,index){if(!data||!lock||busy||closing||!moveLockedTab(data.tabs,id,index))return;renderTabs();changed();[...tabs.children].find(b=>b.dataset.id===id)?.focus({preventScroll:true});}
@@ -65,5 +82,5 @@ export function mountLocked(root,store){
  });
  const stop=store.subscribe(snapshot=>{cloud=snapshot;if(!lock)autoOpen();if(cloud.error)status(cloud.error);else if(lock&&!pendingSave&&!busy&&cloud.revision>revision)status('NOTES CHANGED ON ANOTHER DEVICE. CLOSE AND REOPEN.');controls();});
  const outside=event=>{if(!panel.hidden&&!event.composedPath().includes(wrapper))close();},escape=event=>{if(event.key==='Escape'&&!panel.hidden){event.preventDefault();close();}},visibility=event=>{if(event.detail===false)close();};document.addEventListener('click',outside);document.addEventListener('keydown',escape);window.addEventListener('temponotes-visibility',visibility);
- return ()=>{disposed=true;confirmController.abort();wipe();stop();document.removeEventListener('click',outside);document.removeEventListener('keydown',escape);window.removeEventListener('temponotes-visibility',visibility);wrapper.remove();};
+ return ()=>{disposed=true;confirmController.abort();wipe();stop();document.removeEventListener('click',outside);document.removeEventListener('keydown',escape);document.removeEventListener('keyup',passwordReleased);window.removeEventListener('temponotes-visibility',visibility);wrapper.remove();};
 }

@@ -1,16 +1,21 @@
-import {createCalorieStore,calorieAverage,calorieDay,calorieLastDay,MAX_CALORIES} from './calories.mjs?v=2c45fb60ea6c';
+import {createCalorieStore,calorieAverage,calorieDay,calorieLastDay,MAX_CALORIES} from './calories.mjs?v=5f6d4221c68c';
 import {initializeApp} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js';
 import {getAuth,onAuthStateChanged,beforeAuthStateChanged,GoogleAuthProvider,signInWithPopup} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js';
 import * as sdk from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js';
-import {createWeightStore} from './store.mjs?v=2c45fb60ea6c';
-import {draw,drawCalories} from './chart.mjs?v=2c45fb60ea6c';
-import {kilograms,weight,forecastTargetTime,formatForecastDate} from './model.mjs?v=2c45fb60ea6c';
+import {createWeightStore} from './store.mjs?v=5f6d4221c68c';
+import {draw,drawCalories} from './chart.mjs?v=5f6d4221c68c';
+import {kilograms,weight,forecastTargetTime,formatForecastDate} from './model.mjs?v=5f6d4221c68c';
 const $=id=>document.getElementById(id),app=initializeApp(JSON.parse($('auth-config').textContent).firebase),auth=getAuth(app),db=sdk.getFirestore(app);
 let calorieStore=null,calories={},calorieTarget=null,calorieReady=false,shownCalorieDay='';
 let store=null,entries=[],unit='KG',ready=false,saving=false,generation=0,selectedId=null,targetKg=null,targetReady=false;
 function controls(){const disabled=!ready||saving||!navigator.onLine;$('add').disabled=disabled;$('remove').disabled=disabled||!selectedId;$('calorie-add').disabled=$('calorie-remove').disabled=$('set-calorie-target').disabled=!calorieReady||saving||!navigator.onLine;$('set-target').disabled=!targetReady||saving||!navigator.onLine;}
+function syncCalorieArrows(){const date=$('calorie-date');$('calorie-day-next').disabled=!!date.max&&date.value>=date.max;}
+function stepCalorieDay(amount){const date=$('calorie-date');if(!date.value)date.value=calorieDay();const next=new Date(date.value+'T12:00:00');next.setDate(next.getDate()+amount);const day=calorieDay(next.getTime());if(day>calorieLastDay())return;date.value=day;syncCalorieArrows();}
+$('calorie-day-prev').addEventListener('click',()=>stepCalorieDay(-1));
+$('calorie-day-next').addEventListener('click',()=>stepCalorieDay(1));
+$('calorie-date').addEventListener('change',syncCalorieArrows);
 function renderCalories(){
- const now=Date.now(),today=calorieDay(now),date=$('calorie-date');if(!date.value||date.value===shownCalorieDay)date.value=today;date.max=calorieLastDay(now);shownCalorieDay=today;
+ const now=Date.now(),today=calorieDay(now),date=$('calorie-date');if(!date.value||date.value===shownCalorieDay)date.value=today;date.max=calorieLastDay(now);shownCalorieDay=today;syncCalorieArrows();
  if($('calorie-panel').hidden)return;
  const average=calorieAverage(calories,now);
  $('calorie-average').textContent='7-DAY AVERAGE: '+(average===null?'—':average.toLocaleString()+' KCAL');
