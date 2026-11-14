@@ -21,20 +21,20 @@
 @media(max-width:600px){.page-links{gap:5px}.page-links a{font-size:9px;padding:6px 8px}}
 
 svg .weight-latest-label{fill:#b1efcb;font-size:13px;paint-order:stroke;stroke:var(--danki-bg,#071e48);stroke-width:4px;stroke-linejoin:round}
-#calorie-panel{display:grid;justify-items:center;gap:14px;width:100%;margin:32px auto 20px}
-.calorie-divider{width:100%;border:0;border-top:3px solid #787d86;margin:0 0 10px}
-@media(max-width:600px){.calorie-divider{width:calc(100% + 12px)}}
-.calorie-controls{display:grid;justify-items:center;gap:8px}
-#calorie-form{margin:0;gap:5px;flex-wrap:nowrap}
-#calorie-form input{width:110px;font-size:12px}
-#calorie-form button{height:32px;min-width:29px;padding:4px 8px}
-#calorie-average{font-size:10px;text-align:center}
-#calorie-status,#calorie-target-status{font-size:10px;text-align:center}
-#calorie-status:empty,#calorie-target-status:empty{display:none}
-svg .calorie-target-label{fill:#ff8990;paint-order:stroke;stroke:var(--danki-bg,#071e48);stroke-width:4px;stroke-linejoin:round}
+#protein-panel{display:grid;justify-items:center;gap:14px;width:100%;margin:32px auto 20px}
+.protein-divider{width:100%;border:0;border-top:3px solid #787d86;margin:0 0 10px}
+@media(max-width:600px){.protein-divider{width:calc(100% + 12px)}}
+.protein-controls{display:grid;justify-items:center;gap:8px}
+#protein-form{margin:0;gap:5px;flex-wrap:nowrap}
+#protein-form input{width:110px;font-size:12px}
+#protein-form button{height:32px;min-width:29px;padding:4px 8px}
+#protein-average{font-size:10px;text-align:center}
+#protein-status,#protein-target-status{font-size:10px;text-align:center}
+#protein-status:empty,#protein-target-status:empty{display:none}
+svg .protein-target-label{fill:#ff8990;paint-order:stroke;stroke:var(--danki-bg,#071e48);stroke-width:4px;stroke-linejoin:round}
 
-#calorie-form{display:grid;grid-template-columns:110px 32px 32px;justify-content:center;gap:8px}
-#calorie-form #calorie-date{width:100%;min-width:0;color-scheme:dark;font:700 14px Arial,sans-serif;padding:8px}
+#protein-form{display:grid;grid-template-columns:110px 32px 32px;justify-content:center;gap:8px}
+#protein-form #protein-date{width:100%;min-width:0;color-scheme:dark;font:700 14px Arial,sans-serif;padding:8px}
 
-.calorie-date-controls{grid-column:1/-1;display:grid;grid-template-columns:29px minmax(0,1fr) 29px;gap:6px;align-items:center}
-#calorie-form .calorie-date-controls button{padding:0;font-size:24px;font-weight:900}
+.protein-date-controls{grid-column:1/-1;display:grid;grid-template-columns:29px minmax(0,1fr) 29px;gap:6px;align-items:center}
+#protein-form .protein-date-controls button{padding:0;font-size:24px;font-weight:900}
