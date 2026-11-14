@@ -1,5 +1,5 @@
-import {chartData} from './model.mjs?v=aa89a7fb8d0c';
-import {calorieChartData} from './calories.mjs?v=aa89a7fb8d0c';
+import {chartData} from './model.mjs?v=cebdfc99aea2';
+import {calorieChartData} from './calories.mjs?v=cebdfc99aea2';
 const namespace='http://www.w3.org/2000/svg';
 export function draw(svg,entries,unit,{selectedId=null,onSelect=()=>{},targetKg=null}={}){
  const data=chartData(entries,unit,targetKg);
