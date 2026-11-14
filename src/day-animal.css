@@ -1,0 +1,10 @@
+#day-animal{position:fixed;bottom:max(1px,env(safe-area-inset-bottom,0px));left:0;width:34px;height:29px;z-index:2147483000;pointer-events:none;user-select:none;opacity:.88;transition:left 1s linear;contain:layout style}
+#day-animal svg{display:block;width:100%;height:100%;overflow:visible}
+#day-animal .animal-body{transform-origin:32px 46px;animation:animal-step 1.4s ease-in-out infinite}
+#day-animal .animal-feet{transform-origin:32px 45px;animation:animal-feet .7s ease-in-out infinite alternate}
+#day-animal .animal-flipper{transform-origin:31px 38px;animation:animal-feet 1.4s ease-in-out infinite alternate}
+#day-animal.animal-paused *{animation-play-state:paused}
+@keyframes animal-step{0%,50%,100%{transform:translateY(0) rotate(0)}25%{transform:translateY(-.7px) rotate(-1deg)}75%{transform:translateY(-.7px) rotate(1deg)}}
+@keyframes animal-feet{from{transform:rotate(-5deg) translateX(-.6px)}to{transform:rotate(5deg) translateX(.6px)}}
+@media(max-width:600px){#day-animal{width:28px;height:24px}}
+@media(prefers-reduced-motion:reduce){#day-animal{transition:none}#day-animal *{animation:none!important}}
