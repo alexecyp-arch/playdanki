@@ -56,3 +56,8 @@ svg .sleep-target-label{fill:#ff8990;paint-order:stroke;stroke:var(--danki-bg,#0
 
 .sleep-date-controls{grid-column:1/-1;display:grid;grid-template-columns:29px minmax(0,1fr) 29px;gap:6px;align-items:center}
 #sleep-form .sleep-date-controls button{padding:0;font-size:24px;font-weight:900}
+
+.log-heading{width:100%;margin:0 0 8px;text-align:center;text-decoration:underline;text-underline-offset:4px;font-size:16px;font-weight:900}
+.log-divider{width:100%;border:0;border-top:9px solid #787d86;margin:24px 0 22px}
+#weight-panel{width:100%}#sleep-panel{margin-top:0}
+@media(max-width:600px){.log-divider{width:calc(100% + 12px);margin-left:-6px}.log-heading{font-size:14px}}
