@@ -27,7 +27,7 @@ assert.equal((await call('/api/note-order','POST',{ids:[id(1),id(1)]})).status,4
 store.dispose();assert.equal(watchers.size,0);
 store=await createNotesStore({auth,db:{},sdk,uid:'alice',now:()=>clock});assert.deepEqual((await get()).noteOrder,[id(3),id(1),id(2)],'Ordering survives reload');
 const schedule={id:id(4),body:'daily',days:[new Date(clock).getDay(),new Date(endOfDay(clock)).getDay()],createdAt:clock,dismissedOn:''};
-await call('/api/eternal','POST',{...schedule,color:'purple'});assert.equal((await get()).eternalNotes[0].color,'purple');assert.equal((await call('/api/eternal','PATCH',{...schedule,color:'orange'})).status,400,'Only the five palette colours are accepted');
+await call('/api/eternal','POST',{...schedule,color:'purple'});assert.equal((await get()).eternalNotes[0].color,'purple');assert.equal((await call('/api/eternal','PATCH',{...schedule,color:'orange'})).status,400,'Only valid palette colours are accepted');
 let data=await get(),occ=occurrences(data.eternalNotes,clock)[0];assert.equal(orderKey(occ.id),'eternal:'+id(4));
 await call('/api/eternal','PATCH',{id:id(4),occurrenceId:occ.id,days:1});clock=endOfDay(clock)+1000;data=await get();
 let active=occurrences(data.eternalNotes,clock,data.eternalAdjustments);assert.equal(active[0].color,'purple','Recurring carry keeps its selected bar colour');assert.equal(active.length,1,'Carry does not duplicate tomorrow recurring note');assert.equal(active[0].id,occ.id);

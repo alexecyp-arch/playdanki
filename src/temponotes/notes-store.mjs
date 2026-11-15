@@ -93,7 +93,7 @@ export async function createNotesStore({auth,db,sdk,uid,now=Date.now,signal}){
             .catch(()=>{}).finally(()=>cleaning.delete(n.id));
         }
         notes=new Map([...notes].map(([id,n])=>[id,n.expiresAt>t?{...n,expiresAt:n.daily===true?n.expiresAt:dayDeadline(n.expiresAt),daily:true}:n]));
-        return Response.json({noteOrder,notes:[...notes.values()].filter(n=>n.expiresAt>t),eternalNotes:[...eternal.values()].map(n=>({...n,color:colors[n.id]||'green'})),eternalAdjustments:adjustments,serverNow:t});
+        return Response.json({noteOrder,notes:[...notes.values()].filter(n=>n.expiresAt>t),eternalNotes:[...eternal.values()].map(n=>({...n,color:colors[n.id]||'brown'})),eternalAdjustments:adjustments,serverNow:t});
       }
       if(method==='DELETE'){
         const id=new URL(url,'https://playdanki.com').searchParams.get('id');

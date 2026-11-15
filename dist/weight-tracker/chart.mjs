@@ -1,5 +1,5 @@
-import {chartData} from './model.mjs?v=4495a099dea1';
-import {proteinChartData} from './protein-tracker.mjs?v=4495a099dea1';
+import {chartData} from './model.mjs?v=ee57e2dc5f2a';
+import {proteinChartData} from './protein-tracker.mjs?v=ee57e2dc5f2a';
 const namespace='http://www.w3.org/2000/svg';
 export function draw(svg,entries,unit,{selectedId=null,onSelect=()=>{},targetKg=null}={}){
  const data=chartData(entries,unit,targetKg);

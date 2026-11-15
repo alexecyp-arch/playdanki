@@ -1,11 +1,11 @@
-import {orderKey,finishOrder} from './daily-notes.mjs?v=4495a099dea1';
-import {calendarLabel} from './calendar.mjs?v=4495a099dea1';
-import {confirmDelete} from './confirm-delete.js?v=4495a099dea1';
-import {noteColors,occurrences} from './eternal.mjs?v=4495a099dea1';
-import {mountEternal} from './eternal-ui.js?v=4495a099dea1';
-import {orderNotes} from './note-order.mjs?v=4495a099dea1';
-import {mountLocked} from './locked-ui.js?v=4495a099dea1';
-import {mountFortuna} from './fortuna.js?v=4495a099dea1';
+import {orderKey,finishOrder} from './daily-notes.mjs?v=ee57e2dc5f2a';
+import {calendarLabel} from './calendar.mjs?v=ee57e2dc5f2a';
+import {confirmDelete} from './confirm-delete.js?v=ee57e2dc5f2a';
+import {noteColors,occurrences} from './eternal.mjs?v=ee57e2dc5f2a';
+import {mountEternal} from './eternal-ui.js?v=ee57e2dc5f2a';
+import {orderNotes} from './note-order.mjs?v=ee57e2dc5f2a';
+import {mountLocked} from './locked-ui.js?v=ee57e2dc5f2a';
+import {mountFortuna} from './fortuna.js?v=ee57e2dc5f2a';
 
 function noteWoodTexture(id){
  let seed=2166136261;
@@ -64,7 +64,7 @@ export function mount(root,request,{visible=true,locked}={}){
   active.forEach((n,i)=>{
    let li=nodes.get(n.id);if(!li){li=document.createElement('li');li.dataset.id=n.id;li.innerHTML=`<article class="note"><div class="note-heading"><span class="number"></span><div class="note-body"><p></p></div></div><div class="note-footer"><span class="expiry"></span><div class="note-time-buttons" role="group"><button data-day="1">+DAY</button></div><button class="delete" title="Delete note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7M14 10v7"/></svg></button></div></article>`;li.style.setProperty('--note-wood',noteWoodTexture(n.eternalId||n.id));nodes.set(n.id,li);}
    li.querySelector('article').classList.toggle('eternal',!!n.eternalId);li.querySelector('article').classList.toggle('selected',!!orderUntil&&chosen.includes(orderKey(n.id)));const body=li.querySelector('.note-body');body.tabIndex=orderUntil?0:-1;if(orderUntil){body.setAttribute('role','button');body.setAttribute('aria-pressed',String(chosen.includes(orderKey(n.id))));}else{body.removeAttribute('role');body.removeAttribute('aria-pressed');}body.setAttribute('aria-label',(orderUntil?'Choose order for note: ':'Note: ')+n.body);li.querySelector('.number').textContent=orderUntil?(chosen.includes(orderKey(n.id))?(chosen.indexOf(orderKey(n.id))+1)+'.':'·'):(i+1)+'.';if(li.querySelector('p').textContent!==n.body)li.querySelector('p').textContent=n.body;
-   const footer=li.querySelector('.note-footer'),barColor=noteColors[n.color]||noteColors.green;footer.style.backgroundColor=footer.style.borderTopColor=barColor;const expiry=li.querySelector('.expiry'),seconds=Math.ceil((n.expiresAt-t)/1000);expiry.textContent=(seconds<60?seconds+'S':duration(Math.ceil(seconds/60)))+' LEFT';expiry.title='Expires '+new Date(n.expiresAt).toLocaleString();li.querySelector('[role=group]').setAttribute('aria-label','Note actions '+(i+1));li.querySelector('.delete').setAttribute('aria-label','Delete note '+(i+1));for(const b of li.querySelectorAll('button'))b.disabled=extending.has(n.id)||!!orderUntil||savingOrder;if(list.children[i]!==li)list.insertBefore(li,list.children[i]||null);
+   const footer=li.querySelector('.note-footer'),barColor=noteColors[n.color]||noteColors.brown;footer.style.backgroundColor=footer.style.borderTopColor=barColor;const expiry=li.querySelector('.expiry'),seconds=Math.ceil((n.expiresAt-t)/1000);expiry.textContent=(seconds<60?seconds+'S':duration(Math.ceil(seconds/60)))+' LEFT';expiry.title='Expires '+new Date(n.expiresAt).toLocaleString();li.querySelector('[role=group]').setAttribute('aria-label','Note actions '+(i+1));li.querySelector('.delete').setAttribute('aria-label','Delete note '+(i+1));for(const b of li.querySelectorAll('button'))b.disabled=extending.has(n.id)||!!orderUntil||savingOrder;if(list.children[i]!==li)list.insertBefore(li,list.children[i]||null);
   });
  }
  function selectNote(event){if(!orderUntil||Date.now()>=orderUntil||event.target.closest('button'))return;const li=event.target.closest('li');if(!li)return;if(event.type==='keydown'){if(event.key!=='Enter'&&event.key!==' ')return;event.preventDefault();if(event.repeat)return;}else if(window.getSelection()?.toString())return;const id=orderKey(li.dataset.id);if(!chosen.includes(id)){chosen.push(id);render();}}
