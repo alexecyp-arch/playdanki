@@ -92,7 +92,7 @@ html body #exercise input#answer{flex-shrink:1;min-width:2ch}
  function label(state){const {correct,wrong}=totals(state);return (correct+wrong?Math.round(1000*correct/(correct+wrong))/10+'%':'—')+' CORRECT';}
  globalThis.DankiQuiz=Object.freeze({key,options,render,selectKey,totals,record,label});
 })();
-</script><link rel="icon" type="image/x-icon" sizes="32x32" href="/favicon.ico?v=6e0920c0c0ab"><link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png?v=1956cd32a664"><link rel="icon" type="image/svg+xml" href="/favicon.svg?v=6e0920c0c0ab"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=20134e4888c9"><link rel="manifest" href="/manifest.webmanifest?v=6a37023107cf"><script>// Only public game answers cross into the same-origin main voice controller.
+</script><link rel="icon" type="image/x-icon" sizes="32x32" href="/favicon.ico?v=fa0420933cc5"><link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png?v=5519bdfede3b"><link rel="icon" type="image/svg+xml" href="/favicon.svg?v=fa0420933cc5"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=1237b16e929a"><link rel="manifest" href="/manifest.webmanifest?v=69bb22e54482"><script>// Only public game answers cross into the same-origin main voice controller.
 (()=>{'use strict';
 function host(){try{return parent!==window&&parent.document.getElementById('arithmetic-frame')?.contentDocument===document?parent:null;}catch{return null;}}
 window.DankiAnswerVoice=(scope,id,text,announce=false)=>{const h=host();if(!h)return;h.document.dispatchEvent(new h.CustomEvent('danki-card-voice',{detail:{scope:'embedded:'+scope,id:String(id),text:String(text),lang:'en',announce,sourceDocument:document}}));};
