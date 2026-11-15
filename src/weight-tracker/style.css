@@ -38,3 +38,21 @@ svg .protein-target-label{fill:#ff8990;paint-order:stroke;stroke:var(--danki-bg,
 
 .protein-date-controls{grid-column:1/-1;display:grid;grid-template-columns:29px minmax(0,1fr) 29px;gap:6px;align-items:center}
 #protein-form .protein-date-controls button{padding:0;font-size:24px;font-weight:900}
+
+#sleep-panel{display:grid;justify-items:center;gap:14px;width:100%;margin:32px auto 20px}
+.sleep-divider{width:100%;border:0;border-top:3px solid #787d86;margin:0 0 10px}
+@media(max-width:600px){.sleep-divider{width:calc(100% + 12px)}}
+.sleep-controls{display:grid;justify-items:center;gap:8px}
+#sleep-form{margin:0;gap:5px;flex-wrap:nowrap}
+#sleep-form input{width:110px;font-size:12px}
+#sleep-form button{height:32px;min-width:29px;padding:4px 8px}
+#sleep-average{font-size:10px;text-align:center}
+#sleep-status,#sleep-target-status{font-size:10px;text-align:center}
+#sleep-status:empty,#sleep-target-status:empty{display:none}
+svg .sleep-target-label{fill:#ff8990;paint-order:stroke;stroke:var(--danki-bg,#071e48);stroke-width:4px;stroke-linejoin:round}
+
+#sleep-form{display:grid;grid-template-columns:110px 32px 32px;justify-content:center;gap:8px}
+#sleep-form #sleep-date{width:100%;min-width:0;color-scheme:dark;font:700 14px Arial,sans-serif;padding:8px}
+
+.sleep-date-controls{grid-column:1/-1;display:grid;grid-template-columns:29px minmax(0,1fr) 29px;gap:6px;align-items:center}
+#sleep-form .sleep-date-controls button{padding:0;font-size:24px;font-weight:900}

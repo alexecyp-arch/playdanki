@@ -1,4 +1,5 @@
 import {chartData} from './model.mjs';
+import {sleepChartData} from './sleep.mjs';
 import {proteinChartData} from './protein-tracker.mjs';
 const namespace='http://www.w3.org/2000/svg';
 export function draw(svg,entries,unit,{selectedId=null,onSelect=()=>{},targetKg=null}={}){
@@ -11,7 +12,7 @@ export function drawProtein(svg,days,target,now=Date.now()){
  drawSeries(svg,proteinChartData(days,target,now),{unit:'GRAMS',axis:'PROTEIN',step:10});
 }
 function drawSeries(svg,data,{unit,axis,step,selectedId=null,onSelect=null}){
- const protein=step===10,width=Math.max(296,Math.round(svg.clientWidth||800));
+ const protein=step!==1,width=Math.max(296,Math.round(svg.clientWidth||800));
  const naturalHeight=window.innerWidth>600?Math.max(260,window.innerHeight-255):Math.max(260,Math.min(420,width*.48));
  const height=protein?Math.max(naturalHeight,80+(data.y[1]-data.y[0])/step*16):naturalHeight;
  const left=58,right=width-22,top=25,bottom=height-55;
@@ -48,3 +49,5 @@ function drawSeries(svg,data,{unit,axis,step,selectedId=null,onSelect=null}){
   add('text',{x:px+(labelRight?12:-12),y:labelY,'text-anchor':labelRight?'start':'end',class:'weight-latest-label','pointer-events':'none'},number(latest.value)+' '+unit);
  }
 }
+
+export function drawSleep(svg,days,target=null,now=Date.now()){drawSeries(svg,sleepChartData(days,target,now),{unit:"HOURS",axis:"SLEEP (HOURS)",step:.5});}

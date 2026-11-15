@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import {createSleepStore,sleepDay,sleepAverage,sleepChartData} from '../src/weight-tracker/sleep.mjs';
+const now=new Date(2026,10,16,12).getTime(),today=sleepDay(now),auth={currentUser:{uid:'alice'}};let saved,listener;
+const snapshot=()=>({exists:()=>!!saved,data:()=>saved,metadata:{fromCache:false}});
+const sdk={doc:(_, ...p)=>{assert.equal(p.join('/'),'users/alice/progress/daily-sleep');return 'sleep';},serverTimestamp:()=>1,onSnapshot:(_,opts,cb)=>{listener=cb;cb(snapshot());return()=>{};},runTransaction:async(_,fn)=>{await fn({get:async()=>snapshot(),set:(_,v)=>saved=v});listener(snapshot());}};
+const store=createSleepStore({auth,sdk,uid:'alice',now:()=>now,onChange:()=>{}});
+await Promise.all([store.adjust(7),store.adjust(.5)]);assert.equal(JSON.parse(saved.value).days[today],7.5);
+await store.adjust(-.5);assert.equal(JSON.parse(saved.value).days[today],7);
+await assert.rejects(store.adjust(25),/SLEEP/);await assert.rejects(store.adjust(1,'2026-11-22'),/DATE/);
+assert.equal(sleepAverage({'2026-11-15':7.5,[today]:24},now),7.5);
+const chart=sleepChartData({'2026-11-15':7.5},null,now);assert.equal(chart.y[0]%0.5,0);assert.equal(chart.y[1]%0.5,0);
+auth.currentUser={uid:'bob'};await assert.rejects(store.adjust(1),/SIGN IN/);store.dispose();console.log('Sleep passed: half-hours, daily totals, bounds, future dates, average and owner isolation.');
