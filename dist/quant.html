@@ -58,7 +58,7 @@ html body #exercise input#answer{flex-shrink:1;min-width:2ch}
 
 #position,#completed-mini,#total-progress,#card{display:none!important}
 body.repetition-enabled{position:relative;min-height:100dvh;padding-bottom:0}
-.repeat-controls{transform:scale(.9);transform-origin:bottom right;position:absolute;right:14px;bottom:14px;display:flex;flex-direction:column;gap:8px;z-index:4}.repeat-controls[hidden]{display:none}.repeat-controls button{color:#fff;font:900 11px Arial;padding:9px 12px;border:2px solid #1a0910;box-shadow:inset 0 2px #ffffff26,0 3px #180b10;background:#2a111a;cursor:pointer}
+.repeat-controls{transform:scale(1.1);transform-origin:bottom right;position:absolute;right:14px;bottom:14px;display:flex;flex-direction:column;gap:8px;z-index:4}.repeat-controls[hidden]{display:none}.repeat-controls button{color:#fff;font:900 11px Arial;padding:9px 12px;border:2px solid #1a0910;box-shadow:inset 0 2px #ffffff26,0 3px #180b10;background:#2a111a;cursor:pointer}
 body.repetition-enabled .tracker,body.repetition-enabled #tracker{bottom:114px}
 </style><script>(()=>{'use strict';
  const controls='button,a,input,textarea,select,summary,[contenteditable="true"],.games-menu,.navigation,#account-bar,.tracker,#tracker,#history,#stats,[role="dialog"]';
@@ -172,4 +172,4 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('stats').hidden)
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!busy)refresh().catch(()=>notice('Progress could not refresh. Please reload.'))});window.addEventListener('storage',e=>{reviewId=null;if((e.key===KEY||e.key===null)&&!busy)refresh().catch(()=>notice('Progress could not refresh. Please reload.'))});state=read();memory=state;load();
 })();
 </script>
-<script defer src="/analytics.js?v=42757cbf0215"></script><script defer src="/page-warmup.js?v=778eeea857c4"></script></body></html>
+<script defer src="/analytics.js?v=42757cbf0215"></script><script defer src="/page-warmup.js?v=c46e234a9a84"></script></body></html>

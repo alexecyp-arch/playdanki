@@ -1,6 +1,6 @@
-import {chartData} from './model.mjs?v=736f5061bead';
-import {sleepChartData} from './sleep.mjs?v=736f5061bead';
-import {proteinChartData} from './protein-tracker.mjs?v=736f5061bead';
+import {chartData} from './model.mjs?v=501bab3d93aa';
+import {sleepChartData} from './sleep.mjs?v=501bab3d93aa';
+import {proteinChartData} from './protein-tracker.mjs?v=501bab3d93aa';
 const namespace='http://www.w3.org/2000/svg';
 export function draw(svg,entries,unit,{selectedId=null,onSelect=()=>{},targetKg=null}={}){
  const data=chartData(entries,unit,targetKg);

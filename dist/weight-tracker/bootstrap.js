@@ -1,11 +1,11 @@
-import {mountSleep} from './sleep-ui.js?v=736f5061bead';
-import {createProteinStore,proteinAverage,proteinDay,proteinLastDay,MAX_PROTEIN} from './protein-tracker.mjs?v=736f5061bead';
+import {mountSleep} from './sleep-ui.js?v=501bab3d93aa';
+import {createProteinStore,proteinAverage,proteinDay,proteinLastDay,MAX_PROTEIN} from './protein-tracker.mjs?v=501bab3d93aa';
 import {initializeApp} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js';
 import {getAuth,onAuthStateChanged,beforeAuthStateChanged,GoogleAuthProvider,signInWithPopup} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js';
 import * as sdk from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js';
-import {createWeightStore} from './store.mjs?v=736f5061bead';
-import {draw,drawProtein} from './chart.mjs?v=736f5061bead';
-import {kilograms,weight,forecastTargetTime,formatForecastDate} from './model.mjs?v=736f5061bead';
+import {createWeightStore} from './store.mjs?v=501bab3d93aa';
+import {draw,drawProtein} from './chart.mjs?v=501bab3d93aa';
+import {kilograms,weight,forecastTargetTime,formatForecastDate} from './model.mjs?v=501bab3d93aa';
 const $=id=>document.getElementById(id),app=initializeApp(JSON.parse($('auth-config').textContent).firebase),auth=getAuth(app),db=sdk.getFirestore(app);
 let proteinStore=null,protein={},proteinTarget=null,proteinReady=false,shownProteinDay='';
 let store=null,entries=[],unit='KG',ready=false,saving=false,generation=0,selectedId=null,targetKg=null,targetReady=false;
