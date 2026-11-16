@@ -62,3 +62,5 @@ html[data-danki-theme="charcoal"] body .navigation :is(#languages-menu,#games-me
 html[data-danki-theme="charcoal"] body #repetition-controls .repeat-hard{--danki-button:#6b202d;--danki-button-hover:#6b202d;--danki-button-down:#6b202d;--danki-button-edge:#6b202d}
 
 html[data-danki-theme="charcoal"] body #repetition-controls .repeat-easy{--danki-button:#1b432f;--danki-button-hover:#1b432f;--danki-button-down:#1b432f;--danki-button-edge:#1b432f}
+
+html body #repetition-controls button.keyboard-pressed{translate:0 2px!important;box-shadow:inset 0 2px 0 #0004,inset 0 -1px 0 #ffffff14,0 1px 0 var(--danki-button-edge,#101113)!important;transition:none}
