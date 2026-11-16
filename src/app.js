@@ -77,18 +77,21 @@ function cardIndex(){return DankiRepetition.current(active.key,active.cards.leng
 function legacyCardIndex(){if(active===decks.hangul)return active.cards[0]?hangulPracticeOrder(active.cards,dayKey())[shownCursor]:0;if(!active.daily)return shownCursor;const done=practiced(state.days[dayKey()]||{correct:0,wrong:0})+shownCursor-state.cursor,order=kanaPracticeOrder(active.cards,dayKey());return order[done<92?done:92+(done-92)%408]}
 function centerAnswer(){
   if(!practiceActive||game.hidden||answerBox.hidden)return;
-  const h=answerBox.getBoundingClientRect().height,topEnd=Math.max(word.getBoundingClientRect().bottom,questionImage.hidden?0:questionImage.getBoundingClientRect().bottom)+scrollY;
-  const offset=parseFloat(getComputedStyle(game).getPropertyValue('--card-offset'))||0;
-  const center=Math.max(innerHeight/2+offset,topEnd+24+h/2);
-  answerBox.style.top=center+'px';
-  game.style.minHeight=Math.max(innerHeight,center+h/2+(innerWidth<=600&&isQuiz()?224:144))+'px';
+  const desktop=innerWidth>760,offset=parseFloat(getComputedStyle(game).getPropertyValue('--card-offset'))||0;
+  let h=answerBox.getBoundingClientRect().height,topEnd=Math.max(word.getBoundingClientRect().bottom,questionImage.hidden?0:questionImage.getBoundingClientRect().bottom)+scrollY;
+  if(desktop){for(let i=0;i<16&&topEnd+24+h>innerHeight-144;i++){
+    word.style.fontSize=Math.max(16,parseFloat(getComputedStyle(word).fontSize)*.9)+'px';translation.style.fontSize=Math.max(18,parseFloat(getComputedStyle(translation).fontSize)*.9)+'px';
+    h=answerBox.getBoundingClientRect().height;topEnd=Math.max(word.getBoundingClientRect().bottom,questionImage.hidden?0:questionImage.getBoundingClientRect().bottom)+scrollY;
+  }}
+  const center=desktop?Math.max(topEnd+24+h/2,Math.min(innerHeight/2+offset,innerHeight-144-h/2)):Math.max(innerHeight/2+offset,topEnd+24+h/2);
+  answerBox.style.top=center+'px';game.style.minHeight=(desktop?innerHeight:Math.max(innerHeight,center+h/2+(innerWidth<=600&&isQuiz()?224:144)))+'px';
 }
 window.addEventListener('resize',centerAnswer);questionImage.addEventListener('load',centerAnswer);
 function cardVoice(text='',announce=false){document.dispatchEvent(new CustomEvent('danki-card-voice',{detail:{id:mode+':'+shownRound+':'+shownCursor,text,lang:active.lang,announce}}));}
 function render(){
   showRepetition(practiceActive);if(!practiceActive)return;
   if(state.cursor===active.limit){state.cursor=0;state.round++;if(active.cumulative)state.run={correct:0,wrong:0};save(active,state);}
-  screenVersion++;locked=false;shownCursor=reviewCursor??state.cursor;shownRound=state.round;shownDay=dayKey();feedback.textContent='';$('answer-box').hidden=true;game.style.minHeight='';
+  if(innerWidth>760){word.style.fontSize=translation.style.fontSize="";}screenVersion++;locked=false;shownCursor=reviewCursor??state.cursor;shownRound=state.round;shownDay=dayKey();feedback.textContent='';$('answer-box').hidden=true;game.style.minHeight='';
   const quiz=isQuiz();
   practice.classList.toggle('coding-mode',active.section==='coding');practice.classList.toggle('word-mode',active.unit==='words');practice.classList.toggle('quiz-mode',quiz);practice.classList.toggle('sentence-mode',active.unit==='sentences'||active.fixedChoices);practice.classList.toggle('japanese-mode',active.section==='japanese'||active.section==='korean');
   translation.hidden=quiz;$('word-choices').hidden=!quiz;$('word-choices').replaceChildren();
