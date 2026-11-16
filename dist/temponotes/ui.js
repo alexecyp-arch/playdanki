@@ -1,11 +1,11 @@
-import {orderKey,finishOrder} from './daily-notes.mjs?v=909ed5d42f0d';
-import {calendarLabel} from './calendar.mjs?v=909ed5d42f0d';
-import {confirmDelete} from './confirm-delete.js?v=909ed5d42f0d';
-import {noteColors,occurrences} from './eternal.mjs?v=909ed5d42f0d';
-import {mountEternal} from './eternal-ui.js?v=909ed5d42f0d';
-import {orderNotes} from './note-order.mjs?v=909ed5d42f0d';
-import {mountLocked} from './locked-ui.js?v=909ed5d42f0d';
-import {mountFortuna} from './fortuna.js?v=909ed5d42f0d';
+import {orderKey,finishOrder} from './daily-notes.mjs?v=736f5061bead';
+import {calendarLabel} from './calendar.mjs?v=736f5061bead';
+import {confirmDelete} from './confirm-delete.js?v=736f5061bead';
+import {noteColors,occurrences} from './eternal.mjs?v=736f5061bead';
+import {mountEternal} from './eternal-ui.js?v=736f5061bead';
+import {orderNotes} from './note-order.mjs?v=736f5061bead';
+import {mountLocked} from './locked-ui.js?v=736f5061bead';
+import {mountFortuna} from './fortuna.js?v=736f5061bead';
 
 function noteWoodTexture(id){
  let seed=2166136261;
