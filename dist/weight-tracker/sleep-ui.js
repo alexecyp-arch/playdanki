@@ -1,5 +1,5 @@
-import {createSleepStore,sleepDay,sleepLastDay,sleepAverage} from './sleep.mjs?v=bd5322d565f5';
-import {drawSleep} from './chart.mjs?v=bd5322d565f5';
+import {createSleepStore,sleepDay,sleepLastDay,sleepAverage} from './sleep.mjs?v=8fd19e401cf0';
+import {drawSleep} from './chart.mjs?v=8fd19e401cf0';
 export function mountSleep({auth,db,sdk}){
  const $=id=>document.getElementById('sleep-'+id);let store=null,days={},ready=false,busy=false,epoch=0,shownDay='';
  function controls(){for(const id of ['add','remove'])$(id).disabled=!ready||busy||!navigator.onLine;$('day-next').disabled=$('date').value>=sleepLastDay();}

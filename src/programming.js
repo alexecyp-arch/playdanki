@@ -23,12 +23,12 @@ function render(){
  $('quiz-accuracy').textContent=DankiQuiz.label(state);const s=C.stats(state,info);$('total-progress').textContent='TOTAL PROGRESS: '+percentage(s.totalProgress,2);$('completed-mini').textContent=s.completed.toLocaleString()+' / 5000 completed';
  $('study').hidden=true;$('complete').hidden=true;$('retry').hidden=!loadError;
  if(loadError){shownToken=null;$('card').textContent='CARD —/5000';return}
- if(state.current||reviewId!==null){const current=state.current||{id:5001},card=deck[(reviewId??current.id)-1];shownToken=reviewId===null?current.token:null;$('study').hidden=false;$('card').textContent='CARD '+card.id+'/5000';$('review-label').textContent=card.subject;$('question').textContent=card.question;$('code').textContent=card.code||'';$('code').hidden=!card.code;renderChoices(card)}
+ if(deck.length||reviewId!==null){const current=state.current||{id:5001},card=deck[reviewId!==null?reviewId-1:DankiRepetition.current(KEY,deck.length,(state.current?.id??1)-1)];shownToken=reviewId===null?current.token:null;$('study').hidden=false;$('card').textContent='CARD '+card.id+'/5000';$('review-label').textContent=card.subject;$('question').textContent=card.question;$('code').textContent=card.code||'';$('code').hidden=!card.code;renderChoices(card)}
  else{shownToken=null;$('complete').hidden=false;$('card').textContent='CARD 5000/5000'}
  if(!$('stats').hidden)renderStats();setControls();
 }
 function renderChoices(card){
- const identity=(reviewId===null?state.current?.token:'review:'+reviewId);if(choiceKey===identity&&$('answer').textContent)return;choiceKey=identity;
+ const identity=card.id+':'+(reviewId===null?state.current?.token:'review:'+reviewId);if(choiceKey===identity&&$('answer').textContent)return;choiceKey=identity;
  $('answer').replaceChildren();$('answer').classList.remove('quiz-choices','quiz-prose');$('answer').textContent=card.answer;
  window.DankiAnswerVoice?.('programming',card.id,card.answer);
 }
@@ -42,13 +42,14 @@ async function load(){
  finally{busy=false;setControls()}
 }
 function menuOpen(){try{return parent!==window&&!!parent.document.querySelector('.games-menu[open]')}catch{return false}}
-async function advance(){
- if(busy||loadError||!deck.length||!$('stats').hidden||menuOpen()||document.hidden)return;if(reviewId!==null){reviewId++;if(reviewId>=(state.current?.id??5001))reviewId=null;render();return;}busy=true;setControls();const attempt=shownToken;
+async function advance(rating){
+ if(busy||loadError||!deck.length||!$('stats').hidden||menuOpen()||document.hidden)return;if(reviewId!==null){reviewId++;if(reviewId>=(state.current?.id??5001))reviewId=null;render();return;}busy=true;setControls();DankiRepetition.advance(KEY,deck.length,rating);const attempt=shownToken;
  try{await change(s=>{if(attempt)C.skipStudy(s,attempt,Date.now(),info);else C.startStudyReplay(s);C.presentStudy(s,deck,info,Date.now(),token)});render()}
  catch{notice('Progress could not be saved. Please try again.')}
  finally{busy=false;setControls()}
 }
-$('again').addEventListener('click',advance);document.addEventListener('study-next',advance);
+DankiRepetition.buttons(advance,()=>!busy&&!loadError&&deck.length&&$('stats').hidden&&!menuOpen());
+$('again').addEventListener('click',()=>advance());document.addEventListener('study-next',advance);
 function previous(){if(busy||loadError||!$('stats').hidden||menuOpen())return;const id=reviewId??state.current?.id??5001;if(id<=1)return;reviewId=id-1;render();}
 StudyNavigation.install({next:advance,previous,enabled:()=>!busy&&!loadError&&$('stats').hidden&&!menuOpen()});
 function stats(open){$('stats').hidden=!open;$('stats-toggle').setAttribute('aria-expanded',String(open));if(open)renderStats()}

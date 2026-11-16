@@ -1,11 +1,11 @@
-import {mountSleep} from './sleep-ui.js?v=bd5322d565f5';
-import {createProteinStore,proteinAverage,proteinDay,proteinLastDay,MAX_PROTEIN} from './protein-tracker.mjs?v=bd5322d565f5';
+import {mountSleep} from './sleep-ui.js?v=8fd19e401cf0';
+import {createProteinStore,proteinAverage,proteinDay,proteinLastDay,MAX_PROTEIN} from './protein-tracker.mjs?v=8fd19e401cf0';
 import {initializeApp} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js';
 import {getAuth,onAuthStateChanged,beforeAuthStateChanged,GoogleAuthProvider,signInWithPopup} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js';
 import * as sdk from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js';
-import {createWeightStore} from './store.mjs?v=bd5322d565f5';
-import {draw,drawProtein} from './chart.mjs?v=bd5322d565f5';
-import {kilograms,weight,forecastTargetTime,formatForecastDate} from './model.mjs?v=bd5322d565f5';
+import {createWeightStore} from './store.mjs?v=8fd19e401cf0';
+import {draw,drawProtein} from './chart.mjs?v=8fd19e401cf0';
+import {kilograms,weight,forecastTargetTime,formatForecastDate} from './model.mjs?v=8fd19e401cf0';
 const $=id=>document.getElementById(id),app=initializeApp(JSON.parse($('auth-config').textContent).firebase),auth=getAuth(app),db=sdk.getFirestore(app);
 let proteinStore=null,protein={},proteinTarget=null,proteinReady=false,shownProteinDay='';
 let store=null,entries=[],unit='KG',ready=false,saving=false,generation=0,selectedId=null,targetKg=null,targetReady=false;
@@ -22,7 +22,7 @@ function renderProtein(){
  $('protein-average').textContent='7-DAY AVERAGE: '+(average===null?'—':average.toLocaleString()+' GRAMS');
  drawProtein($('protein-chart'),protein,proteinTarget,now);
 }
-function render(){renderProtein();const selected=entries.find(p=>p.id===selectedId);if(!selected)selectedId=null;$('selected-entry').hidden=!selected;$('selected-value').textContent=selected?Number(weight(selected.kg,unit).toFixed(2)).toLocaleString()+' '+unit+' · '+new Date(selected.time).toLocaleString('en-GB'):'';const targetTime=forecastTargetTime(entries,targetKg);$('change-rate').hidden=targetKg===null;$('change-rate').textContent='ESTIMATED DATE YOU WILL HIT YOUR TARGET = '+formatForecastDate(targetTime);draw($('chart'),entries,unit,{selectedId,targetKg,onSelect:id=>{if(saving)return;selectedId=id;render();}});controls();}
+function render(){renderProtein();const selected=entries.find(p=>p.id===selectedId);if(!selected)selectedId=null;$('selected-entry').hidden=!selected;$('selected-value').textContent=selected?Number(weight(selected.kg,unit).toFixed(2)).toLocaleString()+' '+unit+' · '+new Date(selected.time).toLocaleString('en-GB'):'';const targetTime=forecastTargetTime(entries,targetKg);$('change-rate').hidden=targetKg===null;$('calories-to-lose').hidden=targetKg===null||!entries.length;$('calories-to-lose').textContent='CALORIES TO LOSE = '+Math.round(Math.max(0,(entries.at(-1)?.kg??0)-(targetKg??0))*7000).toLocaleString('en-GB');$('change-rate').textContent='ESTIMATED DATE YOU WILL HIT YOUR TARGET = '+formatForecastDate(targetTime);draw($('chart'),entries,unit,{selectedId,targetKg,onSelect:id=>{if(saving)return;selectedId=id;render();}});controls();}
 function clear(){$('protein-date').value=proteinDay();shownProteinDay=proteinDay();generation++;proteinStore?.dispose();proteinStore=null;protein={};proteinTarget=null;proteinReady=false;store?.dispose();store=null;entries=[];selectedId=null;targetKg=null;targetReady=false;ready=false;saving=false;for(const id of ['weight','target-weight','protein-amount','target-protein'])$(id).value='';$('weight-form').hidden=$('target-controls').hidden=$('protein-panel').hidden=true;for(const id of ['protein-chart','protein-average'])$(id).replaceChildren();$('target-controls').open=false;$('auth-gate').hidden=false;$('status').textContent=$('protein-status').textContent=$('protein-target-status').textContent='';render();}
 const sleepLogs=mountSleep({auth,db,sdk,signInReady:true});
 const clearAll=()=>{sleepLogs.clear();clear();};
