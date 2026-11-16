@@ -60,3 +60,5 @@ body{position:relative}.tracker{position:absolute}
 /* Main-page controls and highlighted menu rows use straight edges. */
 html body :is(.games-menu summary,.games-list,.game-option,.temponotes-link,#account-bar>.atlas-link,#account-bar>.weight-link,#account-bar>.timebox-link,.history,.again,#account-menu>summary,#account-panel,#account-panel button,#voice-toggle,#voice-toggle span,#support-options,#support-options a){border-radius:0}
 html body :is(.games-menu summary,.games-list,.temponotes-link,#account-bar>.atlas-link,#account-bar>.weight-link,#account-bar>.timebox-link,.history,.again,#account-menu>summary,#account-panel,#account-panel button,#voice-toggle,#support-options,#support-options a){border-width:2px;border-color:#b7bdc6}
+
+#current-game-label{position:absolute;transform:translate(-50%,-50%);font:700 8px/1.2 Arial,sans-serif;color:#c1c2c8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;pointer-events:none;z-index:6}

@@ -7,7 +7,7 @@ function notice(message){$('notice').textContent=[...new Set([message,storageNot
 function read(){if(!storageOK)return memory;try{const raw=localStorage.getItem(KEY);return raw?C.normalize(JSON.parse(raw)):C.create()}catch{storageOK=false;storageNotice='Saved progress could not be read. It has been kept unchanged. This session will use temporary progress.';notice('');return memory}}
 function save(next){memory=next;if(!storageOK)return;try{const raw=JSON.stringify(next);if(localStorage.getItem(KEY)!==raw){localStorage.setItem(KEY,raw);try{parent.document.dispatchEvent(new Event('danki-progress'))}catch{}}}catch{storageOK=false;storageNotice='This browser could not save progress. Keep this page open to keep this session.';notice('')}}
 function change(fn){const run=()=>{const next=read(),result=fn(next);save(next);state=next;return result};const task=()=>navigator.locks?.request?navigator.locks.request(KEY,run):Promise.resolve().then(run);const result=operation.then(task);operation=result.catch(()=>{});return result}
-function setControls(){document.body.setAttribute('aria-busy',String(busy));$('previous-card').disabled=busy||loadError||(reviewId??state.current?.id??5001)<=1;for(const id of ['again','retry'])$(id).disabled=busy}
+function setControls(){document.body.setAttribute('aria-busy',String(busy));$('previous-card').disabled=busy||loadError||(reviewId??0)>=DankiRepetition.historyLength(KEY,deck.length);for(const id of ['again','retry'])$(id).disabled=busy}
 function statLine(container,label,value){const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=label;dd.textContent=value;container.append(dt,dd)}
 function renderStats(){
  const s=C.stats(state,info),values=$('stats-values');values.replaceChildren();
@@ -20,10 +20,10 @@ function renderStats(){
  if(!history.childElementCount){const p=document.createElement('p');p.textContent='Your practice history will appear here.';history.append(p)}
 }
 function render(){
- $('quiz-accuracy').textContent=DankiQuiz.label(state);const s=C.stats(state,info);$('total-progress').textContent='TOTAL PROGRESS: '+percentage(s.totalProgress,2);$('completed-mini').textContent=s.completed.toLocaleString()+' / 5000 completed';
+ $('stats-toggle').textContent='DAYS PRACTICE · '+((state.studyDays||{})[new Date().getFullYear()+'-'+String(new Date().getMonth()+1).padStart(2,'0')+'-'+String(new Date().getDate()).padStart(2,'0')]||0)+' CARDS';$('quiz-accuracy').textContent=DankiQuiz.label(state);
  $('study').hidden=true;$('complete').hidden=true;$('retry').hidden=!loadError;
  if(loadError){shownToken=null;$('card').textContent='CARD —/5000';return}
- if(deck.length||reviewId!==null){const current=state.current||{id:5001},card=deck[reviewId!==null?reviewId-1:DankiRepetition.current(KEY,deck.length,(state.current?.id??1)-1)];shownToken=reviewId===null?current.token:null;$('study').hidden=false;$('card').textContent='CARD '+card.id+'/5000';$('review-label').textContent=card.subject;$('question').textContent=card.question;$('code').textContent=card.code||'';$('code').hidden=!card.code;renderChoices(card)}
+ if(deck.length||reviewId!==null){const current=state.current||{id:5001},card=deck[DankiRepetition.current(KEY,deck.length,(state.current?.id??1)-1,reviewId??0)];shownToken=reviewId===null?current.token:null;$('study').hidden=false;$('card').textContent='CARD '+card.id+'/5000';$('review-label').textContent=card.subject;$('question').textContent=card.question;$('code').textContent=card.code||'';$('code').hidden=!card.code;renderChoices(card)}
  else{shownToken=null;$('complete').hidden=false;$('card').textContent='CARD 5000/5000'}
  if(!$('stats').hidden)renderStats();setControls();
 }
@@ -43,14 +43,14 @@ async function load(){
 }
 function menuOpen(){try{return parent!==window&&!!parent.document.querySelector('.games-menu[open]')}catch{return false}}
 async function advance(rating){
- if(busy||loadError||!deck.length||!$('stats').hidden||menuOpen()||document.hidden)return;if(reviewId!==null){reviewId++;if(reviewId>=(state.current?.id??5001))reviewId=null;render();return;}busy=true;setControls();DankiRepetition.advance(KEY,deck.length,rating);const attempt=shownToken;
+ if(busy||loadError||!deck.length||!$('stats').hidden||menuOpen()||document.hidden)return;if(reviewId!==null){reviewId=reviewId>1?reviewId-1:null;render();return;}busy=true;setControls();DankiRepetition.advance(KEY,deck.length,rating);const attempt=shownToken;
  try{await change(s=>{if(attempt)C.skipStudy(s,attempt,Date.now(),info);else C.startStudyReplay(s);C.presentStudy(s,deck,info,Date.now(),token)});render()}
  catch{notice('Progress could not be saved. Please try again.')}
  finally{busy=false;setControls()}
 }
 DankiRepetition.buttons(advance,()=>!busy&&!loadError&&deck.length&&$('stats').hidden&&!menuOpen());
 $('again').addEventListener('click',()=>advance());document.addEventListener('study-next',advance);
-function previous(){if(busy||loadError||!$('stats').hidden||menuOpen())return;const id=reviewId??state.current?.id??5001;if(id<=1)return;reviewId=id-1;render();}
+function previous(){if(busy||loadError||!$('stats').hidden||menuOpen())return;const count=DankiRepetition.historyLength(KEY,deck.length);if((reviewId??0)>=count)return;reviewId=(reviewId??0)+1;render();}
 StudyNavigation.install({next:advance,previous,enabled:()=>!busy&&!loadError&&$('stats').hidden&&!menuOpen()});
 function stats(open){$('stats').hidden=!open;$('stats-toggle').setAttribute('aria-expanded',String(open));if(open)renderStats()}
 $('stats-toggle').addEventListener('click',()=>stats($('stats').hidden));$('stats-close').addEventListener('click',()=>stats(false));$('retry').addEventListener('click',load);
