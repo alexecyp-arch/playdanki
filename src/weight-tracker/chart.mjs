@@ -1,5 +1,5 @@
 import {chartData} from './model.mjs';
-import {sleepChartData} from './sleep.mjs';
+import {sleepChartData,formatSleepDuration} from './sleep.mjs';
 import {proteinChartData} from './protein-tracker.mjs';
 const namespace='http://www.w3.org/2000/svg';
 export function draw(svg,entries,unit,{selectedId=null,onSelect=()=>{},targetKg=null}={}){
@@ -20,6 +20,7 @@ function drawSeries(svg,data,{unit,axis,step,selectedId=null,onSelect=null}){
  svg.replaceChildren();svg.setAttribute('viewBox',`0 0 ${width} ${height}`);svg.style.height=height+'px';
  const add=(tag,attrs={},text)=>{const e=document.createElementNS(namespace,tag);for(const [k,v]of Object.entries(attrs))e.setAttribute(k,v);if(text!==undefined)e.textContent=text;svg.append(e);return e;};
  const number=n=>Number(n.toFixed(1)).toLocaleString(undefined,{maximumFractionDigits:1});
+ const valueLabel=n=>axis==='SLEEP (HOURS)'?formatSleepDuration(n):number(n)+' '+unit;
  for(let value=data.y[0];value<=data.y[1];value+=step){const py=y(value);add('line',{x1:left,x2:right,y1:py,y2:py,stroke:'#29446f'});add('text',{x:left-8,y:py+4,'text-anchor':'end',class:'chart-y-tick'},number(value));}
  add('line',{x1:left,x2:left,y1:top,y2:bottom,stroke:'#a9bddc'});add('line',{x1:left,x2:right,y1:bottom,y2:bottom,stroke:'#a9bddc'});
  if(data.target!==null){const py=y(data.target),kind=protein?'protein':'weight';add('line',{x1:left,x2:right,y1:py,y2:py,stroke:protein?'#ff626b':'#92e0b1','stroke-width':protein?2:1.5,'stroke-opacity':protein?1:.48,'stroke-dasharray':'5 5',class:kind+'-target-line'});add('text',{x:right-5,y:py-8,'text-anchor':'end',class:kind+'-target-label'},'TARGET '+number(data.target)+' '+unit);}
@@ -35,7 +36,7 @@ function drawSeries(svg,data,{unit,axis,step,selectedId=null,onSelect=null}){
  if(data.points.length>1)add('polyline',{points:data.points.map(p=>x(p.time)+','+y(p.value)).join(' '),fill:'none',stroke:'#fff','stroke-width':2,'stroke-linejoin':'round'});
  const latest=data.points.at(-1);
  for(const p of data.points){
-  const label=number(p.value)+' '+unit+' · '+(protein?dateLabel(p.time):new Date(p.time).toLocaleString('en-GB')),selected=p.id===selectedId;
+  const label=valueLabel(p.value)+' · '+(protein?dateLabel(p.time):new Date(p.time).toLocaleString('en-GB')),selected=p.id===selectedId;
   const group=add('g',{'aria-label':label,'data-entry':p.id,class:protein?'protein-point':'weight-point',...(onSelect?{role:'button',tabindex:0,'aria-pressed':String(selected)}:{})});
   for(const attrs of [{cx:x(p.time),cy:y(p.value),r:14,fill:'transparent'},{cx:x(p.time),cy:y(p.value),r:p===latest?(selected?8:7):selected?5:3,fill:selected?'#a9c7ff':p===latest?'#92e0b1':'#fff',...(p===latest?{stroke:'var(--danki-bg, #071e48)','stroke-width':2}:{})}]){const circle=document.createElementNS(namespace,'circle');for(const [k,v]of Object.entries(attrs))circle.setAttribute(k,v);group.append(circle);}
   const title=document.createElementNS(namespace,'title');title.textContent=label;group.append(title);
@@ -46,7 +47,7 @@ function drawSeries(svg,data,{unit,axis,step,selectedId=null,onSelect=null}){
   const targetNearby=data.target!==null&&Math.abs(py-y(data.target))<24;
   const labelY=targetNearby&&py+20<bottom?py+20:py-12;
   const labelRight=protein&&px-left<82;
-  add('text',{x:px+(labelRight?12:-12),y:labelY,'text-anchor':labelRight?'start':'end',class:'weight-latest-label','pointer-events':'none'},number(latest.value)+' '+unit);
+  add('text',{x:px+(labelRight?12:-12),y:labelY,'text-anchor':labelRight?'start':'end',class:'weight-latest-label','pointer-events':'none'},valueLabel(latest.value));
  }
 }
 

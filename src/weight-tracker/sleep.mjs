@@ -1,4 +1,5 @@
 export const MAX_SLEEP=24;
+export function formatSleepDuration(hours){const minutes=Math.round(hours*60);return Math.floor(minutes/60)+'H '+minutes%60+'M';}
 const dayMs=86400000;
 export function sleepDay(time=Date.now()){
  const d=new Date(time);
@@ -20,7 +21,7 @@ export function sleepDays(now=Date.now(),offset=0){
 }
 export function sleepAverage(days,now=Date.now()){
  const totals=sleepDays(now,-1).map(({key})=>days[key]).filter(validSleep);
- return totals.length?Math.round(totals.reduce((sum,n)=>sum+n,0)/totals.length*100)/100:null;
+ return totals.length?totals.reduce((sum,n)=>sum+n,0)/totals.length:null;
 }
 export function sleepChartData(days,target=null,now=Date.now()){
  const points=Object.entries(days).map(([id,value])=>({id,value,time:dayTime(id)}))
@@ -64,7 +65,7 @@ export function createSleepStore({auth,db,sdk,uid,onChange,now=Date.now}){
    return update(data=>{
     if(!Number.isFinite(dayTime(day))||day>sleepLastDay(now()))throw Error('DATE');
     if(!Number.isFinite(amount)||amount===0||Math.abs(amount)>MAX_SLEEP)throw Error('SLEEP');
-    const total=Math.max(0,Math.round(((data.days[day]??0)+amount)*10)/10);
+    const total=Math.max(0,Math.round(((data.days[day]??0)+amount)*60)/60);
     if(!validSleep(total))throw Error('SLEEP');
     data.days[day]=total;return data;
    });
