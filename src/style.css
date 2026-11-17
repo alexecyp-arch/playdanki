@@ -67,3 +67,6 @@ html body :is(.games-menu summary,.games-list,.temponotes-link,#account-bar>.atl
 @media(max-width:600px){.home-page-links{top:1.2rem;right:1.2rem;transform:scale(.65);transform-origin:top right}}
 
 .navigation{flex-direction:column;align-items:flex-start;flex-wrap:nowrap;gap:10px}.navigation #languages-menu>.games-list,.navigation #games-menu>.games-list{left:calc(100% + 10px);right:auto;top:0;max-height:calc(100svh - 10rem)}.navigation>.games-menu[open]{z-index:2}
+
+/* Keep arithmetic controls above the falling leaves, with clear page space. */
+html[data-danki-theme="charcoal"] #arithmetic-frame[src^="arithmetic.html"]{background:transparent!important;z-index:2}

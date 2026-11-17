@@ -1,6 +1,16 @@
 #exercise{font-weight:900;padding:0;flex-wrap:nowrap;flex:none}
 #exercise label#problem{white-space:nowrap;overflow-wrap:normal}
 html body #exercise input#answer{width:5ch;flex-shrink:1;min-width:2ch;max-width:38vw;font-weight:900}
-#round-status,#result,#start{position:relative;top:var(--card-offset,56px)}
+#round-status,#start{position:relative;top:var(--card-offset,56px)}
 #total{background:transparent;border:0;box-shadow:none;color:#fff;font-weight:700}
 @media(max-width:600px){main{padding:100px 16px 180px}#exercise{gap:8px}html body #exercise label#problem,html body #exercise input#answer{font-size:clamp(20px,5.6vw,28px)}#round-status{font-size:12px}#result{font-size:26px}#bottom{right:16px;bottom:24px}#total{font-size:10px}}
+
+html#arithmetic-timed,html#arithmetic-timed body{background:transparent!important}
+html#arithmetic-timed[data-danki-theme="charcoal"] body #bottom #total,html#arithmetic-timed[data-danki-theme="charcoal"] body #bottom #total:is(:hover,:active,:focus){background:transparent!important;box-shadow:none!important;border:0}
+#bottom .daily-scores{background:#222428;opacity:1;z-index:3}
+
+#round-status{display:flex;flex-direction:column;align-items:center;gap:4px}#round-score{font-size:32px}#round-time{font-size:14px}
+@media(max-width:600px){#round-score{font-size:26px}#round-time{font-size:12px}}
+
+html#arithmetic-timed :is(#exercise,#round-status,#start){top:24px}
+@media(max-width:600px){html#arithmetic-timed :is(#exercise,#round-status,#start){top:16px}}
