@@ -10,7 +10,8 @@ html,body{background:#18191c!important}
 .autumn-leaves.paused :is(.autumn-leaf,.leaf-turn,img){animation-play-state:paused}
 .leaf-turn{display:block;position:relative}
 .leaf-mesh{display:none}
-@media(prefers-reduced-motion:no-preference){
+/* The site leaves switch controls both falling and twisting together. */
+@media all{
  .autumn-leaf[data-gust]{animation-name:autumn-fall,autumn-gust;animation-duration:var(--duration),36s;animation-timing-function:linear,ease-in-out;animation-delay:var(--delay),0s}
  .leaf-turn{font-size:var(--leaf-size);transform-style:preserve-3d;animation:autumn-tumble var(--tumble-time) ease-in-out var(--delay) infinite}
  .leaf-turn img{visibility:hidden;animation:none}

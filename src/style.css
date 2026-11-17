@@ -65,3 +65,5 @@ html body :is(.games-menu summary,.games-list,.temponotes-link,#account-bar>.atl
 
 .home-page-links{position:absolute;top:1.5rem;right:1.5rem;z-index:7;display:flex;flex-direction:column;align-items:stretch;gap:10px}.home-page-links>.temponotes-link{position:static;text-align:center;transform:none}
 @media(max-width:600px){.home-page-links{top:1.2rem;right:1.2rem;transform:scale(.65);transform-origin:top right}}
+
+.navigation{flex-direction:column;align-items:flex-start;flex-wrap:nowrap;gap:10px}.navigation #languages-menu>.games-list,.navigation #games-menu>.games-list{left:calc(100% + 10px);right:auto;top:0;max-height:calc(100svh - 10rem)}.navigation>.games-menu[open]{z-index:2}
