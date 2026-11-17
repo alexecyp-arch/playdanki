@@ -104,7 +104,7 @@ const retainedBackgrounds=new Set(backgrounds.flatMap(p=>[p.desktop.split('/').a
 for(const name of await fs.readdir(new URL('dist/temponotes/backgrounds/',root)))if(/^[0-9]+-(desktop|mobile)-[a-f0-9]+\.webp$/.test(name)&&!retainedBackgrounds.has(name))await fs.rm(new URL('dist/temponotes/backgrounds/'+name,root));
 const backgroundScript=(await fs.readFile(new URL('src/temponotes/daily-background.js',root),'utf8')).replace('BACKGROUND_DATA',()=>JSON.stringify(backgrounds));
 await fs.writeFile(new URL('dist/temponotes/index.html',root),notesHtml.replace('DAILY_BACKGROUND_SCRIPT',()=>backgroundScript).replace('AUTH_CONFIG',()=>JSON.stringify(authConfig).replace(/</g,'\\u003c')));
-await fs.writeFile(new URL('dist/arithmetic.html',root),arithmetic.replace('</style>',arithmeticTheme.trim()+'\n'+cursorCss.trim()+'\n'+studyCss.trim()+'\n</style>'));
+await fs.writeFile(new URL('dist/arithmetic.html',root),arithmetic.replace('</style>',(await fs.readFile(new URL('src/autumn-main.css',root),'utf8'))+'\n'+arithmeticTheme.trim()+'\n'+cursorCss.trim()+'\n'+studyCss.trim()+'\n</style>').replace('</body>','<script defer data-danki-main src="temponotes/autumn.js?v='+runtimeVersion+'"></script></body>'));
 await fs.rm(new URL('dist/credits.txt',root),{force:true});
 console.log(JSON.stringify({words:coreDeckInfo["german-word"].count,sentences:coreDeckInfo.sentence.count,frenchWords:coreDeckInfo["french-word"].count,frenchSentences:coreDeckInfo["french-sentence"].count,kana:kanaEntries.length,kanji:kanjiEntries.length,economics:economicsEntries.length,htmlBytes:Buffer.byteLength(html),compressedBytes:gzipSync(html).length}));
 

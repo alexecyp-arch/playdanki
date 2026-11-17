@@ -142,8 +142,9 @@
  refreshSeason();setInterval(refreshSeason,3600000);
  mobile.addEventListener('change',()=>{seasonKey='';mobileAccentTick=0;refreshSeason();});
  document.body.append(layer);let visible=parent===window||!window.frameElement?.hidden;
- const pause=()=>{const covered=main&&['notes-open','timebox-open','weight-open','atlas-open'].some(c=>document.body.classList.contains(c));const off=document.documentElement.dataset.dankiLeaves==='off';layer.hidden=covered||off;layer.classList.toggle('paused',!visible||document.hidden||covered||off);};
+ const pause=()=>{let host=document;if(main&&parent!==window)try{host=parent.document;visible=!window.frameElement?.hidden;}catch{}const covered=main&&(['notes-open','timebox-open','weight-open','atlas-open'].some(c=>host.body.classList.contains(c))||(parent===window&&document.body.classList.contains('arithmetic-page')));const off=document.documentElement.dataset.dankiLeaves==='off'||host.documentElement.dataset.dankiLeaves==='off';layer.hidden=covered||off||!visible;layer.classList.toggle('paused',!visible||document.hidden||covered||off);};
  if(main)new MutationObserver(pause).observe(document.body,{attributes:true,attributeFilter:['class']});
+ if(main&&parent!==window)try{new MutationObserver(pause).observe(parent.document.body,{attributes:true,attributeFilter:['class']});if(window.frameElement)new MutationObserver(pause).observe(window.frameElement,{attributes:true,attributeFilter:['hidden']});parent.document.addEventListener('danki-leaves-change',pause);}catch{}
  document.addEventListener('danki-leaves-change',pause);document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshSeason();pause();});window.addEventListener('temponotes-visibility',event=>{visible=!!event.detail;pause();});window.addEventListener('message',event=>{if(event.origin===location.origin&&event.source===parent&&['danki-notes-visibility','danki-timebox-visibility'].includes(event.data?.type)){visible=!!event.data.visible;pause();}});
  setInterval(()=>{
   if(!layer.hidden&&!document.hidden&&visible&&(!mobile.matches||++mobileAccentTick%2===0))dropAccent();
