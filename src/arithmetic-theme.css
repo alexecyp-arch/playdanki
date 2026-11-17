@@ -1,19 +1,6 @@
-body{background:#071e48;color:#fff;font-weight:700;color-scheme:dark}
-#exercise{font-weight:700}
-#answer{background:#071e48;color:#fff;border-bottom-color:#a3b4d1}
-#answer:focus{border-bottom-color:#fff}
-#bottom{position:fixed;top:auto;bottom:16px;right:16px;width:580px;max-width:calc((100vw - 32px)/.75);transform:scale(.75);transform-origin:bottom right;background:#071e48;color:#fff}
-#bottom,#bottom *{color:#fff;font-weight:700}
-#bottom button,#bottom input[type=number]{background:#071e48;color:#fff}
-#bottom input[type=checkbox]{accent-color:#fff}
-#exercise{flex-direction:row;flex-wrap:nowrap;gap:16px;padding:2rem 0 10rem;justify-content:center;text-align:center}
-#problem{white-space:normal;overflow-wrap:anywhere;font-size:135px}
-#answer{width:fit-content;min-width:2ch;max-width:100%;border:2px solid #45618e;border-radius:.65rem;background:#102c59;padding:.1em .4em;font-size:clamp(3rem,8vw,7rem);overflow-wrap:anywhere}
-@media(max-width:600px){#exercise{padding:1.5rem 0 12rem;gap:1rem}#problem{font-size:72px}}
-#exercise label#problem{white-space:nowrap;flex-shrink:0}
-#exercise input#answer{width:6ch;min-width:0;flex-shrink:0;border:0;border-bottom:2px solid #a3b4d1;border-radius:0;padding:0;background:transparent;font-weight:700;text-align:left;caret-color:#fff;outline:0}
-#exercise input#answer:focus{border-bottom-color:#fff}
-@media(max-width:700px){#exercise{gap:8px}#exercise label#problem,#exercise input#answer{font-size:24px}}
-
-#bottom{position:relative;inset:auto;width:min(580px,100%);max-width:100%;margin:24px 0 16px auto;transform:none}
-@media(max-width:600px){main{padding-bottom:240px}#bottom{width:100%;font-size:12px}#exercise{min-height:45svh;padding-bottom:2rem}}
+#exercise{font-weight:900;padding:0;flex-wrap:nowrap;flex:none}
+#exercise label#problem{white-space:nowrap;overflow-wrap:normal}
+html body #exercise input#answer{width:5ch;flex-shrink:1;min-width:2ch;max-width:38vw;font-weight:900}
+#round-status,#result,#start{position:relative;top:var(--card-offset,56px)}
+#total{background:transparent;border:0;box-shadow:none;color:#fff;font-weight:700}
+@media(max-width:600px){main{padding:100px 16px 180px}#exercise{gap:8px}html body #exercise label#problem,html body #exercise input#answer{font-size:clamp(20px,5.6vw,28px)}#round-status{font-size:12px}#result{font-size:26px}#bottom{right:16px;bottom:24px}#total{font-size:10px}}
