@@ -10,7 +10,7 @@
 /* The site leaves switch controls both falling and twisting together. */
 @media all{
  .autumn-leaf[data-gust]{animation-name:autumn-fall,autumn-gust;animation-duration:var(--duration),36s;animation-timing-function:linear,ease-in-out;animation-delay:var(--delay),0s}
- .leaf-turn{font-size:var(--leaf-size);transform-style:preserve-3d;animation:autumn-tumble var(--tumble-time) ease-in-out var(--delay) infinite}
+ .leaf-turn{font-size:var(--leaf-size);transform-style:preserve-3d;animation:autumn-tumble var(--tumble-time) linear var(--delay) infinite}
  .leaf-turn img{visibility:hidden;animation:none}
  .leaf-mesh,.leaf-half,.leaf-fold{position:absolute;transform-style:preserve-3d}
  .leaf-mesh{display:block;inset:0}
@@ -32,10 +32,9 @@
 }
 @keyframes autumn-tumble{
  0%{transform:perspective(125px) translate3d(calc(0px - var(--sway)),0,0) rotateY(0turn) rotateX(-18deg) rotateZ(-16deg)}
- 22%{transform:perspective(125px) translate3d(var(--sway),0,10px) rotateY(calc(var(--tumble-turn)*.15)) rotateX(42deg) rotateZ(18deg)}
- 38%{transform:perspective(125px) translate3d(calc(var(--sway)*.8),0,5px) rotateY(calc(var(--tumble-turn)*.28)) rotateX(57deg) rotateZ(23deg)}
- 57%{transform:perspective(125px) translate3d(calc(var(--sway)*.3),0,-5px) rotateY(calc(var(--tumble-turn)*.51)) rotateX(-12deg) rotateZ(6deg)}
- 78%{transform:perspective(125px) translate3d(calc(var(--sway)*-.6),0,-13px) rotateY(calc(var(--tumble-turn)*.77)) rotateX(-54deg) rotateZ(-26deg)}
+ 25%{transform:perspective(125px) translate3d(0,0,0) rotateY(calc(var(--tumble-turn)*.25)) rotateX(-18deg) rotateZ(-16deg)}
+ 50%{transform:perspective(125px) translate3d(var(--sway),0,0) rotateY(calc(var(--tumble-turn)*.5)) rotateX(-18deg) rotateZ(-16deg)}
+ 75%{transform:perspective(125px) translate3d(0,0,0) rotateY(calc(var(--tumble-turn)*.75)) rotateX(-18deg) rotateZ(-16deg)}
  100%{transform:perspective(125px) translate3d(calc(0px - var(--sway)),0,0) rotateY(var(--tumble-turn)) rotateX(-18deg) rotateZ(-16deg)}
 }
 @media(max-width:760px){.autumn-leaf{--leaf-size:calc(var(--size)*.7);left:var(--mobileLeft)}}
