@@ -62,3 +62,6 @@ html body :is(.games-menu summary,.games-list,.game-option,.temponotes-link,#acc
 html body :is(.games-menu summary,.games-list,.temponotes-link,#account-bar>.atlas-link,#account-bar>.weight-link,#account-bar>.timebox-link,.history,.again,#account-menu>summary,#account-panel,#account-panel button,#voice-toggle,#support-options,#support-options a){border-width:2px;border-color:#b7bdc6}
 
 #current-game-label{position:absolute;transform:translate(-50%,-50%);font:700 12px/1.2 Arial,sans-serif;color:#676b72;text-shadow:0 -1px 0 #ffffff65,0 1px 0 #090a0c,0 2px 1px #000b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;pointer-events:none;z-index:6}
+
+.home-page-links{position:absolute;top:1.5rem;right:1.5rem;z-index:7;display:flex;flex-direction:column;align-items:stretch;gap:10px}.home-page-links>.temponotes-link{position:static;text-align:center;transform:none}
+@media(max-width:600px){.home-page-links{top:1.2rem;right:1.2rem;transform:scale(.65);transform-origin:top right}}
