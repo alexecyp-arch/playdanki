@@ -1,6 +1,6 @@
-import {moveLockedTab} from './locked-order.mjs?v=1a39bea33d4a';
-import {confirmDelete} from './confirm-delete.js?v=1a39bea33d4a';
-import {createLock,emptyLockedNotes,sealNotes,unlockNotes,validPassword} from './locked-crypto.mjs?v=1a39bea33d4a';
+import {moveLockedTab} from './locked-order.mjs?v=c4d7fde80095';
+import {confirmDelete} from './confirm-delete.js?v=c4d7fde80095';
+import {createLock,emptyLockedNotes,sealNotes,unlockNotes,validPassword} from './locked-crypto.mjs?v=c4d7fde80095';
 export function mountLocked(root,store){
  const confirmController=new AbortController();
  const wrapper=document.createElement('aside');wrapper.className='locked-area';
