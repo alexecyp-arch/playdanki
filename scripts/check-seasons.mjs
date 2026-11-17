@@ -55,7 +55,7 @@ for(const [viewport,min,max] of [[phone,22,36],[page('2026-10-29T12:00:00Z'),35,
  }
 }
 const turns=phone.layer.children.flatMap(n=>n.children).filter(n=>n.className==='leaf-turn');
-assert.equal(turns.length,Math.round(count(phone,'leaf')/5));
+assert.equal(turns.length,Math.floor((count(phone,'leaf')+4)/5)+Math.floor((count(phone,'leaf')+2)/5));
 for(const turn of turns){
  assert.equal(turn.children.length,2);
  const [image,mesh]=turn.children;

@@ -44,7 +44,7 @@
     values['gust-distance']=range(4,8)+'vw';
    }
   }
-  const tumbles=type==='leaf'&&leafIndex%5===3;
+  const tumbles=type==='leaf'&&(leafIndex%5===1||leafIndex%5===3);
   if(tumbles){
    values['tumble-time']=range(4,8)+'s';
    values['tumble-turn']=Math.random()<.5?'1turn':'-1turn';
