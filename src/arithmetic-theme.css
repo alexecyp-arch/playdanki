@@ -14,3 +14,8 @@ html#arithmetic-timed[data-danki-theme="charcoal"] body #bottom #total,html#arit
 
 html#arithmetic-timed :is(#exercise,#round-status,#start){top:24px}
 @media(max-width:600px){html#arithmetic-timed :is(#exercise,#round-status,#start){top:16px}}
+
+/* Keep the equation in place while moving its score and timer to the top. */
+html#arithmetic-timed main::before{content:"";display:block;flex:none;height:calc(32px * 1.4 + 14px * 1.4 + 4px + 24px)}
+html#arithmetic-timed #round-status{position:absolute;top:90px;left:50%;transform:translateX(-50%);margin:0;white-space:nowrap}
+@media(max-width:600px){html#arithmetic-timed main::before{height:calc(26px * 1.4 + 12px * 1.4 + 4px + 24px)}html#arithmetic-timed #round-status{top:80px}}
