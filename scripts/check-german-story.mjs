@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import {germanStoryCards,germanStoryAudit} from './build-german-story.mjs';
+import {storyVocabulary,germanStoryWords} from './german-story-vocabulary.mjs';
+const words=storyVocabulary(germanStoryWords);
+for(const [form,lemma]of [['ist','sein'],['sind','sein'],['Kindern','kind'],['kleinen','klein'],['Häuser','haus'],['gemütlichen','gemütlich']])assert.equal(words.get(form.toLocaleLowerCase('de-DE')).lemma,lemma);
+for(const forbidden of ['Schweiz','Vogel','Himmel','Holz','Mehl','Geschenk','Bäckerei','wunderschön'])assert(!words.has(forbidden.toLocaleLowerCase('de-DE')),forbidden+' is outside the selected vocabulary');
+assert.equal(germanStoryCards[0][0],'Wir kommen mit dem Zug.');
+assert.equal(germanStoryCards.at(-1)[0],'Hier möchten wir bleiben und alt werden.');
+assert(germanStoryCards.every(([,english])=>!english.includes('ruhig')),'English translations must stay English');
+const app=await fs.readFile('src/app.js','utf8');assert(app.includes("sequential:true,...remoteCards('german-story')"));assert(app.includes('showRepetition(practiceActive&&!active.sequential)'));
+console.log('German story passed: 500 distinct bilingual sentences, 50 ordered scenes, '+germanStoryAudit.distinctHeadwordsUsed+' selected headwords with checked grammar forms, no extra vocabulary, lazy deck and strict order.');

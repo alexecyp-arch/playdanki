@@ -426,3 +426,5 @@
  .auth-gate{flex:1;min-height:0;height:auto}
  #day-animal-track{flex:0 0 28px}
 }
+
+@media(max-width:600px){#notes-navigation .danki-return{order:2}#notes-navigation .notes-weight-link{order:1}}

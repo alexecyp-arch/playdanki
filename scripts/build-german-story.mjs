@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {germanStoryCards as cards,germanStorySource,germanStoryWords,auditStory} from './german-story-vocabulary.mjs';
+assert.equal(cards.length,500,'German story must contain exactly 500 sentences');
+assert.equal(new Set(cards.map(row=>row[0].normalize('NFC').toLowerCase())).size,500,'Every German sentence must be distinct');
+assert(cards.every(row=>row.length===2&&row.every(text=>typeof text==='string'&&text.trim()&&/[.!?]$/.test(text))),'Each story sentence needs German and English');
+const chapters=germanStorySource.split(/^# /m).slice(1).map(section=>section.split(/\r?\n/).filter(line=>line.includes('|')));
+assert.equal(chapters.length,50);assert(chapters.every(chapter=>chapter.length===10),'Keep the 50 ten-sentence scenes in story order');
+assert.equal(germanStoryWords.length,1200);
+const audit=auditStory();assert.deepEqual(audit.unknown,{},'Every story word must be a selected headword or its grammatical form');
+export const germanStoryCards=cards;
+export const germanStoryAudit={setting:'A quiet family life in a village in Switzerland',sentences:500,chapters:50,selectedHeadwords:1200,distinctSurfaceForms:Object.keys(audit.used).length,distinctHeadwordsUsed:new Set(Object.values(audit.used).map(value=>value.lemma)).size,grammar:'Normal conjugation, declension, comparison and article contractions; no additional story vocabulary.',words:audit.used};
