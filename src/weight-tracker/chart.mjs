@@ -1,6 +1,6 @@
 import {chartData} from './model.mjs';
 import {sleepChartData,formatSleepDuration} from './sleep.mjs';
-import {proteinChartData} from './protein-tracker.mjs';
+import {calorieChartData as proteinChartData} from './calories.mjs';
 const namespace='http://www.w3.org/2000/svg';
 export function draw(svg,entries,unit,{selectedId=null,onSelect=()=>{},targetKg=null}={}){
  const data=chartData(entries,unit,targetKg);
@@ -9,7 +9,7 @@ export function draw(svg,entries,unit,{selectedId=null,onSelect=()=>{},targetKg=
  drawSeries(svg,data,{unit,axis:'WEIGHT ('+unit+')',selectedId,onSelect,step:1});
 }
 export function drawProtein(svg,days,target,now=Date.now()){
- drawSeries(svg,proteinChartData(days,target,now),{unit:'GRAMS',axis:'PROTEIN',step:10});
+ drawSeries(svg,proteinChartData(days,target,now),{unit:'KCAL',axis:'CALORIES',step:100});
 }
 function drawSeries(svg,data,{unit,axis,step,selectedId=null,onSelect=null}){
  const protein=step!==1,width=Math.max(296,Math.round(svg.clientWidth||800));

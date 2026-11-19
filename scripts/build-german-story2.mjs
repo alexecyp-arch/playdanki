@@ -1,0 +1,18 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {auditStory2} from './german-story2-vocabulary.mjs';
+import {germanStoryWords} from './german-story-vocabulary.mjs';
+export const germanExtraFrequency=JSON.parse(fs.readFileSync(new URL('../src/german-extra-frequency.json',import.meta.url),'utf8'));
+const known=new Set(germanStoryWords.map(row=>row[0].toLocaleLowerCase('de-DE')));
+assert.equal(germanExtraFrequency.rows.length,1000);
+assert.equal(new Set(germanExtraFrequency.rows.map(r=>r.word.toLocaleLowerCase('de-DE'))).size,1000);
+assert(germanExtraFrequency.rows.every((r,i)=>r.translation&&r.basis&&r.position===i+1&&!known.has(r.word.toLocaleLowerCase('de-DE'))));
+const audit=auditStory2();
+assert.equal(audit.cards.length,500);
+assert.equal(new Set(audit.cards.map(r=>r[0].normalize('NFC').toLowerCase())).size,500);
+assert(audit.cards.every(r=>r.length===2&&r.every(s=>s.trim()&&/[.!?]$/.test(s))));
+assert.deepEqual(audit.unknown,{},'Story 2 must only use selected vocabulary and normal grammar forms');
+assert.equal(audit.old.length,360,'30% of the familiar 1200 headwords');
+assert.equal(audit.new.length,700,'70% of the additional 1000 headwords');
+export const germanStoryTwoCards=audit.cards;
+export const germanStoryTwoAudit={sentences:500,setting:'A Swiss village builds a welcoming community house',familiarPool:1200,additionalPool:1000,familiarHeadwordsUsed:360,additionalHeadwordsUsed:700,interpretation:'30% of the first pool and 70% of the additional pool, counted as distinct headwords; repeated grammar words are unrestricted.',familiar:audit.old,additional:audit.new,forms:audit.used};

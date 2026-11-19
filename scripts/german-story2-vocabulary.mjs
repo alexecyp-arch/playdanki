@@ -1,0 +1,6 @@
+import fs from 'node:fs';
+import {storyVocabulary,germanStoryWords} from './german-story-vocabulary.mjs';
+const data=JSON.parse(fs.readFileSync(new URL('../src/german-extra-frequency.json',import.meta.url),'utf8'));
+export const extraWords=data.rows.map(row=>[row.word,row.translation,row.part,[]]);
+export function auditStory2(){const source=fs.readFileSync(new URL('../src/german-story2.txt',import.meta.url),'utf8').replace(/^\uFEFF/,''),cards=source.split(/\r?\n/).map(s=>s.trim()).filter(s=>s&&!s.startsWith('#')).map(s=>s.split('|'));const old=new Set(germanStoryWords.map(r=>r[0].toLowerCase())),forms=storyVocabulary([...germanStoryWords,...extraWords]),unknown=new Map(),used=new Map();cards.forEach(([de],i)=>{for(const raw of de.match(/[\p{L}]+(?:-[\p{L}]+)*/gu)||[]){const word=raw.toLocaleLowerCase('de-DE'),entry=forms.get(word);if(!entry){if(!unknown.has(word))unknown.set(word,[]);unknown.get(word).push(i+1)}else used.set(word,entry)}});const lemmas=new Set([...used.values()].map(e=>e.lemma));return {cards,unknown:Object.fromEntries(unknown),used:Object.fromEntries(used),old:[...lemmas].filter(w=>old.has(w)),new:[...lemmas].filter(w=>!old.has(w))};}
+if(process.argv.includes('--audit')){const a=auditStory2();console.log('SENTENCES',a.cards.length,'OLD',a.old.length,'NEW',a.new.length);console.log('UNKNOWN',JSON.stringify(a.unknown));}

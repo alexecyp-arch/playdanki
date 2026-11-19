@@ -9,6 +9,7 @@ const decks={
   frenchWords:{key:'francais5000:v1',title:'Français',unit:'words',section:'french',lang:'fr',...remoteCards('french-word')},
   frenchSentences:{key:'francais1000sentences:v1',title:'French Sentences',unit:'sentences',section:'french',lang:'fr',fixedChoices:true,...remoteCards('french-sentence')},
   words:{key:'deutsch5000:v1',title:'Deutsch',unit:'words',section:'german',lang:'de',...remoteCards('german-word')},
+  germanStoryTwo:{key:'deutschstory2-500:v1',title:'German Story 2',unit:'sentences',section:'german',lang:'de',sequential:true,...remoteCards('german-story-2')},
   germanStory:{key:'deutschstory500:v1',title:'German Story',unit:'sentences',section:'german',lang:'de',sequential:true,...remoteCards('german-story')},
   sentences:{key:'deutsch1000sentences:v1',title:'Sentences',unit:'sentences',section:'german',lang:'de',...remoteCards('sentence')},
   kana:{key:'japanese:kana:v1',title:'Hiragana + Katakana',unit:'Kana answers',section:'japanese',lang:'ja',limit:500,daily:true,cards:JSON.parse($('kana-data').textContent)},
@@ -33,7 +34,7 @@ for(const deck of Object.values(decks)){
   }
 }
 const word=$('word'),position=$('position'),translation=$('translation'),feedback=$('feedback'),history=$('history'),today=$('today'),again=$('again'),practice=document.querySelector('.practice');
-const modeButtons={frenchWords:$('french-words-mode'),frenchSentences:$('french-sentences-mode'),words:$('words-mode'),sentences:$('sentences-mode'),germanStory:$('german-story-mode'),kana:$('kana-mode'),kanji:$('kanji-mode'),spanishWords:$('spanish-words-mode'),spanishSentences:$('spanish-sentences-mode'),italianWords:$('italian-words-mode'),italianSentences:$('italian-sentences-mode'),greekWords:$('greek-words-mode'),greekSentences:$('greek-sentences-mode'),hangul:$('hangul-mode'),koreanWords:$('korean-words-mode'),coding:$('coding-mode'),economics:$('economics-mode'),trivia:$('trivia-mode')},preferredModes={french:'frenchWords',german:'words',japanese:'kana',spanish:'spanishWords',italian:'italianWords',greek:'greekWords',korean:'hangul',coding:'coding',economics:'economics',trivia:'trivia'};
+const modeButtons={frenchWords:$('french-words-mode'),frenchSentences:$('french-sentences-mode'),words:$('words-mode'),sentences:$('sentences-mode'),germanStory:$('german-story-mode'),germanStoryTwo:$('german-story2-mode'),kana:$('kana-mode'),kanji:$('kanji-mode'),spanishWords:$('spanish-words-mode'),spanishSentences:$('spanish-sentences-mode'),italianWords:$('italian-words-mode'),italianSentences:$('italian-sentences-mode'),greekWords:$('greek-words-mode'),greekSentences:$('greek-sentences-mode'),hangul:$('hangul-mode'),koreanWords:$('korean-words-mode'),coding:$('coding-mode'),economics:$('economics-mode'),trivia:$('trivia-mode')},preferredModes={french:'frenchWords',german:'words',japanese:'kana',spanish:'spanishWords',italian:'italianWords',greek:'greekWords',korean:'hangul',coding:'coding',economics:'economics',trivia:'trivia'};
 const game=$('game'),answerBox=$('answer-box'),questionImage=$('question-image');
 const memory=new Map();
 let storageOK=true,warning,mode='words',active=decks.words,state,locked=false,shownCursor=0,shownRound=1,shownCard=0,shownDay='',screenVersion=0,midnightTimer,practiceActive=true,reviewCursor=null;

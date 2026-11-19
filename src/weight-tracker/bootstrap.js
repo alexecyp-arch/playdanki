@@ -1,5 +1,5 @@
 import {mountSleep} from './sleep-ui.js';
-import {createProteinStore,proteinAverage,proteinDay,proteinLastDay,MAX_PROTEIN} from './protein-tracker.mjs';
+import {createCalorieStore as createProteinStore,calorieAverage as proteinAverage,calorieDay as proteinDay,calorieLastDay as proteinLastDay,MAX_CALORIES as MAX_PROTEIN} from './calories.mjs';
 import {initializeApp} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js';
 import {getAuth,onAuthStateChanged,beforeAuthStateChanged,GoogleAuthProvider,signInWithPopup} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js';
 import * as sdk from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js';
@@ -19,7 +19,7 @@ function renderProtein(){
  const now=Date.now(),today=proteinDay(now),date=$('protein-date');if(!date.value||date.value===shownProteinDay)date.value=today;date.max=proteinLastDay(now);shownProteinDay=today;syncProteinArrows();
  if($('protein-panel').hidden)return;
  const average=proteinAverage(protein,now);
- $('protein-average').textContent='7-DAY AVERAGE: '+(average===null?'—':average.toLocaleString()+' GRAMS');
+ $('protein-average').textContent='7-DAY AVERAGE: '+(average===null?'—':average.toLocaleString()+' KCAL');
  drawProtein($('protein-chart'),protein,proteinTarget,now);
 }
 function render(){renderProtein();const selected=entries.find(p=>p.id===selectedId);if(!selected)selectedId=null;$('selected-entry').hidden=!selected;$('selected-value').textContent=selected?Number(weight(selected.kg,unit).toFixed(2)).toLocaleString()+' '+unit+' · '+new Date(selected.time).toLocaleString('en-GB'):'';const targetTime=forecastTargetTime(entries,targetKg);$('change-rate').hidden=targetKg===null;$('calories-to-lose').hidden=targetKg===null||!entries.length;$('calories-to-lose').textContent='CALORIES TO LOSE = '+Math.round(Math.max(0,(entries.at(-1)?.kg??0)-(targetKg??0))*7000).toLocaleString('en-GB');$('change-rate').textContent='ESTIMATED DATE YOU WILL HIT YOUR TARGET = '+formatForecastDate(targetTime);draw($('chart'),entries,unit,{selectedId,targetKg,onSelect:id=>{if(saving)return;selectedId=id;render();}});controls();}
@@ -38,7 +38,7 @@ async function saveProtein(action,status,after=()=>{}){
  if(saving||!proteinStore||!proteinReady)return;
  const current=generation;saving=true;controls();status.textContent='SAVING';
  try{await action(proteinStore);if(current===generation){after();status.textContent='SAVED';}}
- catch(e){if(current===generation)status.textContent=navigator.onLine?(e.message==='PROTEIN'||e.message==='TARGET PROTEIN'?e.message:'RETRY'):'OFFLINE';}
+ catch(e){if(current===generation)status.textContent=navigator.onLine?(e.message==='CALORIES'||e.message==='TARGET CALORIES'?e.message:'RETRY'):'OFFLINE';}
  finally{if(current===generation){saving=false;controls();}}
 }
 function proteinChange(sign){

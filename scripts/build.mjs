@@ -1,5 +1,6 @@
 import {selectGermanWords,germanFrequencyAudit} from './select-german-words.mjs';
 import {germanStoryCards} from './build-german-story.mjs';
+import {germanStoryTwoCards,germanStoryTwoAudit,germanExtraFrequency} from './build-german-story2.mjs';
 import {codingCards} from './build-coding1000.mjs';
 import fs from 'node:fs/promises';
 import {sentenceQuiz,factQuiz} from './quiz-distractors.mjs';
@@ -54,11 +55,14 @@ if(kanjiEntries.length!==2136||new Set(kanjiEntries.map(c=>c[0])).size!==2136||k
 const coreDeckInfo={};
 await fs.mkdir(new URL('dist/decks/',root),{recursive:true});
 await fs.mkdir(new URL('dist/german/',root),{recursive:true});
-for(const [id,data,url] of [['german-word',JSON.stringify(selectGermanWords(entries)),'german/words.json'],['french-word',frenchWords,'french/words.json'],['french-sentence',frenchSentences,'french/sentences.json'],['sentence',JSON.stringify(sentenceQuiz(sentenceEntries.slice(0,500))),'decks/sentences.json'],['german-story',JSON.stringify(germanStoryCards),'german/story.json'],['kanji',kanji,'decks/kanji.json'],['economics',JSON.stringify(factQuiz(economicsEntries)),'decks/economics.json'],['coding',JSON.stringify(codingCards),'coding1000/cards.json']]){
+for(const [id,data,url] of [['german-word',JSON.stringify(selectGermanWords(entries)),'german/words.json'],['french-word',frenchWords,'french/words.json'],['french-sentence',frenchSentences,'french/sentences.json'],['sentence',JSON.stringify(sentenceQuiz(sentenceEntries.slice(0,500))),'decks/sentences.json'],['german-story',JSON.stringify(germanStoryCards),'german/story.json'],['german-story-2',JSON.stringify(germanStoryTwoCards),'german/story2.json'],['kanji',kanji,'decks/kanji.json'],['economics',JSON.stringify(factQuiz(economicsEntries)),'decks/economics.json'],['coding',JSON.stringify(codingCards),'coding1000/cards.json']]){
  coreDeckInfo[id]={count:JSON.parse(data).length,url,version:createHash('sha256').update(data).digest('hex').slice(0,16)};
  await fs.writeFile(new URL('dist/'+url,root),data);
 }
 await fs.writeFile(new URL('dist/german/frequency-audit.json',root),JSON.stringify(germanFrequencyAudit(entries)));
+await fs.writeFile(new URL('dist/german/extra-frequency.json',root),JSON.stringify(germanExtraFrequency));
+await fs.writeFile(new URL('dist/german/story2-audit.json',root),JSON.stringify(germanStoryTwoAudit));
+await fs.writeFile(new URL('dist/german/next-1000.csv',root),'GERMAN,ENGLISH\n'+germanExtraFrequency.rows.map(r=>[r.word,r.translation].map(s=>'\"'+s.replaceAll('\"','\"\"')+'\"').join(',')).join('\n'));
 html=html.replace('<script defer src="card-navigation.js"></script>',()=>'<script>'+cardNavigation+'</script>').replace('<link rel="stylesheet" href="style.css">','<style>'+css.trim()+'\n'+cursorCss.trim()+'\n'+studyCss.trim()+'\n'+supportCss.trim()+'\n'+accountCss.trim()+'</style>')
  .replace('<script defer src="app.js"></script>','').replace('<script defer src="german-voice.js"></script>','')
  .replace('CORE_DECK_INFO',()=>JSON.stringify(coreDeckInfo))
