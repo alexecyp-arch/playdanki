@@ -444,3 +444,8 @@ html body #note-day-timer:disabled{opacity:1}#note-day-timer:focus-visible{outli
 /* Keep scrolling available without a visible scrollbar. */
 .notes-only .notes-area{scrollbar-width:none;-ms-overflow-style:none}
 .notes-only .notes-area::-webkit-scrollbar{display:none;width:0;height:0}
+
+/* Centre the title, clock and calendar as one header above the notes. */
+.notes-only .header,.has-note-day-timer .notes-only .header{padding-left:24px;padding-right:24px;justify-content:center}
+.notes-only .brand{width:100%;justify-content:center;text-align:center}
+@media(max-width:600px){.notes-only .header,.has-note-day-timer .notes-only .header{padding-left:16px;padding-right:16px}}
