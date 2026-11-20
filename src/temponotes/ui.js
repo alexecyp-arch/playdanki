@@ -58,6 +58,7 @@ export function mount(root,request,{visible=true,locked}={}){
  function render(){
   if(disposed||!visible)return;const t=Date.now()+offset,time=$('.current-time');time.textContent=format(t);$('.current-calendar').textContent=calendarLabel(t);time.dateTime=new Date(t).toISOString();orderButton.disabled=!!orderUntil||savingOrder;
   const status=$('.order-status');status.hidden=!orderUntil&&!savingOrder;status.textContent=orderUntil?'ORDER · '+Math.max(1,Math.ceil((orderUntil-Date.now())/1000))+'S · CLICK NOTES IN ORDER':savingOrder?'SAVING ORDER…':'';
+  if(deleteAnimations.size)return;
   const active=activeNotes(t),ids=new Set(active.map(n=>n.id));
   fortuna.render(active);
   for(const [id,li]of nodes)if(!ids.has(id)&&!deleting.has(id)){li.remove();nodes.delete(id);}
@@ -72,7 +73,20 @@ export function mount(root,request,{visible=true,locked}={}){
  async function saveOrder(){if(disposed)return;const next=finishOrder(chosen,orderBase);orderUntil=0;chosen=[];if(!next.length)return render();order=next;savingOrder=true;render();$('#note-list').scrollTo({top:0,behavior:'instant'});try{const r=await request('/api/note-order',{method:'POST',body:JSON.stringify({ids:next})});if(!r.ok)throw Error('Could not save note order. Press ORDER to retry.');}catch(e){showError(e.message);}finally{savingOrder=false;render();}}
  async function load(){const start=Date.now();try{const r=await request('/api/notes',{cache:'no-store'});if(!r.ok)throw Error('Could not sync notes. Please refresh or sign in again.');const data=await r.json();if(disposed||start<lastSync)return;lastSync=start;offset=data.serverNow-Date.now();notes=data.notes;schedules=data.eternalNotes||[];adjustments=data.eternalAdjustments||{};if(!orderUntil&&!savingOrder)order=data.noteOrder||[];loaded=true;eternal.render();render();showError();}catch(e){showError(e.message);}}
  async function send(){if(busy||!input.value.trim())return;busy=true;showError();controls();try{draft??=crypto.randomUUID();const r=await request('/api/notes',{method:'POST',body:JSON.stringify({body:input.value,id:draft})});if(!r.ok)throw Error('Could not save. Your note is still here. Try again.');if(disposed)return;input.value='';draft=null;lastSync=Date.now();await load();$('#note-list').scrollTo({top:0,behavior:'smooth'});input.disabled=false;input.focus();}catch(e){showError(e.message);}finally{busy=false;if(!disposed){controls();render();}}}
- async function foldDeletedNote(li){if(matchMedia('(prefers-reduced-motion: reduce)').matches||!li.animate)return;const height=li.getBoundingClientRect().height;li.style.overflow='hidden';const animation=li.animate([{height:height+'px',opacity:1,transform:'perspective(600px) rotateX(0deg)'},{height:height*.5+'px',opacity:.7,transform:'perspective(600px) rotateX(-45deg)',offset:.5},{height:'0px',opacity:0,transform:'perspective(600px) rotateX(-85deg)'}],{duration:240,easing:'ease-in',fill:'forwards'});deleteAnimations.add(animation);try{await animation.finished;}catch{}finally{deleteAnimations.delete(animation);}}
+ async function foldDeletedNote(li){
+  if(!li.animate)return;
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches,height=li.getBoundingClientRect().height;
+  li.style.overflow='hidden';li.style.transformOrigin='top center';
+  const frames=reduced?[{opacity:1},{opacity:0}]:[
+   {height:height+'px',opacity:1,transform:'perspective(700px) rotateX(0deg)'},
+   {height:height*.86+'px',opacity:.9,transform:'perspective(700px) rotateX(-25deg)',offset:.35},
+   {height:height*.35+'px',opacity:.55,transform:'perspective(700px) rotateX(-65deg)',offset:.75},
+   {height:'0px',opacity:0,transform:'perspective(700px) rotateX(-90deg)'}
+  ];
+  const animation=li.animate(frames,{duration:reduced?180:matchMedia('(min-width:761px)').matches?650:420,easing:'cubic-bezier(.4,0,.65,1)',fill:'forwards'});
+  deleteAnimations.add(animation);try{await animation.finished;}catch{}finally{deleteAnimations.delete(animation);}
+ }
+
  async function act(event){const button=event.target.closest('button'),li=button?.closest('li');if(!li)return;if(button.classList.contains('order-notes'))return beginOrder();const id=li.dataset.id;if(extending.has(id)||orderUntil||savingOrder)return;const extra=button.dataset.day==='1',scheduled=occurrences(schedules,Date.now()+offset,adjustments).find(n=>n.id===id);if(!button.classList.contains('delete')&&!extra)return;if(!extra&&!await confirmDelete(scheduled?'REMOVE THIS ETERNAL NOTE FOR TODAY?':'DELETE THIS NOTE?',confirmController.signal))return;if(disposed)return;if(!extra)deleting.add(id);extending.add(id);render();try{const r=await request(scheduled?'/api/eternal':extra?'/api/notes':'/api/notes?id='+encodeURIComponent(id),scheduled?{method:'PATCH',body:JSON.stringify(extra?{id:scheduled.eternalId,occurrenceId:id,days:1}:{id:scheduled.eternalId,dismiss:true})}:extra?{method:'PATCH',body:JSON.stringify({id,days:1})}:{method:'DELETE'});const result=await r.json();if(!r.ok)throw Error(result.error||'Could not save. Try again.');if(disposed)return;if(!extra)await foldDeletedNote(li);if(disposed)return;lastSync=Date.now();if(scheduled)await load();else if(extra){offset=result.serverNow-Date.now();notes=notes.map(n=>n.id===id?{...n,expiresAt:result.expiresAt}:n);}else notes=notes.filter(n=>n.id!==id);showError();}catch(e){showError(e.message);}finally{deleting.delete(id);extending.delete(id);if(!disposed)render();}}
  input.addEventListener('input',()=>{draft=null;controls();});input.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey&&!e.isComposing){e.preventDefault();send();}});$('.composer-wrap>form').addEventListener('submit',e=>{e.preventDefault();send();});list.addEventListener('click',act);
  list.addEventListener('click',selectNote);list.addEventListener('keydown',selectNote);

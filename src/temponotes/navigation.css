@@ -416,8 +416,8 @@
 .notes-only .app{height:auto;min-height:100dvh}
 .notes-only .notes-area{overflow:visible;flex:1 0 auto}
 
-/* Desktop notebook fills the document; only an overflowing note list scrolls. */
-@media(min-width:761px){
+/* The notebook fits the viewport on every screen; only the notes scroll. */
+
  html{height:100%}body{height:100dvh;min-height:0;display:flex;flex-direction:column}
  #root{flex:1;min-height:0}#root:empty{display:none}
  .temponote-workspace.notes-only{height:100%;min-height:0}
@@ -425,6 +425,10 @@
  .notes-only .notes-area{flex:1 1 0;min-height:0;overflow:auto}
  .auth-gate{flex:1;min-height:0;height:auto}
  #day-animal-track{flex:0 0 28px}
-}
+
 
 @media(max-width:600px){#notes-navigation .danki-return{order:2}#notes-navigation .notes-weight-link{order:1}}
+
+/* Keep phone swipes inside the notes, with the composer and navigation in place. */
+html,body{overflow:hidden}
+.notes-only .notes-area{overscroll-behavior-y:contain;-webkit-overflow-scrolling:touch}
