@@ -4,13 +4,15 @@ import {initializeApp} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-
 import {getAuth,onAuthStateChanged,beforeAuthStateChanged,GoogleAuthProvider,signInWithPopup} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js';
 import * as sdk from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js';
 import {mount} from './ui.js';
+import {createDayTimerStore} from './day-timer.mjs';
+import {mountDayTimer} from './day-timer-ui.js';
 import {createNotesStore} from './notes-store.mjs';
 import {createLockedStore} from './locked-store.mjs';
 const config=JSON.parse(document.getElementById('auth-config').textContent);
 const app=initializeApp(config.firebase),auth=getAuth(app),db=sdk.getFirestore(app);
 const root=document.getElementById('root'),gate=document.getElementById('auth-gate'),status=document.getElementById('auth-status'),button=document.getElementById('sign-in'),navigation=document.getElementById('notes-navigation');
-let generation=0,dispose=()=>{},unmount=()=>{},loading,lockedStore;
-function clear(){window.dispatchEvent(new Event('danki-private-auth-clearing'));lockedStore?.dispose();lockedStore=null;++generation;loading?.abort();unmount();dispose();unmount=dispose=()=>{};root.replaceChildren();button.hidden=true;status.hidden=true;status.textContent='';gate.hidden=true;navigation.hidden=true;}
+let generation=0,dispose=()=>{},unmount=()=>{},loading,lockedStore,timerStore,stopTimer=()=>{};
+function clear(){stopTimer();stopTimer=()=>{};timerStore?.dispose();timerStore=null;window.dispatchEvent(new Event('danki-private-auth-clearing'));lockedStore?.dispose();lockedStore=null;++generation;loading?.abort();unmount();dispose();unmount=dispose=()=>{};root.replaceChildren();button.hidden=true;status.hidden=true;status.textContent='';gate.hidden=true;navigation.hidden=true;}
 beforeAuthStateChanged(auth,clear);
 window.addEventListener('pagehide',clear);
 window.addEventListener('pageshow',event=>{if(event.persisted)location.reload();});
@@ -32,6 +34,8 @@ onAuthStateChanged(auth,async user=>{
     if(current!==generation){store.dispose();return;}
     dispose=store.dispose;
     unmount=mount(root,store.request,{visible:window.parent===window||!window.frameElement?.hidden,locked:lockedStore});
+    timerStore=createDayTimerStore({auth,db,sdk,uid:user.uid});
+    stopTimer=mountDayTimer(timerStore);
     navigation.hidden=false;
-  }catch(error){if(current!==generation)return;unmount();lockedStore?.dispose();lockedStore=null;dispose();dispose=()=>{};gate.hidden=false;navigation.hidden=false;status.hidden=false;status.textContent='Could not load your notes. Refresh to try again.';}
+  }catch(error){if(current!==generation)return;stopTimer();timerStore?.dispose();unmount();lockedStore?.dispose();lockedStore=null;dispose();dispose=()=>{};gate.hidden=false;navigation.hidden=false;status.hidden=false;status.textContent='Could not load your notes. Refresh to try again.';}
 });
