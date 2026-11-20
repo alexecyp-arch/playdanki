@@ -440,3 +440,7 @@ html body #note-day-timer:active:not(:disabled){translate:0 2px;box-shadow:inset
 html body #note-day-timer:disabled{opacity:1}#note-day-timer:focus-visible{outline:2px solid #fff;outline-offset:4px}
 @media(min-width:901px){.has-note-day-timer .notes-only .header{padding-left:132px}}
 @media(max-width:900px){html body #note-day-timer{left:12px;top:max(10px,env(safe-area-inset-top));width:72px;height:72px;font-size:9px}.has-note-day-timer .private-page-links{min-height:92px;padding-left:96px}}
+
+/* Keep scrolling available without a visible scrollbar. */
+.notes-only .notes-area{scrollbar-width:none;-ms-overflow-style:none}
+.notes-only .notes-area::-webkit-scrollbar{display:none;width:0;height:0}
