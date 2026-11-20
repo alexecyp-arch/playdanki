@@ -449,3 +449,12 @@ html body #note-day-timer:disabled{opacity:1}#note-day-timer:focus-visible{outli
 .notes-only .header,.has-note-day-timer .notes-only .header{padding-left:24px;padding-right:24px;justify-content:center}
 .notes-only .brand{width:100%;justify-content:center;text-align:center}
 @media(max-width:600px){.notes-only .header,.has-note-day-timer .notes-only .header{padding-left:16px;padding-right:16px}}
+
+/* Two centred lines: smaller title above the clock and calendar. */
+.notes-only .brand{flex-direction:column;flex-wrap:nowrap;gap:6px}
+.brand-title,.brand-meta{display:flex;align-items:center;justify-content:center;gap:8px;max-width:100%}
+.notes-only .brand-icon{font-size:24px;line-height:1}
+.notes-only .brand h1{font-size:16px}
+.brand-meta{flex-wrap:nowrap;white-space:nowrap}
+.brand-meta .current-calendar{flex-basis:auto}
+@media(max-width:600px){.notes-only .brand-icon{font-size:22px}.notes-only .brand h1{font-size:12px}}
