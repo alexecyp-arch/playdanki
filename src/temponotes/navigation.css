@@ -458,3 +458,7 @@ html body #note-day-timer:disabled{opacity:1}#note-day-timer:focus-visible{outli
 .brand-meta{flex-wrap:nowrap;white-space:nowrap}
 .brand-meta .current-calendar{flex-basis:auto}
 @media(max-width:600px){.notes-only .brand-icon{font-size:22px}.notes-only .brand h1{font-size:12px}}
+
+/* Keep note text centered without a numbered gutter. */
+.note-heading{align-items:center;justify-content:center}
+.note .note-body{text-align:center}
