@@ -464,3 +464,5 @@ html body #note-day-timer:disabled{opacity:1}#note-day-timer:focus-visible{outli
 .note .note-body{text-align:center}
 .note .note-body p{font-size:18px;line-height:1.5}
 html[data-danki-theme="charcoal"] .note .expiry{color:var(--danki-button,#2a111a);text-shadow:none}
+
+html[data-danki-theme="charcoal"] .note .expiry.expires-today{color:#fff}
