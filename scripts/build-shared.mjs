@@ -2,8 +2,9 @@ import fs from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {buildIcons} from './build-icons.mjs';
 export async function buildShared(root){
+ await fs.cp(new URL('src/wallpapers/',root),new URL('dist/wallpapers/',root),{recursive:true});
  const iconLinks=await buildIcons(root);
- const theme=(await fs.readFile(new URL('src/theme.css',root),'utf8'))+'\n@media (hover:hover) and (pointer:fine){'+await fs.readFile(new URL('src/cursor.css',root),'utf8')+'}',js=await fs.readFile(new URL('src/theme.js',root),'utf8'),analytics=await fs.readFile(new URL('src/analytics.js',root),'utf8'),config=JSON.parse(await fs.readFile(new URL('src/analytics-config.json',root),'utf8'));
+ const theme=(await fs.readFile(new URL('src/theme.css',root),'utf8'))+'\n@media (hover:hover) and (pointer:fine){'+await fs.readFile(new URL('src/cursor.css',root),'utf8')+'}',js=(await fs.readFile(new URL('src/theme.js',root),'utf8')).replace('DAILY_PICTURES',JSON.stringify(JSON.parse(await fs.readFile(new URL('src/wallpapers.json',root),'utf8')))),analytics=await fs.readFile(new URL('src/analytics.js',root),'utf8'),config=JSON.parse(await fs.readFile(new URL('src/analytics-config.json',root),'utf8'));
  if(config.enabled&&!/^[a-f0-9]{32}$/.test(config.token))throw Error('Missing valid Cloudflare Web Analytics site token');
  const version=createHash('sha256').update(theme+js+analytics+JSON.stringify(config)).digest('hex').slice(0,12);
  await fs.writeFile(new URL('dist/theme.js',root),js);await fs.writeFile(new URL('dist/theme.css',root),theme);await fs.writeFile(new URL('dist/analytics.js',root),analytics.replace('ANALYTICS_CONFIG',JSON.stringify(config)));

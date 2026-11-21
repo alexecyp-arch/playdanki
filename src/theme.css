@@ -1,4 +1,4 @@
-html[data-danki-theme="charcoal"]{--danki-bg:#18191c;--danki-panel:#222428;--danki-raised:#2a2d32;--danki-border:#555b64;--danki-muted:#b7bdc6}
+html[data-danki-theme="charcoal"]{--danki-bg:#141518;--danki-panel:#222428;--danki-raised:#2a2d32;--danki-border:#555b64;--danki-muted:#b7bdc6}
 html[data-danki-theme="charcoal"],html[data-danki-theme="charcoal"] body{background-color:var(--danki-bg)!important}
 html[data-danki-theme="charcoal"] .arithmetic-frame,html[data-danki-theme="charcoal"] #data-atlas-frame,html[data-danki-theme="charcoal"] #private-weight-frame,html[data-danki-theme="charcoal"] #private-timebox-frame{background-color:var(--danki-bg)!important}
 html[data-danki-theme="charcoal"] #chart line{stroke:#4b5057}
@@ -66,3 +66,12 @@ html[data-danki-theme="charcoal"] body #repetition-controls .repeat-easy{--danki
 html body #repetition-controls button.keyboard-pressed{translate:0 2px!important;box-shadow:inset 0 2px 0 #0004,inset 0 -1px 0 #ffffff14,0 1px 0 var(--danki-button-edge,#101113)!important;transition:none}
 
 #theme-switcher #leaves-toggle{width:40px;height:40px;padding:8px}#leaves-toggle svg{width:22px;height:22px}
+
+/* Static charcoal grain; no animation or image download. */
+html[data-danki-theme="charcoal"] body{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23fff' opacity='.035' filter='url(%23n)' d='M0 0h160v160H0z'/%3E%3C/svg%3E")!important;background-repeat:repeat!important}
+html[data-danki-theme="charcoal"][data-danki-pictures="on"] body{background-image:linear-gradient(#080b1266,#080b1280),var(--danki-picture)!important;background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important;background-attachment:fixed!important}
+#theme-switcher #background-toggle::before{content:none}
+#theme-switcher #background-toggle{width:40px;height:40px;padding:8px;color:#8eae95}
+#background-toggle svg{width:22px;height:22px;display:block;pointer-events:none}
+#theme-switcher #background-toggle[aria-pressed="false"]{color:#7a7e85;opacity:.55}
+@media(max-width:600px){#theme-switcher :is(#leaves-toggle,#background-toggle){width:26px;height:26px;padding:4px}#theme-switcher :is(#leaves-toggle,#background-toggle) svg{width:18px;height:18px}}
