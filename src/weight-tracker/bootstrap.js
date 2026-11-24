@@ -1,3 +1,4 @@
+import {mountMonthlyCounts} from './monthly-counts.mjs';
 import {mountSleep} from './sleep-ui.js';
 import {initializeApp} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js';
 import {getAuth,onAuthStateChanged,beforeAuthStateChanged,GoogleAuthProvider,signInWithPopup} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js';
@@ -11,9 +12,10 @@ function controls(){const disabled=!ready||saving||!navigator.onLine;$('add').di
 function render(){const selected=entries.find(p=>p.id===selectedId);if(!selected)selectedId=null;$('selected-entry').hidden=!selected;$('selected-value').textContent=selected?Number(weight(selected.kg,unit).toFixed(2)).toLocaleString()+' '+unit+' · '+new Date(selected.time).toLocaleString('en-GB'):'';const targetTime=forecastTargetTime(entries,targetKg);$('change-rate').hidden=targetKg===null;$('calories-to-lose').hidden=targetKg===null||!entries.length;$('calories-to-lose').textContent='CALORIES TO LOSE = '+Math.round(Math.max(0,(entries.at(-1)?.kg??0)-(targetKg??0))*7000).toLocaleString('en-GB');$('change-rate').textContent='ESTIMATED DATE YOU WILL HIT YOUR TARGET = '+formatForecastDate(targetTime);draw($('chart'),entries,unit,{selectedId,targetKg,onSelect:id=>{if(saving)return;selectedId=id;render();}});controls();}
 function clear(){generation++;store?.dispose();store=null;entries=[];selectedId=null;targetKg=null;targetReady=false;ready=false;saving=false;for(const id of ['weight','target-weight'])$(id).value='';$('weight-form').hidden=$('target-controls').hidden=true;$('target-controls').open=false;$('auth-gate').hidden=false;$('status').textContent='';render();}
 const sleepLogs=mountSleep({auth,db,sdk,signInReady:true});
-const clearAll=()=>{sleepLogs.clear();clear();};
+const monthlyCounts=mountMonthlyCounts({auth,db,sdk});
+const clearAll=()=>{monthlyCounts.clear();sleepLogs.clear();clear();};
 beforeAuthStateChanged(auth,clearAll);window.addEventListener('pagehide',clearAll);window.addEventListener('pageshow',e=>{if(e.persisted)location.reload();});
-onAuthStateChanged(auth,user=>{clearAll();if(!user)return;sleepLogs.open(user);const current=generation;$('auth-gate').hidden=true;$('weight-form').hidden=$('target-controls').hidden=false;
+onAuthStateChanged(auth,user=>{clearAll();if(!user)return;sleepLogs.open(user);monthlyCounts.open(user);const current=generation;$('auth-gate').hidden=true;$('weight-form').hidden=$('target-controls').hidden=false;
  store=createWeightStore({auth,db,sdk,uid:user.uid,onTarget:(kg,online)=>{if(current!==generation)return;targetKg=kg;targetReady=online;if(document.activeElement!==$('target-weight'))$('target-weight').value=kg===null?'':Number(weight(kg,unit).toFixed(4));render();},onChange:rows=>{if(current!==generation)return;entries=rows;render();},onStatus:(text,online)=>{if(current!==generation)return;ready=online;if(!saving)$('status').textContent=text;controls();}});
 });
 for(const next of ['KG','LB'])$(next.toLowerCase()).addEventListener('click',()=>{const kg=kilograms($('weight').value,unit),target=kilograms($('target-weight').value,unit);unit=next;if(kg!==null)$('weight').value=Number(weight(kg,unit).toFixed(4));if(target!==null)$('target-weight').value=Number(weight(target,unit).toFixed(4));for(const id of ['weight','target-weight'])$(id).max=unit==='KG'?'1000':'2204.6226';$('target-unit').textContent=unit;$('kg').setAttribute('aria-pressed',String(unit==='KG'));$('lb').setAttribute('aria-pressed',String(unit==='LB'));render();});
