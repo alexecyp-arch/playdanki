@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Book Reader</title><link rel="icon" href="book-icon-48.png"><link rel="stylesheet" href="ui.css"><link rel="stylesheet" href="app.css"></head>
+<body class="reader app"><main>
+<div class="toolbar"><a class="reader-home" href="/">Danki</a><div class="books-wrap"><button id="books-button" aria-expanded="false" title="Saved PDF books">Books</button><div id="books-menu" class="books-menu" hidden><div id="books-list" class="books-list"></div><button id="add-book" class="add-book">+ Add PDF</button></div></div><button id="auto-scroll" aria-pressed="true" title="Keep the sentence being read in view">Auto-scroll: On</button></div>
+<section id="reading" aria-label="Reading page"><p id="empty">Paste text below or open a PDF.</p><div id="text" aria-label="Loaded text"></div></section>
+<footer>
+<div id="pending" class="pending" hidden><span id="pending-label"></span><button id="read-pending">Read new text</button><button id="dismiss-pending" title="Dismiss new text" aria-label="Dismiss new text">×</button></div>
+<p id="error" role="alert" hidden></p>
+<form id="page-nav" hidden><span id="page-label">Page 1 of 1</span><label>Go to <input id="page-number" type="number" min="1" step="1" value="1" aria-label="PDF page number" required></label><button type="submit">Go</button><span class="page-hint">PDF page numbers</span></form>
+<div class="controls"><label class="speed">Speed <select id="rate" aria-label="Reading speed"></select></label>
+<div class="transport"><button id="previous" title="Previous sentence" aria-label="Previous sentence">‹</button><button id="play" class="primary" disabled>Play</button><button id="next" title="Next sentence" aria-label="Next sentence">›</button><button id="stop" title="Stop and return to the beginning" aria-label="Stop">■</button></div>
+<div class="secondary"><button id="pdf">Open PDF</button><input id="file" type="file" accept="application/pdf,.pdf" hidden><details class="paste"><summary>Paste</summary><textarea id="paste" placeholder="Paste text to read…" aria-label="Text to read"></textarea><button id="read-paste">Read text</button></details><button id="clear" title="Remove loaded text">Clear</button></div></div>
+<div class="meta"><span id="estimate" title="Approximate total reading time at the selected speed">Estimated time —</span><span id="status" role="status">Ready</span></div>
+<p id="pdf-status" role="status"></p>
+</footer></main><script type="module" src="app.js"></script></body></html>

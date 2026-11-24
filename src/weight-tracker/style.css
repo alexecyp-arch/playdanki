@@ -63,3 +63,5 @@ svg .sleep-target-label{fill:#ff8990;paint-order:stroke;stroke:var(--danki-bg,#0
 @media(max-width:600px){.log-heading{font-size:14px}}
 
 #calories-to-lose{display:block;text-align:center;margin:12px 0;font-size:12px;font-weight:700}
+
+svg .chart-today{fill:#ff626b}

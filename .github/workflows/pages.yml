@@ -13,6 +13,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+      - name: Prepare PDF reader
+        run: |
+          mkdir -p src/book-reader/vendor
+          archive=$(npm pack pdfjs-dist@6.3.289 --ignore-scripts --silent)
+          tar -xzf "$archive" --strip-components=2 -C src/book-reader/vendor package/build/pdf.min.mjs package/build/pdf.worker.min.mjs
       - name: Build static website
         run: node scripts/build.mjs
       - uses: actions/configure-pages@v5

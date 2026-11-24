@@ -1,0 +1,25 @@
+/* Windows app only: unlike the extension popup, the reader must follow the
+   desktop window size. The launcher may open at 800x600 initially, but resizing
+   or maximizing the window should make the whole reader fill the viewport. */
+html:has(body.app){width:100%;height:100%}
+body.app{width:100%;height:100%;max-width:none;margin:0}
+
+/* Saved PDF books: compact menu beside Auto-scroll. Only filenames are shown;
+   full Windows paths stay in the native app's local data file. */
+.toolbar{gap:6px;position:relative}
+#books-button{font-size:11px;padding:2px 8px;border-color:#777}
+.books-wrap{position:relative}
+.books-menu{position:absolute;right:0;top:calc(100% + 5px);z-index:10;width:280px;max-height:min(360px,70vh);overflow:auto;padding:6px;border:1px solid #777;border-radius:5px;background:#fff;box-shadow:0 5px 18px #0002}
+.books-list:empty::before{content:"No saved books";display:block;padding:8px 7px;color:#666;font-size:11px}
+.book-row{display:flex;align-items:center;gap:4px;border-bottom:1px solid #eee}
+.book-row:last-child{border-bottom:0}
+.book-open{flex:1;min-width:0;border:0;background:transparent;text-align:left;padding:7px 6px;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-radius:3px}
+.book-open:hover{background:#f2f2f2}
+.book-remove{flex:0 0 auto;border:0;background:transparent;padding:3px 6px;font-size:16px;line-height:1;color:#666}
+.book-remove:hover{background:#eee;color:#111}
+.add-book{width:100%;margin-top:6px;padding:6px 7px;font-size:11px}
+
+.reader-home{margin-right:auto;color:#111;font:12px "Segoe UI",sans-serif}
+.books-menu{right:auto;left:0;width:min(280px,calc(100vw - 85px))}
+button,a,summary{-webkit-tap-highlight-color:transparent}
+@media(max-width:420px){.controls{grid-template-columns:1fr auto}.secondary{grid-column:1/-1;justify-content:center}.page-hint{display:none}}

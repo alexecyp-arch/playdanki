@@ -113,6 +113,7 @@ await fs.writeFile(new URL('dist/arithmetic.html',root),arithmetic.replace('</st
 await fs.rm(new URL('dist/credits.txt',root),{force:true});
 console.log(JSON.stringify({words:coreDeckInfo["german-word"].count,sentences:coreDeckInfo.sentence.count,frenchWords:coreDeckInfo["french-word"].count,frenchSentences:coreDeckInfo["french-sentence"].count,kana:kanaEntries.length,kanji:kanjiEntries.length,economics:economicsEntries.length,htmlBytes:Buffer.byteLength(html),compressedBytes:gzipSync(html).length}));
 
+await fs.cp(new URL('src/book-reader/',root),new URL('dist/book-reader/',root),{recursive:true});
 const {buildShared}=await import('./build-shared.mjs');await buildShared(root);
 
 const {buildPageWarmup}=await import('./build-page-warmup.mjs');await buildPageWarmup(root,runtimeVersion,atlasVersion);
