@@ -82,3 +82,10 @@ svg .chart-today{fill:#ff626b}
 .monthly-counter output{min-width:3ch;color:#fff;font-size:25px;font-weight:900;font-variant-numeric:tabular-nums}
 #monthly-status{display:block;text-align:center;font-size:11px;margin-top:10px}
 #monthly-status:empty{display:none}
+
+.monthly-counter-controls{gap:6px}
+.monthly-counter-controls button.monthly-ten{min-width:46px;min-height:44px;font-size:20px}
+@media(max-width:359px){
+ .monthly-counter-controls{gap:4px}
+ .monthly-counter output{font-size:22px}
+}

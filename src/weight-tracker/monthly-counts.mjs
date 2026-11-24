@@ -55,7 +55,7 @@ export function createMonthlyStore({auth,db,sdk,uid,onChange}){
   },
   adjust(id,month,delta){
    return update(rows=>{
-    if(!validMonth(month)||month>monthKey()||![1,-1].includes(delta))throw Error('INVALID COUNT');
+    if(!validMonth(month)||month>monthKey()||![1,-1,10,-10].includes(delta))throw Error('INVALID COUNT');
     const row=rows.find(item=>item.id===id);
     if(!row)throw Error('COUNTER NOT FOUND');
     const value=Math.max(0,(row.months[month]??0)+delta);
@@ -93,12 +93,16 @@ export function mountMonthlyCounts({auth,db,sdk}){
     const button=document.createElement('button');button.type='button';button.textContent=symbol;
     button.dataset.counter=row.id;button.dataset.countAction=String(delta);
     button.setAttribute('aria-label',label+' '+row.name);
-    button.disabled=unavailable()||(delta<0?value===0:value>=999999);
+    if(Math.abs(delta)===10)button.className='monthly-ten';
+    button.disabled=unavailable()||(delta<0?value===0:value+delta>999999);
     button.onclick=()=>save(()=>store.adjust(row.id,month,delta),()=>restoreFocus={id:row.id,delta:String(delta)});
     return button;
    };
    if(ytd)controls.append(count);
-   else controls.append(adjust(-1,'Subtract one from','−'),count,adjust(1,'Add one to','+'));
+   else controls.append(
+    adjust(-10,'Subtract ten from','−10'),adjust(-1,'Subtract one from','−'),count,
+    adjust(1,'Add one to','+'),adjust(10,'Add ten to','+10')
+   );
    item.append(heading,controls);list.append(item);
   }
   const focus=restoreFocus??(focused?{id:focusId,delta:focused}:null);
