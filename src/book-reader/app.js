@@ -20,12 +20,10 @@ let currentBookId = null;
 let lastSavedPosition = "";
 let expectedBook = null;
 let openGeneration = 0;
-let liveTiming = null;
 const windows = /Windows/i.test(navigator.userAgent);
 const mobile = navigator.userAgentData?.mobile || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
   (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 const engine = windows && !mobile ? (/Edg\//.test(navigator.userAgent) ? 'edge' : /Chrome\//.test(navigator.userAgent) ? 'chrome' : 'other') : 'other';
-const speechTimings = new Map();
 const calibrationKey = 'danki-mark-pace-v1';
 let chromeCalibration = 1;
 let paceChecked = false;
@@ -77,7 +75,6 @@ function publish(full=false) {
 }
 function cancelSpeech() {
   generation++;
-  liveTiming=null;
   if (utterance) {
     utterance.onstart = null;
     utterance.onboundary = null;
@@ -156,10 +153,6 @@ function playChunk(token) {
     const now=performance.now();
     const refresh=now-lastProgress>700;
     if (refresh) lastProgress=now;
-    if (refresh && startedAt!==undefined && now-startedAt>=3000) {
-      const spokenWords=wordCount(chunk.text.slice(0,event.charIndex));
-      if(spokenWords>=25)liveTiming={preset,words:spokenWords,seconds:(now-startedAt)/1000};
-    }
     if (changed) publish();
     else if (refresh) render(snapshot());
   };
@@ -170,12 +163,7 @@ function playChunk(token) {
     if (token !== generation) return;
     const seconds = (performance.now() - startedAt) / 1000;
     const words = wordCount(chunk.text);
-    if (words >= 12 && seconds > 0 && seconds < words * 1.5) {
-      const previous = speechTimings.get(preset) || {words:0,seconds:0};
-      speechTimings.set(preset,{words:previous.words+words,seconds:previous.seconds+seconds});
-      if(matchDesktop)matchChromePace(words,seconds);
-    }
-    liveTiming=null;
+    if (matchDesktop && words >= 12 && seconds > 0 && seconds < words * 1.5) matchChromePace(words,seconds);
     state.offset = chunk.nextOffset;
     if (chunk.nextIndex < state.sentences.length) {
       state.index = chunk.nextIndex;
@@ -208,7 +196,6 @@ async function startDocument(doc) {
   const page=doc.pages?.[doc.startPage-1];
   const index=page && Number.isInteger(doc.startIndex) && doc.startIndex>=page.start && doc.startIndex<page.end ? doc.startIndex : fallback;
   state={...state,id:Math.max(Date.now(),state.id+1),sentences:doc.items,pages:doc.pages||[],words:doc.words,index,offset:0,status:'paused',locked:true,title:doc.title,error:''};
-  speechTimings.clear();
   paceChecked=false;
   indexWords();
   publish(true);
@@ -274,12 +261,7 @@ function render(s) {
   $('rate').value=String(s.rate);
   $('status').textContent=s.count?`${s.status==='playing'?'Reading':s.status==='done'?'Finished':s.status==='error'?'Voice unavailable':'Paused'} · ${s.index+1} / ${s.count}`:'Ready';
   $('empty').hidden=!!s.count;
-  const rateSample=speechTimings.get(s.rate);
-  const recent=liveTiming?.preset===s.rate ? liveTiming : null;
-  const timedWords=(rateSample?.words??0)+(recent?.words??0);
-  const timedSeconds=(rateSample?.seconds??0)+(recent?.seconds??0);
-  const measuredWpm=timedSeconds>0 ? 60*timedWords/timedSeconds : null;
-  $('estimate').textContent=s.words?`≈ ${durationLabel(estimatedSeconds(s.remainingWords??s.words,s.rate,engine,measuredWpm))} remaining · ${durationLabel(estimatedSeconds(s.words,s.rate,engine,measuredWpm))} total`:'Estimated time —';
+  $('estimate').textContent=s.words?`≈ ${durationLabel(estimatedSeconds(s.remainingWords??s.words,s.rate,engine))} remaining · ${durationLabel(estimatedSeconds(s.words,s.rate,engine))} total`:'Estimated time —';
   $('page-nav').hidden=!s.pageCount;
   $('page-label').textContent=`Page ${s.pageNumber||1} of ${s.pageCount||1}`;
   $('page-number').max=s.pageCount||1;
