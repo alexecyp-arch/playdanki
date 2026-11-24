@@ -1,5 +1,5 @@
 import {books,saveBook,fileId,rememberFile,reopenFile,forgetFile} from './library.js';
-import {prepareReading, rateValue, nativeRate, speechBatch, wordCount, estimatedSeconds, durationLabel} from './model.js';
+import {prepareReading, rateValue, playbackRate, speechBatch, wordCount, estimatedSeconds, durationLabel} from './model.js?v=3';
 
 const $ = id => document.getElementById(id);
 let state = {id:0,sentences:[],pages:[],index:0,offset:0,status:'idle',rate:2.5,title:'Selected text',error:'',locked:false,words:0,revision:0};
@@ -9,7 +9,9 @@ let generation = 0;
 let utterance = null;
 let voice = null;
 let documentId;
+let renderedPage;
 let activeNode;
+let sentenceNodes=[];
 let renderToken = 0;
 let autoScroll = true;
 let manualReveal = null;
@@ -18,6 +20,11 @@ let currentBookId = null;
 let lastSavedPosition = "";
 let expectedBook = null;
 let openGeneration = 0;
+const windows = /Windows/i.test(navigator.userAgent);
+const mobile = navigator.userAgentData?.mobile || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
+  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+const engine = windows && !mobile ? (/Edg\//.test(navigator.userAgent) ? 'edge' : /Chrome\//.test(navigator.userAgent) ? 'chrome' : 'other') : 'other';
+const speechTimings = new Map();
 
 function showError(message='') {
   $('error').textContent = message;
@@ -52,6 +59,7 @@ function publish(full=false) {
 function cancelSpeech() {
   generation++;
   if (utterance) {
+    utterance.onstart = null;
     utterance.onboundary = null;
     utterance.onend = null;
     utterance.onerror = null;
@@ -66,9 +74,7 @@ function fail(message) {
 }
 function findMarkVoice() {
   const voices = window.speechSynthesis?.getVoices() || [];
-  const mobile = navigator.userAgentData?.mobile || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
-    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-  if (mobile || !/Windows/i.test(navigator.userAgent)) {
+  if (mobile || !windows) {
     return voices.find(v => v.localService && /^en[-_]US$/i.test(v.lang)) ||
       voices.find(v => v.localService && /^en/i.test(v.lang)) ||
       voices.find(v => v.localService) || (mobile ? voices.find(v => v.default && /^en/i.test(v.lang)) : null);
@@ -100,7 +106,6 @@ async function speak() {
 }
 function playChunk(token) {
   if (token !== generation) return;
-  const mobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || navigator.maxTouchPoints > 1;
   const remaining = state.sentences[state.index].slice(state.offset);
   const length = remaining.length > 220 ? Math.max(1, remaining.lastIndexOf(' ', 220) > 100 ? remaining.lastIndexOf(' ', 220) : 220) : remaining.length;
   const chunk = mobile ? {
@@ -113,7 +118,10 @@ function playChunk(token) {
   utterance = u;
   u.voice = voice;
   u.lang = voice.lang || 'en-US';
-  u.rate = nativeRate(state.rate);
+  const preset = state.rate;
+  u.rate = playbackRate(preset,engine);
+  let startedAt;
+  u.onstart = () => { startedAt = performance.now(); };
   u.volume = 1;
   u.onboundary = event => {
     if (token !== generation || event.charIndex < 0) return;
@@ -132,6 +140,12 @@ function playChunk(token) {
   };
   u.onend = () => {
     if (token !== generation) return;
+    const seconds = (performance.now() - startedAt) / 1000;
+    const words = wordCount(chunk.text);
+    if (words >= 12 && seconds > 0 && seconds < words * 1.5) {
+      const previous = speechTimings.get(preset) || {words:0,seconds:0};
+      speechTimings.set(preset,{words:previous.words+words,seconds:previous.seconds+seconds});
+    }
     state.offset = chunk.nextOffset;
     if (chunk.nextIndex < state.sentences.length) {
       state.index = chunk.nextIndex;
@@ -228,7 +242,9 @@ function render(s) {
   $('rate').value=String(s.rate);
   $('status').textContent=s.count?`${s.status==='playing'?'Reading':s.status==='done'?'Finished':s.status==='error'?'Voice unavailable':'Paused'} · ${s.index+1} / ${s.count}`:'Ready';
   $('empty').hidden=!!s.count;
-  $('estimate').textContent=s.words?`≈ ${durationLabel(estimatedSeconds(s.remainingWords??s.words,s.rate))} remaining · ${durationLabel(estimatedSeconds(s.words,s.rate))} total`:'Estimated time —';
+  const rateSample=speechTimings.get(s.rate);
+  const measuredWpm=rateSample ? 60*rateSample.words/rateSample.seconds : null;
+  $('estimate').textContent=s.words?`≈ ${durationLabel(estimatedSeconds(s.remainingWords??s.words,s.rate,engine,measuredWpm))} remaining · ${durationLabel(estimatedSeconds(s.words,s.rate,engine,measuredWpm))} total`:'Estimated time —';
   $('page-nav').hidden=!s.pageCount;
   $('page-label').textContent=`Page ${s.pageNumber||1} of ${s.pageCount||1}`;
   $('page-number').max=s.pageCount||1;
@@ -243,7 +259,11 @@ function render(s) {
   $('pending-label').textContent=s.pending?`New text · ${s.pending.words.toLocaleString()} words${s.locked?' · Stop current reading first':''}`:'';
   $('read-pending').disabled=!!s.locked;
   showError(s.error);
-  if(documentId!==s.id){documentId=s.id;manualReveal=null;renderSentences(state.sentences,state.pages||[]);}
+  const pageToRender=s.count>20000&&s.pageCount ? s.pageNumber : 0;
+  if(documentId!==s.id||renderedPage!==pageToRender){
+    documentId=s.id;renderedPage=pageToRender;manualReveal=null;
+    renderSentences(state.sentences,state.pages,pageToRender);
+  }
   highlight();
 }
 function scrollSentence(node){
@@ -252,24 +272,28 @@ function scrollSentence(node){
   if(box.top<frame.top+16||box.bottom>frame.bottom-16)pane.scrollTop+=box.top-frame.top-(pane.clientHeight-Math.min(box.height,pane.clientHeight))/2;
 }
 function followSentence(){if(autoScroll)scrollSentence(activeNode);}
-function revealPage(){if(manualReveal!==null){const node=$('text').querySelector('[data-index="'+manualReveal+'"]');if(node){scrollSentence(node);manualReveal=null;}}}
+function revealPage(){if(manualReveal!==null){const node=sentenceNodes[manualReveal];if(node){scrollSentence(node);manualReveal=null;}}}
 function highlight(){
-  const next=$('text').querySelector('[data-index="'+state.index+'"]');
+  const next=sentenceNodes[state.index];
   if(next===activeNode)return;
   activeNode?.removeAttribute('aria-current');activeNode=next;activeNode?.setAttribute('aria-current','true');followSentence();
 }
-function renderSentences(items,pages){
-  const token=++renderToken;$('text').replaceChildren();activeNode=null;let index=0;
+function renderSentences(items,pages,pageNumber){
+  const token=++renderToken;$('text').replaceChildren();activeNode=null;sentenceNodes=[];
+  // Keep large PDFs responsive by rendering the selected page on demand.
+  const page = pageNumber ? pages[pageNumber-1] : null;
+  let index=page?.start??0;
+  const stop=page?.end??items.length;
   const starts=new Map(pages.flatMap((p,i)=>p.end>p.start?[[p.start,i+1]]:[]));
   $('reading').scrollTop=0;
   function batch(){
     if(token!==renderToken)return;
-    const fragment=document.createDocumentFragment(),end=Math.min(index+200,items.length);
+    const fragment=document.createDocumentFragment(),end=Math.min(index+200,stop);
     for(;index<end;index++){
       if(starts.has(index)){const label=document.createElement('div');label.className='page-marker';label.textContent='Page '+starts.get(index);fragment.append(label);}
-      const b=document.createElement('button');b.dataset.index=index;b.textContent=items[index];fragment.append(b,document.createTextNode(' '));
+      const b=document.createElement('button');b.dataset.index=index;b.textContent=items[index];sentenceNodes[index]=b;fragment.append(b,document.createTextNode(' '));
     }
-    $('text').append(fragment);highlight();revealPage();if(index<items.length)setTimeout(batch,0);
+    $('text').append(fragment);highlight();revealPage();if(index<stop)setTimeout(batch,0);
   }
   batch();
 }
@@ -342,15 +366,15 @@ async function loadPdf(file,handle=null,expected=null){
     const id=await fileId(file);
     if(expected && id!==expected)throw Error('Choose the original PDF to resume this book.');
     if(generation!==openGeneration)return;
-    const {readPdf}=await import('./pdf.js');
+    const {readPdf}=await import('./pdf.js?v=3');
     await readPdf(file,{
       progress:text=>{if(generation===openGeneration)$('pdf-status').textContent=text;},
-      read:async(text,title,pages)=>{
+      read:async(title,pages)=>{
         if(generation!==openGeneration)return;
         const saved=books()[id]||{name:file.name,page:1,index:0};
         try { saveBook(id,saved); } catch {}
         await rememberFile(id,file,handle);
-        if(generation===openGeneration)await command('load',{text,title,pages,bookId:id,startPage:saved.page,startIndex:saved.index});
+        if(generation===openGeneration)await command('load',{title,pages,bookId:id,startPage:saved.page,startIndex:saved.index});
       }
     });
   }catch(error){if(generation===openGeneration){showError(error.message);$('pdf-status').textContent='';}}

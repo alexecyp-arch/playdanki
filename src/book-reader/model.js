@@ -1,8 +1,8 @@
 export const MAX_TEXT = 1500000;
-export function sentences(text) {
+export function sentences(text, limit = MAX_TEXT) {
   text = String(text || '').replace(/\r/g, '').replace(/[\t ]+/g, ' ').trim();
   if (!text) throw Error('No readable text found.');
-  if (text.length > MAX_TEXT) throw Error('This text is too long. Please read a smaller section (up to 1.5 million characters).');
+  if (text.length > limit) throw Error('This text is too long. Please read a smaller section (up to 1.5 million characters).');
   const parts = [];
   const segmenter = new Intl.Segmenter('en-US', {granularity:'sentence'});
   for (const paragraph of text.split(/\n\s*\n/)) {
@@ -21,11 +21,10 @@ export function markVoice(voices) {
 export function prepareReading(text,pageTexts) {
   if(!Array.isArray(pageTexts))return {items:sentences(text),pages:[]};
   if(!pageTexts.length || pageTexts.some(page=>typeof page!=='string'))throw Error('Invalid PDF pages.');
-  if(pageTexts.reduce((sum,page)=>sum+page.length+2,0)>MAX_TEXT)throw Error('This PDF is too long. Split it into smaller files.');
   const items=[],pages=[];
   for(const page of pageTexts){
     const start=items.length;
-    if(page.trim())for(const sentence of sentences(page))items.push(sentence);
+    if(page.trim())for(const sentence of sentences(page, Infinity))items.push(sentence);
     pages.push({start,end:items.length});
   }
   if(!items.length)throw Error('This PDF has no selectable text. Scanned image PDFs need OCR first.');
@@ -79,11 +78,25 @@ export function speechBatch(items,index,offset=0) {
 export function wordCount(text) {
   return (String(text).match(/[\p{L}\p{N}]+(?:['’.\-][\p{L}\p{N}]+)*/gu) || []).length;
 }
-export function estimatedSeconds(words, rate) {
-  // Keep the extension's original measured WPM curve for time estimates.
-  const wpm=extensionWpm(rate);
-  // Keep the prior calibration, then reduce its estimate by the requested 20%.
-  return Math.max(0,words)*60/wpm*1.65*.8*.86;
+// Mark on the desktop app runs in Edge. The same browser speech-rate number
+// produces different speeds in Chrome, so translate through measured WPM.
+const desktopMark = [[1,278],[2.5,430],[5,595]];
+const chromeMark = [[2.406,278],[3.875,346],[5.8,430],[7,480],[8,536],[10,595]];
+function interpolate(points, x) {
+  for (let i=1;i<points.length;i++) {
+    const [left,y1]=points[i-1], [right,y2]=points[i];
+    if (x<=right) return y1+(y2-y1)*Math.max(0,x-left)/(right-left);
+  }
+  return points.at(-1)[1];
+}
+export function playbackRate(value, engine) {
+  if (engine!=='chrome') return nativeRate(value);
+  const target=interpolate(desktopMark,rateValue(value));
+  return interpolate(chromeMark.map(([rate,wpm])=>[wpm,rate]),target);
+}
+export function estimatedSeconds(words, rate, engine, measuredWpm) {
+  const wpm=measuredWpm || (engine==='other' ? extensionWpm(rate) : interpolate(desktopMark,rateValue(rate)));
+  return Math.max(0,words)*60/wpm;
 }
 export function durationLabel(seconds) {
   const total=Math.max(0,Math.ceil(seconds)),hours=Math.floor(total/3600),minutes=Math.floor(total%3600/60),rest=total%60;

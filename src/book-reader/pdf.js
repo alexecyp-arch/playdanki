@@ -1,4 +1,3 @@
-import {MAX_TEXT} from './model.js';
 let job=0, task;
 export async function readPdf(file,{progress,read}){
   const token=++job;
@@ -17,7 +16,7 @@ export async function readPdf(file,{progress,read}){
   };
   try{
     const doc=await currentTask.promise;
-    let text='',empty=0;const pages=[];
+    let empty=0;const pages=[];
     for(let pageNumber=1;pageNumber<=doc.numPages;pageNumber++){
       if(token!==job)return;
       progress(`Reading PDF text · page ${pageNumber} / ${doc.numPages}`);
@@ -26,12 +25,11 @@ export async function readPdf(file,{progress,read}){
       for(const item of content.items){if(typeof item.str==='string')pageText+=item.str+(item.hasEOL?'\n':' ');}
       pageText=pageText.replace(/([a-z])-\n([a-z])/gi,'$1$2').trim();
       if(!pageText)empty++;
-      pages.push(pageText);text+=pageText+'\n\n';page.cleanup();
-      if(text.length>MAX_TEXT)throw Error('This PDF is too long. Split it into smaller files (up to 1.5 million characters of text each).');
+      pages.push(pageText);page.cleanup();
     }
-    if(!text.trim())throw Error('This PDF has no selectable text. Scanned image PDFs need OCR first.');
+    if(empty===pages.length)throw Error('This PDF has no selectable text. Scanned image PDFs need OCR first.');
     if(token!==job)return;
-    await read(text,file.name,pages);
+    await read(file.name,pages);
     progress(`${file.name} · ${doc.numPages} pages${empty?` · ${empty} pages without readable text skipped`:''}`);
   }catch(error){if(token===job)throw error;}
   finally{await currentTask.destroy();if(task===currentTask)task=undefined;}
