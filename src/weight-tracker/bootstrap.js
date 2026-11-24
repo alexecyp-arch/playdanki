@@ -22,7 +22,19 @@ $('remove').addEventListener('click',async()=>{if(saving||!store||!ready||!selec
 $('target-form').addEventListener('submit',async event=>{event.preventDefault();if(saving||!store||!targetReady)return;const current=generation,kg=$('target-weight').value.trim()===''?null:kilograms($('target-weight').value,unit);saving=true;controls();$('status').textContent='SAVING';try{await store.setTarget($('target-weight').value,unit);if(current!==generation)return;targetKg=kg;$('status').textContent='SAVED';render();}catch(error){if(current===generation)$('status').textContent=navigator.onLine?error.message==='WEIGHT'?'WEIGHT':'RETRY':'OFFLINE';}finally{if(current===generation){saving=false;controls();}}});
 $('sign-in').addEventListener('click',async()=>{$('sign-in').disabled=true;try{await signInWithPopup(auth,new GoogleAuthProvider());}catch{$('status').textContent='RETRY';}finally{$('sign-in').disabled=false;}});
 for(const type of ['online','offline'])window.addEventListener(type,()=>{if(!navigator.onLine)$('status').textContent='OFFLINE';else if(ready)$('status').textContent='';controls();});
-new ResizeObserver(render).observe($('chart'));window.addEventListener('resize',render);render();
+let chartWidth=0;
+new ResizeObserver(([entry])=>{
+ const width=entry.contentRect.width;
+ if(width===chartWidth)return;
+ chartWidth=width;
+ if(width>0)render();
+}).observe($('chart'));
+window.addEventListener('message',event=>{
+ if(parent!==window&&event.source===parent&&event.origin===location.origin&&
+    event.data?.type==='danki-weight-visibility'&&event.data.visible){
+   requestAnimationFrame(()=>{render();sleepLogs.render();});
+ }
+});window.addEventListener('resize',render);render();
 if(parent!==window)document.querySelector('.danki-return').addEventListener('click',event=>{if(event.button||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;event.preventDefault();parent.postMessage({type:'danki-weight-return'},location.origin);});
 
 if(parent!==window)document.querySelector('.temponote-link').addEventListener('click',event=>{if(event.button||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;event.preventDefault();parent.postMessage({type:'danki-weight-open-notes'},location.origin);});

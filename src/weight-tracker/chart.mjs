@@ -10,7 +10,9 @@ export function draw(svg,entries,unit,{selectedId=null,onSelect=()=>{},targetKg=
  drawSeries(svg,data,{unit,axis:'WEIGHT ('+unit+')',selectedId,onSelect,step:1,today});
 }
 function drawSeries(svg,data,{unit,axis,step,today,selectedId=null,onSelect=null}){
- const protein=step!==1,width=Math.max(296,Math.round(svg.clientWidth||800));
+ const width=svg.clientWidth;
+ if(!width)return;
+ const protein=step!==1;
  const naturalHeight=window.innerWidth>600?Math.max(260,window.innerHeight-255):Math.max(260,Math.min(420,width*.48));
  const height=protein?Math.max(naturalHeight,80+(data.y[1]-data.y[0])/step*16):naturalHeight;
  const left=58,right=width-22,top=25,bottom=height-55;

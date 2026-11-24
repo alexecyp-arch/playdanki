@@ -57,3 +57,10 @@ body.repetition-enabled .tracker,body.repetition-enabled #tracker{bottom:90px}
 #repetition-controls{bottom:calc(14px + env(safe-area-inset-bottom));z-index:6}
 html body #repetition-controls #previous-card{position:static;transform:none;min-height:34px;padding:8px 10px;font:900 11px Arial;text-transform:uppercase}
 body.repetition-enabled .tracker{bottom:calc(125px + env(safe-area-inset-bottom))}
+
+@media (max-width:600px), (pointer:coarse) and (max-height:600px){
+  body:has(#game) #repetition-controls{transform:none;align-items:flex-end;gap:5px}
+  body:has(#game) #repetition-controls .repeat-hard{min-height:34px;padding:7px 10px}
+  html body #repetition-controls #previous-card{width:96px;min-width:0;min-height:30px;padding:5px 4px;font-size:10px;letter-spacing:0}
+  body.repetition-enabled:has(#game) .tracker{bottom:calc(96px + env(safe-area-inset-bottom))}
+}

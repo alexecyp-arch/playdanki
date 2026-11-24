@@ -70,3 +70,5 @@ html body :is(.games-menu summary,.games-list,.temponotes-link,#account-bar>.atl
 
 /* Keep the arithmetic document opaque and above background effects. */
 html[data-danki-theme="charcoal"] #arithmetic-frame[src^="arithmetic.html"]{background:#18191c!important;z-index:2}
+
+@media(min-width:601px){#history{max-height:clamp(80px,calc(100svh - 350px),56svh)}}
