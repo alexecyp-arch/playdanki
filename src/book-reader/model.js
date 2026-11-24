@@ -56,22 +56,22 @@ export function selectionKey(tabId, text) {
   for (let i=0;i<text.length;i++) hash = Math.imul(hash ^ text.charCodeAt(i), 16777619);
   return `${tabId}:${text.length}:${hash >>> 0}`;
 }
-export function speechChunk(text, offset) {
-  let end = Math.min(text.length, offset + 2800);
+export function speechChunk(text, offset, limit=2800) {
+  let end = Math.min(text.length, offset + limit);
   if (end < text.length) { const space = text.lastIndexOf(' ', end); if (space > offset) end = space; }
   return {text:text.slice(offset,end), end};
 }
-export function speechBatch(items,index,offset=0) {
+export function speechBatch(items,index,offset=0,limit=2800) {
   let text='';const marks=[];
   while(index<items.length){
     const remaining=items[index].length-offset;
-    if(text && text.length+1+remaining>2800)break;
-    const chunk=speechChunk(items[index],offset);
+    if(text && text.length+1+remaining>limit)break;
+    const chunk=speechChunk(items[index],offset,limit);
     if(text)text+=' ';
     marks.push({start:text.length,index,offset});text+=chunk.text;
     if(chunk.end<items[index].length){offset=chunk.end;break;}
     index++;offset=0;
-    if(text.length>=2800)break;
+    if(text.length>=limit)break;
   }
   return {text,marks,nextIndex:index,nextOffset:offset};
 }
@@ -89,13 +89,15 @@ function interpolate(points, x) {
   }
   return points.at(-1)[1];
 }
-export function playbackRate(value, engine) {
+export function markWpm(rate) {
+  return interpolate(desktopMark,rateValue(rate));
+}
+export function playbackRate(value, engine, calibration=1) {
   if (engine!=='chrome') return nativeRate(value);
-  const target=interpolate(desktopMark,rateValue(value));
-  return interpolate(chromeMark.map(([rate,wpm])=>[wpm,rate]),target);
+  return interpolate(chromeMark.map(([rate,wpm])=>[wpm,rate]),markWpm(value)*calibration);
 }
 export function estimatedSeconds(words, rate, engine, measuredWpm) {
-  const wpm=measuredWpm || (engine==='other' ? extensionWpm(rate) : interpolate(desktopMark,rateValue(rate)));
+  const wpm=measuredWpm || (engine==='other' ? extensionWpm(rate) : markWpm(rate));
   return Math.max(0,words)*60/wpm;
 }
 export function durationLabel(seconds) {

@@ -1,5 +1,5 @@
 import {books,saveBook,fileId,rememberFile,reopenFile,forgetFile} from './library.js';
-import {prepareReading, rateValue, playbackRate, speechBatch, wordCount, estimatedSeconds, durationLabel} from './model.js?v=3';
+import {prepareReading, rateValue, markWpm, playbackRate, speechBatch, wordCount, estimatedSeconds, durationLabel} from './model.js?v=4';
 
 const $ = id => document.getElementById(id);
 let state = {id:0,sentences:[],pages:[],index:0,offset:0,status:'idle',rate:2.5,title:'Selected text',error:'',locked:false,words:0,revision:0};
@@ -20,11 +20,30 @@ let currentBookId = null;
 let lastSavedPosition = "";
 let expectedBook = null;
 let openGeneration = 0;
+let liveTiming = null;
 const windows = /Windows/i.test(navigator.userAgent);
 const mobile = navigator.userAgentData?.mobile || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
   (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 const engine = windows && !mobile ? (/Edg\//.test(navigator.userAgent) ? 'edge' : /Chrome\//.test(navigator.userAgent) ? 'chrome' : 'other') : 'other';
 const speechTimings = new Map();
+const calibrationKey = 'danki-mark-pace-v1';
+let chromeCalibration = 1;
+let paceChecked = false;
+try {
+  const saved = Number(localStorage.getItem(calibrationKey));
+  if (saved>=.75 && saved<=1.38) chromeCalibration=saved;
+} catch {}
+function matchChromePace(words,seconds) {
+  if(words<65 || seconds<=0)return;
+  const measured=60*words/seconds;
+  if(measured<220 || measured>680)return;
+  const ratio=markWpm(2.5)/measured;
+  paceChecked=Math.abs(ratio-1)<=.05;
+  if(paceChecked)return;
+  chromeCalibration=Math.max(.75,Math.min(1.38,chromeCalibration*ratio));
+  try { localStorage.setItem(calibrationKey,chromeCalibration); } catch {}
+}
+
 
 function showError(message='') {
   $('error').textContent = message;
@@ -58,6 +77,7 @@ function publish(full=false) {
 }
 function cancelSpeech() {
   generation++;
+  liveTiming=null;
   if (utterance) {
     utterance.onstart = null;
     utterance.onboundary = null;
@@ -106,20 +126,21 @@ async function speak() {
 }
 function playChunk(token) {
   if (token !== generation) return;
+  const matchDesktop=engine==='chrome' && state.rate===2.5;
   const remaining = state.sentences[state.index].slice(state.offset);
   const length = remaining.length > 220 ? Math.max(1, remaining.lastIndexOf(' ', 220) > 100 ? remaining.lastIndexOf(' ', 220) : 220) : remaining.length;
   const chunk = mobile ? {
     text:remaining.slice(0,length), marks:[{start:0,index:state.index,offset:state.offset}],
     nextIndex:length===remaining.length?state.index+1:state.index,
     nextOffset:length===remaining.length?0:state.offset+length
-  } : speechBatch(state.sentences,state.index,state.offset);
+  } : speechBatch(state.sentences,state.index,state.offset,matchDesktop&&!paceChecked?1050:2800);
   let markIndex = 0;
   const u = new SpeechSynthesisUtterance(chunk.text);
   utterance = u;
   u.voice = voice;
   u.lang = voice.lang || 'en-US';
   const preset = state.rate;
-  u.rate = playbackRate(preset,engine);
+  u.rate = playbackRate(preset,engine,matchDesktop?chromeCalibration:1);
   let startedAt;
   u.onstart = () => { startedAt = performance.now(); };
   u.volume = 1;
@@ -132,8 +153,15 @@ function playChunk(token) {
     const changed = state.index !== mark.index;
     state.index = mark.index;
     state.offset = Math.min(state.sentences[state.index].length, mark.offset + event.charIndex - mark.start);
+    const now=performance.now();
+    const refresh=now-lastProgress>700;
+    if (refresh) lastProgress=now;
+    if (refresh && startedAt!==undefined && now-startedAt>=3000) {
+      const spokenWords=wordCount(chunk.text.slice(0,event.charIndex));
+      if(spokenWords>=25)liveTiming={preset,words:spokenWords,seconds:(now-startedAt)/1000};
+    }
     if (changed) publish();
-    else if (Date.now()-lastProgress > 700) { lastProgress=Date.now(); render(snapshot()); }
+    else if (refresh) render(snapshot());
   };
   u.onerror = event => {
     if (token === generation) fail(event.error || 'Windows could not read this text. Press Play to retry.');
@@ -145,7 +173,9 @@ function playChunk(token) {
     if (words >= 12 && seconds > 0 && seconds < words * 1.5) {
       const previous = speechTimings.get(preset) || {words:0,seconds:0};
       speechTimings.set(preset,{words:previous.words+words,seconds:previous.seconds+seconds});
+      if(matchDesktop)matchChromePace(words,seconds);
     }
+    liveTiming=null;
     state.offset = chunk.nextOffset;
     if (chunk.nextIndex < state.sentences.length) {
       state.index = chunk.nextIndex;
@@ -178,6 +208,8 @@ async function startDocument(doc) {
   const page=doc.pages?.[doc.startPage-1];
   const index=page && Number.isInteger(doc.startIndex) && doc.startIndex>=page.start && doc.startIndex<page.end ? doc.startIndex : fallback;
   state={...state,id:Math.max(Date.now(),state.id+1),sentences:doc.items,pages:doc.pages||[],words:doc.words,index,offset:0,status:'paused',locked:true,title:doc.title,error:''};
+  speechTimings.clear();
+  paceChecked=false;
   indexWords();
   publish(true);
   if (doc.bookId) { manualReveal=index;revealPage(); }
@@ -243,7 +275,10 @@ function render(s) {
   $('status').textContent=s.count?`${s.status==='playing'?'Reading':s.status==='done'?'Finished':s.status==='error'?'Voice unavailable':'Paused'} · ${s.index+1} / ${s.count}`:'Ready';
   $('empty').hidden=!!s.count;
   const rateSample=speechTimings.get(s.rate);
-  const measuredWpm=rateSample ? 60*rateSample.words/rateSample.seconds : null;
+  const recent=liveTiming?.preset===s.rate ? liveTiming : null;
+  const timedWords=(rateSample?.words??0)+(recent?.words??0);
+  const timedSeconds=(rateSample?.seconds??0)+(recent?.seconds??0);
+  const measuredWpm=timedSeconds>0 ? 60*timedWords/timedSeconds : null;
   $('estimate').textContent=s.words?`≈ ${durationLabel(estimatedSeconds(s.remainingWords??s.words,s.rate,engine,measuredWpm))} remaining · ${durationLabel(estimatedSeconds(s.words,s.rate,engine,measuredWpm))} total`:'Estimated time —';
   $('page-nav').hidden=!s.pageCount;
   $('page-label').textContent=`Page ${s.pageNumber||1} of ${s.pageCount||1}`;
