@@ -17,10 +17,11 @@
   [[.45,0,0],[.60,0,0],[.75,0,0]]
  ];
  const assetVersion=new URL(base).search;
+ const swissDate=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Zurich',year:'numeric',month:'numeric',day:'numeric'});
  const mobile=window.matchMedia('(max-width:760px), (max-height:500px) and (pointer:coarse)');
  let seasonKey='',accents=[],accentChoices=[],mobileAccentTick=0;
  function refreshSeason(){
- const parts=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Zurich',year:'numeric',month:'numeric',day:'numeric'}).formatToParts(new Date()),month=Number(parts.find(p=>p.type==='month').value)-1,segment=Math.min(2,Math.floor((Number(parts.find(p=>p.type==='day').value)-1)/10)),day=Number(parts.find(p=>p.type==='day').value),key=month+':'+day;
+ const parts=swissDate.formatToParts(new Date()),month=Number(parts.find(p=>p.type==='month').value)-1,segment=Math.min(2,Math.floor((Number(parts.find(p=>p.type==='day').value)-1)/10)),day=Number(parts.find(p=>p.type==='day').value),key=month+':'+day;
  if(key===seasonKey)return;seasonKey=key;accentChoices=[];
  const fraction=(day-1-segment*10)/(segment===2?new Date(Number(parts.find(p=>p.type==='year').value),month+1,0).getDate()-20:10),next=segment<2?seasons[month][segment+1]:seasons[(month+1)%12][0],[snow,flowers,green]=seasons[month][segment].map((v,i)=>v+(next[i]-v)*fraction);
  const particleCount=mobile.matches?16:32,edgeStart=mobile.matches?10:21,leftSplit=mobile.matches?5:10;
@@ -137,16 +138,17 @@
   [lastAccent]=accentChoices.splice(accentChoices[pick]===lastAccent?(pick+1)%accentChoices.length:pick,1);
   if(accents.length>=(mobile.matches?3:5))accents.shift().remove();const leaf=document.createElement('span');leaf.className='autumn-leaf seasonal-accent';
   const left=Math.random()<.5,values={left:(left?range(2,14):range(86,98))+'%',mobileLeft:(left?range(0,3):range(94,98))+'%',size:range(25,36)+'px',duration:range(18,22)+'s',delay:'0s',start:range(-30,30)+'deg',spin:range(-75,75)+'deg',drift1:range(-10,10)+'px',drift2:range(-12,12)+'px',drift3:range(-9,9)+'px',sway:'3px',swayTime:'6s',hue:'0deg'};
-  for(const [key,value]of Object.entries(values))leaf.style.setProperty('--'+key,value);leaf.style.animationIterationCount='1';const img=document.createElement('img');img.src=seasonalItems[lastAccent];img.alt='';img.width=img.height=72;leaf.append(img);leaf.onanimationend=()=>{leaf.remove();accents=accents.filter(n=>n!==leaf);};layer.append(leaf);accents.push(leaf);
+  for(const [key,value]of Object.entries(values))leaf.style.setProperty('--'+key,value);leaf.style.animationIterationCount='1';const img=document.createElement('img');img.src=seasonalItems[lastAccent];img.alt='';img.width=img.height=72;img.decoding='async';leaf.append(img);leaf.onanimationend=()=>{leaf.remove();accents=accents.filter(n=>n!==leaf);};layer.append(leaf);accents.push(leaf);
  }
 
- refreshSeason();setInterval(refreshSeason,3600000);
- mobile.addEventListener('change',()=>{seasonKey='';mobileAccentTick=0;refreshSeason();});
+ const refreshVisibleSeason=()=>{if(!layer.hidden&&!document.hidden)refreshSeason();};
+ setInterval(refreshVisibleSeason,3600000);
+ mobile.addEventListener('change',()=>{seasonKey='';mobileAccentTick=0;refreshVisibleSeason();});
  document.body.append(layer);let visible=parent===window||!window.frameElement?.hidden;
- const pause=()=>{let host=document;if(main&&parent!==window)try{host=parent.document;visible=!window.frameElement?.hidden;}catch{}const covered=main&&(['notes-open','timebox-open','weight-open','atlas-open'].some(c=>host.body.classList.contains(c))||(parent===window&&document.body.classList.contains('arithmetic-page')));const off=document.documentElement.dataset.dankiLeaves==='off'||host.documentElement.dataset.dankiLeaves==='off';layer.hidden=covered||off||!visible;layer.classList.toggle('paused',!visible||document.hidden||covered||off);};
+ const pause=()=>{let host=document;if(main&&parent!==window)try{host=parent.document;visible=!window.frameElement?.hidden;}catch{}const covered=main&&(['private-route-open','timebox-open','atlas-open'].some(c=>host.body.classList.contains(c))||(parent===window&&document.body.classList.contains('arithmetic-page')));const off=document.documentElement.dataset.dankiLeaves==='off'||host.documentElement.dataset.dankiLeaves==='off';const wasHidden=layer.hidden;layer.hidden=covered||off||!visible;layer.classList.toggle('paused',layer.hidden||document.hidden);if(wasHidden||!seasonKey)refreshVisibleSeason();};
  if(main)new MutationObserver(pause).observe(document.body,{attributes:true,attributeFilter:['class']});
  if(main&&parent!==window)try{new MutationObserver(pause).observe(parent.document.body,{attributes:true,attributeFilter:['class']});if(window.frameElement)new MutationObserver(pause).observe(window.frameElement,{attributes:true,attributeFilter:['hidden']});parent.document.addEventListener('danki-leaves-change',pause);}catch{}
- document.addEventListener('danki-leaves-change',pause);document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshSeason();pause();});window.addEventListener('temponotes-visibility',event=>{visible=!!event.detail;pause();});window.addEventListener('message',event=>{if(event.origin===location.origin&&event.source===parent&&['danki-notes-visibility','danki-timebox-visibility'].includes(event.data?.type)){visible=!!event.data.visible;pause();}});
+ document.addEventListener('danki-leaves-change',pause);document.addEventListener('visibilitychange',()=>{pause();refreshVisibleSeason();});window.addEventListener('temponotes-visibility',event=>{visible=!!event.detail;pause();});window.addEventListener('message',event=>{if(event.origin===location.origin&&event.source===parent&&['danki-notes-visibility','danki-timebox-visibility'].includes(event.data?.type)){visible=!!event.data.visible;pause();}});
  setInterval(()=>{
   if(!layer.hidden&&!document.hidden&&visible&&(!mobile.matches||++mobileAccentTick%2===0))dropAccent();
  },5000);

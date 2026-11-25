@@ -1,24 +1,105 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import vm from 'node:vm';
-class Element extends EventTarget{hidden=false;removed=false;messages=[];contentWindow={postMessage:(...args)=>this.messages.push(args),focus(){}};focus(){}remove(){this.removed=true;}}
-const win=new EventTarget(),links={'.temponotes-link':new Element(),'.timebox-link':new Element(),'.weight-link':new Element()},frames=[],classes=new Set();
-const location={origin:'https://playdanki.com',pathname:'/',search:'?analytics=off',hash:'#german',reload(){}};
-const setUrl=url=>{const u=new URL(url,location.origin);location.pathname=u.pathname;location.search=u.search;location.hash=u.hash;};
-const history={pushState:(s,t,u)=>setUrl(u),replaceState:(s,t,u)=>setUrl(u)};
-const document={title:'GERMAN',querySelector:s=>links[s],createElement:()=>new Element(),head:{append(){}},body:{append:f=>frames.push(f),classList:{toggle:(c,on)=>on?classes.add(c):classes.delete(c),remove:c=>classes.delete(c)}}};
-const context=vm.createContext({window:win,document,location,history,CustomEvent});
-for(const file of ['notes','timebox','weight'])new vm.Script(await fs.readFile(new URL('../src/'+file+'-navigation.js',import.meta.url),'utf8')).runInContext(context);
-const auth=uid=>win.dispatchEvent(new CustomEvent('danki-auth',{detail:uid}));
-const message=(source,origin,type)=>{const e=new Event('message');Object.assign(e,{source,origin,data:{type}});win.dispatchEvent(e);};
-const click=selector=>{const e=new Event('click',{cancelable:true});Object.assign(e,{button:0});links[selector].dispatchEvent(e);};
-auth('alice');assert.equal(frames.length,3,'Both private pages warm once');const [notes,timebox,weight]=frames;
-click('.temponotes-link');assert(!notes.hidden);assert(timebox.hidden);
-message(notes.contentWindow,'https://evil.example','danki-notes-open-weight');assert(weight.hidden);message(notes.contentWindow,location.origin,'danki-notes-open-weight');assert(!weight.hidden&&notes.hidden);assert.equal(location.pathname,'/weight-tracker/');message(weight.contentWindow,'https://evil.example','danki-weight-open-notes');assert(notes.hidden);message(weight.contentWindow,location.origin,'danki-weight-open-notes');assert(!notes.hidden&&weight.hidden);assert.equal(location.pathname,'/temponotes/');message(notes.contentWindow,location.origin,'danki-notes-open-weight');message(weight.contentWindow,location.origin,'danki-weight-return');assert(weight.hidden);click('.temponotes-link');
-message(notes.contentWindow,'https://evil.example','danki-notes-open-timebox');assert(timebox.hidden);
-message({},location.origin,'danki-notes-open-timebox');assert(timebox.hidden);
-for(let i=0;i<10;i++){message(notes.contentWindow,location.origin,'danki-notes-open-timebox');assert(notes.hidden);assert(!timebox.hidden);assert.equal(location.pathname,'/timebox/');message(timebox.contentWindow,location.origin,'danki-timebox-open-notes');assert(!notes.hidden);assert(timebox.hidden);assert.equal(location.pathname,'/temponotes/');}
-assert.equal(frames.length,3,'Twenty direct switches create zero extra documents; notes-to-weight route');
-message(notes.contentWindow,location.origin,'danki-notes-open-timebox');message(timebox.contentWindow,location.origin,'danki-timebox-return');assert(notes.hidden&&timebox.hidden);assert.equal(location.pathname,'/');assert.equal(location.hash,'#german');assert.equal(document.title,'GERMAN');
-win.dispatchEvent(new Event('danki-auth-clearing'));auth('bob');assert(notes.removed&&timebox.removed&&weight.removed);const bob=frames.slice(3);message(notes.contentWindow,location.origin,'danki-notes-open-timebox');assert(bob.every(f=>f.hidden),'Old account frames cannot reopen private pages');
-console.log('Direct page checks passed: warm reuse, 20 swaps with zero new documents, game return, source/origin checks and old-account rejection.');
+
+const source=await fs.readFile(new URL('../src/private-routes.js',import.meta.url),'utf8');
+const origin='https://playdanki.com';
+
+function host(initial='/#german'){
+ const window=new EventTarget(),document=new EventTarget(),classes=new Set(),created=[],idle=[],timers=[];
+ const location={origin,assign:path=>navigations.push(path),reload:()=>navigations.push('reload')};
+ const navigations=[];
+ function setPath(path){const url=new URL(path,origin);for(const field of ['pathname','search','hash'])location[field]=url[field];}
+ setPath(initial);
+ const history={replaceState:(_state,_title,path)=>setPath(path),pushState:(_state,_title,path)=>setPath(path)};
+ class Frame extends EventTarget{
+  hidden=true;
+  contentWindow={postMessage:()=>{},focus:()=>{}};
+  remove(){this.removed=true;}
+ }
+ const isGame=location.pathname==='/';
+ document.title=isGame?'German Words':'Temponote';
+ document.querySelector=()=>isGame?{}:null;
+ document.createElement=type=>type==='iframe'?new Frame():{};
+ document.head={append(){}};
+ document.body={
+  append:frame=>created.push(frame),
+  classList:{add:cls=>classes.add(cls),remove:(...items)=>items.forEach(cls=>classes.delete(cls)),toggle:(cls,on)=>on?classes.add(cls):classes.delete(cls)},
+ };
+ window.requestIdleCallback=fn=>idle.push(fn);
+ const context={window,parent:window,document,location,history,navigator:{},CustomEvent,
+  setTimeout(fn){timers.push(fn);return timers.length;},clearTimeout(){}};
+ vm.runInNewContext(source,context);
+ const prefix=isGame?'danki-auth':'danki-private-auth';
+ const auth=uid=>window.dispatchEvent(new CustomEvent(prefix,{detail:uid}));
+ const clear=()=>window.dispatchEvent(new Event(prefix+'-clearing'));
+ const click=(pathname,modifiers={})=>{
+  const event=new Event('click',{cancelable:true});
+  const link={origin,pathname,focus(){}};
+  Object.defineProperty(event,'target',{value:{closest:()=>link}});
+  Object.assign(event,{button:0},modifiers);
+  return !document.dispatchEvent(event);
+ };
+ const message=(frame,path,from=origin)=>{
+  const event=new Event('message');
+  Object.assign(event,{origin:from,source:frame.contentWindow,data:{type:'danki-private-navigate',path}});
+  window.dispatchEvent(event);
+ };
+ const pop=path=>{setPath(path);window.dispatchEvent(new Event('popstate'));};
+ return {auth,clear,click,created,document,idle,location,classes,message,pop,navigations};
+}
+
+const game=host();
+assert.equal(game.click('/monthly-logs/'),false,'Signed-out clicks remain direct');
+game.auth('old');game.clear();game.auth('owner');
+idle(game);
+assert.equal(game.created.length,1,'Skip stale warmup and warm only one route at a time');
+const notes=game.created[0];
+assert.equal(notes.id,'private-notes-frame');
+assert(notes.hidden&&notes.inert);
+notes.dispatchEvent(new Event('load'));idle(game);
+const weight=game.created[1];
+weight.dispatchEvent(new Event('load'));idle(game);
+const monthly=game.created[2];
+monthly.dispatchEvent(new Event('load'));idle(game);
+assert.equal(game.created.length,3);
+assert.equal(game.click('/monthly-logs/',{ctrlKey:true}),false);
+assert(game.click('/temponotes/'));
+game.message(weight,'/monthly-logs/');
+game.message(notes,'/monthly-logs/','https://elsewhere.invalid');
+assert(monthly.hidden,'Reject hidden frames and other origins');
+game.message(notes,'/monthly-logs/');
+assert(!monthly.hidden&&notes.hidden);
+game.message(monthly,'/weight-tracker/');
+assert(!weight.hidden&&monthly.hidden);
+game.pop('/monthly-logs/');
+assert(!monthly.hidden&&weight.hidden);
+game.pop('/weight-tracker/');
+assert(!weight.hidden&&monthly.hidden);
+game.message(weight,'/');
+assert(game.created.every(frame=>frame.hidden&&frame.inert));
+assert.equal(game.location.hash,'#german');
+assert.equal(game.document.title,'German Words');
+game.click('/monthly-logs/');
+game.clear();
+assert(game.created.every(frame=>frame.removed));
+assert.equal(game.location.pathname,'/');
+game.auth('second');
+game.message(monthly,'/temponotes/');
+idle(game);
+assert(game.created.at(-1).hidden);
+
+const direct=host('/temponotes/?test');
+direct.auth('owner');idle(direct);
+assert.equal(direct.created[0].id,'private-weight-frame','Direct notes warm their peer routes, not another copy of notes');
+assert(direct.click('/monthly-logs/'));
+direct.message(direct.created.at(-1),'/temponotes/');
+assert.equal(direct.location.search,'?test');
+assert(direct.created.every(frame=>frame.hidden));
+assert.equal(direct.click('/'),false,'Standalone host still has a direct DANKI link');
+direct.click('/monthly-logs/');
+direct.message(direct.created.at(-1),'/');
+assert.deepEqual(direct.navigations,['/']);
+console.log('Private routes: ordered warmup, repeat reuse, Back and Forward, direct links, signed-out fallback, and account isolation passed.');
+
+function idle(test){for(const start of test.idle.splice(0))start();}

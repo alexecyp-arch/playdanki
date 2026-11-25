@@ -88,7 +88,8 @@ export function createMonthlyStore({auth,db,sdk,uid,onChange}){
 export function mountMonthlyCounts({auth,db,sdk}){
  const $=id=>document.getElementById('monthly-'+id);
  const form=$('form'),name=$('name'),status=$('status'),list=$('list');
- let store,rows=[],month=monthKey(),ytd=false,synced=false,busy=false,epoch=0,editor=null;
+ let currentMonth=monthKey();
+ let store,rows=[],month=currentMonth,ytd=false,synced=false,busy=false,epoch=0,editor=null;
  const unavailable=()=>busy||!synced||!navigator.onLine;
  function render(){
   const [year,m]=month.split('-').map(Number),current=monthKey();
@@ -189,7 +190,7 @@ export function mountMonthlyCounts({auth,db,sdk}){
  window.addEventListener('online',render);
  window.addEventListener('offline',render);
  function clear(){
-  epoch++;store?.dispose();store=null;rows=[];month=monthKey();ytd=false;synced=busy=false;restoreFocus=editor=null;
+  epoch++;store?.dispose();store=null;rows=[];month=currentMonth=monthKey();ytd=false;synced=busy=false;restoreFocus=editor=null;
   name.value='';form.hidden=true;status.textContent='';$('panel').hidden=true;render();
  }
  function open(user){
@@ -202,5 +203,12 @@ export function mountMonthlyCounts({auth,db,sdk}){
   }});
   render();
  }
- return {clear,open};
+ function refreshMonth(){
+  const next=monthKey();
+  if(next===currentMonth)return;
+  if(month===currentMonth&&!editor)month=next;
+  currentMonth=next;
+  render();
+ }
+ return {clear,open,refreshMonth};
 }

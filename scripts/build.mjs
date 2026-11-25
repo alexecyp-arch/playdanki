@@ -15,7 +15,7 @@ import {triviaInfo} from './build-trivia.mjs';
 import {frenchWords,frenchSentences} from './build-french.mjs';
 import {languageInfo} from './build-languages.mjs';
 const root=new URL('../',import.meta.url);
-const runtimeFiles=['day-animal.js','day-animal.css','quiz.js','temponotes/runtime.js','atlas-navigation.js','cursor.css','temponotes/style.css','temponotes/navigation.css','german-voice.js','answer-voice.js','theme.js','theme.css','autumn-main.css','analytics.js','analytics-config.json','digit-span/best-score.mjs','digit-span/index.html','digit-span/style.css','digit-span/game.js','digit-span/model.mjs','account.js','cloud-state.mjs','notes-navigation.js','weight-navigation.js','timebox-navigation.js','timebox/hub-ui.js','timebox/index.html','timebox/bootstrap.js','timebox/style.css','app.js','arithmetic.html','arithmetic-theme.css','card-navigation.js','game-months.js','game-months.css','monthly-logs/index.html','monthly-logs/bootstrap.js','sections.js','programming.js','quant.js','study.css',...['day-timer.mjs','day-timer-ui.js','daily-notes.mjs','calendar.mjs','bootstrap.js','confirm-delete.js','locked-crypto.mjs','locked-store.mjs','locked-ui.js','locked-order.mjs','timebox-model.mjs','timebox-store.mjs','timebox-ui.js','ui.js','fortuna.js','notes-store.mjs','eternal-ui.js','eternal.mjs','note-order.mjs','selection.mjs','cloud-selection.mjs','private-page-navigation.js','autumn.js','autumn.css','autumn-leaf.svg','autumn-oak.svg','autumn-birch.svg','season-snow.svg','season-flower.svg'].map(f=>'temponotes/'+f),...['sleep.mjs','sleep-ui.js','monthly-counts.mjs','protein-tracker.mjs','calories.mjs','bootstrap.js','store.mjs','model.mjs','chart.mjs','style.css','index.html'].map(f=>'weight-tracker/'+f)];
+const runtimeFiles=['day-animal.js','day-animal.css','quiz.js','temponotes/runtime.js','atlas-navigation.js','cursor.css','temponotes/style.css','temponotes/navigation.css','german-voice.js','answer-voice.js','theme.js','theme.css','autumn-main.css','analytics.js','analytics-config.json','digit-span/best-score.mjs','digit-span/index.html','digit-span/style.css','digit-span/game.js','digit-span/model.mjs','account.js','cloud-state.mjs','private-routes.js','timebox-navigation.js','timebox/hub-ui.js','timebox/index.html','timebox/bootstrap.js','timebox/style.css','app.js','arithmetic.html','arithmetic-theme.css','card-navigation.js','game-months.js','game-months.css','monthly-logs/index.html','monthly-logs/bootstrap.js','sections.js','programming.js','quant.js','study.css',...['day-timer.mjs','day-timer-ui.js','daily-notes.mjs','calendar.mjs','bootstrap.js','confirm-delete.js','locked-crypto.mjs','locked-store.mjs','locked-ui.js','locked-order.mjs','timebox-model.mjs','timebox-store.mjs','timebox-ui.js','ui.js','fortuna.js','notes-store.mjs','eternal-ui.js','eternal.mjs','note-order.mjs','selection.mjs','cloud-selection.mjs','private-page-navigation.js','autumn.js','autumn.css','autumn-leaf.svg','autumn-oak.svg','autumn-birch.svg','season-snow.svg','season-flower.svg'].map(f=>'temponotes/'+f),...['sleep.mjs','sleep-ui.js','monthly-counts.mjs','protein-tracker.mjs','calories.mjs','bootstrap.js','store.mjs','model.mjs','chart.mjs','style.css','index.html'].map(f=>'weight-tracker/'+f)];
 const runtimeVersion=createHash('sha256').update((await Promise.all(runtimeFiles.map(f=>fs.readFile(new URL('src/'+f,root),'utf8')))).join('\n')+atlasVersion).digest('hex').slice(0,12);
 let html=await fs.readFile(new URL('src/index.html',root),'utf8');
 const css=await fs.readFile(new URL('src/style.css',root),'utf8');
@@ -77,15 +77,18 @@ html=html.replace('<script defer src="card-navigation.js"></script>',()=>'<scrip
  .replace('LANGUAGE_INFO',JSON.stringify(languageInfo))
  .replace('SUPPORT_CONFIG',()=>JSON.stringify(supportConfig).replace(/</g,'\\u003c'))
  .replace('AUTH_CONFIG',()=>JSON.stringify(authConfig).replace(/</g,'\\u003c'))
- .replace('</body>',()=>'<script>'+germanVoice.trim()+'</script>\n<script>'+schedule.trim()+'</script>\n<script>'+js.trim()+'</script>\n<script>'+sections.trim()+'</script>\n<script>'+supportJs.trim()+'</script>\n<script defer src="notes-navigation.js"></script>\n<script defer src="account.js"></script>\n</body>');
+ .replace('</body>',()=>'<script>'+germanVoice.trim()+'</script>\n<script>'+schedule.trim()+'</script>\n<script>'+js.trim()+'</script>\n<script>'+sections.trim()+'</script>\n<script>'+supportJs.trim()+'</script>\n<script defer src="account.js"></script>\n</body>');
 await fs.mkdir(new URL('dist/',root),{recursive:true});
 await fs.rm(new URL('dist/arithmetic-aim.html',root),{force:true});
 html=html.replace('</head>','<style>'+await fs.readFile(new URL('src/autumn-main.css',root),'utf8')+'</style></head>').replace('</body>','<script defer data-danki-main src="temponotes/autumn.js?v='+runtimeVersion+'"></script></body>');
-html=html.replace('src="notes-navigation.js"','src="notes-navigation.js?v='+runtimeVersion+'"').replace('src="account.js"','src="account.js?v='+runtimeVersion+'"');
+html=html.replace('src="account.js"','src="account.js?v='+runtimeVersion+'"');
 html=html.replace('</body>','<script defer src="atlas-navigation.js?v='+runtimeVersion+'"></script></body>');
 await fs.writeFile(new URL('dist/atlas-navigation.js',root),(await fs.readFile(new URL('src/atlas-navigation.js',root),'utf8')).replaceAll('ATLAS_RELEASE',atlasVersion));
-html=html.replace('</body>','<script defer src="weight-navigation.js?v='+runtimeVersion+'"></script></body>');
-await fs.writeFile(new URL('dist/weight-navigation.js',root),(await fs.readFile(new URL('src/weight-navigation.js',root),'utf8')).replaceAll('WEIGHT_RELEASE',runtimeVersion));
+const privateRoutesTag='<script defer src="/private-routes.js?v='+runtimeVersion+'"></script>';
+const addPrivateRoutes=page=>page.replace('</head>',privateRoutesTag+'</head>');
+html=addPrivateRoutes(html);
+await fs.writeFile(new URL('dist/private-routes.js',root),(await fs.readFile(new URL('src/private-routes.js',root),'utf8')).replace('PRIVATE_ROUTES_RELEASE',runtimeVersion));
+
 
 await fs.writeFile(new URL('dist/timebox-navigation.js',root),(await fs.readFile(new URL('src/timebox-navigation.js',root),'utf8')).replaceAll('TIMEBOX_RELEASE',runtimeVersion));
 await fs.mkdir(new URL('dist/timebox/',root),{recursive:true});
@@ -93,13 +96,13 @@ for(const name of ['bootstrap.js','hub-ui.js','style.css','index.html']){let sou
 await fs.cp(new URL('src/weight-tracker/',root),new URL('dist/weight-tracker/',root),{recursive:true});
 for(const name of ['bootstrap.js','store.mjs','chart.mjs','calories.mjs','protein-tracker.mjs','sleep.mjs','sleep-ui.js','monthly-counts.mjs']){const file='weight-tracker/'+name;const source=await fs.readFile(new URL('src/'+file,root),'utf8');await fs.writeFile(new URL('dist/'+file,root),source.replaceAll('PRIVATE_RELEASE',runtimeVersion).replace(/from '(\.\/[^']+\.(?:mjs|js))'/g,(all,path)=>"from '"+path+'?v='+runtimeVersion+"'"));}
 const weightHtml=(await fs.readFile(new URL('src/weight-tracker/index.html',root),'utf8')).replace('AUTH_CONFIG',JSON.stringify(authConfig)).replace('href="style.css"','href="style.css?v='+runtimeVersion+'"').replace('src="bootstrap.js"','src="bootstrap.js?v='+runtimeVersion+'"');
-await fs.writeFile(new URL('dist/weight-tracker/index.html',root),weightHtml);
+await fs.writeFile(new URL('dist/weight-tracker/index.html',root),addPrivateRoutes(weightHtml));
 await fs.cp(new URL('src/digit-span/',root),new URL('dist/digit-span/',root),{recursive:true});
 for(const name of ['index.html','game.js']){const file='digit-span/'+name;const source=await fs.readFile(new URL('src/'+file,root),'utf8');await fs.writeFile(new URL('dist/'+file,root),source.replace('href="style.css"','href="style.css?v='+runtimeVersion+'"').replace('src="game.js"','src="game.js?v='+runtimeVersion+'"').replace("'./model.mjs'","'./model.mjs?v="+runtimeVersion+"'").replace("'./best-score.mjs'","'./best-score.mjs?v="+runtimeVersion+"'"));}
 await fs.writeFile(new URL('dist/index.html',root),html);
-for(const file of ['account.js','cloud-state.mjs','notes-navigation.js'])await fs.copyFile(new URL('src/'+file,root),new URL('dist/'+file,root));
+for(const file of ['account.js','cloud-state.mjs'])await fs.copyFile(new URL('src/'+file,root),new URL('dist/'+file,root));
 await fs.writeFile(new URL('dist/account.js',root),(await fs.readFile(new URL('src/account.js',root),'utf8')).replace("'./cloud-state.mjs'","'./cloud-state.mjs?v="+runtimeVersion+"'"));
-await fs.writeFile(new URL('dist/notes-navigation.js',root),(await fs.readFile(new URL('src/notes-navigation.js',root),'utf8')).replace('NOTES_RELEASE',runtimeVersion));
+
 await fs.cp(new URL('src/temponotes/',root),new URL('dist/temponotes/',root),{recursive:true,filter:source=>!source.endsWith('.tsx')&&!source.endsWith('background.jpg')});
 const notesHtml=(await fs.readFile(new URL('src/temponotes/index.html',root),'utf8')).replace('src="./bootstrap.js"','src="./bootstrap.js?v='+runtimeVersion+'"').replace('src="./autumn.js"','src="./autumn.js?v='+runtimeVersion+'"').replace('src="./private-page-navigation.js"','src="./private-page-navigation.js?v='+runtimeVersion+'"');
 for(const file of runtimeFiles.filter(f=>f.startsWith('temponotes/'))){const source=await fs.readFile(new URL('src/'+file,root),'utf8');await fs.writeFile(new URL('dist/'+file,root),source.replaceAll('PRIVATE_RELEASE',runtimeVersion).replace(/from '(\.\/[^']+\.(?:mjs|js))'/g,(all,path)=>"from '"+path+'?v='+runtimeVersion+"'"));}
@@ -108,7 +111,7 @@ if(backgrounds.length!==34||backgrounds.some(p=>!p.desktop||!p.mobile))throw Err
 const retainedBackgrounds=new Set(backgrounds.flatMap(p=>[p.desktop.split('/').at(-1),p.mobile.split('/').at(-1)]));
 for(const name of await fs.readdir(new URL('dist/temponotes/backgrounds/',root)))if(/^[0-9]+-(desktop|mobile)-[a-f0-9]+\.webp$/.test(name)&&!retainedBackgrounds.has(name))await fs.rm(new URL('dist/temponotes/backgrounds/'+name,root));
 const backgroundScript=(await fs.readFile(new URL('src/temponotes/daily-background.js',root),'utf8')).replace('BACKGROUND_DATA',()=>JSON.stringify(backgrounds));
-await fs.writeFile(new URL('dist/temponotes/index.html',root),notesHtml.replace('DAILY_BACKGROUND_SCRIPT',()=>backgroundScript).replace('AUTH_CONFIG',()=>JSON.stringify(authConfig).replace(/</g,'\\u003c')));
+await fs.writeFile(new URL('dist/temponotes/index.html',root),addPrivateRoutes(notesHtml.replace('DAILY_BACKGROUND_SCRIPT',()=>backgroundScript).replace('AUTH_CONFIG',()=>JSON.stringify(authConfig).replace(/</g,'\\u003c'))));
 await fs.writeFile(new URL('dist/arithmetic.html',root),arithmetic.replace('</style>',(await fs.readFile(new URL('src/autumn-main.css',root),'utf8'))+'\n'+arithmeticTheme.trim()+'\n'+cursorCss.trim()+'\n'+studyCss.trim()+'\n</style>').replace('</body>','<script defer data-danki-main src="temponotes/autumn.js?v='+runtimeVersion+'"></script></body>'));
 await fs.rm(new URL('dist/credits.txt',root),{force:true});
 console.log(JSON.stringify({words:coreDeckInfo["german-word"].count,sentences:coreDeckInfo.sentence.count,frenchWords:coreDeckInfo["french-word"].count,frenchSentences:coreDeckInfo["french-sentence"].count,kana:kanaEntries.length,kanji:kanjiEntries.length,economics:economicsEntries.length,htmlBytes:Buffer.byteLength(html),compressedBytes:gzipSync(html).length}));
@@ -118,14 +121,14 @@ await fs.mkdir(new URL('dist/monthly-logs/',root),{recursive:true});
 const monthlyHtml=(await fs.readFile(new URL('src/monthly-logs/index.html',root),'utf8'))
  .replace('AUTH_CONFIG',JSON.stringify(authConfig))
  .replace('src="bootstrap.js"','src="bootstrap.js?v='+runtimeVersion+'"');
-await fs.writeFile(new URL('dist/monthly-logs/index.html',root),monthlyHtml);
+await fs.writeFile(new URL('dist/monthly-logs/index.html',root),addPrivateRoutes(monthlyHtml));
 const monthlyBoot=(await fs.readFile(new URL('src/monthly-logs/bootstrap.js',root),'utf8'))
  .replace("monthly-counts.mjs'","monthly-counts.mjs?v="+runtimeVersion+"'");
 await fs.writeFile(new URL('dist/monthly-logs/bootstrap.js',root),monthlyBoot);
 await fs.cp(new URL('src/book-reader/',root),new URL('dist/book-reader/',root),{recursive:true});
 const {buildShared}=await import('./build-shared.mjs');await buildShared(root);
 
-const {buildPageWarmup}=await import('./build-page-warmup.mjs');await buildPageWarmup(root,runtimeVersion,atlasVersion);
+const {buildPageWarmup}=await import('./build-page-warmup.mjs');await buildPageWarmup(root);
 
 const {buildDayAnimal}=await import('./build-day-animal.mjs');await buildDayAnimal(root,runtimeVersion);
 

@@ -51,15 +51,22 @@ export function mount(root,request,{visible=true,locked}={}){
  const fortuna=mountFortuna(tools,()=>activeNotes(Date.now()+offset));
  const stopLocked=locked?mountLocked(root,locked):()=>{};
  const duration=m=>[Math.floor(m/60)?Math.floor(m/60)+'H':'',m%60?m%60+'M':''].filter(Boolean).join(' ');
- const format=t=>new Date(t).toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit',hour12:true});
+ const format=new Intl.DateTimeFormat('en-US',{hour:'numeric',minute:'2-digit',hour12:true});
+ let renderedMinute=null,nextExpiry=Infinity;
+ function tick(){
+  if(disposed||!visible||document.hidden)return;
+  const now=Date.now()+offset;
+  if(orderUntil||now>=nextExpiry||Math.floor(now/60000)!==renderedMinute)render();
+ }
  function showError(message=''){if(disposed)return;error.textContent=message;error.hidden=!message;}
  function controls(){input.disabled=busy;sendButton.disabled=busy||!input.value.trim();sendButton.innerHTML=busy?'…':sendIcon;}
  function activeNotes(t){return orderNotes([...notes.filter(n=>n.expiresAt>t),...occurrences(schedules,t,adjustments)],orderUntil?orderBase:order);}
  function render(){
-  if(disposed||!visible)return;const t=Date.now()+offset,time=$('.current-time');time.textContent=format(t);$('.current-calendar').textContent=calendarLabel(t);time.dateTime=new Date(t).toISOString();orderButton.disabled=!!orderUntil||savingOrder;
+  if(disposed||!visible)return;const t=Date.now()+offset,time=$('.current-time');renderedMinute=Math.floor(t/60000);time.textContent=format.format(t);$('.current-calendar').textContent=calendarLabel(t);time.dateTime=new Date(t).toISOString();orderButton.disabled=!!orderUntil||savingOrder;
   const status=$('.order-status');status.hidden=!orderUntil&&!savingOrder;status.textContent=orderUntil?'ORDER · '+Math.max(1,Math.ceil((orderUntil-Date.now())/1000))+'S · CLICK NOTES IN ORDER':savingOrder?'SAVING ORDER…':'';
   if(deleteAnimations.size)return;
   const active=activeNotes(t),ids=new Set(active.map(n=>n.id));
+  nextExpiry=active.reduce((soonest,n)=>Math.min(soonest,n.expiresAt),Infinity);
   fortuna.render(active);
   for(const [id,li]of nodes)if(!ids.has(id)&&!deleting.has(id)){li.remove();nodes.delete(id);}
   active.forEach((n,i)=>{
@@ -90,6 +97,6 @@ export function mount(root,request,{visible=true,locked}={}){
  async function act(event){const button=event.target.closest('button'),li=button?.closest('li');if(!li)return;if(button.classList.contains('order-notes'))return beginOrder();const id=li.dataset.id;if(extending.has(id)||orderUntil||savingOrder)return;const extra=button.dataset.day==='1',scheduled=occurrences(schedules,Date.now()+offset,adjustments).find(n=>n.id===id);if(!button.classList.contains('delete')&&!extra)return;if(!extra&&!await confirmDelete(scheduled?'REMOVE THIS ETERNAL NOTE FOR TODAY?':'DELETE THIS NOTE?',confirmController.signal))return;if(disposed)return;if(!extra)deleting.add(id);extending.add(id);render();try{const r=await request(scheduled?'/api/eternal':extra?'/api/notes':'/api/notes?id='+encodeURIComponent(id),scheduled?{method:'PATCH',body:JSON.stringify(extra?{id:scheduled.eternalId,occurrenceId:id,days:1}:{id:scheduled.eternalId,dismiss:true})}:extra?{method:'PATCH',body:JSON.stringify({id,days:1})}:{method:'DELETE'});const result=await r.json();if(!r.ok)throw Error(result.error||'Could not save. Try again.');if(disposed)return;if(!extra)await foldDeletedNote(li);if(disposed)return;lastSync=Date.now();if(scheduled)await load();else if(extra){offset=result.serverNow-Date.now();notes=notes.map(n=>n.id===id?{...n,expiresAt:result.expiresAt}:n);}else notes=notes.filter(n=>n.id!==id);showError();}catch(e){showError(e.message);}finally{deleting.delete(id);extending.delete(id);if(!disposed)render();}}
  input.addEventListener('input',()=>{draft=null;controls();});input.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey&&!e.isComposing){e.preventDefault();send();}});$('.composer-wrap>form').addEventListener('submit',e=>{e.preventDefault();send();});list.addEventListener('click',act);
  list.addEventListener('click',selectNote);list.addEventListener('keydown',selectNote);
- let refreshPending=false;const refresh=()=>{if(visible&&!document.hidden&&!refreshPending){refreshPending=true;load().finally(()=>{refreshPending=false;});}},visibility=event=>{visible=event.detail;if(visible){render();refresh();}else fortuna.close();};document.addEventListener('visibilitychange',refresh);window.addEventListener('focus',refresh);window.addEventListener('temponotes-visibility',visibility);const sync=setInterval(refresh,10000),clock=setInterval(render,1000);render();load();
+ let refreshPending=false;const refresh=()=>{if(visible&&!document.hidden&&!refreshPending){refreshPending=true;load().finally(()=>{refreshPending=false;});}},visibility=event=>{visible=event.detail;if(visible){render();refresh();}else fortuna.close();};document.addEventListener('visibilitychange',refresh);window.addEventListener('focus',refresh);window.addEventListener('temponotes-visibility',visibility);const sync=setInterval(refresh,10000),clock=setInterval(tick,1000);render();load();
  return ()=>{disposed=true;for(const animation of deleteAnimations)animation.cancel();deleteAnimations.clear();deleting.clear();confirmController.abort();clearTimeout(orderTimer);eternal.dispose();fortuna.dispose();stopLocked();clearInterval(sync);clearInterval(clock);document.removeEventListener('visibilitychange',refresh);window.removeEventListener('focus',refresh);window.removeEventListener('temponotes-visibility',visibility);root.replaceChildren();nodes.clear();notes=[];schedules=[];};
 }
