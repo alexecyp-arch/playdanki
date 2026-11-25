@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 80" preserveAspectRatio="none">
+  <defs>
+    <filter id="grain" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency=".015 .36" numOctaves="3" seed="28"/>
+      <feColorMatrix values="0 0 0 0 .85  0 0 0 0 .51  0 0 0 0 .29  1.4 0 0 0 -.70"/>
+    </filter>
+  </defs>
+  <rect width="480" height="80" filter="url(#grain)" opacity=".40"/>
+  <g fill="none" stroke="#e2a17a" stroke-opacity=".22">
+    <path d="M-8 5C90 13 138-4 230 6S384 14 488 5M-8 13C92 24 148 6 230 15S383 25 488 14M-8 25C103 33 155 23 232 25S383 36 488 27M-8 39C67 44 122 36 185 36S262 48 326 44 412 32 488 40M-8 51C106 59 152 47 218 50S341 58 488 51M-8 64C100 72 152 58 241 62S382 74 488 64M-8 76C82 84 142 69 230 72S388 84 488 75"/>
+    <path d="M248 40c24-5 44-5 67-2-23 5-43 9-67 2Zm10 0c18-3 33-4 47-2-17 3-34 5-47 2Z"/>
+  </g>
+  <path fill="none" stroke="#140703" stroke-opacity=".53" stroke-width="1.45" d="M-8 9C85 19 153 1 227 11S398 20 488 9M-8 20C87 30 150 13 233 21S385 30 488 20M-8 32C91 39 139 33 207 30S289 44 349 38 432 26 488 34M-8 45C88 55 145 39 211 44S290 58 354 49 435 40 488 45M-8 57C84 65 146 52 239 57S382 65 488 57M-8 70C97 78 143 63 231 67S386 78 488 70"/>
+</svg>

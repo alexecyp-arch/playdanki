@@ -27,19 +27,25 @@ html body .composer-wrap>form{box-shadow:inset 0 2px 0 #ffffff26,inset 0 -2px 0 
 #leaves-toggle svg{display:block;pointer-events:none}
 html[data-danki-leaves="off"] .autumn-leaves{display:none!important}
 
-/* Dark burgundy controls belong only to the charcoal theme. Keep
-   answer feedback, saved task colours and colour-picker samples meaningful. */
-html[data-danki-theme="charcoal"]{--danki-button:#2a111a;--danki-button-hover:#371824;--danki-button-down:#200d15;--danki-button-edge:#1a0910}
-html[data-danki-theme="charcoal"] body :is(button,summary,.dataset-link,.temponotes-link,.atlas-link,.weight-link,.timebox-link,.danki-return,.page-switch,.page-links a,#support-options a):not(#today,#close-history,#embedded-previous-card,.eternal-close,.locked-close,.fortuna-wheel,#theme-switcher button,.eternal-colors button,.timebox-run,.timebox-edit,.timebox-move,.timebox-toggle,.timebox-minute,.word-correct,.word-wrong,.eternal-days button[aria-pressed="true"],.row-country){background-color:var(--danki-button)!important;background-image:none!important;color:#fff;border-color:var(--danki-button-edge)}
+/* The wood grain changes the button face, leaving the raised and pressed layers in place. */
+:root{
+  --danki-wood-grain:WOOD_GRAIN;
+  --danki-button:#41251b;
+  --danki-button-hover:#543324;
+  --danki-button-down:#301910;
+  --danki-button-selected:#603526;
+  --danki-button-edge:#1a0910;
+}
+html[data-danki-theme="charcoal"] body :is(button,summary,.dataset-link,.temponotes-link,.atlas-link,.weight-link,.timebox-link,.danki-return,.page-switch,.page-links a,#support-options a):not(#today,#close-history,#embedded-previous-card,.eternal-close,.locked-close,.fortuna-wheel,#theme-switcher button,.eternal-colors button,.timebox-run,.timebox-edit,.timebox-move,.timebox-toggle,.timebox-minute,.word-correct,.word-wrong,.eternal-days button[aria-pressed="true"],.row-country){background-color:var(--danki-button)!important;background-image:var(--danki-button-grain,var(--danki-wood-grain))!important;background-size:100% 100%;background-position:center;background-repeat:no-repeat;color:#fff;border-color:var(--danki-button-edge)}
 html[data-danki-theme="charcoal"] body :is(button,summary,.dataset-link,.temponotes-link,.atlas-link,.weight-link,.timebox-link,.danki-return,.page-switch,.page-links a,#support-options a):not(#today,#close-history,#embedded-previous-card,.eternal-close,.locked-close,.fortuna-wheel,#theme-switcher button,.eternal-colors button,.timebox-run,.timebox-edit,.timebox-move,.timebox-toggle,.timebox-minute,.word-correct,.word-wrong,.eternal-days button[aria-pressed="true"],.row-country):hover{background-color:var(--danki-button-hover)!important}
 html[data-danki-theme="charcoal"] body :is(button,summary,.dataset-link,.temponotes-link,.atlas-link,.weight-link,.timebox-link,.danki-return,.page-switch,.page-links a,#support-options a):not(#today,#close-history,#embedded-previous-card,.eternal-close,.locked-close,.fortuna-wheel,#theme-switcher button,.eternal-colors button,.timebox-run,.timebox-edit,.timebox-move,.timebox-toggle,.timebox-minute,.word-correct,.word-wrong,.eternal-days button[aria-pressed="true"],.row-country):active{background-color:var(--danki-button-down)!important}
-html[data-danki-theme="charcoal"] body :is(button,summary):not(#today,#close-history,#embedded-previous-card,.eternal-close,.locked-close,.fortuna-wheel,#theme-switcher button,.eternal-colors button,.timebox-run,.timebox-edit,.timebox-move,.timebox-toggle,.timebox-minute,.word-correct,.word-wrong,.eternal-days button[aria-pressed="true"],.row-country):is([aria-pressed="true"],[aria-selected="true"]){background-color:#431a28!important}
+html[data-danki-theme="charcoal"] body :is(button,summary):not(#today,#close-history,#embedded-previous-card,.eternal-close,.locked-close,.fortuna-wheel,#theme-switcher button,.eternal-colors button,.timebox-run,.timebox-edit,.timebox-move,.timebox-toggle,.timebox-minute,.word-correct,.word-wrong,.eternal-days button[aria-pressed="true"],.row-country):is([aria-pressed="true"],[aria-selected="true"]){background-color:var(--danki-button-selected)!important}
 
 /* Text-only controls stay clear in both themes, including hover/focus. */
 html body :is(#today,#close-history,#embedded-previous-card,.eternal-close,.locked-close),html body :is(#today,#close-history,#embedded-previous-card,.eternal-close,.locked-close):is(:hover,:active,:focus){background:transparent!important;box-shadow:none!important;border:0}
 
 /* Colour the entire menu surface, including the space between its rows. */
-html[data-danki-theme="charcoal"] body .games-list{background:var(--danki-button)!important;border-color:var(--danki-button-edge)!important;scrollbar-color:#532230 var(--danki-button)}
+html[data-danki-theme="charcoal"] body .games-list{background:var(--danki-button)!important;border-color:var(--danki-button-edge)!important;scrollbar-color:#704334 var(--danki-button)}
 
 /* Selected recurring days have a green face and matching pressed base. */
 html body #eternal-panel .eternal-days button[aria-pressed="true"]{background:#24653c!important;border-color:#103820!important;color:#fff!important;box-shadow:inset 0 2px 0 #ffffff20,inset 0 -1px 0 #143e25,0 1px 0 #103820;translate:0 2px}
@@ -57,11 +63,11 @@ html body .arithmetic-frame{position:relative;inset:auto;display:block;min-heigh
 html body .arithmetic-frame[hidden]{display:none}
 
 /* A deeper inset face makes the selected menu entry visibly pressed. */
-html[data-danki-theme="charcoal"] body .navigation :is(#languages-menu,#games-menu) .game-option:is(.active,[aria-pressed="true"]){--danki-button:#572737;--danki-button-hover:#572737;--danki-button-down:#572737;box-shadow:inset 0 3px 0 #14090d,inset 3px 0 0 #1c0c12,inset 0 6px 8px #0009,inset -1px -1px 0 #b27688,0 1px 0 #1a0910;translate:0 2px}
+html[data-danki-theme="charcoal"] body .navigation :is(#languages-menu,#games-menu) .game-option:is(.active,[aria-pressed="true"]){--danki-button:var(--danki-button-selected);--danki-button-hover:var(--danki-button-selected);--danki-button-down:var(--danki-button-selected);box-shadow:inset 0 3px 0 #14090d,inset 3px 0 0 #1c0c12,inset 0 6px 8px #0009,inset -1px -1px 0 #b27688,0 1px 0 #1a0910;translate:0 2px}
 
-html[data-danki-theme="charcoal"] body #repetition-controls .repeat-hard{--danki-button:#6b202d;--danki-button-hover:#6b202d;--danki-button-down:#6b202d;--danki-button-edge:#43141d}
+html[data-danki-theme="charcoal"] body #repetition-controls .repeat-hard{--danki-button:#632e22;--danki-button-hover:#632e22;--danki-button-down:#632e22;--danki-button-edge:#43141d}
 
-html[data-danki-theme="charcoal"] body #repetition-controls .repeat-easy{--danki-button:#1b432f;--danki-button-hover:#1b432f;--danki-button-down:#1b432f;--danki-button-edge:#1b432f}
+html[data-danki-theme="charcoal"] body #repetition-controls .repeat-easy{--danki-button-grain:none;--danki-button:#1b432f;--danki-button-hover:#1b432f;--danki-button-down:#1b432f;--danki-button-edge:#1b432f}
 
 html body #repetition-controls button.keyboard-pressed{translate:0 2px!important;box-shadow:inset 0 2px 0 #0004,inset 0 -1px 0 #ffffff14,0 1px 0 var(--danki-button-edge,#101113)!important;transition:none}
 
@@ -77,3 +83,17 @@ html[data-danki-theme="charcoal"][data-danki-pictures="on"] body{background-imag
 @media(max-width:600px){#theme-switcher :is(#leaves-toggle,#background-toggle){width:26px;height:26px;padding:4px}#theme-switcher :is(#leaves-toggle,#background-toggle) svg{width:18px;height:18px}}
 
 :is(button,a,summary){-webkit-tap-highlight-color:transparent}
+
+/* The reader keeps its own page theme and uses the same wood finish on its controls. */
+body.reader.app :is(button,select,summary):not(#text button){
+  background-color:var(--danki-button);
+  background-image:var(--danki-wood-grain);
+  background-size:100% 100%;
+  background-position:center;
+  background-repeat:no-repeat;
+  color:#fff;
+}
+body.reader.app :is(button,select,summary):not(#text button):hover:not(:disabled){background-color:var(--danki-button-hover)}
+body.reader.app :is(button,select,summary):not(#text button):active:not(:disabled){background-color:var(--danki-button-down)}
+body.reader.app #auto-scroll[aria-pressed="true"]{background-color:var(--danki-button-selected)}
+body.reader.app select option{color:#111;background:#fff}
