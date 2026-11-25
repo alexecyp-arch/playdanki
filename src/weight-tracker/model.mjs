@@ -1,6 +1,16 @@
 export const KG_PER_LB=0.45359237;
 export function kilograms(value,unit){const n=Number(value),kg=unit==='LB'?n*KG_PER_LB:n;return Number.isFinite(kg)&&kg>0&&kg<=1000?kg:null;}
 export function weight(kg,unit){return unit==='LB'?kg/KG_PER_LB:kg;}
+export function heightInMeters(value){
+ if(typeof value!=='number'&&typeof value!=='string')return null;
+ const meters=Number(value);
+ return Number.isFinite(meters)&&meters>=.01?meters:null;
+}
+export function bodyMassIndex(kg,height){
+ if(!Number.isFinite(kg)||kg<=0||heightInMeters(height)===null)return null;
+ const bmi=kg/height**2;
+ return bmi>0?bmi:null;
+}
 export function formatForecastDate(time){
  if(time===null)return '—';
  const date=new Date(time),day=date.getDate();

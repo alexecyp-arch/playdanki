@@ -348,5 +348,40 @@
     "desktopBytes": 457932,
     "mobile": "woodland-38-mobile-da7a37a4e260.webp",
     "mobileBytes": 136918
+  },
+  {
+    "source": "image.jpg",
+    "desktop": "starry-forest-01-desktop-5daa171f5b64.webp",
+    "desktopBytes": 198408,
+    "mobile": "starry-forest-01-mobile-1583c5fb4b10.webp",
+    "mobileBytes": 74176
+  },
+  {
+    "source": "image (1).jpg",
+    "desktop": "starry-forest-02-desktop-a7b57003411b.webp",
+    "desktopBytes": 159392,
+    "mobile": "starry-forest-02-mobile-442e8cbeb01c.webp",
+    "mobileBytes": 59754
+  },
+  {
+    "source": "image (2).jpg",
+    "desktop": "starry-forest-03-desktop-d9e8b09ad4f2.webp",
+    "desktopBytes": 246782,
+    "mobile": "starry-forest-03-mobile-88b91b2ed28e.webp",
+    "mobileBytes": 92000
+  },
+  {
+    "source": "image (3).jpg",
+    "desktop": "starry-forest-04-desktop-47716999833a.webp",
+    "desktopBytes": 177426,
+    "mobile": "starry-forest-04-mobile-0540bbca6933.webp",
+    "mobileBytes": 67788
+  },
+  {
+    "source": "image (4).jpg",
+    "desktop": "starry-forest-05-desktop-aedeb1eda726.webp",
+    "desktopBytes": 163416,
+    "mobile": "starry-forest-05-mobile-5fd7d7d6a61a.webp",
+    "mobileBytes": 61296
   }
 ]

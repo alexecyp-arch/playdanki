@@ -1,10 +1,17 @@
-import {createSleepStore,sleepDay,sleepLastDay,sleepAverage,formatSleepDuration} from './sleep.mjs';
+import {createSleepStore,sleepDay,sleepLastDay,sleepAverage,formatSleepDuration,formatSleepUpdate} from './sleep.mjs';
 import {drawSleep} from './chart.mjs';
 export function mountSleep({auth,db,sdk}){
  const $=id=>document.getElementById('sleep-'+id);let store=null,days={},ready=false,busy=false,epoch=0,shownDay='';
  function controls(){for(const id of ['add','remove','add-minutes','remove-minutes'])$(id).disabled=!ready||busy||!navigator.onLine;$('day-next').disabled=$('date').value>=sleepLastDay();}
  let size='';
  const chartSize=()=>`${$('chart').clientWidth}:${window.innerHeight}`;
+ function showLastUpdate(time){
+  const updated=$('last-updated'),label=formatSleepUpdate(time);
+  updated.textContent=label?'LAST UPDATED ON : '+label:'';
+  updated.hidden=!label;
+  if(label)updated.dateTime=new Date(time).toISOString();
+  else updated.removeAttribute('datetime');
+ }
  function renderIfResized(){if(size!==chartSize()||shownDay!==sleepDay())scheduleRender();}
  function render(){const today=sleepDay();if(!$('date').value||$('date').value===shownDay)$('date').value=today;shownDay=today;$('date').max=sleepLastDay();if(!$('panel').hidden){const avg=sleepAverage(days);$('average').textContent='7-DAY AVERAGE: '+(avg===null?'—':formatSleepDuration(avg));size=chartSize();drawSleep($('chart'),days);}controls();}
  let renderFrame=0;
@@ -12,8 +19,8 @@ export function mountSleep({auth,db,sdk}){
   if(renderFrame)return;
   renderFrame=requestAnimationFrame(()=>{renderFrame=0;render();});
  }
- function clear(){epoch++;store?.dispose();store=null;days={};ready=busy=false;shownDay='';$('panel').hidden=true;$('date').value=sleepDay();$('status').textContent='';$('chart').replaceChildren();$('average').textContent='';controls();}
- function open(user){const current=epoch;$('panel').hidden=false;store=createSleepStore({auth,db,sdk,uid:user.uid,onChange:(data,synced)=>{if(current!==epoch)return;days=data.days;ready=synced;scheduleRender();}});scheduleRender();}
+ function clear(){epoch++;store?.dispose();store=null;days={};ready=busy=false;shownDay='';$('panel').hidden=true;$('date').value=sleepDay();$('status').textContent='';$('chart').replaceChildren();$('average').textContent='';showLastUpdate(null);controls();}
+ function open(user){const current=epoch;$('panel').hidden=false;store=createSleepStore({auth,db,sdk,uid:user.uid,onChange:(data,synced)=>{if(current!==epoch)return;days=data.days;ready=synced;showLastUpdate(data.updatedAt);scheduleRender();}});scheduleRender();}
  async function change(amount){if(busy||!ready||!store||!navigator.onLine||!$('date').reportValidity())return;const current=epoch;busy=true;controls();$('status').textContent='SAVING';try{await store.adjust(amount,$('date').value);if(current===epoch){$('status').textContent='SAVED';}}catch(e){if(current===epoch)$('status').textContent=navigator.onLine?e.message==='SLEEP'?'SLEEP HOURS':'RETRY':'OFFLINE';}finally{if(current===epoch){busy=false;controls();}}}
  $('form').addEventListener('submit',e=>e.preventDefault());
  for(const [id,amount]of [['add',1],['remove',-1],['add-minutes',1/6],['remove-minutes',-1/6]])$(id).addEventListener('click',()=>change(amount));

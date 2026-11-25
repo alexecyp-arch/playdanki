@@ -1,5 +1,12 @@
 export const MAX_SLEEP=24;
 export function formatSleepDuration(hours){const minutes=Math.round(hours*60);return Math.floor(minutes/60)+'H '+minutes%60+'M';}
+export function formatSleepUpdate(time){
+ if(!Number.isFinite(time))return '';
+ const date=new Date(time);
+ const day=date.toLocaleDateString('en-GB',{day:'numeric',month:'long'});
+ const clock=date.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit',hour12:true});
+ return (day+' '+clock).toUpperCase();
+}
 const dayMs=86400000;
 export function sleepDay(time=Date.now()){
  const d=new Date(time);
@@ -47,7 +54,8 @@ export function createSleepStore({auth,db,sdk,uid,onChange,now=Date.now}){
  const stop=sdk.onSnapshot(ref,{includeMetadataChanges:true},snapshot=>{
   if(!active||auth.currentUser?.uid!==uid||snapshot.metadata?.hasPendingWrites)return;
   ready=!snapshot.metadata?.fromCache;
-  onChange(decode(snapshot.exists()?snapshot.data().value:undefined),ready);
+  const saved=snapshot.exists()?snapshot.data():null;
+  onChange({...decode(saved?.value),updatedAt:saved?.updatedAt?.toMillis?.()??null},ready);
  },()=>{if(active&&auth.currentUser?.uid===uid){ready=false;onChange(decode(),false);}});
  function update(change){
   const pending=queue.then(async()=>{

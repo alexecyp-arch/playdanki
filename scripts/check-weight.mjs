@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {kilograms,weight,chartData,weeklyChange,estimatedTargetTime} from '../src/weight-tracker/model.mjs';
+import {bodyMassIndex,kilograms,weight,chartData,weeklyChange,estimatedTargetTime} from '../src/weight-tracker/model.mjs';
 import {createWeightStore} from '../src/weight-tracker/store.mjs';
 assert.equal(kilograms(100,'KG'),100);assert.equal(kilograms(100,'LB'),45.359237);assert(Math.abs(weight(45.359237,'LB')-100)<1e-10);
 for(const value of ['',0,-1,Infinity,NaN,'bad',1001])assert.equal(kilograms(value,'KG'),null);
@@ -15,6 +15,17 @@ await store.setTarget(70,'KG');assert.equal(JSON.parse(targetRow.value).kg,70);a
 await store.setTarget(154.3235835294143,'LB');assert(Math.abs(JSON.parse(targetRow.value).kg-70)<1e-8);assert.equal(targetRow.revision,2);
 await store.setTarget('','KG');assert.equal(JSON.parse(targetRow.value).kg,null);
 await assert.rejects(store.setTarget(-1,'KG'),/WEIGHT/);
+targetRow={value:'{"kg":70}',revision:3};
+assert.equal(await store.setHeight('1.80'),1.8);
+assert.deepEqual(JSON.parse(targetRow.value),{kg:70,heightM:1.8});
+await store.setTarget(72,'KG');
+assert.deepEqual(JSON.parse(targetRow.value),{kg:72,heightM:1.8});
+await assert.rejects(store.setHeight('0'),/HEIGHT/);
+await store.setHeight('');
+assert.deepEqual(JSON.parse(targetRow.value),{kg:72,heightM:null});
+assert.equal(bodyMassIndex(80,1.8).toFixed(1),'24.7');
+assert.equal(bodyMassIndex(undefined,1.8),null);
+assert.equal(bodyMassIndex(80,null),null);
 const goal=chartData([{id:'a',kg:80,time:100},{id:'b',kg:82,time:200}],'KG',70);assert.equal(goal.y[0],70);assert.equal(goal.target,70);assert(goal.y[1]>82);
 assert.equal(chartData([{id:'a',kg:80,time:100}],'KG',79.9).y[0],79.9);
 assert.equal(chartData([],'KG',70).y[0],70);
