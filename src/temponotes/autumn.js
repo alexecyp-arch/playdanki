@@ -16,6 +16,7 @@
   [[.12,0,.22],[.22,0,.14],[.34,0,.08]],
   [[.45,0,0],[.60,0,0],[.75,0,0]]
  ];
+ const assetVersion=new URL(base).search;
  const mobile=window.matchMedia('(max-width:760px), (max-height:500px) and (pointer:coarse)');
  let seasonKey='',accents=[],accentChoices=[],mobileAccentTick=0;
  function refreshSeason(){
@@ -27,7 +28,7 @@
  const snowCount=Math.round(particleCount*snow),flowerCount=Math.round(particleCount*flowers),types=Array.from({length:particleCount},(_,i)=>i<snowCount?'snow':i<snowCount+flowerCount?'flower':'leaf');for(let i=types.length-1;i>0;i--){const j=Math.floor(range(0,i+1));[types[i],types[j]]=[types[j],types[i]];}layer.replaceChildren();accents=[];const greenFlags=Array.from({length:particleCount-snowCount-flowerCount},(_,i)=>i<Math.round((particleCount-snowCount-flowerCount)*green));for(let i=greenFlags.length-1;i>0;i--){const j=Math.floor(range(0,i+1));[greenFlags[i],greenFlags[j]]=[greenFlags[j],greenFlags[i]];}let leafIndex=0;
  for(let i=0;i<types.length;i++){
   const type=types[i],extra=i>=edgeStart,leftSide=extra?i%2===1:i<leftSplit,duration=type==='snow'?range(26,46):range(19,37),leaf=document.createElement('span');leaf.className='autumn-leaf seasonal-'+type;
-  const values={left:(extra?(leftSide?range(.2,4):range(96,99.8)):(leftSide?range(.2,13):range(86,98)))+'%',mobileLeft:(extra?(leftSide?range(.2,3):range(95.5,98.5)):(leftSide?range(1,7):range(91.5,97)))+'%',size:(type==='snow'?range(5,10):type==='flower'?range(12,19):range(19,37))+'px',duration:duration+'s',delay:-range(0,duration)+'s',start:range(-180,180)+'deg',spin:range(-220,220)+'deg',drift1:range(-20,24)+'px',drift2:range(-28,28)+'px',drift3:range(-18,24)+'px',sway:range(3,9)+'px',swayTime:range(4,9)+'s',alpha:type==='snow'?range(.15,.30):type==='flower'?range(.16,.30):range(.70,.90),hue:(type==='leaf'?(greenFlags[leafIndex++]?range(70,100):range(-18,18)):type==='flower'?range(-22,28):0)+'deg'};
+  const values={left:(extra?(leftSide?range(.2,4):range(96,99.8)):(leftSide?range(.2,13):range(86,98)))+'%',mobileLeft:(extra?(leftSide?range(.2,3):range(95.5,98.5)):(leftSide?range(1,7):range(91.5,97)))+'%',size:(type==='snow'?range(5,10):type==='flower'?range(12,19):range(19,37))+'px',duration:duration+'s',delay:-range(0,duration)+'s',start:range(-180,180)+'deg',spin:range(-220,220)+'deg',drift1:range(-20,24)+'px',drift2:range(-28,28)+'px',drift3:range(-18,24)+'px',sway:range(3,9)+'px',swayTime:range(4,9)+'s',hue:(type==='leaf'?(greenFlags[leafIndex++]?range(70,100):range(-18,18)):type==='flower'?range(-22,28):0)+'deg'};
   if(center)values.left=range(45,55)+'%';
   if(type==='leaf'){
    const windCount=Math.round(leafIndex*.65);
@@ -50,7 +51,7 @@
    values['tumble-turn']=Math.random()<.5?'1turn':'-1turn';
   }
   for(const [name,value]of Object.entries(values))leaf.style.setProperty('--'+name,value);
-  const img=document.createElement('img');img.src=new URL(type==='snow'?'season-snow.svg':type==='flower'?'season-flower.svg':shapes[Math.floor(range(0,shapes.length))],base).href;img.alt='';img.width=type==='leaf'?96:32;img.height=type==='leaf'?128:32;img.decoding='async';
+  const img=document.createElement('img');img.src=new URL(type==='snow'?'season-snow.svg':type==='flower'?'season-flower.svg':shapes[Math.floor(range(0,shapes.length))],base).href+assetVersion;img.alt='';img.width=type==='leaf'?96:32;img.height=type==='leaf'?128:32;img.decoding='async';
   if(tumbles){
    const turn=document.createElement('span'),mesh=document.createElement('span');
    turn.className='leaf-turn';
@@ -135,7 +136,7 @@
   const pick=Math.floor(range(0,accentChoices.length));
   [lastAccent]=accentChoices.splice(accentChoices[pick]===lastAccent?(pick+1)%accentChoices.length:pick,1);
   if(accents.length>=(mobile.matches?3:5))accents.shift().remove();const leaf=document.createElement('span');leaf.className='autumn-leaf seasonal-accent';
-  const left=Math.random()<.5,values={left:(left?range(2,14):range(86,98))+'%',mobileLeft:(left?range(0,3):range(94,98))+'%',size:range(25,36)+'px',duration:range(18,22)+'s',delay:'0s',start:range(-30,30)+'deg',spin:range(-75,75)+'deg',drift1:range(-10,10)+'px',drift2:range(-12,12)+'px',drift3:range(-9,9)+'px',sway:'3px',swayTime:'6s',alpha:range(.16,.23),hue:'0deg'};
+  const left=Math.random()<.5,values={left:(left?range(2,14):range(86,98))+'%',mobileLeft:(left?range(0,3):range(94,98))+'%',size:range(25,36)+'px',duration:range(18,22)+'s',delay:'0s',start:range(-30,30)+'deg',spin:range(-75,75)+'deg',drift1:range(-10,10)+'px',drift2:range(-12,12)+'px',drift3:range(-9,9)+'px',sway:'3px',swayTime:'6s',hue:'0deg'};
   for(const [key,value]of Object.entries(values))leaf.style.setProperty('--'+key,value);leaf.style.animationIterationCount='1';const img=document.createElement('img');img.src=seasonalItems[lastAccent];img.alt='';img.width=img.height=72;leaf.append(img);leaf.onanimationend=()=>{leaf.remove();accents=accents.filter(n=>n!==leaf);};layer.append(leaf);accents.push(leaf);
  }
 

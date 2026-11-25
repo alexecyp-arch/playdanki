@@ -3,9 +3,9 @@ html,body{background:#18191c!important}
 .temponote-workspace,.temponote-workspace .app,.auth-gate{background:transparent!important;background-image:none!important}
 #root,.auth-gate{position:relative;z-index:1}
 .autumn-leaves{position:fixed;inset:0;overflow:hidden;pointer-events:none;user-select:none;z-index:0;contain:strict}
-.autumn-leaf{--leaf-size:var(--size);position:absolute;top:-90px;left:var(--left);width:var(--leaf-size);opacity:0;animation:autumn-fall var(--duration) linear infinite;animation-delay:var(--delay);will-change:transform}
+.autumn-leaf{--leaf-size:var(--size);position:absolute;top:-90px;left:var(--left);width:var(--leaf-size);animation:autumn-fall var(--duration) linear infinite;animation-delay:var(--delay);will-change:transform}
 .autumn-leaf img{display:block;width:100%;height:auto;filter:hue-rotate(var(--hue));animation:autumn-sway var(--swayTime) ease-in-out infinite alternate;animation-delay:var(--delay)}
-@keyframes autumn-fall{0%{opacity:0;transform:translate3d(0,-20px,0) rotate(var(--start))}8%{opacity:var(--alpha)}32%{transform:translate3d(var(--drift1),32dvh,0) rotate(calc(var(--start) + var(--spin)*.3))}66%{transform:translate3d(var(--drift2),66dvh,0) rotate(calc(var(--start) + var(--spin)*.65))}90%{opacity:var(--alpha)}100%{opacity:0;transform:translate3d(var(--drift3),calc(100dvh + 110px),0) rotate(calc(var(--start) + var(--spin)))}}
+@keyframes autumn-fall{0%{transform:translate3d(0,-20px,0) rotate(var(--start))}32%{transform:translate3d(var(--drift1),32dvh,0) rotate(calc(var(--start) + var(--spin)*.3))}66%{transform:translate3d(var(--drift2),66dvh,0) rotate(calc(var(--start) + var(--spin)*.65))}100%{transform:translate3d(var(--drift3),calc(100dvh + 110px),0) rotate(calc(var(--start) + var(--spin)))}}
 @keyframes autumn-sway{from{transform:translateX(calc(0px - var(--sway))) rotate(-12deg)}to{transform:translateX(var(--sway)) rotate(14deg)}}
 .autumn-leaves.paused :is(.autumn-leaf,.leaf-turn,img){animation-play-state:paused}
 .leaf-turn{display:block;position:relative}
@@ -45,7 +45,7 @@ html,body{background:#18191c!important}
 /* The fullscreen notebook must sit above the page navigation. */
 #root:has(#locked-panel:not([hidden])){z-index:100}
 
-/* Tiny, faint seasonal accents reuse the same animation and particle budget. */
+/* Tiny seasonal accents reuse the same animation and particle budget. */
 .seasonal-snow img{animation:none}.seasonal-flower img{filter:hue-rotate(var(--hue)) saturate(.7)}
 
 .seasonal-accent{animation-iteration-count:1}.seasonal-accent img{filter:saturate(.75);animation:none}

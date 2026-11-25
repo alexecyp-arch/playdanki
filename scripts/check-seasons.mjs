@@ -11,7 +11,7 @@ function page(at,center=false,main=false){let now=new Date(at),layer;const event
 }
 const count=(p,type)=>p.layer.children.filter(n=>n.className==='autumn-leaf seasonal-'+type).length;
 const baseLeft=n=>parseFloat(n.values['--left'].replace('calc(', ''));
-for(let month=0;month<12;month++)for(const day of [1,11,21]){const p=page(new Date(2026,month,day,12));assert.equal(p.layer.children.length,32);assert(count(p,'flower')<=6);for(const n of p.layer.children){assert(+n.values['--alpha']<=.45);const image=n.children[0].className==='leaf-turn'?n.children[0].children[0]:n.children[0];assert.equal(image.alt,'');assert(baseLeft(n)<18||baseLeft(n)>81);}}
+for(let month=0;month<12;month++)for(const day of [1,11,21]){const p=page(new Date(2026,month,day,12));assert.equal(p.layer.children.length,32);assert(count(p,'flower')<=6);for(const n of p.layer.children){assert.equal(n.values['--alpha'],undefined);const image=n.children[0].className==='leaf-turn'?n.children[0].children[0]:n.children[0];assert.equal(image.alt,'');assert(baseLeft(n)<18||baseLeft(n)>81);}}
 const snow=[1,11,21].map(day=>count(page(new Date(2026,11,day,12)),'snow'));assert(snow[0]<snow[1]&&snow[1]<snow[2]);
 const spring=[1,11,21].map(day=>count(page(new Date(2026,2,day,12)),'snow'));assert(spring[0]>spring[1]&&spring[1]>spring[2]);
 assert.equal(count(page('2026-06-01T12:00:00Z'),'snow'),0);assert(count(page('2026-04-11T12:00:00Z'),'flower')>0);
@@ -20,6 +20,13 @@ assert.equal(count(page('2026-12-10T23:30:00Z'),'snow'),snow[1]);
 const p=page('2026-10-29T12:00:00Z',true,true);for(const n of p.layer.children)assert(baseLeft(n)>=45&&baseLeft(n)<=55);
 const first=p.layer.children[0];p.advance('2026-10-29T14:00:00Z');assert.equal(p.layer.children[0],first,'Same Swiss day keeps existing objects');p.advance('2026-12-25T12:00:00Z');assert.equal(p.layer.children.length,32);assert.equal(count(p,'snow'),24);
 p.document.documentElement.dataset.dankiLeaves='off';p.events.get('danki-leaves-change')();assert.equal(p.layer.hidden,true);assert.equal(p.timers.length,2);assert.equal(p.timers[0].ms,3600000);
+for(const file of ['autumn-leaf.svg','autumn-oak.svg','autumn-birch.svg','season-snow.svg','season-flower.svg']){
+ assert.doesNotMatch(await fs.readFile('src/temponotes/'+file,'utf8'),/opacity/i,file+' uses solid fills and strokes');
+}
+for(const file of ['src/autumn-main.css','src/temponotes/autumn.css']){
+ const css=await fs.readFile(file,'utf8');
+ assert.doesNotMatch(css,/opacity|--alpha/i,file+' never fades the falling items');
+}
 assert((await fs.stat('src/temponotes/season-snow.svg')).size+(await fs.stat('src/temponotes/season-flower.svg')).size<1024);
 for(const [date,designs] of [['01-15',8],['04-15',14],['07-15',16],['09-15',10],['10-29',12],['11-07',12],['11-08',10],['12-15',12]]){
  const accents=page('2026-'+date+'T12:00:00Z');
@@ -28,7 +35,9 @@ for(const [date,designs] of [['01-15',8],['04-15',14],['07-15',16],['09-15',10],
  const seen=new Set();let previous;
  for(let i=0;i<=designs;i++){
   drop.fn();
-  const image=accents.layer.children.at(-1).children[0].src;
+  const accent=accents.layer.children.at(-1);
+  assert.equal(accent.values['--alpha'],undefined);
+  const image=accent.children[0].src;
   assert(image.startsWith('data:image/svg+xml,'));
   assert.notEqual(image,previous);
   assert(i===designs?seen.has(image):!seen.has(image));
