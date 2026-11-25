@@ -466,3 +466,12 @@ html body #note-day-timer:disabled{opacity:1}#note-day-timer:focus-visible{outli
 html[data-danki-theme="charcoal"] .note .expiry{color:var(--danki-button,#2a111a);text-shadow:none}
 
 html[data-danki-theme="charcoal"] .note .expiry.expires-today{color:#fff}
+
+@media(max-width:600px){
+ #notes-navigation{display:grid;grid-template-columns:62px 62px;align-content:start}
+ #notes-navigation .danki-return{grid-area:1/2}
+ #notes-navigation .notes-weight-link{grid-area:1/1}
+ #notes-navigation .notes-monthly-link{grid-area:2/1;font-size:6.5px}
+}
+html[data-danki-theme="charcoal"] .note .expiry{font-size:15px;line-height:20px;letter-spacing:.04em;text-shadow:0 1px #ffffff50,0 -1px #000b}
+html[data-danki-theme="charcoal"] .note .expiry.expires-today{text-shadow:0 1px #000,0 -1px #000a}

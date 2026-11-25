@@ -22,7 +22,8 @@ function render(s){
 }
 const run=createRun({onChange:render});
 for(const value of ['1','2','3','4','5','6','7','8','9','0','DELETE']){const b=document.createElement('button');b.type='button';b.textContent=value;b.addEventListener('click',()=>{const s=run.snapshot();run.input(value==='DELETE'?s.answer.slice(0,-1):s.answer+value);if(phase==='recall')$('answer').focus({preventScroll:true});});$('keypad').append(b);}
-$('start').addEventListener('click',()=>phase==='paused'?run.resume():run.start());
+$('digit-history').addEventListener('toggle',()=>{if($('digit-history').open)window.DankiMonths?.show($('game-monthly'),{game:'digit-span'});});
+$('start').addEventListener('click',()=>{if(phase==='paused'){run.resume();return;}window.DankiMonths?.record('digit-span');run.start();});
 $('answer').addEventListener('input',()=>run.input($('answer').value));
 document.addEventListener('keydown',event=>{if(phase!=='recall'||event.ctrlKey||event.metaKey||event.altKey||event.isComposing||event.target===$('answer'))return;if(/^[0-9]$/.test(event.key)||event.key==='Backspace'){event.preventDefault();if(event.repeat)return;const s=run.snapshot();run.input(event.key==='Backspace'?s.answer.slice(0,-1):s.answer+event.key);}});
 document.addEventListener('visibilitychange',()=>{if(document.hidden)run.pause();});

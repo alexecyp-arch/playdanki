@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MONTHLY LOGS</title><link rel="stylesheet" href="../weight-tracker/style.css"></head>
+<body><header><h1>MONTHLY LOGS</h1><nav class="page-links" aria-label="Page navigation"><a href="/weight-tracker/">DAILY LOGS</a><a href="/temponotes/">TEMPONOTE</a><a href="/">DANKI</a></nav></header>
+<main><div id="auth-gate" hidden><button id="sign-in" type="button">SIGN IN</button><output id="auth-status" role="status"></output></div>
+<section id="monthly-panel" aria-labelledby="monthly-title" hidden>
+  <hr class="log-divider">
+  <h2 class="log-heading" id="monthly-title">MONTHLY COUNT</h2>
+  <div class="monthly-toolbar">
+    <button type="button" id="monthly-prev" aria-label="Previous period">‹</button>
+    <output id="monthly-period" aria-live="polite"></output>
+    <button type="button" id="monthly-next" aria-label="Next period">›</button>
+    <button type="button" id="monthly-ytd" aria-label="Year to date" aria-pressed="false">YTD</button>
+    <button type="button" id="monthly-new" aria-label="Add counter">+</button>
+  </div>
+  <form id="monthly-form" hidden>
+    <input id="monthly-name" aria-label="Counter name" placeholder="BOOKS READ" maxlength="64" required>
+    <button id="monthly-save" type="submit">ADD</button>
+  </form>
+  <div id="monthly-list"></div>
+  <output id="monthly-status" role="status"></output>
+</section>
+</main><script id="auth-config" type="application/json">AUTH_CONFIG</script><script type="module" src="bootstrap.js"></script></body></html>

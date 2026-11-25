@@ -1,0 +1,8 @@
+.game-monthly{display:grid;gap:0;padding:0 12px;color:#fff;font:700 11px Arial,sans-serif;text-transform:uppercase}
+.game-monthly>div{display:flex;justify-content:space-between;gap:8px;padding:9px 0;border-bottom:2px solid #fff}
+#digit-history{position:relative;margin:0 0 4px;z-index:8;text-align:center}
+#digit-history #best{position:static;cursor:pointer;margin:0;padding:6px}
+#digit-history .game-monthly{position:absolute;top:100%;left:50%;transform:translateX(-50%);min-width:218px;background:#222428;text-align:left}
+
+html body:has(#stats-toggle) #tracker{position:fixed;bottom:calc(132px + env(safe-area-inset-bottom));z-index:9}
+

@@ -6,7 +6,7 @@ const style=document.createElement('style');style.textContent='#private-weight-f
 function visibility(){if(!frame)return;frame.hidden=!shown;frame.contentWindow?.postMessage({type:'danki-weight-visibility',visible:shown},location.origin);}
 function prepare(){if(frame)return;frame=document.createElement('iframe');frame.id='private-weight-frame';frame.title='Your private protein and weight tracker';frame.hidden=true;frame.addEventListener('load',visibility);document.body.append(frame);frame.src='/weight-tracker/?v=WEIGHT_RELEASE';visibility();}
 function recover(){const current=frame;if(!current||!shown||typeof setTimeout!=='function')return;const blank=()=>{try{return !current.contentDocument||current.contentDocument.URL==='about:blank';}catch{return true;}};if(!blank())return;try{current.contentWindow.location.replace(current.src);}catch{}setTimeout(()=>{if(shown&&frame===current&&blank())location.assign(current.src);},1200);}
-function display(open){if(open)window.dispatchEvent(new CustomEvent('danki-view-opening',{detail:'weight'}));shown=open;document.body.classList.toggle('weight-open',open);document.title=open?'LOGS':gameTitle;visibility();if(open){recover();frame?.contentWindow?.focus();}else link.focus({preventScroll:true});}
+function display(open){if(open)window.dispatchEvent(new CustomEvent('danki-view-opening',{detail:'weight'}));shown=open;document.body.classList.toggle('weight-open',open);document.title=open?'DAILY LOGS':gameTitle;visibility();if(open){recover();frame?.contentWindow?.focus();}else link.focus({preventScroll:true});}
 window.addEventListener('danki-auth-clearing',()=>{frame?.remove();frame=null;uid=null;});
 window.addEventListener('danki-auth',event=>{
  const next=event.detail||null;if(next===uid&&frame)return;

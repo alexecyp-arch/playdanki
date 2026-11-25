@@ -3,17 +3,21 @@ export function monthKey(date=new Date()){
 }
 const validMonth=key=>/^\d{4}-(0[1-9]|1[0-2])$/.test(key);
 export function counterTotal(counter,month,ytd,today=monthKey()){
- if(!ytd)return counter.months[month]??0;
+ return periodTotal(counter.months,month,ytd,today);
+}
+function periodTotal(entries,month,ytd,today){
+ if(!ytd)return entries[month]??0;
  const year=month.slice(0,4),last=year===today.slice(0,4)?today:year+'-12';
- return Object.entries(counter.months).reduce((sum,[key,value])=>
+ return Object.entries(entries).reduce((sum,[key,value])=>
   key.startsWith(year+'-')&&key<=last?sum+value:sum,0);
 }
+const cleanValues=values=>Object.fromEntries(Object.entries(values??{}).filter(([key,n])=>validMonth(key)&&Number.isInteger(n)&&n>0&&n<=999999));
 function decode(value){
  try {
   const data=JSON.parse(value);
   return Array.isArray(data)?data.filter(item=>typeof item.id==='string'&&typeof item.name==='string'&&item.months&&typeof item.months==='object').map(item=>({
    id:item.id,name:item.name,
-   months:Object.fromEntries(Object.entries(item.months).filter(([key,n])=>validMonth(key)&&Number.isInteger(n)&&n>0&&n<=999999))
+   months:cleanValues(item.months),goals:cleanValues(item.goals)
   })):[];
  } catch { return []; }
 }
@@ -50,12 +54,12 @@ export function createMonthlyStore({auth,db,sdk,uid,onChange}){
    return update(rows=>{
     if(!name||name.length>64)throw Error('ENTER A NAME UP TO 64 CHARACTERS');
     if(rows.some(row=>row.name.toLowerCase()===name.toLowerCase()))throw Error('COUNTER ALREADY EXISTS');
-    return [...rows,{id,name,months:{}}];
+    return [...rows,{id,name,months:{},goals:{}}];
    });
   },
   adjust(id,month,delta){
    return update(rows=>{
-    if(!validMonth(month)||month>monthKey()||![1,-1,10,-10].includes(delta))throw Error('INVALID COUNT');
+    if(!validMonth(month)||month>monthKey()||![1,-1].includes(delta))throw Error('INVALID COUNT');
     const row=rows.find(item=>item.id===id);
     if(!row)throw Error('COUNTER NOT FOUND');
     const value=Math.max(0,(row.months[month]??0)+delta);
@@ -65,13 +69,25 @@ export function createMonthlyStore({auth,db,sdk,uid,onChange}){
     return rows;
    });
   },
+  set(id,month,field,input){
+   return update(rows=>{
+    if(!validMonth(month)||month>monthKey()||!['months','goals'].includes(field))throw Error('INVALID MONTH');
+    if(!/^\d+$/.test(input) || Number(input)>999999)throw Error('ENTER A WHOLE NUMBER FROM 0 TO 999999');
+    const row=rows.find(item=>item.id===id);
+    if(!row)throw Error('COUNTER NOT FOUND');
+    const value=Number(input);
+    if(value)row[field][month]=value;
+    else delete row[field][month];
+    return rows;
+   });
+  },
   dispose(){active=false;stop();}
  };
 }
 export function mountMonthlyCounts({auth,db,sdk}){
  const $=id=>document.getElementById('monthly-'+id);
  const form=$('form'),name=$('name'),status=$('status'),list=$('list');
- let store,rows=[],month=monthKey(),ytd=false,synced=false,busy=false,epoch=0;
+ let store,rows=[],month=monthKey(),ytd=false,synced=false,busy=false,epoch=0,editor=null;
  const unavailable=()=>busy||!synced||!navigator.onLine;
  function render(){
   const [year,m]=month.split('-').map(Number),current=monthKey();
@@ -93,17 +109,44 @@ export function mountMonthlyCounts({auth,db,sdk}){
     const button=document.createElement('button');button.type='button';button.textContent=symbol;
     button.dataset.counter=row.id;button.dataset.countAction=String(delta);
     button.setAttribute('aria-label',label+' '+row.name);
-    if(Math.abs(delta)===10)button.className='monthly-ten';
     button.disabled=unavailable()||(delta<0?value===0:value+delta>999999);
     button.onclick=()=>save(()=>store.adjust(row.id,month,delta),()=>restoreFocus={id:row.id,delta:String(delta)});
     return button;
    };
    if(ytd)controls.append(count);
-   else controls.append(
-    adjust(-10,'Subtract ten from','−10'),adjust(-1,'Subtract one from','−'),count,
-    adjust(1,'Add one to','+'),adjust(10,'Add ten to','+10')
-   );
-   item.append(heading,controls);list.append(item);
+   else controls.append(adjust(-1,'Subtract one from','−'),count,adjust(1,'Add one to','+'));
+   const left=document.createElement('div');left.className='monthly-counter-main';left.append(heading,controls);
+   const goal=periodTotal(row.goals,month,ytd,current);
+   const progress=document.createElement('div');progress.className='monthly-progress';
+   if(goal){
+    const pct=Math.round(value/goal*100),bar=document.createElement('progress'),label=document.createElement('span');
+    bar.value=Math.min(value,goal);bar.max=goal;bar.setAttribute('aria-label',row.name+' goal progress');
+    label.textContent=pct.toLocaleString('en-US')+'% · '+value.toLocaleString('en-US')+' / '+goal.toLocaleString('en-US');
+    progress.append(bar,label);
+   }else{
+    const track=document.createElement('span');track.className='monthly-empty-track';progress.append(track);
+   }
+   const actions=document.createElement('div');actions.className='monthly-counter-actions';
+   if(!ytd){
+    for(const [field,symbol,label] of [['months','+','Edit count'],['goals','◎','Set monthly goal']]){
+     const button=document.createElement('button');button.type='button';button.textContent=symbol;
+     button.disabled=unavailable();button.title=label;button.setAttribute('aria-label',label+' for '+row.name);
+     button.onclick=()=>{editor={id:row.id,field,value:String(row[field][month]??0)};render();list.querySelector('.monthly-edit input')?.select();};
+     actions.append(button);
+    }
+   }
+   item.append(left,progress,actions);
+   if(editor?.id===row.id&&!ytd){
+    const editForm=document.createElement('form');editForm.className='monthly-edit';
+    const input=document.createElement('input');input.type='number';input.min='0';input.max='999999';input.step='1';input.inputMode='numeric';input.required=true;input.value=editor.value;
+    input.setAttribute('aria-label',editor.field==='goals'?'Monthly goal':'Count');
+    input.oninput=()=>{editor.value=input.value;};
+    const submit=document.createElement('button');submit.type='submit';submit.textContent='SAVE';submit.disabled=unavailable();
+    const cancel=document.createElement('button');cancel.type='button';cancel.textContent='CANCEL';cancel.onclick=()=>{editor=null;render();};
+    editForm.onsubmit=event=>{event.preventDefault();const field=editor.field,value=input.value;save(()=>store.set(row.id,month,field,value),()=>{editor=null;});};
+    editForm.append(input,submit,cancel);item.append(editForm);
+   }
+   list.append(item);
   }
   const focus=restoreFocus??(focused?{id:focusId,delta:focused}:null);
   if(focus&&!busy){
@@ -123,18 +166,19 @@ export function mountMonthlyCounts({auth,db,sdk}){
  function shift(delta){
   const [year,m]=month.split('-').map(Number);
   const next=ytd?(year+delta)+'-'+String(m).padStart(2,'0'):monthKey(new Date(year,m-1+delta,1));
+  editor=null;
   month=next>monthKey()?monthKey():next;
   render();
  }
  $('prev').onclick=()=>shift(-1);
  $('next').onclick=()=>shift(1);
- $('ytd').onclick=()=>{ytd=!ytd;render();};
+ $('ytd').onclick=()=>{editor=null;ytd=!ytd;render();};
  $('new').onclick=()=>{form.hidden=!form.hidden;if(!form.hidden)name.focus();};
  form.onsubmit=event=>{event.preventDefault();save(()=>store.add(name.value),()=>{name.value='';form.hidden=true;$('new').focus();});};
  window.addEventListener('online',render);
  window.addEventListener('offline',render);
  function clear(){
-  epoch++;store?.dispose();store=null;rows=[];month=monthKey();ytd=false;synced=busy=false;restoreFocus=null;
+  epoch++;store?.dispose();store=null;rows=[];month=monthKey();ytd=false;synced=busy=false;restoreFocus=editor=null;
   name.value='';form.hidden=true;status.textContent='';$('panel').hidden=true;render();
  }
  function open(user){

@@ -9,7 +9,7 @@ function save(next){memory=next;if(!storageOK)return;try{const raw=JSON.stringif
 function change(fn){const run=()=>{const next=read(),result=fn(next);save(next);state=next;return result};const task=()=>navigator.locks?.request?navigator.locks.request(KEY,run):Promise.resolve().then(run);const result=operation.then(task);operation=result.catch(()=>{});return result}
 function setControls(){document.body.setAttribute('aria-busy',String(busy));$('previous-card').disabled=busy||loadError||(reviewId??0)>=DankiRepetition.historyLength(KEY,deck.length);for(const id of ['again','retry'])$(id).disabled=busy}
 function statLine(container,label,value){const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=label;dd.textContent=value;container.append(dt,dd)}
-function renderStats(){
+function renderStats(){window.DankiMonths?.show($('game-monthly'),{days:state.studyDays});
  const s=C.stats(state,info),values=$('stats-values');values.replaceChildren();
  for(const [label,value]of [['% Correct',DankiQuiz.label(state)],['Cards completed',s.completed.toLocaleString()],['Cards remaining',s.remaining.toLocaleString()],['Total progress',percentage(s.totalProgress,2)]])statLine(values,label,value);
  if(s.accuracy!==null){statLine(values,'Earlier accuracy',percentage(s.accuracy));statLine(values,'Earlier mastered',s.mastered.toLocaleString());statLine(values,'Earlier weak',s.weak.toLocaleString())}
