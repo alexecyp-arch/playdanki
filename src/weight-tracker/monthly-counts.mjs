@@ -81,6 +81,7 @@ export function createMonthlyStore({auth,db,sdk,uid,onChange}){
     return rows;
    });
   },
+  remove(id){return update(rows=>rows.filter(row=>row.id!==id));},
   dispose(){active=false;stop();}
  };
 }
@@ -134,6 +135,16 @@ export function mountMonthlyCounts({auth,db,sdk}){
      button.onclick=()=>{editor={id:row.id,field,value:String(row[field][month]??0)};render();list.querySelector('.monthly-edit input')?.select();};
      actions.append(button);
     }
+    const remove=document.createElement('button');remove.type='button';remove.textContent='×';
+    remove.disabled=unavailable();remove.title='Remove counter';remove.setAttribute('aria-label','Remove '+row.name);
+    remove.onclick=()=>{
+     if(!window.confirm('Remove "'+row.name+'" and all of its saved counts and goals?'))return;
+     save(()=>store.remove(row.id),()=>{
+      if(editor?.id===row.id)editor=null;
+      $('new').focus({preventScroll:true});
+     });
+    };
+    actions.append(remove);
    }
    item.append(left,progress,actions);
    if(editor?.id===row.id&&!ytd){
