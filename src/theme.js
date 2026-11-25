@@ -12,8 +12,8 @@ window.addEventListener('storage',event=>{if(event.key===leavesKey||event.key===
 (()=>{const title=document.querySelector?.("title");if(!title)return;const caps=()=>{const text=title.textContent,upper=text.toUpperCase();if(text!==upper)title.textContent=upper;};caps();new MutationObserver(caps).observe(title,{childList:true,characterData:true,subtree:true});})();
 
 (()=>{'use strict';
-const pictures=DAILY_PICTURES,key='danki:pictures:v1',media=matchMedia('(max-width:700px)');let enabled=false,timer;
-function read(){try{return localStorage.getItem(key)==='on';}catch{return enabled;}}
+const pictures=DAILY_PICTURES,key='danki:pictures:v1',media=matchMedia('(max-width:700px)');let enabled=true,timer;
+function read(){try{return localStorage.getItem(key)!=='off';}catch{return enabled;}}
 function apply(on=read()){
  enabled=on;const root=document.documentElement;root.dataset.dankiPictures=on?'on':'off';
  const button=document.querySelector('#background-toggle');if(button){button.setAttribute('aria-pressed',String(on));button.title=on?'PICTURES ON':'PICTURES OFF';}

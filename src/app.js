@@ -95,7 +95,7 @@ function showAllCardMonth(){
   cardMonthCache.set(key,{month,source,total:subtotal});total+=subtotal;
  }
  const name=now.toLocaleDateString('en-US',{month:'short'}).toUpperCase();
- label.textContent=name+' · '+total.toLocaleString('en-US')+' ALL CARDS';
+ label.textContent=name+' · '+total.toLocaleString('en-US')+' CARDS';
  label.setAttribute('aria-label',total.toLocaleString('en-US')+' cards practiced across all card games this month');
 }
 const accuracy=row=>{const graded=row.correct+row.wrong+(row.misses||0);return graded?Math.round(row.correct/graded*1000)/10:null};
