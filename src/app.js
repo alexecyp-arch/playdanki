@@ -64,9 +64,44 @@ function clean(raw,deck){
 function read(deck=active){if(!storageOK)return clean(memory.get(deck.key),deck);try{const value=clean(JSON.parse(localStorage.getItem(deck.key)),deck);memory.set(deck.key,value);return value}catch{storageOK=false;warn();return clean(memory.get(deck.key),deck)}}
 function save(deck,value){memory.set(deck.key,value);if(!storageOK)return;try{localStorage.setItem(deck.key,JSON.stringify(value));document.dispatchEvent(new Event('danki-progress'))}catch{storageOK=false;warn()}}
 const practiced=row=>row.correct+row.wrong+(row.skipped||0);
+// Only these saved card histories contribute to the all-games total.
+const cardSources=[
+ ...Object.values(decks).map(deck=>[deck.key,'days',row=>validRow(row)?practiced(copyRow(row)):0]),
+ ['programming5000:v1','studyDays',Number],
+ ['quant5000:v1','practiceDays',Number]
+];
+const cardKeys=new Set(cardSources.map(([key])=>key)),cardMonthCache=new Map();
+function showAllCardMonth(){
+ const label=$('monthly-card-total');
+ label.hidden=!practiceActive||active!==decks.words;
+ if(label.hidden)return;
+ const now=new Date(),month=dayKey(now).slice(0,7);
+ let total=0;
+ for(const [key,field,count] of cardSources){
+  let source=memory.get(key);
+  try{if(storageOK)source=localStorage.getItem(key);}catch{}
+  const cached=cardMonthCache.get(key);
+  if(cached?.month===month&&cached.source===source&&typeof source!=='object'){
+   total+=cached.total;continue;
+  }
+  let saved=source;
+  if(typeof source==='string')try{saved=JSON.parse(source);}catch{saved=null;}
+  let subtotal=0;
+  for(const [date,row] of Object.entries(saved?.[field]||{})){
+   if(!date.startsWith(month+'-'))continue;
+   const n=count(row);
+   if(Number.isSafeInteger(n)&&n>=0)subtotal+=n;
+  }
+  cardMonthCache.set(key,{month,source,total:subtotal});total+=subtotal;
+ }
+ const name=now.toLocaleDateString('en-US',{month:'short'}).toUpperCase();
+ label.textContent=name+' · '+total.toLocaleString('en-US')+' ALL CARDS';
+ label.setAttribute('aria-label',total.toLocaleString('en-US')+' cards practiced across all card games this month');
+}
 const accuracy=row=>{const graded=row.correct+row.wrong+(row.misses||0);return graded?Math.round(row.correct/graded*1000)/10:null};
 const accuracyLabel=row=>{const value=accuracy(row);return (value===null?'—':value+'%')+' CORRECT';};
 function score(){
+  showAllCardMonth();
   const total=emptyRow();for(const row of Object.values(state.days)){total.correct+=row.correct;total.wrong+=row.wrong;total.misses+=row.misses||0;total.skipped+=row.skipped||0;}
   const quiz=isQuiz();
   $('tracker-period').textContent="DAYS PRACTICE";$('today-count').textContent=practiced(state.days[dayKey()]||emptyRow()).toLocaleString()+' CARDS';
@@ -144,14 +179,15 @@ StudyNavigation.install({next:nextCard,previous:previousCard,enabled:()=>practic
 function closeHistory(){history.hidden=true;today.setAttribute('aria-expanded','false')}
 function switchMode(name){reviewCursor=null;if(mode!==name)cardVoice();if(mode===name){state=read(active);render();return}mode=name;active=decks[name];preferredModes[active.section]=name;state=read(active);if(storageOK&&modeKeys[active.section]){try{localStorage.setItem(modeKeys[active.section],name)}catch{storageOK=false;warn()}}closeHistory();render()}
 for(const [name,b]of Object.entries(modeButtons))b.addEventListener('click',()=>switchMode(name));
-document.addEventListener('practice-section',e=>{if(e.detail!==active.section)cardVoice();reviewCursor=null;showRepetition(false);practiceActive=!e.detail.startsWith('arithmetic')&&!['programming','quant','digit-span'].includes(e.detail);closeHistory();if(practiceActive){const next=preferredModes[e.detail];if(mode===next){state=read(active);render()}else switchMode(next)}});
+document.addEventListener('practice-section',e=>{if(e.detail!==active.section)cardVoice();reviewCursor=null;showRepetition(false);practiceActive=!e.detail.startsWith('arithmetic')&&!['programming','quant','digit-span'].includes(e.detail);showAllCardMonth();closeHistory();if(practiceActive){const next=preferredModes[e.detail];if(mode===next){state=read(active);render()}else switchMode(next)}});
 function skipKey(e){if(!practiceActive||(document.body.classList.contains('atlas-open')||(document.body.classList.contains('weight-open')||document.body.classList.contains('timebox-open')))||menuOpen()||e.ctrlKey||e.altKey||e.metaKey||e.isComposing)return;if(history.hidden&&!document.body.classList.contains('notes-open')&&DankiQuiz.selectKey(e,$('word-choices')))return;const next=e.code==='Space'||e.key===' '||e.key==='Enter';if(!next)return;const control=e.target.closest?.('input,textarea,select,[contenteditable="true"],summary,a,button');if(control&&control!==again)return;e.preventDefault();if(!e.repeat)nextCard()}
 document.addEventListener('keydown',skipKey);
 document.addEventListener('keydown',e=>{if(!practiceActive||menuOpen())return;if(e.key==='Escape'){closeHistory();today.focus({preventScroll:true})}});
 today.addEventListener('click',()=>{history.hidden=!history.hidden;today.setAttribute('aria-expanded',String(!history.hidden));if(!history.hidden){state=read(active);renderHistory()}});$('close-history').addEventListener('click',()=>{closeHistory();today.focus({preventScroll:true})});
 document.addEventListener('click',e=>{if(!e.target.closest('.tracker'))closeHistory()});
 again.addEventListener('click',()=>{if(!practiceActive)return;const deck=active,restart=()=>{const fresh=read(deck);if(fresh.cursor===deck.limit){fresh.cursor=0;fresh.round++;if(deck.cumulative)fresh.run={correct:0,wrong:0};save(deck,fresh)}if(active===deck){state=fresh;render()}};if(navigator.locks?.request)navigator.locks.request(deck.key,restart).catch(()=>{if(active===deck){state=read(deck);render()}});else restart()});
-window.addEventListener('storage',e=>{if(e.key===active.key||e.key===null){reviewCursor=null;state=read(active);render()}});
+window.addEventListener('storage',e=>{if(e.key===active.key||e.key===null){reviewCursor=null;state=read(active);render()}else if(cardKeys.has(e.key))showAllCardMonth();});
+document.addEventListener('danki-progress',showAllCardMonth);
 function refresh(){if(locked)return;const fresh=read(active);if(shownDay!==dayKey()||fresh.cursor!==state.cursor||fresh.round!==state.round){reviewCursor=null;state=fresh;render()}else{state=fresh;score()}}
 window.addEventListener('focus',refresh);document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh()});
 function scheduleMidnight(){clearTimeout(midnightTimer);const now=new Date(),next=new Date(now.getFullYear(),now.getMonth(),now.getDate()+1);midnightTimer=setTimeout(()=>{reviewCursor=null;state=read(active);render();scheduleMidnight()},Math.max(100,next-now+30))}
