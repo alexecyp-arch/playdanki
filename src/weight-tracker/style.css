@@ -105,3 +105,16 @@ svg .chart-today{fill:#ff626b}
  .monthly-counter-actions button{width:30px}
  .monthly-progress{font-size:10px}
 }
+
+/* Recessed chart face stays opaque over every wallpaper. */
+:is(#chart,#sleep-chart){
+ --plot-face:#09090b;
+ background:linear-gradient(155deg,#131316 0%,var(--plot-face) 42%,#060607 100%) var(--plot-face);
+ box-shadow:inset 0 0 0 1px #3b3b40,
+            inset 0 2px 0 #55555a,
+            inset 0 -2px 0 #030304,
+            inset 0 7px 19px #0009,
+            0 3px 7px #0009;
+}
+:is(#chart,#sleep-chart) .weight-latest-label,
+:is(#chart,#sleep-chart) .weight-target-label{stroke:var(--plot-face);paint-order:stroke;stroke-width:4px;stroke-linejoin:round}
