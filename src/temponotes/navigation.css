@@ -473,7 +473,7 @@ html[data-danki-theme="charcoal"] .note .expiry.expires-today{color:#fff}
  #notes-navigation .notes-weight-link{grid-area:1/1}
  #notes-navigation .notes-monthly-link{grid-area:2/1;font-size:6.5px}
 }
-html[data-danki-theme="charcoal"] .note .expiry{font-size:15px;line-height:20px;letter-spacing:.04em;text-shadow:0 1px #ffffff50,0 -1px #000b}
+html[data-danki-theme="charcoal"] .note .expiry{font-size:15px;line-height:20px;letter-spacing:.04em;text-shadow:var(--danki-engraved-text)}
 html[data-danki-theme="charcoal"] .note .expiry.expires-today{text-shadow:0 1px #000,0 -1px #000a}
 
 #notes-navigation :is(.notes-weight-link,.notes-monthly-link){font-size:10px;white-space:nowrap}

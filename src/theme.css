@@ -30,6 +30,7 @@ html[data-danki-leaves="off"] .autumn-leaves{display:none!important}
 /* The wood grain changes the button face, leaving the raised and pressed layers in place. */
 :root{
   --danki-wood-grain:WOOD_GRAIN;
+  --danki-engraved-text:0 1px #ffffff50,0 -1px #000b;
   --danki-button:#41251b;
   --danki-button-hover:#543324;
   --danki-button-down:#301910;
@@ -40,6 +41,12 @@ html[data-danki-theme="charcoal"] body :is(button,summary,.dataset-link,.tempono
 html[data-danki-theme="charcoal"] body :is(button,summary,.dataset-link,.temponotes-link,.atlas-link,.weight-link,.timebox-link,.danki-return,.page-switch,.page-links a,#support-options a):not(#today,#close-history,#embedded-previous-card,.eternal-close,.locked-close,.fortuna-wheel,#theme-switcher button,.eternal-colors button,.timebox-run,.timebox-edit,.timebox-move,.timebox-toggle,.timebox-minute,.word-correct,.word-wrong,.eternal-days button[aria-pressed="true"],.row-country):hover{background-color:var(--danki-button-hover)!important}
 html[data-danki-theme="charcoal"] body :is(button,summary,.dataset-link,.temponotes-link,.atlas-link,.weight-link,.timebox-link,.danki-return,.page-switch,.page-links a,#support-options a):not(#today,#close-history,#embedded-previous-card,.eternal-close,.locked-close,.fortuna-wheel,#theme-switcher button,.eternal-colors button,.timebox-run,.timebox-edit,.timebox-move,.timebox-toggle,.timebox-minute,.word-correct,.word-wrong,.eternal-days button[aria-pressed="true"],.row-country):active{background-color:var(--danki-button-down)!important}
 html[data-danki-theme="charcoal"] body :is(button,summary):not(#today,#close-history,#embedded-previous-card,.eternal-close,.locked-close,.fortuna-wheel,#theme-switcher button,.eternal-colors button,.timebox-run,.timebox-edit,.timebox-move,.timebox-toggle,.timebox-minute,.word-correct,.word-wrong,.eternal-days button[aria-pressed="true"],.row-country):is([aria-pressed="true"],[aria-selected="true"]){background-color:var(--danki-button-selected)!important}
+
+/* Use the Temponotes engraving on labels, including selected and feedback states. */
+html[data-danki-theme="charcoal"] body :is(button,summary,.dataset-link,.temponotes-link,.atlas-link,.weight-link,.timebox-link,.danki-return,.page-switch,.page-links a,#support-options a),
+body.reader.app :is(button,select,summary):not(#text button){
+  text-shadow:var(--danki-engraved-text);
+}
 
 /* Text-only controls stay clear in both themes, including hover/focus. */
 html body :is(#today,#close-history,#embedded-previous-card,.eternal-close,.locked-close),html body :is(#today,#close-history,#embedded-previous-card,.eternal-close,.locked-close):is(:hover,:active,:focus){background:transparent!important;box-shadow:none!important;border:0}
