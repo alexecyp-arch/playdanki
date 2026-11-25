@@ -81,8 +81,8 @@ function cancelSpeech() {
     utterance.onend = null;
     utterance.onerror = null;
     utterance = null;
+    window.speechSynthesis?.cancel();
   }
-  window.speechSynthesis?.cancel();
 }
 function fail(message) {
   cancelSpeech();
@@ -157,10 +157,13 @@ function playChunk(token) {
     else if (refresh) render(snapshot());
   };
   u.onerror = event => {
-    if (token === generation) fail(event.error || 'Windows could not read this text. Press Play to retry.');
+    if (token !== generation) return;
+    utterance = null;
+    fail(event.error || 'Windows could not read this text. Press Play to retry.');
   };
   u.onend = () => {
     if (token !== generation) return;
+    utterance = null;
     const seconds = (performance.now() - startedAt) / 1000;
     const words = wordCount(chunk.text);
     if (matchDesktop && words >= 12 && seconds > 0 && seconds < words * 1.5) matchChromePace(words,seconds);

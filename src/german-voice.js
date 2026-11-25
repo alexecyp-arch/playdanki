@@ -13,20 +13,25 @@ function available(){const lang=current?.lang||'de';return supported?synth.getVo
 function bestVoice(){return available().sort((a,b)=>rank(b)-rank(a))[0]||null;}
 function rank(v){const name=v.name||'';return (/neural|natural|premium|enhanced/i.test(name)?1000:0)+(/google/i.test(name)?800:0)+(!v.localService?100:0)+(v.lang?.replace('_','-').toLowerCase()===languages[current?.lang||'de'][1].toLowerCase()?30:0)+(v.default?5:0);}
 function sync(){button.disabled=!supported;button.setAttribute('aria-checked',String(enabled));button.querySelector('span').textContent=enabled?'ON':'OFF';button.dataset.voice=voice?.name||'';button.title=!supported?'Voice is unavailable in this browser':voice?languages[current?.lang||'de'][0]+' voice: '+voice.name:'Using the device '+languages[current?.lang||'de'][0]+' voice';}
-function visible(){const area=current?.scope?.startsWith('embedded:')?document.getElementById('arithmetic-frame'):document.getElementById('game');return current?.text&&!document.hidden&&area&&!area.hidden&&!['notes-open','atlas-open','weight-open','timebox-open'].some(c=>document.body.classList.contains(c));}
-function stop(){token++;pending='';if(frame)cancelAnimationFrame(frame);frame=0;activeUtterance=null;button.dataset.speaking='false';if(supported)synth.cancel();}
+function visible(){const area=current?.scope?.startsWith('embedded:')?document.getElementById('arithmetic-frame'):document.getElementById('game');return current?.text&&!document.hidden&&area&&!area.hidden&&!['private-route-open','notes-open','atlas-open','weight-open','timebox-open'].some(c=>document.body.classList.contains(c));}
+function stop(){
+ token++;pending='';if(frame)cancelAnimationFrame(frame);frame=0;
+ const ownUtterance=activeUtterance;activeUtterance=null;button.dataset.speaking='false';
+ // Chrome shares the stop command with extension speech. Never send it while idle.
+ if(ownUtterance)synth.cancel();
+}
 function play(){
  frame=0;if(!pending||pending!==identity(current))return;if(!enabled||!unlocked||!visible()){stop();return;}voice=bestVoice();sync();
- const ticket=++token;synth.cancel();pending='';
+ const ticket=++token;pending='';
  // Short sentence-sized utterances avoid long-answer cutoffs on mobile engines.
  const chunks=[];let rest=current.text.trim();while(rest.length>200){let cut=rest.slice(0,200).search(/[.!?。！？]\s*[^.!?。！？]*$/);if(cut<50)cut=rest.lastIndexOf(' ',200);if(cut<1)cut=200;else if(/[.!?。！？]/.test(rest[cut]))cut++;chunks.push(rest.slice(0,cut).trim());rest=rest.slice(cut).trim();}if(rest)chunks.push(rest);
  const tag=voice?.lang||languages[current?.lang||'de'][1],chosen=voice;
  function speakNext(){if(ticket!==token||!visible()||!enabled)return;const value=chunks.shift();if(!value){button.dataset.speaking='false';activeUtterance=null;return;}
  const utterance=new SpeechSynthesisUtterance(value);if(chosen)utterance.voice=chosen;utterance.lang=tag;utterance.rate=.96;utterance.pitch=1;utterance.volume=1;activeUtterance=utterance;
  utterance.onstart=()=>{if(ticket===token){button.dataset.speaking='true';delete button.dataset.error;}};
- utterance.onend=()=>{if(ticket===token)speakNext();};
+ utterance.onend=()=>{if(ticket===token){activeUtterance=null;speakNext();}};
  utterance.onerror=event=>{if(ticket!==token)return;activeUtterance=null;button.dataset.speaking='false';if(!['canceled','interrupted'].includes(event.error)){button.dataset.error=event.error||'unavailable';button.title='Voice could not play. Try the next card.';}};
- try{if(synth.paused)synth.resume();synth.speak(utterance);}catch{button.dataset.error='unavailable';}
+ try{if(synth.paused)synth.resume();synth.speak(utterance);}catch{activeUtterance=null;button.dataset.speaking='false';button.dataset.error='unavailable';}
  }speakNext();
 }
 function schedule(){if(frame)cancelAnimationFrame(frame);if(globalThis.navigator?.userActivation?.isActive)play();else frame=requestAnimationFrame(play);}

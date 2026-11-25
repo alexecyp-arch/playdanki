@@ -52,3 +52,25 @@ console.log('English games and mobile checks passed: trusted frame routing, sile
 
 for(const [lang,tag] of [['en','en-US'],['de','de-DE'],['fr','fr-FR'],['es','es-ES'],['it','it-IT'],['el','el-GR'],['ja','ja-JP'],['ko','ko-KR']]){const mobile=app({stored:'on',mobile:true,voices:[{name:'Enhanced '+lang,lang:tag}]});mobile.card('Initial',lang+':0',lang);mobile.event('pointerdown',{isTrusted:true});mobile.card('Answer',lang+':1',lang);assert.equal(mobile.spoken.at(-1).lang,tag);assert.equal(mobile.spoken.at(-1).text,'Answer');}
 console.log('Phone gesture checks passed for English and all seven learning languages.');
+
+const idle=app();
+idle.card('Initial card');
+idle.card('Next card','words:1:1');
+idle.win('danki-view-opening');idle.win('danki-auth-clearing');
+idle.document.hidden=true;idle.event('visibilitychange',{});
+idle.win('pagehide');
+assert.equal(idle.synth.cancels??0,0,'Idle PlayDanki never stops extension speech');
+const owned=app({stored:'on'});
+owned.card('Initial card');
+owned.event('pointerdown',{isTrusted:true});
+owned.card('First spoken card','words:1:1');owned.tick();
+assert.equal(owned.synth.cancels??0,0,'Starting a card does not clear the speech queue');
+owned.spoken[0].onend();
+owned.win('danki-view-opening');
+assert.equal(owned.synth.cancels??0,0,'A completed card no longer owns speech');
+owned.card('Second spoken card','words:1:2');owned.tick();
+owned.classes.add('private-route-open');owned.bodyChanged();
+assert.equal(owned.synth.cancels,1,'Opening a private view stops a card still speaking');
+owned.win('pagehide');
+assert.equal(owned.synth.cancels,1,'Leaving again does not send a second stop');
+console.log('Shared Chrome speech queue: idle, finished and active playback checks passed.');
