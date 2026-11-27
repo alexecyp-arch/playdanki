@@ -37,9 +37,8 @@ export function sleepChartData(days,target=null,now=Date.now()){
  const first=Math.min(points[0]?.time??today,last-2*dayMs);
  const values=points.map(p=>p.value);
  if(target!==null)values.push(target);
- const low=values.length?Math.max(0,Math.floor((Math.min(...values)-.5)/.5)*.5):0;
  const high=values.length?Math.ceil((Math.max(...values)+.5)/.5)*.5:5;
- return {points,target,x:[first,last],y:[low,Math.max(high,low+1.5)]};
+ return {points,target,x:[first,last],y:[0,Math.max(high,1.5)]};
 }
 function decode(value){
  try{

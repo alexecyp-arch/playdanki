@@ -47,6 +47,8 @@ svg .protein-target-label{fill:#ff8990;paint-order:stroke;stroke:var(--danki-bg,
 #sleep-form input{width:100%;min-width:0;font-size:12px}
 #sleep-form button{height:32px;min-width:29px;padding:4px 8px}
 #sleep-average{font-size:10px;text-align:center}
+#sleep-selected{font-size:12px;font-weight:700;text-align:center}
+#sleep-chart [role="button"]{cursor:pointer}
 #sleep-last-updated{margin-top:-8px;font-size:10px;text-align:center}
 #sleep-status,#sleep-target-status{font-size:10px;text-align:center}
 #sleep-status:empty,#sleep-target-status:empty{display:none}

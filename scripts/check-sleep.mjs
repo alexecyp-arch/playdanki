@@ -12,5 +12,5 @@ for(let i=0;i<60;i++)await store.adjust(1/60);assert.equal(JSON.parse(saved.valu
 assert.equal(formatSleepDuration(437/60),'7H 17M');assert.equal(formatSleepDuration(1/60),'0H 1M');
 await assert.rejects(store.adjust(25),/SLEEP/);await assert.rejects(store.adjust(1,'2026-11-22'),/DATE/);
 assert.equal(sleepAverage({'2026-11-15':7.5,[today]:24},now),7.5);
-const chart=sleepChartData({'2026-11-15':7.5},null,now);assert.equal(chart.y[0]%0.5,0);assert.equal(chart.y[1]%0.5,0);
+const chart=sleepChartData({'2026-11-15':7.5},null,now);assert.deepEqual(chart.y,[0,8]);
 auth.currentUser={uid:'bob'};await assert.rejects(store.adjust(1),/SIGN IN/);store.dispose();console.log('Sleep passed: exact minutes, daily totals, bounds, future dates, average and owner isolation.');

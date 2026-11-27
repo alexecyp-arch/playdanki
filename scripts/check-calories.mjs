@@ -6,7 +6,7 @@ assert.equal(calorieAverage({[yesterday]:2200,[today]:9000},now),2200);
 assert.equal(calorieAverage({[today]:1000},now),null);
 const chart=calorieChartData({[today]:2000,[yesterday]:1800,'2026-02-30':100},2250,now);
 assert.deepEqual(chart.points.map(p=>p.value),[1800,2000]);
-assert.deepEqual(chart.y,[1700,2400]);
+assert.deepEqual(chart.y,[0,2400]);
 assert.equal(chart.target,2250);
 assert.equal(calorieChartData({},2000,now).points.length,0);
 
