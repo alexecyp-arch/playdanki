@@ -108,7 +108,7 @@ svg .chart-today{fill:#ff626b}
 }
 
 /* Recessed chart face stays opaque over every wallpaper. */
-:is(#chart,#sleep-chart){
+.log-chart{
  --plot-face:#09090b;
  background:linear-gradient(155deg,#131316 0%,var(--plot-face) 42%,#060607 100%) var(--plot-face);
  box-shadow:inset 0 0 0 1px #3b3b40,
@@ -133,3 +133,13 @@ svg .chart-today{fill:#ff626b}
 .monthly-progress progress::-webkit-progress-value{background:linear-gradient(#429b5d,#23703c)}
 .monthly-progress progress::-moz-progress-bar{background:linear-gradient(#429b5d,#23703c)}
 @media(max-width:440px){.monthly-counter{grid-template-columns:30px minmax(0,1fr) 30px;gap:12px 8px}}
+
+.log-chart{width:100%;min-width:0;display:flex;align-items:flex-start}
+.log-chart-scroll{min-width:0;flex:1;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin}
+.log-scale{flex:none;width:52px;overflow:hidden}
+.log-scale-right{width:56px}
+:is(#chart,#sleep-chart){overflow:hidden}
+svg .chart-day-label{font-size:8px}
+svg .chart-month-label{font-size:8px;fill:#acb7c7}
+svg .chart-today{fill:#ff827f}
+svg .bmi-axis-label{fill:#ff9b42}
