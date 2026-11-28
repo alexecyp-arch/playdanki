@@ -142,4 +142,9 @@ svg .chart-today{fill:#ff626b}
 svg .chart-day-label{font-size:8px}
 svg .chart-month-label{font-size:8px;fill:#acb7c7}
 svg .chart-today{fill:#ff827f}
-svg .bmi-axis-label{fill:#ff9b42}
+svg .bmi-axis-label{fill:#ffae61;font-size:12px}
+svg .bmi-axis-heading{font-size:13px}
+svg .bmi-latest-label{fill:#ffae61;font-size:13px}
+svg .bmi-extreme-label{fill:#ffae61;font-size:8px}
+svg .weight-extreme-label{fill:#b1efcb;font-size:8px}
+.log-chart :is(.bmi-latest-label,.bmi-extreme-label,.weight-extreme-label){stroke:var(--plot-face);paint-order:stroke;stroke-width:4px;stroke-linejoin:round}
